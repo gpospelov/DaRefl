@@ -10,6 +10,8 @@
 #ifndef IMPORTLINEFILTERWIDGET_H
 #define IMPORTLINEFILTERWIDGET_H
 
+#include <mvvm/model/customvariants.h>
+
 #include <QProxyStyle>
 #include <QStyleOption>
 #include <QWidget>
