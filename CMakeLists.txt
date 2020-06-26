@@ -6,4 +6,5 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)
 include(configuration)
 
+add_subdirectory(extern)
 add_subdirectory(source)
