@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //
-//  Model-view-view-model framework for large GUI applications
+//  Reflectometry simulation software prototype
 //
 //! @license   GNU General Public License v3 or higher (see COPYING)
 //! @authors   see AUTHORS
@@ -9,16 +9,16 @@
 
 #include "google_test.h"
 
-#include "graphicsscene.h"
-#include "handleelementview.h"
-#include "layerelementcontroller.h"
-#include "layerelementitem.h"
-#include "materialmodel.h"
-#include "roughnesselementview.h"
-#include "samplemodel.h"
-#include "segmentelementview.h"
-#include "sldelementmodel.h"
 #include "test_utils.h"
+#include <darefl/model/materialmodel.h>
+#include <darefl/model/samplemodel.h>
+#include <darefl/sldeditor/graphicsscene.h>
+#include <darefl/sldeditor/handleelementview.h>
+#include <darefl/sldeditor/layerelementcontroller.h>
+#include <darefl/sldeditor/layerelementitem.h>
+#include <darefl/sldeditor/roughnesselementview.h>
+#include <darefl/sldeditor/segmentelementview.h>
+#include <darefl/sldeditor/sldelementmodel.h>
 #include <mvvm/viewmodel/viewmodelutils.h>
 
 #include <QColor>

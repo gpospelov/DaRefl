@@ -1,13 +1,13 @@
 // ************************************************************************** //
 //
-//  Model-view-view-model framework for large GUI applications
+//  Reflectometry simulation software prototype
 //
 //! @license   GNU General Public License v3 or higher (see COPYING)
 //! @authors   see AUTHORS
 //
 // ************************************************************************** //
 
-#include "importutils.h"
+#include <darefl/famousloader/importutils.h>
 #include "test_utils.h"
 
 #include <algorithm>

@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //
-//  Model-view-view-model framework for large GUI applications
+//  Reflectometry simulation software prototype
 //
 //! @license   GNU General Public License v3 or higher (see COPYING)
 //! @authors   see AUTHORS
@@ -8,9 +8,9 @@
 // ************************************************************************** //
 
 #include "google_test.h"
-#include "layeritems.h"
-#include "samplemodel.h"
 #include "test_utils.h"
+#include <darefl/model/layeritems.h>
+#include <darefl/model/samplemodel.h>
 
 using namespace ModelView;
 

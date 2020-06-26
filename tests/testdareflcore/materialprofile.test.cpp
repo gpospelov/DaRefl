@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //
-//  Model-view-view-model framework for large GUI applications
+//  Reflectometry simulation software prototype
 //
 //! @license   GNU General Public License v3 or higher (see COPYING)
 //! @authors   see AUTHORS
@@ -8,7 +8,7 @@
 // ************************************************************************** //
 
 #include "google_test.h"
-#include "materialprofile.h"
+#include <darefl/quicksimeditor/materialprofile.h>
 
 //! Tests utility functions from MaterialProfile namespace.
 

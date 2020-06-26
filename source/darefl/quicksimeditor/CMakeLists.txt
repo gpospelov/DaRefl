@@ -1,0 +1,21 @@
+target_sources(${library_name} PRIVATE
+    fouriertransform.cpp
+    fouriertransform.h
+    jobmanager.cpp
+    jobmanager.h
+    materialprofile.cpp
+    materialprofile.h
+    profilehelper.cpp
+    profilehelper.h
+    quicksimcontroller.cpp
+    quicksimcontroller.h
+    quicksimeditor.cpp
+    quicksimeditor.h
+    quicksimeditortoolbar.cpp
+    quicksimeditortoolbar.h
+    quicksimutils.cpp
+    quicksimutils.h
+    slice.h
+    speculartoysimulation.cpp
+    speculartoysimulation.h
+)

@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //
-//  Model-view-view-model framework for large GUI applications
+//  Reflectometry simulation software prototype
 //
 //! @license   GNU General Public License v3 or higher (see COPYING)
 //! @authors   see AUTHORS
@@ -13,9 +13,8 @@
 #include <QString>
 #include <QTextStream>
 #include <mvvm/utils/fileutils.h>
-#include <string>
 #include <stdexcept>
-
+#include <string>
 
 using namespace ModelView;
 
