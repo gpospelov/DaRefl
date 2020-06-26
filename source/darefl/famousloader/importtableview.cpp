@@ -1,14 +1,9 @@
 // ************************************************************************** //
 //
-//  BornAgain: simulate and fit scattering at grazing incidence
+//  Reflectometry simulation software prototype
 //
-//! @file      GUI/coregui/Views/ImportDataWidgets/CsvImportAssistant/ImportTableView.cpp
-//! @brief     Implements class ImportTableView
-//!
-//! @homepage  http://www.bornagainproject.org
 //! @license   GNU General Public License v3 or higher (see COPYING)
-//! @copyright Forschungszentrum Jülich GmbH 2018
-//! @authors   Scientific Computing Group at MLZ (see CITATION, AUTHORS)
+//! @authors   see AUTHORS
 //
 // ************************************************************************** //
 

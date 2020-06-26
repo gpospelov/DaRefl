@@ -1,3 +1,12 @@
+// ************************************************************************** //
+//
+//  Reflectometry simulation software prototype
+//
+//! @license   GNU General Public License v3 or higher (see COPYING)
+//! @authors   see AUTHORS
+//
+// ************************************************************************** //
+
 /*
  * This is nearly complete Material design Switch widget implementation in qtwidgets module.
  * More info: https://material.io/design/components/selection-controls.html#switches
