@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef QUICKSIMEDITORTOOLBAR_H
-#define QUICKSIMEDITORTOOLBAR_H
+#ifndef DAREFL_QUICKSIMEDITOR_QUICKSIMEDITORTOOLBAR_H
+#define DAREFL_QUICKSIMEDITOR_QUICKSIMEDITORTOOLBAR_H
 
 #include <QToolBar>
 
@@ -47,4 +47,4 @@ private:
     QProgressBar* progressbar{nullptr};  //! Simulation progressbar.
 };
 
-#endif // QUICKSIMEDITORTOOLBAR_H
+#endif  // DAREFL_QUICKSIMEDITOR_QUICKSIMEDITORTOOLBAR_H

@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef MATERIALEDITORTOOLBAR_H
-#define MATERIALEDITORTOOLBAR_H
+#ifndef DAREFL_MATERIALEDITOR_MATERIALEDITORTOOLBAR_H
+#define DAREFL_MATERIALEDITOR_MATERIALEDITORTOOLBAR_H
 
 #include <QToolBar>
 
@@ -24,4 +24,4 @@ public:
     ~MaterialEditorToolBar() = default;
 };
 
-#endif // MATERIALEDITORTOOLBAR_H
+#endif  // DAREFL_MATERIALEDITOR_MATERIALEDITORTOOLBAR_H

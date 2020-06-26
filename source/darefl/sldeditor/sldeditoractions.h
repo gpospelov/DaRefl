@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef SLDEDITORACTIONS_H
-#define SLDEDITORACTIONS_H
+#ifndef DAREFL_SLDEDITOR_SLDEDITORACTIONS_H
+#define DAREFL_SLDEDITOR_SLDEDITORACTIONS_H
 
 #include <QObject>
 #include <memory>
@@ -30,4 +30,4 @@ private:
     std::unique_ptr<SLDEditorActionsImpl> p_impl;
 };
 
-#endif // SLDEDITORACTIONS_H
+#endif  // DAREFL_SLDEDITOR_SLDEDITORACTIONS_H

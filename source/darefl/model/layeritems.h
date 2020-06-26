@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef LAYERITEMS_H
-#define LAYERITEMS_H
+#ifndef DAREFL_MODEL_LAYERITEMS_H
+#define DAREFL_MODEL_LAYERITEMS_H
 
 //! @file layeritems.h
 //! Collection of layer and multi-layer items to populate SampleModel.
@@ -58,4 +58,4 @@ private:
     void update_layer_appearance();
 };
 
-#endif // LAYERITEM_H
+#endif  // DAREFL_MODEL_LAYERITEMS_H

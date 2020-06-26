@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef GRAPHEDITOR_H
-#define GRAPHEDITOR_H
+#ifndef DAREFL_GRAPHEDITOR_GRAPHEDITOR_H
+#define DAREFL_GRAPHEDITOR_GRAPHEDITOR_H
 
 #include <QWidget>
 
@@ -35,4 +35,4 @@ private:
     ModelView::GraphCanvas* graph_canvas{nullptr};
 };
 
-#endif // GRAPHEDITOR_H
+#endif  // DAREFL_GRAPHEDITOR_GRAPHEDITOR_H

@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef SLDEDITORTOOLBAR_H
-#define SLDEDITORTOOLBAR_H
+#ifndef DAREFL_SLDEDITOR_SLDEDITORTOOLBAR_H
+#define DAREFL_SLDEDITOR_SLDEDITORTOOLBAR_H
 
 #include <QToolBar>
 
@@ -27,4 +27,4 @@ signals:
     void resetViewport();
 };
 
-#endif // SLDEDITORTOOLBAR_H
+#endif  // DAREFL_SLDEDITOR_SLDEDITORTOOLBAR_H

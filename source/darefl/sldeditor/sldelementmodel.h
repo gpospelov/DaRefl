@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef SLDELEMENTMODEL_H
-#define SLDELEMENTMODEL_H
+#ifndef DAREFL_SLDEDITOR_SLDELEMENTMODEL_H
+#define DAREFL_SLDEDITOR_SLDELEMENTMODEL_H
 
 #include <mvvm/model/sessionmodel.h>
 #include <vector>
@@ -31,4 +31,4 @@ public:
     LayerElementItem* addLayer();
 };
 
-#endif //  SLDELEMENTMODEL_H
+#endif  // DAREFL_SLDEDITOR_SLDELEMENTMODEL_H

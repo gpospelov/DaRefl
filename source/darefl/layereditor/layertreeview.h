@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef LAYERTREEVIEW_H
-#define LAYERTREEVIEW_H
+#ifndef DAREFL_LAYEREDITOR_LAYERTREEVIEW_H
+#define DAREFL_LAYEREDITOR_LAYERTREEVIEW_H
 
 #include <QTreeView>
 
@@ -25,4 +25,4 @@ public:
     void setModel(QAbstractItemModel* model) override;
 };
 
-#endif // LAYERTREEVIEW_H
+#endif  // DAREFL_LAYEREDITOR_LAYERTREEVIEW_H

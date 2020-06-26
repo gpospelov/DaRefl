@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef JOBMANAGER_H
-#define JOBMANAGER_H
+#ifndef DAREFL_QUICKSIMEDITOR_JOBMANAGER_H
+#define DAREFL_QUICKSIMEDITOR_JOBMANAGER_H
 
 #include <darefl/quicksimeditor/speculartoysimulation.h>
 #include <QObject>
@@ -43,4 +43,4 @@ private:
     bool interrupt_request{false};
 };
 
-#endif // JOBMANAGER_H
+#endif  // DAREFL_QUICKSIMEDITOR_JOBMANAGER_H

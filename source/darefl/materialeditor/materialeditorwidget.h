@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef MATERIALEDITORWIDGET_H
-#define MATERIALEDITORWIDGET_H
+#ifndef DAREFL_MATERIALEDITOR_MATERIALEDITORWIDGET_H
+#define DAREFL_MATERIALEDITOR_MATERIALEDITORWIDGET_H
 
 #include <QWidget>
 #include <memory>
@@ -44,4 +44,4 @@ private:
     std::unique_ptr<ModelView::ViewModelDelegate> m_delegate;
 };
 
-#endif // MATERIALEDITORWIDGET_H
+#endif  // DAREFL_MATERIALEDITOR_MATERIALEDITORWIDGET_H

@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef SEGMENTELEMENTVIEW_H
-#define SEGMENTELEMENTVIEW_H
+#ifndef DAREFL_SLDEDITOR_SEGMENTELEMENTVIEW_H
+#define DAREFL_SLDEDITOR_SEGMENTELEMENTVIEW_H
 
 #include <darefl/sldeditor/elementview.h>
 
@@ -44,4 +44,4 @@ protected:
     QPen m_pen;
 };
 
-#endif // SEGMENTVIEW_H
+#endif  // DAREFL_SLDEDITOR_SEGMENTELEMENTVIEW_H

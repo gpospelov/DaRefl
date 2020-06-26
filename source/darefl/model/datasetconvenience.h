@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DATASETCONVENIENCE_H
-#define DATASETCONVENIENCE_H
+#ifndef DAREFL_MODEL_DATASETCONVENIENCE_H
+#define DAREFL_MODEL_DATASETCONVENIENCE_H
 
 #include <string>
 #include <vector>
@@ -36,4 +36,4 @@ public:
     std::string data_unit;
 };
 
-#endif // DATASETCONVENIENCE_H
+#endif  // DAREFL_MODEL_DATASETCONVENIENCE_H

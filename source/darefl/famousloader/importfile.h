@@ -12,8 +12,8 @@
 //
 // ************************************************************************** //
 
-#ifndef IMPORTFILE_H
-#define IMPORTFILE_H
+#ifndef DAREFL_FAMOUSLOADER_IMPORTFILE_H
+#define DAREFL_FAMOUSLOADER_IMPORTFILE_H
 
 #include <string>
 #include <vector>
@@ -44,4 +44,4 @@ private:
 };
 } // namespace DataImportLogic
 
-#endif // IMPORTFILE_H
+#endif  // DAREFL_FAMOUSLOADER_IMPORTFILE_H

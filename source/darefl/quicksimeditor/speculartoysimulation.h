@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef SPECULARTOYSIMULATION_H
-#define SPECULARTOYSIMULATION_H
+#ifndef DAREFL_QUICKSIMEDITOR_SPECULARTOYSIMULATION_H
+#define DAREFL_QUICKSIMEDITOR_SPECULARTOYSIMULATION_H
 
 #include <darefl/quicksimeditor/materialprofile.h>
 #include <mvvm/utils/progresshandler.h>
@@ -43,4 +43,4 @@ private:
     Result specular_result;
 };
 
-#endif // SPECULARTOYSIMULATION_H
+#endif  // DAREFL_QUICKSIMEDITOR_SPECULARTOYSIMULATION_H

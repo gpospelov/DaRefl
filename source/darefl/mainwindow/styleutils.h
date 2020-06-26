@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef STYLEUTILS_H
-#define STYLEUTILS_H
+#ifndef DAREFL_MAINWINDOW_STYLEUTILS_H
+#define DAREFL_MAINWINDOW_STYLEUTILS_H
 
 class QSize;
 class QFont;
@@ -34,4 +34,4 @@ int LargeButtonHeight();
 
 }; // namespace StyleUtils
 
-#endif // STYLEUTILS_H
+#endif  // DAREFL_MAINWINDOW_STYLEUTILS_H

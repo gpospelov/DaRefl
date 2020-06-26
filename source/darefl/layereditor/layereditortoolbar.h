@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef LAYEREDITORTOOLBAR_H
-#define LAYEREDITORTOOLBAR_H
+#ifndef DAREFL_LAYEREDITOR_LAYEREDITORTOOLBAR_H
+#define DAREFL_LAYEREDITOR_LAYEREDITORTOOLBAR_H
 
 #include <QToolBar>
 
@@ -27,4 +27,4 @@ private:
     QMenu* create_layer_menu(LayerEditorActions* editor_actions);
 };
 
-#endif // LAYEREDITORTOOLBAR_H
+#endif  // DAREFL_LAYEREDITOR_LAYEREDITORTOOLBAR_H

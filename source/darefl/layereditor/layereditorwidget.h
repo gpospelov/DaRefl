@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef LAYEREDITORWIDGET_H
-#define LAYEREDITORWIDGET_H
+#ifndef DAREFL_LAYEREDITOR_LAYEREDITORWIDGET_H
+#define DAREFL_LAYEREDITOR_LAYEREDITORWIDGET_H
 
 #include <QWidget>
 #include <memory>
@@ -42,4 +42,4 @@ private:
     std::unique_ptr<ModelView::ViewModelDelegate> m_delegate;
 };
 
-#endif // LAYEREDITORWIDGET_H
+#endif  // DAREFL_LAYEREDITOR_LAYEREDITORWIDGET_H

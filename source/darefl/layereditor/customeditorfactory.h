@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef CUSTOMEDITORFACTORY_H
-#define CUSTOMEDITORFACTORY_H
+#ifndef DAREFL_LAYEREDITOR_CUSTOMEDITORFACTORY_H
+#define DAREFL_LAYEREDITOR_CUSTOMEDITORFACTORY_H
 
 #include <mvvm/editors/defaulteditorfactory.h>
 
@@ -38,4 +38,4 @@ private:
     ApplicationModels* m_models;
 };
 
-#endif //  CUSTOMEDITORFACTORY_H
+#endif  // DAREFL_LAYEREDITOR_CUSTOMEDITORFACTORY_H

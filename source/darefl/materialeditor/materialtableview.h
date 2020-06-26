@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef MATERIALTABLEVIEW_H
-#define MATERIALTABLEVIEW_H
+#ifndef DAREFL_MATERIALEDITOR_MATERIALTABLEVIEW_H
+#define DAREFL_MATERIALEDITOR_MATERIALTABLEVIEW_H
 
 #include <QTableView>
 
@@ -34,4 +34,4 @@ private:
     bool isKeyboardEditable(const QModelIndex& index) const;
 };
 
-#endif // MATERIALTABLEVIEW_H
+#endif  // DAREFL_MATERIALEDITOR_MATERIALTABLEVIEW_H

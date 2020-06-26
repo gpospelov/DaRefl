@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef MATERIALPROFILE_H
-#define MATERIALPROFILE_H
+#ifndef DAREFL_QUICKSIMEDITOR_MATERIALPROFILE_H
+#define DAREFL_QUICKSIMEDITOR_MATERIALPROFILE_H
 
 #include <darefl/quicksimeditor/slice.h>
 
@@ -29,4 +29,4 @@ std::vector<double> GenerateZValues(int n_points, double z_min, double z_max);
 
 } // namespace MaterialProfile
 
-#endif
+#endif  // DAREFL_QUICKSIMEDITOR_MATERIALPROFILE_H

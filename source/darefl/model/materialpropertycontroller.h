@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef MATERIALPROPERTYCONTROLLER_H
-#define MATERIALPROPERTYCONTROLLER_H
+#ifndef DAREFL_MODEL_MATERIALPROPERTYCONTROLLER_H
+#define DAREFL_MODEL_MATERIALPROPERTYCONTROLLER_H
 
 #include <mvvm/model/sessionmodel.h>
 
@@ -33,4 +33,4 @@ private:
     SampleModel* m_sample_model;
 };
 
-#endif //  MATERIALPROPERTYCONTROLLER_H
+#endif  // DAREFL_MODEL_MATERIALPROPERTYCONTROLLER_H

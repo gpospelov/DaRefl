@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef LAYERSELECTIONMODEL_H
-#define LAYERSELECTIONMODEL_H
+#ifndef DAREFL_LAYEREDITOR_LAYERSELECTIONMODEL_H
+#define DAREFL_LAYEREDITOR_LAYERSELECTIONMODEL_H
 
 #include <QItemSelectionModel>
 #include <vector>
@@ -38,4 +38,4 @@ public:
     const ModelView::ViewModel* viewModel() const;
 };
 
-#endif // LAYERSELECTIONMODEL_H
+#endif  // DAREFL_LAYEREDITOR_LAYERSELECTIONMODEL_H

@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef MATERIALEDITOR_H
-#define MATERIALEDITOR_H
+#ifndef DAREFL_MATERIALEDITOR_MATERIALEDITOR_H
+#define DAREFL_MATERIALEDITOR_MATERIALEDITOR_H
 
 #include <QWidget>
 
@@ -41,4 +41,4 @@ private:
     MaterialEditorWidget* editor_widget{nullptr};
 };
 
-#endif // MATERIALEDITOR_H
+#endif  // DAREFL_MATERIALEDITOR_MATERIALEDITOR_H

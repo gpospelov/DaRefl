@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef PROJECTPANEWIDGET_H
-#define PROJECTPANEWIDGET_H
+#ifndef DAREFL_WELCOMEVIEW_PROJECTPANEWIDGET_H
+#define DAREFL_WELCOMEVIEW_PROJECTPANEWIDGET_H
 
 #include <QWidget>
 
@@ -48,4 +48,4 @@ private:
     QString m_project_dir;
 };
 
-#endif // PROJECTPANEWIDGET_H
+#endif  // DAREFL_WELCOMEVIEW_PROJECTPANEWIDGET_H

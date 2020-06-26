@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef SLICE_H
-#define SLICE_H
+#ifndef DAREFL_QUICKSIMEDITOR_SLICE_H
+#define DAREFL_QUICKSIMEDITOR_SLICE_H
 
 #include <complex>
 #include <vector>
@@ -24,4 +24,4 @@ struct Slice {
 
 using multislice_t = std::vector<Slice>;
 
-#endif //  SLICE_H
+#endif  // DAREFL_QUICKSIMEDITOR_SLICE_H

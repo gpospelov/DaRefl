@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef QUICKSIMEDITOR_H
-#define QUICKSIMEDITOR_H
+#ifndef DAREFL_QUICKSIMEDITOR_QUICKSIMEDITOR_H
+#define DAREFL_QUICKSIMEDITOR_QUICKSIMEDITOR_H
 
 #include <QWidget>
 #include <memory>
@@ -45,4 +45,4 @@ private:
     ModelView::GraphCanvas* spec_canvas{nullptr};
 };
 
-#endif // QUICKSIMEDITOR_H
+#endif  // DAREFL_QUICKSIMEDITOR_QUICKSIMEDITOR_H

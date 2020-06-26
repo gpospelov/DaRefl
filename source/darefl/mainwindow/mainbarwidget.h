@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef MAINBARWIDGET_H
-#define MAINBARWIDGET_H
+#ifndef DAREFL_MAINWINDOW_MAINBARWIDGET_H
+#define DAREFL_MAINWINDOW_MAINBARWIDGET_H
 
 #include <QWidget>
 #include <map>
@@ -37,4 +37,4 @@ private:
     std::map<int, QPushButton*> index_to_button;
 };
 
-#endif // MAINBARWIDGET_H
+#endif  // DAREFL_MAINWINDOW_MAINBARWIDGET_H

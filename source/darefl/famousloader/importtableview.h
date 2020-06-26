@@ -12,8 +12,8 @@
 //
 // ************************************************************************** //
 
-#ifndef IMPORTTABLEVIEW_H
-#define IMPORTTABLEVIEW_H
+#ifndef DAREFL_FAMOUSLOADER_IMPORTTABLEVIEW_H
+#define DAREFL_FAMOUSLOADER_IMPORTTABLEVIEW_H
 
 #include <darefl/famousloader/importdatastructure.h>
 #include <darefl/famousloader/importutils.h>
@@ -91,4 +91,4 @@ public:
 
 } // End of namespace DataImportGui
 
-#endif // IMPORTTABLEVIEW_H
+#endif  // DAREFL_FAMOUSLOADER_IMPORTTABLEVIEW_H

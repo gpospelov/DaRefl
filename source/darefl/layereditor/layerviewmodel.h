@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef LAYERVIEWMODEL_H
-#define LAYERVIEWMODEL_H
+#ifndef DAREFL_LAYEREDITOR_LAYERVIEWMODEL_H
+#define DAREFL_LAYEREDITOR_LAYERVIEWMODEL_H
 
 #include <mvvm/viewmodel/viewmodel.h>
 
@@ -29,4 +29,4 @@ public:
     LayerViewModel(ModelView::SessionModel* model, QObject* parent = nullptr);
 };
 
-#endif //  LAYERVIEWMODEL_H
+#endif  // DAREFL_LAYEREDITOR_LAYERVIEWMODEL_H

@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef PROFILEHELPER_H
-#define PROFILEHELPER_H
+#ifndef DAREFL_QUICKSIMEDITOR_PROFILEHELPER_H
+#define DAREFL_QUICKSIMEDITOR_PROFILEHELPER_H
 
 #include <utility>
 #include <vector>
@@ -34,4 +34,4 @@ private:
     std::vector<double> m_sigmas;
 };
 
-#endif // PROFILEHELPER_H
+#endif  // DAREFL_QUICKSIMEDITOR_PROFILEHELPER_H

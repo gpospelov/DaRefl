@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef QUICKSIMUTILS_H
-#define QUICKSIMUTILS_H
+#ifndef DAREFL_QUICKSIMEDITOR_QUICKSIMUTILS_H
+#define DAREFL_QUICKSIMEDITOR_QUICKSIMUTILS_H
 
 #include <darefl/quicksimeditor/slice.h>
 class MultiLayerItem;
@@ -22,4 +22,4 @@ multislice_t CreateMultiSlice(const MultiLayerItem& multilayer);
 
 } // namespace Utils
 
-#endif // QUICKSIMUTILS_H
+#endif  // DAREFL_QUICKSIMEDITOR_QUICKSIMUTILS_H

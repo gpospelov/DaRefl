@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef MATERIALEDITORACTIONS_H
-#define MATERIALEDITORACTIONS_H
+#ifndef DAREFL_MATERIALEDITOR_MATERIALEDITORACTIONS_H
+#define DAREFL_MATERIALEDITOR_MATERIALEDITORACTIONS_H
 
 #include <QObject>
 #include <memory>
@@ -41,4 +41,4 @@ private:
     std::unique_ptr<MaterialEditorActionsImpl> p_impl;
 };
 
-#endif // MATERIALEDITORACTIONS_H
+#endif  // DAREFL_MATERIALEDITOR_MATERIALEDITORACTIONS_H

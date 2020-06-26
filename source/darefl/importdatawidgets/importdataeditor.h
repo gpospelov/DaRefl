@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef IMPORTDATAEDITOR_H
-#define IMPORTDATAEDITOR_H
+#ifndef DAREFL_IMPORTDATAWIDGETS_IMPORTDATAEDITOR_H
+#define DAREFL_IMPORTDATAWIDGETS_IMPORTDATAEDITOR_H
 
 #include <QWidget>
 #include <string>
@@ -73,4 +73,4 @@ private:
     ModelView::GraphCanvas* p_graph_canvas{nullptr};
 };
 
-#endif // IMPORTDATAEDITOR_H
+#endif  // DAREFL_IMPORTDATAWIDGETS_IMPORTDATAEDITOR_H

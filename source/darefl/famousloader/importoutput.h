@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef IMPORTOUTPUT_H
-#define IMPORTOUTPUT_H
+#ifndef DAREFL_FAMOUSLOADER_IMPORTOUTPUT_H
+#define DAREFL_FAMOUSLOADER_IMPORTOUTPUT_H
 
 #include <map>
 #include <memory>
@@ -65,4 +65,4 @@ private:
 
 } // namespace DataImportLogic
 
-#endif // IMPORTOUTPUT_H
+#endif  // DAREFL_FAMOUSLOADER_IMPORTOUTPUT_H

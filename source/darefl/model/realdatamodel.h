@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef REALDATAMODEL_H
-#define REALDATAMODEL_H
+#ifndef DAREFL_MODEL_REALDATAMODEL_H
+#define DAREFL_MODEL_REALDATAMODEL_H
 
 #include <mvvm/model/sessionmodel.h>
 #include <vector>
@@ -55,4 +55,4 @@ private:
     void removeDataFromGroup(ModelView::GraphItem* item);
 };
 
-#endif //  REALDATAMODEL_H
+#endif  // DAREFL_MODEL_REALDATAMODEL_H

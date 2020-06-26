@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef IMPORTLOGIC_H
-#define IMPORTLOGIC_H
+#ifndef DAREFL_FAMOUSLOADER_IMPORTLOGIC_H
+#define DAREFL_FAMOUSLOADER_IMPORTLOGIC_H
 
 #include <darefl/famousloader/importfile.h>
 #include <darefl/famousloader/importlinefilter.h>
@@ -64,4 +64,4 @@ private:
 
 } // namespace DataImportLogic
 
-#endif // IMPORTLOGIC_H
+#endif  // DAREFL_FAMOUSLOADER_IMPORTLOGIC_H

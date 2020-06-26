@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef GRAPHEDITORTOOLBAR_H
-#define GRAPHEDITORTOOLBAR_H
+#ifndef DAREFL_GRAPHEDITOR_GRAPHEDITORTOOLBAR_H
+#define DAREFL_GRAPHEDITOR_GRAPHEDITORTOOLBAR_H
 
 #include <QToolBar>
 
@@ -24,4 +24,4 @@ signals:
     void resetViewport();
 };
 
-#endif // GRAPHEDITORTOOLBAR_H
+#endif  // DAREFL_GRAPHEDITOR_GRAPHEDITORTOOLBAR_H

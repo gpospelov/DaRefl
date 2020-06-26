@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DATAVIEWMODEL_H
-#define DATAVIEWMODEL_H
+#ifndef DAREFL_IMPORTDATAWIDGETS_DATAVIEWMODEL_H
+#define DAREFL_IMPORTDATAWIDGETS_DATAVIEWMODEL_H
 
 #include <mvvm/viewmodel/topitemsviewmodel.h>
 
@@ -37,4 +37,4 @@ public:
                       const QModelIndex& parent) override;
 };
 
-#endif // DATAVIEWMODEL_H
+#endif  // DAREFL_IMPORTDATAWIDGETS_DATAVIEWMODEL_H

@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef DAREFL_MAINWINDOW_MAINWINDOW_H
+#define DAREFL_MAINWINDOW_MAINWINDOW_H
 
 #include <QMainWindow>
 #include <memory>
@@ -43,4 +43,4 @@ private:
     MainBarWidget* bar_widget{nullptr};
 };
 
-#endif //  MAINWINDOW_H
+#endif  // DAREFL_MAINWINDOW_MAINWINDOW_H

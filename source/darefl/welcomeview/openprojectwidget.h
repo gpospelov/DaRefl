@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef OPENPROJECTWIDGET_H
-#define OPENPROJECTWIDGET_H
+#ifndef DAREFL_WELCOMEVIEW_OPENPROJECTWIDGET_H
+#define DAREFL_WELCOMEVIEW_OPENPROJECTWIDGET_H
 
 #include <QWidget>
 #include <memory>
@@ -45,4 +45,4 @@ private:
     QPushButton* saveas_project_button{nullptr};
 };
 
-#endif // OPENPROJECTWIDGET_H
+#endif  // DAREFL_WELCOMEVIEW_OPENPROJECTWIDGET_H

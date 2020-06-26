@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef PROJECTMANAGERINTERACTOR_H
-#define PROJECTMANAGERINTERACTOR_H
+#ifndef DAREFL_WELCOMEVIEW_PROJECTMANAGERINTERACTOR_H
+#define DAREFL_WELCOMEVIEW_PROJECTMANAGERINTERACTOR_H
 
 #include <string>
 
@@ -44,4 +44,4 @@ private:
     WelcomeViewSettings* m_settings{nullptr};
 };
 
-#endif // PROJECTMANAGERINTERACTOR_H
+#endif  // DAREFL_WELCOMEVIEW_PROJECTMANAGERINTERACTOR_H

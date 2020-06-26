@@ -14,8 +14,8 @@
  * GNU General Public License for more details.
  */
 
-#ifndef SWITCH_H
-#define SWITCH_H
+#ifndef DAREFL_FAMOUSLOADER_SWITCH_H
+#define DAREFL_FAMOUSLOADER_SWITCH_H
 
 #include <darefl/famousloader/style.h>
 #include <QtWidgets>
@@ -118,4 +118,4 @@ private:
 
 }; // namespace SwitchSpace
 
-#endif // SWITCH_H
+#endif  // DAREFL_FAMOUSLOADER_SWITCH_H

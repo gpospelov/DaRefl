@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef MATERIALITEMS_H
-#define MATERIALITEMS_H
+#ifndef DAREFL_MODEL_MATERIALITEMS_H
+#define DAREFL_MODEL_MATERIALITEMS_H
 
 //! materialitems.h
 //! Collection of materials to populate MaterialModel.
@@ -60,4 +60,4 @@ public:
     void set_properties(const std::string& name, const QColor& color, double real, double imag);
 };
 
-#endif // MATERIALITEMS_H
+#endif  // DAREFL_MODEL_MATERIALITEMS_H

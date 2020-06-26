@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef RESOURCES_H
-#define RESOURCES_H
+#ifndef DAREFL_RESOURCES_RESOURCES_H
+#define DAREFL_RESOURCES_RESOURCES_H
 
 #include <QtGlobal>
 
@@ -17,4 +17,4 @@ inline void InitIconResources()
     Q_INIT_RESOURCE(icons);
 }
 
-#endif
+#endif  // DAREFL_RESOURCES_RESOURCES_H

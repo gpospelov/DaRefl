@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef LAYEREDITOR_H
-#define LAYEREDITOR_H
+#ifndef DAREFL_LAYEREDITOR_LAYEREDITOR_H
+#define DAREFL_LAYEREDITOR_LAYEREDITOR_H
 
 #include <QWidget>
 
@@ -40,4 +40,4 @@ private:
     LayerEditorWidget* editor_widget{nullptr};
 };
 
-#endif // LAYEREDITOR_H
+#endif  // DAREFL_LAYEREDITOR_LAYEREDITOR_H

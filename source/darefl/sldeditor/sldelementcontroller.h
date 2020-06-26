@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef SLDELEMENTCONTROLLER_H
-#define SLDELEMENTCONTROLLER_H
+#ifndef DAREFL_SLDEDITOR_SLDELEMENTCONTROLLER_H
+#define DAREFL_SLDEDITOR_SLDELEMENTCONTROLLER_H
 
 #include <QObject>
 #include <mvvm/model/sessionitem.h>
@@ -63,4 +63,4 @@ private:
     layer_ctrl_vec layer_controllers;
 };
 
-#endif //  SLDELEMENTCONTROLLER_H
+#endif  // DAREFL_SLDEDITOR_SLDELEMENTCONTROLLER_H

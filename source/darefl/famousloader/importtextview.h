@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef IMPORTTEXTVIEW_H
-#define IMPORTTEXTVIEW_H
+#ifndef DAREFL_FAMOUSLOADER_IMPORTTEXTVIEW_H
+#define DAREFL_FAMOUSLOADER_IMPORTTEXTVIEW_H
 
 #include <QTextEdit>
 
@@ -67,4 +67,4 @@ private:
 
 } // namespace DataImportGui
 
-#endif // IMPORTTEXTVIEW_H
+#endif  // DAREFL_FAMOUSLOADER_IMPORTTEXTVIEW_H

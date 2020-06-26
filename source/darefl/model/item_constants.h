@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef ITEM_CONSTANTS_H
-#define ITEM_CONSTANTS_H
+#ifndef DAREFL_MODEL_ITEM_CONSTANTS_H
+#define DAREFL_MODEL_ITEM_CONSTANTS_H
 
 #include <string>
 
@@ -28,4 +28,4 @@ const std::string RawDataMimeType = "quickrefl/moveDataItem";
 
 } // namespace Constants
 
-#endif //  ITEM_CONSTANTS_H
+#endif  // DAREFL_MODEL_ITEM_CONSTANTS_H

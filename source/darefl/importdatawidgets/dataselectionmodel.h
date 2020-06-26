@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DATASELECTIONMODEL_H
-#define DATASELECTIONMODEL_H
+#ifndef DAREFL_IMPORTDATAWIDGETS_DATASELECTIONMODEL_H
+#define DAREFL_IMPORTDATAWIDGETS_DATASELECTIONMODEL_H
 
 #include <QItemSelectionModel>
 #include <vector>
@@ -36,4 +36,4 @@ public:
     const ModelView::ViewModel* viewModel() const;
 };
 
-#endif // DATASELECTIONMODEL_H
+#endif  // DAREFL_IMPORTDATAWIDGETS_DATASELECTIONMODEL_H

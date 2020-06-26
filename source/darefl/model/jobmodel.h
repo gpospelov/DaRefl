@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef JOBMODEL_H
-#define JOBMODEL_H
+#ifndef DAREFL_MODEL_JOBMODEL_H
+#define DAREFL_MODEL_JOBMODEL_H
 
 #include <mvvm/model/sessionmodel.h>
 
@@ -37,4 +37,4 @@ private:
     void init_model();
 };
 
-#endif //  JOBMODEL_H
+#endif  // DAREFL_MODEL_JOBMODEL_H

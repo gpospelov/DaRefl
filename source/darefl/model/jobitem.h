@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef JOBITEM_H
-#define JOBITEM_H
+#ifndef DAREFL_MODEL_JOBITEM_H
+#define DAREFL_MODEL_JOBITEM_H
 
 #include <mvvm/model/compounditem.h>
 
@@ -40,4 +40,4 @@ private:
     void setup_graph(const std::string& data_tag, const std::string& viewport_tag);
 };
 
-#endif // JOBITEM_H
+#endif  // DAREFL_MODEL_JOBITEM_H

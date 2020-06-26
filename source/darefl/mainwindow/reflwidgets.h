@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef REFLWIDGETS_H
-#define REFLWIDGETS_H
+#ifndef DAREFL_MAINWINDOW_REFLWIDGETS_H
+#define DAREFL_MAINWINDOW_REFLWIDGETS_H
 
 #include <QWidget>
 
@@ -35,4 +35,4 @@ public:
     InstrumentEditor(QWidget* parent = nullptr);
 };
 
-#endif //  REFLWIDGETS_H
+#endif  // DAREFL_MAINWINDOW_REFLWIDGETS_H

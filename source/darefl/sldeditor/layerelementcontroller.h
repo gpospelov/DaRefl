@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef LAYERELEMENTCONTROLLER_H
-#define LAYERELEMENTCONTROLLER_H
+#ifndef DAREFL_SLDEDITOR_LAYERELEMENTCONTROLLER_H
+#define DAREFL_SLDEDITOR_LAYERELEMENTCONTROLLER_H
 
 #include <QObject>
 #include <QPainterPath>
@@ -149,4 +149,4 @@ private:
     LayerElementController* p_controller_below = nullptr;
 };
 
-#endif // LAYERELEMENTCONTROLLER_H
+#endif  // DAREFL_SLDEDITOR_LAYERELEMENTCONTROLLER_H

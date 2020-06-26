@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef FOURIERTRANSFORM_H
-#define FOURIERTRANSFORM_H
+#ifndef DAREFL_QUICKSIMEDITOR_FOURIERTRANSFORM_H
+#define DAREFL_QUICKSIMEDITOR_FOURIERTRANSFORM_H
 
 #include <complex>
 #include <mvvm/utils/mathconstants.h>
@@ -21,4 +21,4 @@ using signal_t = std::vector<std::complex<double>>;
 
 signal_t fourier_transform(const signal_t& signal, bool back_transform = false);
 
-#endif // FOURIERTRANSFORM_H
+#endif  // DAREFL_QUICKSIMEDITOR_FOURIERTRANSFORM_H

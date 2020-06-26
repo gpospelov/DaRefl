@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef RECENTPROJECTWIDGET_H
-#define RECENTPROJECTWIDGET_H
+#ifndef DAREFL_WELCOMEVIEW_RECENTPROJECTWIDGET_H
+#define DAREFL_WELCOMEVIEW_RECENTPROJECTWIDGET_H
 
 #include <QWidget>
 #include <memory>
@@ -43,4 +43,4 @@ private:
     std::vector<ProjectPaneWidget*> m_recent_project_panes;
 };
 
-#endif // RECENTPROJECTWIDGET_H
+#endif  // DAREFL_WELCOMEVIEW_RECENTPROJECTWIDGET_H

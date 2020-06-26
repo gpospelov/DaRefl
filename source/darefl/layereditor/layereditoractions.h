@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef LAYEREDITORACTIONS_H
-#define LAYEREDITORACTIONS_H
+#ifndef DAREFL_LAYEREDITOR_LAYEREDITORACTIONS_H
+#define DAREFL_LAYEREDITOR_LAYEREDITORACTIONS_H
 
 #include <QObject>
 #include <memory>
@@ -40,4 +40,4 @@ private:
     std::unique_ptr<LayerEditorActionsImpl> p_impl;
 };
 
-#endif // LAYEREDITORACTIONS_H
+#endif  // DAREFL_LAYEREDITOR_LAYEREDITORACTIONS_H

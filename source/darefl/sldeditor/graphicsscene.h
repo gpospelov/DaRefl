@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef GRAPHICSPROXY_GRAPHICSSCENE_H
-#define GRAPHICSPROXY_GRAPHICSSCENE_H
+#ifndef DAREFL_SLDEDITOR_GRAPHICSSCENE_H
+#define DAREFL_SLDEDITOR_GRAPHICSSCENE_H
 
 #include <QGraphicsScene>
 #include <memory>
@@ -45,4 +45,4 @@ private:
     ModelView::GraphCanvas* graph_canvas{nullptr};
 };
 
-#endif //  GRAPHICSPROXY_GRAPHICSSCENE_H
+#endif  // DAREFL_SLDEDITOR_GRAPHICSSCENE_H

@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef IMPORTFILTERWIDGET_H
-#define IMPORTFILTERWIDGET_H
+#ifndef DAREFL_FAMOUSLOADER_IMPORTFILTERWIDGET_H
+#define DAREFL_FAMOUSLOADER_IMPORTFILTERWIDGET_H
 
 #include <QWidget>
 #include <vector>
@@ -70,4 +70,4 @@ private:
 
 } // End of namespace DataImportGui
 
-#endif // IMPORTFILTERWIDGET_H
+#endif  // DAREFL_FAMOUSLOADER_IMPORTFILTERWIDGET_H

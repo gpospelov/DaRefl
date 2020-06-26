@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef ELEMENTVIEW_H
-#define ELEMENTVIEW_H
+#ifndef DAREFL_SLDEDITOR_ELEMENTVIEW_H
+#define DAREFL_SLDEDITOR_ELEMENTVIEW_H
 
 #include <darefl/sldeditor/graphicsscene.h>
 
@@ -62,4 +62,4 @@ private:
     bool m_stretch_right = false;
 };
 
-#endif // ELEMENTVIEW_H
+#endif  // DAREFL_SLDEDITOR_ELEMENTVIEW_H

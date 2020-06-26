@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef SAMPLEMODEL_H
-#define SAMPLEMODEL_H
+#ifndef DAREFL_MODEL_SAMPLEMODEL_H
+#define DAREFL_MODEL_SAMPLEMODEL_H
 
 #include <mvvm/model/sessionmodel.h>
 
@@ -25,4 +25,4 @@ private:
     void init_model();
 };
 
-#endif //  SAMPLEMODEL_H
+#endif  // DAREFL_MODEL_SAMPLEMODEL_H

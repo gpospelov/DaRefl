@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef REFLDOCKWINDOW_H
-#define REFLDOCKWINDOW_H
+#ifndef DAREFL_MAINWINDOW_REFLDOCKWINDOW_H
+#define DAREFL_MAINWINDOW_REFLDOCKWINDOW_H
 
 #include <QMainWindow>
 #include <memory>
@@ -35,4 +35,4 @@ private:
     ApplicationModels* models;
 };
 
-#endif //  REFLDOCKWINDOW_H
+#endif  // DAREFL_MAINWINDOW_REFLDOCKWINDOW_H

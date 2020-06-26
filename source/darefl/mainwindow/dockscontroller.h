@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DOCKSCONTROLLER_H
-#define DOCKSCONTROLLER_H
+#ifndef DAREFL_MAINWINDOW_DOCKSCONTROLLER_H
+#define DAREFL_MAINWINDOW_DOCKSCONTROLLER_H
 
 #include <QObject>
 #include <memory>
@@ -32,4 +32,4 @@ private:
     std::unique_ptr<DocksControllerImpl> p_impl;
 };
 
-#endif //  DOCKSCONTROLLER_H
+#endif  // DAREFL_MAINWINDOW_DOCKSCONTROLLER_H

@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef LAYERVIEWMODELCONTROLLER_H
-#define LAYERVIEWMODELCONTROLLER_H
+#ifndef DAREFL_LAYEREDITOR_LAYERVIEWMODELCONTROLLER_H
+#define DAREFL_LAYEREDITOR_LAYERVIEWMODELCONTROLLER_H
 
 #include <mvvm/viewmodel/viewmodelcontroller.h>
 
@@ -31,4 +31,4 @@ public:
                                       ModelView::ViewModel* view_model);
 };
 
-#endif //  LAYERVIEWMODELCONTROLLER_H
+#endif  // DAREFL_LAYEREDITOR_LAYERVIEWMODELCONTROLLER_H

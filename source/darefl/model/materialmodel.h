@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef MATERIALMODEL_H
-#define MATERIALMODEL_H
+#ifndef DAREFL_MODEL_MATERIALMODEL_H
+#define DAREFL_MODEL_MATERIALMODEL_H
 
 #include <mvvm/model/sessionmodel.h>
 #include <mvvm/model/tagrow.h>
@@ -51,4 +51,4 @@ private:
     MaterialContainerItem* materialContainer();
 };
 
-#endif //  MATERIALMODEL_H
+#endif  // DAREFL_MODEL_MATERIALMODEL_H

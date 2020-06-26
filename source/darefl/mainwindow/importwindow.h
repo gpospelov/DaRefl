@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef IMPORTWINDOW_H
-#define IMPORTWINDOW_H
+#ifndef DAREFL_MAINWINDOW_IMPORTWINDOW_H
+#define DAREFL_MAINWINDOW_IMPORTWINDOW_H
 
 #include <QWidget>
 
@@ -26,4 +26,4 @@ private:
     ApplicationModels* models{nullptr};
 };
 
-#endif //  IMPORTWINDOW_H
+#endif  // DAREFL_MAINWINDOW_IMPORTWINDOW_H

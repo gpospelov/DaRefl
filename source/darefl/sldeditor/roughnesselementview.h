@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef ROUGHNESSELEMENTVIEW_H
-#define ROUGHNESSELEMENTVIEW_H
+#ifndef DAREFL_SLDEDITOR_ROUGHNESSELEMENTVIEW_H
+#define DAREFL_SLDEDITOR_ROUGHNESSELEMENTVIEW_H
 
 #include <darefl/sldeditor/elementview.h>
 
@@ -37,4 +37,4 @@ protected:
     QPen m_pen;
 };
 
-#endif // ROUGHNESSELEMENTVIEW_H
+#endif  // DAREFL_SLDEDITOR_ROUGHNESSELEMENTVIEW_H

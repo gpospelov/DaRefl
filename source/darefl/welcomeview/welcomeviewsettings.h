@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef WELCOMEVIEWSETTINGS_H
-#define WELCOMEVIEWSETTINGS_H
+#ifndef DAREFL_WELCOMEVIEW_WELCOMEVIEWSETTINGS_H
+#define DAREFL_WELCOMEVIEW_WELCOMEVIEWSETTINGS_H
 
 #include <QString>
 #include <QStringList>
@@ -38,4 +38,4 @@ private:
     QStringList m_recent_projects;
 };
 
-#endif // WELCOMEVIEWSETTINGS_H
+#endif  // DAREFL_WELCOMEVIEW_WELCOMEVIEWSETTINGS_H

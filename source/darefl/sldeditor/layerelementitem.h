@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef LAYERELEMENTITEM_H
-#define LAYERELEMENTITEM_H
+#ifndef DAREFL_SLDEDITOR_LAYERELEMENTITEM_H
+#define DAREFL_SLDEDITOR_LAYERELEMENTITEM_H
 
 #include <mvvm/model/compounditem.h>
 #include <mvvm/model/sessionmodel.h>
@@ -49,4 +49,4 @@ public:
     LayerElementItem();
 };
 
-#endif
+#endif  // DAREFL_SLDEDITOR_LAYERELEMENTITEM_H

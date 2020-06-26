@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef MATERIALSELECTIONMODEL_H
-#define MATERIALSELECTIONMODEL_H
+#ifndef DAREFL_MATERIALEDITOR_MATERIALSELECTIONMODEL_H
+#define DAREFL_MATERIALEDITOR_MATERIALSELECTIONMODEL_H
 
 #include <QItemSelectionModel>
 #include <vector>
@@ -41,4 +41,4 @@ public:
     const ModelView::ViewModel* viewModel() const;
 };
 
-#endif // MATERIALSELECTIONMODEL_H
+#endif  // DAREFL_MATERIALEDITOR_MATERIALSELECTIONMODEL_H

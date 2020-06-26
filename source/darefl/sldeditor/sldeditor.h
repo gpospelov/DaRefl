@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef SLDEDITOR_H
-#define SLDEDITOR_H
+#ifndef DAREFL_SLDEDITOR_SLDEDITOR_H
+#define DAREFL_SLDEDITOR_SLDEDITOR_H
 
 class SLDEditorActions;
 class SLDEditorToolBar;
@@ -34,4 +34,4 @@ private:
     SLDViewWidget* p_view_widget{nullptr};
 };
 
-#endif // SLDEDITOR_H
+#endif  // DAREFL_SLDEDITOR_SLDEDITOR_H

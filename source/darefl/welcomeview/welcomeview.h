@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef WELCOMEVIEW_H
-#define WELCOMEVIEW_H
+#ifndef DAREFL_WELCOMEVIEW_WELCOMEVIEW_H
+#define DAREFL_WELCOMEVIEW_WELCOMEVIEW_H
 
 #include <QWidget>
 #include <memory>
@@ -55,4 +55,4 @@ private:
     std::unique_ptr<ProjectManagerInteractor> m_interactor;
 };
 
-#endif // WELCOMEVIEW_H
+#endif  // DAREFL_WELCOMEVIEW_WELCOMEVIEW_H
