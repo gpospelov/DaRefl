@@ -17,7 +17,7 @@
 #ifndef SWITCH_H
 #define SWITCH_H
 
-#include "style.h"
+#include <darefl/famousloader/style.h>
 #include <QtWidgets>
 
 namespace SwitchSpace

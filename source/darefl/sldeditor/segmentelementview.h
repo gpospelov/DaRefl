@@ -10,7 +10,7 @@
 #ifndef SEGMENTELEMENTVIEW_H
 #define SEGMENTELEMENTVIEW_H
 
-#include "elementview.h"
+#include <darefl/sldeditor/elementview.h>
 
 #include <QBrush>
 #include <QPen>

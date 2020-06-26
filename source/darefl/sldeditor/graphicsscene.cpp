@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include "graphicsscene.h"
+#include <darefl/sldeditor/graphicsscene.h>
 
 #include <mvvm/model/modelutils.h>
 #include <mvvm/plotting/customplotproxywidget.h>

@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include "grapheditortoolbar.h"
-#include "styleutils.h"
+#include <darefl/grapheditor/grapheditortoolbar.h>
+#include <darefl/mainwindow/styleutils.h>
 #include <QLayout>
 #include <QToolButton>
 

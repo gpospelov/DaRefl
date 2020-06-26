@@ -10,7 +10,7 @@
 #ifndef ELEMENTVIEW_H
 #define ELEMENTVIEW_H
 
-#include "graphicsscene.h"
+#include <darefl/sldeditor/graphicsscene.h>
 
 #include <QGraphicsObject>
 

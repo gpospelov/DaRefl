@@ -14,7 +14,7 @@
  * GNU General Public License for more details.
  */
 
-#include "switch.h"
+#include <darefl/famousloader/switch.h>
 
 namespace SwitchSpace
 {

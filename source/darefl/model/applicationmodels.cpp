@@ -7,14 +7,14 @@
 //
 // ************************************************************************** //
 
-#include "applicationmodels.h"
-#include "jobmodel.h"
-#include "layeritems.h"
-#include "materialmodel.h"
-#include "materialpropertycontroller.h"
-#include "realdatamodel.h"
-#include "samplemodel.h"
-#include "sldelementmodel.h"
+#include <darefl/model/applicationmodels.h>
+#include <darefl/model/jobmodel.h>
+#include <darefl/model/layeritems.h>
+#include <darefl/model/materialmodel.h>
+#include <darefl/model/materialpropertycontroller.h>
+#include <darefl/model/realdatamodel.h>
+#include <darefl/model/samplemodel.h>
+#include <darefl/sldeditor/sldelementmodel.h>
 #include <mvvm/model/externalproperty.h>
 #include <mvvm/model/itempool.h>
 #include <mvvm/model/modelutils.h>

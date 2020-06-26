@@ -10,7 +10,7 @@
 #ifndef HANDLEELEMENTVIEW_H
 #define HANDLEELEMENTVIEW_H
 
-#include "elementview.h"
+#include <darefl/sldeditor/elementview.h>
 
 #include <QBrush>
 #include <QPen>

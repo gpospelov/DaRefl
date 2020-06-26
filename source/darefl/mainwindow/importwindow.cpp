@@ -7,9 +7,9 @@
 //
 // ************************************************************************** //
 
-#include "importwindow.h"
-#include "applicationmodels.h"
-#include "importdataeditor.h"
+#include <darefl/mainwindow/importwindow.h>
+#include <darefl/model/applicationmodels.h>
+#include <darefl/importdatawidgets/importdataeditor.h>
 #include <QVBoxLayout>
 
 ImportWindow::ImportWindow(ApplicationModels* models, QWidget* parent)

@@ -7,12 +7,12 @@
 //
 // ************************************************************************** //
 
-#include "layereditor.h"
-#include "applicationmodels.h"
-#include "layereditoractions.h"
-#include "layereditortoolbar.h"
-#include "layereditorwidget.h"
-#include "styleutils.h"
+#include <darefl/layereditor/layereditor.h>
+#include <darefl/model/applicationmodels.h>
+#include <darefl/layereditor/layereditoractions.h>
+#include <darefl/layereditor/layereditortoolbar.h>
+#include <darefl/layereditor/layereditorwidget.h>
+#include <darefl/mainwindow/styleutils.h>
 #include <QVBoxLayout>
 
 LayerEditor::LayerEditor(ApplicationModels* models, QWidget* parent)

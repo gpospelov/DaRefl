@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include "jobitem.h"
-#include "item_constants.h"
+#include <darefl/model/jobitem.h>
+#include <darefl/model/item_constants.h>
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/standarditems/graphviewportitem.h>

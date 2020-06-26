@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include "importtextview.h"
+#include <darefl/famousloader/importtextview.h>
 
 #include <QAbstractTextDocumentLayout>
 #include <QPainter>

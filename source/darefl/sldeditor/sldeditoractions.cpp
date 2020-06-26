@@ -7,9 +7,9 @@
 //
 // ************************************************************************** //
 
-#include "sldeditoractions.h"
-#include "layerelementitem.h"
-#include "sldelementmodel.h"
+#include <darefl/sldeditor/sldeditoractions.h>
+#include <darefl/sldeditor/layerelementitem.h>
+#include <darefl/sldeditor/sldelementmodel.h>
 
 #include <QDebug>
 #include <mvvm/model/modelutils.h>

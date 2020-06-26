@@ -7,11 +7,11 @@
 //
 // ************************************************************************** //
 
-#include "recentprojectwidget.h"
-#include "projectpanewidget.h"
+#include <darefl/welcomeview/recentprojectwidget.h>
+#include <darefl/welcomeview/projectpanewidget.h>
 #include <mvvm/project/projectutils.h>
 #include <mvvm/widgets/widgetutils.h>
-#include "styleutils.h"
+#include <darefl/mainwindow/styleutils.h>
 #include <QGuiApplication>
 #include <QLabel>
 #include <QScreen>

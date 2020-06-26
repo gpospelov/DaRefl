@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include "elementview.h"
-#include "graphicsscene.h"
+#include <darefl/sldeditor/elementview.h>
+#include <darefl/sldeditor/graphicsscene.h>
 #include "mvvm/plotting/sceneadapterinterface.h"
 
 #include <QCursor>

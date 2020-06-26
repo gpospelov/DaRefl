@@ -10,11 +10,11 @@
 #ifndef IMPORTLOGIC_H
 #define IMPORTLOGIC_H
 
-#include "importfile.h"
-#include "importlinefilter.h"
-#include "importdatastructure.h"
-#include "importoutput.h"
-#include "importutils.h"
+#include <darefl/famousloader/importfile.h>
+#include <darefl/famousloader/importlinefilter.h>
+#include <darefl/famousloader/importdatastructure.h>
+#include <darefl/famousloader/importoutput.h>
+#include <darefl/famousloader/importutils.h>
 
 #include <string>
 #include <vector>

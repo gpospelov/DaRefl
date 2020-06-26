@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include "importfilewidget.h"
-#include "styleutils.h"
+#include <darefl/famousloader/importfilewidget.h>
+#include <darefl/mainwindow/styleutils.h>
 
 #include <QFileDialog>
 #include <QHBoxLayout>

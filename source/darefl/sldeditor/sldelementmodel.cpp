@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include "sldelementmodel.h"
-#include "layerelementitem.h"
+#include <darefl/sldeditor/sldelementmodel.h>
+#include <darefl/sldeditor/layerelementitem.h>
 
 #include <mvvm/model/externalproperty.h>
 #include <mvvm/model/itemcatalogue.h>

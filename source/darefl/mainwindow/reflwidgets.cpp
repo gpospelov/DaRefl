@@ -7,9 +7,9 @@
 //
 // ************************************************************************** //
 
-#include "reflwidgets.h"
-#include "sldeditor.h"
-#include "styleutils.h"
+#include <darefl/mainwindow/reflwidgets.h>
+#include <darefl/sldeditor/sldeditor.h>
+#include <darefl/mainwindow/styleutils.h>
 #include <QVBoxLayout>
 
 //! ---------------------------------------------------------------------------

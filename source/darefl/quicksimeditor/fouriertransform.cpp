@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include "fouriertransform.h"
+#include <darefl/quicksimeditor/fouriertransform.h>
 #include <algorithm>
 #include <cmath>
 #include <iterator>

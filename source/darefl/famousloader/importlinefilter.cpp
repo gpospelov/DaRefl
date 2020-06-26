@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include "importlinefilter.h"
-#include "importutils.h"
+#include <darefl/famousloader/importlinefilter.h>
+#include <darefl/famousloader/importutils.h>
 
 #include <sstream>
 

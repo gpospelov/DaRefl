@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include "quicksimeditortoolbar.h"
+#include <darefl/quicksimeditor/quicksimeditortoolbar.h>
 #include <QAction>
 #include <QCheckBox>
 #include <QDebug>

@@ -10,7 +10,7 @@
 #ifndef JOBMANAGER_H
 #define JOBMANAGER_H
 
-#include "speculartoysimulation.h"
+#include <darefl/quicksimeditor/speculartoysimulation.h>
 #include <QObject>
 #include <mvvm/utils/threadsafestack.h>
 

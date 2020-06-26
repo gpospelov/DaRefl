@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include "openprojectwidget.h"
-#include "styleutils.h"
+#include <darefl/welcomeview/openprojectwidget.h>
+#include <darefl/mainwindow/styleutils.h>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPushButton>

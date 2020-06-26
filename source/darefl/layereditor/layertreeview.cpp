@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include "layertreeview.h"
+#include <darefl/layereditor/layertreeview.h>
 #include <QHeaderView>
 #include <QMouseEvent>
 

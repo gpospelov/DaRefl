@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include "layerselectionmodel.h"
-#include "layeritems.h"
+#include <darefl/layereditor/layerselectionmodel.h>
+#include <darefl/model/layeritems.h>
 #include <QItemSelection>
 #include <mvvm/viewmodel/viewmodel.h>
 #include <mvvm/viewmodel/viewmodelutils.h>

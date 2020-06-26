@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include "handleelementview.h"
-#include "layerelementcontroller.h"
+#include <darefl/sldeditor/handleelementview.h>
+#include <darefl/sldeditor/layerelementcontroller.h>
 
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>

@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include "dockscontroller.h"
+#include <darefl/mainwindow/dockscontroller.h>
 #include <QDockWidget>
 #include <QMainWindow>
 #include <map>

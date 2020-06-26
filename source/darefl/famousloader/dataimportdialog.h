@@ -10,7 +10,7 @@
 #ifndef IMPORTDIALOG_H
 #define IMPORTDIALOG_H
 
-#include "importlogic.h"
+#include <darefl/famousloader/importlogic.h>
 #include <QComboBox>
 #include <QDialog>
 #include <QGroupBox>

@@ -10,7 +10,7 @@
 #ifndef MATERIALPROFILE_H
 #define MATERIALPROFILE_H
 
-#include "slice.h"
+#include <darefl/quicksimeditor/slice.h>
 
 //! Collection of methods borrowed from BornAgain for material profile calculations.
 

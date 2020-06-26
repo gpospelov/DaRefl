@@ -10,8 +10,8 @@
 #ifndef IMPORTDATASTRUCTURE_H
 #define IMPORTDATASTRUCTURE_H
 
-#include "importutils.h"
-#include "importdatacolumn.h"
+#include <darefl/famousloader/importutils.h>
+#include <darefl/famousloader/importdatacolumn.h>
 
 #include <memory>
 #include <string>

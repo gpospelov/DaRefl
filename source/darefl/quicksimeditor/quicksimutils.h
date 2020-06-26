@@ -10,7 +10,7 @@
 #ifndef QUICKSIMUTILS_H
 #define QUICKSIMUTILS_H
 
-#include "slice.h"
+#include <darefl/quicksimeditor/slice.h>
 class MultiLayerItem;
 
 //! Collection of utility funcitons for running quick simulations.

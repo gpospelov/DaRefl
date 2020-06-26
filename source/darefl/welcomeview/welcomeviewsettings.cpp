@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include "welcomeviewsettings.h"
+#include <darefl/welcomeview/welcomeviewsettings.h>
 #include <QDir>
 #include <QSettings>
 #include <mvvm/utils/fileutils.h>

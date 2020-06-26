@@ -7,17 +7,17 @@
 //
 // ************************************************************************** //
 
-#include "quicksimcontroller.h"
-#include "applicationmodels.h"
-#include "jobmanager.h"
-#include "jobmodel.h"
-#include "layeritems.h"
-#include "materialmodel.h"
-#include "materialprofile.h"
-#include "quicksimutils.h"
-#include "samplemodel.h"
-#include "slice.h"
-#include "speculartoysimulation.h"
+#include <darefl/quicksimeditor/quicksimcontroller.h>
+#include <darefl/model/applicationmodels.h>
+#include <darefl/quicksimeditor/jobmanager.h>
+#include <darefl/model/jobmodel.h>
+#include <darefl/model/layeritems.h>
+#include <darefl/model/materialmodel.h>
+#include <darefl/quicksimeditor/materialprofile.h>
+#include <darefl/quicksimeditor/quicksimutils.h>
+#include <darefl/model/samplemodel.h>
+#include <darefl/quicksimeditor/slice.h>
+#include <darefl/quicksimeditor/speculartoysimulation.h>
 #include <QDebug>
 #include <mvvm/model/modelutils.h>
 #include <mvvm/signals/modelmapper.h>

@@ -7,11 +7,11 @@
 //
 // ************************************************************************** //
 
-#include "sldviewwidget.h"
-#include "applicationmodels.h"
-#include "graphicsscene.h"
-#include "jobmodel.h"
-#include "sldelementcontroller.h"
+#include <darefl/sldeditor/sldviewwidget.h>
+#include <darefl/model/applicationmodels.h>
+#include <darefl/sldeditor/graphicsscene.h>
+#include <darefl/model/jobmodel.h>
+#include <darefl/sldeditor/sldelementcontroller.h>
 #include <QResizeEvent>
 
 //! The constructor

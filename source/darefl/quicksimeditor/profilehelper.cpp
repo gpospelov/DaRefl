@@ -12,7 +12,7 @@
 //
 // ************************************************************************** //
 
-#include "profilehelper.h"
+#include <darefl/quicksimeditor/profilehelper.h>
 #include <mvvm/utils/mathconstants.h>
 
 namespace

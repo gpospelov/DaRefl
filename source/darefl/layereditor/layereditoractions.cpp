@@ -7,11 +7,11 @@
 //
 // ************************************************************************** //
 
-#include "layereditoractions.h"
-#include "item_constants.h"
-#include "layeritems.h"
-#include "layerselectionmodel.h"
-#include "samplemodel.h"
+#include <darefl/layereditor/layereditoractions.h>
+#include <darefl/model/item_constants.h>
+#include <darefl/model/layeritems.h>
+#include <darefl/layereditor/layerselectionmodel.h>
+#include <darefl/model/samplemodel.h>
 #include <QAction>
 #include <mvvm/model/itemutils.h>
 #include <mvvm/model/modelutils.h>

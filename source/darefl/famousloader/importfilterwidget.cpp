@@ -7,9 +7,9 @@
 //
 // ************************************************************************** //
 
-#include "importfilterwidget.h"
-#include "importlinefilterwidget.h"
-#include "resources.h"
+#include <darefl/famousloader/importfilterwidget.h>
+#include <darefl/famousloader/importlinefilterwidget.h>
+#include <darefl/resources/resources.h>
 
 #include <QApplication>
 #include <QHBoxLayout>

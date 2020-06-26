@@ -7,10 +7,10 @@
 //
 // ************************************************************************** //
 
-#include "layereditortoolbar.h"
-#include "layereditoractions.h"
-#include "resources.h"
-#include "styleutils.h"
+#include <darefl/layereditor/layereditortoolbar.h>
+#include <darefl/layereditor/layereditoractions.h>
+#include <darefl/resources/resources.h>
+#include <darefl/mainwindow/styleutils.h>
 #include <QAction>
 #include <QMenu>
 #include <QToolButton>

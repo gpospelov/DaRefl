@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include "layerelementitem.h"
+#include <darefl/sldeditor/layerelementitem.h>
 
 #include <mvvm/factories/modeldocuments.h>
 #include <mvvm/model/externalproperty.h>

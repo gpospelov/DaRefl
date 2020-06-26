@@ -7,9 +7,9 @@
 //
 // ************************************************************************** //
 
-#include "datasetitem.h"
-#include "datasetconvenience.h"
-#include "item_constants.h"
+#include <darefl/model/datasetitem.h>
+#include <darefl/model/datasetconvenience.h>
+#include <darefl/model/item_constants.h>
 
 #include <mvvm/standarditems/axisitems.h>
 #include <mvvm/standarditems/data1ditem.h>

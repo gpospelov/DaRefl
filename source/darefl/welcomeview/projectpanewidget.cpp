@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include "projectpanewidget.h"
-#include "styleutils.h"
+#include <darefl/welcomeview/projectpanewidget.h>
+#include <darefl/mainwindow/styleutils.h>
 #include <mvvm/widgets/widgetutils.h>
 #include <QLabel>
 #include <QMouseEvent>

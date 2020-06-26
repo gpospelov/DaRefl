@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include "importdatacolumn.h"
+#include <darefl/famousloader/importdatacolumn.h>
 
 #include <algorithm>
 #include <cmath>

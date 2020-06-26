@@ -7,17 +7,17 @@
 //
 // ************************************************************************** //
 
-#include "sldelementcontroller.h"
-#include "graphicsscene.h"
-#include "layeritems.h"
-#include "materialitems.h"
-#include "materialmodel.h"
-#include "samplemodel.h"
-#include "segmentelementview.h"
+#include <darefl/sldeditor/sldelementcontroller.h>
+#include <darefl/sldeditor/graphicsscene.h>
+#include <darefl/model/layeritems.h>
+#include <darefl/model/materialitems.h>
+#include <darefl/model/materialmodel.h>
+#include <darefl/model/samplemodel.h>
+#include <darefl/sldeditor/segmentelementview.h>
 
-#include "layerelementcontroller.h"
-#include "layerelementitem.h"
-#include "sldelementmodel.h"
+#include <darefl/sldeditor/layerelementcontroller.h>
+#include <darefl/sldeditor/layerelementitem.h>
+#include <darefl/sldeditor/sldelementmodel.h>
 
 #include <mvvm/model/compounditem.h>
 #include <mvvm/model/externalproperty.h>

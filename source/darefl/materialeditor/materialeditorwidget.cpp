@@ -7,12 +7,12 @@
 //
 // ************************************************************************** //
 
-#include "materialeditorwidget.h"
-#include "materialitems.h"
-#include "materialmodel.h"
-#include "materialselectionmodel.h"
-#include "materialtableview.h"
-#include "materialtreeview.h"
+#include <darefl/materialeditor/materialeditorwidget.h>
+#include <darefl/model/materialitems.h>
+#include <darefl/model/materialmodel.h>
+#include <darefl/materialeditor/materialselectionmodel.h>
+#include <darefl/materialeditor/materialtableview.h>
+#include <darefl/materialeditor/materialtreeview.h>
 #include <QVBoxLayout>
 #include <mvvm/model/modelutils.h>
 #include <mvvm/viewmodel/standardviewmodels.h>

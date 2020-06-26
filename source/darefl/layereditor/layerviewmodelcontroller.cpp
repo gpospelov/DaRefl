@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include "layerviewmodelcontroller.h"
-#include "layeritems.h"
+#include <darefl/layereditor/layerviewmodelcontroller.h>
+#include <darefl/model/layeritems.h>
 #include <mvvm/viewmodel/rowstrategyinterface.h>
 #include <mvvm/viewmodel/standardchildrenstrategies.h>
 #include <mvvm/viewmodel/standardviewitems.h>

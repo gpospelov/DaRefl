@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include "materialprofile.h"
-#include "profilehelper.h"
+#include <darefl/quicksimeditor/materialprofile.h>
+#include <darefl/quicksimeditor/profilehelper.h>
 
 std::vector<complex_t> MaterialProfile::CalculateProfile(const multislice_t& multilayer,
                                                          int n_points, double z_min, double z_max)

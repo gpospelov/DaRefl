@@ -10,7 +10,7 @@
 #ifndef ROUGHNESSELEMENTVIEW_H
 #define ROUGHNESSELEMENTVIEW_H
 
-#include "elementview.h"
+#include <darefl/sldeditor/elementview.h>
 
 #include <QBrush>
 #include <QPainterPath>

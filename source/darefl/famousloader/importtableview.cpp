@@ -12,8 +12,8 @@
 //
 // ************************************************************************** //
 
-#include "importtableview.h"
-#include "importdatacolumn.h"
+#include <darefl/famousloader/importtableview.h>
+#include <darefl/famousloader/importdatacolumn.h>
 
 #include <mvvm/editors/scientificspinboxeditor.h>
 

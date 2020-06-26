@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include "mainbarwidget.h"
+#include <darefl/mainwindow/mainbarwidget.h>
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QStackedWidget>

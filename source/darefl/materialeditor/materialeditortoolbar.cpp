@@ -7,10 +7,10 @@
 //
 // ************************************************************************** //
 
-#include "materialeditortoolbar.h"
-#include "materialeditoractions.h"
-#include "resources.h"
-#include "styleutils.h"
+#include <darefl/materialeditor/materialeditortoolbar.h>
+#include <darefl/materialeditor/materialeditoractions.h>
+#include <darefl/resources/resources.h>
+#include <darefl/mainwindow/styleutils.h>
 #include <QAction>
 #include <QToolButton>
 

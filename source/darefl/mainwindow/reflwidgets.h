@@ -12,7 +12,7 @@
 
 #include <QWidget>
 
-#include "materialeditor.h"
+#include <darefl/materialeditor/materialeditor.h>
 
 //! @file reflwidgets.h
 //! Collection of placeholders for future reflectometry widgets.

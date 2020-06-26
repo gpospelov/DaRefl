@@ -7,15 +7,15 @@
 //
 // ************************************************************************** //
 
-#include "sldeditor.h"
+#include <darefl/sldeditor/sldeditor.h>
 
-#include "applicationmodels.h"
-#include "graphicsscene.h"
-#include "sldeditoractions.h"
-#include "sldeditortoolbar.h"
-#include "sldviewwidget.h"
+#include <darefl/model/applicationmodels.h>
+#include <darefl/sldeditor/graphicsscene.h>
+#include <darefl/sldeditor/sldeditoractions.h>
+#include <darefl/sldeditor/sldeditortoolbar.h>
+#include <darefl/sldeditor/sldviewwidget.h>
 
-#include "styleutils.h"
+#include <darefl/mainwindow/styleutils.h>
 #include <QVBoxLayout>
 #include <mvvm/plotting/graphcanvas.h>
 

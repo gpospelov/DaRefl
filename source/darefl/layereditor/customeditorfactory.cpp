@@ -7,9 +7,9 @@
 //
 // ************************************************************************** //
 
-#include "customeditorfactory.h"
-#include "applicationmodels.h"
-#include "materialmodel.h"
+#include <darefl/layereditor/customeditorfactory.h>
+#include <darefl/model/applicationmodels.h>
+#include <darefl/model/materialmodel.h>
 #include <QModelIndex>
 #include <algorithm>
 #include <mvvm/editors/externalpropertycomboeditor.h>

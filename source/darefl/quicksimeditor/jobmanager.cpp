@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include "jobmanager.h"
+#include <darefl/quicksimeditor/jobmanager.h>
 
 JobManager::JobManager(QObject* parent) : QObject(parent), is_running(true)
 {

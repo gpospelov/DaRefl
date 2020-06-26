@@ -7,10 +7,10 @@
 //
 // ************************************************************************** //
 
-#include "projectmanagerinteractor.h"
+#include <darefl/welcomeview/projectmanagerinteractor.h>
 #include <mvvm/project/project_types.h>
 #include <mvvm/project/projectutils.h>
-#include "welcomeviewsettings.h"
+#include <darefl/welcomeview/welcomeviewsettings.h>
 #include <QDebug>
 #include <QFileDialog>
 #include <QMessageBox>

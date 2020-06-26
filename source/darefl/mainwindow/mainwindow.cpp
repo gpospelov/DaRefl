@@ -7,12 +7,12 @@
 //
 // ************************************************************************** //
 
-#include "mainwindow.h"
-#include "applicationmodels.h"
-#include "importwindow.h"
-#include "mainbarwidget.h"
-#include "refldockwindow.h"
-#include "welcomeview.h"
+#include <darefl/mainwindow/mainwindow.h>
+#include <darefl/model/applicationmodels.h>
+#include <darefl/mainwindow/importwindow.h>
+#include <darefl/mainwindow/mainbarwidget.h>
+#include <darefl/mainwindow/refldockwindow.h>
+#include <darefl/welcomeview/welcomeview.h>
 #include <QCloseEvent>
 #include <QCoreApplication>
 #include <QFileDialog>

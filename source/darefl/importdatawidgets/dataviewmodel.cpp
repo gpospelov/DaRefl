@@ -7,10 +7,10 @@
 //
 // ************************************************************************** //
 
-#include "dataviewmodel.h"
-#include "datarowstrategy.h"
-#include "item_constants.h"
-#include "realdatamodel.h"
+#include <darefl/importdatawidgets/dataviewmodel.h>
+#include <darefl/importdatawidgets/datarowstrategy.h>
+#include <darefl/model/item_constants.h>
+#include <darefl/model/realdatamodel.h>
 
 #include <QByteArray>
 #include <QDataStream>

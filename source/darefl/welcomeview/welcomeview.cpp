@@ -7,14 +7,14 @@
 //
 // ************************************************************************** //
 
-#include "welcomeview.h"
-#include "applicationmodels.h"
-#include "openprojectwidget.h"
+#include <darefl/welcomeview/welcomeview.h>
+#include <darefl/model/applicationmodels.h>
+#include <darefl/welcomeview/openprojectwidget.h>
 #include <mvvm/project/projectmanagerdecorator.h>
-#include "projectmanagerinteractor.h"
+#include <darefl/welcomeview/projectmanagerinteractor.h>
 #include <mvvm/project/projectutils.h>
-#include "recentprojectwidget.h"
-#include "welcomeviewsettings.h"
+#include <darefl/welcomeview/recentprojectwidget.h>
+#include <darefl/welcomeview/welcomeviewsettings.h>
 #include <QApplication>
 #include <QDebug>
 #include <QFileDialog>

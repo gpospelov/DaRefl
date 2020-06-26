@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include "styleutils.h"
+#include <darefl/mainwindow/styleutils.h>
 #include <QDebug>
 #include <QFont>
 #include <QFontMetrics>

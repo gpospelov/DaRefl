@@ -10,7 +10,7 @@
 #ifndef QUICKSIMCONTROLLER_H
 #define QUICKSIMCONTROLLER_H
 
-#include "slice.h"
+#include <darefl/quicksimeditor/slice.h>
 #include <QObject>
 #include <memory>
 

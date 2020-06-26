@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include "materialtreeview.h"
+#include <darefl/materialeditor/materialtreeview.h>
 #include <QHeaderView>
 #include <QMouseEvent>
 

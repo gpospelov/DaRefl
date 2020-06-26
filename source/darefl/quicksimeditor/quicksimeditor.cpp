@@ -7,12 +7,12 @@
 //
 // ************************************************************************** //
 
-#include "quicksimeditor.h"
-#include "applicationmodels.h"
-#include "jobmodel.h"
-#include "quicksimcontroller.h"
-#include "quicksimeditortoolbar.h"
-#include "styleutils.h"
+#include <darefl/quicksimeditor/quicksimeditor.h>
+#include <darefl/model/applicationmodels.h>
+#include <darefl/model/jobmodel.h>
+#include <darefl/quicksimeditor/quicksimcontroller.h>
+#include <darefl/quicksimeditor/quicksimeditortoolbar.h>
+#include <darefl/mainwindow/styleutils.h>
 #include <QTabWidget>
 #include <QVBoxLayout>
 #include <mvvm/model/modelutils.h>

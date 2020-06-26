@@ -7,13 +7,13 @@
 //
 // ************************************************************************** //
 
-#include "refldockwindow.h"
-#include "applicationmodels.h"
-#include "dockscontroller.h"
-#include "layereditor.h"
-#include "quicksimeditor.h"
-#include "reflwidgets.h"
-#include "sldeditor.h"
+#include <darefl/mainwindow/refldockwindow.h>
+#include <darefl/model/applicationmodels.h>
+#include <darefl/mainwindow/dockscontroller.h>
+#include <darefl/layereditor/layereditor.h>
+#include <darefl/quicksimeditor/quicksimeditor.h>
+#include <darefl/mainwindow/reflwidgets.h>
+#include <darefl/sldeditor/sldeditor.h>
 #include <QLabel>
 #include <QToolBar>
 

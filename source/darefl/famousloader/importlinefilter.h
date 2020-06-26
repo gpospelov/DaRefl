@@ -10,8 +10,8 @@
 #ifndef IMPORTLINEFILTER_H
 #define IMPORTLINEFILTER_H
 
-#include "importdatastructure.h"
-#include "importoutput.h"
+#include <darefl/famousloader/importdatastructure.h>
+#include <darefl/famousloader/importoutput.h>
 
 #include <vector>
 #include <map>

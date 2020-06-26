@@ -10,7 +10,7 @@
 #ifndef SPECULARTOYSIMULATION_H
 #define SPECULARTOYSIMULATION_H
 
-#include "materialprofile.h"
+#include <darefl/quicksimeditor/materialprofile.h>
 #include <mvvm/utils/progresshandler.h>
 #include <vector>
 

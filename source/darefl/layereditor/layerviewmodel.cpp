@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include "layerviewmodel.h"
-#include "layerviewmodelcontroller.h"
+#include <darefl/layereditor/layerviewmodel.h>
+#include <darefl/layereditor/layerviewmodelcontroller.h>
 
 using namespace ModelView;
 

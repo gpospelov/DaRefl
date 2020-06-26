@@ -12,9 +12,9 @@
 //
 // ************************************************************************** //
 
-#include "importoutput.h"
-#include "importdatacolumn.h"
-#include "importdatastructure.h"
+#include <darefl/famousloader/importoutput.h>
+#include <darefl/famousloader/importdatacolumn.h>
+#include <darefl/famousloader/importdatastructure.h>
 
 namespace DataImportLogic
 {

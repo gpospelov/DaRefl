@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include "materialselectionmodel.h"
-#include "materialitems.h"
+#include <darefl/materialeditor/materialselectionmodel.h>
+#include <darefl/model/materialitems.h>
 #include <mvvm/viewmodel/viewmodel.h>
 #include <mvvm/viewmodel/viewmodelutils.h>
 

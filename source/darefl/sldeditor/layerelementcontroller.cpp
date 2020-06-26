@@ -7,13 +7,13 @@
 //
 // ************************************************************************** //
 
-#include "layerelementcontroller.h"
+#include <darefl/sldeditor/layerelementcontroller.h>
 
-#include "graphicsscene.h"
-#include "handleelementview.h"
-#include "layerelementitem.h"
-#include "roughnesselementview.h"
-#include "segmentelementview.h"
+#include <darefl/sldeditor/graphicsscene.h>
+#include <darefl/sldeditor/handleelementview.h>
+#include <darefl/sldeditor/layerelementitem.h>
+#include <darefl/sldeditor/roughnesselementview.h>
+#include <darefl/sldeditor/segmentelementview.h>
 
 #include <mvvm/signals/itemmapper.h>
 #include <stdexcept>

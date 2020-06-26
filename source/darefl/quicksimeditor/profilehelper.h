@@ -13,7 +13,7 @@
 #include <utility>
 #include <vector>
 
-#include "slice.h"
+#include <darefl/quicksimeditor/slice.h>
 
 //! Object that can generate the material profile of a sample as a function of depth.
 

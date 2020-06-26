@@ -7,15 +7,15 @@
 //
 // ************************************************************************** //
 
-#include "importdataeditor.h"
-#include "dataimportdialog.h"
-#include "dataselectionmodel.h"
-#include "datasetconvenience.h"
-#include "datasetitem.h"
-#include "dataviewmodel.h"
-#include "importoutput.h"
-#include "realdatamodel.h"
-#include "styleutils.h"
+#include <darefl/importdatawidgets/importdataeditor.h>
+#include <darefl/famousloader/dataimportdialog.h>
+#include <darefl/importdatawidgets/dataselectionmodel.h>
+#include <darefl/model/datasetconvenience.h>
+#include <darefl/model/datasetitem.h>
+#include <darefl/importdatawidgets/dataviewmodel.h>
+#include <darefl/famousloader/importoutput.h>
+#include <darefl/model/realdatamodel.h>
+#include <darefl/mainwindow/styleutils.h>
 
 #include <QAction>
 #include <QDialog>

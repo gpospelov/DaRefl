@@ -15,8 +15,8 @@
 #ifndef IMPORTTABLEVIEW_H
 #define IMPORTTABLEVIEW_H
 
-#include "importdatastructure.h"
-#include "importutils.h"
+#include <darefl/famousloader/importdatastructure.h>
+#include <darefl/famousloader/importutils.h>
 
 #include <QAbstractItemModel>
 #include <QModelIndex>
