@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include "mainwindow.h"
+#include <darefl/mainwindow/mainwindow.h>
 #include <QApplication>
 #include <QLocale>
 
