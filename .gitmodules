@@ -1,0 +1,3 @@
+[submodule "extern/qt-mvvm"]
+	path = extern/qt-mvvm
+	url = https://github.com/gpospelov/qt-mvvm.git
