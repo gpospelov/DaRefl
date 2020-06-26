@@ -74,6 +74,7 @@ jobs:
         set PATH=${{github.workspace}};%QTDIR%\bin;%PATH%
         cd ${{github.workspace}}
         dir
+        git submodule update --init --recursive
         mkdir build
         cd build
         cmake -G "Visual Studio 16 2019" -G Ninja -DCMAKE_MAKE_PROGRAM=ninja -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER="cl.exe" -DCMAKE_CXX_COMPILER="cl.exe" ..

@@ -53,6 +53,7 @@ jobs:
       run: |
         echo 'export PATH="/usr/local/opt/qt/bin:$PATH"' >> /Users/runner/.bash_profile
         cd $GITHUB_WORKSPACE && pwd && ls
+        git submodule update --init --recursive
         mkdir build && cd build
         cmake -DCMAKE_PREFIX_PATH=/usr/local/opt/qt \
           -DCMAKE_C_COMPILER_LAUNCHER=ccache \
