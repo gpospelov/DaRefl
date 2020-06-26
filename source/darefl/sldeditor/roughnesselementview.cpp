@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include <darefl/sldeditor/roughnesselementview.h>
 #include <darefl/sldeditor/layerelementcontroller.h>
+#include <darefl/sldeditor/roughnesselementview.h>
 
 #include <QPainter>
 #include <QStyleOption>

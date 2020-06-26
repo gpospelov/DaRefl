@@ -30,4 +30,4 @@ private:
     std::unique_ptr<SLDEditorActionsImpl> p_impl;
 };
 
-#endif  // DAREFL_SLDEDITOR_SLDEDITORACTIONS_H
+#endif // DAREFL_SLDEDITOR_SLDEDITORACTIONS_H

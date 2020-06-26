@@ -58,4 +58,4 @@ private:
     void update_layer_appearance();
 };
 
-#endif  // DAREFL_MODEL_LAYERITEMS_H
+#endif // DAREFL_MODEL_LAYERITEMS_H

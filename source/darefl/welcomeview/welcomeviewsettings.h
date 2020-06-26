@@ -38,4 +38,4 @@ private:
     QStringList m_recent_projects;
 };
 
-#endif  // DAREFL_WELCOMEVIEW_WELCOMEVIEWSETTINGS_H
+#endif // DAREFL_WELCOMEVIEW_WELCOMEVIEWSETTINGS_H

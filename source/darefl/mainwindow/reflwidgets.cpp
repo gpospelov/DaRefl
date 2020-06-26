@@ -7,10 +7,10 @@
 //
 // ************************************************************************** //
 
-#include <darefl/mainwindow/reflwidgets.h>
-#include <darefl/sldeditor/sldeditor.h>
-#include <darefl/mainwindow/styleutils.h>
 #include <QVBoxLayout>
+#include <darefl/mainwindow/reflwidgets.h>
+#include <darefl/mainwindow/styleutils.h>
+#include <darefl/sldeditor/sldeditor.h>
 
 //! ---------------------------------------------------------------------------
 

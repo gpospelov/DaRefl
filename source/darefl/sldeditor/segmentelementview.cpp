@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include <darefl/sldeditor/segmentelementview.h>
 #include <darefl/sldeditor/layerelementcontroller.h>
+#include <darefl/sldeditor/segmentelementview.h>
 
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>

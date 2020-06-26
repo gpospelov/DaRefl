@@ -73,4 +73,4 @@ private:
     ModelView::GraphCanvas* p_graph_canvas{nullptr};
 };
 
-#endif  // DAREFL_IMPORTDATAWIDGETS_IMPORTDATAEDITOR_H
+#endif // DAREFL_IMPORTDATAWIDGETS_IMPORTDATAEDITOR_H

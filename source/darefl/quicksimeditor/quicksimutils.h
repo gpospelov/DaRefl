@@ -22,4 +22,4 @@ multislice_t CreateMultiSlice(const MultiLayerItem& multilayer);
 
 } // namespace Utils
 
-#endif  // DAREFL_QUICKSIMEDITOR_QUICKSIMUTILS_H
+#endif // DAREFL_QUICKSIMEDITOR_QUICKSIMUTILS_H

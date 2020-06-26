@@ -29,7 +29,8 @@ void DataStructure::setData(DataImportUtils::string_data& data)
 }
 
 //! This is the set data routine used if header data is provided
-void DataStructure::setData(DataImportUtils::header_map& headers, DataImportUtils::string_data& data)
+void DataStructure::setData(DataImportUtils::header_map& headers,
+                            DataImportUtils::string_data& data)
 {
     std::vector<std::string> keys;
     for (DataImportUtils::header_map::iterator it = headers.begin(); it != headers.end(); ++it) {
@@ -127,7 +128,7 @@ void DataStructure::addColumn(const std::string& header)
         new_column = std::make_unique<DataColumn>(header);
     }
 
-    if (m_history.size()>m_data_columns.size()+1){
+    if (m_history.size() > m_data_columns.size() + 1) {
         new_column->setName(m_history.at(m_data_columns.size()).at(0));
         new_column->setType(m_history.at(m_data_columns.size()).at(1));
         new_column->setUnit(m_history.at(m_data_columns.size()).at(2));
@@ -184,13 +185,10 @@ DataImportUtils::string_data DataStructure::columnHistory() const
 {
     DataImportUtils::string_data history;
 
-    for (int i = 0; i < columnCount(); ++i){
-        history.push_back(std::vector<std::string> {
-            column(i)->name(),
-            column(i)->type(),
-            column(i)->unit(),
-            std::to_string(column(i)->multiplier())
-        });
+    for (int i = 0; i < columnCount(); ++i) {
+        history.push_back(std::vector<std::string>{column(i)->name(), column(i)->type(),
+                                                   column(i)->unit(),
+                                                   std::to_string(column(i)->multiplier())});
     }
 
     return history;

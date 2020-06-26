@@ -24,4 +24,4 @@ public:
     ~MaterialEditorToolBar() = default;
 };
 
-#endif  // DAREFL_MATERIALEDITOR_MATERIALEDITORTOOLBAR_H
+#endif // DAREFL_MATERIALEDITOR_MATERIALEDITORTOOLBAR_H

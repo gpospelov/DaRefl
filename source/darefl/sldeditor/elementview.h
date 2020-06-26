@@ -62,4 +62,4 @@ private:
     bool m_stretch_right = false;
 };
 
-#endif  // DAREFL_SLDEDITOR_ELEMENTVIEW_H
+#endif // DAREFL_SLDEDITOR_ELEMENTVIEW_H

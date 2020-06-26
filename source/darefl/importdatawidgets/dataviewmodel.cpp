@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include <darefl/importdatawidgets/dataviewmodel.h>
 #include <darefl/importdatawidgets/datarowstrategy.h>
+#include <darefl/importdatawidgets/dataviewmodel.h>
 #include <darefl/model/item_constants.h>
 #include <darefl/model/realdatamodel.h>
 

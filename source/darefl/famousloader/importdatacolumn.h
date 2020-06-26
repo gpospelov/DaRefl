@@ -59,4 +59,4 @@ private:
 
 } // end of namespace DataImportLogic
 
-#endif  // DAREFL_FAMOUSLOADER_IMPORTDATACOLUMN_H
+#endif // DAREFL_FAMOUSLOADER_IMPORTDATACOLUMN_H

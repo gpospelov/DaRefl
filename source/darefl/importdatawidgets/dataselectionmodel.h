@@ -36,4 +36,4 @@ public:
     const ModelView::ViewModel* viewModel() const;
 };
 
-#endif  // DAREFL_IMPORTDATAWIDGETS_DATASELECTIONMODEL_H
+#endif // DAREFL_IMPORTDATAWIDGETS_DATASELECTIONMODEL_H

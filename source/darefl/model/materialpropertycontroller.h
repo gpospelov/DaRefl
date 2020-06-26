@@ -33,4 +33,4 @@ private:
     SampleModel* m_sample_model;
 };
 
-#endif  // DAREFL_MODEL_MATERIALPROPERTYCONTROLLER_H
+#endif // DAREFL_MODEL_MATERIALPROPERTYCONTROLLER_H

@@ -17,4 +17,4 @@ inline void InitIconResources()
     Q_INIT_RESOURCE(icons);
 }
 
-#endif  // DAREFL_RESOURCES_RESOURCES_H
+#endif // DAREFL_RESOURCES_RESOURCES_H

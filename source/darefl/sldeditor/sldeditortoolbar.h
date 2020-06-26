@@ -27,4 +27,4 @@ signals:
     void resetViewport();
 };
 
-#endif  // DAREFL_SLDEDITOR_SLDEDITORTOOLBAR_H
+#endif // DAREFL_SLDEDITOR_SLDEDITORTOOLBAR_H

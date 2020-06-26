@@ -35,4 +35,4 @@ private:
     ModelView::GraphCanvas* graph_canvas{nullptr};
 };
 
-#endif  // DAREFL_GRAPHEDITOR_GRAPHEDITOR_H
+#endif // DAREFL_GRAPHEDITOR_GRAPHEDITOR_H

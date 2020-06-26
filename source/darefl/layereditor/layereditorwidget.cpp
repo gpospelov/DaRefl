@@ -7,16 +7,16 @@
 //
 // ************************************************************************** //
 
-#include <darefl/layereditor/layereditorwidget.h>
-#include <darefl/model/applicationmodels.h>
+#include <QVBoxLayout>
 #include <darefl/layereditor/customeditorfactory.h>
-#include <darefl/model/layeritems.h>
+#include <darefl/layereditor/layereditorwidget.h>
 #include <darefl/layereditor/layerselectionmodel.h>
 #include <darefl/layereditor/layertreeview.h>
 #include <darefl/layereditor/layerviewmodel.h>
+#include <darefl/model/applicationmodels.h>
+#include <darefl/model/layeritems.h>
 #include <darefl/model/materialmodel.h>
 #include <darefl/model/samplemodel.h>
-#include <QVBoxLayout>
 #include <mvvm/model/modelutils.h>
 #include <mvvm/viewmodel/standardviewmodels.h>
 #include <mvvm/viewmodel/viewmodeldelegate.h>

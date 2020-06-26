@@ -21,4 +21,4 @@ using signal_t = std::vector<std::complex<double>>;
 
 signal_t fourier_transform(const signal_t& signal, bool back_transform = false);
 
-#endif  // DAREFL_QUICKSIMEDITOR_FOURIERTRANSFORM_H
+#endif // DAREFL_QUICKSIMEDITOR_FOURIERTRANSFORM_H

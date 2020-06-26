@@ -61,4 +61,4 @@ void eraseAllSubString(std::string& main_string, const std::string& to_erase)
     }
 }
 
-}// End of namespace 
+} // namespace DataImportUtils

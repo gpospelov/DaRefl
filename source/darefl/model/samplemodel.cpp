@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include <darefl/model/samplemodel.h>
 #include <darefl/model/layeritems.h>
+#include <darefl/model/samplemodel.h>
 #include <mvvm/model/itemcatalogue.h>
 
 using namespace ModelView;

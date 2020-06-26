@@ -7,10 +7,10 @@
 //
 // ************************************************************************** //
 
-#include <darefl/sldeditor/sldeditortoolbar.h>
+#include <darefl/mainwindow/styleutils.h>
 #include <darefl/resources/resources.h>
 #include <darefl/sldeditor/sldeditoractions.h>
-#include <darefl/mainwindow/styleutils.h>
+#include <darefl/sldeditor/sldeditortoolbar.h>
 
 #include <QAction>
 #include <QToolButton>

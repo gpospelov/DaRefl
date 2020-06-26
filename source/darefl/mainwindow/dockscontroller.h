@@ -32,4 +32,4 @@ private:
     std::unique_ptr<DocksControllerImpl> p_impl;
 };
 
-#endif  // DAREFL_MAINWINDOW_DOCKSCONTROLLER_H
+#endif // DAREFL_MAINWINDOW_DOCKSCONTROLLER_H

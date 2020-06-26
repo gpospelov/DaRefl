@@ -7,13 +7,13 @@
 //
 // ************************************************************************** //
 
+#include <QVBoxLayout>
+#include <darefl/mainwindow/styleutils.h>
 #include <darefl/materialeditor/materialeditor.h>
 #include <darefl/materialeditor/materialeditoractions.h>
 #include <darefl/materialeditor/materialeditortoolbar.h>
 #include <darefl/materialeditor/materialeditorwidget.h>
 #include <darefl/model/materialmodel.h>
-#include <darefl/mainwindow/styleutils.h>
-#include <QVBoxLayout>
 
 MaterialEditor::MaterialEditor(MaterialModel* material_model, QWidget* parent)
     : QWidget(parent), material_model(material_model),

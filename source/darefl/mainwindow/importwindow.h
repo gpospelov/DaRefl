@@ -26,4 +26,4 @@ private:
     ApplicationModels* models{nullptr};
 };
 
-#endif  // DAREFL_MAINWINDOW_IMPORTWINDOW_H
+#endif // DAREFL_MAINWINDOW_IMPORTWINDOW_H

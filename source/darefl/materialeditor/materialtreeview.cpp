@@ -7,9 +7,9 @@
 //
 // ************************************************************************** //
 
-#include <darefl/materialeditor/materialtreeview.h>
 #include <QHeaderView>
 #include <QMouseEvent>
+#include <darefl/materialeditor/materialtreeview.h>
 
 MaterialTreeView::~MaterialTreeView() = default;
 

@@ -34,4 +34,4 @@ private:
     std::vector<double> m_sigmas;
 };
 
-#endif  // DAREFL_QUICKSIMEDITOR_PROFILEHELPER_H
+#endif // DAREFL_QUICKSIMEDITOR_PROFILEHELPER_H

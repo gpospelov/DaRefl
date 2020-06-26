@@ -7,12 +7,12 @@
 //
 // ************************************************************************** //
 
-#include <darefl/materialeditor/materialeditortoolbar.h>
-#include <darefl/materialeditor/materialeditoractions.h>
-#include <darefl/resources/resources.h>
-#include <darefl/mainwindow/styleutils.h>
 #include <QAction>
 #include <QToolButton>
+#include <darefl/mainwindow/styleutils.h>
+#include <darefl/materialeditor/materialeditoractions.h>
+#include <darefl/materialeditor/materialeditortoolbar.h>
+#include <darefl/resources/resources.h>
 
 MaterialEditorToolBar::MaterialEditorToolBar(MaterialEditorActions* actions, QWidget* parent)
     : QToolBar(parent)

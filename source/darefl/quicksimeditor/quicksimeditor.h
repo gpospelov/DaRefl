@@ -45,4 +45,4 @@ private:
     ModelView::GraphCanvas* spec_canvas{nullptr};
 };
 
-#endif  // DAREFL_QUICKSIMEDITOR_QUICKSIMEDITOR_H
+#endif // DAREFL_QUICKSIMEDITOR_QUICKSIMEDITOR_H

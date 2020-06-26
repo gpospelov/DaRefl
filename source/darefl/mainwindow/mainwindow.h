@@ -43,4 +43,4 @@ private:
     MainBarWidget* bar_widget{nullptr};
 };
 
-#endif  // DAREFL_MAINWINDOW_MAINWINDOW_H
+#endif // DAREFL_MAINWINDOW_MAINWINDOW_H

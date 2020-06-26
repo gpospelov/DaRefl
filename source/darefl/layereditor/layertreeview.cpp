@@ -7,9 +7,9 @@
 //
 // ************************************************************************** //
 
-#include <darefl/layereditor/layertreeview.h>
 #include <QHeaderView>
 #include <QMouseEvent>
+#include <darefl/layereditor/layertreeview.h>
 
 LayerTreeView::~LayerTreeView() = default;
 

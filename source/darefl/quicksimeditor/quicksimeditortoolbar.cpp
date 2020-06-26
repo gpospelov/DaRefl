@@ -7,7 +7,6 @@
 //
 // ************************************************************************** //
 
-#include <darefl/quicksimeditor/quicksimeditortoolbar.h>
 #include <QAction>
 #include <QCheckBox>
 #include <QDebug>
@@ -17,6 +16,7 @@
 #include <QSlider>
 #include <QSpinBox>
 #include <QVBoxLayout>
+#include <darefl/quicksimeditor/quicksimeditortoolbar.h>
 
 // namespace
 //{

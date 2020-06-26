@@ -44,4 +44,4 @@ protected:
     QPen m_pen;
 };
 
-#endif  // DAREFL_SLDEDITOR_HANDLEELEMENTVIEW_H
+#endif // DAREFL_SLDEDITOR_HANDLEELEMENTVIEW_H

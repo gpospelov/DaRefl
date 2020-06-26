@@ -7,11 +7,11 @@
 //
 // ************************************************************************** //
 
-#include <darefl/mainwindow/mainbarwidget.h>
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QStackedWidget>
 #include <QVBoxLayout>
+#include <darefl/mainwindow/mainbarwidget.h>
 
 namespace
 {

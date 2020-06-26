@@ -34,4 +34,4 @@ int LargeButtonHeight();
 
 }; // namespace StyleUtils
 
-#endif  // DAREFL_MAINWINDOW_STYLEUTILS_H
+#endif // DAREFL_MAINWINDOW_STYLEUTILS_H

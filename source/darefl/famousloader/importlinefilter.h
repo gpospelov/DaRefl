@@ -13,9 +13,9 @@
 #include <darefl/famousloader/importdatastructure.h>
 #include <darefl/famousloader/importoutput.h>
 
-#include <vector>
 #include <map>
 #include <string>
+#include <vector>
 
 namespace DataImportLogic
 {
@@ -77,4 +77,4 @@ private:
 
 } // namespace DataImportLogic
 
-#endif  // DAREFL_FAMOUSLOADER_IMPORTLINEFILTER_H
+#endif // DAREFL_FAMOUSLOADER_IMPORTLINEFILTER_H

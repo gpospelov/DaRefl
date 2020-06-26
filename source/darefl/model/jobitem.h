@@ -40,4 +40,4 @@ private:
     void setup_graph(const std::string& data_tag, const std::string& viewport_tag);
 };
 
-#endif  // DAREFL_MODEL_JOBITEM_H
+#endif // DAREFL_MODEL_JOBITEM_H

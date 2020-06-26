@@ -27,4 +27,4 @@ private:
     QMenu* create_layer_menu(LayerEditorActions* editor_actions);
 };
 
-#endif  // DAREFL_LAYEREDITOR_LAYEREDITORTOOLBAR_H
+#endif // DAREFL_LAYEREDITOR_LAYEREDITORTOOLBAR_H

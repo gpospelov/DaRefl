@@ -41,4 +41,4 @@ private:
     MaterialEditorWidget* editor_widget{nullptr};
 };
 
-#endif  // DAREFL_MATERIALEDITOR_MATERIALEDITOR_H
+#endif // DAREFL_MATERIALEDITOR_MATERIALEDITOR_H

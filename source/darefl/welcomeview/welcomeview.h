@@ -37,7 +37,7 @@ public:
 
 public slots:
     void onCreateNewProject();
-    void onOpenExistingProject(const QString &dirname = {});
+    void onOpenExistingProject(const QString& dirname = {});
     void onSaveCurrentProject();
     void onSaveProjectAs();
 
@@ -55,4 +55,4 @@ private:
     std::unique_ptr<ProjectManagerInteractor> m_interactor;
 };
 
-#endif  // DAREFL_WELCOMEVIEW_WELCOMEVIEW_H
+#endif // DAREFL_WELCOMEVIEW_WELCOMEVIEW_H

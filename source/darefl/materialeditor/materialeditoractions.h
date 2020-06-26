@@ -41,4 +41,4 @@ private:
     std::unique_ptr<MaterialEditorActionsImpl> p_impl;
 };
 
-#endif  // DAREFL_MATERIALEDITOR_MATERIALEDITORACTIONS_H
+#endif // DAREFL_MATERIALEDITOR_MATERIALEDITORACTIONS_H

@@ -7,12 +7,12 @@
 //
 // ************************************************************************** //
 
-#include <darefl/sldeditor/sldviewwidget.h>
-#include <darefl/model/applicationmodels.h>
-#include <darefl/sldeditor/graphicsscene.h>
-#include <darefl/model/jobmodel.h>
-#include <darefl/sldeditor/sldelementcontroller.h>
 #include <QResizeEvent>
+#include <darefl/model/applicationmodels.h>
+#include <darefl/model/jobmodel.h>
+#include <darefl/sldeditor/graphicsscene.h>
+#include <darefl/sldeditor/sldelementcontroller.h>
+#include <darefl/sldeditor/sldviewwidget.h>
 
 //! The constructor
 SLDViewWidget::SLDViewWidget(ApplicationModels* app_models, QWidget* parent) : QGraphicsView(parent)

@@ -63,4 +63,4 @@ private:
     layer_ctrl_vec layer_controllers;
 };
 
-#endif  // DAREFL_SLDEDITOR_SLDELEMENTCONTROLLER_H
+#endif // DAREFL_SLDEDITOR_SLDELEMENTCONTROLLER_H

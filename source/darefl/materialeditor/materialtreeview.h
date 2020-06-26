@@ -36,4 +36,4 @@ private:
     bool isKeyboardEditable(const QModelIndex& index) const;
 };
 
-#endif  // DAREFL_MATERIALEDITOR_MATERIALTREEVIEW_H
+#endif // DAREFL_MATERIALEDITOR_MATERIALTREEVIEW_H

@@ -14,7 +14,7 @@
 
 namespace ModelView
 {
-    enum class SaveChangesAnswer;
+enum class SaveChangesAnswer;
 }
 
 class QWidget;
@@ -44,4 +44,4 @@ private:
     WelcomeViewSettings* m_settings{nullptr};
 };
 
-#endif  // DAREFL_WELCOMEVIEW_PROJECTMANAGERINTERACTOR_H
+#endif // DAREFL_WELCOMEVIEW_PROJECTMANAGERINTERACTOR_H

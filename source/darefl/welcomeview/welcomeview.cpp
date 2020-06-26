@@ -7,19 +7,19 @@
 //
 // ************************************************************************** //
 
-#include <darefl/welcomeview/welcomeview.h>
-#include <darefl/model/applicationmodels.h>
-#include <darefl/welcomeview/openprojectwidget.h>
-#include <mvvm/project/projectmanagerdecorator.h>
-#include <darefl/welcomeview/projectmanagerinteractor.h>
-#include <mvvm/project/projectutils.h>
-#include <darefl/welcomeview/recentprojectwidget.h>
-#include <darefl/welcomeview/welcomeviewsettings.h>
 #include <QApplication>
 #include <QDebug>
 #include <QFileDialog>
 #include <QHBoxLayout>
 #include <QMainWindow>
+#include <darefl/model/applicationmodels.h>
+#include <darefl/welcomeview/openprojectwidget.h>
+#include <darefl/welcomeview/projectmanagerinteractor.h>
+#include <darefl/welcomeview/recentprojectwidget.h>
+#include <darefl/welcomeview/welcomeview.h>
+#include <darefl/welcomeview/welcomeviewsettings.h>
+#include <mvvm/project/projectmanagerdecorator.h>
+#include <mvvm/project/projectutils.h>
 #include <mvvm/widgets/widgetutils.h>
 
 WelcomeView::WelcomeView(ApplicationModels* models, QWidget* parent)

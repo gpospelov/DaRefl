@@ -41,4 +41,4 @@ public:
     const ModelView::ViewModel* viewModel() const;
 };
 
-#endif  // DAREFL_MATERIALEDITOR_MATERIALSELECTIONMODEL_H
+#endif // DAREFL_MATERIALEDITOR_MATERIALSELECTIONMODEL_H

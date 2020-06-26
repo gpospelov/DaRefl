@@ -39,4 +39,4 @@ private:
 };
 } // namespace DataImportLogic
 
-#endif  // DAREFL_FAMOUSLOADER_IMPORTFILE_H
+#endif // DAREFL_FAMOUSLOADER_IMPORTFILE_H

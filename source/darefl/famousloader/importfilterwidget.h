@@ -41,7 +41,7 @@ public:
 
     void addLineFilter();
     void removeLineFilter();
-    
+
     void readSettings();
     void writeSettings();
 
@@ -70,4 +70,4 @@ private:
 
 } // End of namespace DataImportGui
 
-#endif  // DAREFL_FAMOUSLOADER_IMPORTFILTERWIDGET_H
+#endif // DAREFL_FAMOUSLOADER_IMPORTFILTERWIDGET_H

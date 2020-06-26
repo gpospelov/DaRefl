@@ -7,11 +7,11 @@
 //
 // ************************************************************************** //
 
+#include <QDebug>
 #include <darefl/materialeditor/materialeditoractions.h>
+#include <darefl/materialeditor/materialselectionmodel.h>
 #include <darefl/model/materialitems.h>
 #include <darefl/model/materialmodel.h>
-#include <darefl/materialeditor/materialselectionmodel.h>
-#include <QDebug>
 #include <mvvm/model/modelutils.h>
 #include <mvvm/viewmodel/viewmodel.h>
 

@@ -31,4 +31,4 @@ public:
     LayerElementItem* addLayer();
 };
 
-#endif  // DAREFL_SLDEDITOR_SLDELEMENTMODEL_H
+#endif // DAREFL_SLDEDITOR_SLDELEMENTMODEL_H

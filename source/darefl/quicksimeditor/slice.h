@@ -24,4 +24,4 @@ struct Slice {
 
 using multislice_t = std::vector<Slice>;
 
-#endif  // DAREFL_QUICKSIMEDITOR_SLICE_H
+#endif // DAREFL_QUICKSIMEDITOR_SLICE_H

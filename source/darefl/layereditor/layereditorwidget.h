@@ -42,4 +42,4 @@ private:
     std::unique_ptr<ModelView::ViewModelDelegate> m_delegate;
 };
 
-#endif  // DAREFL_LAYEREDITOR_LAYEREDITORWIDGET_H
+#endif // DAREFL_LAYEREDITOR_LAYEREDITORWIDGET_H

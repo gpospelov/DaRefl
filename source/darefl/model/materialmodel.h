@@ -51,4 +51,4 @@ private:
     MaterialContainerItem* materialContainer();
 };
 
-#endif  // DAREFL_MODEL_MATERIALMODEL_H
+#endif // DAREFL_MODEL_MATERIALMODEL_H

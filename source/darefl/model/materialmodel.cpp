@@ -7,10 +7,10 @@
 //
 // ************************************************************************** //
 
-#include <darefl/model/materialmodel.h>
+#include <QColor>
 #include <darefl/model/item_constants.h>
 #include <darefl/model/materialitems.h>
-#include <QColor>
+#include <darefl/model/materialmodel.h>
 #include <mvvm/model/externalproperty.h>
 #include <mvvm/model/itemcatalogue.h>
 #include <mvvm/model/modelutils.h>

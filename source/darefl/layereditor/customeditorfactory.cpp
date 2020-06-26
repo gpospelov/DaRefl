@@ -7,11 +7,11 @@
 //
 // ************************************************************************** //
 
+#include <QModelIndex>
+#include <algorithm>
 #include <darefl/layereditor/customeditorfactory.h>
 #include <darefl/model/applicationmodels.h>
 #include <darefl/model/materialmodel.h>
-#include <QModelIndex>
-#include <algorithm>
 #include <mvvm/editors/externalpropertycomboeditor.h>
 #include <mvvm/model/customvariants.h>
 #include <mvvm/model/externalproperty.h>

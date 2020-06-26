@@ -7,9 +7,9 @@
 //
 // ************************************************************************** //
 
-#include <darefl/welcomeview/welcomeviewsettings.h>
 #include <QDir>
 #include <QSettings>
+#include <darefl/welcomeview/welcomeviewsettings.h>
 #include <mvvm/utils/fileutils.h>
 
 namespace

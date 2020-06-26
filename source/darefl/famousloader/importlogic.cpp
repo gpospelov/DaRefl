@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include <darefl/famousloader/importlogic.h>
 #include <darefl/famousloader/importdatacolumn.h>
+#include <darefl/famousloader/importlogic.h>
 
 namespace DataImportLogic
 {
@@ -56,10 +56,10 @@ void ImportLogic::setLineFilterOrder(std::vector<LineFilter*> filter_order)
 std::vector<LineFilter*> ImportLogic::lineFilterOrder() const
 {
     std::vector<LineFilter*> output;
-    for (const auto & filter_ptr: m_line_filters){
+    for (const auto& filter_ptr : m_line_filters) {
         output.push_back(filter_ptr.get());
     }
-    
+
     return output;
 }
 
@@ -112,14 +112,13 @@ std::string ImportLogic::getPreview(const int& row) const
                 }
             }
         }
-        
-        if (formated_line == ""){
+
+        if (formated_line == "") {
             output += "<hr>";
         } else {
             output += std::string("<div><font color=\"") + color_scheme.at(i) + std::string("\">")
-                    + formated_line + std::string("</font>") + std::string("</div>");
+                      + formated_line + std::string("</font>") + std::string("</div>");
         }
-
     }
     return output;
 }

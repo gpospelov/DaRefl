@@ -35,4 +35,4 @@ private:
     ApplicationModels* models;
 };
 
-#endif  // DAREFL_MAINWINDOW_REFLDOCKWINDOW_H
+#endif // DAREFL_MAINWINDOW_REFLDOCKWINDOW_H

@@ -37,4 +37,4 @@ private:
     std::map<int, QPushButton*> index_to_button;
 };
 
-#endif  // DAREFL_MAINWINDOW_MAINBARWIDGET_H
+#endif // DAREFL_MAINWINDOW_MAINBARWIDGET_H

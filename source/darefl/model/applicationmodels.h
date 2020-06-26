@@ -10,8 +10,8 @@
 #ifndef DAREFL_MODEL_APPLICATIONMODELS_H
 #define DAREFL_MODEL_APPLICATIONMODELS_H
 
-#include <mvvm/interfaces/applicationmodelsinterface.h>
 #include <memory>
+#include <mvvm/interfaces/applicationmodelsinterface.h>
 
 namespace ModelView
 {
@@ -46,4 +46,4 @@ private:
     std::unique_ptr<ApplicationModelsImpl> p_impl;
 };
 
-#endif  // DAREFL_MODEL_APPLICATIONMODELS_H
+#endif // DAREFL_MODEL_APPLICATIONMODELS_H

@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include <darefl/sldeditor/sldeditoractions.h>
 #include <darefl/sldeditor/layerelementitem.h>
+#include <darefl/sldeditor/sldeditoractions.h>
 #include <darefl/sldeditor/sldelementmodel.h>
 
 #include <QDebug>

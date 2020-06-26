@@ -13,9 +13,8 @@
 #include <QString>
 #include <QTextStream>
 #include <mvvm/utils/fileutils.h>
-#include <string>
 #include <stdexcept>
-
+#include <string>
 
 using namespace ModelView;
 

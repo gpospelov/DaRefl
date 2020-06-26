@@ -38,4 +38,4 @@ private:
     ApplicationModels* m_models;
 };
 
-#endif  // DAREFL_LAYEREDITOR_CUSTOMEDITORFACTORY_H
+#endif // DAREFL_LAYEREDITOR_CUSTOMEDITORFACTORY_H

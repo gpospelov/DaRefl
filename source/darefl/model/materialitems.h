@@ -60,4 +60,4 @@ public:
     void set_properties(const std::string& name, const QColor& color, double real, double imag);
 };
 
-#endif  // DAREFL_MODEL_MATERIALITEMS_H
+#endif // DAREFL_MODEL_MATERIALITEMS_H

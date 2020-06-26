@@ -7,13 +7,12 @@
 //
 // ************************************************************************** //
 
-#include <darefl/welcomeview/projectpanewidget.h>
-#include <darefl/mainwindow/styleutils.h>
-#include <mvvm/widgets/widgetutils.h>
 #include <QLabel>
 #include <QMouseEvent>
 #include <QPainter>
 #include <QVBoxLayout>
+#include <darefl/mainwindow/styleutils.h>
+#include <darefl/welcomeview/projectpanewidget.h>
 #include <mvvm/widgets/widgetutils.h>
 
 namespace

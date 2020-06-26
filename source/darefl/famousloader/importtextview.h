@@ -67,4 +67,4 @@ private:
 
 } // namespace DataImportGui
 
-#endif  // DAREFL_FAMOUSLOADER_IMPORTTEXTVIEW_H
+#endif // DAREFL_FAMOUSLOADER_IMPORTTEXTVIEW_H

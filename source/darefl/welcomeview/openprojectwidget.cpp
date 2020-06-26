@@ -7,12 +7,12 @@
 //
 // ************************************************************************** //
 
-#include <darefl/welcomeview/openprojectwidget.h>
-#include <darefl/mainwindow/styleutils.h>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <darefl/mainwindow/styleutils.h>
+#include <darefl/welcomeview/openprojectwidget.h>
 #include <mvvm/core/version.h>
 
 OpenProjectWidget::OpenProjectWidget(QWidget* parent) : QWidget(parent)

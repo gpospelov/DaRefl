@@ -43,4 +43,4 @@ private:
     std::vector<ProjectPaneWidget*> m_recent_project_panes;
 };
 
-#endif  // DAREFL_WELCOMEVIEW_RECENTPROJECTWIDGET_H
+#endif // DAREFL_WELCOMEVIEW_RECENTPROJECTWIDGET_H

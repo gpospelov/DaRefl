@@ -7,10 +7,10 @@
 //
 // ************************************************************************** //
 
-#include <darefl/quicksimeditor/quicksimutils.h>
 #include <darefl/model/item_constants.h>
 #include <darefl/model/layeritems.h>
 #include <darefl/model/materialitems.h>
+#include <darefl/quicksimeditor/quicksimutils.h>
 #include <mvvm/model/externalproperty.h>
 #include <mvvm/model/sessionmodel.h>
 #include <stdexcept>

@@ -37,4 +37,4 @@ public:
                       const QModelIndex& parent) override;
 };
 
-#endif  // DAREFL_IMPORTDATAWIDGETS_DATAVIEWMODEL_H
+#endif // DAREFL_IMPORTDATAWIDGETS_DATAVIEWMODEL_H

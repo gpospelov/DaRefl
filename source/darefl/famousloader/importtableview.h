@@ -86,4 +86,4 @@ public:
 
 } // End of namespace DataImportGui
 
-#endif  // DAREFL_FAMOUSLOADER_IMPORTTABLEVIEW_H
+#endif // DAREFL_FAMOUSLOADER_IMPORTTABLEVIEW_H

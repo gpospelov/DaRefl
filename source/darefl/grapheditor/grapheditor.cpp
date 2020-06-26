@@ -7,9 +7,9 @@
 //
 // ************************************************************************** //
 
+#include <QHBoxLayout>
 #include <darefl/grapheditor/grapheditor.h>
 #include <darefl/grapheditor/grapheditortoolbar.h>
-#include <QHBoxLayout>
 #include <mvvm/plotting/graphcanvas.h>
 #include <mvvm/standarditems/graphviewportitem.h>
 

@@ -38,4 +38,4 @@ public:
     const ModelView::ViewModel* viewModel() const;
 };
 
-#endif  // DAREFL_LAYEREDITOR_LAYERSELECTIONMODEL_H
+#endif // DAREFL_LAYEREDITOR_LAYERSELECTIONMODEL_H

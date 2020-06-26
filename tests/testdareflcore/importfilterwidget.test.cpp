@@ -8,10 +8,10 @@
 // ************************************************************************** //
 
 #include "google_test.h"
-#include <mvvm/model/customvariants.h>
 #include <darefl/famousloader/importfilterwidget.h>
-#include <darefl/famousloader/importlogic.h>
 #include <darefl/famousloader/importlinefilterwidget.h>
+#include <darefl/famousloader/importlogic.h>
+#include <mvvm/model/customvariants.h>
 
 #include <QComboBox>
 #include <QLineEdit>
@@ -40,7 +40,7 @@ public:
 //! The constructor
 FilterWidgetTest::FilterWidgetTest()
 {
-    import_logic  = new DataImportLogic::ImportLogic();
+    import_logic = new DataImportLogic::ImportLogic();
     filter_widget = new ImportFilterWidget(import_logic);
 
     p_list_widget = filter_widget->findChild<QListWidget*>("filter_list_widget");
@@ -62,7 +62,7 @@ TEST_F(FilterWidgetTest, testDefaultContructor)
 //! Test the add line filter functionality
 TEST_F(FilterWidgetTest, testAddLineFiler)
 {
-    for (int i = 0; i < 40; ++i){
+    for (int i = 0; i < 40; ++i) {
         EXPECT_EQ(i, p_list_widget->count());
         EXPECT_EQ(import_logic->lineFilterOrder().size(), p_list_widget->count());
         filter_widget->addLineFilter();
@@ -72,14 +72,14 @@ TEST_F(FilterWidgetTest, testAddLineFiler)
 //! Test remove line filter funcitonality
 TEST_F(FilterWidgetTest, testRemoveLineFilter)
 {
-    for (int i = 0; i < 40; ++i){
+    for (int i = 0; i < 40; ++i) {
         filter_widget->addLineFilter();
     }
 
-    for (int i = 0; i < 3; ++i){
-        p_list_widget->setCurrentRow(i*10);
+    for (int i = 0; i < 3; ++i) {
+        p_list_widget->setCurrentRow(i * 10);
         filter_widget->removeLineFilter();
-        EXPECT_EQ(40-1-i, p_list_widget->count());
+        EXPECT_EQ(40 - 1 - i, p_list_widget->count());
         EXPECT_EQ(import_logic->lineFilterOrder().size(), p_list_widget->count());
     }
 }
@@ -87,7 +87,7 @@ TEST_F(FilterWidgetTest, testRemoveLineFilter)
 //! Test the the type chnaged signal propagation
 TEST_F(FilterWidgetTest, testNameChange)
 {
-    for (int i = 0; i < 5; ++i){
+    for (int i = 0; i < 5; ++i) {
         filter_widget->addLineFilter();
     }
 
@@ -117,7 +117,7 @@ TEST_F(FilterWidgetTest, testNameChange)
 //! Test the the type chnaged signal propagation
 TEST_F(FilterWidgetTest, testTypeChange)
 {
-    for (int i = 0; i < 5; ++i){
+    for (int i = 0; i < 5; ++i) {
         filter_widget->addLineFilter();
     }
 

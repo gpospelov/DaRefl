@@ -7,12 +7,12 @@
 //
 // ************************************************************************** //
 
-#include <darefl/quicksimeditor/speculartoysimulation.h>
 #include <darefl/quicksimeditor/fouriertransform.h>
 #include <darefl/quicksimeditor/materialprofile.h>
+#include <darefl/quicksimeditor/speculartoysimulation.h>
 #include <mvvm/utils/containerutils.h>
-#include <thread>
 #include <stdexcept>
+#include <thread>
 
 namespace
 {

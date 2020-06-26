@@ -8,8 +8,8 @@
 // ************************************************************************** //
 
 #include "google_test.h"
-#include <darefl/famousloader/importdatacolumn.h>
 #include "test_utils.h"
+#include <darefl/famousloader/importdatacolumn.h>
 
 #include <cmath>
 #include <string>

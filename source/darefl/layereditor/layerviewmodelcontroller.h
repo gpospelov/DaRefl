@@ -31,4 +31,4 @@ public:
                                       ModelView::ViewModel* view_model);
 };
 
-#endif  // DAREFL_LAYEREDITOR_LAYERVIEWMODELCONTROLLER_H
+#endif // DAREFL_LAYEREDITOR_LAYERVIEWMODELCONTROLLER_H

@@ -7,12 +7,12 @@
 //
 // ************************************************************************** //
 
-#include <darefl/mainwindow/styleutils.h>
 #include <QDebug>
 #include <QFont>
 #include <QFontMetrics>
 #include <QSize>
 #include <QWidget>
+#include <darefl/mainwindow/styleutils.h>
 
 QSize StyleUtils::ToolBarIconSize()
 {

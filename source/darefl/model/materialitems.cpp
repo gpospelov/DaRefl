@@ -7,9 +7,9 @@
 //
 // ************************************************************************** //
 
-#include <darefl/model/materialitems.h>
-#include <darefl/model/item_constants.h>
 #include <QColor>
+#include <darefl/model/item_constants.h>
+#include <darefl/model/materialitems.h>
 #include <mvvm/model/externalproperty.h>
 
 using namespace ModelView;

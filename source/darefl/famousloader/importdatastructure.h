@@ -10,8 +10,8 @@
 #ifndef DAREFL_FAMOUSLOADER_IMPORTDATASTRUCTURE_H
 #define DAREFL_FAMOUSLOADER_IMPORTDATASTRUCTURE_H
 
-#include <darefl/famousloader/importutils.h>
 #include <darefl/famousloader/importdatacolumn.h>
+#include <darefl/famousloader/importutils.h>
 
 #include <memory>
 #include <string>
@@ -31,7 +31,7 @@ public:
 
     void setData(DataImportUtils::string_data& data);
     void setData(DataImportUtils::header_map& headers, DataImportUtils::string_data& data);
-    
+
     DataColumn* column(const std::string& header);
     const DataColumn* column(int column) const;
     DataColumn* column(int column);
@@ -42,7 +42,7 @@ public:
     void setColumnHistory(DataImportUtils::string_data history);
     DataImportUtils::string_data columnHistory() const;
 
-private:    
+private:
     void processHeaders(int num);
     void processHeaders(const std::vector<std::string>& headers);
     std::vector<bool> checkHeaders(const std::vector<std::string>& headers);
@@ -57,4 +57,4 @@ private:
 
 } // end of namespace DataImportLogic
 
-#endif  // DAREFL_FAMOUSLOADER_IMPORTDATASTRUCTURE_H
+#endif // DAREFL_FAMOUSLOADER_IMPORTDATASTRUCTURE_H

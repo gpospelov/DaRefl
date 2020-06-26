@@ -7,15 +7,15 @@
 //
 // ************************************************************************** //
 
-#include <darefl/mainwindow/refldockwindow.h>
-#include <darefl/model/applicationmodels.h>
-#include <darefl/mainwindow/dockscontroller.h>
-#include <darefl/layereditor/layereditor.h>
-#include <darefl/quicksimeditor/quicksimeditor.h>
-#include <darefl/mainwindow/reflwidgets.h>
-#include <darefl/sldeditor/sldeditor.h>
 #include <QLabel>
 #include <QToolBar>
+#include <darefl/layereditor/layereditor.h>
+#include <darefl/mainwindow/dockscontroller.h>
+#include <darefl/mainwindow/refldockwindow.h>
+#include <darefl/mainwindow/reflwidgets.h>
+#include <darefl/model/applicationmodels.h>
+#include <darefl/quicksimeditor/quicksimeditor.h>
+#include <darefl/sldeditor/sldeditor.h>
 
 ReflDockWindow::ReflDockWindow(ApplicationModels* models, QWidget* parent)
     : QMainWindow(parent), toolbar(new QToolBar), docks_controller(new DocksController(this)),

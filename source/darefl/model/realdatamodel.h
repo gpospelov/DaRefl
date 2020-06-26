@@ -55,4 +55,4 @@ private:
     void removeDataFromGroup(ModelView::GraphItem* item);
 };
 
-#endif  // DAREFL_MODEL_REALDATAMODEL_H
+#endif // DAREFL_MODEL_REALDATAMODEL_H

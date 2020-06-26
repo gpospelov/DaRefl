@@ -7,9 +7,9 @@
 //
 // ************************************************************************** //
 
-#include <darefl/materialeditor/materialtableview.h>
 #include <QHeaderView>
 #include <QMouseEvent>
+#include <darefl/materialeditor/materialtableview.h>
 
 MaterialTableView::~MaterialTableView() = default;
 

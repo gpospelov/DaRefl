@@ -10,11 +10,11 @@
 #ifndef DAREFL_FAMOUSLOADER_IMPORTUTILS_H
 #define DAREFL_FAMOUSLOADER_IMPORTUTILS_H
 
-#include <vector>
-#include <string>
+#include <algorithm>
 #include <map>
 #include <memory>
-#include <algorithm>
+#include <string>
+#include <vector>
 
 namespace DataImportUtils
 {
@@ -64,6 +64,6 @@ void eraseSubStrings(std::string& main_string, const std::vector<std::string>& s
 //! Erase All occurences of substring
 void eraseAllSubString(std::string& main_string, const std::string& earase);
 
-}// End of namespace 
+} // namespace DataImportUtils
 
-#endif  // DAREFL_FAMOUSLOADER_IMPORTUTILS_H
+#endif // DAREFL_FAMOUSLOADER_IMPORTUTILS_H

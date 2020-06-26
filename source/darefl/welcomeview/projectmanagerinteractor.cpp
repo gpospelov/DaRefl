@@ -7,14 +7,14 @@
 //
 // ************************************************************************** //
 
-#include <darefl/welcomeview/projectmanagerinteractor.h>
-#include <mvvm/project/project_types.h>
-#include <mvvm/project/projectutils.h>
-#include <darefl/welcomeview/welcomeviewsettings.h>
 #include <QDebug>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <darefl/welcomeview/projectmanagerinteractor.h>
+#include <darefl/welcomeview/welcomeviewsettings.h>
 #include <map>
+#include <mvvm/project/project_types.h>
+#include <mvvm/project/projectutils.h>
 #include <mvvm/utils/fileutils.h>
 
 using namespace ModelView;

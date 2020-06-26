@@ -25,4 +25,4 @@ public:
     void setModel(QAbstractItemModel* model) override;
 };
 
-#endif  // DAREFL_LAYEREDITOR_LAYERTREEVIEW_H
+#endif // DAREFL_LAYEREDITOR_LAYERTREEVIEW_H

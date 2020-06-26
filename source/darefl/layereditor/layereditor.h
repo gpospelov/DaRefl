@@ -40,4 +40,4 @@ private:
     LayerEditorWidget* editor_widget{nullptr};
 };
 
-#endif  // DAREFL_LAYEREDITOR_LAYEREDITOR_H
+#endif // DAREFL_LAYEREDITOR_LAYEREDITOR_H

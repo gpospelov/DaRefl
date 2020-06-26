@@ -34,4 +34,4 @@ private:
     SLDViewWidget* p_view_widget{nullptr};
 };
 
-#endif  // DAREFL_SLDEDITOR_SLDEDITOR_H
+#endif // DAREFL_SLDEDITOR_SLDEDITOR_H

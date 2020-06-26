@@ -8,11 +8,11 @@
 // ************************************************************************** //
 
 #include "google_test.h"
-#include <darefl/model/layeritems.h>
+#include "test_utils.h"
 #include <darefl/layereditor/layerselectionmodel.h>
 #include <darefl/layereditor/layerviewmodel.h>
+#include <darefl/model/layeritems.h>
 #include <darefl/model/samplemodel.h>
-#include "test_utils.h"
 #include <mvvm/viewmodel/viewmodelutils.h>
 
 using namespace ModelView;

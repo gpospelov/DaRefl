@@ -37,4 +37,4 @@ private:
     void init_model();
 };
 
-#endif  // DAREFL_MODEL_JOBMODEL_H
+#endif // DAREFL_MODEL_JOBMODEL_H

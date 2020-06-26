@@ -44,7 +44,7 @@ private:
     void setup_plot_elements();
 
     QCheckBox* live_checkbox{nullptr};
-    QProgressBar* progressbar{nullptr};  //! Simulation progressbar.
+    QProgressBar* progressbar{nullptr}; //! Simulation progressbar.
 };
 
-#endif  // DAREFL_QUICKSIMEDITOR_QUICKSIMEDITORTOOLBAR_H
+#endif // DAREFL_QUICKSIMEDITOR_QUICKSIMEDITORTOOLBAR_H

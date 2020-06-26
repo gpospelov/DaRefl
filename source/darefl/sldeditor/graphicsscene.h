@@ -45,4 +45,4 @@ private:
     ModelView::GraphCanvas* graph_canvas{nullptr};
 };
 
-#endif  // DAREFL_SLDEDITOR_GRAPHICSSCENE_H
+#endif // DAREFL_SLDEDITOR_GRAPHICSSCENE_H

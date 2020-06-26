@@ -24,4 +24,4 @@ signals:
     void resetViewport();
 };
 
-#endif  // DAREFL_GRAPHEDITOR_GRAPHEDITORTOOLBAR_H
+#endif // DAREFL_GRAPHEDITOR_GRAPHEDITORTOOLBAR_H

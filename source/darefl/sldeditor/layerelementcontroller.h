@@ -149,4 +149,4 @@ private:
     LayerElementController* p_controller_below = nullptr;
 };
 
-#endif  // DAREFL_SLDEDITOR_LAYERELEMENTCONTROLLER_H
+#endif // DAREFL_SLDEDITOR_LAYERELEMENTCONTROLLER_H

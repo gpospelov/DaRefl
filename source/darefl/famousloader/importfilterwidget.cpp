@@ -187,7 +187,7 @@ void ImportFilterWidget::readSettings()
 void ImportFilterWidget::writeSettings()
 {
     QSettings settings;
-    
+
     settings.beginGroup("Filters");
     settings.remove("");
     settings.endGroup();

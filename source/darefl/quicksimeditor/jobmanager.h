@@ -10,8 +10,8 @@
 #ifndef DAREFL_QUICKSIMEDITOR_JOBMANAGER_H
 #define DAREFL_QUICKSIMEDITOR_JOBMANAGER_H
 
-#include <darefl/quicksimeditor/speculartoysimulation.h>
 #include <QObject>
+#include <darefl/quicksimeditor/speculartoysimulation.h>
 #include <mvvm/utils/threadsafestack.h>
 
 //! Handles all thread activity for running job simulation in the background.
@@ -43,4 +43,4 @@ private:
     bool interrupt_request{false};
 };
 
-#endif  // DAREFL_QUICKSIMEDITOR_JOBMANAGER_H
+#endif // DAREFL_QUICKSIMEDITOR_JOBMANAGER_H

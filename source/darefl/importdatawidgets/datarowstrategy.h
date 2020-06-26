@@ -31,4 +31,4 @@ public:
     constructRefRow(ModelView::SessionItem*) override;
 };
 
-#endif  // DAREFL_IMPORTDATAWIDGETS_DATAROWSTRATEGY_H
+#endif // DAREFL_IMPORTDATAWIDGETS_DATAROWSTRATEGY_H

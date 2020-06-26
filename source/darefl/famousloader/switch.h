@@ -26,8 +26,8 @@
 #ifndef DAREFL_FAMOUSLOADER_SWITCH_H
 #define DAREFL_FAMOUSLOADER_SWITCH_H
 
-#include <darefl/famousloader/style.h>
 #include <QtWidgets>
+#include <darefl/famousloader/style.h>
 
 namespace SwitchSpace
 {
@@ -127,4 +127,4 @@ private:
 
 }; // namespace SwitchSpace
 
-#endif  // DAREFL_FAMOUSLOADER_SWITCH_H
+#endif // DAREFL_FAMOUSLOADER_SWITCH_H

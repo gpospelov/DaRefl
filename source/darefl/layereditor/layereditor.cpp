@@ -7,13 +7,13 @@
 //
 // ************************************************************************** //
 
+#include <QVBoxLayout>
 #include <darefl/layereditor/layereditor.h>
-#include <darefl/model/applicationmodels.h>
 #include <darefl/layereditor/layereditoractions.h>
 #include <darefl/layereditor/layereditortoolbar.h>
 #include <darefl/layereditor/layereditorwidget.h>
 #include <darefl/mainwindow/styleutils.h>
-#include <QVBoxLayout>
+#include <darefl/model/applicationmodels.h>
 
 LayerEditor::LayerEditor(ApplicationModels* models, QWidget* parent)
     : QWidget(parent), actions(new LayerEditorActions(models->sampleModel(), this)),

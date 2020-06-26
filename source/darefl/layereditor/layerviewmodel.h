@@ -29,4 +29,4 @@ public:
     LayerViewModel(ModelView::SessionModel* model, QObject* parent = nullptr);
 };
 
-#endif  // DAREFL_LAYEREDITOR_LAYERVIEWMODEL_H
+#endif // DAREFL_LAYEREDITOR_LAYERVIEWMODEL_H

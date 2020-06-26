@@ -52,4 +52,4 @@ public:
     RealDataContainer();
 };
 
-#endif  // DAREFL_MODEL_DATASETITEM_H
+#endif // DAREFL_MODEL_DATASETITEM_H

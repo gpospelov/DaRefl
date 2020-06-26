@@ -44,4 +44,4 @@ private:
     std::unique_ptr<ModelView::ViewModelDelegate> m_delegate;
 };
 
-#endif  // DAREFL_MATERIALEDITOR_MATERIALEDITORWIDGET_H
+#endif // DAREFL_MATERIALEDITOR_MATERIALEDITORWIDGET_H

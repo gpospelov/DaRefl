@@ -49,4 +49,4 @@ public:
     LayerElementItem();
 };
 
-#endif  // DAREFL_SLDEDITOR_LAYERELEMENTITEM_H
+#endif // DAREFL_SLDEDITOR_LAYERELEMENTITEM_H

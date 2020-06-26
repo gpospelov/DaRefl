@@ -15,8 +15,8 @@
 #include <darefl/sldeditor/sldeditortoolbar.h>
 #include <darefl/sldeditor/sldviewwidget.h>
 
-#include <darefl/mainwindow/styleutils.h>
 #include <QVBoxLayout>
+#include <darefl/mainwindow/styleutils.h>
 #include <mvvm/plotting/graphcanvas.h>
 
 //! The constructor

@@ -36,9 +36,9 @@ signals:
 
 protected:
     void paintEvent(QPaintEvent*) override;
-    void enterEvent(QEvent *) override;
-    void leaveEvent(QEvent *) override;
-    void mousePressEvent(QMouseEvent *event) override;
+    void enterEvent(QEvent*) override;
+    void leaveEvent(QEvent*) override;
+    void mousePressEvent(QMouseEvent* event) override;
 
 private:
     QLabel* m_current_project_title{nullptr};
@@ -48,4 +48,4 @@ private:
     QString m_project_dir;
 };
 
-#endif  // DAREFL_WELCOMEVIEW_PROJECTPANEWIDGET_H
+#endif // DAREFL_WELCOMEVIEW_PROJECTPANEWIDGET_H

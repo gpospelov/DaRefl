@@ -7,17 +7,17 @@
 //
 // ************************************************************************** //
 
-#include <darefl/mainwindow/mainwindow.h>
-#include <darefl/model/applicationmodels.h>
-#include <darefl/mainwindow/importwindow.h>
-#include <darefl/mainwindow/mainbarwidget.h>
-#include <darefl/mainwindow/refldockwindow.h>
-#include <darefl/welcomeview/welcomeview.h>
 #include <QCloseEvent>
 #include <QCoreApplication>
 #include <QFileDialog>
 #include <QMenuBar>
 #include <QSettings>
+#include <darefl/mainwindow/importwindow.h>
+#include <darefl/mainwindow/mainbarwidget.h>
+#include <darefl/mainwindow/mainwindow.h>
+#include <darefl/mainwindow/refldockwindow.h>
+#include <darefl/model/applicationmodels.h>
+#include <darefl/welcomeview/welcomeview.h>
 
 namespace
 {

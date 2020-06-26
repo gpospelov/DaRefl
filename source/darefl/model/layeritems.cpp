@@ -7,11 +7,11 @@
 //
 // ************************************************************************** //
 
-#include <darefl/model/layeritems.h>
+#include <QVariant>
 #include <darefl/model/item_constants.h>
+#include <darefl/model/layeritems.h>
 #include <darefl/model/materialitems.h>
 #include <darefl/model/materialmodel.h>
-#include <QVariant>
 #include <mvvm/model/externalproperty.h>
 #include <mvvm/signals/itemmapper.h>
 

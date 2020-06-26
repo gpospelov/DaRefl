@@ -29,4 +29,4 @@ std::vector<double> GenerateZValues(int n_points, double z_min, double z_max);
 
 } // namespace MaterialProfile
 
-#endif  // DAREFL_QUICKSIMEDITOR_MATERIALPROFILE_H
+#endif // DAREFL_QUICKSIMEDITOR_MATERIALPROFILE_H

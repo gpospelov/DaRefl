@@ -10,12 +10,12 @@
 #ifndef DAREFL_FAMOUSLOADER_DATAIMPORTDIALOG_H
 #define DAREFL_FAMOUSLOADER_DATAIMPORTDIALOG_H
 
-#include <darefl/famousloader/importlogic.h>
 #include <QComboBox>
 #include <QDialog>
 #include <QGroupBox>
 #include <QSettings>
 #include <QTabWidget>
+#include <darefl/famousloader/importlogic.h>
 
 #include <memory>
 #include <string>
@@ -77,4 +77,4 @@ private:
 
 } // End of namespace DataImportGui
 
-#endif  // DAREFL_FAMOUSLOADER_DATAIMPORTDIALOG_H
+#endif // DAREFL_FAMOUSLOADER_DATAIMPORTDIALOG_H

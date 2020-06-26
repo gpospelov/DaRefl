@@ -10,16 +10,16 @@
 #ifndef DAREFL_FAMOUSLOADER_IMPORTLOGIC_H
 #define DAREFL_FAMOUSLOADER_IMPORTLOGIC_H
 
+#include <darefl/famousloader/importdatastructure.h>
 #include <darefl/famousloader/importfile.h>
 #include <darefl/famousloader/importlinefilter.h>
-#include <darefl/famousloader/importdatastructure.h>
 #include <darefl/famousloader/importoutput.h>
 #include <darefl/famousloader/importutils.h>
 
-#include <string>
-#include <vector>
 #include <map>
 #include <memory>
+#include <string>
+#include <vector>
 
 namespace DataImportLogic
 {
@@ -64,4 +64,4 @@ private:
 
 } // namespace DataImportLogic
 
-#endif  // DAREFL_FAMOUSLOADER_IMPORTLOGIC_H
+#endif // DAREFL_FAMOUSLOADER_IMPORTLOGIC_H

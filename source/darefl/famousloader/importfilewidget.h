@@ -54,4 +54,4 @@ private:
 
 } // End of namespace DataImportGui
 
-#endif  // DAREFL_FAMOUSLOADER_IMPORTFILEWIDGET_H
+#endif // DAREFL_FAMOUSLOADER_IMPORTFILEWIDGET_H

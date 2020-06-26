@@ -7,13 +7,13 @@
 //
 // ************************************************************************** //
 
-#include <darefl/layereditor/layereditortoolbar.h>
-#include <darefl/layereditor/layereditoractions.h>
-#include <darefl/resources/resources.h>
-#include <darefl/mainwindow/styleutils.h>
 #include <QAction>
 #include <QMenu>
 #include <QToolButton>
+#include <darefl/layereditor/layereditoractions.h>
+#include <darefl/layereditor/layereditortoolbar.h>
+#include <darefl/mainwindow/styleutils.h>
+#include <darefl/resources/resources.h>
 
 LayerEditorToolBar::LayerEditorToolBar(LayerEditorActions* actions, QWidget* parent)
     : QToolBar(parent)

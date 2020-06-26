@@ -35,4 +35,4 @@ public:
     InstrumentEditor(QWidget* parent = nullptr);
 };
 
-#endif  // DAREFL_MAINWINDOW_REFLWIDGETS_H
+#endif // DAREFL_MAINWINDOW_REFLWIDGETS_H

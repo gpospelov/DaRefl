@@ -28,4 +28,4 @@ const std::string RawDataMimeType = "quickrefl/moveDataItem";
 
 } // namespace Constants
 
-#endif  // DAREFL_MODEL_ITEM_CONSTANTS_H
+#endif // DAREFL_MODEL_ITEM_CONSTANTS_H

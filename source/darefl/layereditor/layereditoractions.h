@@ -40,4 +40,4 @@ private:
     std::unique_ptr<LayerEditorActionsImpl> p_impl;
 };
 
-#endif  // DAREFL_LAYEREDITOR_LAYEREDITORACTIONS_H
+#endif // DAREFL_LAYEREDITOR_LAYEREDITORACTIONS_H

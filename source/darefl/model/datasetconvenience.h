@@ -36,4 +36,4 @@ public:
     std::string data_unit;
 };
 
-#endif  // DAREFL_MODEL_DATASETCONVENIENCE_H
+#endif // DAREFL_MODEL_DATASETCONVENIENCE_H

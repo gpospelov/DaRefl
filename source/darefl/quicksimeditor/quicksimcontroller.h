@@ -10,8 +10,8 @@
 #ifndef DAREFL_QUICKSIMEDITOR_QUICKSIMCONTROLLER_H
 #define DAREFL_QUICKSIMEDITOR_QUICKSIMCONTROLLER_H
 
-#include <darefl/quicksimeditor/slice.h>
 #include <QObject>
+#include <darefl/quicksimeditor/slice.h>
 #include <memory>
 
 class ApplicationModels;
@@ -59,4 +59,4 @@ private:
     bool in_realtime_mode{false}; //! Run simulation on every parameter change.
 };
 
-#endif  // DAREFL_QUICKSIMEDITOR_QUICKSIMCONTROLLER_H
+#endif // DAREFL_QUICKSIMEDITOR_QUICKSIMCONTROLLER_H

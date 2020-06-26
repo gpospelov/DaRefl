@@ -8,12 +8,12 @@
 // ************************************************************************** //
 
 #include "google_test.h"
+#include <QColor>
 #include <darefl/model/layeritems.h>
 #include <darefl/model/materialitems.h>
 #include <darefl/model/materialmodel.h>
-#include <darefl/quicksimeditor/quicksimutils.h>
 #include <darefl/model/samplemodel.h>
-#include <QColor>
+#include <darefl/quicksimeditor/quicksimutils.h>
 #include <mvvm/model/externalproperty.h>
 #include <mvvm/model/itempool.h>
 #include <tuple>

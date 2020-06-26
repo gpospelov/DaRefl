@@ -35,7 +35,6 @@ signals:
     void saveProjectAsRequest();
 
 private:
-
     QBoxLayout* createButtonLayout();
     QBoxLayout* createTempButtonLayout();
 
@@ -45,4 +44,4 @@ private:
     QPushButton* saveas_project_button{nullptr};
 };
 
-#endif  // DAREFL_WELCOMEVIEW_OPENPROJECTWIDGET_H
+#endif // DAREFL_WELCOMEVIEW_OPENPROJECTWIDGET_H
