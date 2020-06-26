@@ -8,7 +8,7 @@
 // ************************************************************************** //
 
 #include "google_test.h"
-#include "importlinefilter.h"
+#include <darefl/famousloader/importlinefilter.h>
 #include "test_utils.h"
 
 #include <cmath>

@@ -8,9 +8,9 @@
 // ************************************************************************** //
 
 #include "google_test.h"
-#include "layeritems.h"
-#include "layerviewmodel.h"
-#include "samplemodel.h"
+#include <darefl/model/layeritems.h>
+#include <darefl/layereditor/layerviewmodel.h>
+#include <darefl/model/samplemodel.h>
 #include "test_utils.h"
 #include <QSignalSpy>
 #include <mvvm/viewmodel/viewmodelutils.h>

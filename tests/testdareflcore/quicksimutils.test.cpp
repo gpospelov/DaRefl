@@ -8,11 +8,11 @@
 // ************************************************************************** //
 
 #include "google_test.h"
-#include "layeritems.h"
-#include "materialitems.h"
-#include "materialmodel.h"
-#include "quicksimutils.h"
-#include "samplemodel.h"
+#include <darefl/model/layeritems.h>
+#include <darefl/model/materialitems.h>
+#include <darefl/model/materialmodel.h>
+#include <darefl/quicksimeditor/quicksimutils.h>
+#include <darefl/model/samplemodel.h>
 #include <QColor>
 #include <mvvm/model/externalproperty.h>
 #include <mvvm/model/itempool.h>

@@ -8,12 +8,12 @@
 // ************************************************************************** //
 
 #include "google_test.h"
-#include "item_constants.h"
-#include "layereditoractions.h"
-#include "layeritems.h"
-#include "layerselectionmodel.h"
-#include "layerviewmodel.h"
-#include "samplemodel.h"
+#include <darefl/model/item_constants.h>
+#include <darefl/layereditor/layereditoractions.h>
+#include <darefl/model/layeritems.h>
+#include <darefl/layereditor/layerselectionmodel.h>
+#include <darefl/layereditor/layerviewmodel.h>
+#include <darefl/model/samplemodel.h>
 #include "test_utils.h"
 #include <QDebug>
 #include <mvvm/viewmodel/standardviewitems.h>

@@ -9,9 +9,9 @@
 
 #include "google_test.h"
 
-#include "datasetconvenience.h"
-#include "datasetitem.h"
-#include "realdatamodel.h"
+#include <darefl/model/datasetconvenience.h>
+#include <darefl/model/datasetitem.h>
+#include <darefl/model/realdatamodel.h>
 
 #include <QSignalSpy>
 #include <mvvm/model/modelutils.h>

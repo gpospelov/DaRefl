@@ -8,7 +8,7 @@
 // ************************************************************************** //
 
 #include "google_test.h"
-#include "materialprofile.h"
+#include <darefl/quicksimeditor/materialprofile.h>
 
 //! Tests utility functions from MaterialProfile namespace.
 

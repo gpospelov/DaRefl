@@ -8,8 +8,8 @@
 // ************************************************************************** //
 
 #include "google_test.h"
-#include "layeritems.h"
-#include "samplemodel.h"
+#include <darefl/model/layeritems.h>
+#include <darefl/model/samplemodel.h>
 #include "test_utils.h"
 
 using namespace ModelView;

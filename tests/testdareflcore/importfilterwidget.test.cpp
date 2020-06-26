@@ -9,9 +9,9 @@
 
 #include "google_test.h"
 #include <mvvm/model/customvariants.h>
-#include "importfilterwidget.h"
-#include "importlogic.h"
-#include "importlinefilterwidget.h"
+#include <darefl/famousloader/importfilterwidget.h>
+#include <darefl/famousloader/importlogic.h>
+#include <darefl/famousloader/importlinefilterwidget.h>
 
 #include <QComboBox>
 #include <QLineEdit>
