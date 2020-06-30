@@ -11,14 +11,13 @@
 #include <QMainWindow>
 #include <QMenuBar>
 #include <QToolBar>
-#include <darefl/welcomeview/actionmanager.h>
+#include <darefl/mainwindow/actionmanager.h>
 
 ActionManager::ActionManager(QMainWindow* mainwindow)
     : QObject(mainwindow), m_mainWindow(mainwindow)
 {
     createActions();
     setupMenus(m_mainWindow->menuBar());
-    setupToolBar(m_mainWindow->addToolBar("toolbar"));
 }
 
 //! Creates application-wise actions to create, open, save, and save-as projects.
@@ -61,11 +60,4 @@ void ActionManager::setupMenus(QMenuBar* menubar)
     fileMenu->addSeparator();
     fileMenu->addAction(m_saveCurrentProjectAction);
     fileMenu->addAction(m_saveProjectAsAction);
-}
-
-void ActionManager::setupToolBar(QToolBar* toolbar)
-{
-    toolbar->addAction(m_createNewProjectAction);
-    toolbar->addSeparator();
-    toolbar->addAction(m_openExistingProjectAction);
 }

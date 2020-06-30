@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_WELCOMEVIEW_ACTIONMANAGER_H
-#define DAREFL_WELCOMEVIEW_ACTIONMANAGER_H
+#ifndef DAREFL_MAINWINDOW_ACTIONMANAGER_H
+#define DAREFL_MAINWINDOW_ACTIONMANAGER_H
 
 #include <QObject>
 
@@ -35,7 +35,6 @@ signals:
 private:
     void createActions();
     void setupMenus(QMenuBar* menubar);
-    void setupToolBar(QToolBar* toolbar);
 
     QMainWindow* m_mainWindow{nullptr};
 
@@ -45,4 +44,4 @@ private:
     QAction* m_saveProjectAsAction{nullptr};
 };
 
-#endif // DAREFL_WELCOMEVIEW_ACTIONMANAGER_H
+#endif // DAREFL_MAINWINDOW_ACTIONMANAGER_H

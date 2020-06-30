@@ -12,6 +12,7 @@
 #include <QFileDialog>
 #include <QMenuBar>
 #include <QSettings>
+#include <darefl/mainwindow/actionmanager.h>
 #include <darefl/mainwindow/importwindow.h>
 #include <darefl/mainwindow/mainbarwidget.h>
 #include <darefl/mainwindow/mainwindow.h>
@@ -26,7 +27,8 @@ const QString size_key = "size";
 const QString pos_key = "pos";
 } // namespace
 
-MainWindow::MainWindow() : models(std::make_unique<ApplicationModels>())
+MainWindow::MainWindow()
+    : models(std::make_unique<ApplicationModels>()), m_actionManager(new ActionManager(this))
 {
     init_application();
     init_components();
@@ -62,12 +64,12 @@ void MainWindow::init_application()
 
 void MainWindow::init_components()
 {
-    welcome_view = new WelcomeView(models.get());
+    //    welcome_view = new WelcomeView(models.get());
     import_window = new ImportWindow(models.get());
     refl_window = new ReflDockWindow(models.get());
     bar_widget = new MainBarWidget;
 
-    bar_widget->addWidget(welcome_view, "Project");
+    //    bar_widget->addWidget(welcome_view, "Project");
     bar_widget->addWidget(import_window, "Data");
     bar_widget->addWidget(refl_window, "Simulation");
     bar_widget->addWidget(new QWidget, "Fitting");

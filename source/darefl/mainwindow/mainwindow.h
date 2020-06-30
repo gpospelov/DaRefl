@@ -18,6 +18,7 @@ class ImportWindow;
 class ReflDockWindow;
 class MainBarWidget;
 class ApplicationModels;
+class ActionManager;
 
 //! Application main window.
 
@@ -37,6 +38,7 @@ private:
     void write_settings();
 
     std::unique_ptr<ApplicationModels> models;
+    ActionManager* m_actionManager{nullptr};
     WelcomeView* welcome_view{nullptr};
     ImportWindow* import_window{nullptr};
     ReflDockWindow* refl_window{nullptr};
