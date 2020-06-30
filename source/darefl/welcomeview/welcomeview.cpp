@@ -97,11 +97,11 @@ void WelcomeView::init_project_manager()
     auto save_changes = [this]() { return m_interactor->onSaveChangesRequest(); };
     auto on_modified = [this]() { update_current_project_name(); };
 
-    auto manager =
-        std::make_unique<ProjectManagerDecorator>(m_models, select_dir, create_dir, on_modified);
-    manager->setSaveChangesAnswerCallback(save_changes);
+//    auto manager =
+//        std::make_unique<ModelView::ProjectManagerDecorator>(m_models, select_dir, create_dir, on_modified);
+////    manager->setSaveChangesAnswerCallback(save_changes);
 
-    m_project_manager = std::move(manager);
+//    m_project_manager = std::move(manager);
 }
 
 void WelcomeView::setup_connections()
