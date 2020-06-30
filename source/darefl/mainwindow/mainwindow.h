@@ -33,7 +33,7 @@ protected:
 
 private:
     void init_application();
-    void init_views();
+    void init_components();
     void write_settings();
 
     std::unique_ptr<ApplicationModels> models;

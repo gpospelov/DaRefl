@@ -29,7 +29,7 @@ const QString pos_key = "pos";
 MainWindow::MainWindow() : models(std::make_unique<ApplicationModels>())
 {
     init_application();
-    init_views();
+    init_components();
     setCentralWidget(bar_widget);
 }
 
@@ -60,7 +60,7 @@ void MainWindow::init_application()
     }
 }
 
-void MainWindow::init_views()
+void MainWindow::init_components()
 {
     welcome_view = new WelcomeView(models.get());
     import_window = new ImportWindow(models.get());

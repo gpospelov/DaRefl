@@ -1,4 +1,6 @@
 target_sources(${library_name} PRIVATE
+    actionmanager.cpp
+    actionmanager.h
     openprojectwidget.cpp
     openprojectwidget.h
     projectmanagerinteractor.cpp
