@@ -7,8 +7,9 @@
 //
 // ************************************************************************** //
 
-#include <QVBoxLayout>
 #include <QLabel>
+#include <QScrollArea>
+#include <QVBoxLayout>
 #include <darefl/mainwindow/styleutils.h>
 #include <darefl/welcomeview/projectpanewidget.h>
 #include <darefl/welcomeview/recentprojectwidget.h>
@@ -16,7 +17,7 @@
 
 namespace
 {
-int max_recent_project_count = 7;
+int max_recent_project_count = 10;
 }
 
 RecentProjectWidget::RecentProjectWidget(QWidget* parent)
@@ -26,7 +27,7 @@ RecentProjectWidget::RecentProjectWidget(QWidget* parent)
     layout->setContentsMargins(20, 0, 10, 0);
     layout->addLayout(createCurrentProjectLayout());
     layout->addSpacing(ModelView::Utils::SizeOfLetterM().height());
-    layout->addLayout(createRecentProjectLayout());
+    layout->addWidget(createRecentProjectScrollArea());
     layout->addStretch(1);
 }
 
@@ -85,5 +86,15 @@ QBoxLayout* RecentProjectWidget::createRecentProjectLayout()
         m_recentProjectPanes.push_back(widget);
         result->addWidget(widget);
     }
+    return result;
+}
+
+QWidget* RecentProjectWidget::createRecentProjectScrollArea()
+{
+    auto result = new QScrollArea;
+
+    auto content = new QWidget;
+    content->setLayout(createRecentProjectLayout());
+    result->setWidget(content);
     return result;
 }
