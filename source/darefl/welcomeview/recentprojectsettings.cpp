@@ -70,6 +70,8 @@ QStringList RecentProjectSettings::recentProjects()
     return m_recentProjects;
 }
 
+#include <QDebug>
+
 //! Adds directory to the list of recent projects.
 void RecentProjectSettings::addToRecentProjects(const QString& dirname)
 {
@@ -77,11 +79,14 @@ void RecentProjectSettings::addToRecentProjects(const QString& dirname)
     m_recentProjects.prepend(dirname);
     while (m_recentProjects.size() > max_recent_projects)
         m_recentProjects.removeLast();
+    qDebug() << "www 1.3 adddToRecentPro" << dirname << m_recentProjects;
 }
 
 void RecentProjectSettings::clearRecentProjectsList()
 {
+    qDebug() << "www 1.1" << m_recentProjects;
     m_recentProjects.clear();
+    qDebug() << "www 1.2" << m_recentProjects;
 }
 
 //! Write all settings to file.

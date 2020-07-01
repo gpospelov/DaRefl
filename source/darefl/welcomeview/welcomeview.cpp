@@ -73,10 +73,12 @@ void WelcomeView::onSaveProjectAs()
     return m_projectHandler->onSaveProjectAs();
 }
 
+#include <QDebug>
 void WelcomeView::onClearRecentProjectsList()
 {
+    qDebug() << "xxx xxx";
     m_settings->clearRecentProjectsList();
-    updateNames();
+//    updateNames();
 }
 
 void WelcomeView::setup_connections()
