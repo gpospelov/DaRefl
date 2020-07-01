@@ -12,7 +12,7 @@
 
 #include <QScrollArea>
 
-//! Modification of standard scroll area, which makes widget with dynamic layout ocupy the whole
+//! Modification of standard scroll area, which makes widget with dynamic layout occupy the whole
 //! available space.
 
 class AdjustingScrollArea : public QScrollArea
