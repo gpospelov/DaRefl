@@ -26,8 +26,7 @@ RecentProjectWidget::RecentProjectWidget(QWidget* parent)
 {
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins(20, 0, 10, 0);
-    layout->addLayout(createCurrentProjectLayout());
-    layout->addSpacing(ModelView::Utils::SizeOfLetterM().height());
+
     layout->addWidget(createRecentProjectScrollArea());
     layout->addStretch(1);
 }
@@ -95,7 +94,12 @@ QWidget* RecentProjectWidget::createRecentProjectScrollArea()
     auto result = new AdjustingScrollArea;
 
     auto content = new QWidget;
-    content->setLayout(createRecentProjectLayout());
+    auto layout = new QVBoxLayout(this);
+    layout->addLayout(createCurrentProjectLayout());
+    layout->addSpacing(ModelView::Utils::SizeOfLetterM().height());
+    layout->addLayout(createRecentProjectLayout());
+    content->setLayout(layout);
+
     result->setWidget(content);
     return result;
 }
