@@ -33,14 +33,14 @@ MainWindow::MainWindow()
     init_application();
     init_components();
     init_connections();
-    setCentralWidget(bar_widget);
+    setCentralWidget(m_barWidget);
 }
 
 MainWindow::~MainWindow() = default;
 
 void MainWindow::closeEvent(QCloseEvent* event)
 {
-    if (welcome_view->canCloseProject()) {
+    if (m_welcomeView->canCloseProject()) {
         write_settings();
         event->accept();
     } else {
@@ -65,18 +65,18 @@ void MainWindow::init_application()
 
 void MainWindow::init_components()
 {
-    welcome_view = new WelcomeView2(models.get());
-    import_window = new ImportWindow(models.get());
-    refl_window = new ReflDockWindow(models.get());
-    bar_widget = new MainBarWidget;
+    m_welcomeView = new WelcomeView2(models.get());
+    m_importWindow = new ImportWindow(models.get());
+    m_reflWindow = new ReflDockWindow(models.get());
+    m_barWidget = new MainBarWidget;
 
-    bar_widget->addWidget(welcome_view, "Project");
-    bar_widget->addWidget(import_window, "Data");
-    bar_widget->addWidget(refl_window, "Simulation");
-    bar_widget->addWidget(new QWidget, "Fitting");
-    bar_widget->addWidget(new QWidget, "Export");
-    bar_widget->addWidget(new QWidget, "Settings");
-    bar_widget->setCurrentIndex(1);
+    m_barWidget->addWidget(m_welcomeView, "Project");
+    m_barWidget->addWidget(m_importWindow, "Data");
+    m_barWidget->addWidget(m_reflWindow, "Simulation");
+    m_barWidget->addWidget(new QWidget, "Fitting");
+    m_barWidget->addWidget(new QWidget, "Export");
+    m_barWidget->addWidget(new QWidget, "Settings");
+    m_barWidget->setCurrentIndex(1);
 }
 
 //! Setup main connections.
@@ -84,13 +84,13 @@ void MainWindow::init_components()
 void MainWindow::init_connections()
 {
     // connect ActionManager signals with WelcomeView slots
-    connect(m_actionManager, &ActionManager::createNewProjectRequest, welcome_view,
+    connect(m_actionManager, &ActionManager::createNewProjectRequest, m_welcomeView,
             &WelcomeView2::onCreateNewProject);
-    connect(m_actionManager, &ActionManager::openExistingProjectRequest, welcome_view,
+    connect(m_actionManager, &ActionManager::openExistingProjectRequest, m_welcomeView,
             &WelcomeView2::onOpenExistingProject);
-    connect(m_actionManager, &ActionManager::saveCurrentProjectRequest, welcome_view,
+    connect(m_actionManager, &ActionManager::saveCurrentProjectRequest, m_welcomeView,
             &WelcomeView2::onSaveCurrentProject);
-    connect(m_actionManager, &ActionManager::saveProjectAsRequest, welcome_view,
+    connect(m_actionManager, &ActionManager::saveProjectAsRequest, m_welcomeView,
             &WelcomeView2::onSaveProjectAs);
 }
 
