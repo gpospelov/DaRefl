@@ -79,6 +79,11 @@ void RecentProjectSettings::addToRecentProjects(const QString& dirname)
         m_recentProjects.removeLast();
 }
 
+void RecentProjectSettings::clearRecentProjectsList()
+{
+    m_recentProjects.clear();
+}
+
 //! Write all settings to file.
 void RecentProjectSettings::writeSettings()
 {

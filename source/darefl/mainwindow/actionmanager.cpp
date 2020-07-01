@@ -20,6 +20,12 @@ ActionManager::ActionManager(QMainWindow* mainwindow)
     setupMenus(m_mainWindow->menuBar());
 }
 
+void ActionManager::aboutToShowFileMenu()
+{
+    m_recentProjectMenu->clear();
+
+}
+
 //! Creates application-wise actions to create, open, save, and save-as projects.
 
 void ActionManager::createActions()
@@ -54,8 +60,10 @@ void ActionManager::createActions()
 void ActionManager::setupMenus(QMenuBar* menubar)
 {
     auto fileMenu = menubar->addMenu("&File");
+    connect(fileMenu, &QMenu::aboutToShow, this, &ActionManager::aboutToShowFileMenu);
     fileMenu->addAction(m_createNewProjectAction);
     fileMenu->addAction(m_openExistingProjectAction);
+    m_recentProjectMenu = fileMenu->addMenu("Recent Projects");
 
     fileMenu->addSeparator();
     fileMenu->addAction(m_saveCurrentProjectAction);

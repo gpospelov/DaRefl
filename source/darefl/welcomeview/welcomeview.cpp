@@ -74,6 +74,12 @@ void WelcomeView::onSaveProjectAs()
     return m_projectHandler->onSaveProjectAs();
 }
 
+void WelcomeView::onClearRecentProjectsList()
+{
+    m_settings->clearRecentProjectsList();
+    updateNames();
+}
+
 void WelcomeView::setup_connections()
 {
     // connect buttons of OpenProjectWidget with this slots.

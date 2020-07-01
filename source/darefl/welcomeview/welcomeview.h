@@ -37,6 +37,7 @@ public slots:
     void onOpenExistingProject(const QString& dirname = {});
     void onSaveCurrentProject();
     void onSaveProjectAs();
+    void onClearRecentProjectsList();
 
 private:
     void setup_connections();

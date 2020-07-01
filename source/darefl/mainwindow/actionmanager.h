@@ -15,7 +15,7 @@
 class QMainWindow;
 class QAction;
 class QMenuBar;
-class QToolBar;
+class QMenu;
 
 //! Actions for MainWindow. Equips toolbar and menubar with actions to create, open, save,
 //! and save-as projects. It doesn't have logic and simply forwards requests further.
@@ -31,6 +31,10 @@ signals:
     void openExistingProjectRequest(const QString& dirname);
     void saveCurrentProjectRequest();
     void saveProjectAsRequest();
+    void clearResentProjectListRequest();
+
+private slots:
+    void aboutToShowFileMenu();
 
 private:
     void createActions();
@@ -42,6 +46,8 @@ private:
     QAction* m_openExistingProjectAction{nullptr};
     QAction* m_saveCurrentProjectAction{nullptr};
     QAction* m_saveProjectAsAction{nullptr};
+
+    QMenu* m_recentProjectMenu{nullptr};
 };
 
 #endif // DAREFL_MAINWINDOW_ACTIONMANAGER_H

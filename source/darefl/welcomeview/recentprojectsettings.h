@@ -29,6 +29,8 @@ public:
 
     void addToRecentProjects(const QString& dirname);
 
+    void clearRecentProjectsList();
+
 private:
     void writeSettings();
     void readSettings();

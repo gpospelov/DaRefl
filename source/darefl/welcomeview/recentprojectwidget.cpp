@@ -94,7 +94,7 @@ QWidget* RecentProjectWidget::createRecentProjectScrollArea()
     auto result = new AdjustingScrollArea;
 
     auto content = new QWidget;
-    auto layout = new QVBoxLayout(this);
+    auto layout = new QVBoxLayout;
     layout->addLayout(createCurrentProjectLayout());
     layout->addSpacing(ModelView::Utils::SizeOfLetterM().height());
     layout->addLayout(createRecentProjectLayout());
