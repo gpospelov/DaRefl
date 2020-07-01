@@ -11,7 +11,6 @@
 #include <QMouseEvent>
 #include <QPainter>
 #include <QVBoxLayout>
-#include <darefl/mainwindow/styleutils.h>
 #include <darefl/welcomeview/projectpanewidget.h>
 #include <mvvm/widgets/widgetutils.h>
 
@@ -34,18 +33,6 @@ ProjectPaneWidget::ProjectPaneWidget(QWidget* parent)
     layout->addWidget(m_currentProjectDir);
 }
 
-QSize ProjectPaneWidget::sizeHint() const
-{
-    auto characterisic_size = StyleUtils::DockSizeHint();
-    return QSize(characterisic_size.width(), widget_height());
-}
-
-QSize ProjectPaneWidget::minimumSizeHint() const
-{
-    auto characterisic_size = StyleUtils::DockMinimumSizeHint();
-    return QSize(characterisic_size.width(), widget_height());
-}
-
 //! Sets current project dir to 'project_dir', adjust title according to 'is_modified'.
 
 void ProjectPaneWidget::setCurrentProject(const QString& project_dir, bool is_modified)
@@ -61,7 +48,8 @@ void ProjectPaneWidget::setCurrentProject(const QString& project_dir, bool is_mo
     m_currentProjectTitle->setText(project_title);
 }
 
-//! Clear content of widget and make it inactive.
+//! Clear content of widget and make it inactive. Inactive widget doesnt' send signals when
+//! user click on it.
 
 void ProjectPaneWidget::clear()
 {
@@ -75,7 +63,6 @@ void ProjectPaneWidget::clear()
 //! Set 'active' flag to the given value. 'False' means that the widget only shows the project
 //! title, but doesn't react on mouse clicks and doesn't change the background on mouse
 //! hover events.
-
 void ProjectPaneWidget::setActive(bool value)
 {
     m_active = value;
