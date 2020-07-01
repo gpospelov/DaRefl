@@ -3,6 +3,7 @@
 [![Linux](https://github.com/gpospelov/DaRefl/workflows/Linux/badge.svg?branch=master)](https://github.com/gpospelov/DaRefl/actions?query=workflow%3ALinux)
 [![Windows](https://github.com/gpospelov/DaRefl/workflows/Windows/badge.svg?branch=master)](https://github.com/gpospelov/DaRefl/actions?query=workflow%3AWindows)
 [![Mac OS](https://github.com/gpospelov/DaRefl/workflows/MacOS/badge.svg?branch=master)](https://github.com/gpospelov/DaRefl/actions?query=workflow%3AMacOS)
+![](https://tokei.rs/b1/github/gpospelov/DaRefl/?category=code)
 
 
 This is a prototype of the simulation software for reflectometry.
