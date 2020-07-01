@@ -33,6 +33,9 @@ signals:
     void saveProjectAsRequest();
     void clearResentProjectListRequest();
 
+public slots:
+    void setRecentProjectsList(const QStringList& projects);
+
 private slots:
     void aboutToShowFileMenu();
 
@@ -48,6 +51,8 @@ private:
     QAction* m_saveProjectAsAction{nullptr};
 
     QMenu* m_recentProjectMenu{nullptr};
+
+    QStringList m_recentProjects;
 };
 
 #endif // DAREFL_MAINWINDOW_ACTIONMANAGER_H

@@ -32,6 +32,9 @@ public:
 
     void updateNames();
 
+signals:
+    void recentProjectsListModified(const QStringList& projects);
+
 public slots:
     void onCreateNewProject();
     void onOpenExistingProject(const QString& dirname = {});

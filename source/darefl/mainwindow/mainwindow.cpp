@@ -95,6 +95,8 @@ void MainWindow::init_connections()
     connect(m_actionManager, &ActionManager::clearResentProjectListRequest, m_welcomeView,
             &WelcomeView::onClearRecentProjectsList);
 
+    connect(m_welcomeView, &WelcomeView::recentProjectsListModified, m_actionManager,
+            &ActionManager::setRecentProjectsList);
     m_welcomeView->updateNames();
 }
 

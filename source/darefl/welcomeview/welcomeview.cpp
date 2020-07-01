@@ -21,8 +21,7 @@
 
 WelcomeView::WelcomeView(ApplicationModels* models, QWidget* parent)
     : QWidget(parent), m_models(models), m_projectHandler(new ProjectHandler(models, this)),
-      m_recentProjectWidget(new RecentProjectWidget),
-      m_openProjectWidget(new OpenProjectWidget),
+      m_recentProjectWidget(new RecentProjectWidget), m_openProjectWidget(new OpenProjectWidget),
       m_settings(std::make_unique<RecentProjectSettings>())
 {
     QPalette palette;
@@ -102,4 +101,6 @@ void WelcomeView::setup_connections()
             &RecentProjectWidget::setCurrentProject);
     connect(m_projectHandler, &ProjectHandler::recentProjectsListModified, m_recentProjectWidget,
             &RecentProjectWidget::setRecentProjectsList);
+    connect(m_projectHandler, &ProjectHandler::recentProjectsListModified, this,
+            &WelcomeView::recentProjectsListModified);
 }

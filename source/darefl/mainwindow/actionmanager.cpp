@@ -12,6 +12,7 @@
 #include <QMenuBar>
 #include <QToolBar>
 #include <darefl/mainwindow/actionmanager.h>
+#include <mvvm/widgets/widgetutils.h>
 
 ActionManager::ActionManager(QMainWindow* mainwindow)
     : QObject(mainwindow), m_mainWindow(mainwindow)
@@ -23,7 +24,29 @@ ActionManager::ActionManager(QMainWindow* mainwindow)
 void ActionManager::aboutToShowFileMenu()
 {
     m_recentProjectMenu->clear();
+    m_recentProjectMenu->setEnabled(!m_recentProjects.isEmpty());
 
+    for (auto project_dir : m_recentProjects) {
+        auto trimmed_project_dir = ModelView::Utils::WithTildeHomePath(project_dir);
+        auto action = m_recentProjectMenu->addAction(trimmed_project_dir);
+        action->setData(QVariant::fromValue(project_dir));
+        auto on_project_selected = [this, project_dir]() {
+            openExistingProjectRequest(project_dir);
+        };
+        connect(action, &QAction::triggered, on_project_selected);
+    }
+
+    //    if (hasRecentProjects) {
+    //        m_recentProjectsMenu->addSeparator();
+    //        QAction* action = m_recentProjectsMenu->addAction("Clear Menu");
+    //        connect(action, &QAction::triggered, m_mainWindow->projectManager(),
+    //                &ProjectManager::clearRecentProjects);
+    //    }
+}
+
+void ActionManager::setRecentProjectsList(const QStringList& projects)
+{
+    m_recentProjects = projects;
 }
 
 //! Creates application-wise actions to create, open, save, and save-as projects.
