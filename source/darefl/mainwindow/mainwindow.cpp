@@ -18,7 +18,7 @@
 #include <darefl/mainwindow/mainwindow.h>
 #include <darefl/mainwindow/refldockwindow.h>
 #include <darefl/model/applicationmodels.h>
-#include <darefl/welcomeview/welcomeview.h>
+#include <darefl/welcomeview/welcomeview2.h>
 
 namespace
 {
@@ -32,6 +32,7 @@ MainWindow::MainWindow()
 {
     init_application();
     init_components();
+    init_connections();
     setCentralWidget(bar_widget);
 }
 
@@ -64,18 +65,33 @@ void MainWindow::init_application()
 
 void MainWindow::init_components()
 {
-    //    welcome_view = new WelcomeView(models.get());
+    welcome_view = new WelcomeView2(models.get());
     import_window = new ImportWindow(models.get());
     refl_window = new ReflDockWindow(models.get());
     bar_widget = new MainBarWidget;
 
-    //    bar_widget->addWidget(welcome_view, "Project");
+    bar_widget->addWidget(welcome_view, "Project");
     bar_widget->addWidget(import_window, "Data");
     bar_widget->addWidget(refl_window, "Simulation");
     bar_widget->addWidget(new QWidget, "Fitting");
     bar_widget->addWidget(new QWidget, "Export");
     bar_widget->addWidget(new QWidget, "Settings");
     bar_widget->setCurrentIndex(1);
+}
+
+//! Setup main connections.
+
+void MainWindow::init_connections()
+{
+    // connect ActionManager signals with WelcomeView slots
+    connect(m_actionManager, &ActionManager::createNewProjectRequest, welcome_view,
+            &WelcomeView2::onCreateNewProject);
+    connect(m_actionManager, &ActionManager::openExistingProjectRequest, welcome_view,
+            &WelcomeView2::onOpenExistingProject);
+    connect(m_actionManager, &ActionManager::saveCurrentProjectRequest, welcome_view,
+            &WelcomeView2::onSaveCurrentProject);
+    connect(m_actionManager, &ActionManager::saveProjectAsRequest, welcome_view,
+            &WelcomeView2::onSaveProjectAs);
 }
 
 void MainWindow::write_settings()

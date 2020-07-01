@@ -13,7 +13,7 @@
 #include <QMainWindow>
 #include <memory>
 
-class WelcomeView;
+class WelcomeView2;
 class ImportWindow;
 class ReflDockWindow;
 class MainBarWidget;
@@ -35,11 +35,12 @@ protected:
 private:
     void init_application();
     void init_components();
+    void init_connections();
     void write_settings();
 
     std::unique_ptr<ApplicationModels> models;
     ActionManager* m_actionManager{nullptr};
-    WelcomeView* welcome_view{nullptr};
+    WelcomeView2* welcome_view{nullptr};
     ImportWindow* import_window{nullptr};
     ReflDockWindow* refl_window{nullptr};
     MainBarWidget* bar_widget{nullptr};

@@ -9,6 +9,8 @@ target_sources(${library_name} PRIVATE
     recentprojectwidget.h
     welcomeview.cpp
     welcomeview.h
+    welcomeview2.cpp
+    welcomeview2.h
     welcomeviewsettings.cpp
     welcomeviewsettings.h
 )
