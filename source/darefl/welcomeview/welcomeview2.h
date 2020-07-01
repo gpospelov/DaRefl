@@ -14,6 +14,7 @@
 #include <memory>
 
 class ApplicationModels;
+class ProjectHandler;
 class RecentProjectWidget;
 class OpenProjectWidget;
 class WelcomeViewSettings;
@@ -41,6 +42,7 @@ private:
     void update_recent_project_names();
 
     ApplicationModels* m_models{nullptr};
+    ProjectHandler* m_projectHandler{nullptr};
     RecentProjectWidget* m_recent_project_widget{nullptr};
     OpenProjectWidget* m_open_project_widget{nullptr};
     std::unique_ptr<WelcomeViewSettings> m_settings;

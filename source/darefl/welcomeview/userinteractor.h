@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_WELCOMEVIEW_PROJECTMANAGERINTERACTOR_H
-#define DAREFL_WELCOMEVIEW_PROJECTMANAGERINTERACTOR_H
+#ifndef DAREFL_WELCOMEVIEW_USERINTERACTOR_H
+#define DAREFL_WELCOMEVIEW_USERINTERACTOR_H
 
 #include <string>
 
@@ -23,13 +23,10 @@ class WelcomeViewSettings;
 //! Provide save/discard/cancel and similar dialogs on user request.
 //! Intended to work in pair with ProjectManagerDecorator.
 
-// FIXME consider turning into interface class and switch ProjectManagerDecorator to it
-// instead of all callbacks.
-
-class ProjectManagerInteractor
+class UserInteractor
 {
 public:
-    ProjectManagerInteractor(QWidget* parent, WelcomeViewSettings* settings);
+    UserInteractor(WelcomeViewSettings* settings, QWidget* parent);
 
     std::string onSelectDirRequest();
 
@@ -40,8 +37,8 @@ public:
 private:
     std::string selectDir() const;
 
-    QWidget* m_parent{nullptr};
     WelcomeViewSettings* m_settings{nullptr};
+    QWidget* m_parent{nullptr};
 };
 
-#endif // DAREFL_WELCOMEVIEW_PROJECTMANAGERINTERACTOR_H
+#endif // DAREFL_WELCOMEVIEW_USERINTERACTOR_H

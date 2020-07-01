@@ -40,10 +40,10 @@ private:
 
     std::unique_ptr<ApplicationModels> models;
     ActionManager* m_actionManager{nullptr};
-    WelcomeView2* welcome_view{nullptr};
-    ImportWindow* import_window{nullptr};
-    ReflDockWindow* refl_window{nullptr};
-    MainBarWidget* bar_widget{nullptr};
+    WelcomeView2* m_welcomeView{nullptr};
+    ImportWindow* m_importWindow{nullptr};
+    ReflDockWindow* m_reflWindow{nullptr};
+    MainBarWidget* m_barWidget{nullptr};
 };
 
 #endif // DAREFL_MAINWINDOW_MAINWINDOW_H

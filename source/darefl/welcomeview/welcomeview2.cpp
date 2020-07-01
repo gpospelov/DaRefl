@@ -13,14 +13,17 @@
 #include <QMainWindow>
 #include <darefl/model/applicationmodels.h>
 #include <darefl/welcomeview/openprojectwidget.h>
+#include <darefl/welcomeview/projecthandler.h>
 #include <darefl/welcomeview/recentprojectwidget.h>
 #include <darefl/welcomeview/welcomeview2.h>
 #include <darefl/welcomeview/welcomeviewsettings.h>
 #include <mvvm/project/projectutils.h>
 #include <mvvm/widgets/widgetutils.h>
 
+
 WelcomeView2::WelcomeView2(ApplicationModels* models, QWidget* parent)
-    : QWidget(parent), m_models(models), m_recent_project_widget(new RecentProjectWidget),
+    : QWidget(parent), m_models(models), m_projectHandler(new ProjectHandler(models, this)),
+      m_recent_project_widget(new RecentProjectWidget),
       m_open_project_widget(new OpenProjectWidget),
       m_settings(std::make_unique<WelcomeViewSettings>())
 {
