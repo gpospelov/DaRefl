@@ -5,6 +5,8 @@ target_sources(${library_name} PRIVATE
     projecthandler.h
     projectpanewidget.cpp
     projectpanewidget.h
+    recentprojectsettings.cpp
+    recentprojectsettings.h
     recentprojectwidget.cpp
     recentprojectwidget.h
     userinteractor.cpp
@@ -13,6 +15,4 @@ target_sources(${library_name} PRIVATE
     welcomeview.h
     welcomeview2.cpp
     welcomeview2.h
-    welcomeviewsettings.cpp
-    welcomeviewsettings.h
 )

@@ -17,7 +17,7 @@ class ApplicationModels;
 class ProjectHandler;
 class RecentProjectWidget;
 class OpenProjectWidget;
-class WelcomeViewSettings;
+class RecentProjectSettings;
 
 //! Welcome view. Main widget on first tab of MainWindow.
 
@@ -45,7 +45,7 @@ private:
     ProjectHandler* m_projectHandler{nullptr};
     RecentProjectWidget* m_recent_project_widget{nullptr};
     OpenProjectWidget* m_open_project_widget{nullptr};
-    std::unique_ptr<WelcomeViewSettings> m_settings;
+    std::unique_ptr<RecentProjectSettings> m_settings;
 };
 
 #endif // DAREFL_WELCOMEVIEW_WELCOMEVIEW2_H

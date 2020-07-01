@@ -10,7 +10,7 @@
 #include <darefl/welcomeview/projecthandler.h>
 #include <darefl/welcomeview/recentprojectwidget.h>
 #include <darefl/welcomeview/userinteractor.h>
-#include <darefl/welcomeview/welcomeviewsettings.h>
+#include <darefl/welcomeview/recentprojectsettings.h>
 #include <mvvm/factories/projectmanagerfactory.h>
 #include <mvvm/project/project_types.h>
 #include <mvvm/widgets/widgetutils.h>
@@ -20,7 +20,7 @@
 using namespace ModelView;
 
 ProjectHandler::ProjectHandler(ApplicationModels* models, QWidget* parent)
-    : QObject(parent), m_recentProjectSettings(std::make_unique<WelcomeViewSettings>()),
+    : QObject(parent), m_recentProjectSettings(std::make_unique<RecentProjectSettings>()),
       m_userInteractor(std::make_unique<UserInteractor>(m_recentProjectSettings.get(), parent)),
       m_models(models)
 {

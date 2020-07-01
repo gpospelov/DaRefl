@@ -21,7 +21,7 @@ namespace ModelView
 class ProjectManagerInterface;
 }
 
-class WelcomeViewSettings;
+class RecentProjectSettings;
 class UserInteractor;
 class ApplicationModels;
 class RecentProjectWidget;
@@ -54,7 +54,7 @@ private:
     void updateCurrentProjectName();
     void updateRecentProjectNames();
 
-    std::unique_ptr<WelcomeViewSettings> m_recentProjectSettings;
+    std::unique_ptr<RecentProjectSettings> m_recentProjectSettings;
     std::unique_ptr<UserInteractor> m_userInteractor;
     std::unique_ptr<ModelView::ProjectManagerInterface> m_projectManager;
     ApplicationModels* m_models{nullptr};

@@ -18,7 +18,7 @@ enum class SaveChangesAnswer;
 }
 
 class QWidget;
-class WelcomeViewSettings;
+class RecentProjectSettings;
 
 //! Provide save/discard/cancel and similar dialogs on user request.
 //! Intended to work in pair with ProjectManagerDecorator.
@@ -26,7 +26,7 @@ class WelcomeViewSettings;
 class UserInteractor
 {
 public:
-    UserInteractor(WelcomeViewSettings* settings, QWidget* parent);
+    UserInteractor(RecentProjectSettings* settings, QWidget* parent);
 
     std::string onSelectDirRequest();
 
@@ -37,7 +37,7 @@ public:
 private:
     std::string selectDir() const;
 
-    WelcomeViewSettings* m_settings{nullptr};
+    RecentProjectSettings* m_settings{nullptr};
     QWidget* m_parent{nullptr};
 };
 

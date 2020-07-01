@@ -10,7 +10,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <darefl/welcomeview/userinteractor.h>
-#include <darefl/welcomeview/welcomeviewsettings.h>
+#include <darefl/welcomeview/recentprojectsettings.h>
 #include <map>
 #include <mvvm/project/project_types.h>
 #include <mvvm/project/projectutils.h>
@@ -31,7 +31,7 @@ std::map<QMessageBox::StandardButton, SaveChangesAnswer> answer_map()
 }
 } // namespace
 
-UserInteractor::UserInteractor(WelcomeViewSettings* settings, QWidget* parent)
+UserInteractor::UserInteractor(RecentProjectSettings* settings, QWidget* parent)
     : m_settings(settings), m_parent(parent)
 {
 }

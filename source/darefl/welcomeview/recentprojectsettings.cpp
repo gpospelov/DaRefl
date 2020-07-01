@@ -1,15 +1,15 @@
 // ************************************************************************** //
 //
-//  Reflectometry simulation software prototype
+//  Model-view-view-model framework for large GUI applications
 //
 //! @license   GNU General Public License v3 or higher (see COPYING)
 //! @authors   see AUTHORS
 //
 // ************************************************************************** //
 
+#include "recentprojectsettings.h"
 #include <QDir>
 #include <QSettings>
-#include <darefl/welcomeview/welcomeviewsettings.h>
 #include <mvvm/utils/fileutils.h>
 
 namespace
@@ -32,70 +32,70 @@ const QString recent_projects_setting_name()
 
 } // namespace
 
-WelcomeViewSettings::WelcomeViewSettings()
+RecentProjectSettings::RecentProjectSettings()
 {
     readSettings();
 }
 
-WelcomeViewSettings::~WelcomeViewSettings()
+RecentProjectSettings::~RecentProjectSettings()
 {
     writeSettings();
 }
 
 //! Returns current workdir.
-QString WelcomeViewSettings::currentWorkdir() const
+QString RecentProjectSettings::currentWorkdir() const
 {
-    return m_current_workdir;
+    return m_currentWorkdir;
 }
 
 //! Updates current workdir value from user selection.
 //! Workdir will be set as parent director of selected `dirname`.
-void WelcomeViewSettings::updateWorkdirFromSelection(const QString& dirname)
+void RecentProjectSettings::updateWorkdirFromSelection(const QString& dirname)
 {
     if (!dirname.isEmpty()) {
         auto parent_path = ModelView::Utils::parent_path(dirname.toStdString());
-        m_current_workdir = QString::fromStdString(parent_path);
+        m_currentWorkdir = QString::fromStdString(parent_path);
     }
 }
 
 //! Returns list of recent projects, validates if projects still exists on disk.
-QStringList WelcomeViewSettings::recentProjects()
+QStringList RecentProjectSettings::recentProjects()
 {
     QStringList updatedList;
-    for (const auto& fileName : m_recent_projects) {
+    for (const auto& fileName : m_recentProjects) {
         if (ModelView::Utils::exists(fileName.toStdString()))
             updatedList.append(fileName);
     }
-    m_recent_projects = updatedList;
-    return m_recent_projects;
+    m_recentProjects = updatedList;
+    return m_recentProjects;
 }
 
 //! Adds directory to the list of recent projects.
-void WelcomeViewSettings::addToRecentProjects(const QString& dirname)
+void RecentProjectSettings::addToRecentProjects(const QString& dirname)
 {
-    m_recent_projects.removeAll(dirname);
-    m_recent_projects.prepend(dirname);
-    while (m_recent_projects.size() > max_recent_projects)
-        m_recent_projects.removeLast();
+    m_recentProjects.removeAll(dirname);
+    m_recentProjects.prepend(dirname);
+    while (m_recentProjects.size() > max_recent_projects)
+        m_recentProjects.removeLast();
 }
 
 //! Write all settings to file.
-void WelcomeViewSettings::writeSettings()
+void RecentProjectSettings::writeSettings()
 {
     QSettings settings;
-    settings.setValue(workdir_setting_name(), m_current_workdir);
-    settings.setValue(recent_projects_setting_name(), m_recent_projects);
+    settings.setValue(workdir_setting_name(), m_currentWorkdir);
+    settings.setValue(recent_projects_setting_name(), m_recentProjects);
 }
 
 //! Reads all settings from file.
-void WelcomeViewSettings::readSettings()
+void RecentProjectSettings::readSettings()
 {
     QSettings settings;
-    m_current_workdir = QDir::homePath();
+    m_currentWorkdir = QDir::homePath();
 
     if (settings.contains(workdir_setting_name()))
-        m_current_workdir = settings.value(workdir_setting_name()).toString();
+        m_currentWorkdir = settings.value(workdir_setting_name()).toString();
 
     if (settings.contains(recent_projects_setting_name()))
-        m_recent_projects = settings.value(recent_projects_setting_name()).toStringList();
+        m_recentProjects = settings.value(recent_projects_setting_name()).toStringList();
 }
