@@ -20,7 +20,6 @@ OpenProjectWidget::OpenProjectWidget(QWidget* parent) : QWidget(parent)
     auto layout = new QVBoxLayout(this);
     layout->addWidget(new QLabel(QString::fromStdString(ModelView::ProjectVersion())));
     layout->addLayout(createButtonLayout());
-    layout->addLayout(createTempButtonLayout());
 }
 
 QSize OpenProjectWidget::sizeHint() const
@@ -37,50 +36,23 @@ QBoxLayout* OpenProjectWidget::createButtonLayout()
 {
     auto result = new QHBoxLayout;
 
-    new_project_button = new QPushButton("New");
-    new_project_button->setMinimumHeight(StyleUtils::LargeButtonHeight());
-    new_project_button->setMinimumWidth(200);
-    new_project_button->setFont(StyleUtils::sectionFont());
-    connect(new_project_button, &QPushButton::pressed, this,
+    m_newProjectButton = new QPushButton("New");
+    m_newProjectButton->setMinimumHeight(StyleUtils::LargeButtonHeight());
+    m_newProjectButton->setMinimumWidth(200);
+    m_newProjectButton->setFont(StyleUtils::sectionFont());
+    connect(m_newProjectButton, &QPushButton::pressed, this,
             &OpenProjectWidget::createNewProjectRequest);
 
-    open_project_button = new QPushButton("Open");
-    open_project_button->setMinimumHeight(StyleUtils::LargeButtonHeight());
-    open_project_button->setMinimumWidth(200);
-    open_project_button->setFont(StyleUtils::sectionFont());
-    connect(open_project_button, &QPushButton::pressed, this,
+    m_openProjectButton = new QPushButton("Open");
+    m_openProjectButton->setMinimumHeight(StyleUtils::LargeButtonHeight());
+    m_openProjectButton->setMinimumWidth(200);
+    m_openProjectButton->setFont(StyleUtils::sectionFont());
+    connect(m_openProjectButton, &QPushButton::pressed, this,
             &OpenProjectWidget::openExistingProjectRequest);
 
     result->addStretch(1);
-    result->addWidget(new_project_button);
-    result->addWidget(open_project_button);
-    result->addStretch(1);
-
-    return result;
-}
-
-//! Temporary layou for save and save-as buttons.
-QBoxLayout* OpenProjectWidget::createTempButtonLayout()
-{
-    auto result = new QHBoxLayout;
-
-    save_project_button = new QPushButton("Save");
-    save_project_button->setMinimumHeight(StyleUtils::LargeButtonHeight());
-    save_project_button->setMinimumWidth(200);
-    save_project_button->setFont(StyleUtils::sectionFont());
-    connect(save_project_button, &QPushButton::pressed, this,
-            &OpenProjectWidget::saveProjectRequest);
-
-    saveas_project_button = new QPushButton("Save As");
-    saveas_project_button->setMinimumHeight(StyleUtils::LargeButtonHeight());
-    saveas_project_button->setMinimumWidth(200);
-    saveas_project_button->setFont(StyleUtils::sectionFont());
-    connect(saveas_project_button, &QPushButton::pressed, this,
-            &OpenProjectWidget::saveProjectAsRequest);
-
-    result->addStretch(1);
-    result->addWidget(save_project_button);
-    result->addWidget(saveas_project_button);
+    result->addWidget(m_newProjectButton);
+    result->addWidget(m_openProjectButton);
     result->addStretch(1);
 
     return result;

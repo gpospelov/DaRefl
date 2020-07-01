@@ -13,6 +13,4 @@ target_sources(${library_name} PRIVATE
     userinteractor.h
     welcomeview.cpp
     welcomeview.h
-    welcomeview2.cpp
-    welcomeview2.h
 )

@@ -41,11 +41,11 @@ protected:
     void mousePressEvent(QMouseEvent* event) override;
 
 private:
-    QLabel* m_current_project_title{nullptr};
-    QLabel* m_current_project_dir{nullptr};
-    QColor m_widget_color;
+    QLabel* m_currentProjectTitle{nullptr};
+    QLabel* m_currentProjectDir{nullptr};
+    QColor m_widgetColor;
     bool m_active{false};
-    QString m_project_dir;
+    QString m_projectDir;
 };
 
 #endif // DAREFL_WELCOMEVIEW_PROJECTPANEWIDGET_H

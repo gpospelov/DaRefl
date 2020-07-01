@@ -7,9 +7,9 @@
 //
 // ************************************************************************** //
 
-#include "recentprojectsettings.h"
 #include <QDir>
 #include <QSettings>
+#include <darefl/welcomeview/recentprojectsettings.h>
 #include <mvvm/utils/fileutils.h>
 
 namespace

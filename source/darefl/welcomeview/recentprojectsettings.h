@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef RECENTPROJECTSETTINGS_H
-#define RECENTPROJECTSETTINGS_H
+#ifndef DAREFL_WELCOMEVIEW_RECENTPROJECTSETTINGS_H
+#define DAREFL_WELCOMEVIEW_RECENTPROJECTSETTINGS_H
 
 #include <QStringList>
 
@@ -37,4 +37,4 @@ private:
     QStringList m_recentProjects;
 };
 
-#endif // RECENTPROJECTSETTINGS_H
+#endif // DAREFL_WELCOMEVIEW_RECENTPROJECTSETTINGS_H

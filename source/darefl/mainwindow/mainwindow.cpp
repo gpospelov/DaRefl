@@ -18,7 +18,7 @@
 #include <darefl/mainwindow/mainwindow.h>
 #include <darefl/mainwindow/refldockwindow.h>
 #include <darefl/model/applicationmodels.h>
-#include <darefl/welcomeview/welcomeview2.h>
+#include <darefl/welcomeview/welcomeview.h>
 
 namespace
 {
@@ -65,7 +65,7 @@ void MainWindow::init_application()
 
 void MainWindow::init_components()
 {
-    m_welcomeView = new WelcomeView2(models.get());
+    m_welcomeView = new WelcomeView(models.get());
     m_importWindow = new ImportWindow(models.get());
     m_reflWindow = new ReflDockWindow(models.get());
     m_barWidget = new MainBarWidget;
@@ -85,13 +85,13 @@ void MainWindow::init_connections()
 {
     // connect ActionManager signals with WelcomeView slots
     connect(m_actionManager, &ActionManager::createNewProjectRequest, m_welcomeView,
-            &WelcomeView2::onCreateNewProject);
+            &WelcomeView::onCreateNewProject);
     connect(m_actionManager, &ActionManager::openExistingProjectRequest, m_welcomeView,
-            &WelcomeView2::onOpenExistingProject);
+            &WelcomeView::onOpenExistingProject);
     connect(m_actionManager, &ActionManager::saveCurrentProjectRequest, m_welcomeView,
-            &WelcomeView2::onSaveCurrentProject);
+            &WelcomeView::onSaveCurrentProject);
     connect(m_actionManager, &ActionManager::saveProjectAsRequest, m_welcomeView,
-            &WelcomeView2::onSaveProjectAs);
+            &WelcomeView::onSaveProjectAs);
 
     m_welcomeView->updateNames();
 }

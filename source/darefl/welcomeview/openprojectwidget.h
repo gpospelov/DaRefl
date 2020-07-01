@@ -36,12 +36,9 @@ signals:
 
 private:
     QBoxLayout* createButtonLayout();
-    QBoxLayout* createTempButtonLayout();
 
-    QPushButton* new_project_button{nullptr};
-    QPushButton* open_project_button{nullptr};
-    QPushButton* save_project_button{nullptr};
-    QPushButton* saveas_project_button{nullptr};
+    QPushButton* m_newProjectButton{nullptr};
+    QPushButton* m_openProjectButton{nullptr};
 };
 
 #endif // DAREFL_WELCOMEVIEW_OPENPROJECTWIDGET_H
