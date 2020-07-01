@@ -1,4 +1,6 @@
 target_sources(${library_name} PRIVATE
+    adjustingscrollarea.cpp
+    adjustingscrollarea.h
     openprojectwidget.cpp
     openprojectwidget.h
     projecthandler.cpp
