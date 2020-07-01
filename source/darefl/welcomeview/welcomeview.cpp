@@ -32,8 +32,8 @@ WelcomeView::WelcomeView(ApplicationModels* models, QWidget* parent)
 
     auto layout = new QHBoxLayout(this);
     layout->addSpacing(50);
-    layout->addWidget(m_recentProjectWidget, 1);
-    layout->addWidget(m_openProjectWidget, 2);
+    layout->addWidget(m_recentProjectWidget, 38);
+    layout->addWidget(m_openProjectWidget, 62);
     layout->addSpacing(50);
 
     setup_connections();

@@ -34,16 +34,10 @@ OpenProjectWidget::OpenProjectWidget(QWidget* parent) : QWidget(parent)
     label->setPixmap(logo.scaled(widget_height(), widget_height(), Qt::KeepAspectRatio));
 
     layout->addSpacing(ModelView::Utils::SizeOfLetterM().height()*1.5);
-    layout->addWidget(label);
+    layout->addWidget(label, 0, Qt::AlignHCenter);
     layout->addSpacing(ModelView::Utils::SizeOfLetterM().height());
     layout->addLayout(createButtonLayout());
     layout->addStretch();
-
-
-//    result->addWidget(label);
-//    result->addStretch(1);
-//    result->setContentsMargins(5, 5, 5, 5);
-
 }
 
 QSize OpenProjectWidget::sizeHint() const
