@@ -92,6 +92,8 @@ void MainWindow::init_connections()
             &WelcomeView2::onSaveCurrentProject);
     connect(m_actionManager, &ActionManager::saveProjectAsRequest, m_welcomeView,
             &WelcomeView2::onSaveProjectAs);
+
+    m_welcomeView->updateNames();
 }
 
 void MainWindow::write_settings()

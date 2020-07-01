@@ -30,6 +30,8 @@ public:
 
     bool canCloseProject() const;
 
+    void updateNames();
+
 public slots:
     void onCreateNewProject();
     void onOpenExistingProject(const QString& dirname = {});
