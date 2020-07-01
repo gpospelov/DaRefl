@@ -21,8 +21,8 @@
 
 WelcomeView::WelcomeView(ApplicationModels* models, QWidget* parent)
     : QWidget(parent), m_models(models), m_projectHandler(new ProjectHandler(models, this)),
-      m_recent_project_widget(new RecentProjectWidget),
-      m_open_project_widget(new OpenProjectWidget),
+      m_recentProjectWidget(new RecentProjectWidget),
+      m_openProjectWidget(new OpenProjectWidget),
       m_settings(std::make_unique<RecentProjectSettings>())
 {
     QPalette palette;
@@ -32,8 +32,8 @@ WelcomeView::WelcomeView(ApplicationModels* models, QWidget* parent)
 
     auto layout = new QHBoxLayout(this);
     layout->addSpacing(50);
-    layout->addWidget(m_recent_project_widget);
-    layout->addWidget(m_open_project_widget);
+    layout->addWidget(m_recentProjectWidget);
+    layout->addWidget(m_openProjectWidget);
     layout->addSpacing(50);
 
     setup_connections();
@@ -78,22 +78,22 @@ void WelcomeView::setup_connections()
 {
     // connect buttons of OpenProjectWidget with this slots.
     auto open_existing_project = [this]() { onOpenExistingProject(); };
-    connect(m_open_project_widget, &OpenProjectWidget::openExistingProjectRequest,
+    connect(m_openProjectWidget, &OpenProjectWidget::openExistingProjectRequest,
             open_existing_project);
-    connect(m_open_project_widget, &OpenProjectWidget::createNewProjectRequest, this,
+    connect(m_openProjectWidget, &OpenProjectWidget::createNewProjectRequest, this,
             &WelcomeView::onCreateNewProject);
-    connect(m_open_project_widget, &OpenProjectWidget::saveProjectRequest, this,
+    connect(m_openProjectWidget, &OpenProjectWidget::saveProjectRequest, this,
             &WelcomeView::onSaveCurrentProject);
-    connect(m_open_project_widget, &OpenProjectWidget::saveProjectAsRequest, this,
+    connect(m_openProjectWidget, &OpenProjectWidget::saveProjectAsRequest, this,
             &WelcomeView::onSaveProjectAs);
 
     // connect RecentProjectWidget panels with this slots.
-    connect(m_recent_project_widget, &RecentProjectWidget::projectSelected, this,
+    connect(m_recentProjectWidget, &RecentProjectWidget::projectSelected, this,
             &WelcomeView::onOpenExistingProject);
 
     // connect ProjectHandler with RecentProjectWidget
-    connect(m_projectHandler, &ProjectHandler::currentProjectModified, m_recent_project_widget,
+    connect(m_projectHandler, &ProjectHandler::currentProjectModified, m_recentProjectWidget,
             &RecentProjectWidget::setCurrentProject);
-    connect(m_projectHandler, &ProjectHandler::recentProjectsListModified, m_recent_project_widget,
+    connect(m_projectHandler, &ProjectHandler::recentProjectsListModified, m_recentProjectWidget,
             &RecentProjectWidget::setRecentProjectsList);
 }
