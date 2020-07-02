@@ -32,15 +32,10 @@ public:
 signals:
     void createNewProjectRequest();
     void openExistingProjectRequest();
-    void saveProjectRequest();
-    void saveProjectAsRequest();
 
 private:
-    QBoxLayout* createButtonLayout();
     QBoxLayout* createLabelLayout();
 
-    QPushButton* m_newProjectButton{nullptr};
-    QPushButton* m_openProjectButton{nullptr};
     QLabel* m_newProjectLabel{nullptr};
     QLabel* m_openProjectLabel{nullptr};
 };

@@ -52,7 +52,6 @@ OpenProjectWidget::OpenProjectWidget(QWidget* parent) : QWidget(parent)
     layout->addSpacing(ModelView::Utils::SizeOfLetterM().height() * 1.5);
     layout->addWidget(label, 0, Qt::AlignHCenter);
     layout->addSpacing(ModelView::Utils::SizeOfLetterM().height());
-    layout->addLayout(createButtonLayout());
     layout->addLayout(createLabelLayout());
     layout->addStretch();
 }
@@ -67,41 +66,17 @@ QSize OpenProjectWidget::minimumSizeHint() const
     return StyleUtils::DockMinimumSizeHint();
 }
 
-QBoxLayout* OpenProjectWidget::createButtonLayout()
-{
-    auto result = new QHBoxLayout;
-
-    m_newProjectButton = new QPushButton("New");
-    m_newProjectButton->setMinimumHeight(StyleUtils::LargeButtonHeight());
-    m_newProjectButton->setMinimumWidth(200);
-    m_newProjectButton->setFont(StyleUtils::sectionFont());
-    connect(m_newProjectButton, &QPushButton::pressed, this,
-            &OpenProjectWidget::createNewProjectRequest);
-
-    m_openProjectButton = new QPushButton("Open");
-    m_openProjectButton->setMinimumHeight(StyleUtils::LargeButtonHeight());
-    m_openProjectButton->setMinimumWidth(200);
-    m_openProjectButton->setFont(StyleUtils::sectionFont());
-    connect(m_openProjectButton, &QPushButton::pressed, this,
-            &OpenProjectWidget::openExistingProjectRequest);
-
-    result->addStretch(1);
-    result->addWidget(m_newProjectButton);
-    result->addWidget(m_openProjectButton);
-    result->addStretch(1);
-
-    return result;
-}
-
 QBoxLayout* OpenProjectWidget::createLabelLayout()
 {
     auto result = new QHBoxLayout;
 
     m_newProjectLabel = new QLabel(link_text(str_new));
+    m_newProjectLabel->setToolTip("Create new project");
     connect(m_newProjectLabel, &QLabel::linkActivated, [this](auto) {createNewProjectRequest();});
     set_font(m_newProjectLabel);
 
     m_openProjectLabel = new QLabel(link_text(str_open));
+    m_openProjectLabel->setToolTip("Open existing project");
     connect(m_openProjectLabel, &QLabel::linkActivated, [this](auto) {openExistingProjectRequest();});
     set_font(m_openProjectLabel);
 

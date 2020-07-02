@@ -89,10 +89,6 @@ void WelcomeView::setup_connections()
             open_existing_project);
     connect(m_openProjectWidget, &OpenProjectWidget::createNewProjectRequest, this,
             &WelcomeView::onCreateNewProject);
-    connect(m_openProjectWidget, &OpenProjectWidget::saveProjectRequest, this,
-            &WelcomeView::onSaveCurrentProject);
-    connect(m_openProjectWidget, &OpenProjectWidget::saveProjectAsRequest, this,
-            &WelcomeView::onSaveProjectAs);
 
     // connect RecentProjectWidget panels with this slots.
     connect(m_recentProjectWidget, &RecentProjectWidget::projectSelected, this,
