@@ -13,7 +13,6 @@
 #include <QToolBar>
 #include <darefl/mainwindow/actionmanager.h>
 #include <mvvm/widgets/widgetutils.h>
-#include <QDebug>
 
 ActionManager::ActionManager(QMainWindow* mainwindow)
     : QObject(mainwindow), m_mainWindow(mainwindow)
@@ -40,7 +39,7 @@ void ActionManager::aboutToShowFileMenu()
     if (!m_recentProjects.empty()) {
         m_recentProjectMenu->addSeparator();
         auto action = m_recentProjectMenu->addAction("Clear Menu");
-        connect(action, &QAction::triggered, [this]() { qDebug() << "xxx"; clearResentProjectListRequest(); });
+        connect(action, &QAction::triggered, [this]() { clearResentProjectListRequest(); });
     }
 }
 

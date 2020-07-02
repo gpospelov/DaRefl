@@ -7,15 +7,15 @@
 //
 // ************************************************************************** //
 
+#include <QMainWindow>
+#include <darefl/model/applicationmodels.h>
 #include <darefl/welcomeview/projecthandler.h>
+#include <darefl/welcomeview/recentprojectsettings.h>
 #include <darefl/welcomeview/recentprojectwidget.h>
 #include <darefl/welcomeview/userinteractor.h>
-#include <darefl/welcomeview/recentprojectsettings.h>
 #include <mvvm/factories/projectmanagerfactory.h>
 #include <mvvm/project/project_types.h>
 #include <mvvm/widgets/widgetutils.h>
-#include <darefl/model/applicationmodels.h>
-#include <QMainWindow>
 
 using namespace ModelView;
 
@@ -68,6 +68,12 @@ void ProjectHandler::onSaveProjectAs()
 {
     if (m_projectManager->saveProjectAs())
         updateNames();
+}
+
+void ProjectHandler::clearRecentProjectsList()
+{
+    m_recentProjectSettings->clearRecentProjectsList();
+    updateNames();
 }
 
 void ProjectHandler::initProjectManager()

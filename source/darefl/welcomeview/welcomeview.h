@@ -51,7 +51,6 @@ private:
     ProjectHandler* m_projectHandler{nullptr};
     RecentProjectWidget* m_recentProjectWidget{nullptr};
     OpenProjectWidget* m_openProjectWidget{nullptr};
-    std::unique_ptr<RecentProjectSettings> m_settings;
 };
 
 #endif // DAREFL_WELCOMEVIEW_WELCOMEVIEW2_H

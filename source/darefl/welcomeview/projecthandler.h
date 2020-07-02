@@ -48,6 +48,8 @@ public slots:
     void onSaveCurrentProject();
     void onSaveProjectAs();
 
+    void clearRecentProjectsList();
+
 private:
     void initProjectManager();
     void updateCurrentProjectName();
