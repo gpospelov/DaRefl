@@ -76,6 +76,11 @@ void ActionManager::createActions()
     m_saveProjectAsAction->setShortcuts(QKeySequence::SaveAs);
     m_saveProjectAsAction->setStatusTip("Save project under different name");
     connect(m_saveProjectAsAction, &QAction::triggered, this, &ActionManager::saveProjectAsRequest);
+
+    m_exitAction = new QAction("E&xit Application", this);
+    m_exitAction->setShortcuts(QKeySequence::Quit);
+    m_exitAction->setStatusTip("Exit the application");
+    connect(m_exitAction, &QAction::triggered, m_mainWindow, &QMainWindow::close);
 }
 
 //! Equips menu with actions.
@@ -91,4 +96,7 @@ void ActionManager::setupMenus(QMenuBar* menubar)
     fileMenu->addSeparator();
     fileMenu->addAction(m_saveCurrentProjectAction);
     fileMenu->addAction(m_saveProjectAsAction);
+
+    fileMenu->addSeparator();
+    fileMenu->addAction(m_exitAction);
 }
