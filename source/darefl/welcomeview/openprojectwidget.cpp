@@ -11,6 +11,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <darefl/core/version.h>
 #include <darefl/mainwindow/styleutils.h>
 #include <darefl/welcomeview/openprojectwidget.h>
 #include <mvvm/core/version.h>
@@ -18,12 +19,15 @@
 
 namespace
 {
-int widget_height()
+int logo_width()
 {
     return ModelView::Utils::SizeOfLetterM().height() * 40;
 }
-} // namespace
 
+const QString str_open = "Open";
+const QString str_new = "New";
+
+} // namespace
 
 OpenProjectWidget::OpenProjectWidget(QWidget* parent) : QWidget(parent)
 {
@@ -31,12 +35,14 @@ OpenProjectWidget::OpenProjectWidget(QWidget* parent) : QWidget(parent)
 
     QPixmap logo(":/icons/F-letter_1000x.png");
     auto label = new QLabel;
-    label->setPixmap(logo.scaled(widget_height(), widget_height(), Qt::KeepAspectRatio));
+    label->setPixmap(logo.scaled(logo_width(), logo_width(), Qt::KeepAspectRatio));
 
-    layout->addSpacing(ModelView::Utils::SizeOfLetterM().height()*1.5);
+    layout->addSpacing(ModelView::Utils::SizeOfLetterM().height() * 1.5);
     layout->addWidget(label, 0, Qt::AlignHCenter);
     layout->addSpacing(ModelView::Utils::SizeOfLetterM().height());
-    layout->addLayout(createButtonLayout());
+    layout->addLayout(createProjectTitleLayout());
+    layout->addSpacing(ModelView::Utils::SizeOfLetterM().height());
+    layout->addLayout(createLinkedLabelLayout());
     layout->addStretch();
 }
 
@@ -50,27 +56,37 @@ QSize OpenProjectWidget::minimumSizeHint() const
     return StyleUtils::DockMinimumSizeHint();
 }
 
-QBoxLayout* OpenProjectWidget::createButtonLayout()
+QBoxLayout* OpenProjectWidget::createProjectTitleLayout()
+{
+    auto result = new QHBoxLayout;
+    QString title =
+        QString("DaRefl version %1").arg(QString::fromStdString(DaRefl::ProjectVersion()));
+    auto label = new QLabel(title);
+    ModelView::Utils::ScaleLabelFont(label, 1.25);
+
+    result->addWidget(label, 0, Qt::AlignHCenter);
+    return result;
+}
+
+QBoxLayout* OpenProjectWidget::createLinkedLabelLayout()
 {
     auto result = new QHBoxLayout;
 
-    m_newProjectButton = new QPushButton("New");
-    m_newProjectButton->setMinimumHeight(StyleUtils::LargeButtonHeight());
-    m_newProjectButton->setMinimumWidth(200);
-    m_newProjectButton->setFont(StyleUtils::sectionFont());
-    connect(m_newProjectButton, &QPushButton::pressed, this,
-            &OpenProjectWidget::createNewProjectRequest);
+    m_newProjectLabel = new QLabel(ModelView::Utils::ClickableText(str_new));
+    m_newProjectLabel->setToolTip("Create new project");
+    connect(m_newProjectLabel, &QLabel::linkActivated, [this](auto) { createNewProjectRequest(); });
+    ModelView::Utils::ScaleLabelFont(m_newProjectLabel, 1.25);
 
-    m_openProjectButton = new QPushButton("Open");
-    m_openProjectButton->setMinimumHeight(StyleUtils::LargeButtonHeight());
-    m_openProjectButton->setMinimumWidth(200);
-    m_openProjectButton->setFont(StyleUtils::sectionFont());
-    connect(m_openProjectButton, &QPushButton::pressed, this,
-            &OpenProjectWidget::openExistingProjectRequest);
+    m_openProjectLabel = new QLabel(ModelView::Utils::ClickableText(str_open));
+    m_openProjectLabel->setToolTip("Open existing project");
+    connect(m_openProjectLabel, &QLabel::linkActivated,
+            [this](auto) { openExistingProjectRequest(); });
+    ModelView::Utils::ScaleLabelFont(m_openProjectLabel, 1.15);
 
     result->addStretch(1);
-    result->addWidget(m_newProjectButton);
-    result->addWidget(m_openProjectButton);
+    result->addWidget(m_newProjectLabel);
+    result->addSpacing(ModelView::Utils::WidthOfLetterM());
+    result->addWidget(m_openProjectLabel);
     result->addStretch(1);
 
     return result;

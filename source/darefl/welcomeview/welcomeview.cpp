@@ -21,8 +21,7 @@
 
 WelcomeView::WelcomeView(ApplicationModels* models, QWidget* parent)
     : QWidget(parent), m_models(models), m_projectHandler(new ProjectHandler(models, this)),
-      m_recentProjectWidget(new RecentProjectWidget), m_openProjectWidget(new OpenProjectWidget),
-      m_settings(std::make_unique<RecentProjectSettings>())
+      m_recentProjectWidget(new RecentProjectWidget), m_openProjectWidget(new OpenProjectWidget)
 {
     QPalette palette;
     palette.setColor(QPalette::Window, Qt::white);
@@ -73,12 +72,9 @@ void WelcomeView::onSaveProjectAs()
     return m_projectHandler->onSaveProjectAs();
 }
 
-#include <QDebug>
 void WelcomeView::onClearRecentProjectsList()
 {
-    qDebug() << "xxx xxx";
-    m_settings->clearRecentProjectsList();
-//    updateNames();
+    m_projectHandler->clearRecentProjectsList();
 }
 
 void WelcomeView::setup_connections()
@@ -89,10 +85,6 @@ void WelcomeView::setup_connections()
             open_existing_project);
     connect(m_openProjectWidget, &OpenProjectWidget::createNewProjectRequest, this,
             &WelcomeView::onCreateNewProject);
-    connect(m_openProjectWidget, &OpenProjectWidget::saveProjectRequest, this,
-            &WelcomeView::onSaveCurrentProject);
-    connect(m_openProjectWidget, &OpenProjectWidget::saveProjectAsRequest, this,
-            &WelcomeView::onSaveProjectAs);
 
     // connect RecentProjectWidget panels with this slots.
     connect(m_recentProjectWidget, &RecentProjectWidget::projectSelected, this,

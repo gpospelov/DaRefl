@@ -49,6 +49,7 @@ private:
     QAction* m_openExistingProjectAction{nullptr};
     QAction* m_saveCurrentProjectAction{nullptr};
     QAction* m_saveProjectAsAction{nullptr};
+    QAction* m_exitAction{nullptr};
 
     QMenu* m_recentProjectMenu{nullptr};
 

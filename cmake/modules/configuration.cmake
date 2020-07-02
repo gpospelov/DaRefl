@@ -12,8 +12,10 @@ include(GNUInstallDirs)
 # Variables
 # -----------------------------------------------------------------------------
 
+set(DAREFL_PROJECT_DIR ${CMAKE_CURRENT_LIST_DIR}/../..)
 set(DAREFL_SOVERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR})
 set(DAREFL_BUILDVERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH})
+set(DAREFL_TESTOUTPUT_DIR ${CMAKE_BINARY_DIR}/test_output_darefl)
 
 # -----------------------------------------------------------------------------
 # Directories
@@ -23,7 +25,6 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
-set(DAREFL_TESTOUTPUT_DIR ${CMAKE_BINARY_DIR}/test_output_darefl)
 
 file(MAKE_DIRECTORY ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 file(MAKE_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
@@ -52,6 +53,10 @@ message(STATUS " Qt5 Includes  : ${Qt5Widgets_INCLUDE_DIRS}")
 # -----------------------------------------------------------------------------
 
 configure_file(${CMAKE_SOURCE_DIR}/cmake/scripts/testconfig.h.in  ${DAREFL_AUTOGEN_DIR}/testconfig.h @ONLY)
+
+if (DAREFL_BUMP_VERSION)
+    configure_file(${DAREFL_PROJECT_DIR}/cmake/scripts/darefl_version.h.in  ${DAREFL_PROJECT_DIR}/source/darefl/core/version.h @ONLY)
+endif()
 
 # -----------------------------------------------------------------------------
 # Compile options
