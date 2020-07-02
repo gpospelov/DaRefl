@@ -53,6 +53,7 @@ OpenProjectWidget::OpenProjectWidget(QWidget* parent) : QWidget(parent)
     layout->addWidget(label, 0, Qt::AlignHCenter);
     layout->addSpacing(ModelView::Utils::SizeOfLetterM().height());
     layout->addLayout(createProjectTitleLayout());
+    layout->addSpacing(ModelView::Utils::SizeOfLetterM().height());
     layout->addLayout(createLinkedLabelLayout());
     layout->addStretch();
 }
@@ -70,7 +71,7 @@ QSize OpenProjectWidget::minimumSizeHint() const
 QBoxLayout* OpenProjectWidget::createProjectTitleLayout()
 {
     auto result = new QHBoxLayout;
-    QString title = QString("DaRefl: reflectometry simulations, v%1").arg(QString::fromStdString(DaRefl::ProjectVersion()));
+    QString title = QString("DaRefl version %1").arg(QString::fromStdString(DaRefl::ProjectVersion()));
     auto label = new QLabel(title);
     set_font(label, 1.25);
 
