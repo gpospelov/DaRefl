@@ -34,7 +34,8 @@ signals:
     void openExistingProjectRequest();
 
 private:
-    QBoxLayout* createLabelLayout();
+    QBoxLayout* createProjectTitleLayout();
+    QBoxLayout* createLinkedLabelLayout();
 
     QLabel* m_newProjectLabel{nullptr};
     QLabel* m_openProjectLabel{nullptr};
