@@ -14,16 +14,14 @@
 
 class QLabel;
 
-//! Holds project name and project dir. Part of RecentProjectsWidget.
+//! Panel with labels to hold project name and project dir. When user clicks on it,
+//! sends the request to open corresponding project. Part of RecentProjectsWidget.
 
 class ProjectPaneWidget : public QWidget
 {
     Q_OBJECT
 public:
     explicit ProjectPaneWidget(QWidget* parent = nullptr);
-
-    QSize sizeHint() const override;
-    QSize minimumSizeHint() const override;
 
     void setCurrentProject(const QString& project_dir, bool is_modified = false);
 
@@ -36,16 +34,16 @@ signals:
 
 protected:
     void paintEvent(QPaintEvent*) override;
-    void enterEvent(QEvent*) override;
-    void leaveEvent(QEvent*) override;
-    void mousePressEvent(QMouseEvent* event) override;
+    void enterEvent(QEvent *) override;
+    void leaveEvent(QEvent *) override;
+    void mousePressEvent(QMouseEvent *event) override;
 
 private:
-    QLabel* m_current_project_title{nullptr};
-    QLabel* m_current_project_dir{nullptr};
-    QColor m_widget_color;
+    QLabel* m_currentProjectTitle{nullptr};
+    QLabel* m_currentProjectDir{nullptr};
+    QColor m_widgetColor;
     bool m_active{false};
-    QString m_project_dir;
+    QString m_projectDir;
 };
 
-#endif // DAREFL_WELCOMEVIEW_PROJECTPANEWIDGET_H
+#endif // PROJECTPANEWIDGET_H

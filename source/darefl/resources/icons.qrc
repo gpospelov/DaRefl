@@ -31,5 +31,6 @@
         <file>icons/redo.svg</file>
         <file>icons/undo.svg</file>
         <file>icons/set-merge.svg</file>
+        <file>icons/F-letter_1000x.png</file>
     </qresource>
 </RCC>

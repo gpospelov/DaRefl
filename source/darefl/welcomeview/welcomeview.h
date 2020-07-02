@@ -7,22 +7,17 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_WELCOMEVIEW_WELCOMEVIEW_H
-#define DAREFL_WELCOMEVIEW_WELCOMEVIEW_H
+#ifndef DAREFL_WELCOMEVIEW_WELCOMEVIEW2_H
+#define DAREFL_WELCOMEVIEW_WELCOMEVIEW2_H
 
 #include <QWidget>
 #include <memory>
 
-namespace ModelView
-{
-class ProjectManagerInterface;
-}
-
 class ApplicationModels;
+class ProjectHandler;
 class RecentProjectWidget;
 class OpenProjectWidget;
-class WelcomeViewSettings;
-class ProjectManagerInteractor;
+class RecentProjectSettings;
 
 //! Welcome view. Main widget on first tab of MainWindow.
 
@@ -35,24 +30,28 @@ public:
 
     bool canCloseProject() const;
 
+    void updateNames();
+
+signals:
+    void recentProjectsListModified(const QStringList& projects);
+
 public slots:
     void onCreateNewProject();
     void onOpenExistingProject(const QString& dirname = {});
     void onSaveCurrentProject();
     void onSaveProjectAs();
+    void onClearRecentProjectsList();
 
 private:
-    void init_project_manager();
     void setup_connections();
     void update_current_project_name();
     void update_recent_project_names();
 
     ApplicationModels* m_models{nullptr};
-    std::unique_ptr<ModelView::ProjectManagerInterface> m_project_manager;
-    RecentProjectWidget* m_recent_project_widget{nullptr};
-    OpenProjectWidget* m_open_project_widget{nullptr};
-    std::unique_ptr<WelcomeViewSettings> m_settings;
-    std::unique_ptr<ProjectManagerInteractor> m_interactor;
+    ProjectHandler* m_projectHandler{nullptr};
+    RecentProjectWidget* m_recentProjectWidget{nullptr};
+    OpenProjectWidget* m_openProjectWidget{nullptr};
+    std::unique_ptr<RecentProjectSettings> m_settings;
 };
 
-#endif // DAREFL_WELCOMEVIEW_WELCOMEVIEW_H
+#endif // DAREFL_WELCOMEVIEW_WELCOMEVIEW2_H

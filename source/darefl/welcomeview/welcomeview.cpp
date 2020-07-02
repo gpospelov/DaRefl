@@ -8,25 +8,21 @@
 // ************************************************************************** //
 
 #include <QApplication>
-#include <QDebug>
-#include <QFileDialog>
 #include <QHBoxLayout>
 #include <QMainWindow>
 #include <darefl/model/applicationmodels.h>
 #include <darefl/welcomeview/openprojectwidget.h>
-#include <darefl/welcomeview/projectmanagerinteractor.h>
+#include <darefl/welcomeview/projecthandler.h>
+#include <darefl/welcomeview/recentprojectsettings.h>
 #include <darefl/welcomeview/recentprojectwidget.h>
 #include <darefl/welcomeview/welcomeview.h>
-#include <darefl/welcomeview/welcomeviewsettings.h>
-#include <mvvm/project/projectmanagerdecorator.h>
 #include <mvvm/project/projectutils.h>
 #include <mvvm/widgets/widgetutils.h>
 
 WelcomeView::WelcomeView(ApplicationModels* models, QWidget* parent)
-    : QWidget(parent), m_models(models), m_recent_project_widget(new RecentProjectWidget),
-      m_open_project_widget(new OpenProjectWidget),
-      m_settings(std::make_unique<WelcomeViewSettings>()),
-      m_interactor(std::make_unique<ProjectManagerInteractor>(this, m_settings.get()))
+    : QWidget(parent), m_models(models), m_projectHandler(new ProjectHandler(models, this)),
+      m_recentProjectWidget(new RecentProjectWidget), m_openProjectWidget(new OpenProjectWidget),
+      m_settings(std::make_unique<RecentProjectSettings>())
 {
     QPalette palette;
     palette.setColor(QPalette::Window, Qt::white);
@@ -35,13 +31,11 @@ WelcomeView::WelcomeView(ApplicationModels* models, QWidget* parent)
 
     auto layout = new QHBoxLayout(this);
     layout->addSpacing(50);
-    layout->addWidget(m_recent_project_widget);
-    layout->addWidget(m_open_project_widget);
+    layout->addWidget(m_recentProjectWidget, 38);
+    layout->addWidget(m_openProjectWidget, 62);
     layout->addSpacing(50);
 
-    init_project_manager();
     setup_connections();
-    update_recent_project_names();
 }
 
 WelcomeView::~WelcomeView() = default;
@@ -51,92 +45,64 @@ WelcomeView::~WelcomeView() = default;
 
 bool WelcomeView::canCloseProject() const
 {
-    return m_project_manager->closeCurrentProject();
+    return m_projectHandler->canCloseProject();
+}
+
+void WelcomeView::updateNames()
+{
+    m_projectHandler->updateNames();
 }
 
 void WelcomeView::onCreateNewProject()
 {
-    qDebug() << "WelcomeView::onCreateNewProject()";
-    if (m_project_manager->createNewProject()) {
-        update_current_project_name();
-        update_recent_project_names();
-    }
+    m_projectHandler->onCreateNewProject();
 }
 
 void WelcomeView::onOpenExistingProject(const QString& dirname)
 {
-    qDebug() << "WelcomeView::onOpenExistingProject()" << dirname;
-    if (m_project_manager->openExistingProject(dirname.toStdString())) {
-        update_current_project_name();
-        update_recent_project_names();
-    }
+    return m_projectHandler->onOpenExistingProject(dirname);
 }
 
 void WelcomeView::onSaveCurrentProject()
 {
-    qDebug() << "WelcomeView::onSaveCurrentProject()";
-    if (m_project_manager->saveCurrentProject()) {
-        update_current_project_name();
-        update_recent_project_names();
-    }
+    return m_projectHandler->onSaveCurrentProject();
 }
 
 void WelcomeView::onSaveProjectAs()
 {
-    qDebug() << "WelcomeView::onSaveProjectAs()";
-    if (m_project_manager->saveProjectAs()) {
-        update_current_project_name();
-        update_recent_project_names();
-    }
+    return m_projectHandler->onSaveProjectAs();
 }
 
-void WelcomeView::init_project_manager()
+#include <QDebug>
+void WelcomeView::onClearRecentProjectsList()
 {
-    auto select_dir = [this]() { return m_interactor->onSelectDirRequest(); };
-    auto create_dir = [this]() { return m_interactor->onCreateDirRequest(); };
-    auto save_changes = [this]() { return m_interactor->onSaveChangesRequest(); };
-    auto on_modified = [this]() { update_current_project_name(); };
-
-    auto manager =
-        std::make_unique<ProjectManagerDecorator>(m_models, select_dir, create_dir, on_modified);
-    manager->setSaveChangesAnswerCallback(save_changes);
-
-    m_project_manager = std::move(manager);
+    qDebug() << "xxx xxx";
+    m_settings->clearRecentProjectsList();
+//    updateNames();
 }
 
 void WelcomeView::setup_connections()
 {
+    // connect buttons of OpenProjectWidget with this slots.
     auto open_existing_project = [this]() { onOpenExistingProject(); };
-    connect(m_open_project_widget, &OpenProjectWidget::openExistingProjectRequest,
+    connect(m_openProjectWidget, &OpenProjectWidget::openExistingProjectRequest,
             open_existing_project);
-    connect(m_open_project_widget, &OpenProjectWidget::createNewProjectRequest, this,
+    connect(m_openProjectWidget, &OpenProjectWidget::createNewProjectRequest, this,
             &WelcomeView::onCreateNewProject);
-    connect(m_open_project_widget, &OpenProjectWidget::saveProjectRequest, this,
+    connect(m_openProjectWidget, &OpenProjectWidget::saveProjectRequest, this,
             &WelcomeView::onSaveCurrentProject);
-    connect(m_open_project_widget, &OpenProjectWidget::saveProjectAsRequest, this,
+    connect(m_openProjectWidget, &OpenProjectWidget::saveProjectAsRequest, this,
             &WelcomeView::onSaveProjectAs);
-    connect(m_recent_project_widget, &RecentProjectWidget::projectSelected, this,
+
+    // connect RecentProjectWidget panels with this slots.
+    connect(m_recentProjectWidget, &RecentProjectWidget::projectSelected, this,
             &WelcomeView::onOpenExistingProject);
-}
 
-//! Sets changed project name to all widgets which requires it.
-
-void WelcomeView::update_current_project_name()
-{
-    const auto current_project_dir = QString::fromStdString(m_project_manager->currentProjectDir());
-    const auto is_modified = m_project_manager->isModified();
-
-    auto title = ModelView::Utils::ProjectWindowTitle(current_project_dir, is_modified);
-    if (auto main_window = ModelView::Utils::FindMainWindow(); main_window)
-        main_window->setWindowTitle(title);
-
-    m_recent_project_widget->setCurrentProject(current_project_dir, is_modified);
-}
-
-//! Update all panes with titles and project dir for all recent projetcs.
-
-void WelcomeView::update_recent_project_names()
-{
-    m_settings->addToRecentProjects(QString::fromStdString(m_project_manager->currentProjectDir()));
-    m_recent_project_widget->setRecentProjectsList(m_settings->recentProjects());
+    // connect ProjectHandler with RecentProjectWidget
+    connect(m_projectHandler, &ProjectHandler::currentProjectModified, m_recentProjectWidget,
+            &RecentProjectWidget::setCurrentProject);
+    connect(m_projectHandler, &ProjectHandler::recentProjectsListModified, m_recentProjectWidget,
+            &RecentProjectWidget::setRecentProjectsList);
+    connect(m_projectHandler, &ProjectHandler::recentProjectsListModified, this,
+            &WelcomeView::recentProjectsListModified);
 }

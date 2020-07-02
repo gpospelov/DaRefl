@@ -7,11 +7,10 @@
 //
 // ************************************************************************** //
 
-#include <QDebug>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <darefl/welcomeview/projectmanagerinteractor.h>
-#include <darefl/welcomeview/welcomeviewsettings.h>
+#include <darefl/welcomeview/userinteractor.h>
+#include <darefl/welcomeview/recentprojectsettings.h>
 #include <map>
 #include <mvvm/project/project_types.h>
 #include <mvvm/project/projectutils.h>
@@ -32,23 +31,22 @@ std::map<QMessageBox::StandardButton, SaveChangesAnswer> answer_map()
 }
 } // namespace
 
-ProjectManagerInteractor::ProjectManagerInteractor(QWidget* parent, WelcomeViewSettings* settings)
-    : m_parent(parent), m_settings(settings)
+UserInteractor::UserInteractor(RecentProjectSettings* settings, QWidget* parent)
+    : m_settings(settings), m_parent(parent)
 {
 }
 
 //! Returns directory on disk selected by the user via QFileDialog.
-std::string ProjectManagerInteractor::onSelectDirRequest()
+//! Checks if selected directory can be the project directory.
+
+std::string UserInteractor::onSelectDirRequest()
 {
-    qDebug() << "ProjectManagerInteractor::onSelectDirRequest()";
     auto dirname = selectDir();
 
     if (dirname.empty()) // no valid selection
         return {};
 
-    qDebug() << "   onSelectDirRequest() 1.1";
     if (!ModelView::ProjectUtils::IsPossibleProjectDir(dirname)) {
-        qDebug() << "   onSelectDirRequest() 1.2";
         QMessageBox msgBox;
         msgBox.setText(
             "Selected directory doesn't look like a project directory, choose another one");
@@ -56,14 +54,14 @@ std::string ProjectManagerInteractor::onSelectDirRequest()
         return {};
     }
 
-    qDebug() << "   onSelectDirRequest() 1.3" << QString::fromStdString(dirname);
     return dirname;
 }
 
 //! Returns new directory on disk created by the user via QFileDialog.
-std::string ProjectManagerInteractor::onCreateDirRequest()
+
+std::string UserInteractor::onCreateDirRequest()
+
 {
-    qDebug() << "ProjectManagerInteractor::onCreateDirRequest()" << m_settings->currentWorkdir();
     auto dirname = selectDir();
 
     if (dirname.empty()) // no valid selection
@@ -80,10 +78,10 @@ std::string ProjectManagerInteractor::onCreateDirRequest()
 }
 
 //! Returns save/cancel/discard changes choice provided by the user.
-SaveChangesAnswer ProjectManagerInteractor::onSaveChangesRequest()
+
+SaveChangesAnswer UserInteractor::onSaveChangesRequest()
 {
     static auto translate = answer_map();
-    qDebug() << "ProjectManagerInteractor::onSaveChangesRequest()";
 
     QMessageBox msgBox;
     msgBox.setText("The project has been modified.");
@@ -95,9 +93,9 @@ SaveChangesAnswer ProjectManagerInteractor::onSaveChangesRequest()
 }
 
 //! Summon dialog to select directory on disk. If selection is not empty,
-//! save parend directory for later use.
+//! save parent directory for later re-use.
 
-std::string ProjectManagerInteractor::selectDir() const
+std::string UserInteractor::selectDir() const
 {
     QString dirname = QFileDialog::getExistingDirectory(
         m_parent, "Select directory", m_settings->currentWorkdir(),
@@ -105,8 +103,6 @@ std::string ProjectManagerInteractor::selectDir() const
 
     if (!dirname.isEmpty())
         m_settings->updateWorkdirFromSelection(dirname);
-
-    qDebug() << "       selected dir:" << dirname;
 
     return dirname.toStdString();
 }

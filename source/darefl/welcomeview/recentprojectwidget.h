@@ -39,8 +39,10 @@ signals:
 private:
     QBoxLayout* createCurrentProjectLayout() const;
     QBoxLayout* createRecentProjectLayout();
-    ProjectPaneWidget* m_current_project_pane;
-    std::vector<ProjectPaneWidget*> m_recent_project_panes;
+    QWidget* createRecentProjectScrollArea();
+
+    ProjectPaneWidget* m_currentProjectPane;
+    std::vector<ProjectPaneWidget*> m_recentProjectPanes;
 };
 
 #endif // DAREFL_WELCOMEVIEW_RECENTPROJECTWIDGET_H

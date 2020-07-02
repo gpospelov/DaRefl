@@ -18,6 +18,7 @@ class ImportWindow;
 class ReflDockWindow;
 class MainBarWidget;
 class ApplicationModels;
+class ActionManager;
 
 //! Application main window.
 
@@ -33,14 +34,16 @@ protected:
 
 private:
     void init_application();
-    void init_views();
+    void init_components();
+    void init_connections();
     void write_settings();
 
     std::unique_ptr<ApplicationModels> models;
-    WelcomeView* welcome_view{nullptr};
-    ImportWindow* import_window{nullptr};
-    ReflDockWindow* refl_window{nullptr};
-    MainBarWidget* bar_widget{nullptr};
+    ActionManager* m_actionManager{nullptr};
+    WelcomeView* m_welcomeView{nullptr};
+    ImportWindow* m_importWindow{nullptr};
+    ReflDockWindow* m_reflWindow{nullptr};
+    MainBarWidget* m_barWidget{nullptr};
 };
 
 #endif // DAREFL_MAINWINDOW_MAINWINDOW_H
