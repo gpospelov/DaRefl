@@ -13,7 +13,7 @@
 #include <darefl/mainwindow/styleutils.h>
 #include <darefl/welcomeview/projectpanewidget.h>
 #include <darefl/welcomeview/recentprojectwidget.h>
-#include <darefl/welcomeview/adjustingscrollarea.h>
+#include <mvvm/widgets/adjustingscrollarea.h>
 #include <mvvm/widgets/widgetutils.h>
 
 namespace
@@ -91,7 +91,7 @@ QBoxLayout* RecentProjectWidget::createRecentProjectLayout()
 
 QWidget* RecentProjectWidget::createRecentProjectScrollArea()
 {
-    auto result = new AdjustingScrollArea;
+    auto result = new ModelView::AdjustingScrollArea;
 
     auto content = new QWidget;
     auto layout = new QVBoxLayout;

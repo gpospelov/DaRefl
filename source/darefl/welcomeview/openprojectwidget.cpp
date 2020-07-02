@@ -24,20 +24,8 @@ int logo_width()
     return ModelView::Utils::SizeOfLetterM().height() * 40;
 }
 
-void set_font(QLabel* label, double scale = 1.25)
-{
-    QFont font = label->font();
-    font.setPointSize(ModelView::Utils::SystemPointSize() * scale);
-    label->setFont(font);
-}
-
 const QString str_open = "Open";
 const QString str_new = "New";
-
-QString link_text(const QString& text)
-{
-    return QString("<a href=\"%1\">%2</a>").arg(text, text);
-}
 
 } // namespace
 
@@ -71,9 +59,10 @@ QSize OpenProjectWidget::minimumSizeHint() const
 QBoxLayout* OpenProjectWidget::createProjectTitleLayout()
 {
     auto result = new QHBoxLayout;
-    QString title = QString("DaRefl version %1").arg(QString::fromStdString(DaRefl::ProjectVersion()));
+    QString title =
+        QString("DaRefl version %1").arg(QString::fromStdString(DaRefl::ProjectVersion()));
     auto label = new QLabel(title);
-    set_font(label, 1.25);
+    ModelView::Utils::ScaleLabelFont(label, 1.25);
 
     result->addWidget(label, 0, Qt::AlignHCenter);
     return result;
@@ -83,16 +72,16 @@ QBoxLayout* OpenProjectWidget::createLinkedLabelLayout()
 {
     auto result = new QHBoxLayout;
 
-    m_newProjectLabel = new QLabel(link_text(str_new));
+    m_newProjectLabel = new QLabel(ModelView::Utils::ClickableText(str_new));
     m_newProjectLabel->setToolTip("Create new project");
     connect(m_newProjectLabel, &QLabel::linkActivated, [this](auto) { createNewProjectRequest(); });
-    set_font(m_newProjectLabel);
+    ModelView::Utils::ScaleLabelFont(m_newProjectLabel, 1.25);
 
-    m_openProjectLabel = new QLabel(link_text(str_open));
+    m_openProjectLabel = new QLabel(ModelView::Utils::ClickableText(str_open));
     m_openProjectLabel->setToolTip("Open existing project");
     connect(m_openProjectLabel, &QLabel::linkActivated,
             [this](auto) { openExistingProjectRequest(); });
-    set_font(m_openProjectLabel);
+    ModelView::Utils::ScaleLabelFont(m_openProjectLabel, 1.15);
 
     result->addStretch(1);
     result->addWidget(m_newProjectLabel);
