@@ -86,11 +86,16 @@ void LayerEditorActions::onRemove()
     if (items.empty())
         return;
 
-    auto next_to_select = ModelView::Utils::FindNextItemToSelect(items.back());
+    auto prev_to_select = ModelView::Utils::FindPreviousSibling(items.front());
+    auto next_to_select = ModelView::Utils::FindNextSibling(items.back());
+
     for (auto item : items)
         ModelView::Utils::DeleteItemFromModel(item);
-
-    p_impl->selection_model->selectItem(next_to_select);
+    if (next_to_select) {
+        p_impl->selection_model->selectItem(next_to_select);
+    } else if (prev_to_select) {
+        p_impl->selection_model->selectItem(prev_to_select);
+    }
 }
 
 void LayerEditorActions::onMoveUp()
