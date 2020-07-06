@@ -62,7 +62,30 @@ std::vector<ModelView::SessionItem*> LayerSelectionModel::selectedItems() const
     return result;
 }
 
+//! Return the casted view model
 const ModelView::ViewModel* LayerSelectionModel::viewModel() const
 {
     return static_cast<const ModelView::ViewModel*>(model());
+}
+
+//! Checks if the first row is presen in the selection
+bool LayerSelectionModel::firstSelected() const
+{
+    const QModelIndexList& selection = selectedRows();
+    for (const auto& index : selection) {
+        if (index.row() == 0)
+            return true;
+    }
+    return false;
+}
+
+//! checks if the last row is present in the selection
+bool LayerSelectionModel::lastSelected() const
+{
+    const QModelIndexList& selection = selectedRows();
+    for (const auto& index : selection) {
+        if (index.row() == viewModel()->rowCount() - 1)
+            return true;
+    }
+    return false;
 }

@@ -33,6 +33,7 @@ public:
 
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
+    void selectionChanged();
 
 private:
     LayerEditorActions* actions{nullptr};

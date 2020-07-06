@@ -12,6 +12,7 @@
 #include <darefl/layereditor/layereditoractions.h>
 #include <darefl/layereditor/layereditortoolbar.h>
 #include <darefl/layereditor/layereditorwidget.h>
+#include <darefl/layereditor/layerselectionmodel.h>
 #include <darefl/mainwindow/styleutils.h>
 #include <darefl/model/applicationmodels.h>
 
@@ -26,6 +27,9 @@ LayerEditor::LayerEditor(ApplicationModels* models, QWidget* parent)
     layout->addWidget(editor_widget);
     setLayout(layout);
 
+    connect(editor_widget->selectionModel(), &LayerSelectionModel::selectionChanged, this,
+            &LayerEditor::selectionChanged);
+
     actions->setSelectionModel(editor_widget->selectionModel());
 }
 
@@ -37,6 +41,12 @@ QSize LayerEditor::sizeHint() const
 QSize LayerEditor::minimumSizeHint() const
 {
     return StyleUtils::DockMinimumSizeHint();
+}
+
+void LayerEditor::selectionChanged()
+{
+    toolbar->updateToolButtonStates(editor_widget->selectionModel()->firstSelected(),
+                                    editor_widget->selectionModel()->lastSelected());
 }
 
 LayerEditor::~LayerEditor() = default;
