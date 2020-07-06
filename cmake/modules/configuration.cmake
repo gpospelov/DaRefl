@@ -12,7 +12,8 @@ include(GNUInstallDirs)
 # Variables
 # -----------------------------------------------------------------------------
 
-set(DAREFL_PROJECT_DIR ${CMAKE_CURRENT_LIST_DIR}/../..)
+get_filename_component(DAREFL_PROJECT_DIR "${CMAKE_CURRENT_LIST_DIR}/../.." ABSOLUTE)
+
 set(DAREFL_SOVERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR})
 set(DAREFL_BUILDVERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH})
 set(DAREFL_TESTOUTPUT_DIR ${CMAKE_BINARY_DIR}/test_output_darefl)
