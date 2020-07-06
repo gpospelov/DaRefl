@@ -120,8 +120,10 @@ void SLDElementController::buildSLD()
 
     if (p_sample_model->rootItem()->childrenCount() == 0)
         return;
-
     string_vec identifiers = getIdentifierVector(p_sample_model->rootItem()->children().at(0));
+    if (identifiers.size() == 0)
+        return;
+        
     buildLayerControllers(identifiers);
     updateToView();
     connectSLDElementModel();
@@ -235,6 +237,10 @@ void SLDElementController::updateToView(SessionItem* item)
     for (const auto &layer_controller: m_layer_controllers) {
         auto layer_item =
             dynamic_cast<LayerItem*>(p_sample_model->findItem(layer_controller->sampleItemId()));
+        if (!layer_item){
+            buildSLD();
+            return;
+        }
         auto roughness_item = layer_item->item<RoughnessItem>(LayerItem::P_ROUGHNESS);
         auto material_item = dynamic_cast<SLDMaterialItem*>(p_material_model->findItem(
             layer_item->property<ExternalProperty>(LayerItem::P_MATERIAL).identifier()));
