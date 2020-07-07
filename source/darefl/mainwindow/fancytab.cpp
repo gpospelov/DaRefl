@@ -52,7 +52,7 @@ void FancyTab::paintEvent(QPaintEvent*)
     if (m_is_selected && isEnabled())
         painter.fillRect(
             QRectF(QPointF(0, size().height() - 2), QPointF(size().width(), size().height())),
-            QColor("#1563c7"));
+            QColor("#0d4283"));
 }
 
 void FancyTab::mousePressEvent(QMouseEvent* event)
