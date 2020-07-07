@@ -8,9 +8,11 @@
 // ************************************************************************** //
 
 #include <QHBoxLayout>
+#include <QLabel>
 #include <QPushButton>
 #include <QStackedWidget>
 #include <QVBoxLayout>
+#include <darefl/mainwindow/fancytab.h>
 #include <darefl/mainwindow/mainbarwidget.h>
 
 namespace
@@ -19,12 +21,14 @@ const int buttonHeight = 60;
 }
 
 MainBarWidget::MainBarWidget(QWidget* parent)
-    : QWidget(parent), stacked_widget(new QStackedWidget), button_layout(new QHBoxLayout)
+    : QWidget(parent), stacked_widget(new QStackedWidget), button_layout(new QHBoxLayout),
+      label_layout(new QHBoxLayout)
 {
     button_layout->setContentsMargins(0, 0, 0, 0);
 
     auto layout = new QVBoxLayout;
     layout->addLayout(button_layout);
+    layout->addLayout(label_layout);
     layout->addWidget(stacked_widget);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -48,6 +52,8 @@ void MainBarWidget::addWidget(QWidget* widget, const QString& title)
 
     button_layout->addWidget(button);
     index_to_button[index] = button;
+
+    label_layout->addWidget(new FancyTab(title));
 }
 
 void MainBarWidget::setCurrentIndex(int index)

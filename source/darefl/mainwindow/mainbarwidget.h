@@ -34,6 +34,7 @@ public:
 private:
     QStackedWidget* stacked_widget{nullptr};
     QHBoxLayout* button_layout{nullptr};
+    QHBoxLayout* label_layout{nullptr};
     std::map<int, QPushButton*> index_to_button;
 };
 

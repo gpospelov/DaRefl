@@ -4,6 +4,8 @@ target_sources(${library_name} PRIVATE
     actionmanager.h
     dockscontroller.cpp
     dockscontroller.h
+    fancytab.cpp
+    fancytab.h
     importwindow.cpp
     importwindow.h
     mainbarwidget.cpp
