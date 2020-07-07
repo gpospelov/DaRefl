@@ -47,13 +47,16 @@ void MainBarWidget::addWidget(QWidget* widget, const QString& title)
     button->setFont(font);
 
     int index = stacked_widget->addWidget(widget);
-    auto on_button_pressed = [this, index]() { setCurrentIndex(index); };
-    connect(button, &QPushButton::pressed, on_button_pressed);
+//    auto on_button_pressed = [this, index]() { setCurrentIndex(index); };
+//    connect(button, &QPushButton::pressed, on_button_pressed);
 
-    button_layout->addWidget(button);
-    index_to_button[index] = button;
+//    button_layout->addWidget(button);
+//    index_to_button[index] = button;
 
     auto tab = new FancyTab(title);
+    auto on_tab_clicked = [this, index]() { setCurrentIndex(index); };
+    connect(tab, &FancyTab::clicked, on_tab_clicked);
+
     index_to_tab[index] = tab;
     label_layout->addWidget(tab);
 }
@@ -67,7 +70,7 @@ void MainBarWidget::setCurrentIndex(int index)
 //    }
 
     for (auto it : index_to_tab)
-        it.second->setActive(it.first == index);
+        it.second->setSelected(it.first == index);
 
     stacked_widget->setCurrentIndex(index);
 }
