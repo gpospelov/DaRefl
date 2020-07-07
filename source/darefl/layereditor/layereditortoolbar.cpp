@@ -35,6 +35,7 @@ LayerEditorToolBar::LayerEditorToolBar(LayerEditorActions* actions, QWidget* par
     add_layer_button->setMenu(layer_menu);
     add_layer_button->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     addWidget(add_layer_button);
+    m_toolbar_widgets.insert(std::pair<std::string, QWidget*>("Add", add_layer_button));
     connect(add_layer_button, &QToolButton::clicked,
             [layer_menu]() { layer_menu->defaultAction()->triggered(); });
 
@@ -43,12 +44,14 @@ LayerEditorToolBar::LayerEditorToolBar(LayerEditorActions* actions, QWidget* par
     action->setToolTip("Clones selected layer");
     connect(action, &QAction::triggered, actions, &LayerEditorActions::onClone);
     addAction(action);
+    m_toolbar_widgets.insert(std::pair<std::string, QWidget*>("Clone", widgetForAction(action)));
 
     action = new QAction("Remove", this);
     action->setIcon(QIcon(":/icons/beaker-remove-outline.svg"));
     action->setToolTip("Removes selected layer");
     connect(action, &QAction::triggered, actions, &LayerEditorActions::onRemove);
     addAction(action);
+    m_toolbar_widgets.insert(std::pair<std::string, QWidget*>("Remove", widgetForAction(action)));
 
     addSeparator();
 
@@ -57,12 +60,20 @@ LayerEditorToolBar::LayerEditorToolBar(LayerEditorActions* actions, QWidget* par
     action->setToolTip("Moves selected layer up");
     connect(action, &QAction::triggered, actions, &LayerEditorActions::onMoveUp);
     addAction(action);
+    m_toolbar_widgets.insert(std::pair<std::string, QWidget*>("Up", widgetForAction(action)));
 
     action = new QAction("Down", this);
     action->setIcon(QIcon(":/icons/arrow-down-circle-outline.svg"));
     action->setToolTip("Moves selected layer down");
     connect(action, &QAction::triggered, actions, &LayerEditorActions::onMoveDown);
     addAction(action);
+    m_toolbar_widgets.insert(std::pair<std::string, QWidget*>("Down", widgetForAction(action)));
+
+    m_toolbar_widgets["Add"]->setEnabled(true);
+    m_toolbar_widgets["Clone"]->setEnabled(true);
+    m_toolbar_widgets["Remove"]->setEnabled(true);
+    m_toolbar_widgets["Up"]->setEnabled(false);
+    m_toolbar_widgets["Down"]->setEnabled(false);
 }
 
 //! Creates menu to add layer and layer-repeater.
@@ -90,4 +101,14 @@ QMenu* LayerEditorToolBar::create_layer_menu(LayerEditorActions* editor_actions)
     connect(action, &QAction::triggered, editor_actions, &LayerEditorActions::onAddMultiLayer);
 
     return result;
+}
+
+//! Handle the QToolButtons for their enabled state depending on what is selected
+void LayerEditorToolBar::updateToolButtonStates(bool first_present, bool last_present)
+{
+    m_toolbar_widgets["Add"]->setEnabled(true);
+    m_toolbar_widgets["Clone"]->setEnabled(true);
+    m_toolbar_widgets["Remove"]->setEnabled(true);
+    m_toolbar_widgets["Up"]->setEnabled((!first_present) ? (true) : (false));
+    m_toolbar_widgets["Down"]->setEnabled((!last_present) ? (true) : (false));
 }

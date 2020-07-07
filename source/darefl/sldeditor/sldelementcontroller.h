@@ -13,13 +13,13 @@
 #include <QObject>
 #include <mvvm/model/sessionitem.h>
 #include <mvvm/model/sessionmodel.h>
+#include <darefl/sldeditor/layerelementcontroller.h>
 #include <vector>
 
 class MaterialModel;
 class SampleModel;
 class SLDElementModel;
 class GraphicsScene;
-class LayerElementController;
 
 //! The controller of the sld layer visual representation
 class SLDElementController : public QObject
@@ -28,7 +28,7 @@ class SLDElementController : public QObject
 
 public:
     using string_vec = std::vector<std::string>;
-    using layer_ctrl_vec = std::vector<LayerElementController*>;
+    using layer_ctrl_vec = std::vector<std::unique_ptr<LayerElementController>>;
 
     SLDElementController(MaterialModel* material_model, SampleModel* sample_model,
                          SLDElementModel* sld_model, GraphicsScene* scene_item);
@@ -60,7 +60,7 @@ private:
     SampleModel* p_sample_model;
     SLDElementModel* p_sld_model;
     GraphicsScene* p_scene_item;
-    layer_ctrl_vec layer_controllers;
+    layer_ctrl_vec m_layer_controllers;
 };
 
 #endif // DAREFL_SLDEDITOR_SLDELEMENTCONTROLLER_H

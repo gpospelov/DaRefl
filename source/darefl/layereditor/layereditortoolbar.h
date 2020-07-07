@@ -11,6 +11,9 @@
 #define DAREFL_LAYEREDITOR_LAYEREDITORTOOLBAR_H
 
 #include <QToolBar>
+#include <QWidget>
+#include <map>
+#include <string>
 
 class LayerEditorActions;
 
@@ -23,8 +26,11 @@ public:
     LayerEditorToolBar(LayerEditorActions* actions, QWidget* parent = nullptr);
     ~LayerEditorToolBar() = default;
 
+    void updateToolButtonStates(bool first_present, bool last_present);
+
 private:
     QMenu* create_layer_menu(LayerEditorActions* editor_actions);
+    std::map<std::string, QWidget*> m_toolbar_widgets;
 };
 
 #endif // DAREFL_LAYEREDITOR_LAYEREDITORTOOLBAR_H

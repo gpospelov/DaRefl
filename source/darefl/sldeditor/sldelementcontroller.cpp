@@ -120,8 +120,10 @@ void SLDElementController::buildSLD()
 
     if (p_sample_model->rootItem()->childrenCount() == 0)
         return;
-
     string_vec identifiers = getIdentifierVector(p_sample_model->rootItem()->children().at(0));
+    if (identifiers.size() == 0)
+        return;
+        
     buildLayerControllers(identifiers);
     updateToView();
     connectSLDElementModel();
@@ -136,13 +138,12 @@ void SLDElementController::clearScene()
     if (!p_sld_model)
         return;
 
-    for (int i = 0; i < layer_controllers.size(); ++i) {
-        layer_controllers.at(i)->disconnectFormModel();
-        layer_controllers.at(i)->unsetScene();
-        layer_controllers.at(i)->deleteViewItems();
-        delete layer_controllers.at(i);
+    for (int i = 0; i < m_layer_controllers.size(); ++i) {
+        m_layer_controllers.at(i)->disconnectFormModel();
+        m_layer_controllers.at(i)->unsetScene();
+        m_layer_controllers.at(i)->deleteViewItems();
     }
-    layer_controllers.clear();
+    m_layer_controllers.clear();
     p_sld_model->clear();
 }
 
@@ -177,34 +178,37 @@ void SLDElementController::buildLayerControllers(string_vec& identifiers)
 
     for (auto& identifier : identifiers) {
         auto layer_element_item = p_sld_model->addLayer();
-        // FIXME memory leakage here, consider switch to vector<unique_ptr>
-        auto layer_element_controller = new LayerElementController(layer_element_item);
+        auto layer_element_controller = std::make_unique<LayerElementController>(layer_element_item);
         layer_element_controller->autoPopulate();
         layer_element_controller->setScene(p_scene_item);
         layer_element_controller->connectToModel();
         layer_element_controller->setSampleItemId(identifier);
-        layer_controllers.push_back(layer_element_controller);
+        m_layer_controllers.push_back(std::move(layer_element_controller));
     }
 
-    for (int i = 0; i < layer_controllers.size() - 1; ++i) {
-        layer_controllers.at(i)->setLayerBelow(layer_controllers.at(i + 1));
+    for (int i = 0; i < m_layer_controllers.size() - 1; ++i) {
+        m_layer_controllers.at(i)->setLayerBelow(m_layer_controllers.at(i + 1).get());
     }
 
-    layer_controllers.at(0)->topSegment()->stretchRight(true);
-    layer_controllers.at(0)->topSegment()->setFlag(QGraphicsItem::ItemIsMovable, false);
-    layer_controllers.at(1)->sideSegment()->setFlag(QGraphicsItem::ItemIsMovable, false);
-    layer_controllers.at(layer_controllers.size() - 1)->topSegment()->stretchLeft(true);
+    if (m_layer_controllers.size() > 0){
+        m_layer_controllers.at(0)->topSegment()->stretchRight(true);
+        m_layer_controllers.at(0)->topSegment()->setFlag(QGraphicsItem::ItemIsMovable, false);
+    }
+    if (m_layer_controllers.size() > 1){
+        m_layer_controllers.at(1)->sideSegment()->setFlag(QGraphicsItem::ItemIsMovable, false);
+        m_layer_controllers.at(m_layer_controllers.size() - 1)->topSegment()->stretchLeft(true);
+    }
 }
 
 //! Connect the layer controllers
 void SLDElementController::connectLayerControllers()
 {
-    for (auto layer_controller : layer_controllers) {
-        QObject::connect(layer_controller, &LayerElementController::heightChanged, this,
+    for (const auto &layer_controller : m_layer_controllers) {
+        QObject::connect(layer_controller.get(), &LayerElementController::heightChanged, this,
                          &SLDElementController::updateSLDFromView);
-        QObject::connect(layer_controller, &LayerElementController::widthChanged, this,
+        QObject::connect(layer_controller.get(), &LayerElementController::widthChanged, this,
                          &SLDElementController::updateThicknessFromView);
-        QObject::connect(layer_controller, &LayerElementController::roughnessChanged, this,
+        QObject::connect(layer_controller.get(), &LayerElementController::roughnessChanged, this,
                          &SLDElementController::updateRoughnessFromView);
     }
 }
@@ -212,12 +216,12 @@ void SLDElementController::connectLayerControllers()
 //! Disconnect the layer controllers
 void SLDElementController::disconnectLayerControllers()
 {
-    for (auto layer_controller : layer_controllers) {
-        QObject::disconnect(layer_controller, &LayerElementController::heightChanged, this,
+    for (const auto &layer_controller: m_layer_controllers) {
+        QObject::disconnect(layer_controller.get(), &LayerElementController::heightChanged, this,
                             &SLDElementController::updateSLDFromView);
-        QObject::disconnect(layer_controller, &LayerElementController::widthChanged, this,
+        QObject::disconnect(layer_controller.get(), &LayerElementController::widthChanged, this,
                             &SLDElementController::updateThicknessFromView);
-        QObject::disconnect(layer_controller, &LayerElementController::roughnessChanged, this,
+        QObject::disconnect(layer_controller.get(), &LayerElementController::roughnessChanged, this,
                             &SLDElementController::updateRoughnessFromView);
     }
 }
@@ -230,9 +234,13 @@ void SLDElementController::updateToView(SessionItem* item)
         return;
     }
 
-    for (auto layer_controller : layer_controllers) {
+    for (const auto &layer_controller: m_layer_controllers) {
         auto layer_item =
             dynamic_cast<LayerItem*>(p_sample_model->findItem(layer_controller->sampleItemId()));
+        if (!layer_item){
+            buildSLD();
+            return;
+        }
         auto roughness_item = layer_item->item<RoughnessItem>(LayerItem::P_ROUGHNESS);
         auto material_item = dynamic_cast<SLDMaterialItem*>(p_material_model->findItem(
             layer_item->property<ExternalProperty>(LayerItem::P_MATERIAL).identifier()));

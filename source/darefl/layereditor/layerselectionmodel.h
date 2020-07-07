@@ -32,6 +32,8 @@ public:
 
     void selectItems(std::vector<ModelView::SessionItem*> items);
     void selectItem(ModelView::SessionItem* item);
+    bool firstSelected() const;
+    bool lastSelected() const;
 
     std::vector<ModelView::SessionItem*> selectedItems() const;
 
