@@ -12,9 +12,11 @@
 
 #include <QWidget>
 #include <map>
+
 class QStackedWidget;
 class QHBoxLayout;
 class QPushButton;
+class FancyTab;
 
 //! Widget container with functionality similar to QTabWidget. Has large button bar on top,
 //! and stacked widget at bottom.
@@ -27,14 +29,14 @@ public:
     MainBarWidget(QWidget* parent = nullptr);
     ~MainBarWidget();
 
-    void addWidget(QWidget* widget, const QString& title);
+    void addWidget(QWidget* widget, const QString& title, bool is_enabled = true);
 
     void setCurrentIndex(int index);
 
 private:
     QStackedWidget* stacked_widget{nullptr};
-    QHBoxLayout* button_layout{nullptr};
-    std::map<int, QPushButton*> index_to_button;
+    QHBoxLayout* label_layout{nullptr};
+    std::map<int, FancyTab*> index_to_tab;
 };
 
 #endif // DAREFL_MAINWINDOW_MAINBARWIDGET_H
