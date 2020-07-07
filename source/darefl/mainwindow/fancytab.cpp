@@ -19,8 +19,16 @@ FancyTab::FancyTab(const QString& title, QWidget* parent)
     layout->addWidget(m_label, 0, Qt::AlignCenter);
 }
 
+void FancyTab::setActive(bool value)
+{
+    m_is_active = value;
+    update();
+}
+
 void FancyTab::paintEvent(QPaintEvent*)
 {
     QPainter painter(this);
-    painter.drawLine(0, 0, size().width(), 0);
+
+    if (m_is_active)
+        painter.drawLine(0, 0, size().width(), 0);
 }

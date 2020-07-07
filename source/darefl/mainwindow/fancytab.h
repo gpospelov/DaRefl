@@ -22,11 +22,14 @@ class FancyTab : public QWidget
 public:
     FancyTab(const QString& title, QWidget* parent = nullptr);
 
+    void setActive(bool value);
+
 protected:
     void paintEvent(QPaintEvent*) override;
 
 private:
     QLabel* m_label{nullptr};
+    bool m_is_active{false};
 };
 
 #endif // DAREFL_MAINWINDOW_FANCYTAB_H

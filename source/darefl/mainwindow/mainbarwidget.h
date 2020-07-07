@@ -12,9 +12,11 @@
 
 #include <QWidget>
 #include <map>
+
 class QStackedWidget;
 class QHBoxLayout;
 class QPushButton;
+class FancyTab;
 
 //! Widget container with functionality similar to QTabWidget. Has large button bar on top,
 //! and stacked widget at bottom.
@@ -36,6 +38,7 @@ private:
     QHBoxLayout* button_layout{nullptr};
     QHBoxLayout* label_layout{nullptr};
     std::map<int, QPushButton*> index_to_button;
+    std::map<int, FancyTab*> index_to_tab;
 };
 
 #endif // DAREFL_MAINWINDOW_MAINBARWIDGET_H
