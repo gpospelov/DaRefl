@@ -30,11 +30,12 @@ MainBarWidget::MainBarWidget(QWidget* parent)
 
 MainBarWidget::~MainBarWidget() = default;
 
-void MainBarWidget::addWidget(QWidget* widget, const QString& title)
+void MainBarWidget::addWidget(QWidget* widget, const QString& title, bool is_enabled)
 {
     int index = stacked_widget->addWidget(widget);
 
     auto tab = new FancyTab(title);
+    tab->setEnabled(is_enabled);
     auto on_tab_clicked = [this, index]() { setCurrentIndex(index); };
     connect(tab, &FancyTab::clicked, on_tab_clicked);
 

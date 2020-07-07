@@ -29,7 +29,7 @@ public:
     MainBarWidget(QWidget* parent = nullptr);
     ~MainBarWidget();
 
-    void addWidget(QWidget* widget, const QString& title);
+    void addWidget(QWidget* widget, const QString& title, bool is_enabled = true);
 
     void setCurrentIndex(int index);
 

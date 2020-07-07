@@ -73,10 +73,10 @@ void MainWindow::init_components()
     m_barWidget->addWidget(m_welcomeView, "Project");
     m_barWidget->addWidget(m_importWindow, "Data");
     m_barWidget->addWidget(m_reflWindow, "Simulation");
-    m_barWidget->addWidget(new QWidget, "Fitting");
-    m_barWidget->addWidget(new QWidget, "Export");
+    m_barWidget->addWidget(new QWidget, "Fitting", false);
+    m_barWidget->addWidget(new QWidget, "Export", false);
     m_barWidget->addWidget(new QWidget, "Settings");
-    m_barWidget->setCurrentIndex(1);
+    m_barWidget->setCurrentIndex(0);
 }
 
 //! Setup main connections.
