@@ -19,6 +19,7 @@
 
 #include <mvvm/model/sessionitem.h>
 #include <mvvm/model/sessionmodel.h>
+#include <mvvm/viewmodel/standardchildrenstrategies.h>
 #include <mvvm/viewmodel/viewmodelcontroller.h>
 #include <mvvm/viewmodel/viewmodelutils.h>
 
@@ -43,22 +44,30 @@ QStringList deserialize(QByteArray byteArray)
     in >> result;
     return result;
 }
-
 } // namespace
 
 using namespace ModelView;
 
-DataViewModel::DataViewModel(RealDataModel* model, QObject* parent)
-    : TopItemsViewModel(model, parent)
+class DataViewModelController : public ViewModelController
 {
-    auto controller = viewModelController();
-    controller->setRowStrategy(std::make_unique<DataRowStrategy>());
+public:
+    DataViewModelController(SessionModel* session_model, ViewModelBase* view_model)
+        : ViewModelController(session_model, view_model)
+    {
+        setRowStrategy(std::make_unique<DataRowStrategy>());
+        setChildrenStrategy(std::make_unique<TopItemsStrategy>());
+    }
+};
+
+DataViewModel::DataViewModel(RealDataModel* model, QObject* parent)
+    : ViewModel(std::make_unique<DataViewModelController>(model, this), parent)
+{
 }
 
 //! Return the Qt flags depending on the provided modelindex
 Qt::ItemFlags DataViewModel::flags(const QModelIndex& index) const
 {
-    Qt::ItemFlags defaultFlags = TopItemsViewModel::flags(index);
+    Qt::ItemFlags defaultFlags = ViewModel::flags(index);
 
     if (index.isValid())
         if (dynamic_cast<RealDataModel*>(sessionModel())->dragEnabled(sessionItemFromIndex(index)))
