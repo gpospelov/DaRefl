@@ -15,6 +15,8 @@
 MaterialSelectionModel::MaterialSelectionModel(ModelView::ViewModel* view_model, QObject* parent)
     : QItemSelectionModel(view_model, parent)
 {
+    // FIXME cover with unit tests after implementing ViewItemSelectionModel
+    connect(view_model, &ModelView::ViewModel::modelAboutToBeReset, [this](){clearSelection();});
 }
 
 void MaterialSelectionModel::selectItem(ModelView::SessionItem* item)
