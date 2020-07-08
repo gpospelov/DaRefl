@@ -29,6 +29,8 @@ namespace
 {
 const QString LinkMimeType = "application/org.bornagainproject.fittinglink";
 
+// FIXME move functions to ,mvvm/widget/widgetutils>
+
 QByteArray serialize(const QStringList& data)
 {
     QByteArray byteArray;
@@ -47,6 +49,8 @@ QStringList deserialize(QByteArray byteArray)
 } // namespace
 
 using namespace ModelView;
+
+// FIXME replace with factory method as soon as ViewModelController will get it.
 
 class DataViewModelController : public ViewModelController
 {
@@ -69,12 +73,13 @@ Qt::ItemFlags DataViewModel::flags(const QModelIndex& index) const
 {
     Qt::ItemFlags defaultFlags = ViewModel::flags(index);
 
-    if (index.isValid())
-        if (dynamic_cast<RealDataModel*>(sessionModel())->dragEnabled(sessionItemFromIndex(index)))
-            defaultFlags = Qt::ItemIsDragEnabled | defaultFlags;
-    if (dynamic_cast<RealDataModel*>(sessionModel())->dropEnabled(sessionItemFromIndex(index)))
+    if (index.isValid() && dataModel()->dragEnabled(sessionItemFromIndex(index)))
+        defaultFlags = Qt::ItemIsDragEnabled | defaultFlags;
+
+    if (dataModel()->dropEnabled(sessionItemFromIndex(index)))
         defaultFlags = Qt::ItemIsDropEnabled | defaultFlags;
-    if (dynamic_cast<RealDataModel*>(sessionModel())->itemEditable(sessionItemFromIndex(index)))
+
+    if (dataModel()->itemEditable(sessionItemFromIndex(index)))
         defaultFlags = Qt::ItemIsEditable | defaultFlags;
 
     return defaultFlags;
@@ -107,8 +112,8 @@ Qt::DropActions DataViewModel::supportedDropActions() const
     return Qt::TargetMoveAction;
 }
 
-bool DataViewModel::canDropMimeData(const QMimeData* data, Qt::DropAction action, int row,
-                                    int column, const QModelIndex& parent) const
+bool DataViewModel::canDropMimeData(const QMimeData* data, Qt::DropAction, int, int,
+                                    const QModelIndex&) const
 {
     if (!data->hasFormat(QString::fromStdString(::Constants::RawDataMimeType)))
         return false;
@@ -133,10 +138,14 @@ bool DataViewModel::dropMimeData(const QMimeData* data, Qt::DropAction action, i
             requested_row, 0,
             sessionItemFromIndex(parent)->itemCount(sessionItemFromIndex(parent)->defaultTag())
                 - 1);
-        if (!dynamic_cast<RealDataModel*>(sessionModel())
-                 ->dragDropItem(item, sessionItemFromIndex(parent), row))
+        if (!dataModel()->dragDropItem(item, sessionItemFromIndex(parent), row))
             return false;
     }
 
     return true;
+}
+
+RealDataModel* DataViewModel::dataModel() const
+{
+    return dynamic_cast<RealDataModel*>(sessionModel());
 }
