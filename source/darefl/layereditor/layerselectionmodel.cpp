@@ -16,6 +16,8 @@
 LayerSelectionModel::LayerSelectionModel(ModelView::ViewModel* view_model, QObject* parent)
     : QItemSelectionModel(view_model, parent)
 {
+    // FIXME cover with unit tests after implementing ViewItemSelectionModel
+    connect(view_model, &ModelView::ViewModel::modelAboutToBeReset, [this](){clearSelection();});
 }
 
 //! Selects all rows corresponding to given items.
