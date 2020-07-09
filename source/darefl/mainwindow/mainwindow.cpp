@@ -69,7 +69,7 @@ void MainWindow::init_components()
     m_welcomeView = new WelcomeView(models.get());
     m_importWindow = new ImportWindow(models.get());
     m_reflWindow = new ReflDockWindow(models.get());
-    m_settingsView = new SettingsView;
+    m_settingsView = new SettingsView(models.get());
 
     m_barWidget = new MainBarWidget;
 

@@ -12,14 +12,23 @@
 
 #include <QWidget>
 
-//! Settings view. Most right tab of MainWindow
+class QTabWidget;
+class ApplicationModels;
+
+//! Settings view. Most right tab of MainWindow.
 
 class SettingsView : public QWidget
 {
     Q_OBJECT
 
 public:
-    SettingsView(QWidget* parent = nullptr);
+    SettingsView(ApplicationModels* models, QWidget* parent = nullptr);
+
+private:
+    void init_tabs();
+
+    QTabWidget* m_tabWidget{nullptr};
+    ApplicationModels* m_models{nullptr};
 };
 
 #endif // DAREFL_SETTINGSVIEW_SETTINGSVIEW_H
