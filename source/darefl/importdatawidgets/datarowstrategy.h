@@ -11,7 +11,7 @@
 #define DAREFL_IMPORTDATAWIDGETS_DATAROWSTRATEGY_H
 
 #include <memory>
-#include <mvvm/viewmodel/rowstrategyinterface.h>
+#include <mvvm/interfaces/rowstrategyinterface.h>
 
 class QStandardItem;
 
