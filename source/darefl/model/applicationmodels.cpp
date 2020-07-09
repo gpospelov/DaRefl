@@ -59,6 +59,19 @@ struct ApplicationModels::ApplicationModelsImpl {
             ++index;
         }
     }
+
+    //! Models intended for saving.
+    std::vector<SessionModel*> persistent_models() const
+    {
+        return {m_material_model.get(), m_sample_model.get()};
+    }
+
+    //! All application models.
+    std::vector<SessionModel*> application_models() const
+    {
+        return {m_material_model.get(), m_sample_model.get(), m_sld_view_model.get(),
+                m_job_model.get(), m_realdata_model.get()};
+    }
 };
 
 ApplicationModels::ApplicationModels() : p_impl(std::make_unique<ApplicationModelsImpl>()) {}
@@ -92,5 +105,12 @@ RealDataModel* ApplicationModels::realDataModel()
 
 std::vector<SessionModel*> ApplicationModels::persistent_models() const
 {
-    return {p_impl->m_material_model.get(), p_impl->m_sample_model.get()};
+    return p_impl->persistent_models();
+}
+
+//! Return vector of all models of our application.
+
+std::vector<SessionModel*> ApplicationModels::application_models() const
+{
+    return p_impl->application_models();
 }
