@@ -29,7 +29,7 @@ const QString pos_key = "pos";
 } // namespace
 
 MainWindow::MainWindow()
-    : models(std::make_unique<ApplicationModels>()), m_actionManager(new ActionManager(this))
+    : m_models(std::make_unique<ApplicationModels>()), m_actionManager(new ActionManager(this))
 {
     init_application();
     init_components();
@@ -66,10 +66,10 @@ void MainWindow::init_application()
 
 void MainWindow::init_components()
 {
-    m_welcomeView = new WelcomeView(models.get());
-    m_importWindow = new ImportWindow(models.get());
-    m_reflWindow = new ReflDockWindow(models.get());
-    m_settingsView = new SettingsView(models.get());
+    m_welcomeView = new WelcomeView(m_models.get());
+    m_importWindow = new ImportWindow(m_models.get());
+    m_reflWindow = new ReflDockWindow(m_models.get());
+    m_settingsView = new SettingsView(m_models.get());
 
     m_barWidget = new MainBarWidget;
 
