@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_WELCOMEVIEW_WELCOMEVIEW2_H
-#define DAREFL_WELCOMEVIEW_WELCOMEVIEW2_H
+#ifndef DAREFL_WELCOMEVIEW_WELCOMEVIEW_H
+#define DAREFL_WELCOMEVIEW_WELCOMEVIEW_H
 
 #include <QWidget>
 #include <memory>
@@ -53,4 +53,4 @@ private:
     OpenProjectWidget* m_openProjectWidget{nullptr};
 };
 
-#endif // DAREFL_WELCOMEVIEW_WELCOMEVIEW2_H
+#endif // DAREFL_WELCOMEVIEW_WELCOMEVIEW_H

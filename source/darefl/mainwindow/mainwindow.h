@@ -19,6 +19,7 @@ class ReflDockWindow;
 class MainBarWidget;
 class ApplicationModels;
 class ActionManager;
+class SettingsView;
 
 //! Application main window.
 
@@ -43,6 +44,7 @@ private:
     WelcomeView* m_welcomeView{nullptr};
     ImportWindow* m_importWindow{nullptr};
     ReflDockWindow* m_reflWindow{nullptr};
+    SettingsView* m_settingsView{nullptr};
     MainBarWidget* m_barWidget{nullptr};
 };
 
