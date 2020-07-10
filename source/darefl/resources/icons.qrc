@@ -32,5 +32,6 @@
         <file>icons/undo.svg</file>
         <file>icons/set-merge.svg</file>
         <file>icons/F-letter_1000x.png</file>
+        <file>icons/card-bulleted-outline.svg</file>
     </qresource>
 </RCC>

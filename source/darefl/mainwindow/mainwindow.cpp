@@ -18,6 +18,7 @@
 #include <darefl/mainwindow/mainwindow.h>
 #include <darefl/mainwindow/refldockwindow.h>
 #include <darefl/model/applicationmodels.h>
+#include <darefl/settingsview/settingsview.h>
 #include <darefl/welcomeview/welcomeview.h>
 
 namespace
@@ -28,7 +29,7 @@ const QString pos_key = "pos";
 } // namespace
 
 MainWindow::MainWindow()
-    : models(std::make_unique<ApplicationModels>()), m_actionManager(new ActionManager(this))
+    : m_models(std::make_unique<ApplicationModels>()), m_actionManager(new ActionManager(this))
 {
     init_application();
     init_components();
@@ -65,9 +66,11 @@ void MainWindow::init_application()
 
 void MainWindow::init_components()
 {
-    m_welcomeView = new WelcomeView(models.get());
-    m_importWindow = new ImportWindow(models.get());
-    m_reflWindow = new ReflDockWindow(models.get());
+    m_welcomeView = new WelcomeView(m_models.get());
+    m_importWindow = new ImportWindow(m_models.get());
+    m_reflWindow = new ReflDockWindow(m_models.get());
+    m_settingsView = new SettingsView(m_models.get());
+
     m_barWidget = new MainBarWidget;
 
     m_barWidget->addWidget(m_welcomeView, "Project");
@@ -75,7 +78,7 @@ void MainWindow::init_components()
     m_barWidget->addWidget(m_reflWindow, "Simulation");
     m_barWidget->addWidget(new QWidget, "Fitting", false);
     m_barWidget->addWidget(new QWidget, "Export", false);
-    m_barWidget->addWidget(new QWidget, "Settings");
+    m_barWidget->addWidget(m_settingsView, "Settings");
     m_barWidget->setCurrentIndex(0);
 }
 

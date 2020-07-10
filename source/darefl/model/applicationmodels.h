@@ -41,6 +41,8 @@ public:
 
     std::vector<ModelView::SessionModel*> persistent_models() const override;
 
+    std::vector<ModelView::SessionModel*> application_models() const;
+
 private:
     struct ApplicationModelsImpl;
     std::unique_ptr<ApplicationModelsImpl> p_impl;

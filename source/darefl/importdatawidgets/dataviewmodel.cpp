@@ -17,6 +17,7 @@
 #include <QDebug>
 #include <QMimeData>
 
+#include <mvvm/factories/viewmodelcontrollerbuilder.h>
 #include <mvvm/model/sessionitem.h>
 #include <mvvm/model/sessionmodel.h>
 #include <mvvm/viewmodel/standardchildrenstrategies.h>
@@ -24,6 +25,8 @@
 #include <mvvm/viewmodel/viewmodelutils.h>
 
 #include <algorithm>
+
+using namespace ModelView;
 
 namespace
 {
@@ -46,25 +49,21 @@ QStringList deserialize(QByteArray byteArray)
     in >> result;
     return result;
 }
+
+std::unique_ptr<ViewModelController> createController(SessionModel* model, ViewModelBase* viewModel)
+{
+    return ViewModelControllerBuilder()
+        .model(model)
+        .viewModel(viewModel)
+        .childrenStrategy(std::make_unique<TopItemsStrategy>())
+        .rowStrategy(std::make_unique<DataRowStrategy>());
+}
+
 } // namespace
 
-using namespace ModelView;
-
-// FIXME replace with factory method as soon as ViewModelController will get it.
-
-class DataViewModelController : public ViewModelController
-{
-public:
-    DataViewModelController(SessionModel* session_model, ViewModelBase* view_model)
-        : ViewModelController(session_model, view_model)
-    {
-        setRowStrategy(std::make_unique<DataRowStrategy>());
-        setChildrenStrategy(std::make_unique<TopItemsStrategy>());
-    }
-};
 
 DataViewModel::DataViewModel(RealDataModel* model, QObject* parent)
-    : ViewModel(std::make_unique<DataViewModelController>(model, this), parent)
+    : ViewModel(createController(model, this), parent)
 {
 }
 

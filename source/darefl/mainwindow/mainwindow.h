@@ -19,6 +19,7 @@ class ReflDockWindow;
 class MainBarWidget;
 class ApplicationModels;
 class ActionManager;
+class SettingsView;
 
 //! Application main window.
 
@@ -38,11 +39,12 @@ private:
     void init_connections();
     void write_settings();
 
-    std::unique_ptr<ApplicationModels> models;
+    std::unique_ptr<ApplicationModels> m_models;
     ActionManager* m_actionManager{nullptr};
     WelcomeView* m_welcomeView{nullptr};
     ImportWindow* m_importWindow{nullptr};
     ReflDockWindow* m_reflWindow{nullptr};
+    SettingsView* m_settingsView{nullptr};
     MainBarWidget* m_barWidget{nullptr};
 };
 
