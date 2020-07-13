@@ -27,8 +27,6 @@ QSize DockSizeHint();
 //! Hint on minimum size of docks on main reflectometry window.
 QSize DockMinimumSizeHint();
 
-int LargeButtonHeight();
-
 }; // namespace StyleUtils
 
 #endif // DAREFL_MAINWINDOW_STYLEUTILS_H

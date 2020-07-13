@@ -26,9 +26,3 @@ QSize StyleUtils::DockMinimumSizeHint()
 {
     return QSize(320, 240);
 }
-
-int StyleUtils::LargeButtonHeight()
-{
-    const int large_button_height = 60;
-    return large_button_height;
-}
