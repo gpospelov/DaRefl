@@ -19,14 +19,17 @@ using namespace ModelView;
 
 struct SLDEditorActions::SLDEditorActionsImpl {
     SLDElementModel* sld_element_model{nullptr};
-    SLDEditorActionsImpl(SLDElementModel* sld_element_model) : sld_element_model(sld_element_model)
-    {
-    }
+    SLDEditorActionsImpl() {}
 };
 
-SLDEditorActions::SLDEditorActions(SLDElementModel* sld_element_model, QObject* parent)
-    : QObject(parent), p_impl(std::make_unique<SLDEditorActionsImpl>(sld_element_model))
+SLDEditorActions::SLDEditorActions(QObject* parent)
+    : QObject(parent), p_impl(std::make_unique<SLDEditorActionsImpl>())
 {
+}
+
+void SLDEditorActions::setModel(SLDElementModel* model)
+{
+    p_impl->sld_element_model = model;
 }
 
 SLDEditorActions::~SLDEditorActions() = default;

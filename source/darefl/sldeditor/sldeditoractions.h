@@ -22,8 +22,10 @@ class SLDEditorActions : public QObject
 {
     Q_OBJECT
 public:
-    SLDEditorActions(SLDElementModel* sld_element_model, QObject* parent = nullptr);
+    SLDEditorActions(QObject* parent = nullptr);
     ~SLDEditorActions();
+
+    void setModel(SLDElementModel* model);
 
 private:
     struct SLDEditorActionsImpl;

@@ -20,9 +20,9 @@
 #include <mvvm/plotting/graphcanvas.h>
 
 //! The constructor
-SLDEditor::SLDEditor(ApplicationModels* apps_models, QWidget* parent)
-    : QWidget(parent), p_view_widget(new SLDViewWidget(apps_models, this)),
-      p_editor_actions(new SLDEditorActions(apps_models->sldViewModel(), this)),
+SLDEditor::SLDEditor(QWidget* parent)
+    : QWidget(parent), p_view_widget(new SLDViewWidget(this)),
+      p_editor_actions(new SLDEditorActions(this)),
       p_editor_tollbar(new SLDEditorToolBar(p_editor_actions))
 {
     setWindowTitle("SLD editor");
@@ -42,6 +42,12 @@ SLDEditor::SLDEditor(ApplicationModels* apps_models, QWidget* parent)
 
 //! The destructor
 SLDEditor::~SLDEditor() = default;
+
+void SLDEditor::setModels(ApplicationModels* models)
+{
+    p_view_widget->setModels(models);
+    p_editor_actions->setModel(models->sldViewModel());
+}
 
 QSize SLDEditor::sizeHint() const
 {
