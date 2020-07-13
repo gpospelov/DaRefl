@@ -9,7 +9,7 @@
 
 #include <QVBoxLayout>
 #include <darefl/importdataview/importdataeditor.h>
-#include <darefl/mainwindow/importdataview.h>
+#include <darefl/importdataview/importdataview.h>
 #include <darefl/model/applicationmodels.h>
 
 ImportDataView::ImportDataView(ApplicationModels* models, QWidget* parent)

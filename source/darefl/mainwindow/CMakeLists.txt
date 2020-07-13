@@ -5,8 +5,6 @@ target_sources(${library_name} PRIVATE
     dockscontroller.h
     fancytab.cpp
     fancytab.h
-    importdataview.cpp
-    importdataview.h
     mainbarwidget.cpp
     mainbarwidget.h
     mainwindow.cpp

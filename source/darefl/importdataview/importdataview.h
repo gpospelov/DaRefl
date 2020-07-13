@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_MAINWINDOW_IMPORTDATAVIEW_H
-#define DAREFL_MAINWINDOW_IMPORTDATAVIEW_H
+#ifndef DAREFL_IMPORTDATAVIEW_IMPORTDATAVIEW_H
+#define DAREFL_IMPORTDATAVIEW_IMPORTDATAVIEW_H
 
 #include <QWidget>
 
@@ -26,4 +26,4 @@ private:
     ApplicationModels* models{nullptr};
 };
 
-#endif // DAREFL_MAINWINDOW_IMPORTDATAVIEW_H
+#endif // DAREFL_IMPORTDATAVIEW_IMPORTDATAVIEW_H
