@@ -7,8 +7,6 @@
 //
 // ************************************************************************** //
 
-#include <QDebug>
-#include <QFont>
 #include <QFontMetrics>
 #include <QSize>
 #include <QWidget>
@@ -27,14 +25,6 @@ QSize StyleUtils::DockSizeHint()
 QSize StyleUtils::DockMinimumSizeHint()
 {
     return QSize(320, 240);
-}
-
-QFont StyleUtils::sectionFont(bool bold)
-{
-    QFont result;
-    result.setPointSize(result.pointSize() * 1.25);
-    result.setBold(bold);
-    return result;
 }
 
 int StyleUtils::LargeButtonHeight()

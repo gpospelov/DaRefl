@@ -27,9 +27,6 @@ QSize DockSizeHint();
 //! Hint on minimum size of docks on main reflectometry window.
 QSize DockMinimumSizeHint();
 
-//! Returns font for sections (25% large than system font).
-QFont sectionFont(bool bold = false);
-
 int LargeButtonHeight();
 
 }; // namespace StyleUtils

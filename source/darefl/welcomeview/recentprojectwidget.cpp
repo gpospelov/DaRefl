@@ -18,7 +18,8 @@
 
 namespace
 {
-int max_recent_project_count = 10;
+const int max_recent_project_count = 10;
+const double section_label_scale = 1.25;
 }
 
 RecentProjectWidget::RecentProjectWidget(QWidget* parent)
@@ -66,7 +67,7 @@ QBoxLayout* RecentProjectWidget::createCurrentProjectLayout() const
 {
     auto result = new QVBoxLayout;
     auto label = new QLabel("Current Project");
-    label->setFont(StyleUtils::sectionFont());
+    ModelView::Utils::ScaleLabelFont(label, section_label_scale);
     result->addWidget(label);
     result->addWidget(m_currentProjectPane);
     return result;
@@ -76,7 +77,7 @@ QBoxLayout* RecentProjectWidget::createRecentProjectLayout()
 {
     auto result = new QVBoxLayout;
     auto label = new QLabel("Recent Projects");
-    label->setFont(StyleUtils::sectionFont());
+    ModelView::Utils::ScaleLabelFont(label, section_label_scale);
     result->addWidget(label);
 
     for (int i = 0; i < max_recent_project_count; ++i) {
