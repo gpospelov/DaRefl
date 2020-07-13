@@ -8,7 +8,7 @@
 // ************************************************************************** //
 
 #include <QVBoxLayout>
-#include <darefl/importdatawidgets/importdataeditor.h>
+#include <darefl/importdataview/importdataeditor.h>
 #include <darefl/mainwindow/importdataview.h>
 #include <darefl/model/applicationmodels.h>
 

@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include <darefl/importdatawidgets/dataselectionmodel.h>
+#include <darefl/importdataview/dataselectionmodel.h>
 #include <darefl/model/datasetitem.h>
 
 #include <mvvm/model/sessionitem.h>

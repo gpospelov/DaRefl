@@ -9,9 +9,9 @@
 
 #include <darefl/famousloader/dataimportdialog.h>
 #include <darefl/famousloader/importoutput.h>
-#include <darefl/importdatawidgets/dataselectionmodel.h>
-#include <darefl/importdatawidgets/dataviewmodel.h>
-#include <darefl/importdatawidgets/importdataeditor.h>
+#include <darefl/importdataview/dataselectionmodel.h>
+#include <darefl/importdataview/dataviewmodel.h>
+#include <darefl/importdataview/importdataeditor.h>
 #include <darefl/mainwindow/styleutils.h>
 #include <darefl/model/datasetconvenience.h>
 #include <darefl/model/datasetitem.h>
