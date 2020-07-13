@@ -21,23 +21,29 @@
 
 using namespace ModelView;
 
-QuickSimEditor::QuickSimEditor(ApplicationModels* app_models, QWidget* parent)
-    : QWidget(parent), app_models(app_models),
-      sim_controller(new QuickSimController(app_models, this)), toolbar(new QuickSimEditorToolBar),
-      spec_canvas(new ModelView::GraphCanvas)
+QuickSimEditor::QuickSimEditor(QWidget* parent)
+    : QWidget(parent), sim_controller(new QuickSimController(this)),
+      toolbar(new QuickSimEditorToolBar), spec_canvas(new ModelView::GraphCanvas)
 {
     setWindowTitle(QString("Reflectivity plot"));
     auto layout = new QVBoxLayout(this);
     layout->addWidget(toolbar);
     layout->addWidget(spec_canvas);
 
-    spec_canvas->setItem(app_models->jobModel()->specular_viewport());
-
     setup_toolbar_connections();
     setup_controller_connections();
 }
 
 QuickSimEditor::~QuickSimEditor() = default;
+
+//! Set the mododel for the different items
+void QuickSimEditor::setModels(ApplicationModels* models)
+{
+    app_models = models;
+    // sim_controller->setModels(models);
+    // toolbar->setModels(models);
+    // spec_canvas->setItem(app_models->jobModel()->specular_viewport());
+}
 
 QSize QuickSimEditor::sizeHint() const
 {

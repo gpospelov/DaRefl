@@ -29,8 +29,10 @@ class QuickSimEditor : public QWidget
 {
     Q_OBJECT
 public:
-    QuickSimEditor(ApplicationModels* app_models, QWidget* parent = nullptr);
+    QuickSimEditor(QWidget* parent = nullptr);
     ~QuickSimEditor();
+
+    void setModels(ApplicationModels* models);
 
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;

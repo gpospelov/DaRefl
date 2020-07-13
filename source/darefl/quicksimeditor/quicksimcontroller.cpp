@@ -30,12 +30,9 @@ namespace
 const int profile_points_count = 400;
 }
 
-QuickSimController::QuickSimController(ApplicationModels* app_models, QObject* parent)
-    : QObject(parent), sample_model(app_models->sampleModel()), job_model(app_models->jobModel()),
-      material_model(app_models->materialModel()), job_manager(new JobManager(this))
+QuickSimController::QuickSimController(QObject* parent)
+    : QObject(parent), job_manager(new JobManager(this))
 {
-    setup_multilayer_tracking();
-    setup_jobmanager_connections();
 }
 
 QuickSimController::~QuickSimController()
@@ -44,6 +41,22 @@ QuickSimController::~QuickSimController()
         material_model->mapper()->unsubscribe(this);
     if (sample_model)
         sample_model->mapper()->unsubscribe(this);
+}
+
+void QuickSimController::setModels(ApplicationModels* models)
+{
+    if (material_model)
+        material_model->mapper()->unsubscribe(this);
+    if (sample_model)
+        sample_model->mapper()->unsubscribe(this);
+
+    sample_model = models->sampleModel();
+    material_model = models->materialModel();
+    job_model = models->jobModel();
+
+    if (material_model && material_model && job_model)
+        setup_multilayer_tracking();
+    setup_jobmanager_connections();
 }
 
 //! Requests interruption of running simulaitons.
@@ -78,6 +91,9 @@ void QuickSimController::onMultiLayerChange()
 
 void QuickSimController::onSimulationCompleted()
 {
+    if (!job_model)
+        return;
+
     auto [xmin, xmax, values] = job_manager->simulationResult();
     auto data = job_model->specular_data();
     data->setAxis(ModelView::FixedBinAxisItem::create(values.size(), xmin, xmax));
