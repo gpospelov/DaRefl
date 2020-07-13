@@ -23,8 +23,10 @@ class LayerEditorActions : public QObject
 {
     Q_OBJECT
 public:
-    LayerEditorActions(SampleModel* model, QObject* parent = nullptr);
+    LayerEditorActions(QObject* parent = nullptr);
     ~LayerEditorActions();
+
+    void setModel(SampleModel* model);
 
     void onAddLayer();
     void onAddMultiLayer();

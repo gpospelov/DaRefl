@@ -20,9 +20,9 @@
 using namespace ModelView;
 
 struct LayerEditorActions::LayerEditorActionsImpl {
-    SampleModel* model{nullptr};
+    SampleModel* sample_model{nullptr};
     LayerSelectionModel* selection_model{nullptr};
-    LayerEditorActionsImpl(SampleModel* model) : model(model) {}
+    LayerEditorActionsImpl() {}
 
     //! Finds parent and tagrow to insert new item
 
@@ -43,39 +43,53 @@ struct LayerEditorActions::LayerEditorActionsImpl {
     }
 };
 
-LayerEditorActions::LayerEditorActions(SampleModel* model, QObject* parent)
-    : QObject(parent), p_impl(std::make_unique<LayerEditorActionsImpl>(model))
+LayerEditorActions::LayerEditorActions(QObject* parent)
+    : QObject(parent), p_impl(std::make_unique<LayerEditorActionsImpl>())
 {
+}
+
+void LayerEditorActions::setModel(SampleModel* model)
+{
+    p_impl->sample_model = model;
 }
 
 //! Adds layer after selected item. If more than one item is selected, adds after the last one.
 
 void LayerEditorActions::onAddLayer()
 {
+    if (!p_impl->sample_model)
+        return;
+
     auto [parent, tagrow] = p_impl->locateInsertPlace();
-    auto new_item = p_impl->model->insertItem<LayerItem>(parent, tagrow);
+    auto new_item = p_impl->sample_model->insertItem<LayerItem>(parent, tagrow);
     p_impl->selection_model->selectItem(new_item);
 }
 
 void LayerEditorActions::onAddMultiLayer()
 {
+    if (!p_impl->sample_model)
+        return;
+
     auto [parent, tagrow] = p_impl->locateInsertPlace();
-    auto multilayer = p_impl->model->insertItem<MultiLayerItem>(parent, tagrow);
-    p_impl->model->insertItem<LayerItem>(multilayer);
-    p_impl->model->insertItem<LayerItem>(multilayer);
+    auto multilayer = p_impl->sample_model->insertItem<MultiLayerItem>(parent, tagrow);
+    p_impl->sample_model->insertItem<LayerItem>(multilayer);
+    p_impl->sample_model->insertItem<LayerItem>(multilayer);
     p_impl->selection_model->selectItem(multilayer);
 }
 
 void LayerEditorActions::onClone()
 {
+    if (!p_impl->sample_model)
+        return;
+
     auto items = p_impl->selection_model->selectedItems();
     if (items.empty())
         return;
 
     std::vector<ModelView::SessionItem*> new_selection;
     for (auto to_clone : items)
-        new_selection.push_back(
-            p_impl->model->copyItem(to_clone, to_clone->parent(), to_clone->tagRow().next()));
+        new_selection.push_back(p_impl->sample_model->copyItem(to_clone, to_clone->parent(),
+                                                               to_clone->tagRow().next()));
 
     p_impl->selection_model->selectItems(new_selection);
 }

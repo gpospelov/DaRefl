@@ -28,17 +28,19 @@ class LayerEditor : public QWidget
 {
     Q_OBJECT
 public:
-    LayerEditor(ApplicationModels* models, QWidget* parent = nullptr);
+    LayerEditor(QWidget* parent = nullptr);
     ~LayerEditor();
+
+    void setModels(ApplicationModels* models);
 
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
     void selectionChanged();
 
 private:
-    LayerEditorActions* actions{nullptr};
-    LayerEditorToolBar* toolbar{nullptr};
-    LayerEditorWidget* editor_widget{nullptr};
+    LayerEditorActions* p_actions{nullptr};
+    LayerEditorToolBar* p_toolbar{nullptr};
+    LayerEditorWidget* p_editor_widget{nullptr};
 };
 
 #endif // DAREFL_LAYEREDITOR_LAYEREDITOR_H
