@@ -22,7 +22,7 @@ ImportDataEditorToolBar::ImportDataEditorToolBar(ImportDataEditorActions* editor
     auto action = new QAction("Import", this);
     action->setToolTip("Opens the data import dialog.");
     action->setIcon(QIcon(":/icons/import.svg"));
-    connect(action, &QAction::triggered, this, &ImportDataEditorToolBar::invokeImportDialog);
+    connect(action, &QAction::triggered, this, &ImportDataEditorToolBar::invokeImportDialogRequest);
     addAction(action);
 
     addSeparator();
@@ -32,7 +32,7 @@ ImportDataEditorToolBar::ImportDataEditorToolBar(ImportDataEditorActions* editor
         "Creates an empty canvas and appends it to the list.\n"
         "Canvas can hold multiple graphs, graphs can be moved between canvas.");
     add_group_action->setIcon(QIcon(":/icons/plus-box-outline.svg"));
-    connect(add_group_action, &QAction::triggered, [this]() { m_editorActions->addDataGroup(); });
+    connect(add_group_action, &QAction::triggered, [this]() { m_editorActions->onAddDataGroup(); });
     addAction(add_group_action);
 
     auto merge_group_action = new QAction("Merge", this);
@@ -41,14 +41,14 @@ ImportDataEditorToolBar::ImportDataEditorToolBar(ImportDataEditorActions* editor
     merge_group_action->setIcon(QIcon(":/icons/set-merge.svg"));
     merge_group_action->setObjectName("merge_group_action");
     connect(merge_group_action, &QAction::triggered,
-            [this]() { m_editorActions->mergeDataGroups(); });
+            [this]() { m_editorActions->onMergeDataGroups(); });
     addAction(merge_group_action);
 
     auto delete_action = new QAction("Remove", this);
     delete_action->setToolTip("Remove the currently selected item,\n"
                               "single graph or canvas with whole content.");
     delete_action->setIcon(QIcon(":/icons/beaker-remove-outline.svg"));
-    connect(delete_action, &QAction::triggered, [this]() { m_editorActions->deleteItem(); });
+    connect(delete_action, &QAction::triggered, [this]() { m_editorActions->onDeleteItem(); });
     addAction(delete_action);
 
     //    auto reset_action = new QAction("Reset loaded", this);
@@ -77,7 +77,7 @@ ImportDataEditorToolBar::ImportDataEditorToolBar(ImportDataEditorActions* editor
     reset_graph_action->setToolTip("Reset the graph aspect ratio");
     reset_graph_action->setIcon(QIcon(":/icons/aspect-ratio.svg"));
     connect(reset_graph_action, &QAction::triggered, this,
-            &ImportDataEditorToolBar::update_viewport);
+            &ImportDataEditorToolBar::updateViewportRequest);
     addAction(reset_graph_action);
 }
 
@@ -92,5 +92,5 @@ void ImportDataEditorToolBar::resetAll()
     int ret = reset_message->exec();
 
     if (ret == QMessageBox::Yes)
-        m_editorActions->resetAll();
+        m_editorActions->onResetAll();
 }

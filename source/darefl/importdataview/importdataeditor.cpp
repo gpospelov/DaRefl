@@ -66,8 +66,8 @@ ImportDataEditor::ImportDataEditor(RealDataModel* model, QWidget* parent)
 //! Set up the toolbar for the data management
 void ImportDataEditor::setupToolBar()
 {
-    connect(m_editorToolBar, &ImportDataEditorToolBar::invokeImportDialog, this, &ImportDataEditor::invokeImportDialog);
-    connect(m_editorToolBar, &ImportDataEditorToolBar::update_viewport, p_graph_canvas,
+    connect(m_editorToolBar, &ImportDataEditorToolBar::invokeImportDialogRequest, this, &ImportDataEditor::invokeImportDialog);
+    connect(m_editorToolBar, &ImportDataEditorToolBar::updateViewportRequest, p_graph_canvas,
             &ModelView::GraphCanvas::update_viewport);
 }
 
@@ -223,5 +223,5 @@ void ImportDataEditor::resetAll()
     int ret = reset_message->exec();
 
     if (ret == QMessageBox::Yes)
-        m_editorActions->resetAll();
+        m_editorActions->onResetAll();
 }

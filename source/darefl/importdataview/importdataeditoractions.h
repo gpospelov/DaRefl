@@ -26,10 +26,10 @@ public:
                             QObject* parent = nullptr);
 
 public slots:
-    void addDataGroup();
-    void mergeDataGroups();
-    void deleteItem();
-    void resetAll();
+    void onAddDataGroup();
+    void onMergeDataGroups();
+    void onDeleteItem();
+    void onResetAll();
 
 private:
     RealDataModel* m_dataModel{nullptr};

@@ -24,8 +24,8 @@ public:
     ImportDataEditorToolBar(ImportDataEditorActions* editorActions, QWidget* parent = nullptr);
 
 signals:
-    void invokeImportDialog();
-    void update_viewport();
+    void invokeImportDialogRequest();
+    void updateViewportRequest();
 
 private slots:
     void resetAll();

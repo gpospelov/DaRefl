@@ -25,7 +25,7 @@ ImportDataEditorActions::ImportDataEditorActions(RealDataModel* model,
 
 //! Create a new data grou item in the current data collection item
 
-void ImportDataEditorActions::addDataGroup()
+void ImportDataEditorActions::onAddDataGroup()
 {
     auto data_node = ModelView::Utils::TopItem<DataCollectionItem>(m_dataModel);
     m_dataModel->addDataToCollection(RealDataStruct(), data_node, nullptr);
@@ -33,7 +33,7 @@ void ImportDataEditorActions::addDataGroup()
 
 //! Merge the selected actions
 
-void ImportDataEditorActions::mergeDataGroups()
+void ImportDataEditorActions::onMergeDataGroups()
 {
     auto items = m_selectionModel->selectedItems();
     items.erase(std::remove(begin(items), end(items), nullptr), end(items));
@@ -45,13 +45,13 @@ void ImportDataEditorActions::mergeDataGroups()
 
 //! Delete the currently selected item
 
-void ImportDataEditorActions::deleteItem()
+void ImportDataEditorActions::onDeleteItem()
 {
     std::vector<SessionItem*> items_to_delete = m_selectionModel->selectedItems();
     m_dataModel->removeDataFromCollection(items_to_delete);
 }
 
-void ImportDataEditorActions::resetAll()
+void ImportDataEditorActions::onResetAll()
 {
     auto data_node = ModelView::Utils::TopItem<DataCollectionItem>(m_dataModel);
     m_dataModel->removeAllDataFromCollection(data_node);
