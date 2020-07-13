@@ -9,8 +9,10 @@
 
 #include <QFontMetrics>
 #include <QSize>
+#include <QToolBar>
 #include <QWidget>
 #include <darefl/mainwindow/styleutils.h>
+#include <darefl/resources/resources.h>
 
 QSize StyleUtils::ToolBarIconSize()
 {
@@ -25,4 +27,11 @@ QSize StyleUtils::DockSizeHint()
 QSize StyleUtils::DockMinimumSizeHint()
 {
     return QSize(320, 240);
+}
+
+void StyleUtils::SetToolBarStyleTextBesides(QToolBar* toolbar)
+{
+    InitIconResources();
+    toolbar->setIconSize(StyleUtils::ToolBarIconSize());
+    toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 }

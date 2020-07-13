@@ -17,6 +17,7 @@ ImportDataEditorToolBar::ImportDataEditorToolBar(ImportDataEditorActions* editor
                                                  QWidget* parent)
     : QToolBar(parent), m_editorActions(editorActions)
 {
+    StyleUtils::SetToolBarStyleTextBesides(this);
 
     auto add_group_action = new QAction("Add a data group", this);
     add_group_action->setToolTip("Add a data group to manage loaded items.");

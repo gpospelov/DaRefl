@@ -12,6 +12,7 @@
 
 class QSize;
 class QFont;
+class QToolBar;
 
 //! Namespace for central access to all theme styling.
 
@@ -26,6 +27,9 @@ QSize DockSizeHint();
 
 //! Hint on minimum size of docks on main reflectometry window.
 QSize DockMinimumSizeHint();
+
+//! Set common style for a toolbar.
+void SetToolBarStyleTextBesides(QToolBar* toolbar);
 
 }; // namespace StyleUtils
 
