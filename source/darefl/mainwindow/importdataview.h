@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_MAINWINDOW_IMPORTWINDOW_H
-#define DAREFL_MAINWINDOW_IMPORTWINDOW_H
+#ifndef DAREFL_MAINWINDOW_IMPORTDATAVIEW_H
+#define DAREFL_MAINWINDOW_IMPORTDATAVIEW_H
 
 #include <QWidget>
 
@@ -16,14 +16,14 @@ class ApplicationModels;
 
 //! Main window to import user data.
 
-class ImportWindow : public QWidget
+class ImportDataView : public QWidget
 {
     Q_OBJECT
 public:
-    ImportWindow(ApplicationModels* models, QWidget* parent = nullptr);
+    ImportDataView(ApplicationModels* models, QWidget* parent = nullptr);
 
 private:
     ApplicationModels* models{nullptr};
 };
 
-#endif // DAREFL_MAINWINDOW_IMPORTWINDOW_H
+#endif // DAREFL_MAINWINDOW_IMPORTDATAVIEW_H

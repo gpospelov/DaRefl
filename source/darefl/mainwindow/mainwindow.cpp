@@ -13,7 +13,7 @@
 #include <QMenuBar>
 #include <QSettings>
 #include <darefl/mainwindow/actionmanager.h>
-#include <darefl/mainwindow/importwindow.h>
+#include <darefl/mainwindow/importdataview.h>
 #include <darefl/mainwindow/mainbarwidget.h>
 #include <darefl/mainwindow/mainwindow.h>
 #include <darefl/mainwindow/refldockwindow.h>
@@ -67,14 +67,14 @@ void MainWindow::init_application()
 void MainWindow::init_components()
 {
     m_welcomeView = new WelcomeView(m_models.get());
-    m_importWindow = new ImportWindow(m_models.get());
+    m_importDataView = new ImportDataView(m_models.get());
     m_reflWindow = new ReflDockWindow(m_models.get());
     m_settingsView = new SettingsView(m_models.get());
 
     m_barWidget = new MainBarWidget;
 
     m_barWidget->addWidget(m_welcomeView, "Project");
-    m_barWidget->addWidget(m_importWindow, "Data");
+    m_barWidget->addWidget(m_importDataView, "Data");
     m_barWidget->addWidget(m_reflWindow, "Simulation");
     m_barWidget->addWidget(new QWidget, "Fitting", false);
     m_barWidget->addWidget(new QWidget, "Export", false);
