@@ -20,7 +20,7 @@ MaterialEditorToolBar::MaterialEditorToolBar(MaterialEditorActions* actions, QWi
     InitIconResources();
 
     setIconSize(StyleUtils::ToolBarIconSize());
-    setToolButtonStyle(Qt::ToolButtonFollowStyle);
+    setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
     auto action = new QAction("Add material", this);
     action->setIcon(QIcon(":/icons/plus-circle-outline.svg"));
