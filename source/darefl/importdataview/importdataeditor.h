@@ -29,13 +29,13 @@ class ParsedFileOutptut;
 } // namespace DataImportLogic
 
 class RealDataModel;
-class QToolBar;
 class QTreeView;
 class QBoxLayout;
 class RealDataStruct;
 class DataSelectionModel;
 class DataViewModel;
 class ImportDataEditorActions;
+class ImportDataEditorToolBar;
 
 //! Main editor to import user data.
 
@@ -67,7 +67,7 @@ private:
     DataViewModel* p_view_model{nullptr};
     DataSelectionModel* p_data_selection_model{nullptr};
     ImportDataEditorActions* m_editorActions{nullptr};
-    QToolBar* p_toolbar{nullptr};
+    ImportDataEditorToolBar* m_editorToolBar{nullptr};
     ModelView::PropertyTreeView* p_property_tree{nullptr};
     ModelView::GraphCanvas* p_graph_canvas{nullptr};
 };

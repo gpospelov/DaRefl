@@ -12,6 +12,8 @@
 
 #include <QToolBar>
 
+class ImportDataEditorActions;
+
 //! Toolbar for ImportDataEditor.
 
 class ImportDataEditorToolBar : public QToolBar
@@ -19,7 +21,17 @@ class ImportDataEditorToolBar : public QToolBar
     Q_OBJECT
 
 public:
-    ImportDataEditorToolBar(QWidget* parent = nullptr);
+    ImportDataEditorToolBar(ImportDataEditorActions* editorActions, QWidget* parent = nullptr);
+
+signals:
+    void invokeImportDialog();
+    void update_viewport();
+
+private slots:
+    void resetAll();
+
+private:
+    ImportDataEditorActions* m_editorActions{nullptr};
 };
 
 #endif // DAREFL_IMPORTDATAVIEW_IMPORTDATAEDITORTOOLBAR_H
