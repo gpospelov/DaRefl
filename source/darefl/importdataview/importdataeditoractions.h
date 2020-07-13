@@ -12,6 +12,9 @@
 
 #include <QObject>
 
+class RealDataModel;
+class DataSelectionModel;
+
 //! Actions for ImportDataEditor.
 
 class ImportDataEditorActions : public QObject
@@ -19,7 +22,18 @@ class ImportDataEditorActions : public QObject
     Q_OBJECT
 
 public:
-    ImportDataEditorActions(QObject* parent = nullptr);
+    ImportDataEditorActions(RealDataModel* model, DataSelectionModel* selectionModel,
+                            QObject* parent = nullptr);
+
+public slots:
+    void addDataGroup();
+    void mergeDataGroups();
+    void deleteItem();
+    void resetAll();
+
+private:
+    RealDataModel* m_dataModel{nullptr};
+    DataSelectionModel* m_selectionModel{nullptr};
 };
 
 #endif // DAREFL_IMPORTDATAVIEW_IMPORTDATAEDITORACTIONS_H

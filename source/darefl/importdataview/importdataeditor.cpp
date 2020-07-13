@@ -12,6 +12,7 @@
 #include <darefl/importdataview/dataselectionmodel.h>
 #include <darefl/importdataview/dataviewmodel.h>
 #include <darefl/importdataview/importdataeditor.h>
+#include <darefl/importdataview/importdataeditoractions.h>
 #include <darefl/mainwindow/styleutils.h>
 #include <darefl/model/datasetconvenience.h>
 #include <darefl/model/datasetitem.h>
@@ -44,6 +45,7 @@ ImportDataEditor::ImportDataEditor(RealDataModel* model, QWidget* parent)
     : QWidget(parent), p_tree_view(new QTreeView(this)), p_model(model),
       p_view_model(new DataViewModel(model)),
       p_data_selection_model(new DataSelectionModel(p_view_model, p_tree_view)),
+      m_editorActions(new ImportDataEditorActions(p_model, p_data_selection_model, this)),
       p_toolbar(new QToolBar), p_graph_canvas(new GraphCanvas),
       p_property_tree(new PropertyTreeView)
 {
@@ -113,10 +115,10 @@ void ImportDataEditor::setupToolBar()
     p_toolbar->addWidget(empty);
     p_toolbar->addAction(reset_graph_action);
 
-    connect(add_group_action, &QAction::triggered, this, &ImportDataEditor::addDataGroup);
-    connect(merge_group_action, &QAction::triggered, this, &ImportDataEditor::mergeDataGroups);
+    connect(add_group_action, &QAction::triggered, [this](){m_editorActions->addDataGroup();});
+    connect(merge_group_action, &QAction::triggered, [this](){m_editorActions->mergeDataGroups();});
     connect(load_action, &QAction::triggered, this, &ImportDataEditor::invokeImportDialog);
-    connect(delete_action, &QAction::triggered, this, &ImportDataEditor::deleteItem);
+    connect(delete_action, &QAction::triggered, [this](){m_editorActions->deleteItem();});
     connect(reset_action, &QAction::triggered, this, &ImportDataEditor::resetAll);
     connect(reset_graph_action, &QAction::triggered, p_graph_canvas,
             &ModelView::GraphCanvas::update_viewport);
@@ -201,24 +203,6 @@ void ImportDataEditor::setMergeEnabled(bool enabled)
     action->setEnabled(enabled);
 }
 
-//! Create a new data grou item in the current data collection item
-void ImportDataEditor::addDataGroup()
-{
-    DataCollectionItem* data_node = ModelView::Utils::TopItem<DataCollectionItem>(p_model);
-    p_model->addDataToCollection(RealDataStruct(), data_node, nullptr);
-}
-
-//! Merge the selected actions
-void ImportDataEditor::mergeDataGroups()
-{
-    auto items = p_data_selection_model->selectedItems();
-    items.erase(std::remove(begin(items), end(items), nullptr), end(items));
-    if (!p_model->checkAllGroup(items))
-        return;
-
-    p_model->mergeItems(items);
-}
-
 //! Invoke the data load dialog and connect its state
 void ImportDataEditor::invokeImportDialog()
 {
@@ -279,12 +263,6 @@ ImportDataEditor::convertToRealDataStruct(const std::string& path,
     return data_struct;
 }
 
-//! Delete the currently selected item
-void ImportDataEditor::deleteItem()
-{
-    std::vector<SessionItem*> items_to_delete = p_data_selection_model->selectedItems();
-    p_model->removeDataFromCollection(items_to_delete);
-}
 
 //! Reset all items
 void ImportDataEditor::resetAll()
@@ -297,8 +275,6 @@ void ImportDataEditor::resetAll()
     reset_message->setDefaultButton(QMessageBox::Cancel);
     int ret = reset_message->exec();
 
-    if (ret == QMessageBox::Yes) {
-        DataCollectionItem* data_node = ModelView::Utils::TopItem<DataCollectionItem>(p_model);
-        p_model->removeAllDataFromCollection(data_node);
-    }
+    if (ret == QMessageBox::Yes)
+        m_editorActions->resetAll();
 }
