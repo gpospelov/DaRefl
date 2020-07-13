@@ -7,6 +7,10 @@ target_sources(${library_name} PRIVATE
     dataviewmodel.h
     importdataeditor.cpp
     importdataeditor.h
+    importdataeditortoolbal.cpp
+    importdataeditortoolbal.h
+    importdataeditoractions.cpp
+    importdataeditoractions.h
     importdataview.cpp
     importdataview.h
 )
