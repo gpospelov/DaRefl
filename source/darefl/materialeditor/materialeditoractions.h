@@ -23,8 +23,10 @@ class MaterialEditorActions : public QObject
 {
     Q_OBJECT
 public:
-    MaterialEditorActions(MaterialModel* material_model, QObject* parent = nullptr);
+    MaterialEditorActions(QObject* parent = nullptr);
     ~MaterialEditorActions();
+
+    void setModel(MaterialModel* model);
 
     void onAddMaterial();
     void onCloneMaterial();

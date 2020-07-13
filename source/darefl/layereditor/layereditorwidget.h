@@ -30,8 +30,10 @@ class LayerEditorWidget : public QWidget
 {
     Q_OBJECT
 public:
-    LayerEditorWidget(ApplicationModels* models, QWidget* parent = nullptr);
+    LayerEditorWidget(QWidget* parent = nullptr);
     ~LayerEditorWidget();
+
+    void setModels(ApplicationModels* models);
 
     LayerSelectionModel* selectionModel() const;
 

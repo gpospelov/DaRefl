@@ -35,12 +35,13 @@ public:
         SampleModel sample_model;
         LayerViewModel view_model{&sample_model};
         LayerSelectionModel selection_model{&view_model};
-        LayerEditorActions actions{&sample_model};
+        LayerEditorActions actions;
         SessionItem* multilayer{nullptr};
         SessionItem* top{nullptr};
         SessionItem* bottom{nullptr};
         TestData()
         {
+            actions.setModel(&sample_model);
             actions.setSelectionModel(&selection_model);
             multilayer = sample_model.insertItem<MultiLayerItem>();
             top = sample_model.insertItem<LayerItem>(multilayer);

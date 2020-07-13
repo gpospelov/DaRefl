@@ -13,22 +13,27 @@
 #include <darefl/materialeditor/materialeditoractions.h>
 #include <darefl/materialeditor/materialeditortoolbar.h>
 #include <darefl/materialeditor/materialeditorwidget.h>
+#include <darefl/model/applicationmodels.h>
 #include <darefl/model/materialmodel.h>
 
-MaterialEditor::MaterialEditor(MaterialModel* material_model, QWidget* parent)
-    : QWidget(parent), material_model(material_model),
-      actions(new MaterialEditorActions(material_model, this)),
-      toolbar(new MaterialEditorToolBar(actions)),
-      editor_widget(new MaterialEditorWidget(material_model))
+MaterialEditor::MaterialEditor(QWidget* parent)
+    : QWidget(parent), p_actions(new MaterialEditorActions(this)),
+      p_toolbar(new MaterialEditorToolBar(p_actions)), p_editor_widget(new MaterialEditorWidget)
 {
     setWindowTitle("Material editor");
 
     auto layout = new QVBoxLayout;
-    layout->addWidget(toolbar);
-    layout->addWidget(editor_widget);
+    layout->addWidget(p_toolbar);
+    layout->addWidget(p_editor_widget);
     setLayout(layout);
+}
 
-    actions->setMaterialSelectionModel(editor_widget->selectionModel());
+//! Set the mododel for the different items
+void MaterialEditor::setModels(ApplicationModels* models)
+{
+    p_editor_widget->setModels(models);
+    p_actions->setModel(models->materialModel());
+    p_actions->setMaterialSelectionModel(p_editor_widget->selectionModel());
 }
 
 QSize MaterialEditor::sizeHint() const

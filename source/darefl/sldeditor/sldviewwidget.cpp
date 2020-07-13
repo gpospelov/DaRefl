@@ -15,7 +15,7 @@
 #include <darefl/sldeditor/sldviewwidget.h>
 
 //! The constructor
-SLDViewWidget::SLDViewWidget(ApplicationModels* app_models, QWidget* parent) : QGraphicsView(parent)
+SLDViewWidget::SLDViewWidget(QWidget* parent) : QGraphicsView(parent)
 {
     GraphicsScene* scene_item = new GraphicsScene(parent = this);
     setScene(scene_item);
@@ -24,16 +24,18 @@ SLDViewWidget::SLDViewWidget(ApplicationModels* app_models, QWidget* parent) : Q
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setContentsMargins(0, 0, 0, 0);
-
-    m_sld_controller = std::make_unique<SLDElementController>(app_models->materialModel(),
-                                                              app_models->sampleModel(),
-                                                              app_models->sldViewModel(), nullptr);
-    m_sld_controller->setScene(scene_item);
-    scene_item->setItem(app_models->jobModel()->sld_viewport());
 }
 
 //! The destructor
 SLDViewWidget::~SLDViewWidget() = default;
+
+void SLDViewWidget::setModels(ApplicationModels* models)
+{
+    m_sld_controller = std::make_unique<SLDElementController>(
+        models->materialModel(), models->sampleModel(), models->sldViewModel(), nullptr);
+    m_sld_controller->setScene(dynamic_cast<GraphicsScene*>(scene()));
+    dynamic_cast<GraphicsScene*>(scene())->setItem(models->jobModel()->sld_viewport());
+}
 
 //! Resize event management
 void SLDViewWidget::resizeEvent(QResizeEvent* event)

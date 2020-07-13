@@ -19,8 +19,10 @@ class SLDViewWidget : public QGraphicsView
     Q_OBJECT
 
 public:
-    SLDViewWidget(ApplicationModels* sld_model, QWidget* parent = nullptr);
+    SLDViewWidget(QWidget* parent = nullptr);
     ~SLDViewWidget();
+
+    void setModels(ApplicationModels* models);
 
 protected:
     void resizeEvent(QResizeEvent* event);

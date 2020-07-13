@@ -29,8 +29,10 @@ class QuickSimController : public QObject
 {
     Q_OBJECT
 public:
-    QuickSimController(ApplicationModels* app_models, QObject* parent = nullptr);
+    QuickSimController(QObject* parent = nullptr);
     ~QuickSimController();
+
+    void setModels(ApplicationModels* models);
 
 signals:
     void progressChanged(int value);

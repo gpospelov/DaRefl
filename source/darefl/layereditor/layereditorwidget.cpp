@@ -21,26 +21,30 @@
 #include <mvvm/viewmodel/standardviewmodels.h>
 #include <mvvm/viewmodel/viewmodeldelegate.h>
 
-LayerEditorWidget::LayerEditorWidget(ApplicationModels* models, QWidget* parent)
-    : QWidget(parent), view_model(std::make_unique<LayerViewModel>(models->sampleModel())),
-      selection_model(new LayerSelectionModel(view_model.get(), this)),
-      layer_view(new LayerTreeView), m_delegate(std::make_unique<ModelView::ViewModelDelegate>())
+LayerEditorWidget::LayerEditorWidget(QWidget* parent)
+    : QWidget(parent), layer_view(new LayerTreeView),
+      m_delegate(std::make_unique<ModelView::ViewModelDelegate>())
 {
     auto layout = new QVBoxLayout;
     layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(layer_view);
     setLayout(layout);
-
-    m_delegate->setEditorFactory(std::make_unique<CustomEditorFactory>(models));
-    view_model->setRootSessionItem(
-        ModelView::Utils::TopItem<MultiLayerItem>(models->sampleModel()));
-
-    layer_view->setModel(view_model.get());
-    layer_view->setSelectionModel(selection_model);
     layer_view->setItemDelegate(m_delegate.get());
 }
 
 LayerEditorWidget::~LayerEditorWidget() = default;
+
+void LayerEditorWidget::setModels(ApplicationModels* models)
+{
+    view_model = std::make_unique<LayerViewModel>(models->sampleModel());
+    selection_model = new LayerSelectionModel(view_model.get(), this);
+
+    m_delegate->setEditorFactory(std::make_unique<CustomEditorFactory>(models));
+    view_model->setRootSessionItem(
+        ModelView::Utils::TopItem<MultiLayerItem>(models->sampleModel()));
+    layer_view->setModel(view_model.get());
+    layer_view->setSelectionModel(selection_model);
+}
 
 LayerSelectionModel* LayerEditorWidget::selectionModel() const
 {

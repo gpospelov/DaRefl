@@ -16,21 +16,28 @@
 #include <darefl/mainwindow/styleutils.h>
 #include <darefl/model/applicationmodels.h>
 
-LayerEditor::LayerEditor(ApplicationModels* models, QWidget* parent)
-    : QWidget(parent), actions(new LayerEditorActions(models->sampleModel(), this)),
-      toolbar(new LayerEditorToolBar(actions)), editor_widget(new LayerEditorWidget(models))
+LayerEditor::LayerEditor(QWidget* parent)
+    : QWidget(parent), p_actions(new LayerEditorActions(this)),
+      p_toolbar(new LayerEditorToolBar(p_actions)), p_editor_widget(new LayerEditorWidget(this))
 {
     setWindowTitle("Layer editor");
 
     auto layout = new QVBoxLayout;
-    layout->addWidget(toolbar);
-    layout->addWidget(editor_widget);
+    layout->addWidget(p_toolbar);
+    layout->addWidget(p_editor_widget);
     setLayout(layout);
+}
 
-    connect(editor_widget->selectionModel(), &LayerSelectionModel::selectionChanged, this,
+//! Set the mododel for the different items
+void LayerEditor::setModels(ApplicationModels* models)
+{
+    p_actions->setModel(models->sampleModel());
+    p_editor_widget->setModels(models);
+
+    connect(p_editor_widget->selectionModel(), &LayerSelectionModel::selectionChanged, this,
             &LayerEditor::selectionChanged);
 
-    actions->setSelectionModel(editor_widget->selectionModel());
+    p_actions->setSelectionModel(p_editor_widget->selectionModel());
 }
 
 QSize LayerEditor::sizeHint() const
@@ -45,8 +52,8 @@ QSize LayerEditor::minimumSizeHint() const
 
 void LayerEditor::selectionChanged()
 {
-    toolbar->updateToolButtonStates(editor_widget->selectionModel()->firstSelected(),
-                                    editor_widget->selectionModel()->lastSelected());
+    p_toolbar->updateToolButtonStates(p_editor_widget->selectionModel()->firstSelected(),
+                                      p_editor_widget->selectionModel()->lastSelected());
 }
 
 LayerEditor::~LayerEditor() = default;

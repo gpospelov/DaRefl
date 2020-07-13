@@ -22,8 +22,10 @@ class SLDEditor : public QWidget
 {
 
 public:
-    SLDEditor(ApplicationModels* apps_model, QWidget* parent = nullptr);
+    SLDEditor(QWidget* parent = nullptr);
     ~SLDEditor();
+
+    void setModels(ApplicationModels* models);
 
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
