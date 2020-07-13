@@ -1,4 +1,3 @@
-
 target_sources(${library_name} PRIVATE
     actionmanager.cpp
     actionmanager.h
@@ -14,8 +13,6 @@ target_sources(${library_name} PRIVATE
     mainwindow.h
     refldockwindow.cpp
     refldockwindow.h
-    reflwidgets.cpp
-    reflwidgets.h
     styleutils.cpp
     styleutils.h
 )
