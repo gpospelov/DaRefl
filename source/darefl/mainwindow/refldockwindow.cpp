@@ -24,13 +24,20 @@ ReflDockWindow::ReflDockWindow(ApplicationModels* models, QWidget* parent)
     setup_toolbar();
     setup_centralwidget();
 
-    docks_controller->addWidget(0, new MaterialEditor(models->materialModel(), this),
-                                Qt::TopDockWidgetArea);
-    docks_controller->addWidget(1, new LayerEditor(models, this), Qt::TopDockWidgetArea);
+    auto material_editor = new MaterialEditor(this);
+    auto layer_editor = new LayerEditor(this);
+    auto sld_editor = new SLDEditor(this);
+    auto q_sim_editor = new QuickSimEditor(this);
 
-    docks_controller->addWidget(3, new SLDEditor(models, this), Qt::BottomDockWidgetArea);
+    docks_controller->addWidget(0, material_editor, Qt::TopDockWidgetArea);
+    docks_controller->addWidget(1, layer_editor, Qt::TopDockWidgetArea);
+    docks_controller->addWidget(3, sld_editor, Qt::BottomDockWidgetArea);
+    docks_controller->addWidget(4, q_sim_editor, Qt::BottomDockWidgetArea);
 
-    docks_controller->addWidget(4, new QuickSimEditor(models, this), Qt::BottomDockWidgetArea);
+    material_editor->setModels(models);
+    layer_editor->setModels(models);
+    sld_editor->setModels(models);
+    q_sim_editor->setModels(models);
 }
 
 ReflDockWindow::~ReflDockWindow() = default;
