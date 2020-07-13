@@ -20,7 +20,7 @@ using namespace ModelView;
 struct MaterialEditorActions::MaterialEditorActionsImpl {
     MaterialModel* material_model{nullptr};
     MaterialSelectionModel* selection_model{nullptr};
-    MaterialEditorActionsImpl(MaterialModel* material_model) : material_model(material_model) {}
+    MaterialEditorActionsImpl() {}
 
     //! Finds parent and tagrow to insert new item
 
@@ -41,13 +41,26 @@ struct MaterialEditorActions::MaterialEditorActionsImpl {
     }
 };
 
-MaterialEditorActions::MaterialEditorActions(MaterialModel* material_model, QObject* parent)
-    : QObject(parent), p_impl(std::make_unique<MaterialEditorActionsImpl>(material_model))
+MaterialEditorActions::MaterialEditorActions(QObject* parent)
+    : QObject(parent), p_impl(std::make_unique<MaterialEditorActionsImpl>())
 {
+}
+
+void MaterialEditorActions::setModel(MaterialModel* model)
+{
+    p_impl->material_model = model;
+}
+
+void MaterialEditorActions::setMaterialSelectionModel(MaterialSelectionModel* selection_model)
+{
+    p_impl->selection_model = selection_model;
 }
 
 void MaterialEditorActions::onAddMaterial()
 {
+    if (!p_impl->material_model)
+        return;
+
     auto [parent, tagrow] = p_impl->locateInsertPlace();
     auto material = p_impl->material_model->addDefaultMaterial(tagrow);
     p_impl->selection_model->selectItem(material);
@@ -57,6 +70,9 @@ void MaterialEditorActions::onAddMaterial()
 
 void MaterialEditorActions::onCloneMaterial()
 {
+    if (!p_impl->material_model)
+        return;
+
     std::vector<ModelView::SessionItem*> new_selection;
     for (const auto item : p_impl->selection_model->selectedMaterials())
         new_selection.push_back(p_impl->material_model->cloneMaterial(item));
@@ -65,18 +81,27 @@ void MaterialEditorActions::onCloneMaterial()
 
 void MaterialEditorActions::onRemoveMaterial()
 {
+    if (!p_impl->selection_model)
+        return;
+
     for (auto item : p_impl->selection_model->selectedMaterials())
         ModelView::Utils::DeleteItemFromModel(item);
 }
 
 void MaterialEditorActions::onMoveUp()
 {
+    if (!p_impl->selection_model)
+        return;
+
     for (auto item : p_impl->selection_model->selectedMaterials())
         ModelView::Utils::MoveUp(item);
 }
 
 void MaterialEditorActions::onMoveDown()
 {
+    if (!p_impl->selection_model)
+        return;
+
     auto items = p_impl->selection_model->selectedMaterials();
     std::reverse(items.begin(), items.end()); // to correctly move multiple selections
     for (auto item : p_impl->selection_model->selectedMaterials())
@@ -91,11 +116,6 @@ void MaterialEditorActions::onExport()
 void MaterialEditorActions::onImport()
 {
     qDebug() << "MaterialEditorActions::onImport()";
-}
-
-void MaterialEditorActions::setMaterialSelectionModel(MaterialSelectionModel* selection_model)
-{
-    p_impl->selection_model = selection_model;
 }
 
 MaterialEditorActions::~MaterialEditorActions() = default;

@@ -12,7 +12,7 @@
 
 #include <QWidget>
 
-class MaterialModel;
+class ApplicationModels;
 class MaterialEditorActions;
 class MaterialEditorToolBar;
 class MaterialEditorWidget;
@@ -28,17 +28,18 @@ class MaterialEditor : public QWidget
 {
     Q_OBJECT
 public:
-    MaterialEditor(MaterialModel* material_model, QWidget* parent = nullptr);
+    MaterialEditor(QWidget* parent = nullptr);
     ~MaterialEditor();
+
+    void setModels(ApplicationModels* models);
 
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
 
 private:
-    MaterialModel* material_model{nullptr};
-    MaterialEditorActions* actions{nullptr};
-    MaterialEditorToolBar* toolbar{nullptr};
-    MaterialEditorWidget* editor_widget{nullptr};
+    MaterialEditorActions* p_actions{nullptr};
+    MaterialEditorToolBar* p_toolbar{nullptr};
+    MaterialEditorWidget* p_editor_widget{nullptr};
 };
 
 #endif // DAREFL_MATERIALEDITOR_MATERIALEDITOR_H

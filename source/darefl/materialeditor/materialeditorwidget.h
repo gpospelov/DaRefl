@@ -19,6 +19,7 @@ class ViewModel;
 class ViewModelDelegate;
 } // namespace ModelView
 
+class ApplicationModels;
 class MaterialModel;
 class MaterialTableView;
 class MaterialTreeView;
@@ -31,8 +32,10 @@ class MaterialEditorWidget : public QWidget
 {
     Q_OBJECT
 public:
-    MaterialEditorWidget(MaterialModel* material_model, QWidget* parent = nullptr);
+    MaterialEditorWidget(QWidget* parent = nullptr);
     ~MaterialEditorWidget();
+
+    void setModels(ApplicationModels* models);
 
     MaterialSelectionModel* selectionModel() const;
 
