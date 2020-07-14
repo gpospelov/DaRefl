@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include <darefl/importdatawidgets/datarowstrategy.h>
+#include <darefl/importdataview/datarowstrategy.h>
 
 #include <mvvm/model/sessionitem.h>
 #include <mvvm/viewmodel/standardviewitems.h>

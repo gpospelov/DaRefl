@@ -9,9 +9,11 @@
 
 #include <darefl/famousloader/dataimportdialog.h>
 #include <darefl/famousloader/importoutput.h>
-#include <darefl/importdatawidgets/dataselectionmodel.h>
-#include <darefl/importdatawidgets/dataviewmodel.h>
-#include <darefl/importdatawidgets/importdataeditor.h>
+#include <darefl/importdataview/dataselectionmodel.h>
+#include <darefl/importdataview/dataviewmodel.h>
+#include <darefl/importdataview/importdataeditor.h>
+#include <darefl/importdataview/importdataeditoractions.h>
+#include <darefl/importdataview/importdataeditortoolbal.h>
 #include <darefl/mainwindow/styleutils.h>
 #include <darefl/model/datasetconvenience.h>
 #include <darefl/model/datasetitem.h>
@@ -44,7 +46,9 @@ ImportDataEditor::ImportDataEditor(RealDataModel* model, QWidget* parent)
     : QWidget(parent), p_tree_view(new QTreeView(this)), p_model(model),
       p_view_model(new DataViewModel(model)),
       p_data_selection_model(new DataSelectionModel(p_view_model, p_tree_view)),
-      p_toolbar(new QToolBar), p_graph_canvas(new GraphCanvas),
+      m_editorActions(new ImportDataEditorActions(p_model, p_data_selection_model, this)),
+      m_editorToolBar(new ImportDataEditorToolBar(m_editorActions, this)),
+      p_graph_canvas(new GraphCanvas),
       p_property_tree(new PropertyTreeView)
 {
     setupToolBar();
@@ -62,63 +66,8 @@ ImportDataEditor::ImportDataEditor(RealDataModel* model, QWidget* parent)
 //! Set up the toolbar for the data management
 void ImportDataEditor::setupToolBar()
 {
-    auto add_group_action = new QAction("Add a data group", this);
-    add_group_action->setToolTip("Add a data group to manage loaded items.");
-    add_group_action->setIcon(QIcon(":/icons/plus-box-outline.svg"));
-
-    auto merge_group_action = new QAction("Merge data groups", this);
-    merge_group_action->setToolTip("Merge selected data groups into one.");
-    merge_group_action->setIcon(QIcon(":/icons/set-merge.svg"));
-    merge_group_action->setObjectName("merge_group_action");
-
-    auto load_action = new QAction("Data Loader", this);
-    load_action->setToolTip("Opens the data loading dialog ...");
-    load_action->setIcon(QIcon(":/icons/import.svg"));
-
-    auto delete_action = new QAction("Delete selected", this);
-    delete_action->setToolTip("Remove the currently selected item.");
-    delete_action->setIcon(QIcon(":/icons/file-remove.svg"));
-
-    auto reset_action = new QAction("Reset loaded", this);
-    reset_action->setToolTip("Reset all the loaded items.");
-    reset_action->setIcon(QIcon(":/icons/beaker-remove-outline.svg"));
-
-    auto undo_action = new QAction("Undo data action", this);
-    undo_action->setToolTip("Undo the action last performed.");
-    undo_action->setIcon(QIcon(":/icons/undo.svg"));
-
-    auto redo_action = new QAction("Redo data action", this);
-    redo_action->setToolTip("Redo the action just performed.");
-    redo_action->setIcon(QIcon(":/icons/redo.svg"));
-
-    auto reset_graph_action = new QAction("Reset Aspect ratio", this);
-    reset_graph_action->setToolTip("Reset the graph aspect ratio");
-    reset_graph_action->setIcon(QIcon(":/icons/aspect-ratio.svg"));
-
-    p_toolbar->setIconSize(StyleUtils::ToolBarIconSize());
-    p_toolbar->setOrientation(Qt::Horizontal);
-
-    p_toolbar->addAction(add_group_action);
-    p_toolbar->addAction(merge_group_action);
-    p_toolbar->addAction(load_action);
-    p_toolbar->addSeparator();
-    p_toolbar->addAction(delete_action);
-    p_toolbar->addAction(reset_action);
-    p_toolbar->addSeparator();
-    p_toolbar->addAction(undo_action);
-    p_toolbar->addAction(redo_action);
-
-    auto empty = new QWidget(p_toolbar);
-    empty->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-    p_toolbar->addWidget(empty);
-    p_toolbar->addAction(reset_graph_action);
-
-    connect(add_group_action, &QAction::triggered, this, &ImportDataEditor::addDataGroup);
-    connect(merge_group_action, &QAction::triggered, this, &ImportDataEditor::mergeDataGroups);
-    connect(load_action, &QAction::triggered, this, &ImportDataEditor::invokeImportDialog);
-    connect(delete_action, &QAction::triggered, this, &ImportDataEditor::deleteItem);
-    connect(reset_action, &QAction::triggered, this, &ImportDataEditor::resetAll);
-    connect(reset_graph_action, &QAction::triggered, p_graph_canvas,
+    connect(m_editorToolBar, &ImportDataEditorToolBar::invokeImportDialogRequest, this, &ImportDataEditor::invokeImportDialog);
+    connect(m_editorToolBar, &ImportDataEditorToolBar::updateViewportRequest, p_graph_canvas,
             &ModelView::GraphCanvas::update_viewport);
 }
 
@@ -157,7 +106,7 @@ void ImportDataEditor::setupLayout()
     main_splitter->setStretchFactor(0, 0);
     main_splitter->setStretchFactor(1, 1);
 
-    main_layout->addWidget(p_toolbar);
+    main_layout->addWidget(m_editorToolBar);
     main_layout->addWidget(main_splitter);
 }
 
@@ -199,24 +148,6 @@ void ImportDataEditor::setMergeEnabled(bool enabled)
 {
     auto action = findChild<QAction*>("merge_group_action");
     action->setEnabled(enabled);
-}
-
-//! Create a new data grou item in the current data collection item
-void ImportDataEditor::addDataGroup()
-{
-    DataCollectionItem* data_node = ModelView::Utils::TopItem<DataCollectionItem>(p_model);
-    p_model->addDataToCollection(RealDataStruct(), data_node, nullptr);
-}
-
-//! Merge the selected actions
-void ImportDataEditor::mergeDataGroups()
-{
-    auto items = p_data_selection_model->selectedItems();
-    items.erase(std::remove(begin(items), end(items), nullptr), end(items));
-    if (!p_model->checkAllGroup(items))
-        return;
-
-    p_model->mergeItems(items);
 }
 
 //! Invoke the data load dialog and connect its state
@@ -279,12 +210,6 @@ ImportDataEditor::convertToRealDataStruct(const std::string& path,
     return data_struct;
 }
 
-//! Delete the currently selected item
-void ImportDataEditor::deleteItem()
-{
-    std::vector<SessionItem*> items_to_delete = p_data_selection_model->selectedItems();
-    p_model->removeDataFromCollection(items_to_delete);
-}
 
 //! Reset all items
 void ImportDataEditor::resetAll()
@@ -297,8 +222,6 @@ void ImportDataEditor::resetAll()
     reset_message->setDefaultButton(QMessageBox::Cancel);
     int ret = reset_message->exec();
 
-    if (ret == QMessageBox::Yes) {
-        DataCollectionItem* data_node = ModelView::Utils::TopItem<DataCollectionItem>(p_model);
-        p_model->removeAllDataFromCollection(data_node);
-    }
+    if (ret == QMessageBox::Yes)
+        m_editorActions->onResetAll();
 }

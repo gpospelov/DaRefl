@@ -12,6 +12,7 @@
 
 class QSize;
 class QFont;
+class QToolBar;
 
 //! Namespace for central access to all theme styling.
 
@@ -27,10 +28,8 @@ QSize DockSizeHint();
 //! Hint on minimum size of docks on main reflectometry window.
 QSize DockMinimumSizeHint();
 
-//! Returns font for sections (25% large than system font).
-QFont sectionFont(bool bold = false);
-
-int LargeButtonHeight();
+//! Set common style for a toolbar.
+void SetToolBarStyleTextBesides(QToolBar* toolbar);
 
 }; // namespace StyleUtils
 

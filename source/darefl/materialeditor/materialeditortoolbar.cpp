@@ -12,15 +12,11 @@
 #include <darefl/mainwindow/styleutils.h>
 #include <darefl/materialeditor/materialeditoractions.h>
 #include <darefl/materialeditor/materialeditortoolbar.h>
-#include <darefl/resources/resources.h>
 
 MaterialEditorToolBar::MaterialEditorToolBar(MaterialEditorActions* actions, QWidget* parent)
     : QToolBar(parent)
 {
-    InitIconResources();
-
-    setIconSize(StyleUtils::ToolBarIconSize());
-    setToolButtonStyle(Qt::ToolButtonFollowStyle);
+    StyleUtils::SetToolBarStyleTextBesides(this);
 
     auto action = new QAction("Add material", this);
     action->setIcon(QIcon(":/icons/plus-circle-outline.svg"));

@@ -29,12 +29,13 @@ class ParsedFileOutptut;
 } // namespace DataImportLogic
 
 class RealDataModel;
-class QToolBar;
 class QTreeView;
 class QBoxLayout;
 class RealDataStruct;
 class DataSelectionModel;
 class DataViewModel;
+class ImportDataEditorActions;
+class ImportDataEditorToolBar;
 
 //! Main editor to import user data.
 
@@ -52,15 +53,12 @@ private:
     void selectionChanged();
     void setMergeEnabled(bool enabled);
 
-    void addDataGroup();
-    void mergeDataGroups();
     void invokeImportDialog();
     std::string selectedDataGroupItem() const;
     void onImportDialogAccept(DataImportLogic::ImportOutput import_output);
     RealDataStruct convertToRealDataStruct(const std::string& path,
                                            const DataImportLogic::ParsedFileOutptut* import_output,
                                            const int column);
-    void deleteItem();
     void resetAll();
 
 private:
@@ -68,7 +66,8 @@ private:
     RealDataModel* p_model{nullptr};
     DataViewModel* p_view_model{nullptr};
     DataSelectionModel* p_data_selection_model{nullptr};
-    QToolBar* p_toolbar{nullptr};
+    ImportDataEditorActions* m_editorActions{nullptr};
+    ImportDataEditorToolBar* m_editorToolBar{nullptr};
     ModelView::PropertyTreeView* p_property_tree{nullptr};
     ModelView::GraphCanvas* p_graph_canvas{nullptr};
 };

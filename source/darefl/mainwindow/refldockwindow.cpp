@@ -12,10 +12,10 @@
 #include <darefl/layereditor/layereditor.h>
 #include <darefl/mainwindow/dockscontroller.h>
 #include <darefl/mainwindow/refldockwindow.h>
-#include <darefl/mainwindow/reflwidgets.h>
 #include <darefl/model/applicationmodels.h>
 #include <darefl/quicksimeditor/quicksimeditor.h>
 #include <darefl/sldeditor/sldeditor.h>
+#include <darefl/materialeditor/materialeditor.h>
 
 ReflDockWindow::ReflDockWindow(ApplicationModels* models, QWidget* parent)
     : QMainWindow(parent), toolbar(new QToolBar), docks_controller(new DocksController(this)),

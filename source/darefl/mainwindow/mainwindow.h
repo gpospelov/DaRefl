@@ -14,7 +14,7 @@
 #include <memory>
 
 class WelcomeView;
-class ImportWindow;
+class ImportDataView;
 class ReflDockWindow;
 class MainBarWidget;
 class ApplicationModels;
@@ -42,7 +42,7 @@ private:
     std::unique_ptr<ApplicationModels> m_models;
     ActionManager* m_actionManager{nullptr};
     WelcomeView* m_welcomeView{nullptr};
-    ImportWindow* m_importWindow{nullptr};
+    ImportDataView* m_importDataView{nullptr};
     ReflDockWindow* m_reflWindow{nullptr};
     SettingsView* m_settingsView{nullptr};
     MainBarWidget* m_barWidget{nullptr};

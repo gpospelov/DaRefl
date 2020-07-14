@@ -13,15 +13,11 @@
 #include <darefl/layereditor/layereditoractions.h>
 #include <darefl/layereditor/layereditortoolbar.h>
 #include <darefl/mainwindow/styleutils.h>
-#include <darefl/resources/resources.h>
 
 LayerEditorToolBar::LayerEditorToolBar(LayerEditorActions* actions, QWidget* parent)
     : QToolBar(parent)
 {
-    InitIconResources();
-
-    setIconSize(StyleUtils::ToolBarIconSize());
-    setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    StyleUtils::SetToolBarStyleTextBesides(this);
 
     auto layer_menu = create_layer_menu(actions);
 

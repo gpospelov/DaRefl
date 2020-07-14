@@ -7,12 +7,12 @@
 //
 // ************************************************************************** //
 
-#include <QDebug>
-#include <QFont>
 #include <QFontMetrics>
 #include <QSize>
+#include <QToolBar>
 #include <QWidget>
 #include <darefl/mainwindow/styleutils.h>
+#include <darefl/resources/resources.h>
 
 QSize StyleUtils::ToolBarIconSize()
 {
@@ -29,16 +29,9 @@ QSize StyleUtils::DockMinimumSizeHint()
     return QSize(320, 240);
 }
 
-QFont StyleUtils::sectionFont(bool bold)
+void StyleUtils::SetToolBarStyleTextBesides(QToolBar* toolbar)
 {
-    QFont result;
-    result.setPointSize(result.pointSize() * 1.25);
-    result.setBold(bold);
-    return result;
-}
-
-int StyleUtils::LargeButtonHeight()
-{
-    const int large_button_height = 60;
-    return large_button_height;
+    InitIconResources();
+    toolbar->setIconSize(StyleUtils::ToolBarIconSize());
+    toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 }

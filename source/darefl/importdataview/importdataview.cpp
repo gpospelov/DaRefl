@@ -8,11 +8,11 @@
 // ************************************************************************** //
 
 #include <QVBoxLayout>
-#include <darefl/importdatawidgets/importdataeditor.h>
-#include <darefl/mainwindow/importwindow.h>
+#include <darefl/importdataview/importdataeditor.h>
+#include <darefl/importdataview/importdataview.h>
 #include <darefl/model/applicationmodels.h>
 
-ImportWindow::ImportWindow(ApplicationModels* models, QWidget* parent)
+ImportDataView::ImportDataView(ApplicationModels* models, QWidget* parent)
     : QWidget(parent), models(models)
 {
     auto layout = new QVBoxLayout(this);
