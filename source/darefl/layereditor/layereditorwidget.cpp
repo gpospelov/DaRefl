@@ -18,7 +18,7 @@
 #include <darefl/model/materialmodel.h>
 #include <darefl/model/samplemodel.h>
 #include <mvvm/model/modelutils.h>
-#include <mvvm/viewmodel/standardviewmodels.h>
+#include <mvvm/factories/viewmodelfactory.h>
 #include <mvvm/viewmodel/viewmodeldelegate.h>
 
 LayerEditorWidget::LayerEditorWidget(QWidget* parent)

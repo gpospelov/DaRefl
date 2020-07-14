@@ -17,7 +17,7 @@
 #include <QDebug>
 #include <QMimeData>
 
-#include <mvvm/factories/viewmodelcontrollerbuilder.h>
+#include <mvvm/factories/viewmodelcontrollerfactory.h>
 #include <mvvm/model/sessionitem.h>
 #include <mvvm/model/sessionmodel.h>
 #include <mvvm/viewmodel/standardchildrenstrategies.h>
@@ -52,11 +52,7 @@ QStringList deserialize(QByteArray byteArray)
 
 std::unique_ptr<ViewModelController> createController(SessionModel* model, ViewModelBase* viewModel)
 {
-    return ViewModelControllerBuilder()
-        .model(model)
-        .viewModel(viewModel)
-        .childrenStrategy(std::make_unique<TopItemsStrategy>())
-        .rowStrategy(std::make_unique<DataRowStrategy>());
+    return Factory::CreateController<TopItemsStrategy, DataRowStrategy>(model, viewModel);
 }
 
 } // namespace

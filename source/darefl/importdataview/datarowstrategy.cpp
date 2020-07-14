@@ -20,7 +20,7 @@ QStringList DataRowStrategy::horizontalHeaderLabels() const
                          << "Information";
 }
 
-std::vector<std::unique_ptr<ViewItem>> DataRowStrategy::constructRefRow(SessionItem* item)
+std::vector<std::unique_ptr<ViewItem>> DataRowStrategy::constructRow(SessionItem* item)
 {
     std::vector<std::unique_ptr<ViewItem>> result;
 
