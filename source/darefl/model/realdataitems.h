@@ -20,7 +20,6 @@ namespace ModelView
 class Data1DItem;
 }
 
-class TypeUnit;
 class RealDataStruct;
 
 // ----------------------------------------------------------------
@@ -29,7 +28,6 @@ class DataGroupItem : public ModelView::GraphViewportItem
 {
 public:
     DataGroupItem();
-    int itemCount() const;
 };
 
 // ----------------------------------------------------------------
@@ -37,11 +35,11 @@ public:
 class DataCollectionItem : public ModelView::CompoundItem
 {
 public:
+    inline static const std::string T_DATA_GRROUP = "T_DATA_GRROUP";
+
     DataCollectionItem();
     void insertData(RealDataStruct& data_struct);
     DataGroupItem* getDataGroup(const std::string tag) const;
-
-    inline static const std::string data_group_tag = "data_groups";
 };
 
 // ----------------------------------------------------------------

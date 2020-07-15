@@ -24,14 +24,13 @@ DataGroupItem::DataGroupItem() : GraphViewportItem(::Constants::DataGroupItemTyp
 // ----------------------------------------------------------------
 DataCollectionItem::DataCollectionItem() : CompoundItem(::Constants::DataCollectionItemType)
 {
-    const std::string data_group_tag = "data_groups";
-    registerTag(TagInfo::universalTag(data_group_tag));
+    registerTag(TagInfo::universalTag(T_DATA_GRROUP));
 }
 
 //! Check if a data group tag is present and return it if it is
 DataGroupItem* DataCollectionItem::getDataGroup(const std::string tag) const
 {
-    std::vector<SessionItem*> items = getItems(data_group_tag);
+    std::vector<SessionItem*> items = getItems(T_DATA_GRROUP);
     auto found = std::find_if(items.begin(), items.end(),
                               [&tag](const SessionItem* item) { return item->isTag(tag); });
 

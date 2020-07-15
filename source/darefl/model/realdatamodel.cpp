@@ -72,7 +72,7 @@ DataCollectionItem* RealDataModel::insertDataCollection()
 //! Add a type unit sessionitem to the children
 DataGroupItem* RealDataModel::insertDataGroup(DataCollectionItem* data_node)
 {
-    auto item = insertItem<DataGroupItem>(data_node, {DataCollectionItem::data_group_tag, -1});
+    auto item = insertItem<DataGroupItem>(data_node, {DataCollectionItem::T_DATA_GRROUP, -1});
     return item;
 }
 
