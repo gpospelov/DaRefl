@@ -13,7 +13,7 @@
 #include <mvvm/model/sessionmodel.h>
 #include <vector>
 
-class DataCollectionItem;
+class CanvasContainerItem;
 class RealDataContainerItem;
 class DataGroupItem;
 class RealDataStruct;
@@ -31,9 +31,9 @@ class RealDataModel : public ModelView::SessionModel
 public:
     RealDataModel();
 
-    DataGroupItem* addDataToCollection(RealDataStruct data_struct, DataCollectionItem* data_node,
+    DataGroupItem* addDataToCollection(RealDataStruct data_struct, CanvasContainerItem* data_node,
                                        DataGroupItem* data_group = nullptr);
-    void removeAllDataFromCollection(DataCollectionItem* data_node);
+    void removeAllDataFromCollection(CanvasContainerItem* data_node);
     void removeDataFromCollection(std::vector<ModelView::SessionItem*> item_to_remove);
     std::vector<std::pair<std::string, std::string>> dataGroupNames() const;
 
@@ -48,8 +48,8 @@ public:
 private:
     RealDataContainerItem* insertDataContainer();
     RealDataContainerItem* dataContainer() const;
-    DataCollectionItem* insertDataCollection();
-    DataGroupItem* insertDataGroup(DataCollectionItem* data_node);
+    CanvasContainerItem* insertDataCollection();
+    DataGroupItem* insertDataGroup(CanvasContainerItem* data_node);
 
     void addDataToGroup(DataGroupItem* data_group, RealDataStruct& data_struct);
     void removeDataFromGroup(ModelView::GraphItem* item);

@@ -27,7 +27,7 @@ ImportDataEditorActions::ImportDataEditorActions(RealDataModel* model,
 
 void ImportDataEditorActions::onAddDataGroup()
 {
-    auto data_node = ModelView::Utils::TopItem<DataCollectionItem>(m_dataModel);
+    auto data_node = ModelView::Utils::TopItem<CanvasContainerItem>(m_dataModel);
     m_dataModel->addDataToCollection(RealDataStruct(), data_node, nullptr);
 }
 
@@ -53,6 +53,6 @@ void ImportDataEditorActions::onDeleteItem()
 
 void ImportDataEditorActions::onResetAll()
 {
-    auto data_node = ModelView::Utils::TopItem<DataCollectionItem>(m_dataModel);
+    auto data_node = ModelView::Utils::TopItem<CanvasContainerItem>(m_dataModel);
     m_dataModel->removeAllDataFromCollection(data_node);
 }

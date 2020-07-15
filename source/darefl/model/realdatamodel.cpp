@@ -31,7 +31,7 @@ std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
 {
     auto result = std::make_unique<ModelView::ItemCatalogue>();
     result->registerItem<DataGroupItem>();
-    result->registerItem<DataCollectionItem>();
+    result->registerItem<CanvasContainerItem>();
     return result;
 }
 
@@ -63,23 +63,23 @@ RealDataContainerItem* RealDataModel::dataContainer() const
 }
 
 //! Create a new data node
-DataCollectionItem* RealDataModel::insertDataCollection()
+CanvasContainerItem* RealDataModel::insertDataCollection()
 {
-    auto data_set_item = insertItem<DataCollectionItem>(rootItem());
+    auto data_set_item = insertItem<CanvasContainerItem>(rootItem());
     return data_set_item;
 }
 
 //! Add a type unit sessionitem to the children
-DataGroupItem* RealDataModel::insertDataGroup(DataCollectionItem* data_node)
+DataGroupItem* RealDataModel::insertDataGroup(CanvasContainerItem* data_node)
 {
-    auto item = insertItem<DataGroupItem>(data_node, {DataCollectionItem::T_DATA_GRROUP, -1});
+    auto item = insertItem<DataGroupItem>(data_node);
     return item;
 }
 
 //! This will manage the group item tagret and then insert the data.
 //! The created group is then returned to allow insertion within the same
 DataGroupItem* RealDataModel::addDataToCollection(RealDataStruct data_struct,
-                                                  DataCollectionItem* data_node,
+                                                  CanvasContainerItem* data_node,
                                                   DataGroupItem* data_group)
 {
     auto group_item = data_group;
@@ -94,7 +94,7 @@ DataGroupItem* RealDataModel::addDataToCollection(RealDataStruct data_struct,
 }
 
 //! Insert the data into the group item
-void RealDataModel::removeAllDataFromCollection(DataCollectionItem* data_node)
+void RealDataModel::removeAllDataFromCollection(CanvasContainerItem* data_node)
 {
     for (auto item : data_node->children()) {
         removeDataFromCollection({item});
@@ -204,7 +204,7 @@ bool RealDataModel::itemEditable(ModelView::SessionItem* item) const
         return true;
     if (dynamic_cast<DataGroupItem*>(item))
         return true;
-    if (dynamic_cast<DataCollectionItem*>(item))
+    if (dynamic_cast<CanvasContainerItem*>(item))
         return true;
     return false;
 }

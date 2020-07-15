@@ -55,7 +55,7 @@ ImportDataEditor::ImportDataEditor(RealDataModel* model, QWidget* parent)
     setupLayout();
     setupViews();
 
-    p_view_model->setRootSessionItem(ModelView::Utils::TopItem<DataCollectionItem>(model));
+    p_view_model->setRootSessionItem(ModelView::Utils::TopItem<CanvasContainerItem>(model));
     p_tree_view->setModel(p_view_model);
     p_tree_view->setSelectionModel(p_data_selection_model);
     p_tree_view->setSelectionMode(QAbstractItemView::ExtendedSelection);
@@ -176,7 +176,7 @@ std::string ImportDataEditor::selectedDataGroupItem() const
 //! Process the accepted state
 void ImportDataEditor::onImportDialogAccept(DataImportLogic::ImportOutput import_output)
 {
-    DataCollectionItem* data_node = ModelView::Utils::TopItem<DataCollectionItem>(p_model);
+    CanvasContainerItem* data_node = ModelView::Utils::TopItem<CanvasContainerItem>(p_model);
     DataGroupItem* data_group =
         dynamic_cast<DataGroupItem*>(p_model->findItem(import_output.target()));
     for (auto& path : import_output.keys()) {

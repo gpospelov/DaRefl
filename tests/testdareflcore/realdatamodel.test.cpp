@@ -60,7 +60,7 @@ TEST_F(RealDataModelTest, addDataToCollection)
 {
     RealDataModel model;
     int default_child_count = DataGroupItem().childrenCount();
-    auto root_view_item = Utils::TopItem<DataCollectionItem>(&model);
+    auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
     auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
 
     auto data_group_item = model.addDataToCollection(getRealDataStruct(), root_view_item);
@@ -80,7 +80,7 @@ TEST_F(RealDataModelTest, addDataToCollection)
 TEST_F(RealDataModelTest, removeAllDataFromCollection)
 {
     RealDataModel model;
-    auto root_view_item = Utils::TopItem<DataCollectionItem>(&model);
+    auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
     auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
 
     auto data_group_item = model.addDataToCollection(getRealDataStruct(), root_view_item);
@@ -98,7 +98,7 @@ TEST_F(RealDataModelTest, removeDataFromCollection)
 {
     RealDataModel model;
     int default_child_count = DataGroupItem().childrenCount();
-    auto root_view_item = Utils::TopItem<DataCollectionItem>(&model);
+    auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
     auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
 
     DataGroupItem* data_group_item_1 = nullptr;
@@ -140,7 +140,7 @@ TEST_F(RealDataModelTest, removeDataFromCollection)
 TEST_F(RealDataModelTest, dataGroupNames)
 {
     RealDataModel model;
-    auto root_view_item = Utils::TopItem<DataCollectionItem>(&model);
+    auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
 
     for (int i = 0; i < 10; ++i) {
         model.addDataToCollection(getRealDataStruct(), root_view_item, nullptr);
@@ -171,7 +171,7 @@ TEST_F(RealDataModelTest, checkAllGroup)
 TEST_F(RealDataModelTest, checkAllGraph)
 {
     RealDataModel model;
-    auto root_view_item = Utils::TopItem<DataCollectionItem>(&model);
+    auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
 
     DataGroupItem* data_group_item_1 = nullptr;
     for (int i = 0; i < 10; ++i) {
@@ -202,7 +202,7 @@ TEST_F(RealDataModelTest, itemEditable)
 
     EXPECT_EQ(true, model.itemEditable(new GraphItem));
     EXPECT_EQ(true, model.itemEditable(new DataGroupItem));
-    EXPECT_EQ(true, model.itemEditable(new DataCollectionItem));
+    EXPECT_EQ(true, model.itemEditable(new CanvasContainerItem));
     EXPECT_EQ(false, model.itemEditable(new SessionItem));
 }
 
@@ -213,7 +213,7 @@ TEST_F(RealDataModelTest, dragEnabled)
 
     EXPECT_EQ(true, model.dragEnabled(new GraphItem));
     EXPECT_EQ(true, model.dragEnabled(new DataGroupItem));
-    EXPECT_EQ(false, model.dragEnabled(new DataCollectionItem));
+    EXPECT_EQ(false, model.dragEnabled(new CanvasContainerItem));
     EXPECT_EQ(false, model.dragEnabled(new SessionItem));
 }
 
@@ -224,7 +224,7 @@ TEST_F(RealDataModelTest, dropEnabled)
 
     EXPECT_EQ(false, model.dropEnabled(new GraphItem));
     EXPECT_EQ(true, model.dropEnabled(new DataGroupItem));
-    EXPECT_EQ(false, model.dropEnabled(new DataCollectionItem));
+    EXPECT_EQ(false, model.dropEnabled(new CanvasContainerItem));
     EXPECT_EQ(false, model.dropEnabled(new SessionItem));
 }
 
@@ -233,7 +233,7 @@ TEST_F(RealDataModelTest, dragDropItemGroup)
 {
     RealDataModel model;
     int default_child_count = DataGroupItem().childrenCount();
-    auto root_view_item = Utils::TopItem<DataCollectionItem>(&model);
+    auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
     auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
 
     DataGroupItem* data_group_item_1 = nullptr;
@@ -264,7 +264,7 @@ TEST_F(RealDataModelTest, dragDropItemGraph)
 {
     RealDataModel model;
     int default_child_count = DataGroupItem().childrenCount();
-    auto root_view_item = Utils::TopItem<DataCollectionItem>(&model);
+    auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
     auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
 
     DataGroupItem* data_group_item_1 = nullptr;
@@ -303,7 +303,7 @@ TEST_F(RealDataModelTest, mergeItems)
 {
     RealDataModel model;
     int default_child_count = DataGroupItem().childrenCount();
-    auto root_view_item = Utils::TopItem<DataCollectionItem>(&model);
+    auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
     auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
 
     DataGroupItem* data_group_item_1 = nullptr;

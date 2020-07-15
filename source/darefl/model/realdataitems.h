@@ -10,7 +10,6 @@
 #ifndef DAREFL_MODEL_REALDATAITEMS_H
 #define DAREFL_MODEL_REALDATAITEMS_H
 
-#include <mvvm/model/compounditem.h>
 #include <mvvm/standarditems/containeritem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
 #include <string>
@@ -30,19 +29,19 @@ public:
     DataGroupItem();
 };
 
-// ----------------------------------------------------------------
-//! This will hold all data grouped by types
-class DataCollectionItem : public ModelView::CompoundItem
+//! Holds a collection of CanvasItem.
+//! Used in the context of importing of 1D data, when user groups different GraphItem's
+//! on different canvas for later plotting.
+
+class CanvasContainerItem : public ModelView::ContainerItem
 {
 public:
-    inline static const std::string T_DATA_GRROUP = "T_DATA_GRROUP";
-
-    DataCollectionItem();
+    CanvasContainerItem();
 };
 
-//! Holds collection of Data1DItem's with raw data as imported by the user.
+//! Holds a collection of Data1DItem's with raw data as imported by the user.
 //! The order of items in the collection chronologically corresponds to user activity.
-//! GraphItems will be linked to container's items.
+//! All other plotting entities (GraphItems) are linked to data items in this container.
 
 class RealDataContainerItem : public ModelView::ContainerItem
 {

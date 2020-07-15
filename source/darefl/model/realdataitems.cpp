@@ -22,9 +22,8 @@ using namespace ModelView;
 DataGroupItem::DataGroupItem() : GraphViewportItem(::Constants::DataGroupItemType) {}
 
 // ----------------------------------------------------------------
-DataCollectionItem::DataCollectionItem() : CompoundItem(::Constants::DataCollectionItemType)
+CanvasContainerItem::CanvasContainerItem() : ContainerItem(::Constants::CanvasContainerItemType)
 {
-    registerTag(TagInfo::universalTag(T_DATA_GRROUP));
 }
 
 RealDataContainerItem::RealDataContainerItem()
