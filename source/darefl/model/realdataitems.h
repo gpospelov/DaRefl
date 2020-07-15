@@ -12,15 +12,6 @@
 
 #include <mvvm/standarditems/containeritem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
-#include <string>
-
-namespace ModelView
-{
-class Data1DItem;
-}
-
-class RealDataStruct;
-
 
 //! Holds a collection of GraphItem's for simultaneous plotting, as well as all information
 //! related to plotting properties. Used in the context of importing of 1D data. Serves as an input
