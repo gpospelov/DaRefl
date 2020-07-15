@@ -27,19 +27,6 @@ DataCollectionItem::DataCollectionItem() : CompoundItem(::Constants::DataCollect
     registerTag(TagInfo::universalTag(T_DATA_GRROUP));
 }
 
-//! Check if a data group tag is present and return it if it is
-DataGroupItem* DataCollectionItem::getDataGroup(const std::string tag) const
-{
-    std::vector<SessionItem*> items = getItems(T_DATA_GRROUP);
-    auto found = std::find_if(items.begin(), items.end(),
-                              [&tag](const SessionItem* item) { return item->isTag(tag); });
-
-    if (found == items.end())
-        return nullptr;
-    else
-        return dynamic_cast<DataGroupItem*>(*found);
-}
-
 RealDataContainerItem::RealDataContainerItem()
     : ContainerItem(::Constants::RealDataContainerItemType)
 {
