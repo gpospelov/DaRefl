@@ -15,7 +15,7 @@
 
 class CanvasContainerItem;
 class RealDataContainerItem;
-class DataGroupItem;
+class CanvasItem;
 class RealDataStruct;
 
 namespace ModelView
@@ -31,8 +31,8 @@ class RealDataModel : public ModelView::SessionModel
 public:
     RealDataModel();
 
-    DataGroupItem* addDataToCollection(RealDataStruct data_struct, CanvasContainerItem* data_node,
-                                       DataGroupItem* data_group = nullptr);
+    CanvasItem* addDataToCollection(RealDataStruct data_struct, CanvasContainerItem* data_node,
+                                       CanvasItem* data_group = nullptr);
     void removeAllDataFromCollection(CanvasContainerItem* data_node);
     void removeDataFromCollection(std::vector<ModelView::SessionItem*> item_to_remove);
     std::vector<std::pair<std::string, std::string>> dataGroupNames() const;
@@ -49,9 +49,9 @@ private:
     RealDataContainerItem* insertDataContainer();
     RealDataContainerItem* dataContainer() const;
     CanvasContainerItem* insertDataCollection();
-    DataGroupItem* insertDataGroup(CanvasContainerItem* data_node);
+    CanvasItem* insertDataGroup(CanvasContainerItem* data_node);
 
-    void addDataToGroup(DataGroupItem* data_group, RealDataStruct& data_struct);
+    void addDataToGroup(CanvasItem* data_group, RealDataStruct& data_struct);
     void removeDataFromGroup(ModelView::GraphItem* item);
 };
 

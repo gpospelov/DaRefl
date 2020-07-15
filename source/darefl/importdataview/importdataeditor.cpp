@@ -167,7 +167,7 @@ std::string ImportDataEditor::selectedDataGroupItem() const
     auto items = p_data_selection_model->selectedItems();
     items.erase(std::remove(begin(items), end(items), nullptr), end(items));
     for (auto item : items) {
-        if (dynamic_cast<DataGroupItem*>(item))
+        if (dynamic_cast<CanvasItem*>(item))
             return item->displayName();
     }
     return "";
@@ -177,8 +177,8 @@ std::string ImportDataEditor::selectedDataGroupItem() const
 void ImportDataEditor::onImportDialogAccept(DataImportLogic::ImportOutput import_output)
 {
     CanvasContainerItem* data_node = ModelView::Utils::TopItem<CanvasContainerItem>(p_model);
-    DataGroupItem* data_group =
-        dynamic_cast<DataGroupItem*>(p_model->findItem(import_output.target()));
+    CanvasItem* data_group =
+        dynamic_cast<CanvasItem*>(p_model->findItem(import_output.target()));
     for (auto& path : import_output.keys()) {
         auto parsed_file_output = import_output[path];
         for (int i = 0; i < parsed_file_output->dataCount(); ++i) {

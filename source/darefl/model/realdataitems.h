@@ -21,12 +21,15 @@ class Data1DItem;
 
 class RealDataStruct;
 
-// ----------------------------------------------------------------
-//! This will hold the data for one particular type (and pair of intensity and axis units)
-class DataGroupItem : public ModelView::GraphViewportItem
+
+//! Holds a collection of GraphItem's for simultaneous plotting, as well as all information
+//! related to plotting properties. Used in the context of importing of 1D data. Serves as an input
+//! for GraphCanvas widget.
+
+class CanvasItem : public ModelView::GraphViewportItem
 {
 public:
-    DataGroupItem();
+    CanvasItem();
 };
 
 //! Holds a collection of CanvasItem.

@@ -19,7 +19,7 @@
 using namespace ModelView;
 
 // ----------------------------------------------------------------
-DataGroupItem::DataGroupItem() : GraphViewportItem(::Constants::DataGroupItemType) {}
+CanvasItem::CanvasItem() : GraphViewportItem(::Constants::CanvasItemType) {}
 
 // ----------------------------------------------------------------
 CanvasContainerItem::CanvasContainerItem() : ContainerItem(::Constants::CanvasContainerItemType)

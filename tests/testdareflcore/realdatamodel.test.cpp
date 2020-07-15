@@ -59,7 +59,7 @@ TEST_F(RealDataModelTest, initialState)
 TEST_F(RealDataModelTest, addDataToCollection)
 {
     RealDataModel model;
-    int default_child_count = DataGroupItem().childrenCount();
+    int default_child_count = CanvasItem().childrenCount();
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
     auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
 
@@ -97,17 +97,17 @@ TEST_F(RealDataModelTest, removeAllDataFromCollection)
 TEST_F(RealDataModelTest, removeDataFromCollection)
 {
     RealDataModel model;
-    int default_child_count = DataGroupItem().childrenCount();
+    int default_child_count = CanvasItem().childrenCount();
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
     auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
 
-    DataGroupItem* data_group_item_1 = nullptr;
+    CanvasItem* data_group_item_1 = nullptr;
     for (int i = 0; i < 10; ++i) {
         data_group_item_1 =
             model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item_1);
     }
 
-    DataGroupItem* data_group_item_2 = nullptr;
+    CanvasItem* data_group_item_2 = nullptr;
     for (int i = 0; i < 10; ++i) {
         data_group_item_2 =
             model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item_2);
@@ -160,7 +160,7 @@ TEST_F(RealDataModelTest, checkAllGroup)
 {
     RealDataModel model;
 
-    std::vector<SessionItem*> items(10, new DataGroupItem);
+    std::vector<SessionItem*> items(10, new CanvasItem);
     EXPECT_EQ(true, model.checkAllGroup(items));
 
     items.push_back(new SessionItem);
@@ -173,7 +173,7 @@ TEST_F(RealDataModelTest, checkAllGraph)
     RealDataModel model;
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
 
-    DataGroupItem* data_group_item_1 = nullptr;
+    CanvasItem* data_group_item_1 = nullptr;
     for (int i = 0; i < 10; ++i) {
         data_group_item_1 =
             model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item_1);
@@ -184,7 +184,7 @@ TEST_F(RealDataModelTest, checkAllGraph)
                  [](auto item) { return dynamic_cast<GraphItem*>(item); });
     EXPECT_EQ(data_group_item_1, model.checkAllGraph(graph_items));
 
-    DataGroupItem* data_group_item_2 = nullptr;
+    CanvasItem* data_group_item_2 = nullptr;
     for (int i = 0; i < 10; ++i) {
         data_group_item_2 =
             model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item_2);
@@ -201,7 +201,7 @@ TEST_F(RealDataModelTest, itemEditable)
     RealDataModel model;
 
     EXPECT_EQ(true, model.itemEditable(new GraphItem));
-    EXPECT_EQ(true, model.itemEditable(new DataGroupItem));
+    EXPECT_EQ(true, model.itemEditable(new CanvasItem));
     EXPECT_EQ(true, model.itemEditable(new CanvasContainerItem));
     EXPECT_EQ(false, model.itemEditable(new SessionItem));
 }
@@ -212,7 +212,7 @@ TEST_F(RealDataModelTest, dragEnabled)
     RealDataModel model;
 
     EXPECT_EQ(true, model.dragEnabled(new GraphItem));
-    EXPECT_EQ(true, model.dragEnabled(new DataGroupItem));
+    EXPECT_EQ(true, model.dragEnabled(new CanvasItem));
     EXPECT_EQ(false, model.dragEnabled(new CanvasContainerItem));
     EXPECT_EQ(false, model.dragEnabled(new SessionItem));
 }
@@ -223,7 +223,7 @@ TEST_F(RealDataModelTest, dropEnabled)
     RealDataModel model;
 
     EXPECT_EQ(false, model.dropEnabled(new GraphItem));
-    EXPECT_EQ(true, model.dropEnabled(new DataGroupItem));
+    EXPECT_EQ(true, model.dropEnabled(new CanvasItem));
     EXPECT_EQ(false, model.dropEnabled(new CanvasContainerItem));
     EXPECT_EQ(false, model.dropEnabled(new SessionItem));
 }
@@ -232,17 +232,17 @@ TEST_F(RealDataModelTest, dropEnabled)
 TEST_F(RealDataModelTest, dragDropItemGroup)
 {
     RealDataModel model;
-    int default_child_count = DataGroupItem().childrenCount();
+    int default_child_count = CanvasItem().childrenCount();
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
     auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
 
-    DataGroupItem* data_group_item_1 = nullptr;
+    CanvasItem* data_group_item_1 = nullptr;
     for (int i = 0; i < 10; ++i) {
         data_group_item_1 =
             model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item_1);
     }
 
-    DataGroupItem* data_group_item_2 = nullptr;
+    CanvasItem* data_group_item_2 = nullptr;
     for (int i = 0; i < 10; ++i) {
         data_group_item_2 =
             model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item_2);
@@ -263,17 +263,17 @@ TEST_F(RealDataModelTest, dragDropItemGroup)
 TEST_F(RealDataModelTest, dragDropItemGraph)
 {
     RealDataModel model;
-    int default_child_count = DataGroupItem().childrenCount();
+    int default_child_count = CanvasItem().childrenCount();
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
     auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
 
-    DataGroupItem* data_group_item_1 = nullptr;
+    CanvasItem* data_group_item_1 = nullptr;
     for (int i = 0; i < 10; ++i) {
         data_group_item_1 =
             model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item_1);
     }
 
-    DataGroupItem* data_group_item_2 = nullptr;
+    CanvasItem* data_group_item_2 = nullptr;
     for (int i = 0; i < 10; ++i) {
         data_group_item_2 =
             model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item_2);
@@ -302,23 +302,23 @@ TEST_F(RealDataModelTest, dragDropItemGraph)
 TEST_F(RealDataModelTest, mergeItems)
 {
     RealDataModel model;
-    int default_child_count = DataGroupItem().childrenCount();
+    int default_child_count = CanvasItem().childrenCount();
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
     auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
 
-    DataGroupItem* data_group_item_1 = nullptr;
+    CanvasItem* data_group_item_1 = nullptr;
     for (int i = 0; i < 10; ++i) {
         data_group_item_1 =
             model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item_1);
     }
 
-    DataGroupItem* data_group_item_2 = nullptr;
+    CanvasItem* data_group_item_2 = nullptr;
     for (int i = 0; i < 10; ++i) {
         data_group_item_2 =
             model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item_2);
     }
 
-    DataGroupItem* data_group_item_3 = nullptr;
+    CanvasItem* data_group_item_3 = nullptr;
     for (int i = 0; i < 10; ++i) {
         data_group_item_3 =
             model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item_3);
