@@ -10,7 +10,7 @@
 #include "google_test.h"
 
 #include <darefl/model/datasetconvenience.h>
-#include <darefl/model/datasetitem.h>
+#include <darefl/model/realdataitems.h>
 #include <darefl/model/realdatamodel.h>
 
 #include <QSignalSpy>

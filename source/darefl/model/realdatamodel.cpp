@@ -8,7 +8,7 @@
 // ************************************************************************** //
 
 #include <darefl/model/datasetconvenience.h>
-#include <darefl/model/datasetitem.h>
+#include <darefl/model/realdataitems.h>
 #include <darefl/model/realdatamodel.h>
 
 #include <mvvm/model/itemcatalogue.h>

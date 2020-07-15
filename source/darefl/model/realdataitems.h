@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_MODEL_DATASETITEM_H
-#define DAREFL_MODEL_DATASETITEM_H
+#ifndef DAREFL_MODEL_REALDATAITEMS_H
+#define DAREFL_MODEL_REALDATAITEMS_H
 
 #include <mvvm/model/compounditem.h>
 #include <mvvm/standarditems/containeritem.h>
@@ -52,4 +52,4 @@ public:
     RealDataContainer();
 };
 
-#endif // DAREFL_MODEL_DATASETITEM_H
+#endif // DAREFL_MODEL_REALDATAITEMS_H
