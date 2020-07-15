@@ -15,7 +15,7 @@
 #include <darefl/importdataview/importdataeditoractions.h>
 #include <darefl/importdataview/importdataeditortoolbal.h>
 #include <darefl/mainwindow/styleutils.h>
-#include <darefl/model/datasetconvenience.h>
+#include <darefl/model/realdata_types.h>
 #include <darefl/model/realdataitems.h>
 #include <darefl/model/realdatamodel.h>
 
@@ -48,8 +48,7 @@ ImportDataEditor::ImportDataEditor(RealDataModel* model, QWidget* parent)
       p_data_selection_model(new DataSelectionModel(p_view_model, p_tree_view)),
       m_editorActions(new ImportDataEditorActions(p_model, p_data_selection_model, this)),
       m_editorToolBar(new ImportDataEditorToolBar(m_editorActions, this)),
-      p_graph_canvas(new GraphCanvas),
-      p_property_tree(new PropertyTreeView)
+      p_property_tree(new PropertyTreeView), p_graph_canvas(new GraphCanvas)
 {
     setupToolBar();
     setupLayout();
@@ -66,7 +65,8 @@ ImportDataEditor::ImportDataEditor(RealDataModel* model, QWidget* parent)
 //! Set up the toolbar for the data management
 void ImportDataEditor::setupToolBar()
 {
-    connect(m_editorToolBar, &ImportDataEditorToolBar::invokeImportDialogRequest, this, &ImportDataEditor::invokeImportDialog);
+    connect(m_editorToolBar, &ImportDataEditorToolBar::invokeImportDialogRequest, this,
+            &ImportDataEditor::invokeImportDialog);
     connect(m_editorToolBar, &ImportDataEditorToolBar::updateViewportRequest, p_graph_canvas,
             &ModelView::GraphCanvas::update_viewport);
 }
@@ -177,8 +177,7 @@ std::string ImportDataEditor::selectedDataGroupItem() const
 void ImportDataEditor::onImportDialogAccept(DataImportLogic::ImportOutput import_output)
 {
     CanvasContainerItem* data_node = ModelView::Utils::TopItem<CanvasContainerItem>(p_model);
-    CanvasItem* data_group =
-        dynamic_cast<CanvasItem*>(p_model->findItem(import_output.target()));
+    CanvasItem* data_group = dynamic_cast<CanvasItem*>(p_model->findItem(import_output.target()));
     for (auto& path : import_output.keys()) {
         auto parsed_file_output = import_output[path];
         for (int i = 0; i < parsed_file_output->dataCount(); ++i) {
@@ -209,7 +208,6 @@ ImportDataEditor::convertToRealDataStruct(const std::string& path,
 
     return data_struct;
 }
-
 
 //! Reset all items
 void ImportDataEditor::resetAll()
