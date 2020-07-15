@@ -42,12 +42,14 @@ public:
     DataGroupItem* getDataGroup(const std::string tag) const;
 };
 
-// ----------------------------------------------------------------
-//! This will hold all the data1Ditems unordered
-class RealDataContainer : public ModelView::ContainerItem
+//! Holds collection of Data1DItem's with raw data as imported by the user.
+//! The order of items in the collection chronologically corresponds to user activity.
+//! GraphItems will be linked to container's items.
+
+class RealDataContainerItem : public ModelView::ContainerItem
 {
 public:
-    RealDataContainer();
+    RealDataContainerItem();
 };
 
 #endif // DAREFL_MODEL_REALDATAITEMS_H

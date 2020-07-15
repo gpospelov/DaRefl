@@ -8,8 +8,8 @@
 // ************************************************************************** //
 
 #include <darefl/model/datasetconvenience.h>
-#include <darefl/model/realdataitems.h>
 #include <darefl/model/item_constants.h>
+#include <darefl/model/realdataitems.h>
 
 #include <mvvm/standarditems/axisitems.h>
 #include <mvvm/standarditems/data1ditem.h>
@@ -40,5 +40,7 @@ DataGroupItem* DataCollectionItem::getDataGroup(const std::string tag) const
         return dynamic_cast<DataGroupItem*>(*found);
 }
 
-// ----------------------------------------------------------------
-RealDataContainer::RealDataContainer() : ContainerItem() {}
+RealDataContainerItem::RealDataContainerItem()
+    : ContainerItem(::Constants::RealDataContainerItemType)
+{
+}

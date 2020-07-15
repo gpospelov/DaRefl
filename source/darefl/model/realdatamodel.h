@@ -14,7 +14,7 @@
 #include <vector>
 
 class DataCollectionItem;
-class RealDataContainer;
+class RealDataContainerItem;
 class DataGroupItem;
 class RealDataStruct;
 
@@ -46,8 +46,8 @@ public:
     bool mergeItems(std::vector<ModelView::SessionItem*> items);
 
 private:
-    RealDataContainer* insertDataContainer();
-    RealDataContainer* dataContainer() const;
+    RealDataContainerItem* insertDataContainer();
+    RealDataContainerItem* dataContainer() const;
     DataCollectionItem* insertDataCollection();
     DataGroupItem* insertDataGroup(DataCollectionItem* data_node);
 

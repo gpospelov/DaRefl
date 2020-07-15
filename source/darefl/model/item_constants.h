@@ -25,6 +25,7 @@ const std::string DataGroupItemType = "DataGroupItem";
 const std::string DataContainerItemType = "DataContainerItemType";
 const std::string DataCollectionItemType = "DataCollectionItem";
 const std::string RawDataMimeType = "quickrefl/moveDataItem";
+const std::string RealDataContainerItemType = "RealDataContainer";
 
 } // namespace Constants
 

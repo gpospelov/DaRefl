@@ -45,18 +45,18 @@ RealDataModel::RealDataModel() : SessionModel("RealDataModel")
 }
 
 //! Create the data container item
-RealDataContainer* RealDataModel::insertDataContainer()
+RealDataContainerItem* RealDataModel::insertDataContainer()
 {
-    auto data_container_item = insertItem<RealDataContainer>(rootItem());
+    auto data_container_item = insertItem<RealDataContainerItem>(rootItem());
     return data_container_item;
 }
 
 //! Get the data container of the model
-RealDataContainer* RealDataModel::dataContainer() const
+RealDataContainerItem* RealDataModel::dataContainer() const
 {
     for (const auto item : rootItem()->children()) {
-        if (dynamic_cast<RealDataContainer*>(item))
-            return dynamic_cast<RealDataContainer*>(item);
+        if (dynamic_cast<RealDataContainerItem*>(item))
+            return dynamic_cast<RealDataContainerItem*>(item);
     }
 
     return nullptr;
