@@ -16,6 +16,7 @@ target_sources(${library_name} PRIVATE
     materialpropertycontroller.h
     realdataitems.cpp
     realdataitems.h
+    realdata_types.h
     realdatamodel.cpp
     realdatamodel.h
     samplemodel.cpp

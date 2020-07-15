@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include <darefl/model/datasetconvenience.h>
+#include <darefl/model/realdata_types.h>
 #include <darefl/model/realdataitems.h>
 #include <darefl/model/realdatamodel.h>
 

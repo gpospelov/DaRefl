@@ -9,7 +9,7 @@
 
 #include <darefl/importdataview/dataselectionmodel.h>
 #include <darefl/importdataview/importdataeditoractions.h>
-#include <darefl/model/datasetconvenience.h>
+#include <darefl/model/realdata_types.h>
 #include <darefl/model/realdataitems.h>
 #include <darefl/model/realdatamodel.h>
 #include <mvvm/model/modelutils.h>
