@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include <darefl/model/datasetconvenience.h>
-#include <darefl/model/datasetitem.h>
+#include <darefl/model/realdata_types.h>
+#include <darefl/model/realdataitems.h>
 #include <darefl/model/realdatamodel.h>
 
 #include <mvvm/model/itemcatalogue.h>
@@ -30,8 +30,8 @@ namespace
 std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
 {
     auto result = std::make_unique<ModelView::ItemCatalogue>();
-    result->registerItem<DataGroupItem>();
-    result->registerItem<DataCollectionItem>();
+    result->registerItem<CanvasItem>();
+    result->registerItem<CanvasContainerItem>();
     return result;
 }
 
@@ -45,42 +45,42 @@ RealDataModel::RealDataModel() : SessionModel("RealDataModel")
 }
 
 //! Create the data container item
-RealDataContainer* RealDataModel::insertDataContainer()
+RealDataContainerItem* RealDataModel::insertDataContainer()
 {
-    auto data_container_item = insertItem<RealDataContainer>(rootItem());
+    auto data_container_item = insertItem<RealDataContainerItem>(rootItem());
     return data_container_item;
 }
 
 //! Get the data container of the model
-RealDataContainer* RealDataModel::dataContainer() const
+RealDataContainerItem* RealDataModel::dataContainer() const
 {
     for (const auto item : rootItem()->children()) {
-        if (dynamic_cast<RealDataContainer*>(item))
-            return dynamic_cast<RealDataContainer*>(item);
+        if (dynamic_cast<RealDataContainerItem*>(item))
+            return dynamic_cast<RealDataContainerItem*>(item);
     }
 
     return nullptr;
 }
 
 //! Create a new data node
-DataCollectionItem* RealDataModel::insertDataCollection()
+CanvasContainerItem* RealDataModel::insertDataCollection()
 {
-    auto data_set_item = insertItem<DataCollectionItem>(rootItem());
+    auto data_set_item = insertItem<CanvasContainerItem>(rootItem());
     return data_set_item;
 }
 
 //! Add a type unit sessionitem to the children
-DataGroupItem* RealDataModel::insertDataGroup(DataCollectionItem* data_node)
+CanvasItem* RealDataModel::insertDataGroup(CanvasContainerItem* data_node)
 {
-    auto item = insertItem<DataGroupItem>(data_node, {DataCollectionItem::data_group_tag, -1});
+    auto item = insertItem<CanvasItem>(data_node);
     return item;
 }
 
 //! This will manage the group item tagret and then insert the data.
 //! The created group is then returned to allow insertion within the same
-DataGroupItem* RealDataModel::addDataToCollection(RealDataStruct data_struct,
-                                                  DataCollectionItem* data_node,
-                                                  DataGroupItem* data_group)
+CanvasItem* RealDataModel::addDataToCollection(RealDataStruct data_struct,
+                                                  CanvasContainerItem* data_node,
+                                                  CanvasItem* data_group)
 {
     auto group_item = data_group;
     if (!group_item) {
@@ -94,7 +94,7 @@ DataGroupItem* RealDataModel::addDataToCollection(RealDataStruct data_struct,
 }
 
 //! Insert the data into the group item
-void RealDataModel::removeAllDataFromCollection(DataCollectionItem* data_node)
+void RealDataModel::removeAllDataFromCollection(CanvasContainerItem* data_node)
 {
     for (auto item : data_node->children()) {
         removeDataFromCollection({item});
@@ -105,7 +105,7 @@ void RealDataModel::removeAllDataFromCollection(DataCollectionItem* data_node)
 void RealDataModel::removeDataFromCollection(std::vector<ModelView::SessionItem*> item_to_remove)
 {
     for (auto item : item_to_remove) {
-        if (auto group_item = dynamic_cast<DataGroupItem*>(item)) {
+        if (auto group_item = dynamic_cast<CanvasItem*>(item)) {
             for (auto temp_item : group_item->children()) {
                 if (auto sub_item = dynamic_cast<GraphItem*>(temp_item))
                     removeDataFromGroup(sub_item);
@@ -120,7 +120,7 @@ void RealDataModel::removeDataFromCollection(std::vector<ModelView::SessionItem*
 //! Insert the data into the group item
 std::vector<std::pair<std::string, std::string>> RealDataModel::dataGroupNames() const
 {
-    auto items = Utils::FindItems<DataGroupItem>(this);
+    auto items = Utils::FindItems<CanvasItem>(this);
     std::vector<std::pair<std::string, std::string>> output;
     for (auto item : items) {
         output.push_back(
@@ -130,7 +130,7 @@ std::vector<std::pair<std::string, std::string>> RealDataModel::dataGroupNames()
 }
 
 //! Insert the data into the group item
-void RealDataModel::addDataToGroup(DataGroupItem* data_group, RealDataStruct& data_struct)
+void RealDataModel::addDataToGroup(CanvasItem* data_group, RealDataStruct& data_struct)
 {
     if (data_struct.axis.empty()) {
         data_struct.axis.resize(data_struct.data.size());
@@ -170,7 +170,7 @@ void RealDataModel::removeDataFromGroup(GraphItem* item)
 bool RealDataModel::checkAllGroup(std::vector<ModelView::SessionItem*>& items) const
 {
     for (const auto item : items) {
-        if (!dynamic_cast<DataGroupItem*>(item))
+        if (!dynamic_cast<CanvasItem*>(item))
             return false;
     }
 
@@ -202,9 +202,9 @@ bool RealDataModel::itemEditable(ModelView::SessionItem* item) const
 {
     if (dynamic_cast<GraphItem*>(item))
         return true;
-    if (dynamic_cast<DataGroupItem*>(item))
+    if (dynamic_cast<CanvasItem*>(item))
         return true;
-    if (dynamic_cast<DataCollectionItem*>(item))
+    if (dynamic_cast<CanvasContainerItem*>(item))
         return true;
     return false;
 }
@@ -214,7 +214,7 @@ bool RealDataModel::dragEnabled(ModelView::SessionItem* item) const
 {
     if (dynamic_cast<GraphItem*>(item))
         return true;
-    if (dynamic_cast<DataGroupItem*>(item))
+    if (dynamic_cast<CanvasItem*>(item))
         return true;
     return false;
 }
@@ -222,7 +222,7 @@ bool RealDataModel::dragEnabled(ModelView::SessionItem* item) const
 //! Check if an item should be allowed to be receive drops
 bool RealDataModel::dropEnabled(ModelView::SessionItem* item) const
 {
-    if (dynamic_cast<DataGroupItem*>(item))
+    if (dynamic_cast<CanvasItem*>(item))
         return true;
     return false;
 }
@@ -231,14 +231,14 @@ bool RealDataModel::dropEnabled(ModelView::SessionItem* item) const
 bool RealDataModel::dragDropItem(ModelView::SessionItem* item, ModelView::SessionItem* target,
                                  int row)
 {
-    if (dynamic_cast<GraphItem*>(item) && dynamic_cast<DataGroupItem*>(target)
+    if (dynamic_cast<GraphItem*>(item) && dynamic_cast<CanvasItem*>(target)
         && target != item->parent()) {
-        moveItem(dynamic_cast<GraphItem*>(item), dynamic_cast<DataGroupItem*>(target),
-                 {dynamic_cast<DataGroupItem*>(target)->defaultTag(), row});
+        moveItem(dynamic_cast<GraphItem*>(item), dynamic_cast<CanvasItem*>(target),
+                 {dynamic_cast<CanvasItem*>(target)->defaultTag(), row});
         return true;
     }
 
-    if (dynamic_cast<DataGroupItem*>(item) && dynamic_cast<DataGroupItem*>(target)
+    if (dynamic_cast<CanvasItem*>(item) && dynamic_cast<CanvasItem*>(target)
         && target != item->parent()) {
         mergeItems(std::vector<ModelView::SessionItem*>{target, item});
         return true;

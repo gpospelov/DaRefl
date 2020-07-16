@@ -30,7 +30,7 @@ public:
                              << "Sigma";
     }
 
-    std::vector<std::unique_ptr<ViewItem>> constructRefRow(SessionItem* item)
+    std::vector<std::unique_ptr<ViewItem>> constructRow(SessionItem* item)
     {
         std::vector<std::unique_ptr<ViewItem>> result;
 

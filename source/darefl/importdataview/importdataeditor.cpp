@@ -15,8 +15,8 @@
 #include <darefl/importdataview/importdataeditoractions.h>
 #include <darefl/importdataview/importdataeditortoolbal.h>
 #include <darefl/mainwindow/styleutils.h>
-#include <darefl/model/datasetconvenience.h>
-#include <darefl/model/datasetitem.h>
+#include <darefl/model/realdata_types.h>
+#include <darefl/model/realdataitems.h>
 #include <darefl/model/realdatamodel.h>
 
 #include <QAction>
@@ -48,14 +48,13 @@ ImportDataEditor::ImportDataEditor(RealDataModel* model, QWidget* parent)
       p_data_selection_model(new DataSelectionModel(p_view_model, p_tree_view)),
       m_editorActions(new ImportDataEditorActions(p_model, p_data_selection_model, this)),
       m_editorToolBar(new ImportDataEditorToolBar(m_editorActions, this)),
-      p_graph_canvas(new GraphCanvas),
-      p_property_tree(new PropertyTreeView)
+      p_property_tree(new PropertyTreeView), p_graph_canvas(new GraphCanvas)
 {
     setupToolBar();
     setupLayout();
     setupViews();
 
-    p_view_model->setRootSessionItem(ModelView::Utils::TopItem<DataCollectionItem>(model));
+    p_view_model->setRootSessionItem(ModelView::Utils::TopItem<CanvasContainerItem>(model));
     p_tree_view->setModel(p_view_model);
     p_tree_view->setSelectionModel(p_data_selection_model);
     p_tree_view->setSelectionMode(QAbstractItemView::ExtendedSelection);
@@ -66,7 +65,8 @@ ImportDataEditor::ImportDataEditor(RealDataModel* model, QWidget* parent)
 //! Set up the toolbar for the data management
 void ImportDataEditor::setupToolBar()
 {
-    connect(m_editorToolBar, &ImportDataEditorToolBar::invokeImportDialogRequest, this, &ImportDataEditor::invokeImportDialog);
+    connect(m_editorToolBar, &ImportDataEditorToolBar::invokeImportDialogRequest, this,
+            &ImportDataEditor::invokeImportDialog);
     connect(m_editorToolBar, &ImportDataEditorToolBar::updateViewportRequest, p_graph_canvas,
             &ModelView::GraphCanvas::update_viewport);
 }
@@ -167,7 +167,7 @@ std::string ImportDataEditor::selectedDataGroupItem() const
     auto items = p_data_selection_model->selectedItems();
     items.erase(std::remove(begin(items), end(items), nullptr), end(items));
     for (auto item : items) {
-        if (dynamic_cast<DataGroupItem*>(item))
+        if (dynamic_cast<CanvasItem*>(item))
             return item->displayName();
     }
     return "";
@@ -176,9 +176,8 @@ std::string ImportDataEditor::selectedDataGroupItem() const
 //! Process the accepted state
 void ImportDataEditor::onImportDialogAccept(DataImportLogic::ImportOutput import_output)
 {
-    DataCollectionItem* data_node = ModelView::Utils::TopItem<DataCollectionItem>(p_model);
-    DataGroupItem* data_group =
-        dynamic_cast<DataGroupItem*>(p_model->findItem(import_output.target()));
+    CanvasContainerItem* data_node = ModelView::Utils::TopItem<CanvasContainerItem>(p_model);
+    CanvasItem* data_group = dynamic_cast<CanvasItem*>(p_model->findItem(import_output.target()));
     for (auto& path : import_output.keys()) {
         auto parsed_file_output = import_output[path];
         for (int i = 0; i < parsed_file_output->dataCount(); ++i) {
@@ -209,7 +208,6 @@ ImportDataEditor::convertToRealDataStruct(const std::string& path,
 
     return data_struct;
 }
-
 
 //! Reset all items
 void ImportDataEditor::resetAll()

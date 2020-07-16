@@ -3,14 +3,18 @@ target_sources(${library_name} PRIVATE
     datarowstrategy.h
     dataselectionmodel.cpp
     dataselectionmodel.h
+    dataselectorwidget.cpp
+    dataselectorwidget.h
     dataviewmodel.cpp
     dataviewmodel.h
+    graphcanvaswidget.cpp
+    graphcanvaswidget.h
     importdataeditor.cpp
     importdataeditor.h
-    importdataeditortoolbal.cpp
-    importdataeditortoolbal.h
     importdataeditoractions.cpp
     importdataeditoractions.h
+    importdataeditortoolbal.cpp
+    importdataeditortoolbal.h
     importdataview.cpp
     importdataview.h
 )

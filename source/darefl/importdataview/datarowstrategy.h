@@ -28,7 +28,7 @@ public:
     QStringList horizontalHeaderLabels() const override;
 
     std::vector<std::unique_ptr<ModelView::ViewItem>>
-    constructRefRow(ModelView::SessionItem*) override;
+    constructRow(ModelView::SessionItem*) override;
 };
 
 #endif // DAREFL_IMPORTDATAWIDGETS_DATAROWSTRATEGY_H
