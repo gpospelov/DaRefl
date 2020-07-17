@@ -15,7 +15,7 @@
 #ifndef BORNAGAIN_CORE_BASICS_INAMED_H
 #define BORNAGAIN_CORE_BASICS_INAMED_H
 
-#include <darefl/minikernel/Wrap/WinDllMacros.h>
+#include <minikernel/Wrap/WinDllMacros.h>
 #include <string>
 
 //! Interface for named objects.

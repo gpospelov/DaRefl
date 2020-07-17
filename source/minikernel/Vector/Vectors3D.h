@@ -15,7 +15,7 @@
 #ifndef BORNAGAIN_CORE_VECTOR_VECTORS3D_H
 #define BORNAGAIN_CORE_VECTOR_VECTORS3D_H
 
-#include <darefl/minikernel/Vector/BasicVector3D.h>
+#include <minikernel/Vector/BasicVector3D.h>
 
 typedef BasicVector3D<int> ivector_t;
 typedef BasicVector3D<double> kvector_t;

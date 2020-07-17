@@ -12,10 +12,10 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/MultiLayer/LayerRoughness.h>
-#include <darefl/minikernel/Basics/BornAgainNamespace.h>
-#include <darefl/minikernel/Basics/MathConstants.h>
-//#include <darefl/minikernel/Parametrization/RealParameter.h>
+#include <minikernel/MultiLayer/LayerRoughness.h>
+#include <minikernel/Basics/BornAgainNamespace.h>
+#include <minikernel/Basics/MathConstants.h>
+//#include <minikernel/Parametrization/RealParameter.h>
 
 LayerRoughness::LayerRoughness() : m_sigma(0), m_hurstParameter(0), m_lateralCorrLength(0)
 {

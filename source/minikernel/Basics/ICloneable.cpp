@@ -12,7 +12,7 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/Basics/ICloneable.h>
+#include <minikernel/Basics/ICloneable.h>
 
 // To emit vtable in this translation unit (see warning weak-vtables):
 ICloneable::ICloneable() = default;

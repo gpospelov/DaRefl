@@ -15,7 +15,7 @@
 #ifndef BORNAGAIN_CORE_PARAMETRIZATION_NODEUTILS_H
 #define BORNAGAIN_CORE_PARAMETRIZATION_NODEUTILS_H
 
-#include <darefl/minikernel/Wrap/WinDllMacros.h>
+#include <minikernel/Wrap/WinDllMacros.h>
 #include <string>
 
 class INode;

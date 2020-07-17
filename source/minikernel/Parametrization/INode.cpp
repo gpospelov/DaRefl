@@ -12,12 +12,12 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/Parametrization/INode.h>
-#include <darefl/minikernel/Basics/Exceptions.h>
-#include <darefl/minikernel/Parametrization/IterationStrategy.h>
-#include <darefl/minikernel/Parametrization/NodeIterator.h>
-#include <darefl/minikernel/Parametrization/NodeUtils.h>
-#include <darefl/minikernel/Parametrization/ParameterPool.h>
+#include <minikernel/Parametrization/INode.h>
+#include <minikernel/Basics/Exceptions.h>
+#include <minikernel/Parametrization/IterationStrategy.h>
+#include <minikernel/Parametrization/NodeIterator.h>
+#include <minikernel/Parametrization/NodeUtils.h>
+#include <minikernel/Parametrization/ParameterPool.h>
 #include <algorithm>
 
 INode::INode() : m_parent(nullptr) {}

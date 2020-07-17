@@ -12,8 +12,8 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/Parametrization/Unit.h>
-#include <darefl/minikernel/Basics/BornAgainNamespace.h>
+#include <minikernel/Parametrization/Unit.h>
+#include <minikernel/Basics/BornAgainNamespace.h>
 #include <stdexcept>
 
 void Unit::setUnit(const std::string& name)

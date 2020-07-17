@@ -15,8 +15,8 @@
 #ifndef SLICE_H
 #define SLICE_H
 
-#include <darefl/minikernel/Material/Material.h>
-#include <darefl/minikernel/Wrap/WinDllMacros.h>
+#include <minikernel/Material/Material.h>
+#include <minikernel/Wrap/WinDllMacros.h>
 #include <memory>
 
 class LayerRoughness;

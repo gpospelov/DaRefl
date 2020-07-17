@@ -15,7 +15,7 @@
 #ifndef BORNAGAIN_CORE_PARAMETRIZATION_UNIT_H
 #define BORNAGAIN_CORE_PARAMETRIZATION_UNIT_H
 
-#include <darefl/minikernel/Basics/INamed.h>
+#include <minikernel/Basics/INamed.h>
 #include <string>
 
 //! A physical unit.

@@ -12,8 +12,8 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/Tools/MathFunctions.h>
-#include <darefl/minikernel/Basics/MathConstants.h>
+#include <minikernel/Tools/MathFunctions.h>
+#include <minikernel/Basics/MathConstants.h>
 #include <chrono>
 #include <cstring>
 #include <fftw3.h>

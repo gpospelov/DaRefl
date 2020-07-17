@@ -12,8 +12,8 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/Vector/WavevectorInfo.h>
-#include <darefl/minikernel/Vector/Transform3D.h>
+#include <minikernel/Vector/WavevectorInfo.h>
+#include <minikernel/Vector/Transform3D.h>
 
 // TODO: can be removed when IFormFactor::volume() is refactored
 // (static function is provided to easily track usage of default constructor)

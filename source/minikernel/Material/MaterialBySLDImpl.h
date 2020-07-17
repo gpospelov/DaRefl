@@ -15,9 +15,9 @@
 #ifndef BORNAGAIN_CORE_MATERIAL_MATERIALBYSLDIMPL_H
 #define BORNAGAIN_CORE_MATERIAL_MATERIALBYSLDIMPL_H
 
-#include <darefl/minikernel/Material/MagneticMaterialImpl.h>
-#include <darefl/minikernel/Material/Material.h>
-#include <darefl/minikernel/Material/MaterialFactoryFuncs.h>
+#include <minikernel/Material/MagneticMaterialImpl.h>
+#include <minikernel/Material/Material.h>
+#include <minikernel/Material/MaterialFactoryFuncs.h>
 
 //! Material implementation based on wavelength-independent data (valid for a range of wavelengths)
 //! @ingroup materials

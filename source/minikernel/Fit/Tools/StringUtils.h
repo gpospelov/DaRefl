@@ -15,7 +15,7 @@
 #ifndef BORNAGAIN_FIT_TOOLS_STRINGUTILS_H
 #define BORNAGAIN_FIT_TOOLS_STRINGUTILS_H
 
-#include <darefl/minikernel/Wrap/WinDllMacros.h>
+#include <minikernel/Wrap/WinDllMacros.h>
 #include <iomanip>
 #include <sstream>
 #include <string>

@@ -15,7 +15,7 @@
 #ifndef BORNAGAIN_CORE_BASICS_ICLONEABLE_H
 #define BORNAGAIN_CORE_BASICS_ICLONEABLE_H
 
-#include <darefl/minikernel/Wrap/WinDllMacros.h>
+#include <minikernel/Wrap/WinDllMacros.h>
 
 //! Interface for polymorphic classes that should not be copied, except by explicit cloning.
 //!

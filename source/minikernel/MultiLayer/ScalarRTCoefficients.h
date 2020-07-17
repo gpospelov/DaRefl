@@ -15,9 +15,9 @@
 #ifndef BORNAGAIN_CORE_MULTILAYER_SCALARRTCOEFFICIENTS_H
 #define BORNAGAIN_CORE_MULTILAYER_SCALARRTCOEFFICIENTS_H
 
-#include <darefl/minikernel/Basics/Complex.h>
-#include <darefl/minikernel/MultiLayer/ILayerRTCoefficients.h>
-#include <darefl/minikernel/Vector/EigenCore.h>
+#include <minikernel/Basics/Complex.h>
+#include <minikernel/MultiLayer/ILayerRTCoefficients.h>
+#include <minikernel/Vector/EigenCore.h>
 
 //! Specular reflection and transmission coefficients in a layer in case
 //! of scalar interactions between the layers and the scattered particle.

@@ -15,7 +15,7 @@
 #ifndef BORNAGAIN_CORE_PARAMETRIZATION_INODEVISITOR_H
 #define BORNAGAIN_CORE_PARAMETRIZATION_INODEVISITOR_H
 
-#include <darefl/minikernel/Wrap/WinDllMacros.h>
+#include <minikernel/Wrap/WinDllMacros.h>
 
 class BasicLattice;
 class Beam;

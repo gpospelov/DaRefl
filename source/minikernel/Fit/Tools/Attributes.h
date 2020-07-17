@@ -15,7 +15,7 @@
 #ifndef BORNAGAIN_FIT_TOOLS_ATTRIBUTES_H
 #define BORNAGAIN_FIT_TOOLS_ATTRIBUTES_H
 
-#include <darefl/minikernel/Wrap/WinDllMacros.h>
+#include <minikernel/Wrap/WinDllMacros.h>
 #include <ostream>
 
 //! Attributes for a fit parameter. Currently, the only attribute is fixed/free.

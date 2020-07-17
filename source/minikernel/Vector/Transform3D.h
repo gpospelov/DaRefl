@@ -15,9 +15,9 @@
 #ifndef BORNAGAIN_CORE_VECTOR_TRANSFORM3D_H
 #define BORNAGAIN_CORE_VECTOR_TRANSFORM3D_H
 
-#include <darefl/minikernel/Basics/Complex.h>
-#include <darefl/minikernel/Vector/EigenCore.h>
-#include <darefl/minikernel/Vector/Vectors3D.h>
+#include <minikernel/Basics/Complex.h>
+#include <minikernel/Vector/EigenCore.h>
+#include <minikernel/Vector/Vectors3D.h>
 
 #include <vector>
 

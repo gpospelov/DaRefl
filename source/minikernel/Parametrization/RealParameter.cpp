@@ -12,8 +12,8 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/Parametrization/RealParameter.h>
-#include <darefl/minikernel/Basics/BornAgainNamespace.h>
+#include <minikernel/Parametrization/RealParameter.h>
+#include <minikernel/Basics/BornAgainNamespace.h>
 #include <sstream>
 
 RealParameter::RealParameter(const std::string& name, double* par, const std::string& parent_name,

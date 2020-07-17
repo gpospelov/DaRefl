@@ -12,10 +12,10 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/MultiLayer/SpecularScalarStrategy.h>
-#include <darefl/minikernel/Computation/Slice.h>
-#include <darefl/minikernel/MultiLayer/KzComputation.h>
-#include <darefl/minikernel/MultiLayer/LayerRoughness.h>
+#include <minikernel/MultiLayer/SpecularScalarStrategy.h>
+#include <minikernel/Computation/Slice.h>
+#include <minikernel/MultiLayer/KzComputation.h>
+#include <minikernel/MultiLayer/LayerRoughness.h>
 #include <Eigen/Dense>
 #include <stdexcept>
 

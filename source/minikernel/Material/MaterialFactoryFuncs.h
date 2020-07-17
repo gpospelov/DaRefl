@@ -15,7 +15,7 @@
 #ifndef BORNAGAIN_CORE_MATERIAL_MATERIALFACTORYFUNCS_H
 #define BORNAGAIN_CORE_MATERIAL_MATERIALFACTORYFUNCS_H
 
-#include <darefl/minikernel/Material/Material.h>
+#include <minikernel/Material/Material.h>
 
 struct HomogeneousRegion;
 

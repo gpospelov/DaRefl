@@ -12,9 +12,9 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/Scattering/ISample.h>
-#include <darefl/minikernel/Basics/Exceptions.h>
-#include <darefl/minikernel/Parametrization/ParameterPool.h>
+#include <minikernel/Scattering/ISample.h>
+#include <minikernel/Basics/Exceptions.h>
+#include <minikernel/Parametrization/ParameterPool.h>
 #include <algorithm>
 #include <sstream>
 

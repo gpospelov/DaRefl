@@ -12,9 +12,9 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/Material/MaterialUtils.h>
-#include <darefl/minikernel/Basics/PhysicalConstants.h>
-#include <darefl/minikernel/Material/Material.h>
+#include <minikernel/Material/MaterialUtils.h>
+#include <minikernel/Basics/PhysicalConstants.h>
+#include <minikernel/Material/Material.h>
 
 using PhysConsts::g_factor_n;
 using PhysConsts::h_bar;

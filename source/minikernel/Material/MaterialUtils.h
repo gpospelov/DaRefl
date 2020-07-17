@@ -15,10 +15,10 @@
 #ifndef BORNAGAIN_CORE_MATERIAL_MATERIALUTILS_H
 #define BORNAGAIN_CORE_MATERIAL_MATERIALUTILS_H
 
-#include <darefl/minikernel/Basics/Complex.h>
-#include <darefl/minikernel/Material/Material.h>
-#include <darefl/minikernel/Vector/EigenCore.h>
-#include <darefl/minikernel/Vector/Vectors3D.h>
+#include <minikernel/Basics/Complex.h>
+#include <minikernel/Material/Material.h>
+#include <minikernel/Vector/EigenCore.h>
+#include <minikernel/Vector/Vectors3D.h>
 
 //! A number of materials-related helper functions for internal use
 //! @ingroup materials

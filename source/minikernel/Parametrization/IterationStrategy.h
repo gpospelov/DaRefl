@@ -15,7 +15,7 @@
 #ifndef BORNAGAIN_CORE_PARAMETRIZATION_ITERATIONSTRATEGY_H
 #define BORNAGAIN_CORE_PARAMETRIZATION_ITERATIONSTRATEGY_H
 
-#include <darefl/minikernel/Scattering/ISample.h>
+#include <minikernel/Scattering/ISample.h>
 
 class IteratorMemento;
 

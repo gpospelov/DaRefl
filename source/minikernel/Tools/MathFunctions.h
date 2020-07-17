@@ -15,8 +15,8 @@
 #ifndef BORNAGAIN_CORE_TOOLS_MATHFUNCTIONS_H
 #define BORNAGAIN_CORE_TOOLS_MATHFUNCTIONS_H
 
-#include <darefl/minikernel/Basics/Complex.h>
-#include <darefl/minikernel/Wrap/WinDllMacros.h>
+#include <minikernel/Basics/Complex.h>
+#include <minikernel/Wrap/WinDllMacros.h>
 #include <vector>
 
 //! Various mathematical functions.

@@ -12,9 +12,9 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/Material/MaterialBySLDImpl.h>
-#include <darefl/minikernel/Parametrization/Units.h>
-#include <darefl/minikernel/Vector/WavevectorInfo.h>
+#include <minikernel/Material/MaterialBySLDImpl.h>
+#include <minikernel/Parametrization/Units.h>
+#include <minikernel/Vector/WavevectorInfo.h>
 
 namespace
 {

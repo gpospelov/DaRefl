@@ -15,10 +15,10 @@
 #ifndef BORNAGAIN_CORE_PARAMETRIZATION_REALPARAMETER_H
 #define BORNAGAIN_CORE_PARAMETRIZATION_REALPARAMETER_H
 
-#include <darefl/minikernel/Parametrization/IParameter.h>
-#include <darefl/minikernel/Parametrization/Unit.h>
-#include <darefl/minikernel/Fit/Tools/Attributes.h>
-#include <darefl/minikernel/Fit/Tools/RealLimits.h>
+#include <minikernel/Parametrization/IParameter.h>
+#include <minikernel/Parametrization/Unit.h>
+#include <minikernel/Fit/Tools/Attributes.h>
+#include <minikernel/Fit/Tools/RealLimits.h>
 #include <string>
 
 class ParameterPool;

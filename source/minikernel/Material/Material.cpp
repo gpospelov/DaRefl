@@ -12,9 +12,9 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/Material/Material.h>
-#include <darefl/minikernel/Material/BaseMaterialImpl.h>
-#include <darefl/minikernel/Basics/Exceptions.h>
+#include <minikernel/Material/Material.h>
+#include <minikernel/Material/BaseMaterialImpl.h>
+#include <minikernel/Basics/Exceptions.h>
 //#include "Transform3D.h"
 //#include "WavevectorInfo.h"
 #include <typeinfo>

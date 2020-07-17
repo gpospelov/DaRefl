@@ -12,11 +12,11 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/Material/MaterialFactoryFuncs.h>
-#include <darefl/minikernel/Material/MaterialBySLDImpl.h>
-#include <darefl/minikernel/Material/MaterialUtils.h>
-#include <darefl/minikernel/Material/RefractiveMaterialImpl.h>
-#include <darefl/minikernel/Parametrization/Units.h>
+#include <minikernel/Material/MaterialFactoryFuncs.h>
+#include <minikernel/Material/MaterialBySLDImpl.h>
+#include <minikernel/Material/MaterialUtils.h>
+#include <minikernel/Material/RefractiveMaterialImpl.h>
+#include <minikernel/Parametrization/Units.h>
 //#include "Core/Particle/HomogeneousRegion.h"
 #include <functional>
 

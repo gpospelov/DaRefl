@@ -12,11 +12,11 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/Material/MagneticMaterialImpl.h>
-#include <darefl/minikernel/Basics/PhysicalConstants.h>
-#include <darefl/minikernel/Material/MaterialUtils.h>
-#include <darefl/minikernel/Vector/Transform3D.h>
-#include <darefl/minikernel/Vector/WavevectorInfo.h>
+#include <minikernel/Material/MagneticMaterialImpl.h>
+#include <minikernel/Basics/PhysicalConstants.h>
+#include <minikernel/Material/MaterialUtils.h>
+#include <minikernel/Vector/Transform3D.h>
+#include <minikernel/Vector/WavevectorInfo.h>
 #include <memory>
 
 using PhysConsts::gamma_n;

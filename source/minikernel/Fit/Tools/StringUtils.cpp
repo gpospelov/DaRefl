@@ -12,7 +12,7 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/Fit/Tools/StringUtils.h>
+#include <minikernel/Fit/Tools/StringUtils.h>
 #include <boost/algorithm/string.hpp>
 #include <regex>
 

@@ -15,8 +15,8 @@
 #ifndef BORNAGAIN_CORE_MATERIAL_REFRACTIVEMATERIALIMPL_H
 #define BORNAGAIN_CORE_MATERIAL_REFRACTIVEMATERIALIMPL_H
 
-#include <darefl/minikernel/Material/MagneticMaterialImpl.h>
-#include <darefl/minikernel/Material/Material.h>
+#include <minikernel/Material/MagneticMaterialImpl.h>
+#include <minikernel/Material/Material.h>
 
 //! Material implementation based on refractive coefficiencts (valid for one wavelength value only)
 //! @ingroup materials

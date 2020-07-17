@@ -15,7 +15,7 @@
 #ifndef BORNAGAIN_CORE_PARAMETRIZATION_IPARAMETER_H
 #define BORNAGAIN_CORE_PARAMETRIZATION_IPARAMETER_H
 
-#include <darefl/minikernel/Basics/INamed.h>
+#include <minikernel/Basics/INamed.h>
 #include <functional>
 #include <stdexcept>
 #include <string>

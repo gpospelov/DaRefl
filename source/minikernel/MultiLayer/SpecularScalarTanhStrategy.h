@@ -15,7 +15,7 @@
 #ifndef BORNAGAIN_CORE_MULTILAYER_SPECULARSCALARTANHSTRATEGY_H
 #define BORNAGAIN_CORE_MULTILAYER_SPECULARSCALARTANHSTRATEGY_H
 
-#include <darefl/minikernel/MultiLayer/SpecularScalarStrategy.h>
+#include <minikernel/MultiLayer/SpecularScalarStrategy.h>
 
 class Slice;
 

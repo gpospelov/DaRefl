@@ -12,9 +12,9 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/MultiLayer/SpecularScalarTanhStrategy.h>
-#include <darefl/minikernel/Basics/MathConstants.h>
-#include <darefl/minikernel/Tools/MathFunctions.h>
+#include <minikernel/MultiLayer/SpecularScalarTanhStrategy.h>
+#include <minikernel/Basics/MathConstants.h>
+#include <minikernel/Tools/MathFunctions.h>
 #include <Eigen/Dense>
 
 namespace

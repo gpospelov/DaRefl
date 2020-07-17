@@ -12,9 +12,9 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/Vector/BasicVector3D.h>
-#include <darefl/minikernel/Basics/Exceptions.h>
-#include <darefl/minikernel/Basics/MathConstants.h>
+#include <minikernel/Vector/BasicVector3D.h>
+#include <minikernel/Basics/Exceptions.h>
+#include <minikernel/Basics/MathConstants.h>
 
 typedef std::complex<double> complex_t;
 

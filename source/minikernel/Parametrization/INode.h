@@ -15,8 +15,8 @@
 #ifndef BORNAGAIN_CORE_PARAMETRIZATION_INODE_H
 #define BORNAGAIN_CORE_PARAMETRIZATION_INODE_H
 
-#include <darefl/minikernel/Parametrization/INodeVisitor.h>
-#include <darefl/minikernel/Parametrization/IParameterized.h>
+#include <minikernel/Parametrization/INodeVisitor.h>
+#include <minikernel/Parametrization/IParameterized.h>
 #include <memory>
 #include <vector>
 

@@ -15,9 +15,9 @@
 #ifndef BORNAGAIN_CORE_PARAMETRIZATION_IPARAMETERIZED_H
 #define BORNAGAIN_CORE_PARAMETRIZATION_IPARAMETERIZED_H
 
-#include <darefl/minikernel/Basics/BornAgainNamespace.h>
-#include <darefl/minikernel/Basics/INamed.h>
-#include <darefl/minikernel/Vector/Vectors3D.h>
+#include <minikernel/Basics/BornAgainNamespace.h>
+#include <minikernel/Basics/INamed.h>
+#include <minikernel/Vector/Vectors3D.h>
 
 class RealLimits;
 class ParameterPool;

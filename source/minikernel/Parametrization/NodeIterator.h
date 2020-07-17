@@ -15,7 +15,7 @@
 #ifndef BORNAGAIN_CORE_PARAMETRIZATION_NODEITERATOR_H
 #define BORNAGAIN_CORE_PARAMETRIZATION_NODEITERATOR_H
 
-#include <darefl/minikernel/Parametrization/INode.h>
+#include <minikernel/Parametrization/INode.h>
 #include <ostream>
 #include <stack>
 #include <vector>

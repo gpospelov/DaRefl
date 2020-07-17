@@ -12,11 +12,11 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/MultiLayer/KzComputation.h>
-#include <darefl/minikernel/Computation/Slice.h>
+#include <minikernel/MultiLayer/KzComputation.h>
+#include <minikernel/Computation/Slice.h>
 //#include "Core/Multilayer/Layer.h"
 //#include "Core/Multilayer/MultiLayer.h"
-#include <darefl/minikernel/Parametrization/Units.h>
+#include <minikernel/Parametrization/Units.h>
 
 namespace
 {

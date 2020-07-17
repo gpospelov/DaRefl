@@ -15,11 +15,11 @@
 #ifndef MATERIAL_H_
 #define MATERIAL_H_
 
-#include <darefl/minikernel/Wrap/WinDllMacros.h>
-#include <darefl/minikernel/Material/BaseMaterialImpl.h>
-#include <darefl/minikernel/Basics/Complex.h>
-#include <darefl/minikernel/Vector/EigenCore.h>
-#include <darefl/minikernel/Vector/Vectors3D.h>
+#include <minikernel/Wrap/WinDllMacros.h>
+#include <minikernel/Material/BaseMaterialImpl.h>
+#include <minikernel/Basics/Complex.h>
+#include <minikernel/Vector/EigenCore.h>
+#include <minikernel/Vector/Vectors3D.h>
 #include <memory>
 #include <vector>
 

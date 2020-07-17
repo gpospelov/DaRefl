@@ -15,10 +15,10 @@
 #ifndef BORNAGAIN_CORE_MATERIAL_MAGNETICMATERIALIMPL_H
 #define BORNAGAIN_CORE_MATERIAL_MAGNETICMATERIALIMPL_H
 
-#include <darefl/minikernel/Basics/Complex.h>
-#include <darefl/minikernel/Material/BaseMaterialImpl.h>
-#include <darefl/minikernel/Vector/EigenCore.h>
-#include <darefl/minikernel/Vector/Vectors3D.h>
+#include <minikernel/Basics/Complex.h>
+#include <minikernel/Material/BaseMaterialImpl.h>
+#include <minikernel/Vector/EigenCore.h>
+#include <minikernel/Vector/Vectors3D.h>
 
 class Transform3D;
 class WavevectorInfo;

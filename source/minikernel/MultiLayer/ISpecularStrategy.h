@@ -15,8 +15,8 @@
 #ifndef BORNAGAIN_CORE_MULTILAYER_ISPECULARSTRATEGY_H
 #define BORNAGAIN_CORE_MULTILAYER_ISPECULARSTRATEGY_H
 
-#include <darefl/minikernel/Computation/Slice.h>
-#include <darefl/minikernel/MultiLayer/ILayerRTCoefficients.h>
+#include <minikernel/Computation/Slice.h>
+#include <minikernel/MultiLayer/ILayerRTCoefficients.h>
 
 //! Interface for the Fresnel computations, both in the scalar and magnetic case
 //!

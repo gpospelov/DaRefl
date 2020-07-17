@@ -12,6 +12,6 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/Basics/INamed.h>
+#include <minikernel/Basics/INamed.h>
 
 INamed::~INamed() = default;

@@ -15,9 +15,9 @@
 #ifndef BORNAGAIN_CORE_MULTILAYER_KZCOMPUTATION_H
 #define BORNAGAIN_CORE_MULTILAYER_KZCOMPUTATION_H
 
-#include <darefl/minikernel/Basics/Complex.h>
-#include <darefl/minikernel/Basics/ICloneable.h>
-#include <darefl/minikernel/Vector/Vectors3D.h>
+#include <minikernel/Basics/Complex.h>
+#include <minikernel/Basics/ICloneable.h>
+#include <minikernel/Vector/Vectors3D.h>
 #include <vector>
 
 namespace BornAgain

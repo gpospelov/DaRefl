@@ -12,9 +12,9 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/Computation/Slice.h>
-#include <darefl/minikernel/MultiLayer/LayerRoughness.h>
-#include <darefl/minikernel/Material/MaterialUtils.h>
+#include <minikernel/Computation/Slice.h>
+#include <minikernel/MultiLayer/LayerRoughness.h>
+#include <minikernel/Material/MaterialUtils.h>
 
 namespace BornAgain {
 

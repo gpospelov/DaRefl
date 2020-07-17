@@ -15,9 +15,9 @@
 #ifndef BORNAGAIN_CORE_MULTILAYER_ILAYERRTCOEFFICIENTS_H
 #define BORNAGAIN_CORE_MULTILAYER_ILAYERRTCOEFFICIENTS_H
 
-#include <darefl/minikernel/Basics/Complex.h>
-#include <darefl/minikernel/Basics/Exceptions.h>
-#include <darefl/minikernel/Vector/EigenCore.h>
+#include <minikernel/Basics/Complex.h>
+#include <minikernel/Basics/Exceptions.h>
+#include <minikernel/Vector/EigenCore.h>
 
 //! Interface to access reflection/transmission coefficients.
 //! @ingroup algorithms_internal

@@ -12,9 +12,9 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/Parametrization/IterationStrategy.h>
-#include <darefl/minikernel/Basics/Exceptions.h>
-#include <darefl/minikernel/Parametrization/NodeIterator.h>
+#include <minikernel/Parametrization/IterationStrategy.h>
+#include <minikernel/Basics/Exceptions.h>
+#include <minikernel/Parametrization/NodeIterator.h>
 
 PreorderStrategy::PreorderStrategy() {}
 

@@ -12,11 +12,11 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/Parametrization/ParameterPool.h>
-#include <darefl/minikernel/Basics/Exceptions.h>
-#include <darefl/minikernel/Parametrization/RealParameter.h>
-#include <darefl/minikernel/Fit/Tools/RealLimits.h>
-#include <darefl/minikernel/Fit/Tools/StringUtils.h>
+#include <minikernel/Parametrization/ParameterPool.h>
+#include <minikernel/Basics/Exceptions.h>
+#include <minikernel/Parametrization/RealParameter.h>
+#include <minikernel/Fit/Tools/RealLimits.h>
+#include <minikernel/Fit/Tools/StringUtils.h>
 #include <algorithm>
 #include <cassert>
 #include <iostream>

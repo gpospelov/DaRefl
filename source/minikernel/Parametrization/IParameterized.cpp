@@ -12,9 +12,9 @@
 //
 // ************************************************************************** //
 
-#include <darefl/minikernel/Parametrization/IParameterized.h>
-#include <darefl/minikernel/Basics/Exceptions.h>
-#include <darefl/minikernel/Parametrization/ParameterPool.h>
+#include <minikernel/Parametrization/IParameterized.h>
+#include <minikernel/Basics/Exceptions.h>
+#include <minikernel/Parametrization/ParameterPool.h>
 //#include "Core/Parametrization/RealParameter.h"
 //#include "Fit/Tools/RealLimits.h"
 #include <iostream>

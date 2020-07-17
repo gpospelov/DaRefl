@@ -15,8 +15,8 @@
 #ifndef BORNAGAIN_CORE_SCATTERING_ISAMPLE_H
 #define BORNAGAIN_CORE_SCATTERING_ISAMPLE_H
 
-#include <darefl/minikernel/Basics/ICloneable.h>
-#include <darefl/minikernel/Parametrization/INode.h>
+#include <minikernel/Basics/ICloneable.h>
+#include <minikernel/Parametrization/INode.h>
 #include <vector>
 
 class Material;

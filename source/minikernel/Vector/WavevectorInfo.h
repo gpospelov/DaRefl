@@ -15,7 +15,7 @@
 #ifndef BORNAGAIN_CORE_VECTOR_WAVEVECTORINFO_H
 #define BORNAGAIN_CORE_VECTOR_WAVEVECTORINFO_H
 
-#include <darefl/minikernel/Vector/Vectors3D.h>
+#include <minikernel/Vector/Vectors3D.h>
 
 class Transform3D;
 
