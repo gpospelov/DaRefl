@@ -47,17 +47,17 @@ ParameterPool* IParameterized::createParameterTree() const
 
 std::string IParameterized::parametersToString() const
 {
-//    std::ostringstream result;
+    std::ostringstream result;
 //    std::unique_ptr<ParameterPool> P_pool(createParameterTree());
 //    result << *P_pool << "\n";
-//    return result.str();
+    return result.str();
 }
 
-RealParameter& IParameterized::registerParameter(const std::string& name, double* data)
-{
-//    return m_pool->addParameter(
-//        new RealParameter(name, data, getName(), [&]() -> void { onChange(); }));
-}
+//RealParameter& IParameterized::registerParameter(const std::string& name, double* data)
+//{
+////    return m_pool->addParameter(
+////        new RealParameter(name, data, getName(), [&]() -> void { onChange(); }));
+//}
 
 void IParameterized::registerVector(const std::string& base_name, kvector_t* p_vec,
                                     const std::string& units)

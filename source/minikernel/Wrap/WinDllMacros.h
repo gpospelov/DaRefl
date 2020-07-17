@@ -20,9 +20,15 @@
 
 #ifdef BA_CORE_BUILD_DLL
 
-#define BA_CORE_API_ __declspec(dllexport)
+//#define BA_CORE_API_ __declspec(dllexport)
+#ifndef BA_CORE_API_
+#define BA_CORE_API_
+#endif
 #else
-#define BA_CORE_API_ __declspec(dllimport)
+//#define BA_CORE_API_ __declspec(dllimport)
+#ifndef BA_CORE_API_
+#define BA_CORE_API_
+#endif
 #endif // BA_CORE_BUILD_DLL
 
 #endif // _WIN32

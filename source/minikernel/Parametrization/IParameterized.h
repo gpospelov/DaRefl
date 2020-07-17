@@ -44,7 +44,7 @@ public:
     //! Returns multiline string representing available parameters.
     std::string parametersToString() const;
 
-    RealParameter& registerParameter(const std::string& name, double* parpointer);
+//    RealParameter& registerParameter(const std::string& name, double* parpointer);
 
     void registerVector(const std::string& base_name, kvector_t* p_vec,
                         const std::string& units = BornAgain::UnitsNm);

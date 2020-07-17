@@ -17,6 +17,7 @@
 
 #include <minikernel/Material/Material.h>
 #include <minikernel/Wrap/WinDllMacros.h>
+#include <minikernel/Basics/MathConstants.h>
 #include <memory>
 
 class LayerRoughness;

@@ -14,6 +14,7 @@
 
 #include <minikernel/Material/RefractiveMaterialImpl.h>
 #include <minikernel/Vector/WavevectorInfo.h>
+#include <minikernel/Basics/MathConstants.h>
 
 RefractiveMaterialImpl::RefractiveMaterialImpl(const std::string& name, double delta, double beta,
                                                kvector_t magnetization)

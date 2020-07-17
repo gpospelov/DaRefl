@@ -13,6 +13,7 @@
 // ************************************************************************** //
 
 #include <minikernel/Material/MaterialBySLDImpl.h>
+#include <minikernel/Basics/MathConstants.h>
 #include <minikernel/Parametrization/Units.h>
 #include <minikernel/Vector/WavevectorInfo.h>
 
