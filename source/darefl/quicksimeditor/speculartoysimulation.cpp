@@ -9,6 +9,7 @@
 
 #include <algorithm>
 #include <minikernel/Computation/Slice.h>
+#include <minikernel/MultiLayer/KzComputation.h>
 #include <minikernel/Material/MaterialFactoryFuncs.h>
 #include <minikernel/MultiLayer/LayerRoughness.h>
 #include <darefl/quicksimeditor/fouriertransform.h>
@@ -47,7 +48,8 @@ void SpecularToySimulation::runSimulation()
             throw std::runtime_error("Interrupt request");
 
         auto kz = 0.5 * q;
-        auto coeff = std::move(strategy->Execute(slices, kvector_t(0, 0, -kz)).front());
+        auto kzs = KzComputation::computeKzFromSLDs(slices, kz);
+        auto coeff = std::move(strategy->Execute(slices, kzs).front());
         specular_result.data.emplace_back(std::norm(coeff->getScalarR()));
 
         progress_handler.setCompletedTicks(1);
