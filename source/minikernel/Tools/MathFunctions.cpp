@@ -16,11 +16,11 @@
 #include <minikernel/Basics/MathConstants.h>
 #include <chrono>
 #include <cstring>
-#include <fftw3.h>
-#include <gsl/gsl_sf_bessel.h>
-#include <gsl/gsl_sf_erf.h>
-#include <gsl/gsl_sf_expint.h>
-#include <gsl/gsl_sf_trig.h>
+//#include <fftw3.h>
+//#include <gsl/gsl_sf_bessel.h>
+//#include <gsl/gsl_sf_erf.h>
+//#include <gsl/gsl_sf_expint.h>
+//#include <gsl/gsl_sf_trig.h>
 #include <limits>
 #include <random>
 #include <stdexcept> // need overlooked by g++ 5.4
