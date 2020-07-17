@@ -50,13 +50,13 @@ public:
     //! Returns full vector of parameters.
     const std::vector<RealParameter*> parameters() const { return m_params; }
 
-    std::vector<RealParameter*> getMatchedParameters(const std::string& pattern) const;
-    RealParameter* getUniqueMatch(const std::string& pattern) const;
+//    std::vector<RealParameter*> getMatchedParameters(const std::string& pattern) const;
+//    RealParameter* getUniqueMatch(const std::string& pattern) const;
 
     void setParameterValue(const std::string& name, double value);
 
-    int setMatchedParametersValue(const std::string& wildcards, double value);
-    void setUniqueMatchValue(const std::string& pattern, double value);
+//    int setMatchedParametersValue(const std::string& wildcards, double value);
+//    void setUniqueMatchValue(const std::string& pattern, double value);
 
     std::vector<std::string> parameterNames() const;
 

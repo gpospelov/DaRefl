@@ -16,7 +16,7 @@
 #include <minikernel/Basics/Exceptions.h>
 #include <minikernel/Parametrization/RealParameter.h>
 #include <minikernel/Fit/Tools/RealLimits.h>
-#include <minikernel/Fit/Tools/StringUtils.h>
+//#include <minikernel/Fit/Tools/StringUtils.h>
 #include <algorithm>
 #include <cassert>
 #include <iostream>
@@ -98,31 +98,31 @@ RealParameter* ParameterPool::parameter(const std::string& name)
 
 //! Returns nonempty vector of parameters that match the _pattern_ ('*' allowed), or throws.
 
-std::vector<RealParameter*> ParameterPool::getMatchedParameters(const std::string& pattern) const
-{
-    std::vector<RealParameter*> result;
-    // loop over all parameters in the pool
-    for (auto* par : m_params)
-        if (StringUtils::matchesPattern(par->getName(), pattern))
-            result.push_back(par);
-    if (result.empty())
-        report_find_matched_parameters_error(pattern);
-    return result;
-}
+//std::vector<RealParameter*> ParameterPool::getMatchedParameters(const std::string& pattern) const
+//{
+//    std::vector<RealParameter*> result;
+//    // loop over all parameters in the pool
+//    for (auto* par : m_params)
+//        if (StringUtils::matchesPattern(par->getName(), pattern))
+//            result.push_back(par);
+//    if (result.empty())
+//        report_find_matched_parameters_error(pattern);
+//    return result;
+//}
 
 //! Returns the one parameter that matches the _pattern_ (wildcards '*' allowed), or throws.
 
-RealParameter* ParameterPool::getUniqueMatch(const std::string& pattern) const
-{
-    std::vector<RealParameter*> matches = getMatchedParameters(pattern);
-    if (matches.empty())
-        throw Exceptions::RuntimeErrorException(
-            "ParameterPool::getUniqueMatch: there is no match for '" + pattern + "'");
-    if (matches.size() != 1)
-        throw Exceptions::RuntimeErrorException("ParameterPool::getUniqueMatch: pattern '" + pattern
-                                                + "' is not unique");
-    return matches[0];
-}
+//RealParameter* ParameterPool::getUniqueMatch(const std::string& pattern) const
+//{
+//    std::vector<RealParameter*> matches = getMatchedParameters(pattern);
+//    if (matches.empty())
+//        throw Exceptions::RuntimeErrorException(
+//            "ParameterPool::getUniqueMatch: there is no match for '" + pattern + "'");
+//    if (matches.size() != 1)
+//        throw Exceptions::RuntimeErrorException("ParameterPool::getUniqueMatch: pattern '" + pattern
+//                                                + "' is not unique");
+//    return matches[0];
+//}
 
 //! Sets parameter value.
 
@@ -145,30 +145,30 @@ void ParameterPool::setParameterValue(const std::string& name, double value)
 
 //! Sets value of the nonzero parameters that match _pattern_ ('*' allowed), or throws.
 
-int ParameterPool::setMatchedParametersValue(const std::string& pattern, double value)
-{
-    int npars = 0;
-    for (RealParameter* par : getMatchedParameters(pattern)) {
-        try {
-            par->setValue(value);
-            npars++;
-        } catch (const std::runtime_error& e) {
-            report_set_value_error(par->getName(), value, e.what());
-        }
-    }
-    if (npars == 0)
-        report_find_matched_parameters_error(pattern);
-    return npars;
-}
+//int ParameterPool::setMatchedParametersValue(const std::string& pattern, double value)
+//{
+//    int npars = 0;
+//    for (RealParameter* par : getMatchedParameters(pattern)) {
+//        try {
+//            par->setValue(value);
+//            npars++;
+//        } catch (const std::runtime_error& e) {
+//            report_set_value_error(par->getName(), value, e.what());
+//        }
+//    }
+//    if (npars == 0)
+//        report_find_matched_parameters_error(pattern);
+//    return npars;
+//}
 
 //! Sets value of the one parameter that matches _pattern_ ('*' allowed), or throws.
 
-void ParameterPool::setUniqueMatchValue(const std::string& pattern, double value)
-{
-    if (setMatchedParametersValue(pattern, value) != 1)
-        throw Exceptions::RuntimeErrorException("ParameterPool::setUniqueMatchValue: pattern '"
-                                                + pattern + "' is not unique");
-}
+//void ParameterPool::setUniqueMatchValue(const std::string& pattern, double value)
+//{
+//    if (setMatchedParametersValue(pattern, value) != 1)
+//        throw Exceptions::RuntimeErrorException("ParameterPool::setUniqueMatchValue: pattern '"
+//                                                + pattern + "' is not unique");
+//}
 
 std::vector<std::string> ParameterPool::parameterNames() const
 {
