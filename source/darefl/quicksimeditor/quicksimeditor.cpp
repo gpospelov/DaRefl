@@ -40,9 +40,9 @@ QuickSimEditor::~QuickSimEditor() = default;
 void QuickSimEditor::setModels(ApplicationModels* models)
 {
     app_models = models;
-    // sim_controller->setModels(models);
+    sim_controller->setModels(models);
     // toolbar->setModels(models);
-    // spec_canvas->setItem(app_models->jobModel()->specular_viewport());
+    spec_canvas->setItem(app_models->jobModel()->specular_viewport());
 }
 
 QSize QuickSimEditor::sizeHint() const
