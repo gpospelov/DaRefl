@@ -19,7 +19,7 @@ jobs:
 
     - name: dependencies
       run: |
-        brew install cmake qt5 ccache
+        brew install cmake qt5 ccache eigen
         echo "Qt5 is installed to"
         echo $QTDIR
         
