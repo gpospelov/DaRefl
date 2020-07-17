@@ -12,5 +12,5 @@ add_subdirectory(Scattering)
 add_subdirectory(Vector)
 add_subdirectory(Tools)
 
-# target_link_libraries(${library_name} PUBLIC ) # Add eigen3 later
+target_link_libraries(${library_name} PUBLIC Eigen3::Eigen)
 target_include_directories(${library_name} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/..>)
