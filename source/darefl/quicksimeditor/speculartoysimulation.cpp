@@ -47,7 +47,7 @@ void SpecularToySimulation::runSimulation()
         if (progress_handler.has_interrupt_request())
             throw std::runtime_error("Interrupt request");
 
-        auto kz = 0.5 * q;
+        auto kz = -0.5 * q;
         auto kzs = KzComputation::computeKzFromSLDs(slices, kz);
         auto coeff = std::move(strategy->Execute(slices, kzs).front());
         specular_result.data.emplace_back(std::norm(coeff->getScalarR()));
