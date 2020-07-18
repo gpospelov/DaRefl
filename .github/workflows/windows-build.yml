@@ -96,9 +96,6 @@ jobs:
         set EIGENDIR=${{github.workspace}}\eigen\eigen-3.3.7\build
         set PATH=${{github.workspace}};%QTDIR%\bin;%PATH%
         cd ${{github.workspace}}
-        dir ${{github.workspace}}\include
-        dir %EIGENDIR%
-        dir 
         git submodule update --init --recursive
         mkdir build
         cd build
