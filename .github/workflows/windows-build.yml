@@ -6,7 +6,7 @@ env:
 
 on:
   push:
-    branches: [ master, develop ]    
+    branches: [ master, develop ]
   pull_request:
     branches: [ master, develop ]
 
@@ -21,18 +21,34 @@ jobs:
       with: 
         submodules: true    
 
-    - name: setup Eigen3
-      shell: powershell
+    - name: cache timestamp
+      id: ccache_cache_timestamp
+      shell: cmake -P {0}
       run: |
-        Get-Date -Format G
+        string(TIMESTAMP current_date "%Y-%m-%d-%H;%M;%S" UTC)
+        message("::set-output name=timestamp::${current_date}")
+        
+    - name: Eigen3 cache
+      id: eigen3-cache
+      uses: actions/cache@v2
+      with:
+        path: eigen
+        key: darefl-win-eigen337
+        
+    - if: steps.eigen3-cache.outputs.cache-hit != 'true'
+      name: setup Eigen3
+      shell: cmd
+      run: |
+        call "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
         $Env:Path += ";C:\msys64\usr\bin"
         cd ${{github.workspace}}
         mkdir eigen
-        Get-Date -Format G
-        wget https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.zip -O ${{runner.temp}}\eigen.zip
-        Get-Date -Format G
+        powershell wget https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.zip -O ${{runner.temp}}\eigen.zip
         7z x ${{runner.temp}}\eigen.zip -oeigen
-        Get-Date -Format G
+        cd eigen/eigen-3.3.7
+        mkdir build
+        cd build
+        cmake -DCMAKE_INSTALL_PREFIX=. ..
         
     - name: Install Qt
       uses: jurplel/install-qt-action@v2
@@ -57,13 +73,6 @@ jobs:
         set(ninja_url "https://github.com/ninja-build/ninja/releases/download/v$ENV{NINJA_VERSION}/ninja-win.zip")
         file(DOWNLOAD "${ninja_url}" ./ninja.zip SHOW_PROGRESS)
         execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./ninja.zip)
-
-    - name: ccache timestamp
-      id: ccache_cache_timestamp
-      shell: cmake -P {0}
-      run: |
-        string(TIMESTAMP current_date "%Y-%m-%d-%H;%M;%S" UTC)
-        message("::set-output name=timestamp::${current_date}")
         
     - name: ccache files 
       uses: actions/cache@v1.1.0
@@ -84,14 +93,16 @@ jobs:
       run: |
         call "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
         set QTDIR=${{github.workspace}}\qt5\Qt\5.14.2\msvc2017_64
-        set EIGENDIR=${{github.workspace}}\eigen\eigen-3.3.7
+        set EIGENDIR=${{github.workspace}}\eigen\eigen-3.3.7\build
         set PATH=${{github.workspace}};%QTDIR%\bin;%PATH%
         cd ${{github.workspace}}
-        dir
+        dir ${{github.workspace}}\include
+        dir %EIGENDIR%
+        dir 
         git submodule update --init --recursive
         mkdir build
         cd build
-        cmake -G "Visual Studio 16 2019" -G Ninja -DCMAKE_MAKE_PROGRAM=ninja -DEIGEN3_INCLUDE_DIRS=%EIGENDIR% -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER="cl.exe" -DCMAKE_CXX_COMPILER="cl.exe" ..
+        cmake -G "Visual Studio 16 2019" -G Ninja -DCMAKE_MAKE_PROGRAM=ninja -DCMAKE_PREFIX_PATH=%EIGENDIR% -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER="cl.exe" -DCMAKE_CXX_COMPILER="cl.exe" ..
         ccache -z
         ccache -p
         cmake --build . --config Release -j4
