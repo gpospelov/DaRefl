@@ -1,6 +1,9 @@
 target_sources(${library_name} PRIVATE
     applicationmodels.cpp
     applicationmodels.h
+    experimentaldata_types.h
+    experimentaldataitems.cpp
+    experimentaldataitems.h
     experimentaldatamodel.cpp
     experimentaldatamodel.h
     item_constants.h
@@ -16,9 +19,6 @@ target_sources(${library_name} PRIVATE
     materialmodel.h
     materialpropertycontroller.cpp
     materialpropertycontroller.h
-    realdata_types.h
-    experimentaldataitems.cpp
-    experimentaldataitems.h
     samplemodel.cpp
     samplemodel.h
 )

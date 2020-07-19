@@ -15,7 +15,7 @@
 #include <darefl/importdataview/importdataeditoractions.h>
 #include <darefl/importdataview/importdataeditortoolbal.h>
 #include <darefl/mainwindow/styleutils.h>
-#include <darefl/model/realdata_types.h>
+#include <darefl/model/experimentaldata_types.h>
 #include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/experimentaldatamodel.h>
 
