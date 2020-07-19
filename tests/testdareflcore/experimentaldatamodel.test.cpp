@@ -10,7 +10,7 @@
 #include "google_test.h"
 
 #include <darefl/model/realdata_types.h>
-#include <darefl/model/realdataitems.h>
+#include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/experimentaldatamodel.h>
 
 #include <QSignalSpy>
@@ -62,7 +62,7 @@ TEST_F(ExperimentalDataModelTest, addDataToCollection)
     ExperimentalDataModel model;
     int default_child_count = CanvasItem().childrenCount();
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
-    auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
+    auto root_container_item = Utils::TopItem<ExperimentalDataContainerItem>(&model);
 
     auto data_group_item = model.addDataToCollection(getRealDataStruct(), root_view_item);
     EXPECT_EQ(default_child_count + 1, data_group_item->childrenCount());
@@ -82,7 +82,7 @@ TEST_F(ExperimentalDataModelTest, removeAllDataFromCollection)
 {
     ExperimentalDataModel model;
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
-    auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
+    auto root_container_item = Utils::TopItem<ExperimentalDataContainerItem>(&model);
 
     auto data_group_item = model.addDataToCollection(getRealDataStruct(), root_view_item);
     model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item);
@@ -100,7 +100,7 @@ TEST_F(ExperimentalDataModelTest, removeDataFromCollection)
     ExperimentalDataModel model;
     int default_child_count = CanvasItem().childrenCount();
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
-    auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
+    auto root_container_item = Utils::TopItem<ExperimentalDataContainerItem>(&model);
 
     CanvasItem* data_group_item_1 = nullptr;
     for (int i = 0; i < 10; ++i) {
@@ -235,7 +235,7 @@ TEST_F(ExperimentalDataModelTest, dragDropItemGroup)
     ExperimentalDataModel model;
     int default_child_count = CanvasItem().childrenCount();
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
-    auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
+    auto root_container_item = Utils::TopItem<ExperimentalDataContainerItem>(&model);
 
     CanvasItem* data_group_item_1 = nullptr;
     for (int i = 0; i < 10; ++i) {
@@ -266,7 +266,7 @@ TEST_F(ExperimentalDataModelTest, dragDropItemGraph)
     ExperimentalDataModel model;
     int default_child_count = CanvasItem().childrenCount();
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
-    auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
+    auto root_container_item = Utils::TopItem<ExperimentalDataContainerItem>(&model);
 
     CanvasItem* data_group_item_1 = nullptr;
     for (int i = 0; i < 10; ++i) {
@@ -305,7 +305,7 @@ TEST_F(ExperimentalDataModelTest, mergeItems)
     ExperimentalDataModel model;
     int default_child_count = CanvasItem().childrenCount();
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
-    auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
+    auto root_container_item = Utils::TopItem<ExperimentalDataContainerItem>(&model);
 
     CanvasItem* data_group_item_1 = nullptr;
     for (int i = 0; i < 10; ++i) {

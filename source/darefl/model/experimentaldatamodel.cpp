@@ -8,7 +8,7 @@
 // ************************************************************************** //
 
 #include <darefl/model/realdata_types.h>
-#include <darefl/model/realdataitems.h>
+#include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/experimentaldatamodel.h>
 
 #include <mvvm/model/itemcatalogue.h>
@@ -45,18 +45,18 @@ ExperimentalDataModel::ExperimentalDataModel() : SessionModel("RealDataModel")
 }
 
 //! Create the data container item
-RealDataContainerItem* ExperimentalDataModel::insertDataContainer()
+ExperimentalDataContainerItem* ExperimentalDataModel::insertDataContainer()
 {
-    auto data_container_item = insertItem<RealDataContainerItem>(rootItem());
+    auto data_container_item = insertItem<ExperimentalDataContainerItem>(rootItem());
     return data_container_item;
 }
 
 //! Get the data container of the model
-RealDataContainerItem* ExperimentalDataModel::dataContainer() const
+ExperimentalDataContainerItem* ExperimentalDataModel::dataContainer() const
 {
     for (const auto item : rootItem()->children()) {
-        if (dynamic_cast<RealDataContainerItem*>(item))
-            return dynamic_cast<RealDataContainerItem*>(item);
+        if (dynamic_cast<ExperimentalDataContainerItem*>(item))
+            return dynamic_cast<ExperimentalDataContainerItem*>(item);
     }
 
     return nullptr;

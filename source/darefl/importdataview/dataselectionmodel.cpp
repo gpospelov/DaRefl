@@ -8,7 +8,7 @@
 // ************************************************************************** //
 
 #include <darefl/importdataview/dataselectionmodel.h>
-#include <darefl/model/realdataitems.h>
+#include <darefl/model/experimentaldataitems.h>
 
 #include <mvvm/model/sessionitem.h>
 #include <mvvm/viewmodel/viewmodel.h>

@@ -16,7 +16,7 @@
 #include <darefl/importdataview/importdataeditortoolbal.h>
 #include <darefl/mainwindow/styleutils.h>
 #include <darefl/model/realdata_types.h>
-#include <darefl/model/realdataitems.h>
+#include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/experimentaldatamodel.h>
 
 #include <QAction>
