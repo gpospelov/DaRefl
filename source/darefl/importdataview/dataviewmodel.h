@@ -17,7 +17,7 @@ namespace ModelView
 class SessionModel;
 }
 
-class RealDataModel;
+class ExperimentalDataModel;
 
 //! This is the implementation of drag and drop support for the data editor
 
@@ -25,7 +25,7 @@ class DataViewModel : public ModelView::ViewModel
 {
     Q_OBJECT
 public:
-    DataViewModel(RealDataModel* model, QObject* parent = nullptr);
+    DataViewModel(ExperimentalDataModel* model, QObject* parent = nullptr);
 
     Qt::ItemFlags flags(const QModelIndex& index) const override;
     QMimeData* mimeData(const QModelIndexList& index_list) const override;
@@ -37,7 +37,7 @@ public:
                       const QModelIndex& parent) override;
 
 private:
-    RealDataModel* dataModel() const;
+    ExperimentalDataModel* dataModel() const;
 };
 
 #endif // DAREFL_IMPORTDATAWIDGETS_DATAVIEWMODEL_H

@@ -11,12 +11,12 @@
 #include <darefl/importdataview/importdataeditoractions.h>
 #include <darefl/model/realdata_types.h>
 #include <darefl/model/realdataitems.h>
-#include <darefl/model/realdatamodel.h>
+#include <darefl/model/experimentaldatamodel.h>
 #include <mvvm/model/modelutils.h>
 
 using namespace ModelView;
 
-ImportDataEditorActions::ImportDataEditorActions(RealDataModel* model,
+ImportDataEditorActions::ImportDataEditorActions(ExperimentalDataModel* model,
                                                  DataSelectionModel* selectionModel,
                                                  QObject* parent)
     : QObject(parent), m_dataModel(model), m_selectionModel(selectionModel)

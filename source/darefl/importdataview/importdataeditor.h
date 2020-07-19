@@ -28,7 +28,7 @@ class ImportOutput;
 class ParsedFileOutptut;
 } // namespace DataImportLogic
 
-class RealDataModel;
+class ExperimentalDataModel;
 class QTreeView;
 class QBoxLayout;
 class RealDataStruct;
@@ -43,7 +43,7 @@ class ImportDataEditor : public QWidget
 {
     Q_OBJECT
 public:
-    ImportDataEditor(RealDataModel* model, QWidget* parent = nullptr);
+    ImportDataEditor(ExperimentalDataModel* model, QWidget* parent = nullptr);
 
 private:
     void setupToolBar();
@@ -63,7 +63,7 @@ private:
 
 private:
     QTreeView* p_tree_view{nullptr};
-    RealDataModel* p_model{nullptr};
+    ExperimentalDataModel* p_model{nullptr};
     DataViewModel* p_view_model{nullptr};
     DataSelectionModel* p_data_selection_model{nullptr};
     ImportDataEditorActions* m_editorActions{nullptr};

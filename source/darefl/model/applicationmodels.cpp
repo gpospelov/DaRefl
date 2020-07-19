@@ -12,7 +12,7 @@
 #include <darefl/model/layeritems.h>
 #include <darefl/model/materialmodel.h>
 #include <darefl/model/materialpropertycontroller.h>
-#include <darefl/model/realdatamodel.h>
+#include <darefl/model/experimentaldatamodel.h>
 #include <darefl/model/samplemodel.h>
 #include <darefl/sldeditor/sldelementmodel.h>
 #include <mvvm/model/externalproperty.h>
@@ -27,7 +27,7 @@ struct ApplicationModels::ApplicationModelsImpl {
     std::unique_ptr<SampleModel> m_sample_model;
     std::unique_ptr<SLDElementModel> m_sld_view_model;
     std::unique_ptr<JobModel> m_job_model;
-    std::unique_ptr<RealDataModel> m_realdata_model;
+    std::unique_ptr<ExperimentalDataModel> m_realdata_model;
     std::unique_ptr<MaterialPropertyController> m_property_controller;
     std::shared_ptr<ItemPool> item_pool;
 
@@ -38,7 +38,7 @@ struct ApplicationModels::ApplicationModelsImpl {
         m_sample_model = std::make_unique<SampleModel>(item_pool);
         m_sld_view_model = std::make_unique<SLDElementModel>();
         m_job_model = std::make_unique<JobModel>();
-        m_realdata_model = std::make_unique<RealDataModel>();
+        m_realdata_model = std::make_unique<ExperimentalDataModel>();
         m_property_controller = std::make_unique<MaterialPropertyController>(m_material_model.get(),
                                                                              m_sample_model.get());
         m_sample_model->create_default_multilayer();
@@ -98,7 +98,7 @@ JobModel* ApplicationModels::jobModel()
     return p_impl->m_job_model.get();
 }
 
-RealDataModel* ApplicationModels::realDataModel()
+ExperimentalDataModel* ApplicationModels::realDataModel()
 {
     return p_impl->m_realdata_model.get();
 }

@@ -11,7 +11,7 @@
 
 #include <darefl/model/realdata_types.h>
 #include <darefl/model/realdataitems.h>
-#include <darefl/model/realdatamodel.h>
+#include <darefl/model/experimentaldatamodel.h>
 
 #include <QSignalSpy>
 #include <mvvm/model/modelutils.h>
@@ -19,17 +19,18 @@
 
 using namespace ModelView;
 
-//! Tests of RealDataModel.
-class RealDataModelTest : public ::testing::Test
+//! Tests of ExperimentalDataModel.
+
+class ExperimentalDataModelTest : public ::testing::Test
 {
 public:
-    ~RealDataModelTest();
+    ~ExperimentalDataModelTest();
     RealDataStruct getRealDataStruct() const;
 };
 
-RealDataModelTest::~RealDataModelTest() = default;
+ExperimentalDataModelTest::~ExperimentalDataModelTest() = default;
 
-RealDataStruct RealDataModelTest::getRealDataStruct() const
+RealDataStruct ExperimentalDataModelTest::getRealDataStruct() const
 {
     RealDataStruct output;
     output.type = "Intensity";
@@ -47,18 +48,18 @@ RealDataStruct RealDataModelTest::getRealDataStruct() const
 }
 
 //! Test the initial state of the model
-TEST_F(RealDataModelTest, initialState)
+TEST_F(ExperimentalDataModelTest, initialState)
 {
-    RealDataModel model;
+    ExperimentalDataModel model;
 
     EXPECT_EQ("RealDataModel", model.modelType());
     EXPECT_EQ(2, model.rootItem()->childrenCount());
 }
 
 //! Test the addDataToCollection method
-TEST_F(RealDataModelTest, addDataToCollection)
+TEST_F(ExperimentalDataModelTest, addDataToCollection)
 {
-    RealDataModel model;
+    ExperimentalDataModel model;
     int default_child_count = CanvasItem().childrenCount();
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
     auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
@@ -77,9 +78,9 @@ TEST_F(RealDataModelTest, addDataToCollection)
 }
 
 //! Test the removeAllDataFromCollection method
-TEST_F(RealDataModelTest, removeAllDataFromCollection)
+TEST_F(ExperimentalDataModelTest, removeAllDataFromCollection)
 {
-    RealDataModel model;
+    ExperimentalDataModel model;
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
     auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
 
@@ -94,9 +95,9 @@ TEST_F(RealDataModelTest, removeAllDataFromCollection)
 }
 
 //! test the removeDataFromCollection method
-TEST_F(RealDataModelTest, removeDataFromCollection)
+TEST_F(ExperimentalDataModelTest, removeDataFromCollection)
 {
-    RealDataModel model;
+    ExperimentalDataModel model;
     int default_child_count = CanvasItem().childrenCount();
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
     auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
@@ -137,9 +138,9 @@ TEST_F(RealDataModelTest, removeDataFromCollection)
 }
 
 //! test the dataGroupNames method
-TEST_F(RealDataModelTest, dataGroupNames)
+TEST_F(ExperimentalDataModelTest, dataGroupNames)
 {
-    RealDataModel model;
+    ExperimentalDataModel model;
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
 
     for (int i = 0; i < 10; ++i) {
@@ -156,9 +157,9 @@ TEST_F(RealDataModelTest, dataGroupNames)
 }
 
 //! test the checkAllGroup method
-TEST_F(RealDataModelTest, checkAllGroup)
+TEST_F(ExperimentalDataModelTest, checkAllGroup)
 {
-    RealDataModel model;
+    ExperimentalDataModel model;
 
     std::vector<SessionItem*> items(10, new CanvasItem);
     EXPECT_EQ(true, model.checkAllGroup(items));
@@ -168,9 +169,9 @@ TEST_F(RealDataModelTest, checkAllGroup)
 }
 
 //! test the checkAllGraph method
-TEST_F(RealDataModelTest, checkAllGraph)
+TEST_F(ExperimentalDataModelTest, checkAllGraph)
 {
-    RealDataModel model;
+    ExperimentalDataModel model;
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
 
     CanvasItem* data_group_item_1 = nullptr;
@@ -196,9 +197,9 @@ TEST_F(RealDataModelTest, checkAllGraph)
 }
 
 //! Test the itemIsEditable method
-TEST_F(RealDataModelTest, itemEditable)
+TEST_F(ExperimentalDataModelTest, itemEditable)
 {
-    RealDataModel model;
+    ExperimentalDataModel model;
 
     EXPECT_EQ(true, model.itemEditable(new GraphItem));
     EXPECT_EQ(true, model.itemEditable(new CanvasItem));
@@ -207,9 +208,9 @@ TEST_F(RealDataModelTest, itemEditable)
 }
 
 //! Test the dragEnabled method
-TEST_F(RealDataModelTest, dragEnabled)
+TEST_F(ExperimentalDataModelTest, dragEnabled)
 {
-    RealDataModel model;
+    ExperimentalDataModel model;
 
     EXPECT_EQ(true, model.dragEnabled(new GraphItem));
     EXPECT_EQ(true, model.dragEnabled(new CanvasItem));
@@ -218,9 +219,9 @@ TEST_F(RealDataModelTest, dragEnabled)
 }
 
 //! Test the dropEnabled method
-TEST_F(RealDataModelTest, dropEnabled)
+TEST_F(ExperimentalDataModelTest, dropEnabled)
 {
-    RealDataModel model;
+    ExperimentalDataModel model;
 
     EXPECT_EQ(false, model.dropEnabled(new GraphItem));
     EXPECT_EQ(true, model.dropEnabled(new CanvasItem));
@@ -229,9 +230,9 @@ TEST_F(RealDataModelTest, dropEnabled)
 }
 
 //! test the dragDropItem method with two groups
-TEST_F(RealDataModelTest, dragDropItemGroup)
+TEST_F(ExperimentalDataModelTest, dragDropItemGroup)
 {
-    RealDataModel model;
+    ExperimentalDataModel model;
     int default_child_count = CanvasItem().childrenCount();
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
     auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
@@ -260,9 +261,9 @@ TEST_F(RealDataModelTest, dragDropItemGroup)
 }
 
 //! test the dragDropItem method with graph item
-TEST_F(RealDataModelTest, dragDropItemGraph)
+TEST_F(ExperimentalDataModelTest, dragDropItemGraph)
 {
-    RealDataModel model;
+    ExperimentalDataModel model;
     int default_child_count = CanvasItem().childrenCount();
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
     auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);
@@ -299,9 +300,9 @@ TEST_F(RealDataModelTest, dragDropItemGraph)
 }
 
 //! test the mergeItems method
-TEST_F(RealDataModelTest, mergeItems)
+TEST_F(ExperimentalDataModelTest, mergeItems)
 {
-    RealDataModel model;
+    ExperimentalDataModel model;
     int default_child_count = CanvasItem().childrenCount();
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
     auto root_container_item = Utils::TopItem<RealDataContainerItem>(&model);

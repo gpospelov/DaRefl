@@ -17,7 +17,7 @@
 #include <darefl/mainwindow/styleutils.h>
 #include <darefl/model/realdata_types.h>
 #include <darefl/model/realdataitems.h>
-#include <darefl/model/realdatamodel.h>
+#include <darefl/model/experimentaldatamodel.h>
 
 #include <QAction>
 #include <QDialog>
@@ -42,7 +42,7 @@
 
 using namespace ModelView;
 
-ImportDataEditor::ImportDataEditor(RealDataModel* model, QWidget* parent)
+ImportDataEditor::ImportDataEditor(ExperimentalDataModel* model, QWidget* parent)
     : QWidget(parent), p_tree_view(new QTreeView(this)), p_model(model),
       p_view_model(new DataViewModel(model)),
       p_data_selection_model(new DataSelectionModel(p_view_model, p_tree_view)),

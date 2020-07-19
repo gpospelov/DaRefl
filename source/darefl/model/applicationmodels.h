@@ -23,7 +23,7 @@ class SampleModel;
 class SLDElementModel;
 class SLDElementController;
 class JobModel;
-class RealDataModel;
+class ExperimentalDataModel;
 
 //!  Main class to holds all models of GUI session.
 
@@ -37,7 +37,7 @@ public:
     SampleModel* sampleModel();
     SLDElementModel* sldViewModel();
     JobModel* jobModel();
-    RealDataModel* realDataModel();
+    ExperimentalDataModel* realDataModel();
 
     std::vector<ModelView::SessionModel*> persistent_models() const override;
 

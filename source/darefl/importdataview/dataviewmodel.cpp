@@ -10,7 +10,7 @@
 #include <darefl/importdataview/datarowstrategy.h>
 #include <darefl/importdataview/dataviewmodel.h>
 #include <darefl/model/item_constants.h>
-#include <darefl/model/realdatamodel.h>
+#include <darefl/model/experimentaldatamodel.h>
 
 #include <QByteArray>
 #include <QDataStream>
@@ -58,7 +58,7 @@ std::unique_ptr<ViewModelController> createController(SessionModel* model, ViewM
 } // namespace
 
 
-DataViewModel::DataViewModel(RealDataModel* model, QObject* parent)
+DataViewModel::DataViewModel(ExperimentalDataModel* model, QObject* parent)
     : ViewModel(createController(model, this), parent)
 {
 }
@@ -140,7 +140,7 @@ bool DataViewModel::dropMimeData(const QMimeData* data, Qt::DropAction action, i
     return true;
 }
 
-RealDataModel* DataViewModel::dataModel() const
+ExperimentalDataModel* DataViewModel::dataModel() const
 {
-    return dynamic_cast<RealDataModel*>(sessionModel());
+    return dynamic_cast<ExperimentalDataModel*>(sessionModel());
 }

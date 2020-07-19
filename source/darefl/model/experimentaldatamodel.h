@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_MODEL_REALDATAMODEL_H
-#define DAREFL_MODEL_REALDATAMODEL_H
+#ifndef DAREFL_MODEL_EXPERIMENTALDATAMODEL_H
+#define DAREFL_MODEL_EXPERIMENTALDATAMODEL_H
 
 #include <mvvm/model/sessionmodel.h>
 #include <vector>
@@ -26,10 +26,11 @@ class GraphViewportItem;
 } // namespace ModelView
 
 //! The model to store imported reflectometry data.
-class RealDataModel : public ModelView::SessionModel
+
+class ExperimentalDataModel : public ModelView::SessionModel
 {
 public:
-    RealDataModel();
+    ExperimentalDataModel();
 
     CanvasItem* addDataToCollection(RealDataStruct data_struct, CanvasContainerItem* data_node,
                                        CanvasItem* data_group = nullptr);
@@ -55,4 +56,4 @@ private:
     void removeDataFromGroup(ModelView::GraphItem* item);
 };
 
-#endif // DAREFL_MODEL_REALDATAMODEL_H
+#endif // DAREFL_MODEL_EXPERIMENTALDATAMODEL_H
