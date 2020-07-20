@@ -12,6 +12,7 @@
 #include <darefl/model/item_constants.h>
 
 #include <mvvm/model/sessionitem.h>
+#include <mvvm/model/itemutils.h>
 #include <mvvm/viewmodel/viewmodel.h>
 #include <mvvm/viewmodel/viewmodelutils.h>
 #include <mvvm/model/mvvm_types.h>
@@ -51,18 +52,8 @@ void DataSelectionModel::selectItems(std::vector<ModelView::SessionItem*> items)
 //! Return the selected items
 std::vector<ModelView::SessionItem*> DataSelectionModel::selectedItems() const
 {
-    std::vector<ModelView::SessionItem*> result;
-
-    // removing nullptr and duplicates, preserving the order
-    // FIXME move to utility function on board of qt-mvvm
-
     auto items = ModelView::Utils::ItemsFromIndex(selectedIndexes());
-    std::set<ModelView::SessionItem*> unique(items.begin(), items.end());
-
-    std::copy_if(items.begin(), items.end(), std::back_inserter(result),
-                 [&unique](auto x) { return x && unique.find(x) != unique.end(); });
-
-    return result;
+    return ModelView::Utils::UniqueItems(items);
 }
 
 const ModelView::ViewModel* DataSelectionModel::viewModel() const

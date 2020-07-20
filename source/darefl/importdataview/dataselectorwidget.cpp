@@ -12,6 +12,7 @@
 #include <darefl/importdataview/dataselectionmodel.h>
 #include <darefl/importdataview/dataselectorwidget.h>
 #include <darefl/importdataview/dataviewmodel.h>
+#include <darefl/model/experimentaldataitems.h>
 #include <mvvm/widgets/standardtreeviews.h>
 
 DataSelectorWidget::DataSelectorWidget(DataViewModel* view_model, QWidget* parent)
@@ -40,6 +41,7 @@ DataSelectionModel* DataSelectorWidget::selectionModel() const
 
 void DataSelectorWidget::onSelectionChanged()
 {
+    m_canvasPropertyEditor->setItem(m_selectionModel->selectedCanvas());
 
     selectionChanged(); // emmit further
 }
