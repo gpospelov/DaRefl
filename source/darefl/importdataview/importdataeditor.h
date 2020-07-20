@@ -31,7 +31,6 @@ class ParsedFileOutptut;
 class ExperimentalDataModel;
 class QBoxLayout;
 class RealDataStruct;
-class DataSelectionModel;
 class DataViewModel;
 class ImportDataEditorActions;
 class ImportDataEditorToolBar;
@@ -63,7 +62,6 @@ private:
     DataSelectorWidget* m_dataSelectorWidget{nullptr};
     ExperimentalDataModel* p_model{nullptr};
     DataViewModel* p_view_model{nullptr};
-    DataSelectionModel* p_data_selection_model{nullptr};
     ImportDataEditorActions* m_editorActions{nullptr};
     ImportDataEditorToolBar* m_editorToolBar{nullptr};
     ModelView::PropertyTreeView* p_property_tree{nullptr};

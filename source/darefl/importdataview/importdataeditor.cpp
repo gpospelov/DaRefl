@@ -46,18 +46,18 @@ using namespace ModelView;
 ImportDataEditor::ImportDataEditor(ExperimentalDataModel* model, QWidget* parent)
     : QWidget(parent),  p_model(model),
       p_view_model(new DataViewModel(model)),
-      p_data_selection_model(new DataSelectionModel(p_view_model)),
-      m_editorActions(new ImportDataEditorActions(p_model, p_data_selection_model, this)),
+      m_editorActions(new ImportDataEditorActions(p_model, this)),
       m_editorToolBar(new ImportDataEditorToolBar(m_editorActions, this)),
       p_property_tree(new PropertyTreeView), p_graph_canvas(new GraphCanvas)
 {
     p_view_model->setRootSessionItem(ModelView::Utils::TopItem<CanvasContainerItem>(model));
-    m_dataSelectorWidget = new DataSelectorWidget(p_view_model, p_data_selection_model);
+    m_dataSelectorWidget = new DataSelectorWidget(p_view_model);
 
     setupToolBar();
     setupLayout();
     setupViews();
 
+    m_editorActions->setSelectionModel(m_dataSelectorWidget->selectionModel());
 }
 
 //! Set up the toolbar for the data management
@@ -72,7 +72,7 @@ void ImportDataEditor::setupToolBar()
 //! Set up all the view items
 void ImportDataEditor::setupViews()
 {
-    connect(p_data_selection_model, &DataSelectionModel::selectionChanged, this,
+    connect(m_dataSelectorWidget->selectionModel(), &DataSelectionModel::selectionChanged, this,
             &ImportDataEditor::selectionChanged);
 }
 
@@ -111,7 +111,9 @@ void ImportDataEditor::setupLayout()
 //! Manage a selection change of the treeview
 void ImportDataEditor::selectionChanged()
 {
-    auto items = p_data_selection_model->selectedItems();
+    auto selection_model = m_dataSelectorWidget->selectionModel();
+
+    auto items = selection_model->selectedItems();
     items.erase(std::remove(begin(items), end(items), nullptr), end(items));
     setMergeEnabled((items.size() > 1) ? (p_model->checkAllGroup(items)) : (false));
 
@@ -162,7 +164,8 @@ void ImportDataEditor::invokeImportDialog()
 //! Find the first selected data group item is present and return his name
 std::string ImportDataEditor::selectedDataGroupItem() const
 {
-    auto items = p_data_selection_model->selectedItems();
+    auto selection_model = m_dataSelectorWidget->selectionModel();
+    auto items = selection_model->selectedItems();
     items.erase(std::remove(begin(items), end(items), nullptr), end(items));
     for (auto item : items) {
         if (dynamic_cast<CanvasItem*>(item))

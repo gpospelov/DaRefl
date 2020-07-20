@@ -17,10 +17,14 @@
 using namespace ModelView;
 
 ImportDataEditorActions::ImportDataEditorActions(ExperimentalDataModel* model,
-                                                 DataSelectionModel* selectionModel,
                                                  QObject* parent)
-    : QObject(parent), m_dataModel(model), m_selectionModel(selectionModel)
+    : QObject(parent), m_dataModel(model)
 {
+}
+
+void ImportDataEditorActions::setSelectionModel(DataSelectionModel* selection_model)
+{
+    m_selectionModel = selection_model;
 }
 
 //! Create a new data grou item in the current data collection item

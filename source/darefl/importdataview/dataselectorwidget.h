@@ -23,8 +23,9 @@ class DataSelectorWidget : public QWidget
 {
     Q_OBJECT
 public:
-    DataSelectorWidget(DataViewModel* view_model, DataSelectionModel* selection_model,
-                       QWidget* parent = nullptr);
+    DataSelectorWidget(DataViewModel* view_model, QWidget* parent = nullptr);
+
+    DataSelectionModel* selectionModel() const;
 
 private:
     DataViewModel* m_viewModel{nullptr};

@@ -22,8 +22,9 @@ class ImportDataEditorActions : public QObject
     Q_OBJECT
 
 public:
-    ImportDataEditorActions(ExperimentalDataModel* model, DataSelectionModel* selectionModel,
-                            QObject* parent = nullptr);
+    ImportDataEditorActions(ExperimentalDataModel* model, QObject* parent = nullptr);
+
+    void setSelectionModel(DataSelectionModel* selection_model);
 
 public slots:
     void onAddDataGroup();

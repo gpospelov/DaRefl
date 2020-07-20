@@ -13,9 +13,8 @@
 #include <darefl/importdataview/dataselectorwidget.h>
 #include <darefl/importdataview/dataviewmodel.h>
 
-DataSelectorWidget::DataSelectorWidget(DataViewModel* view_model,
-                                       DataSelectionModel* selection_model, QWidget* parent)
-    : QWidget(parent), m_viewModel(view_model), m_selectionModel(selection_model),
+DataSelectorWidget::DataSelectorWidget(DataViewModel* view_model, QWidget* parent)
+    : QWidget(parent), m_viewModel(view_model), m_selectionModel(new DataSelectionModel(m_viewModel)),
       m_selectorTree(new QTreeView)
 {
     auto layout = new QVBoxLayout(this);
@@ -26,4 +25,9 @@ DataSelectorWidget::DataSelectorWidget(DataViewModel* view_model,
     m_selectorTree->setSelectionMode(QAbstractItemView::ExtendedSelection);
     m_selectorTree->setDragDropMode(QAbstractItemView::InternalMove);
     m_selectorTree->setDragEnabled(true);
+}
+
+DataSelectionModel* DataSelectorWidget::selectionModel() const
+{
+    return m_selectionModel;
 }
