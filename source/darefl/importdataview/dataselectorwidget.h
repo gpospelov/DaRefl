@@ -12,6 +12,11 @@
 
 #include <QWidget>
 
+namespace ModelView
+{
+class PropertyTreeView;
+}
+
 class QTreeView;
 class DataSelectionModel;
 class DataViewModel;
@@ -27,10 +32,17 @@ public:
 
     DataSelectionModel* selectionModel() const;
 
+signals:
+    void selectionChanged();
+
+private slots:
+    void onSelectionChanged();
+
 private:
     DataViewModel* m_viewModel{nullptr};
     DataSelectionModel* m_selectionModel{nullptr};
     QTreeView* m_selectorTree{nullptr};
+    ModelView::PropertyTreeView* m_canvasPropertyEditor{nullptr};
 };
 
 #endif // DAREFL_IMPORTDATAVIEW_DATASELECTORWIDGET_H
