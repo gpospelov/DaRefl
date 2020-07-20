@@ -17,7 +17,9 @@ namespace ModelView
 {
 class ViewModel;
 class SessionItem;
-} // namespace ModelView
+}
+
+class CanvasItem;
 
 //! Custom selection model for data view model (AbstractViewModel).
 
@@ -34,6 +36,9 @@ public:
     std::vector<ModelView::SessionItem*> selectedItems() const;
 
     const ModelView::ViewModel* viewModel() const;
+
+
+    CanvasItem* selectedCanvas() const;
 };
 
 #endif // DAREFL_IMPORTDATAWIDGETS_DATASELECTIONMODEL_H
