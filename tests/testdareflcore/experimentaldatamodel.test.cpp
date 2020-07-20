@@ -52,7 +52,6 @@ TEST_F(ExperimentalDataModelTest, initialState)
 {
     ExperimentalDataModel model;
 
-    EXPECT_EQ("RealDataModel", model.modelType());
     EXPECT_EQ(2, model.rootItem()->childrenCount());
 }
 

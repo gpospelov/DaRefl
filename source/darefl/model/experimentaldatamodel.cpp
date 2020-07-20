@@ -37,7 +37,7 @@ std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
 
 } // namespace
 
-ExperimentalDataModel::ExperimentalDataModel() : SessionModel("RealDataModel")
+ExperimentalDataModel::ExperimentalDataModel() : SessionModel("ExperimentalDataModel")
 {
     setItemCatalogue(CreateItemCatalogue());
     insertDataContainer();
