@@ -29,13 +29,13 @@ class ParsedFileOutptut;
 } // namespace DataImportLogic
 
 class ExperimentalDataModel;
-class QTreeView;
 class QBoxLayout;
 class RealDataStruct;
 class DataSelectionModel;
 class DataViewModel;
 class ImportDataEditorActions;
 class ImportDataEditorToolBar;
+class DataSelectorWidget;
 
 //! Main editor to import user data.
 
@@ -60,7 +60,7 @@ private:
                                            const DataImportLogic::ParsedFileOutptut* import_output,
                                            const int column);
 private:
-    QTreeView* p_tree_view{nullptr};
+    DataSelectorWidget* m_dataSelectorWidget{nullptr};
     ExperimentalDataModel* p_model{nullptr};
     DataViewModel* p_view_model{nullptr};
     DataSelectionModel* p_data_selection_model{nullptr};

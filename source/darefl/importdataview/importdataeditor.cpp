@@ -14,6 +14,7 @@
 #include <darefl/importdataview/importdataeditor.h>
 #include <darefl/importdataview/importdataeditoractions.h>
 #include <darefl/importdataview/importdataeditortoolbal.h>
+#include <darefl/importdataview/dataselectorwidget.h>
 #include <darefl/mainwindow/styleutils.h>
 #include <darefl/model/experimentaldata_types.h>
 #include <darefl/model/experimentaldataitems.h>
@@ -43,23 +44,20 @@
 using namespace ModelView;
 
 ImportDataEditor::ImportDataEditor(ExperimentalDataModel* model, QWidget* parent)
-    : QWidget(parent), p_tree_view(new QTreeView(this)), p_model(model),
+    : QWidget(parent),  p_model(model),
       p_view_model(new DataViewModel(model)),
-      p_data_selection_model(new DataSelectionModel(p_view_model, p_tree_view)),
+      p_data_selection_model(new DataSelectionModel(p_view_model)),
       m_editorActions(new ImportDataEditorActions(p_model, p_data_selection_model, this)),
       m_editorToolBar(new ImportDataEditorToolBar(m_editorActions, this)),
       p_property_tree(new PropertyTreeView), p_graph_canvas(new GraphCanvas)
 {
+    p_view_model->setRootSessionItem(ModelView::Utils::TopItem<CanvasContainerItem>(model));
+    m_dataSelectorWidget = new DataSelectorWidget(p_view_model, p_data_selection_model);
+
     setupToolBar();
     setupLayout();
     setupViews();
 
-    p_view_model->setRootSessionItem(ModelView::Utils::TopItem<CanvasContainerItem>(model));
-    p_tree_view->setModel(p_view_model);
-    p_tree_view->setSelectionModel(p_data_selection_model);
-    p_tree_view->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    p_tree_view->setDragDropMode(QAbstractItemView::InternalMove);
-    p_tree_view->setDragEnabled(true);
 }
 
 //! Set up the toolbar for the data management
@@ -93,7 +91,7 @@ void ImportDataEditor::setupLayout()
     auto left_splitter = new QSplitter(sub_data_widget);
 
     left_splitter->setOrientation(Qt::Vertical);
-    left_splitter->addWidget(p_tree_view);
+    left_splitter->addWidget(m_dataSelectorWidget);
     left_splitter->addWidget(p_property_tree);
     left_splitter->setStretchFactor(0, 1);
     left_splitter->setStretchFactor(1, 0);
