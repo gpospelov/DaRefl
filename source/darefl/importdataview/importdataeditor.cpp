@@ -208,18 +208,3 @@ ImportDataEditor::convertToRealDataStruct(const std::string& path,
 
     return data_struct;
 }
-
-//! Reset all items
-
-void ImportDataEditor::resetAll()
-{
-    QMessageBox reset_message;
-    reset_message.setIcon(QMessageBox::Warning);
-    reset_message.setText("You are about to clear all the loaded data.");
-    reset_message.setInformativeText("Are you sure you want to proceed ?");
-    reset_message.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
-    reset_message.setDefaultButton(QMessageBox::Cancel);
-
-    if (reset_message.exec() == QMessageBox::Yes)
-        m_editorActions->onResetAll();
-}

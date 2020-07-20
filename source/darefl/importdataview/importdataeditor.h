@@ -59,8 +59,6 @@ private:
     RealDataStruct convertToRealDataStruct(const std::string& path,
                                            const DataImportLogic::ParsedFileOutptut* import_output,
                                            const int column);
-    void resetAll();
-
 private:
     QTreeView* p_tree_view{nullptr};
     ExperimentalDataModel* p_model{nullptr};

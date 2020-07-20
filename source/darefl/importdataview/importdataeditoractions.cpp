@@ -51,7 +51,7 @@ void ImportDataEditorActions::onDeleteItem()
     m_dataModel->removeDataFromCollection(items_to_delete);
 }
 
-void ImportDataEditorActions::onResetAll()
+void ImportDataEditorActions::onClearCanvasContainer()
 {
     auto data_node = ModelView::Utils::TopItem<CanvasContainerItem>(m_dataModel);
     m_dataModel->removeAllDataFromCollection(data_node);

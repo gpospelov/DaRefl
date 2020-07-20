@@ -29,7 +29,7 @@ public slots:
     void onAddDataGroup();
     void onMergeDataGroups();
     void onDeleteItem();
-    void onResetAll();
+    void onClearCanvasContainer();
 
 private:
     ExperimentalDataModel* m_dataModel{nullptr};

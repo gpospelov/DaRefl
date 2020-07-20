@@ -28,7 +28,7 @@ signals:
     void updateViewportRequest();
 
 private slots:
-    void resetAll();
+    void clearCanvasContainer();
 
 private:
     ImportDataEditorActions* m_editorActions{nullptr};
