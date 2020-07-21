@@ -61,7 +61,7 @@ void ImportDataEditor::setupLayout()
 
     main_splitter->addWidget(m_dataSelectorWidget);
     main_splitter->addWidget(m_graphCanvasWidget);
-    main_splitter->setSizes(QList<int>() << 100 << 300);
+    main_splitter->setSizes(QList<int>() << 150 << 300);
 
     main_layout->addWidget(m_editorToolBar);
     main_layout->addWidget(main_splitter);

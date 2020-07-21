@@ -7,6 +7,10 @@ target_sources(${library_name} PRIVATE
     dataselectorwidget.h
     dataviewmodel.cpp
     dataviewmodel.h
+    detailsbutton.cpp
+    detailsbutton.h
+    detailswidget.cpp
+    detailswidget.h
     graphcanvaswidget.cpp
     graphcanvaswidget.h
     importdataeditor.cpp
