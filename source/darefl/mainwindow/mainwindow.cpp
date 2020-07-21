@@ -17,6 +17,7 @@
 #include <darefl/mainwindow/mainbarwidget.h>
 #include <darefl/mainwindow/mainwindow.h>
 #include <darefl/mainwindow/refldockwindow.h>
+#include <darefl/mainwindow/simulationwidget/simulationwidget.h>
 #include <darefl/model/applicationmodels.h>
 #include <darefl/settingsview/settingsview.h>
 #include <darefl/welcomeview/welcomeview.h>
@@ -69,14 +70,17 @@ void MainWindow::init_components()
     m_welcomeView = new WelcomeView(m_models.get());
     m_importDataView = new ImportDataView(m_models.get());
     m_reflWindow = new ReflDockWindow(m_models.get());
+    m_sim_widget = new SimulationWidget();
     m_settingsView = new SettingsView(m_models.get());
 
     m_barWidget = new MainBarWidget;
 
+    m_sim_widget->setModels(models.get());
+
     m_barWidget->addWidget(m_welcomeView, "Project");
     m_barWidget->addWidget(m_importDataView, "Data");
     m_barWidget->addWidget(m_reflWindow, "Simulation");
-    m_barWidget->addWidget(new QWidget, "Fitting", false);
+    m_barWidget->addWidget(m_sim_widget, "Fitting");
     m_barWidget->addWidget(new QWidget, "Export", false);
     m_barWidget->addWidget(m_settingsView, "Settings");
     m_barWidget->setCurrentIndex(0);
