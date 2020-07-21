@@ -13,15 +13,6 @@
 #include <QWidget>
 #include <string>
 
-namespace ModelView
-{
-class SessionItem;
-class GraphCanvas;
-class GraphViewportItem;
-class TopItemsTreeView;
-class PropertyTreeView;
-} // namespace ModelView
-
 namespace DataImportLogic
 {
 class ImportOutput;
@@ -29,12 +20,13 @@ class ParsedFileOutptut;
 } // namespace DataImportLogic
 
 class ExperimentalDataModel;
-class QBoxLayout;
 class RealDataStruct;
 class DataViewModel;
+class DataSelectionModel;
 class ImportDataEditorActions;
 class ImportDataEditorToolBar;
 class DataSelectorWidget;
+class GraphCanvasWidget;
 
 //! Main editor to import user data.
 
@@ -45,8 +37,7 @@ public:
     ImportDataEditor(ExperimentalDataModel* model, QWidget* parent = nullptr);
 
 private:
-    void setupToolBar();
-    void setupViews();
+    void setupConnections();
     void setupLayout();
 
     void selectionChanged();
@@ -58,13 +49,16 @@ private:
     RealDataStruct convertToRealDataStruct(const std::string& path,
                                            const DataImportLogic::ParsedFileOutptut* import_output,
                                            const int column);
+
 private:
-    DataSelectorWidget* m_dataSelectorWidget{nullptr};
+    DataSelectionModel* selectionModel() const;
+
     ExperimentalDataModel* p_model{nullptr};
     DataViewModel* p_view_model{nullptr};
     ImportDataEditorActions* m_editorActions{nullptr};
     ImportDataEditorToolBar* m_editorToolBar{nullptr};
-    ModelView::GraphCanvas* p_graph_canvas{nullptr};
+    DataSelectorWidget* m_dataSelectorWidget{nullptr};
+    GraphCanvasWidget* m_graphCanvasWidget{nullptr};
 };
 
 #endif // DAREFL_IMPORTDATAWIDGETS_IMPORTDATAEDITOR_H
