@@ -12,6 +12,13 @@
 
 #include <QWidget>
 
+namespace ModelView
+{
+class GraphCanvas;
+}
+
+class CanvasItem;
+
 //! Widget to show canvas with graph collection.
 //! Occupies the right part of ImportDataEditor.
 
@@ -20,6 +27,13 @@ class GraphCanvasWidget : public QWidget
     Q_OBJECT
 public:
     GraphCanvasWidget(QWidget* parent = nullptr);
+
+    void setItem(CanvasItem* canvas_item);
+
+    void updateViewport();
+
+private:
+    ModelView::GraphCanvas* m_graphCanvas{nullptr};
 };
 
 #endif // DAREFL_IMPORTDATAVIEW_GRAPHCANVASWIDGET_H
