@@ -10,8 +10,8 @@
 #ifndef DAREFL_LAYEREDITOR_LAYEREDITORTOOLBAR_H
 #define DAREFL_LAYEREDITOR_LAYEREDITORTOOLBAR_H
 
-#include <QToolBar>
 #include <QWidget>
+#include <darefl/mainwindow/editortoolbar.h>
 #include <map>
 #include <string>
 
@@ -19,7 +19,7 @@ class LayerEditorActions;
 
 //! Layer editor toolbar.
 
-class LayerEditorToolBar : public QToolBar
+class LayerEditorToolBar : public EditorToolBar
 {
     Q_OBJECT
 public:

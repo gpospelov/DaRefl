@@ -10,7 +10,7 @@
 #ifndef DAREFL_QUICKSIMEDITOR_QUICKSIMEDITOR_H
 #define DAREFL_QUICKSIMEDITOR_QUICKSIMEDITOR_H
 
-#include <QWidget>
+#include <darefl/mainwindow/editorwidget.h>
 #include <memory>
 
 namespace ModelView
@@ -25,7 +25,7 @@ class QuickSimEditorToolBar;
 
 //! Quick reflectivity simulations.
 
-class QuickSimEditor : public QWidget
+class QuickSimEditor : public EditorWidget
 {
     Q_OBJECT
 public:
@@ -43,7 +43,6 @@ private:
 
     ApplicationModels* app_models{nullptr};
     QuickSimController* sim_controller{nullptr};
-    QuickSimEditorToolBar* toolbar{nullptr};
     ModelView::GraphCanvas* spec_canvas{nullptr};
 };
 

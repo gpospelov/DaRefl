@@ -10,7 +10,7 @@
 #ifndef DAREFL_GRAPHEDITOR_GRAPHEDITOR_H
 #define DAREFL_GRAPHEDITOR_GRAPHEDITOR_H
 
-#include <QWidget>
+#include <darefl/mainwindow/editorwidget.h>
 
 namespace ModelView
 {
@@ -22,7 +22,7 @@ class GraphEditorToolBar;
 
 //! Graph editor with GraphCanvas at the center, and few control buttons on the right.
 
-class GraphEditor : public QWidget
+class GraphEditor : public EditorWidget
 {
     Q_OBJECT
 public:
@@ -31,7 +31,6 @@ public:
     void setItem(ModelView::GraphViewportItem* viewport_item);
 
 private:
-    GraphEditorToolBar* toolbar{nullptr};
     ModelView::GraphCanvas* graph_canvas{nullptr};
 };
 

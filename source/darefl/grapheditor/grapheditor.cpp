@@ -14,14 +14,16 @@
 #include <mvvm/standarditems/graphviewportitem.h>
 
 GraphEditor::GraphEditor(QWidget* parent)
-    : QWidget(parent), toolbar(new GraphEditorToolBar), graph_canvas(new ModelView::GraphCanvas)
+    : EditorWidget(parent), graph_canvas(new ModelView::GraphCanvas)
 {
+    p_toolbar = dynamic_cast<EditorToolBar*>(new GraphEditorToolBar);
+    p_toolbar->setToggleWidget(graph_canvas);
     auto layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(graph_canvas);
-    layout->addWidget(toolbar);
+    layout->addWidget(p_toolbar);
 
-    connect(toolbar, &GraphEditorToolBar::resetViewport,
+    connect(dynamic_cast<GraphEditorToolBar*>(p_toolbar), &GraphEditorToolBar::resetViewport,
             [this]() { graph_canvas->update_viewport(); });
 }
 

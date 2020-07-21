@@ -21,18 +21,20 @@
 
 //! The constructor
 SLDEditor::SLDEditor(QWidget* parent)
-    : QWidget(parent), p_view_widget(new SLDViewWidget(this)),
-      p_editor_actions(new SLDEditorActions(this)),
-      p_editor_tollbar(new SLDEditorToolBar(p_editor_actions))
+    : EditorWidget(parent), p_view_widget(new SLDViewWidget(this)),
+      p_editor_actions(new SLDEditorActions(this))
 {
     setWindowTitle("SLD editor");
-
+    p_toolbar = dynamic_cast<EditorToolBar*>(new SLDEditorToolBar(p_editor_actions));
+    p_toolbar->setToggleWidget(p_view_widget);
     auto layout = new QVBoxLayout;
-    layout->addWidget(p_editor_tollbar);
+    layout->addWidget(p_toolbar);
     layout->addWidget(p_view_widget);
     setLayout(layout);
-
-    connect(p_editor_tollbar, &SLDEditorToolBar::resetViewport, [this]() {
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setSpacing(0);
+    
+    connect(dynamic_cast<SLDEditorToolBar*>(p_toolbar), &SLDEditorToolBar::resetViewport, [this]() {
         GraphicsScene* scene_item = dynamic_cast<GraphicsScene*>(p_view_widget->scene());
         if (!scene_item)
             return;

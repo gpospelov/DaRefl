@@ -12,7 +12,7 @@
 #include <darefl/grapheditor/grapheditortoolbar.h>
 #include <darefl/mainwindow/styleutils.h>
 
-GraphEditorToolBar::GraphEditorToolBar(QWidget* parent) : QToolBar(parent)
+GraphEditorToolBar::GraphEditorToolBar(QWidget* parent) : EditorToolBar("Graph editor", parent)
 {
     setIconSize(StyleUtils::ToolBarIconSize());
     setToolButtonStyle(Qt::ToolButtonIconOnly);

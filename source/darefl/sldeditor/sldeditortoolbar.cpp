@@ -15,7 +15,8 @@
 #include <QAction>
 #include <QToolButton>
 
-SLDEditorToolBar::SLDEditorToolBar(SLDEditorActions* actions, QWidget* parent) : QToolBar(parent)
+SLDEditorToolBar::SLDEditorToolBar(SLDEditorActions* actions, QWidget* parent)
+    : EditorToolBar("SLD Editor", parent)
 {
     InitIconResources();
 
