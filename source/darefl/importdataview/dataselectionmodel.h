@@ -17,6 +17,7 @@ namespace ModelView
 {
 class ViewModel;
 class SessionItem;
+class GraphItem;
 }
 
 class CanvasItem;
@@ -37,8 +38,8 @@ public:
 
     const ModelView::ViewModel* viewModel() const;
 
-
     CanvasItem* selectedCanvas() const;
+    ModelView::GraphItem* selectedGraph() const;
 };
 
 #endif // DAREFL_IMPORTDATAWIDGETS_DATASELECTIONMODEL_H

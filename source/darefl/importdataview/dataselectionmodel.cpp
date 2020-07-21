@@ -11,11 +11,12 @@
 #include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/item_constants.h>
 
-#include <mvvm/model/sessionitem.h>
 #include <mvvm/model/itemutils.h>
+#include <mvvm/model/mvvm_types.h>
+#include <mvvm/model/sessionitem.h>
+#include <mvvm/standarditems/graphitem.h>
 #include <mvvm/viewmodel/viewmodel.h>
 #include <mvvm/viewmodel/viewmodelutils.h>
-#include <mvvm/model/mvvm_types.h>
 #include <set>
 
 //! The constructor
@@ -70,8 +71,19 @@ CanvasItem* DataSelectionModel::selectedCanvas() const
     for (auto item : selectedItems()) {
         if (item->modelType() == ::Constants::CanvasItemType)
             return static_cast<CanvasItem*>(item);
-        else if(item->modelType() == ModelView::Constants::GraphItemType)
+        else if (item->modelType() == ModelView::Constants::GraphItemType)
             return static_cast<CanvasItem*>(item->parent());
     }
+    return nullptr;
+}
+
+//! Returns currently selected graph. If more than one graph is selected, will return first one.
+
+ModelView::GraphItem* DataSelectionModel::selectedGraph() const
+{
+    for (auto item : selectedItems())
+        if (item->modelType() == ModelView::Constants::GraphItemType)
+            return static_cast<ModelView::GraphItem*>(item);
+
     return nullptr;
 }
