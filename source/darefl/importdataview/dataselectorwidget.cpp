@@ -14,15 +14,18 @@
 #include <darefl/importdataview/dataviewmodel.h>
 #include <darefl/model/experimentaldataitems.h>
 #include <mvvm/widgets/standardtreeviews.h>
+#include <mvvm/standarditems/graphitem.h>
 
 DataSelectorWidget::DataSelectorWidget(DataViewModel* view_model, QWidget* parent)
     : QWidget(parent), m_viewModel(view_model),
       m_selectionModel(new DataSelectionModel(m_viewModel)), m_selectorTree(new QTreeView),
-      m_canvasPropertyEditor(new ModelView::PropertyTreeView)
+      m_canvasPropertyEditor(new ModelView::PropertyTreeView),
+      m_graphPropertyEditor(new ModelView::PropertyTreeView)
 {
     auto layout = new QVBoxLayout(this);
     layout->addWidget(m_selectorTree);
     layout->addWidget(m_canvasPropertyEditor);
+    layout->addWidget(m_graphPropertyEditor);
 
     m_selectorTree->setModel(m_viewModel);
     m_selectorTree->setSelectionModel(m_selectionModel);
@@ -42,6 +45,7 @@ DataSelectionModel* DataSelectorWidget::selectionModel() const
 void DataSelectorWidget::onSelectionChanged()
 {
     m_canvasPropertyEditor->setItem(m_selectionModel->selectedCanvas());
+    m_graphPropertyEditor->setItem(m_selectionModel->selectedGraph());
 
     selectionChanged(); // emmit further
 }

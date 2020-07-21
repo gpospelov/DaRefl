@@ -43,6 +43,7 @@ private:
     DataSelectionModel* m_selectionModel{nullptr};
     QTreeView* m_selectorTree{nullptr};
     ModelView::PropertyTreeView* m_canvasPropertyEditor{nullptr};
+    ModelView::PropertyTreeView* m_graphPropertyEditor{nullptr};
 };
 
 #endif // DAREFL_IMPORTDATAVIEW_DATASELECTORWIDGET_H
