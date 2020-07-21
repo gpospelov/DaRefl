@@ -26,7 +26,6 @@
 #ifndef DETAILSWIDGET_H
 #define DETAILSWIDGET_H
 
-#include "WinDllMacros.h"
 #include <QWidget>
 
 namespace Utils

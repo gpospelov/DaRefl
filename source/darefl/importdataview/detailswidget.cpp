@@ -25,7 +25,6 @@
 
 #include "detailswidget.h"
 #include "detailsbutton.h"
-#include "hostosinfo.h"
 
 #include <QApplication>
 #include <QCheckBox>
@@ -58,6 +57,16 @@
 namespace
 {
 const bool FlatProjectsMode(false);
+
+bool IsMacHost()
+{
+#if defined(Q_OS_MAC)
+    return true;
+#else
+    return false;
+#endif
+}
+
 }
 
 namespace Utils
@@ -140,7 +149,7 @@ QPixmap DetailsWidget::createBackground(const QSize& size, int topHeight, QWidge
 
     QRect topRect(0, 0, size.width(), topHeight);
     QRect fullRect(0, 0, size.width(), size.height());
-    if (GUI_OS_Utils::HostOsInfo::isMacHost())
+    if (IsMacHost())
         p.fillRect(fullRect, QApplication::palette().window().color());
     else
         p.fillRect(fullRect, QApplication::palette().window().color());
@@ -200,7 +209,7 @@ void DetailsWidgetPrivate::changeHoverState(bool hovered)
 {
     if (!m_toolWidget)
         return;
-    if (GUI_OS_Utils::HostOsInfo::isMacHost())
+    if (IsMacHost())
         m_toolWidget->setOpacity(hovered ? 1.0 : 0);
     else
         m_toolWidget->fadeTo(hovered ? 1.0 : 0);
@@ -392,7 +401,7 @@ void DetailsWidget::setToolWidget(FadingPanel* widget)
     d->m_toolWidget->adjustSize();
     d->m_grid->addWidget(d->m_toolWidget, 0, 1, 1, 1, Qt::AlignRight);
 
-    if (GUI_OS_Utils::HostOsInfo::isMacHost())
+    if (IsMacHost())
         d->m_toolWidget->setOpacity(1.0);
     d->changeHoverState(d->m_hovered);
 }

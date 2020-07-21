@@ -24,7 +24,6 @@
 ****************************************************************************/
 
 #include "detailsbutton.h"
-#include "hostosinfo.h"
 
 #include <QGraphicsOpacityEffect>
 #include <QGuiApplication>
@@ -39,6 +38,17 @@ namespace
 {
 const bool FlatProjectsMode(false);
 const QColor DetailsButtonBackgroundColorHover("#eff0f1");
+
+
+bool IsMacHost()
+{
+#if defined(Q_OS_MAC)
+    return true;
+#else
+    return false;
+#endif
+}
+
 } // namespace
 
 FadingWidget::FadingWidget(QWidget* parent)
@@ -89,7 +99,7 @@ QSize DetailsButton::sizeHint() const
 #else
     const int w = fontMetrics().width(text()) + 32;
 #endif
-    if (GUI_OS_Utils::HostOsInfo::isMacHost())
+    if (IsMacHost())
         return QSize(w, 34);
     return QSize(w, 22);
 }
@@ -122,7 +132,7 @@ void DetailsButton::paintEvent(QPaintEvent* e)
     QPainter p(this);
 
     // draw hover animation
-    if (!GUI_OS_Utils::HostOsInfo::isMacHost() && !isDown() && m_fader > 0) {
+    if (!IsMacHost() && !isDown() && m_fader > 0) {
         QColor c = DetailsButtonBackgroundColorHover;
         c.setAlpha(int(m_fader * c.alpha()));
 
