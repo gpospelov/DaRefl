@@ -48,7 +48,7 @@ ImportDataEditor::ImportDataEditor(ExperimentalDataModel* model, QWidget* parent
       p_view_model(new DataViewModel(model)),
       m_editorActions(new ImportDataEditorActions(p_model, this)),
       m_editorToolBar(new ImportDataEditorToolBar(m_editorActions, this)),
-      p_property_tree(new PropertyTreeView), p_graph_canvas(new GraphCanvas)
+      p_graph_canvas(new GraphCanvas)
 {
     p_view_model->setRootSessionItem(ModelView::Utils::TopItem<CanvasContainerItem>(model));
     m_dataSelectorWidget = new DataSelectorWidget(p_view_model);
@@ -82,27 +82,9 @@ void ImportDataEditor::setupLayout()
     auto main_layout = new QVBoxLayout(this);
     auto main_splitter = new QSplitter(this);
 
-    auto sub_data_widget = new QWidget(main_splitter);
-    auto sub_data_layout = new QHBoxLayout(sub_data_widget);
-
-    auto sub_graph_widget = new QWidget(main_splitter);
-    auto sub_graph_layout = new QHBoxLayout(sub_graph_widget);
-
-    auto left_splitter = new QSplitter(sub_data_widget);
-
-    left_splitter->setOrientation(Qt::Vertical);
-    left_splitter->addWidget(m_dataSelectorWidget);
-    left_splitter->addWidget(p_property_tree);
-    left_splitter->setStretchFactor(0, 1);
-    left_splitter->setStretchFactor(1, 0);
-
-    sub_data_layout->addWidget(left_splitter);
-    sub_graph_layout->addWidget(p_graph_canvas);
-
-    main_splitter->addWidget(sub_data_widget);
-    main_splitter->addWidget(sub_graph_widget);
-    main_splitter->setStretchFactor(0, 0);
-    main_splitter->setStretchFactor(1, 1);
+    main_splitter->addWidget(m_dataSelectorWidget);
+    main_splitter->addWidget(p_graph_canvas);
+    main_splitter->setSizes(QList<int>() << 100 << 300);
 
     main_layout->addWidget(m_editorToolBar);
     main_layout->addWidget(main_splitter);
@@ -132,7 +114,6 @@ void ImportDataEditor::selectionChanged()
     }
 
     auto item = items.at(0);
-    p_property_tree->setItem(item);
     if (auto viewport = dynamic_cast<ModelView::GraphViewportItem*>(item); viewport) {
         viewport->resetSelected();
         p_graph_canvas->setItem(viewport);

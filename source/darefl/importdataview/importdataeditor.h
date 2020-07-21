@@ -64,7 +64,6 @@ private:
     DataViewModel* p_view_model{nullptr};
     ImportDataEditorActions* m_editorActions{nullptr};
     ImportDataEditorToolBar* m_editorToolBar{nullptr};
-    ModelView::PropertyTreeView* p_property_tree{nullptr};
     ModelView::GraphCanvas* p_graph_canvas{nullptr};
 };
 
