@@ -20,6 +20,7 @@ class PropertyTreeView;
 class QTreeView;
 class DataSelectionModel;
 class DataViewModel;
+class CollapsibleListWidget;
 
 //! Widget to select graphs and look at their properties.
 //! Occupies the left part of ImportDataEditor.
@@ -44,6 +45,7 @@ private:
     QTreeView* m_selectorTree{nullptr};
     ModelView::PropertyTreeView* m_canvasPropertyEditor{nullptr};
     ModelView::PropertyTreeView* m_graphPropertyEditor{nullptr};
+    CollapsibleListWidget* m_collapsibleWidget{nullptr};
 };
 
 #endif // DAREFL_IMPORTDATAVIEW_DATASELECTORWIDGET_H

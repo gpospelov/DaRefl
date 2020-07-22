@@ -1,4 +1,8 @@
 target_sources(${library_name} PRIVATE
+    collapsiblebar.cpp
+    collapsiblebar.h
+    collapsiblelistwidget.cpp
+    collapsiblelistwidget.h
     datarowstrategy.cpp
     datarowstrategy.h
     dataselectionmodel.cpp
