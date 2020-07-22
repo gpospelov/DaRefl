@@ -39,5 +39,7 @@
         <file>icons/arrow-down-drop-circle-outline.svg</file>
         <file>icons/arrow-expand-all.svg</file>
         <file>icons/arrow-up-drop-circle-outline.svg</file>
+        <file>icons/chevron-down.svg</file>
+        <file>icons/chevron-right.svg</file>
     </qresource>
 </RCC>
