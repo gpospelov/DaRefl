@@ -72,7 +72,7 @@ void ImportDataEditor::selectionChanged()
 {
     auto selection_model = selectionModel();
 
-    m_graphCanvasWidget->setItem(selection_model->selectedCanvas());
+    m_graphCanvasWidget->setItem(selection_model->activeCanvas());
 
     auto items = selection_model->selectedItems();
     items.erase(std::remove(begin(items), end(items), nullptr), end(items));
@@ -121,7 +121,7 @@ void ImportDataEditor::invokeImportDialog()
 
 std::string ImportDataEditor::selectedDataGroupItem() const
 {
-    auto current_canvas = selectionModel()->selectedCanvas();
+    auto current_canvas = selectionModel()->activeCanvas();
     std::string result = current_canvas ? current_canvas->displayName() : std::string();
     return result;
 }

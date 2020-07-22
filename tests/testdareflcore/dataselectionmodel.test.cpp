@@ -61,7 +61,7 @@ TEST_F(DataSelectionModelTest, initialState)
 
     // checking that no selection exists
     EXPECT_FALSE(test_data.selection_model.hasSelection());
-    EXPECT_EQ(test_data.selection_model.selectedCanvas(), nullptr);
+    EXPECT_EQ(test_data.selection_model.activeCanvas(), nullptr);
 }
 
 //! Select single canvas and check that it was actually selected.
@@ -80,8 +80,8 @@ TEST_F(DataSelectionModelTest, selectCanvasItem)
     std::vector<SessionItem*> expected = {test_data.canvas0};
     EXPECT_EQ(test_data.selection_model.selectedItems(), expected);
 
-    // check that selection model reports same selected canvas
-    EXPECT_EQ(test_data.selection_model.selectedCanvas(), test_data.canvas0);
+    // check that selection model reports same canvas as active one
+    EXPECT_EQ(test_data.selection_model.activeCanvas(), test_data.canvas0);
 
     // no graphs selected
     EXPECT_EQ(test_data.selection_model.selectedGraph(), nullptr);
@@ -103,8 +103,8 @@ TEST_F(DataSelectionModelTest, selectGraph)
     std::vector<SessionItem*> expected = {test_data.graph_c0_a};
     EXPECT_EQ(test_data.selection_model.selectedItems(), expected);
 
-    // method should report parent of graph as selected canvas
-    EXPECT_EQ(test_data.selection_model.selectedCanvas(), test_data.canvas0);
+    // method should report parent of graph as active canvas
+    EXPECT_EQ(test_data.selection_model.activeCanvas(), test_data.canvas0);
 
     // method should report parent of graph as selected canvas
     EXPECT_EQ(test_data.selection_model.selectedGraph(), test_data.graph_c0_a);
@@ -126,8 +126,8 @@ TEST_F(DataSelectionModelTest, selectTwoGraphs)
 
     EXPECT_EQ(test_data.selection_model.selectedItems(), expected);
 
-    // method should report parent of graph as selected canvas
-    EXPECT_EQ(test_data.selection_model.selectedCanvas(), test_data.canvas0);
+    // method should report parent of graph as active canvas
+    EXPECT_EQ(test_data.selection_model.activeCanvas(), test_data.canvas0);
 
     // method should report parent of graph as selected canvas
     EXPECT_EQ(test_data.selection_model.selectedGraph(), test_data.graph_c0_a);

@@ -38,7 +38,7 @@ public:
 
     const ModelView::ViewModel* viewModel() const;
 
-    CanvasItem* selectedCanvas() const;
+    CanvasItem* activeCanvas() const;
     ModelView::GraphItem* selectedGraph() const;
 };
 

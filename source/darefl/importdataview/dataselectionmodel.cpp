@@ -62,11 +62,10 @@ const ModelView::ViewModel* DataSelectionModel::viewModel() const
     return static_cast<const ModelView::ViewModel*>(model());
 }
 
-//! Returns currently selected canvas, or returns 'nullptr'.
-//! If more than one canvas is selected, will return the first one.
-//! If the underlying graph is selected, will return canvas to which this graph belongs to.
+//! Returns active canvas. The canvas is active when it is either selected, or one of its own
+//! graph is selected. If more than one canvas is selected, will return the first one.
 
-CanvasItem* DataSelectionModel::selectedCanvas() const
+CanvasItem* DataSelectionModel::activeCanvas() const
 {
     for (auto item : selectedItems()) {
         if (item->modelType() == ::Constants::CanvasItemType)

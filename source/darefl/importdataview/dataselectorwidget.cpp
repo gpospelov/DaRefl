@@ -53,7 +53,7 @@ DataSelectionModel* DataSelectorWidget::selectionModel() const
 
 void DataSelectorWidget::onSelectionChanged()
 {
-    m_canvasPropertyEditor->setItem(m_selectionModel->selectedCanvas());
+    m_canvasPropertyEditor->setItem(m_selectionModel->activeCanvas());
     m_graphPropertyEditor->setItem(m_selectionModel->selectedGraph());
 
     selectionChanged(); // emmit further
