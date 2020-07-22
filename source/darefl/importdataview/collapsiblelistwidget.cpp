@@ -26,10 +26,12 @@ void CollapsibleListWidget::addWidget(QWidget* widget, const QString& title)
 {
     // add bar which will be uncollapsible and will control the appearance of our widget
     auto bar = new CollapsibleBar(m_splitter);
-    bar->setWidget(widget, title);
     m_splitter->addWidget(bar);
-    m_splitter->setCollapsible(m_splitter->count() - 1, false);
 
     // add widget itself
     m_splitter->addWidget(widget);
+
+    // setup bar for widget
+    bar->setWidget(widget, title);
+    m_splitter->setCollapsible(m_splitter->indexOf(bar), false);
 }

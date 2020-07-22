@@ -27,9 +27,16 @@ public:
 
     void setWidget(QWidget* widget, const QString& title);
 
+protected:
+    void mousePressEvent(QMouseEvent *event) override;
+
 private:
+    bool eventFilter(QObject* obj, QEvent* event) override;
+    void updatePixmap();
+
     QWidget* m_controlledWidget{nullptr};
-    QLabel* m_label{nullptr};
+    QLabel* m_pixmapLabel{nullptr};
+    QLabel* m_titleLabel{nullptr};
 };
 
 #endif // DAREFL_IMPORTDATAVIEW_COLLAPSIBLEBAR_H
