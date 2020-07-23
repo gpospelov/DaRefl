@@ -12,7 +12,7 @@
 
 #include <QObject>
 
-class RealDataModel;
+class ExperimentalDataModel;
 class DataSelectionModel;
 
 //! Actions for ImportDataEditor.
@@ -22,17 +22,18 @@ class ImportDataEditorActions : public QObject
     Q_OBJECT
 
 public:
-    ImportDataEditorActions(RealDataModel* model, DataSelectionModel* selectionModel,
-                            QObject* parent = nullptr);
+    ImportDataEditorActions(ExperimentalDataModel* model, QObject* parent = nullptr);
+
+    void setSelectionModel(DataSelectionModel* selection_model);
 
 public slots:
     void onAddDataGroup();
     void onMergeDataGroups();
     void onDeleteItem();
-    void onResetAll();
+    void onClearCanvasContainer();
 
 private:
-    RealDataModel* m_dataModel{nullptr};
+    ExperimentalDataModel* m_dataModel{nullptr};
     DataSelectionModel* m_selectionModel{nullptr};
 };
 

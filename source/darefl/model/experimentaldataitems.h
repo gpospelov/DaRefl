@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_MODEL_REALDATAITEMS_H
-#define DAREFL_MODEL_REALDATAITEMS_H
+#ifndef DAREFL_MODEL_EXPERIMENTALDATAITEMS_H
+#define DAREFL_MODEL_EXPERIMENTALDATAITEMS_H
 
 #include <mvvm/standarditems/containeritem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
@@ -37,10 +37,10 @@ public:
 //! The order of items in the collection chronologically corresponds to user activity.
 //! All other plotting entities (GraphItems) are linked to data items in this container.
 
-class RealDataContainerItem : public ModelView::ContainerItem
+class ExperimentalDataContainerItem : public ModelView::ContainerItem
 {
 public:
-    RealDataContainerItem();
+    ExperimentalDataContainerItem();
 };
 
-#endif // DAREFL_MODEL_REALDATAITEMS_H
+#endif // DAREFL_MODEL_EXPERIMENTALDATAITEMS_H

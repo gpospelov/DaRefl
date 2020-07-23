@@ -8,7 +8,7 @@
 // ************************************************************************** //
 
 #include <darefl/model/item_constants.h>
-#include <darefl/model/realdataitems.h>
+#include <darefl/model/experimentaldataitems.h>
 
 using namespace ModelView;
 
@@ -16,7 +16,7 @@ CanvasItem::CanvasItem() : GraphViewportItem(::Constants::CanvasItemType) {}
 
 CanvasContainerItem::CanvasContainerItem() : ContainerItem(::Constants::CanvasContainerItemType) {}
 
-RealDataContainerItem::RealDataContainerItem()
-    : ContainerItem(::Constants::RealDataContainerItemType)
+ExperimentalDataContainerItem::ExperimentalDataContainerItem()
+    : ContainerItem(::Constants::ExperimentalDataContainerItemType)
 {
 }

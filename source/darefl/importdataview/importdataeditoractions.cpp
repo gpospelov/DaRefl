@@ -9,18 +9,22 @@
 
 #include <darefl/importdataview/dataselectionmodel.h>
 #include <darefl/importdataview/importdataeditoractions.h>
-#include <darefl/model/realdata_types.h>
-#include <darefl/model/realdataitems.h>
-#include <darefl/model/realdatamodel.h>
+#include <darefl/model/experimentaldata_types.h>
+#include <darefl/model/experimentaldataitems.h>
+#include <darefl/model/experimentaldatamodel.h>
 #include <mvvm/model/modelutils.h>
 
 using namespace ModelView;
 
-ImportDataEditorActions::ImportDataEditorActions(RealDataModel* model,
-                                                 DataSelectionModel* selectionModel,
+ImportDataEditorActions::ImportDataEditorActions(ExperimentalDataModel* model,
                                                  QObject* parent)
-    : QObject(parent), m_dataModel(model), m_selectionModel(selectionModel)
+    : QObject(parent), m_dataModel(model)
 {
+}
+
+void ImportDataEditorActions::setSelectionModel(DataSelectionModel* selection_model)
+{
+    m_selectionModel = selection_model;
 }
 
 //! Create a new data grou item in the current data collection item
@@ -51,7 +55,7 @@ void ImportDataEditorActions::onDeleteItem()
     m_dataModel->removeDataFromCollection(items_to_delete);
 }
 
-void ImportDataEditorActions::onResetAll()
+void ImportDataEditorActions::onClearCanvasContainer()
 {
     auto data_node = ModelView::Utils::TopItem<CanvasContainerItem>(m_dataModel);
     m_dataModel->removeAllDataFromCollection(data_node);

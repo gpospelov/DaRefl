@@ -24,7 +24,7 @@ const std::string JobItemType = "Job";
 const std::string CanvasItemType = "Canvas";
 const std::string CanvasContainerItemType = "CanvasContainer";
 const std::string RawDataMimeType = "quickrefl/moveDataItem";
-const std::string RealDataContainerItemType = "RealDataContainer";
+const std::string ExperimentalDataContainerItemType = "ExperimentalDataContainer";
 
 } // namespace Constants
 

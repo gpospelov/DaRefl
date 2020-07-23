@@ -14,6 +14,7 @@ It is a part of [BornAgain project](https://www.bornagainproject.org)
 + C++-17
 + CMake 3.14
 + Qt 5.12
++ eigen
 
 ## Installation instructions
 

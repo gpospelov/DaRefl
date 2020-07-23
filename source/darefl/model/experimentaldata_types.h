@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_MODEL_DATASETCONVENIENCE_H
-#define DAREFL_MODEL_DATASETCONVENIENCE_H
+#ifndef DAREFL_MODEL_EXPERIMENTALDATA_TYPES_H
+#define DAREFL_MODEL_EXPERIMENTALDATA_TYPES_H
 
 #include <string>
 #include <vector>
@@ -36,4 +36,4 @@ public:
     std::string data_unit;
 };
 
-#endif // DAREFL_MODEL_DATASETCONVENIENCE_H
+#endif // DAREFL_MODEL_EXPERIMENTALDATA_TYPES_H

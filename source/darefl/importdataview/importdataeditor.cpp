@@ -7,74 +7,49 @@
 //
 // ************************************************************************** //
 
+#include <QSplitter>
+#include <QVBoxLayout>
 #include <darefl/famousloader/dataimportdialog.h>
-#include <darefl/famousloader/importoutput.h>
 #include <darefl/importdataview/dataselectionmodel.h>
+#include <darefl/importdataview/dataselectorwidget.h>
 #include <darefl/importdataview/dataviewmodel.h>
+#include <darefl/importdataview/graphcanvaswidget.h>
 #include <darefl/importdataview/importdataeditor.h>
 #include <darefl/importdataview/importdataeditoractions.h>
 #include <darefl/importdataview/importdataeditortoolbal.h>
-#include <darefl/mainwindow/styleutils.h>
-#include <darefl/model/realdata_types.h>
-#include <darefl/model/realdataitems.h>
-#include <darefl/model/realdatamodel.h>
-
-#include <QAction>
-#include <QDialog>
-#include <QHBoxLayout>
-#include <QItemSelectionModel>
-#include <QLabel>
-#include <QMessageBox>
-#include <QSplitter>
-#include <QToolBar>
-#include <QTreeView>
-#include <QVBoxLayout>
-
+#include <darefl/model/experimentaldata_types.h>
+#include <darefl/model/experimentaldataitems.h>
+#include <darefl/model/experimentaldatamodel.h>
 #include <mvvm/model/modelutils.h>
-#include <mvvm/plotting/graphcanvas.h>
-#include <mvvm/standarditems/containeritem.h>
 #include <mvvm/standarditems/graphitem.h>
-#include <mvvm/standarditems/graphviewportitem.h>
 #include <mvvm/utils/fileutils.h>
-#include <mvvm/viewmodel/viewmodel.h>
-#include <mvvm/viewmodel/viewmodelutils.h>
-#include <mvvm/widgets/standardtreeviews.h>
 
 using namespace ModelView;
 
-ImportDataEditor::ImportDataEditor(RealDataModel* model, QWidget* parent)
-    : QWidget(parent), p_tree_view(new QTreeView(this)), p_model(model),
-      p_view_model(new DataViewModel(model)),
-      p_data_selection_model(new DataSelectionModel(p_view_model, p_tree_view)),
-      m_editorActions(new ImportDataEditorActions(p_model, p_data_selection_model, this)),
+ImportDataEditor::ImportDataEditor(ExperimentalDataModel* model, QWidget* parent)
+    : QWidget(parent), p_model(model), p_view_model(new DataViewModel(model)),
+      m_editorActions(new ImportDataEditorActions(p_model, this)),
       m_editorToolBar(new ImportDataEditorToolBar(m_editorActions, this)),
-      p_property_tree(new PropertyTreeView), p_graph_canvas(new GraphCanvas)
+      m_dataSelectorWidget(new DataSelectorWidget(p_view_model)),
+      m_graphCanvasWidget(new GraphCanvasWidget)
 {
-    setupToolBar();
     setupLayout();
-    setupViews();
+    setupConnections();
 
+    m_editorActions->setSelectionModel(m_dataSelectorWidget->selectionModel());
     p_view_model->setRootSessionItem(ModelView::Utils::TopItem<CanvasContainerItem>(model));
-    p_tree_view->setModel(p_view_model);
-    p_tree_view->setSelectionModel(p_data_selection_model);
-    p_tree_view->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    p_tree_view->setDragDropMode(QAbstractItemView::InternalMove);
-    p_tree_view->setDragEnabled(true);
 }
 
-//! Set up the toolbar for the data management
-void ImportDataEditor::setupToolBar()
+void ImportDataEditor::setupConnections()
 {
+    // connect toolbar  with this editor
     connect(m_editorToolBar, &ImportDataEditorToolBar::invokeImportDialogRequest, this,
             &ImportDataEditor::invokeImportDialog);
-    connect(m_editorToolBar, &ImportDataEditorToolBar::updateViewportRequest, p_graph_canvas,
-            &ModelView::GraphCanvas::update_viewport);
-}
+    connect(m_editorToolBar, &ImportDataEditorToolBar::updateViewportRequest,
+            [this]() { m_graphCanvasWidget->updateViewport(); });
 
-//! Set up all the view items
-void ImportDataEditor::setupViews()
-{
-    connect(p_data_selection_model, &DataSelectionModel::selectionChanged, this,
+    // connect selection model with this
+    connect(m_dataSelectorWidget, &DataSelectorWidget::selectionChanged, this,
             &ImportDataEditor::selectionChanged);
 }
 
@@ -84,27 +59,9 @@ void ImportDataEditor::setupLayout()
     auto main_layout = new QVBoxLayout(this);
     auto main_splitter = new QSplitter(this);
 
-    auto sub_data_widget = new QWidget(main_splitter);
-    auto sub_data_layout = new QHBoxLayout(sub_data_widget);
-
-    auto sub_graph_widget = new QWidget(main_splitter);
-    auto sub_graph_layout = new QHBoxLayout(sub_graph_widget);
-
-    auto left_splitter = new QSplitter(sub_data_widget);
-
-    left_splitter->setOrientation(Qt::Vertical);
-    left_splitter->addWidget(p_tree_view);
-    left_splitter->addWidget(p_property_tree);
-    left_splitter->setStretchFactor(0, 1);
-    left_splitter->setStretchFactor(1, 0);
-
-    sub_data_layout->addWidget(left_splitter);
-    sub_graph_layout->addWidget(p_graph_canvas);
-
-    main_splitter->addWidget(sub_data_widget);
-    main_splitter->addWidget(sub_graph_widget);
-    main_splitter->setStretchFactor(0, 0);
-    main_splitter->setStretchFactor(1, 1);
+    main_splitter->addWidget(m_dataSelectorWidget);
+    main_splitter->addWidget(m_graphCanvasWidget);
+    main_splitter->setSizes(QList<int>() << 150 << 300);
 
     main_layout->addWidget(m_editorToolBar);
     main_layout->addWidget(main_splitter);
@@ -113,7 +70,11 @@ void ImportDataEditor::setupLayout()
 //! Manage a selection change of the treeview
 void ImportDataEditor::selectionChanged()
 {
-    auto items = p_data_selection_model->selectedItems();
+    auto selection_model = selectionModel();
+
+    m_graphCanvasWidget->setItem(selection_model->activeCanvas());
+
+    auto items = selection_model->selectedItems();
     items.erase(std::remove(begin(items), end(items), nullptr), end(items));
     setMergeEnabled((items.size() > 1) ? (p_model->checkAllGroup(items)) : (false));
 
@@ -127,19 +88,15 @@ void ImportDataEditor::selectionChanged()
             graph_items.push_back(dynamic_cast<ModelView::GraphItem*>(*it));
         }
         viewport->setSelected(graph_items);
-        p_graph_canvas->setItem(viewport);
         return;
     }
 
     auto item = items.at(0);
-    p_property_tree->setItem(item);
     if (auto viewport = dynamic_cast<ModelView::GraphViewportItem*>(item); viewport) {
         viewport->resetSelected();
-        p_graph_canvas->setItem(viewport);
     } else if (auto graph_item = dynamic_cast<ModelView::GraphItem*>(item); graph_item) {
         auto viewport = dynamic_cast<ModelView::GraphViewportItem*>(graph_item->parent());
         viewport->setSelected(std::vector<ModelView::GraphItem*>{graph_item});
-        p_graph_canvas->setItem(viewport);
     }
 }
 
@@ -150,27 +107,23 @@ void ImportDataEditor::setMergeEnabled(bool enabled)
     action->setEnabled(enabled);
 }
 
-//! Invoke the data load dialog and connect its state
+//! Invoke the data load dialog and connect its state.
+
 void ImportDataEditor::invokeImportDialog()
 {
     DataImportGui::DataLoaderDialog assistant(this);
     assistant.setTargets(p_model->dataGroupNames(), selectedDataGroupItem());
-    int dialog_code = assistant.exec();
-    if (dialog_code == QDialog::Accepted) {
+    if (assistant.exec() == QDialog::Accepted)
         onImportDialogAccept(assistant.result());
-    }
 }
 
-//! Find the first selected data group item is present and return his name
+//! Find the first selected data group item is present and return his name.
+
 std::string ImportDataEditor::selectedDataGroupItem() const
 {
-    auto items = p_data_selection_model->selectedItems();
-    items.erase(std::remove(begin(items), end(items), nullptr), end(items));
-    for (auto item : items) {
-        if (dynamic_cast<CanvasItem*>(item))
-            return item->displayName();
-    }
-    return "";
+    auto current_canvas = selectionModel()->activeCanvas();
+    std::string result = current_canvas ? current_canvas->displayName() : std::string();
+    return result;
 }
 
 //! Process the accepted state
@@ -209,17 +162,7 @@ ImportDataEditor::convertToRealDataStruct(const std::string& path,
     return data_struct;
 }
 
-//! Reset all items
-void ImportDataEditor::resetAll()
+DataSelectionModel* ImportDataEditor::selectionModel() const
 {
-    QMessageBox* reset_message = new QMessageBox;
-    reset_message->setIcon(QMessageBox::Warning);
-    reset_message->setText("You are about to clear all the loaded data.");
-    reset_message->setInformativeText("Are you sure you want to proceed ?");
-    reset_message->setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
-    reset_message->setDefaultButton(QMessageBox::Cancel);
-    int ret = reset_message->exec();
-
-    if (ret == QMessageBox::Yes)
-        m_editorActions->onResetAll();
+    return m_dataSelectorWidget->selectionModel();
 }
