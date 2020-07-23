@@ -26,7 +26,8 @@
 //} // namespace
 
 QuickSimEditorToolBar::QuickSimEditorToolBar(QWidget* parent)
-    : QToolBar(parent), live_checkbox(new QCheckBox), progressbar(new QProgressBar)
+    : EditorToolBar("Simulation", parent), live_checkbox(new QCheckBox),
+      progressbar(new QProgressBar)
 {
     const int toolbar_icon_size = 24;
     setIconSize(QSize(toolbar_icon_size, toolbar_icon_size));

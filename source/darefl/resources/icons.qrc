@@ -33,5 +33,11 @@
         <file>icons/set-merge.svg</file>
         <file>icons/F-letter_1000x.png</file>
         <file>icons/card-bulleted-outline.svg</file>
+        <file>icons/dock-left.svg</file>
+        <file>icons/dock-right.svg</file>
+        <file>icons/view-grid.svg</file>
+        <file>icons/arrow-down-drop-circle-outline.svg</file>
+        <file>icons/arrow-expand-all.svg</file>
+        <file>icons/arrow-up-drop-circle-outline.svg</file>
     </qresource>
 </RCC>

@@ -15,10 +15,10 @@ class SLDEditorToolBar;
 class SLDViewWidget;
 class ApplicationModels;
 
-#include <QWidget>
+#include <darefl/mainwindow/editorwidget.h>
 
 //! The SLD editor QWidget
-class SLDEditor : public QWidget
+class SLDEditor : public EditorWidget
 {
 
 public:
@@ -32,7 +32,6 @@ public:
 
 private:
     SLDEditorActions* p_editor_actions{nullptr};
-    SLDEditorToolBar* p_editor_tollbar{nullptr};
     SLDViewWidget* p_view_widget{nullptr};
 };
 

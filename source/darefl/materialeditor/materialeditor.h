@@ -10,7 +10,7 @@
 #ifndef DAREFL_MATERIALEDITOR_MATERIALEDITOR_H
 #define DAREFL_MATERIALEDITOR_MATERIALEDITOR_H
 
-#include <QWidget>
+#include <darefl/mainwindow/editorwidget.h>
 
 class ApplicationModels;
 class MaterialEditorActions;
@@ -24,7 +24,7 @@ class AbstractViewModel;
 
 //! Material editor.
 
-class MaterialEditor : public QWidget
+class MaterialEditor : public EditorWidget
 {
     Q_OBJECT
 public:
@@ -38,7 +38,6 @@ public:
 
 private:
     MaterialEditorActions* p_actions{nullptr};
-    MaterialEditorToolBar* p_toolbar{nullptr};
     MaterialEditorWidget* p_editor_widget{nullptr};
 };
 

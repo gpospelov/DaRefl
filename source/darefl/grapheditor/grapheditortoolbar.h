@@ -10,11 +10,11 @@
 #ifndef DAREFL_GRAPHEDITOR_GRAPHEDITORTOOLBAR_H
 #define DAREFL_GRAPHEDITOR_GRAPHEDITORTOOLBAR_H
 
-#include <QToolBar>
+#include <darefl/mainwindow/editortoolbar.h>
 
 //! Narrow vertical toolbar for GraphEditor.
 
-class GraphEditorToolBar : public QToolBar
+class GraphEditorToolBar : public EditorToolBar
 {
     Q_OBJECT
 public:

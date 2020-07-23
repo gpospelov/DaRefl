@@ -17,15 +17,18 @@
 #include <darefl/model/materialmodel.h>
 
 MaterialEditor::MaterialEditor(QWidget* parent)
-    : QWidget(parent), p_actions(new MaterialEditorActions(this)),
-      p_toolbar(new MaterialEditorToolBar(p_actions)), p_editor_widget(new MaterialEditorWidget)
+    : EditorWidget(parent), p_actions(new MaterialEditorActions(this)),
+      p_editor_widget(new MaterialEditorWidget)
 {
     setWindowTitle("Material editor");
-
+    p_toolbar = dynamic_cast<EditorToolBar*>(new MaterialEditorToolBar(p_actions));
+    p_toolbar->setToggleWidget(p_editor_widget);
     auto layout = new QVBoxLayout;
     layout->addWidget(p_toolbar);
     layout->addWidget(p_editor_widget);
     setLayout(layout);
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setSpacing(0);
 }
 
 //! Set the mododel for the different items

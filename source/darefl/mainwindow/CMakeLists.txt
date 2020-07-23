@@ -1,3 +1,6 @@
+
+add_subdirectory(simulationwidget)
+
 target_sources(${library_name} PRIVATE
     actionmanager.cpp
     actionmanager.h
@@ -13,4 +16,9 @@ target_sources(${library_name} PRIVATE
     refldockwindow.h
     styleutils.cpp
     styleutils.h
+    editortoolbar.h
+    editortoolbar.cpp
+    editorwidget.h
+    editorwidget.cpp
 )
+
