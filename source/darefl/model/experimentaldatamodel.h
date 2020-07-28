@@ -33,7 +33,7 @@ public:
     ExperimentalDataModel();
 
     CanvasItem* addDataToCollection(RealDataStruct data_struct, CanvasContainerItem* data_node,
-                                       CanvasItem* data_group = nullptr);
+                                    CanvasItem* data_group = nullptr);
     void removeAllDataFromCollection(CanvasContainerItem* data_node);
     void removeDataFromCollection(std::vector<ModelView::SessionItem*> item_to_remove);
     std::vector<std::pair<std::string, std::string>> dataGroupNames() const;
@@ -47,10 +47,7 @@ public:
     bool mergeItems(std::vector<ModelView::SessionItem*> items);
 
 private:
-    ExperimentalDataContainerItem* insertDataContainer();
     ExperimentalDataContainerItem* dataContainer() const;
-    CanvasContainerItem* insertDataCollection();
-    CanvasItem* insertDataGroup(CanvasContainerItem* data_node);
 
     void addDataToGroup(CanvasItem* data_group, RealDataStruct& data_struct);
     void removeDataFromGroup(ModelView::GraphItem* item);

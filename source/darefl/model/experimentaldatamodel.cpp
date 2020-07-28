@@ -40,51 +40,27 @@ std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
 ExperimentalDataModel::ExperimentalDataModel() : SessionModel("ExperimentalDataModel")
 {
     setItemCatalogue(CreateItemCatalogue());
-    insertDataContainer();
-    insertDataCollection();
+
+    insertItem<ExperimentalDataContainerItem>(rootItem());
+    insertItem<CanvasContainerItem>(rootItem());
 }
 
-//! Create the data container item
-ExperimentalDataContainerItem* ExperimentalDataModel::insertDataContainer()
-{
-    auto data_container_item = insertItem<ExperimentalDataContainerItem>(rootItem());
-    return data_container_item;
-}
+//! Returns the data container of the model.
 
-//! Get the data container of the model
 ExperimentalDataContainerItem* ExperimentalDataModel::dataContainer() const
 {
-    for (const auto item : rootItem()->children()) {
-        if (dynamic_cast<ExperimentalDataContainerItem*>(item))
-            return dynamic_cast<ExperimentalDataContainerItem*>(item);
-    }
-
-    return nullptr;
-}
-
-//! Create a new data node
-CanvasContainerItem* ExperimentalDataModel::insertDataCollection()
-{
-    auto data_set_item = insertItem<CanvasContainerItem>(rootItem());
-    return data_set_item;
-}
-
-//! Add a type unit sessionitem to the children
-CanvasItem* ExperimentalDataModel::insertDataGroup(CanvasContainerItem* data_node)
-{
-    auto item = insertItem<CanvasItem>(data_node);
-    return item;
+    return topItem<ExperimentalDataContainerItem>();
 }
 
 //! This will manage the group item tagret and then insert the data.
 //! The created group is then returned to allow insertion within the same
 CanvasItem* ExperimentalDataModel::addDataToCollection(RealDataStruct data_struct,
-                                                  CanvasContainerItem* data_node,
-                                                  CanvasItem* data_group)
+                                                       CanvasContainerItem* data_node,
+                                                       CanvasItem* data_group)
 {
     auto group_item = data_group;
     if (!group_item) {
-        group_item = insertDataGroup(data_node);
+        group_item = insertItem<CanvasItem>(data_node);
     }
 
     if (!data_struct.data.empty())
@@ -102,7 +78,8 @@ void ExperimentalDataModel::removeAllDataFromCollection(CanvasContainerItem* dat
 }
 
 //! Insert the data into the group item
-void ExperimentalDataModel::removeDataFromCollection(std::vector<ModelView::SessionItem*> item_to_remove)
+void ExperimentalDataModel::removeDataFromCollection(
+    std::vector<ModelView::SessionItem*> item_to_remove)
 {
     for (auto item : item_to_remove) {
         if (auto group_item = dynamic_cast<CanvasItem*>(item)) {
@@ -228,8 +205,8 @@ bool ExperimentalDataModel::dropEnabled(ModelView::SessionItem* item) const
 }
 
 //! process to the move of an item
-bool ExperimentalDataModel::dragDropItem(ModelView::SessionItem* item, ModelView::SessionItem* target,
-                                 int row)
+bool ExperimentalDataModel::dragDropItem(ModelView::SessionItem* item,
+                                         ModelView::SessionItem* target, int row)
 {
     if (dynamic_cast<GraphItem*>(item) && dynamic_cast<CanvasItem*>(target)
         && target != item->parent()) {
