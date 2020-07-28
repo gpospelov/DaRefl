@@ -35,6 +35,7 @@ public:
 
     CanvasItem* addDataToCollection(RealDataStruct data_struct, CanvasContainerItem* data_node,
                                     CanvasItem* data_group = nullptr);
+
     void removeAllDataFromCollection(CanvasContainerItem* data_node);
     void removeDataFromCollection(std::vector<ModelView::SessionItem*> item_to_remove);
     std::vector<name_identifier_t> availableCanvasesInfo() const;

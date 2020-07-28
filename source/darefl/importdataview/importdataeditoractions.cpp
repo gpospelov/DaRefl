@@ -13,6 +13,8 @@
 #include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/experimentaldatamodel.h>
 #include <mvvm/model/modelutils.h>
+#include <QUndoStack>
+
 
 using namespace ModelView;
 
@@ -58,4 +60,20 @@ void ImportDataEditorActions::onClearCanvasContainer()
 {
     auto data_node = ModelView::Utils::TopItem<CanvasContainerItem>(m_dataModel);
     m_dataModel->removeAllDataFromCollection(data_node);
+}
+
+void ImportDataEditorActions::onUndo()
+{
+    if (!m_dataModel->undoStack())
+        return;
+
+    m_dataModel->undoStack()->undo();
+}
+
+void ImportDataEditorActions::onRedo()
+{
+    if (!m_dataModel->undoStack())
+        return;
+
+    m_dataModel->undoStack()->redo();
 }

@@ -43,6 +43,8 @@ ExperimentalDataModel::ExperimentalDataModel() : SessionModel("ExperimentalDataM
 
     insertItem<ExperimentalDataContainerItem>(rootItem());
     insertItem<CanvasContainerItem>(rootItem());
+
+    setUndoRedoEnabled(true);
 }
 
 //! Returns the data container of the model.
