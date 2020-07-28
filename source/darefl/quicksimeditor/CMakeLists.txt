@@ -5,8 +5,6 @@ target_sources(${library_name} PRIVATE
     jobmanager.h
     materialprofile.cpp
     materialprofile.h
-    profilehelper.cpp
-    profilehelper.h
     quicksimcontroller.cpp
     quicksimcontroller.h
     quicksimeditor.cpp
