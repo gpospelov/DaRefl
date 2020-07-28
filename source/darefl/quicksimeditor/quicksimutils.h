@@ -11,7 +11,13 @@
 #define DAREFL_QUICKSIMEDITOR_QUICKSIMUTILS_H
 
 #include <darefl/quicksimeditor/slice.h>
+
 class MultiLayerItem;
+
+namespace BornAgain
+{
+    class Slice;
+}
 
 //! Collection of utility funcitons for running quick simulations.
 namespace Utils
@@ -19,6 +25,8 @@ namespace Utils
 
 //! Creates multi-slice presentation of internal multilayer structure.
 multislice_t CreateMultiSlice(const MultiLayerItem& multilayer);
+
+std::vector<BornAgain::Slice> createBornAgainSlices(const multislice_t& multislice);
 
 } // namespace Utils
 

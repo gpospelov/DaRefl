@@ -11,6 +11,9 @@
 #include <darefl/model/layeritems.h>
 #include <darefl/model/materialitems.h>
 #include <darefl/quicksimeditor/quicksimutils.h>
+#include <minikernel/Computation/Slice.h>
+#include <minikernel/Material/MaterialFactoryFuncs.h>
+#include <minikernel/MultiLayer/LayerRoughness.h>
 #include <mvvm/model/externalproperty.h>
 #include <mvvm/model/sessionmodel.h>
 #include <stdexcept>
@@ -59,5 +62,20 @@ multislice_t Utils::CreateMultiSlice(const MultiLayerItem& multilayer)
 {
     multislice_t result;
     AddToMultiSlice(result, multilayer);
+    return result;
+}
+
+std::vector<BornAgain::Slice> Utils::createBornAgainSlices(const multislice_t& multislice)
+{
+    std::vector<BornAgain::Slice> result;
+    result.reserve(multislice.size());
+
+    for (auto& slice : multislice) {
+        auto material = MaterialBySLD("", slice.material.real(), slice.material.imag());
+        auto roughness = LayerRoughness(slice.sigma, 0., 0.);
+
+        result.emplace_back(slice.thickness, material, roughness);
+    }
+
     return result;
 }
