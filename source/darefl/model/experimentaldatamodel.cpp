@@ -95,15 +95,13 @@ void ExperimentalDataModel::removeDataFromCollection(
 }
 
 //! Insert the data into the group item
-std::vector<std::pair<std::string, std::string>> ExperimentalDataModel::dataGroupNames() const
+std::vector<ExperimentalDataModel::name_identifier_t>
+ExperimentalDataModel::availableCanvasesInfo() const
 {
-    auto items = Utils::FindItems<CanvasItem>(this);
-    std::vector<std::pair<std::string, std::string>> output;
-    for (auto item : items) {
-        output.push_back(
-            std::make_pair<std::string, std::string>(item->displayName(), item->identifier()));
-    }
-    return output;
+    std::vector<name_identifier_t> result;
+    for (auto item : Utils::FindItems<CanvasItem>(this))
+        result.push_back({item->displayName(), item->identifier()});
+    return result;
 }
 
 //! Insert the data into the group item

@@ -30,13 +30,14 @@ class GraphViewportItem;
 class ExperimentalDataModel : public ModelView::SessionModel
 {
 public:
+    using name_identifier_t = std::pair<std::string, std::string>;
     ExperimentalDataModel();
 
     CanvasItem* addDataToCollection(RealDataStruct data_struct, CanvasContainerItem* data_node,
                                     CanvasItem* data_group = nullptr);
     void removeAllDataFromCollection(CanvasContainerItem* data_node);
     void removeDataFromCollection(std::vector<ModelView::SessionItem*> item_to_remove);
-    std::vector<std::pair<std::string, std::string>> dataGroupNames() const;
+    std::vector<name_identifier_t> availableCanvasesInfo() const;
 
     bool checkAllGroup(std::vector<ModelView::SessionItem*>& items) const;
     ModelView::GraphViewportItem* checkAllGraph(std::vector<ModelView::SessionItem*>& items) const;

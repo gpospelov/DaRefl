@@ -112,7 +112,7 @@ void ImportDataEditor::setMergeEnabled(bool enabled)
 void ImportDataEditor::invokeImportDialog()
 {
     DataImportGui::DataLoaderDialog assistant(this);
-    assistant.setTargets(p_model->dataGroupNames(), selectedDataGroupItem());
+    assistant.setTargets(p_model->availableCanvasesInfo(), selectedDataGroupItem());
     if (assistant.exec() == QDialog::Accepted)
         onImportDialogAccept(assistant.result());
 }
