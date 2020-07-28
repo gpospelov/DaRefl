@@ -7,8 +7,9 @@
 //
 // ************************************************************************** //
 
-#include <darefl/quicksimeditor/profilehelper.h>
-#include <mvvm/utils/mathconstants.h>
+#include <minikernel/Computation/profilehelper.h>
+#include <minikernel/MultiLayer/LayerRoughness.h>
+#include <minikernel/Basics/MathConstants.h>
 
 namespace
 {
@@ -17,7 +18,10 @@ double Transition(double x, double sigma);
 double TransitionTanh(double x);
 } // namespace
 
-ProfileHelper::ProfileHelper(const multislice_t& sample)
+//namespace BornAgain
+//{
+
+BornAgain::ProfileHelper::ProfileHelper(const multislice_t& sample)
 {
     auto N = sample.size();
     m_materialdata.reserve(N);
@@ -27,11 +31,15 @@ ProfileHelper::ProfileHelper(const multislice_t& sample)
     }
     double bottom_z{0};
     for (size_t i = 0; i < N; ++i) {
-        m_materialdata.push_back(sample[i].material);
-        bottom_z -= sample[i].thickness;
+        m_materialdata.push_back(sample[i].material().materialData());
+        bottom_z -= sample[i].thickness();
         if (i + 1 < N) {
             m_zlimits.push_back(bottom_z);
-            m_sigmas.push_back(sample[i + 1].sigma);
+            auto sigma = 0.;
+            if(auto roughness = sample[i + 1].topRoughness())
+                sigma = roughness->getSigma();
+
+            m_sigmas.push_back(sigma);
         }
     }
 }
@@ -39,7 +47,7 @@ ProfileHelper::ProfileHelper(const multislice_t& sample)
 // Note: for refractive index materials, the material interpolation actually happens at the level
 // of n^2. To first order in delta and beta, this implies the same smooth interpolation of delta
 // and beta, as is done here.
-std::vector<complex_t> ProfileHelper::calculateProfile(const std::vector<double>& z_values) const
+std::vector<complex_t> BornAgain::ProfileHelper::calculateProfile(const std::vector<double>& z_values) const
 {
     complex_t top_value = m_materialdata.size() ? m_materialdata[0] : 0.0;
     std::vector<complex_t> result(z_values.size(), top_value);
@@ -54,7 +62,7 @@ std::vector<complex_t> ProfileHelper::calculateProfile(const std::vector<double>
     return result;
 }
 
-std::pair<double, double> ProfileHelper::defaultLimits() const
+std::pair<double, double> BornAgain::ProfileHelper::defaultLimits() const
 {
     if (m_zlimits.size() < 1)
         return {0.0, 0.0};
@@ -67,7 +75,7 @@ std::pair<double, double> ProfileHelper::defaultLimits() const
     return {z_min, z_max};
 }
 
-ProfileHelper::~ProfileHelper() = default;
+BornAgain::ProfileHelper::~ProfileHelper() = default;
 
 namespace
 {

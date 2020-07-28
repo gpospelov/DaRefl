@@ -10,10 +10,9 @@
 #include <algorithm>
 #include <minikernel/Computation/Slice.h>
 #include <minikernel/MultiLayer/KzComputation.h>
-#include <minikernel/Material/MaterialFactoryFuncs.h>
-#include <minikernel/MultiLayer/LayerRoughness.h>
 #include <darefl/quicksimeditor/fouriertransform.h>
 #include <darefl/quicksimeditor/materialprofile.h>
+#include <darefl/quicksimeditor/quicksimutils.h>
 #include <darefl/quicksimeditor/speculartoysimulation.h>
 #include <mvvm/standarditems/axisitems.h>
 #include <mvvm/utils/containerutils.h>
@@ -22,9 +21,7 @@
 
 namespace
 {
-// const int delay_mksec = 500;
 const int simulation_points = 500;
-std::vector<BornAgain::Slice> createBornAgainSlices(const multislice_t& multislice);
 } // namespace
 
 using namespace ModelView;
@@ -36,7 +33,7 @@ SpecularToySimulation::SpecularToySimulation(const multislice_t& multislice)
 
 void SpecularToySimulation::runSimulation()
 {
-    auto slices = createBornAgainSlices(input_data);
+    auto slices = ::Utils::createBornAgainSlices(input_data);
     auto qvalues = ModelView::FixedBinAxisItem::create(simulation_points, specular_result.xmin,
                                                        specular_result.xmax)->binCenters();
 
@@ -79,20 +76,3 @@ SpecularToySimulation::Result SpecularToySimulation::sld_profile(const multislic
     return {xmin, xmax, ModelView::Utils::Real(profile)};
 }
 
-namespace
-{
-std::vector<BornAgain::Slice> createBornAgainSlices(const multislice_t& multislice)
-{
-    std::vector<BornAgain::Slice> result;
-    result.reserve(multislice.size());
-
-    for (auto& slice : multislice) {
-        auto material = MaterialBySLD("", slice.material.real(), slice.material.imag());
-        auto roughness = LayerRoughness(slice.sigma, 0., 0.);
-
-        result.emplace_back(slice.thickness, material, roughness);
-    }
-
-    return result;
-}
-} // namespace

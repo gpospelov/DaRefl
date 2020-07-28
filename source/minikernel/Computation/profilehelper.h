@@ -12,12 +12,13 @@
 
 #include <utility>
 #include <vector>
-
-#include <darefl/quicksimeditor/slice.h>
+#include <minikernel/Computation/Slice.h>
 
 //! Object that can generate the material profile of a sample as a function of depth.
+namespace BornAgain
+{
 
-class ProcessedSample;
+using multislice_t = std::vector<BornAgain::Slice>;
 
 class ProfileHelper
 {
@@ -33,5 +34,7 @@ private:
     std::vector<double> m_zlimits;
     std::vector<double> m_sigmas;
 };
+
+} // namespace BornAgain
 
 #endif // DAREFL_QUICKSIMEDITOR_PROFILEHELPER_H
