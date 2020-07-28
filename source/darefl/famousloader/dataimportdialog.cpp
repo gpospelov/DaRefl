@@ -48,7 +48,7 @@ DataLoaderDialog::DataLoaderDialog(QWidget* parent) : QDialog(parent)
     auto button_box = new QDialogButtonBox(QDialogButtonBox::Cancel | QDialogButtonBox::Ok);
 
     dynamic_cast<QBoxLayout*>(button_box->layout())
-        ->insertWidget(0, new QLabel("Select the target data group:", this));
+        ->insertWidget(0, new QLabel("Select the target canvas ", this));
     dynamic_cast<QBoxLayout*>(button_box->layout())->insertWidget(1, p_target_select);
     connect(button_box, SIGNAL(accepted()), this, SLOT(accept()));
     connect(button_box, SIGNAL(rejected()), this, SLOT(reject()));
@@ -81,7 +81,7 @@ DataLoaderDialog::DataLoaderDialog(QWidget* parent) : QDialog(parent)
 void DataLoaderDialog::setTargets(std::vector<std::pair<std::string, std::string>> target_name_data,
                                   std::string current_target)
 {
-    p_target_select->addItem("New group ...", QString::fromStdString(""));
+    p_target_select->addItem("New canvas ...", QString::fromStdString(""));
     for (auto target_name : target_name_data) {
         p_target_select->addItem(QString::fromStdString(target_name.first),
                                  QString::fromStdString(target_name.second));

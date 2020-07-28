@@ -138,6 +138,7 @@ void ImportDataEditor::onImportDialogAccept(DataImportLogic::ImportOutput import
             data_group = p_model->addDataToCollection(data_struct, data_node, data_group);
         }
     }
+    selectionModel()->selectItem(data_group);
 }
 
 //! Convert data column to RealDatastructure
