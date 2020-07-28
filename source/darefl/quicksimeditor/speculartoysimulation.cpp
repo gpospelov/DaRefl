@@ -10,7 +10,6 @@
 #include <algorithm>
 #include <minikernel/Computation/Slice.h>
 #include <minikernel/MultiLayer/KzComputation.h>
-#include <minikernel/MultiLayer/LayerRoughness.h>
 #include <darefl/quicksimeditor/fouriertransform.h>
 #include <darefl/quicksimeditor/materialprofile.h>
 #include <darefl/quicksimeditor/quicksimutils.h>
