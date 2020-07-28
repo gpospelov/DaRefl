@@ -122,11 +122,11 @@ void ExperimentalDataModel::addDataToGroup(CanvasItem* data_group, RealDataStruc
         }
     }
 
-    auto data = insertItem<Data1DItem>(dataContainer(), {dataContainer()->defaultTag(), -1});
+    auto data = insertItem<Data1DItem>(dataContainer());
     data->setAxis(PointwiseAxisItem::create(axis_vec));
     data->setContent(data_vec);
 
-    auto graph = insertItem<GraphItem>(data_group, {GraphViewportItem::T_ITEMS, -1});
+    auto graph = insertItem<GraphItem>(data_group);
     graph->setDisplayName(data_struct.data_name);
     graph->setData(data_struct.name);
     graph->setDataItem(data);
