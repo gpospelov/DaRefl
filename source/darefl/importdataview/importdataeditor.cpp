@@ -129,16 +129,16 @@ std::string ImportDataEditor::activeCanvasName() const
 //! Process the accepted state
 void ImportDataEditor::onImportDialogAccept(DataImportLogic::ImportOutput import_output)
 {
-    CanvasContainerItem* data_node = ModelView::Utils::TopItem<CanvasContainerItem>(p_model);
-    CanvasItem* data_group = dynamic_cast<CanvasItem*>(p_model->findItem(import_output.target()));
+    CanvasContainerItem* canvas_container = p_model->canvasContainer();
+    CanvasItem* canvas = dynamic_cast<CanvasItem*>(p_model->findItem(import_output.target()));
     for (auto& path : import_output.keys()) {
         auto parsed_file_output = import_output[path];
         for (int i = 0; i < parsed_file_output->dataCount(); ++i) {
             auto data_struct = convertToRealDataStruct(path, parsed_file_output, i);
-            data_group = p_model->addDataToCollection(data_struct, data_node, data_group);
+            canvas = p_model->addDataToCollection(data_struct, canvas_container, canvas);
         }
     }
-    selectionModel()->selectItem(data_group);
+    selectionModel()->selectItem(canvas);
 }
 
 //! Convert data column to RealDatastructure

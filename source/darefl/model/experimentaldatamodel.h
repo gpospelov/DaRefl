@@ -47,6 +47,8 @@ public:
     bool dragDropItem(ModelView::SessionItem* item, ModelView::SessionItem* target, int row = -1);
     bool mergeItems(std::vector<ModelView::SessionItem*> items);
 
+    CanvasContainerItem* canvasContainer() const;
+
 private:
     ExperimentalDataContainerItem* dataContainer() const;
 

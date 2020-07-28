@@ -51,8 +51,7 @@ void ImportDataEditorActions::onMergeDataGroups()
 
 void ImportDataEditorActions::onDeleteItem()
 {
-    std::vector<SessionItem*> items_to_delete = m_selectionModel->selectedItems();
-    m_dataModel->removeDataFromCollection(items_to_delete);
+    m_dataModel->removeDataFromCollection(m_selectionModel->selectedItems());
 }
 
 void ImportDataEditorActions::onClearCanvasContainer()

@@ -239,3 +239,8 @@ bool ExperimentalDataModel::mergeItems(std::vector<ModelView::SessionItem*> item
 
     return true;
 }
+
+CanvasContainerItem* ExperimentalDataModel::canvasContainer() const
+{
+    return topItem<CanvasContainerItem>();
+}
