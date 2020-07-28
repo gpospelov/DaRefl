@@ -112,14 +112,14 @@ void ImportDataEditor::setMergeEnabled(bool enabled)
 void ImportDataEditor::invokeImportDialog()
 {
     DataImportGui::DataLoaderDialog assistant(this);
-    assistant.setTargets(p_model->availableCanvasesInfo(), selectedDataGroupItem());
+    assistant.setTargets(p_model->availableCanvasesInfo(), activeCanvasName());
     if (assistant.exec() == QDialog::Accepted)
         onImportDialogAccept(assistant.result());
 }
 
 //! Find the first selected data group item is present and return his name.
 
-std::string ImportDataEditor::selectedDataGroupItem() const
+std::string ImportDataEditor::activeCanvasName() const
 {
     auto current_canvas = selectionModel()->activeCanvas();
     std::string result = current_canvas ? current_canvas->displayName() : std::string();

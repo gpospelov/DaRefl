@@ -44,7 +44,7 @@ private:
     void setMergeEnabled(bool enabled);
 
     void invokeImportDialog();
-    std::string selectedDataGroupItem() const;
+    std::string activeCanvasName() const;
     void onImportDialogAccept(DataImportLogic::ImportOutput import_output);
     RealDataStruct convertToRealDataStruct(const std::string& path,
                                            const DataImportLogic::ParsedFileOutptut* import_output,

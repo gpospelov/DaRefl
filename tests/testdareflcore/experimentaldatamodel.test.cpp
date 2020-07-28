@@ -138,7 +138,7 @@ TEST_F(ExperimentalDataModelTest, removeDataFromCollection)
 
 //! Test the canvasesNameIdentifier method.
 
-TEST_F(ExperimentalDataModelTest, canvasesNameIdentifier)
+TEST_F(ExperimentalDataModelTest, availableCanvasesInfo)
 {
     ExperimentalDataModel model;
     auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
