@@ -43,7 +43,6 @@ public:
     DataLoaderDialog(QWidget* parent = nullptr);
     ~DataLoaderDialog() = default;
 
-    void setTargets(std::vector<std::string> target_names, std::string current_target);
     void setTargets(std::vector<std::pair<std::string, std::string>> target_name_data,
                     std::string current_target);
     DataImportLogic::ImportOutput result();

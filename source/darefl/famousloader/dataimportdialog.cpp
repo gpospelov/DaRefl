@@ -77,17 +77,6 @@ DataLoaderDialog::DataLoaderDialog(QWidget* parent) : QDialog(parent)
     setWindowTitle("Data import dialog");
 }
 
-//! Set the targets of the import with a string vector
-void DataLoaderDialog::setTargets(std::vector<std::string> target_names, std::string current_target)
-{
-    p_target_select->addItem("New group ...");
-    for (auto target_name : target_names) {
-        p_target_select->addItem(QString::fromStdString(target_name),
-                                 QString::fromStdString(target_name));
-    }
-    p_target_select->setCurrentText(QString::fromStdString(current_target));
-}
-
 //! Set the targets of the import withe a vector of string and data string (identifier)
 void DataLoaderDialog::setTargets(std::vector<std::pair<std::string, std::string>> target_name_data,
                                   std::string current_target)
