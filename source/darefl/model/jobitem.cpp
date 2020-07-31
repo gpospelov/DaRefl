@@ -12,6 +12,7 @@
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
+#include <mvvm/standarditems/axisitems.h>
 
 using namespace ModelView;
 
@@ -19,6 +20,8 @@ JobItem::JobItem() : ModelView::CompoundItem(::Constants::JobItemType)
 {
     setup_graph(P_SLD_DATA, P_SLD_VIEWPORT);
     setup_graph(P_SPECULAR_DATA, P_SPECULAR_VIEWPORT);
+
+    specular_viewport()->yAxis()->setProperty(ModelView::ViewportAxisItem::P_IS_LOG, true);
 }
 
 Data1DItem* JobItem::sld_data() const
@@ -47,7 +50,9 @@ void JobItem::setup_graph(const std::string& data_tag, const std::string& viewpo
 {
     auto data = addProperty<Data1DItem>(data_tag);
     auto viewport = addProperty<GraphViewportItem>(viewport_tag);
+
     auto graph = std::make_unique<GraphItem>();
+
     graph->setDataItem(data);
     viewport->insertItem(graph.release(), {ViewportItem::T_ITEMS, 0});
 }

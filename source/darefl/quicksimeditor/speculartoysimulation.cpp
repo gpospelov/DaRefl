@@ -51,10 +51,6 @@ void SpecularToySimulation::runSimulation()
 
         progress_handler.setCompletedTicks(1);
     }
-
-    // temporarily log it by hand
-    std::for_each(specular_result.data.begin(), specular_result.data.end(),
-                  [](auto& value) { value = std::log(value); });
 }
 
 void SpecularToySimulation::setProgressCallback(ModelView::ProgressHandler::callback_t callback)
