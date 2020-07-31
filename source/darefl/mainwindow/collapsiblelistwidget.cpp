@@ -9,8 +9,8 @@
 
 #include <QSplitter>
 #include <QVBoxLayout>
-#include <darefl/importdataview/collapsiblebar.h>
-#include <darefl/importdataview/collapsiblelistwidget.h>
+#include <darefl/mainwindow/collapsiblebar.h>
+#include <darefl/mainwindow/collapsiblelistwidget.h>
 
 CollapsibleListWidget::CollapsibleListWidget(QWidget* parent)
     : QWidget(parent), m_splitter(new QSplitter)

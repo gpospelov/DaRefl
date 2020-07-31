@@ -12,7 +12,7 @@
 #include <QSplitter>
 #include <QTreeView>
 #include <QVBoxLayout>
-#include <darefl/importdataview/collapsiblelistwidget.h>
+#include <darefl/mainwindow/collapsiblelistwidget.h>
 #include <darefl/importdataview/dataselectionmodel.h>
 #include <darefl/importdataview/dataselectorwidget.h>
 #include <darefl/importdataview/dataviewmodel.h>
