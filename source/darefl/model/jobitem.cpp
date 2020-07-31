@@ -59,6 +59,4 @@ void JobItem::setup_specular_viewport()
     auto graph = std::make_unique<GraphItem>();
     graph->setDataItem(data);
     viewport->insertItem(graph.release(), {ViewportItem::T_ITEMS, 0});
-
-    viewport->yAxis()->setProperty(ModelView::ViewportAxisItem::P_IS_LOG, true);
 }
