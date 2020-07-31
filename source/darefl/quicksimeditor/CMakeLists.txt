@@ -1,6 +1,4 @@
 target_sources(${library_name} PRIVATE
-    fouriertransform.cpp
-    fouriertransform.h
     jobmanager.cpp
     jobmanager.h
     materialprofile.cpp

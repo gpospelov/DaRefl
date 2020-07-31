@@ -10,14 +10,12 @@
 #include <algorithm>
 #include <minikernel/Computation/Slice.h>
 #include <minikernel/MultiLayer/KzComputation.h>
-#include <darefl/quicksimeditor/fouriertransform.h>
 #include <darefl/quicksimeditor/materialprofile.h>
 #include <darefl/quicksimeditor/quicksimutils.h>
 #include <darefl/quicksimeditor/speculartoysimulation.h>
 #include <mvvm/standarditems/axisitems.h>
 #include <mvvm/utils/containerutils.h>
 #include <stdexcept>
-#include <thread>
 
 namespace
 {
