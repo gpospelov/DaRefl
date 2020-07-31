@@ -70,7 +70,7 @@ ImportDataEditorToolBar::ImportDataEditorToolBar(ImportDataEditorActions* editor
     addWidget(empty);
 
     auto reset_graph_action = new QAction("Replot", this);
-    reset_graph_action->setToolTip("Reset the graph aspect ratio");
+    reset_graph_action->setToolTip("Set plot axes to default range");
     reset_graph_action->setIcon(QIcon(":/icons/aspect-ratio.svg"));
     connect(reset_graph_action, &QAction::triggered, this,
             &ImportDataEditorToolBar::updateViewportRequest);

@@ -9,6 +9,8 @@ target_sources(${library_name} PRIVATE
     quicksimeditor.h
     quicksimeditortoolbar.cpp
     quicksimeditortoolbar.h
+    quicksimoptionswidget.cpp
+    quicksimoptionswidget.h
     quicksimutils.cpp
     quicksimutils.h
     slice.h
