@@ -13,17 +13,9 @@
 #include <string>
 #include <vector>
 
-// ----------------------------------------------------------------
-//! Convenience data transfer header information
-struct TypeUnit {
-    std::string type;
-    std::pair<std::string, std::string> unit_pair;
-};
-
-// ----------------------------------------------------------------
 //! Convenience data transfer structure
+
 struct RealDataStruct {
-public:
     std::string type;
     std::string name;
 

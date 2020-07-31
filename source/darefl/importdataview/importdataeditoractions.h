@@ -31,6 +31,8 @@ public slots:
     void onMergeDataGroups();
     void onDeleteItem();
     void onClearCanvasContainer();
+    void onUndo();
+    void onRedo();
 
 private:
     ExperimentalDataModel* m_dataModel{nullptr};

@@ -21,6 +21,9 @@ class CanvasItem : public ModelView::GraphViewportItem
 {
 public:
     CanvasItem();
+
+protected:
+    std::pair<double, double> data_yaxis_range() const override;
 };
 
 //! Holds a collection of CanvasItem.

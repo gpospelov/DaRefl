@@ -48,7 +48,7 @@ DataLoaderDialog::DataLoaderDialog(QWidget* parent) : QDialog(parent)
     auto button_box = new QDialogButtonBox(QDialogButtonBox::Cancel | QDialogButtonBox::Ok);
 
     dynamic_cast<QBoxLayout*>(button_box->layout())
-        ->insertWidget(0, new QLabel("Select the target data group:", this));
+        ->insertWidget(0, new QLabel("Select the target canvas ", this));
     dynamic_cast<QBoxLayout*>(button_box->layout())->insertWidget(1, p_target_select);
     connect(button_box, SIGNAL(accepted()), this, SLOT(accept()));
     connect(button_box, SIGNAL(rejected()), this, SLOT(reject()));
@@ -77,22 +77,11 @@ DataLoaderDialog::DataLoaderDialog(QWidget* parent) : QDialog(parent)
     setWindowTitle("Data import dialog");
 }
 
-//! Set the targets of the import with a string vector
-void DataLoaderDialog::setTargets(std::vector<std::string> target_names, std::string current_target)
-{
-    p_target_select->addItem("New group ...");
-    for (auto target_name : target_names) {
-        p_target_select->addItem(QString::fromStdString(target_name),
-                                 QString::fromStdString(target_name));
-    }
-    p_target_select->setCurrentText(QString::fromStdString(current_target));
-}
-
 //! Set the targets of the import withe a vector of string and data string (identifier)
 void DataLoaderDialog::setTargets(std::vector<std::pair<std::string, std::string>> target_name_data,
                                   std::string current_target)
 {
-    p_target_select->addItem("New group ...", QString::fromStdString(""));
+    p_target_select->addItem("New canvas ...", QString::fromStdString(""));
     for (auto target_name : target_name_data) {
         p_target_select->addItem(QString::fromStdString(target_name.first),
                                  QString::fromStdString(target_name.second));
