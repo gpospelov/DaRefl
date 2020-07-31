@@ -7,7 +7,6 @@
 //
 // ************************************************************************** //
 
-#include <QDebug>
 #include <darefl/model/applicationmodels.h>
 #include <darefl/model/jobmodel.h>
 #include <darefl/model/layeritems.h>
@@ -17,10 +16,8 @@
 #include <darefl/quicksimeditor/materialprofile.h>
 #include <darefl/quicksimeditor/quicksimcontroller.h>
 #include <darefl/quicksimeditor/quicksimutils.h>
-#include <darefl/quicksimeditor/slice.h>
-#include <darefl/quicksimeditor/speculartoysimulation.h>
 #include <mvvm/model/modelutils.h>
-#include <mvvm/signals/modelmapper.h>
+#include <mvvm/project/modelhaschangedcontroller.h>
 #include <mvvm/standarditems/axisitems.h>
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
@@ -35,28 +32,24 @@ QuickSimController::QuickSimController(QObject* parent)
 {
 }
 
-QuickSimController::~QuickSimController()
-{
-    if (material_model)
-        material_model->mapper()->unsubscribe(this);
-    if (sample_model)
-        sample_model->mapper()->unsubscribe(this);
-}
+QuickSimController::~QuickSimController() = default;
 
 void QuickSimController::setModels(ApplicationModels* models)
 {
-    if (material_model)
-        material_model->mapper()->unsubscribe(this);
-    if (sample_model)
-        sample_model->mapper()->unsubscribe(this);
-
     sample_model = models->sampleModel();
     material_model = models->materialModel();
     job_model = models->jobModel();
 
-    if (material_model && material_model && job_model)
-        setup_multilayer_tracking();
+    auto on_model_change = [this]() { onMultiLayerChange(); };
+    m_materialChangedController =
+        std::make_unique<ModelView::ModelHasChangedController>(material_model, on_model_change);
+    m_sampleChangedController =
+        std::make_unique<ModelView::ModelHasChangedController>(sample_model, on_model_change);
+
     setup_jobmanager_connections();
+
+    onMultiLayerChange();
+    job_model->sld_viewport()->update_viewport();
 }
 
 //! Requests interruption of running simulaitons.
@@ -100,42 +93,6 @@ void QuickSimController::onSimulationCompleted()
     data->setContent(values);
 }
 
-//! Setups tracking of SampleModel and MaterialModel.
-
-void QuickSimController::setup_multilayer_tracking()
-{
-    // Setup MaterialModel
-    {
-        auto on_data_change = [this](ModelView::SessionItem*, int) { onMultiLayerChange(); };
-        material_model->mapper()->setOnDataChange(on_data_change, this);
-
-        auto on_item_removed = [this](ModelView::SessionItem*, ModelView::TagRow) {
-            onMultiLayerChange();
-        };
-        material_model->mapper()->setOnItemRemoved(on_item_removed, this);
-
-        auto on_model_destroyed = [this](ModelView::SessionModel*) { material_model = nullptr; };
-        material_model->mapper()->setOnModelDestroyed(on_model_destroyed, this);
-    }
-
-    // Setup SampleModel
-    {
-        auto on_data_change = [this](ModelView::SessionItem*, int) { onMultiLayerChange(); };
-        sample_model->mapper()->setOnDataChange(on_data_change, this);
-
-        auto on_item_removed = [this](ModelView::SessionItem*, ModelView::TagRow) {
-            onMultiLayerChange();
-        };
-        sample_model->mapper()->setOnItemRemoved(on_item_removed, this);
-
-        auto on_model_destroyed = [this](ModelView::SessionModel*) { sample_model = nullptr; };
-        sample_model->mapper()->setOnModelDestroyed(on_model_destroyed, this);
-    }
-
-    onMultiLayerChange();
-    job_model->sld_viewport()->update_viewport();
-}
-
 //! Constructs multislice, calculates profile and submits specular simulation.
 
 void QuickSimController::process_multilayer(bool submit_simulation)
@@ -151,7 +108,6 @@ void QuickSimController::process_multilayer(bool submit_simulation)
 
 void QuickSimController::update_sld_profile(const multislice_t& multislice)
 {
-    qDebug() << "QuickSimController::update_sld_profile()";
     auto [xmin, xmax, values] =
         SpecularToySimulation::sld_profile(multislice, profile_points_count);
     auto data = job_model->sld_data();

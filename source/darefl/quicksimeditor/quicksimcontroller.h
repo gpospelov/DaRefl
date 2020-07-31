@@ -14,6 +14,11 @@
 #include <darefl/quicksimeditor/slice.h>
 #include <memory>
 
+namespace ModelView
+{
+class ModelHasChangedController;
+}
+
 class ApplicationModels;
 class MaterialModel;
 class SampleModel;
@@ -47,7 +52,6 @@ private slots:
     void onSimulationCompleted();
 
 private:
-    void setup_multilayer_tracking();
     void process_multilayer(bool submit_simulation = false);
     void update_sld_profile(const multislice_t& multilayer);
     void submit_specular_simulation(const multislice_t& multislice);
@@ -59,6 +63,9 @@ private:
     JobManager* job_manager{nullptr};
 
     bool in_realtime_mode{false}; //! Run simulation on every parameter change.
+
+    std::unique_ptr<ModelView::ModelHasChangedController> m_materialChangedController;
+    std::unique_ptr<ModelView::ModelHasChangedController> m_sampleChangedController;
 };
 
 #endif // DAREFL_QUICKSIMEDITOR_QUICKSIMCONTROLLER_H
