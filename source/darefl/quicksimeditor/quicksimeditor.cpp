@@ -12,6 +12,7 @@
 #include <darefl/mainwindow/styleutils.h>
 #include <darefl/model/applicationmodels.h>
 #include <darefl/model/jobmodel.h>
+#include <darefl/model/experimentaldataitems.h>
 #include <darefl/quicksimeditor/quicksimcontroller.h>
 #include <darefl/quicksimeditor/quicksimeditor.h>
 #include <darefl/quicksimeditor/quicksimeditortoolbar.h>

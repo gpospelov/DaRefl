@@ -15,6 +15,7 @@
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
+#include <darefl/model/experimentaldataitems.h>
 
 using namespace ModelView;
 
@@ -25,6 +26,7 @@ std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
 {
     auto result = std::make_unique<ModelView::ItemCatalogue>();
     result->registerItem<JobItem>();
+    result->registerItem<CanvasItem>();
     return result;
 }
 
@@ -50,7 +52,7 @@ Data1DItem* JobModel::specular_data() const
     return job_item()->specular_data();
 }
 
-GraphViewportItem* JobModel::specular_viewport() const
+CanvasItem* JobModel::specular_viewport() const
 {
     return job_item()->specular_viewport();
 }

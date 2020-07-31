@@ -7,21 +7,20 @@
 //
 // ************************************************************************** //
 
+#include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/item_constants.h>
 #include <darefl/model/jobitem.h>
+#include <mvvm/standarditems/axisitems.h>
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
-#include <mvvm/standarditems/axisitems.h>
 
 using namespace ModelView;
 
 JobItem::JobItem() : ModelView::CompoundItem(::Constants::JobItemType)
 {
-    setup_graph(P_SLD_DATA, P_SLD_VIEWPORT);
-    setup_graph(P_SPECULAR_DATA, P_SPECULAR_VIEWPORT);
-
-    specular_viewport()->yAxis()->setProperty(ModelView::ViewportAxisItem::P_IS_LOG, true);
+    setup_sld_viewport();
+    setup_specular_viewport();
 }
 
 Data1DItem* JobItem::sld_data() const
@@ -39,20 +38,27 @@ Data1DItem* JobItem::specular_data() const
     return item<Data1DItem>(P_SPECULAR_DATA);
 }
 
-GraphViewportItem* JobItem::specular_viewport() const
+CanvasItem* JobItem::specular_viewport() const
 {
-    return item<GraphViewportItem>(P_SPECULAR_VIEWPORT);
+    return item<CanvasItem>(P_SPECULAR_VIEWPORT);
 }
 
-//! Setup data, graph and viewport.
-
-void JobItem::setup_graph(const std::string& data_tag, const std::string& viewport_tag)
+void JobItem::setup_sld_viewport()
 {
-    auto data = addProperty<Data1DItem>(data_tag);
-    auto viewport = addProperty<GraphViewportItem>(viewport_tag);
-
+    auto data = addProperty<Data1DItem>(P_SLD_DATA);
+    auto viewport = addProperty<GraphViewportItem>(P_SLD_VIEWPORT);
     auto graph = std::make_unique<GraphItem>();
-
     graph->setDataItem(data);
     viewport->insertItem(graph.release(), {ViewportItem::T_ITEMS, 0});
+}
+
+void JobItem::setup_specular_viewport()
+{
+    auto data = addProperty<Data1DItem>(P_SPECULAR_DATA);
+    auto viewport = addProperty<CanvasItem>(P_SPECULAR_VIEWPORT);
+    auto graph = std::make_unique<GraphItem>();
+    graph->setDataItem(data);
+    viewport->insertItem(graph.release(), {ViewportItem::T_ITEMS, 0});
+
+    viewport->yAxis()->setProperty(ModelView::ViewportAxisItem::P_IS_LOG, true);
 }
