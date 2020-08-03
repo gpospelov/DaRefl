@@ -15,6 +15,7 @@
 
 #include <mvvm/model/compounditem.h>
 #include <mvvm/model/groupitem.h>
+#include <mvvm/standarditems/axisitems.h>
 
 //! Represents specular instrument.
 
@@ -46,9 +47,10 @@ public:
 
 //! Represents Q-space specular scan.
 
-class QSpecScanItem : public ModelView::CompoundItem
+class QSpecScanItem : public ModelView::FixedBinAxisItem
 {
 public:
+    static inline const std::string P_QMIN = "P_BEAM";
     QSpecScanItem();
 };
 

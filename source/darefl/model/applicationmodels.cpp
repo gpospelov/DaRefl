@@ -8,11 +8,12 @@
 // ************************************************************************** //
 
 #include <darefl/model/applicationmodels.h>
+#include <darefl/model/experimentaldatamodel.h>
+#include <darefl/model/instrumentmodel.h>
 #include <darefl/model/jobmodel.h>
 #include <darefl/model/layeritems.h>
 #include <darefl/model/materialmodel.h>
 #include <darefl/model/materialpropertycontroller.h>
-#include <darefl/model/experimentaldatamodel.h>
 #include <darefl/model/samplemodel.h>
 #include <darefl/sldeditor/sldelementmodel.h>
 #include <mvvm/model/externalproperty.h>
@@ -28,6 +29,7 @@ struct ApplicationModels::ApplicationModelsImpl {
     std::unique_ptr<SLDElementModel> m_sld_view_model;
     std::unique_ptr<JobModel> m_job_model;
     std::unique_ptr<ExperimentalDataModel> m_realdata_model;
+    std::unique_ptr<InstrumentModel> m_instrument_model;
     std::unique_ptr<MaterialPropertyController> m_property_controller;
     std::shared_ptr<ItemPool> item_pool;
 
@@ -39,6 +41,7 @@ struct ApplicationModels::ApplicationModelsImpl {
         m_sld_view_model = std::make_unique<SLDElementModel>();
         m_job_model = std::make_unique<JobModel>();
         m_realdata_model = std::make_unique<ExperimentalDataModel>();
+        m_instrument_model = std::make_unique<InstrumentModel>();
         m_property_controller = std::make_unique<MaterialPropertyController>(m_material_model.get(),
                                                                              m_sample_model.get());
         m_sample_model->create_default_multilayer();
@@ -63,14 +66,14 @@ struct ApplicationModels::ApplicationModelsImpl {
     //! Models intended for saving.
     std::vector<SessionModel*> persistent_models() const
     {
-        return {m_material_model.get(), m_sample_model.get()};
+        return {m_material_model.get(), m_sample_model.get(), m_instrument_model.get()};
     }
 
     //! All application models.
     std::vector<SessionModel*> application_models() const
     {
-        return {m_material_model.get(), m_sample_model.get(), m_sld_view_model.get(),
-                m_job_model.get(), m_realdata_model.get()};
+        return {m_material_model.get(), m_sample_model.get(), m_instrument_model.get(),
+                m_sld_view_model.get(), m_job_model.get(),    m_realdata_model.get()};
     }
 };
 
@@ -101,6 +104,11 @@ JobModel* ApplicationModels::jobModel()
 ExperimentalDataModel* ApplicationModels::realDataModel()
 {
     return p_impl->m_realdata_model.get();
+}
+
+InstrumentModel* ApplicationModels::instrumentModel()
+{
+    return p_impl->m_instrument_model.get();
 }
 
 std::vector<SessionModel*> ApplicationModels::persistent_models() const

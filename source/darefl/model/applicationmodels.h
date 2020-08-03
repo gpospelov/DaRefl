@@ -24,6 +24,7 @@ class SLDElementModel;
 class SLDElementController;
 class JobModel;
 class ExperimentalDataModel;
+class InstrumentModel;
 
 //!  Main class to holds all models of GUI session.
 
@@ -38,6 +39,7 @@ public:
     SLDElementModel* sldViewModel();
     JobModel* jobModel();
     ExperimentalDataModel* realDataModel();
+    InstrumentModel* instrumentModel();
 
     std::vector<ModelView::SessionModel*> persistent_models() const override;
 

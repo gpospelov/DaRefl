@@ -13,13 +13,19 @@
 SpecularInstrumentItem::SpecularInstrumentItem()
     : ModelView::CompoundItem(::Constants::SpecularInstrumentItemType)
 {
+    addProperty<SpecularBeamItem>(P_BEAM);
 }
 
-SpecularBeamItem::SpecularBeamItem() : ModelView::CompoundItem(::Constants::SpecularBeamItemType) {}
+SpecularBeamItem::SpecularBeamItem() : ModelView::CompoundItem(::Constants::SpecularBeamItemType)
+{
+    addProperty<SpecularScanGroupItem>(P_SCAN_GROUP);
+}
 
 SpecularScanGroupItem::SpecularScanGroupItem()
     : ModelView::GroupItem(::Constants::SpecularScanGroupItemType)
 {
+    registerItem<QSpecScanItem>("Q-scan", /*make_selected*/ true);
+    init_group();
 }
 
-QSpecScanItem::QSpecScanItem() : ModelView::CompoundItem(::Constants::QSpecScanItemType) {}
+QSpecScanItem::QSpecScanItem() : ModelView::FixedBinAxisItem(::Constants::QSpecScanItemType) {}

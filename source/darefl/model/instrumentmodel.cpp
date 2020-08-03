@@ -31,4 +31,6 @@ std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
 InstrumentModel::InstrumentModel() : ModelView::SessionModel("InstrumentModel")
 {
     setItemCatalogue(CreateItemCatalogue());
+
+    insertItem<SpecularInstrumentItem>();
 }
