@@ -8,11 +8,11 @@
 // ************************************************************************** //
 
 #include <algorithm>
-#include <minikernel/Computation/Slice.h>
-#include <minikernel/MultiLayer/KzComputation.h>
 #include <darefl/quicksimeditor/materialprofile.h>
 #include <darefl/quicksimeditor/quicksimutils.h>
 #include <darefl/quicksimeditor/speculartoysimulation.h>
+#include <minikernel/Computation/Slice.h>
+#include <minikernel/MultiLayer/KzComputation.h>
 #include <mvvm/standarditems/axisitems.h>
 #include <mvvm/utils/containerutils.h>
 #include <stdexcept>
@@ -25,41 +25,43 @@ const int simulation_points = 500;
 using namespace ModelView;
 
 SpecularToySimulation::SpecularToySimulation(const multislice_t& multislice)
-    : input_data(multislice), strategy(std::make_unique<SpecularScalarTanhStrategy>())
+    : m_strategy(std::make_unique<SpecularScalarTanhStrategy>())
 {
+    m_inputData.sclice_data = multislice;
 }
 
 void SpecularToySimulation::runSimulation()
 {
-    auto slices = ::Utils::createBornAgainSlices(input_data);
-    auto qvalues = ModelView::FixedBinAxisItem::create(simulation_points, specular_result.xmin,
-                                                       specular_result.xmax)->binCenters();
+    auto slices = ::Utils::createBornAgainSlices(m_inputData.sclice_data);
+    auto qvalues = ModelView::FixedBinAxisItem::create(simulation_points, m_specularResult.xmin,
+                                                       m_specularResult.xmax)
+                       ->binCenters();
 
-    specular_result.data.reserve(simulation_points);
+    m_specularResult.data.reserve(simulation_points);
 
-    progress_handler.reset();
+    m_progressHandler.reset();
     for (auto q : qvalues) {
-        if (progress_handler.has_interrupt_request())
+        if (m_progressHandler.has_interrupt_request())
             throw std::runtime_error("Interrupt request");
 
         auto kz = -0.5 * q;
         auto kzs = KzComputation::computeKzFromSLDs(slices, kz);
-        auto coeff = std::move(strategy->Execute(slices, kzs).front());
-        specular_result.data.emplace_back(std::norm(coeff->getScalarR()));
+        auto coeff = std::move(m_strategy->Execute(slices, kzs).front());
+        m_specularResult.data.emplace_back(std::norm(coeff->getScalarR()));
 
-        progress_handler.setCompletedTicks(1);
+        m_progressHandler.setCompletedTicks(1);
     }
 }
 
 void SpecularToySimulation::setProgressCallback(ModelView::ProgressHandler::callback_t callback)
 {
-    progress_handler.setMaxTicksCount(simulation_points);
-    progress_handler.subscribe(callback);
+    m_progressHandler.setMaxTicksCount(simulation_points);
+    m_progressHandler.subscribe(callback);
 }
 
 SpecularToySimulation::Result SpecularToySimulation::simulationResult() const
 {
-    return specular_result;
+    return m_specularResult;
 }
 
 SpecularToySimulation::Result SpecularToySimulation::sld_profile(const multislice_t& multislice,
@@ -69,4 +71,3 @@ SpecularToySimulation::Result SpecularToySimulation::sld_profile(const multislic
     auto profile = MaterialProfile::CalculateProfile(multislice, n_points, xmin, xmax);
     return {xmin, xmax, ModelView::Utils::Real(profile)};
 }
-
