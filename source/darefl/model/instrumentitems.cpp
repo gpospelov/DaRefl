@@ -17,8 +17,9 @@ SpecularInstrumentItem::SpecularInstrumentItem()
 }
 
 SpecularBeamItem::SpecularBeamItem() : ModelView::CompoundItem(::Constants::SpecularBeamItemType)
-{
-    addProperty<SpecularScanGroupItem>(P_SCAN_GROUP);
+{    
+    addProperty(P_INTENSITY, 1.0)->setDisplayName("Intensity");
+    addProperty<SpecularScanGroupItem>(P_SCAN_GROUP)->setDisplayName("Specular scan type");
 }
 
 SpecularScanGroupItem::SpecularScanGroupItem()
@@ -28,4 +29,9 @@ SpecularScanGroupItem::SpecularScanGroupItem()
     init_group();
 }
 
-QSpecScanItem::QSpecScanItem() : ModelView::FixedBinAxisItem(::Constants::QSpecScanItemType) {}
+QSpecScanItem::QSpecScanItem() : ModelView::FixedBinAxisItem(::Constants::QSpecScanItemType)
+{
+    setProperty(ModelView::FixedBinAxisItem::P_NBINS, 500);
+    setProperty(ModelView::FixedBinAxisItem::P_MIN, 0.0);
+    setProperty(ModelView::FixedBinAxisItem::P_MAX, 1.0);
+}

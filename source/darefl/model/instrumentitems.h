@@ -32,6 +32,7 @@ public:
 class SpecularBeamItem : public ModelView::CompoundItem
 {
 public:
+    static inline const std::string P_INTENSITY = "P_INTENSITY";
     static inline const std::string P_SCAN_GROUP = "P_SCAN_GROUP";
 
     SpecularBeamItem();
