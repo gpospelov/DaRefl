@@ -25,6 +25,10 @@ const std::string CanvasItemType = "Canvas";
 const std::string CanvasContainerItemType = "CanvasContainer";
 const std::string RawDataMimeType = "quickrefl/moveDataItem";
 const std::string ExperimentalDataContainerItemType = "ExperimentalDataContainer";
+const std::string SpecularInstrumentItemType = "SpecularInstrument";
+const std::string SpecularBeamItemType = "SpecularBeam";
+const std::string SpecularScanGroupItemType = "SpecularScanGroup";
+const std::string QSpecScanItemType = "QSpecScan";
 
 } // namespace Constants
 
