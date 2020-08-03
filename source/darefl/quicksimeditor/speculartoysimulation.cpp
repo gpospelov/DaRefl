@@ -24,10 +24,9 @@ const int simulation_points = 500;
 
 using namespace ModelView;
 
-SpecularToySimulation::SpecularToySimulation(const multislice_t& multislice)
-    : m_strategy(std::make_unique<SpecularScalarTanhStrategy>())
+SpecularToySimulation::SpecularToySimulation(const InputData& input_data)
+    : m_inputData(input_data), m_strategy(std::make_unique<SpecularScalarTanhStrategy>())
 {
-    m_inputData.sclice_data = multislice;
 }
 
 void SpecularToySimulation::runSimulation()

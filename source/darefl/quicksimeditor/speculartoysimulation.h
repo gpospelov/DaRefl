@@ -34,7 +34,7 @@ public:
         multislice_t sclice_data;
     };
 
-    SpecularToySimulation(const multislice_t& multislice);
+    SpecularToySimulation(const InputData& input_data);
 
     void runSimulation();
 
