@@ -11,7 +11,7 @@
 #define DAREFL_QUICKSIMEDITOR_QUICKSIMCONTROLLER_H
 
 #include <QObject>
-#include <darefl/quicksimeditor/slice.h>
+#include <darefl/quicksimeditor/quicksim_types.h>
 #include <memory>
 
 namespace ModelView

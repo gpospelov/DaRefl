@@ -3,6 +3,7 @@ target_sources(${library_name} PRIVATE
     jobmanager.h
     materialprofile.cpp
     materialprofile.h
+    quicksim_types.h
     quicksimcontroller.cpp
     quicksimcontroller.h
     quicksimeditor.cpp
@@ -13,7 +14,6 @@ target_sources(${library_name} PRIVATE
     quicksimoptionswidget.h
     quicksimutils.cpp
     quicksimutils.h
-    slice.h
     speculartoysimulation.cpp
     speculartoysimulation.h
 )
