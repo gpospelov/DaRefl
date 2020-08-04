@@ -31,7 +31,7 @@ public:
     //! Represents results of the simulation.
     struct Result {
         std::vector<double> qvalues;
-        std::vector<double> data;
+        std::vector<double> amplitudes;
     };
 
     //! Represents data to run specular simulations.

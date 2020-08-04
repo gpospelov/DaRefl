@@ -31,7 +31,7 @@ void SpecularToySimulation::runSimulation()
 {
     auto slices = ::Utils::createBornAgainSlices(m_inputData.slice_data);
 
-    m_specularResult.data.reserve(scanPointsCount());
+    m_specularResult.amplitudes.reserve(scanPointsCount());
 
     m_progressHandler.reset();
     for (auto q : m_inputData.qvalues) {
@@ -41,7 +41,7 @@ void SpecularToySimulation::runSimulation()
         auto kz = -0.5 * q;
         auto kzs = KzComputation::computeKzFromSLDs(slices, kz);
         auto coeff = std::move(m_strategy->Execute(slices, kzs).front());
-        m_specularResult.data.emplace_back(std::norm(coeff->getScalarR()));
+        m_specularResult.amplitudes.emplace_back(std::norm(coeff->getScalarR()));
 
         m_progressHandler.setCompletedTicks(1);
     }

@@ -24,14 +24,4 @@ struct Slice {
 
 using multislice_t = std::vector<Slice>;
 
-struct PointwiseData {
-    std::vector<double> bin_centers;
-    std::vector<double> values;
-};
-
-struct QuickSimInputData {
-    std::vector<double> qvalues;
-    multislice_t slice_data;
-};
-
 #endif // DAREFL_QUICKSIMEDITOR_QUICKSIM_TYPES_H

@@ -83,10 +83,10 @@ void QuickSimController::onMultiLayerChange()
 
 void QuickSimController::onSimulationCompleted()
 {
-    auto [qvalues, values] = job_manager->simulationResult();
+    auto [qvalues, amplitudes] = job_manager->simulationResult();
     auto data = jobModel()->specular_data();
     data->setAxis(ModelView::PointwiseAxisItem::create(qvalues));
-    data->setContent(values);
+    data->setContent(amplitudes);
 }
 
 //! Constructs multislice, calculates profile and submits specular simulation.
