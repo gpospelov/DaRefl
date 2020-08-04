@@ -36,20 +36,18 @@ QuickSimController::~QuickSimController() = default;
 
 void QuickSimController::setModels(ApplicationModels* models)
 {
-    sample_model = models->sampleModel();
-    material_model = models->materialModel();
-    job_model = models->jobModel();
+    m_models = models;
 
     auto on_model_change = [this]() { onMultiLayerChange(); };
-    m_materialChangedController =
-        std::make_unique<ModelView::ModelHasChangedController>(material_model, on_model_change);
-    m_sampleChangedController =
-        std::make_unique<ModelView::ModelHasChangedController>(sample_model, on_model_change);
+    m_materialChangedController = std::make_unique<ModelView::ModelHasChangedController>(
+        m_models->materialModel(), on_model_change);
+    m_sampleChangedController = std::make_unique<ModelView::ModelHasChangedController>(
+        m_models->sampleModel(), on_model_change);
 
     setup_jobmanager_connections();
 
     onMultiLayerChange();
-    job_model->sld_viewport()->update_viewport();
+    jobModel()->sld_viewport()->update_viewport();
 }
 
 //! Requests interruption of running simulaitons.
@@ -84,11 +82,8 @@ void QuickSimController::onMultiLayerChange()
 
 void QuickSimController::onSimulationCompleted()
 {
-    if (!job_model)
-        return;
-
     auto [xmin, xmax, values] = job_manager->simulationResult();
-    auto data = job_model->specular_data();
+    auto data = jobModel()->specular_data();
     data->setAxis(ModelView::FixedBinAxisItem::create(values.size(), xmin, xmax));
     data->setContent(values);
 }
@@ -97,7 +92,7 @@ void QuickSimController::onSimulationCompleted()
 
 void QuickSimController::process_multilayer(bool submit_simulation)
 {
-    auto multilayer = ModelView::Utils::TopItem<MultiLayerItem>(sample_model);
+    auto multilayer = ModelView::Utils::TopItem<MultiLayerItem>(m_models->sampleModel());
     auto slices = ::Utils::CreateMultiSlice(*multilayer);
     update_sld_profile(slices);
     if (submit_simulation)
@@ -110,7 +105,7 @@ void QuickSimController::update_sld_profile(const multislice_t& multislice)
 {
     auto [xmin, xmax, values] =
         SpecularToySimulation::sld_profile(multislice, profile_points_count);
-    auto data = job_model->sld_data();
+    auto data = jobModel()->sld_data();
     data->setAxis(ModelView::FixedBinAxisItem::create(values.size(), xmin, xmax));
     data->setContent(values);
 }
@@ -135,4 +130,9 @@ void QuickSimController::setup_jobmanager_connections()
     // Notification about completed simulation from jobManager to this controller.
     connect(job_manager, &JobManager::simulationCompleted, this,
             &QuickSimController::onSimulationCompleted, Qt::QueuedConnection);
+}
+
+JobModel* QuickSimController::jobModel() const
+{
+    return m_models->jobModel();
 }
