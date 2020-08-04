@@ -16,10 +16,24 @@ SpecularInstrumentItem::SpecularInstrumentItem()
     addProperty<SpecularBeamItem>(P_BEAM);
 }
 
+SpecularBeamItem* SpecularInstrumentItem::beamItem() const
+{
+    return item<SpecularBeamItem>(P_BEAM);
+}
+
 SpecularBeamItem::SpecularBeamItem() : ModelView::CompoundItem(::Constants::SpecularBeamItemType)
-{    
+{
     addProperty(P_INTENSITY, 1.0)->setDisplayName("Intensity");
     addProperty<SpecularScanGroupItem>(P_SCAN_GROUP)->setDisplayName("Specular scan type");
+}
+
+std::vector<double> SpecularBeamItem::qScanValues() const
+{
+    std::vector<double> result;
+    auto scan_group = item<SpecularScanGroupItem>(P_SCAN_GROUP);
+    if (scan_group->currentType() == ::Constants::QSpecScanItemType)
+        result = static_cast<const QSpecScanItem*>(scan_group->currentItem())->binCenters();
+    return result;
 }
 
 SpecularScanGroupItem::SpecularScanGroupItem()

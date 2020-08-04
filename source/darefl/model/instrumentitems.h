@@ -19,12 +19,16 @@
 
 //! Represents specular instrument.
 
+class SpecularBeamItem;
+
 class SpecularInstrumentItem : public ModelView::CompoundItem
 {
 public:
     static inline const std::string P_BEAM = "P_BEAM";
 
     SpecularInstrumentItem();
+
+    SpecularBeamItem* beamItem() const;
 };
 
 //! Represents specular beam, contains settings of scan parameters.
@@ -36,6 +40,8 @@ public:
     static inline const std::string P_SCAN_GROUP = "P_SCAN_GROUP";
 
     SpecularBeamItem();
+
+    std::vector<double> qScanValues() const;
 };
 
 //! Represent selection of possible specular scans.

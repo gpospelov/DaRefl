@@ -8,6 +8,8 @@
 // ************************************************************************** //
 
 #include <darefl/model/applicationmodels.h>
+#include <darefl/model/instrumentitems.h>
+#include <darefl/model/instrumentmodel.h>
 #include <darefl/model/jobmodel.h>
 #include <darefl/model/layeritems.h>
 #include <darefl/model/materialmodel.h>
@@ -16,7 +18,6 @@
 #include <darefl/quicksimeditor/materialprofile.h>
 #include <darefl/quicksimeditor/quicksimcontroller.h>
 #include <darefl/quicksimeditor/quicksimutils.h>
-#include <mvvm/model/modelutils.h>
 #include <mvvm/project/modelhaschangedcontroller.h>
 #include <mvvm/standarditems/axisitems.h>
 #include <mvvm/standarditems/data1ditem.h>
@@ -92,7 +93,7 @@ void QuickSimController::onSimulationCompleted()
 
 void QuickSimController::process_multilayer(bool submit_simulation)
 {
-    auto multilayer = ModelView::Utils::TopItem<MultiLayerItem>(m_models->sampleModel());
+    auto multilayer = m_models->sampleModel()->topItem<MultiLayerItem>();
     auto slices = ::Utils::CreateMultiSlice(*multilayer);
     update_sld_profile(slices);
     if (submit_simulation)
@@ -114,8 +115,9 @@ void QuickSimController::update_sld_profile(const multislice_t& multislice)
 
 void QuickSimController::submit_specular_simulation(const multislice_t& multislice)
 {
-    std::vector<double> tmp;
-    job_manager->requestSimulation(multislice, tmp);
+    auto instrument = m_models->instrumentModel()->topItem<SpecularInstrumentItem>();
+    auto qvalues = instrument->beamItem()->qScanValues();
+    job_manager->requestSimulation(multislice, qvalues);
 }
 
 //! Connect signals going from JobManager. Connections are made queued since signals are emitted
