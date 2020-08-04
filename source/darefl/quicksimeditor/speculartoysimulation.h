@@ -14,6 +14,7 @@
 #include <memory>
 #include <mvvm/utils/progresshandler.h>
 #include <vector>
+#include <tuple>
 
 class SpecularScalarTanhStrategy;
 
@@ -23,12 +24,15 @@ class SpecularScalarTanhStrategy;
 class SpecularToySimulation
 {
 public:
+    using sld_profile_t = std::tuple<double, double, std::vector<double>>;
+
     ~SpecularToySimulation();
 
     //! Represents results of the simulation.
     struct Result {
         double xmin{0.0};
         double xmax{5.0};
+        std::vector<double> qvalues;
         std::vector<double> data;
     };
 
@@ -46,7 +50,7 @@ public:
 
     Result simulationResult() const;
 
-    static Result sld_profile(const multislice_t& multislice, int n_points);
+    static sld_profile_t sld_profile(const multislice_t& multislice, int n_points);
 
 private:
     ModelView::ProgressHandler m_progressHandler;

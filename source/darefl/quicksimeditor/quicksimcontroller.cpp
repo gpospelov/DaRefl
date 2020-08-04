@@ -82,7 +82,7 @@ void QuickSimController::onMultiLayerChange()
 
 void QuickSimController::onSimulationCompleted()
 {
-    auto [xmin, xmax, values] = job_manager->simulationResult();
+    auto [xmin, xmax, qvalues, values] = job_manager->simulationResult();
     auto data = jobModel()->specular_data();
     data->setAxis(ModelView::FixedBinAxisItem::create(values.size(), xmin, xmax));
     data->setContent(values);
@@ -114,7 +114,8 @@ void QuickSimController::update_sld_profile(const multislice_t& multislice)
 
 void QuickSimController::submit_specular_simulation(const multislice_t& multislice)
 {
-    job_manager->requestSimulation(multislice);
+    std::vector<double> tmp;
+    job_manager->requestSimulation(multislice, tmp);
 }
 
 //! Connect signals going from JobManager. Connections are made queued since signals are emitted

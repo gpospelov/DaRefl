@@ -66,7 +66,7 @@ SpecularToySimulation::Result SpecularToySimulation::simulationResult() const
     return m_specularResult;
 }
 
-SpecularToySimulation::Result SpecularToySimulation::sld_profile(const multislice_t& multislice,
+SpecularToySimulation::sld_profile_t SpecularToySimulation::sld_profile(const multislice_t& multislice,
                                                                  int n_points)
 {
     auto [xmin, xmax] = MaterialProfile::DefaultMaterialProfileLimits(multislice);

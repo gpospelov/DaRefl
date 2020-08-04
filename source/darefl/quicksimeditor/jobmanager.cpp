@@ -33,12 +33,13 @@ SpecularToySimulation::Result JobManager::simulationResult()
 //! Performs simulation request. Given multislice will be stored in a stack of values to trigger
 //! a waiting thread.
 
-void JobManager::requestSimulation(const multislice_t& multislice)
+void JobManager::requestSimulation(const multislice_t& multislice, const std::vector<double>& qvalues)
 {
     // At this point, non-empty stack means that currently simulation thread is busy.
     // Replacing top value in a stack, meaning that we are droping previous request.
     SpecularToySimulation::InputData input_data;
     input_data.slice_data = multislice;
+    input_data.qvalues = qvalues;
     m_requested_values.update_top(input_data);
 }
 
