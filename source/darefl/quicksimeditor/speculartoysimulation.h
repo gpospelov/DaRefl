@@ -30,8 +30,6 @@ public:
 
     //! Represents results of the simulation.
     struct Result {
-        double xmin{0.0};
-        double xmax{5.0};
         std::vector<double> qvalues;
         std::vector<double> data;
     };
@@ -53,6 +51,8 @@ public:
     static sld_profile_t sld_profile(const multislice_t& multislice, int n_points);
 
 private:
+    size_t scanPointsCount() const;
+
     ModelView::ProgressHandler m_progressHandler;
     InputData m_inputData;
     Result m_specularResult;

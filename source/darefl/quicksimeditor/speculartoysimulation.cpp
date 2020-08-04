@@ -18,11 +18,6 @@
 #include <mvvm/utils/containerutils.h>
 #include <stdexcept>
 
-namespace
-{
-const int simulation_points = 500;
-} // namespace
-
 using namespace ModelView;
 
 SpecularToySimulation::~SpecularToySimulation() = default;
@@ -35,14 +30,11 @@ SpecularToySimulation::SpecularToySimulation(const InputData& input_data)
 void SpecularToySimulation::runSimulation()
 {
     auto slices = ::Utils::createBornAgainSlices(m_inputData.slice_data);
-    auto qvalues = ModelView::FixedBinAxisItem::create(simulation_points, m_specularResult.xmin,
-                                                       m_specularResult.xmax)
-                       ->binCenters();
 
-    m_specularResult.data.reserve(simulation_points);
+    m_specularResult.data.reserve(scanPointsCount());
 
     m_progressHandler.reset();
-    for (auto q : qvalues) {
+    for (auto q : m_inputData.qvalues) {
         if (m_progressHandler.has_interrupt_request())
             throw std::runtime_error("Interrupt request");
 
@@ -53,11 +45,12 @@ void SpecularToySimulation::runSimulation()
 
         m_progressHandler.setCompletedTicks(1);
     }
+    m_specularResult.qvalues = m_inputData.qvalues;
 }
 
 void SpecularToySimulation::setProgressCallback(ModelView::ProgressHandler::callback_t callback)
 {
-    m_progressHandler.setMaxTicksCount(simulation_points);
+    m_progressHandler.setMaxTicksCount(scanPointsCount());
     m_progressHandler.subscribe(callback);
 }
 
@@ -66,10 +59,15 @@ SpecularToySimulation::Result SpecularToySimulation::simulationResult() const
     return m_specularResult;
 }
 
-SpecularToySimulation::sld_profile_t SpecularToySimulation::sld_profile(const multislice_t& multislice,
-                                                                 int n_points)
+SpecularToySimulation::sld_profile_t
+SpecularToySimulation::sld_profile(const multislice_t& multislice, int n_points)
 {
     auto [xmin, xmax] = MaterialProfile::DefaultMaterialProfileLimits(multislice);
     auto profile = MaterialProfile::CalculateProfile(multislice, n_points, xmin, xmax);
     return {xmin, xmax, ModelView::Utils::Real(profile)};
+}
+
+size_t SpecularToySimulation::scanPointsCount() const
+{
+    return m_inputData.qvalues.size();
 }

@@ -83,9 +83,9 @@ void QuickSimController::onMultiLayerChange()
 
 void QuickSimController::onSimulationCompleted()
 {
-    auto [xmin, xmax, qvalues, values] = job_manager->simulationResult();
+    auto [qvalues, values] = job_manager->simulationResult();
     auto data = jobModel()->specular_data();
-    data->setAxis(ModelView::FixedBinAxisItem::create(values.size(), xmin, xmax));
+    data->setAxis(ModelView::PointwiseAxisItem::create(qvalues));
     data->setContent(values);
 }
 
