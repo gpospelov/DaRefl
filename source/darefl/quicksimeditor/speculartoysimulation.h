@@ -10,11 +10,12 @@
 #ifndef DAREFL_QUICKSIMEDITOR_SPECULARTOYSIMULATION_H
 #define DAREFL_QUICKSIMEDITOR_SPECULARTOYSIMULATION_H
 
-#include <darefl/quicksimeditor/materialprofile.h>
+#include <darefl/quicksimeditor/quicksim_types.h>
 #include <memory>
-#include <minikernel/MultiLayer/SpecularScalarTanhStrategy.h>
 #include <mvvm/utils/progresshandler.h>
 #include <vector>
+
+class SpecularScalarTanhStrategy;
 
 //! Toy simulation to calculate "specular reflectivity.
 //! Used by JobManager to run simulation in mylti-threaded mode.
@@ -22,6 +23,8 @@
 class SpecularToySimulation
 {
 public:
+    ~SpecularToySimulation();
+
     //! Represents results of the simulation.
     struct Result {
         double xmin{0.0};

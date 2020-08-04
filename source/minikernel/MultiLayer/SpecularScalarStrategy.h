@@ -21,7 +21,9 @@
 #include <memory>
 #include <vector>
 
+namespace BornAgain {
 class Slice;
+}
 
 //! Implements the scalar Fresnel computation
 //!

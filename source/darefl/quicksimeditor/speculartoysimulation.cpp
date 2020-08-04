@@ -13,6 +13,7 @@
 #include <darefl/quicksimeditor/speculartoysimulation.h>
 #include <minikernel/Computation/Slice.h>
 #include <minikernel/MultiLayer/KzComputation.h>
+#include <minikernel/MultiLayer/SpecularScalarTanhStrategy.h>
 #include <mvvm/standarditems/axisitems.h>
 #include <mvvm/utils/containerutils.h>
 #include <stdexcept>
@@ -23,6 +24,8 @@ const int simulation_points = 500;
 } // namespace
 
 using namespace ModelView;
+
+SpecularToySimulation::~SpecularToySimulation() = default;
 
 SpecularToySimulation::SpecularToySimulation(const InputData& input_data)
     : m_inputData(input_data), m_strategy(std::make_unique<SpecularScalarTanhStrategy>())

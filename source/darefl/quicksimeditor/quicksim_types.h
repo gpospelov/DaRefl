@@ -24,10 +24,9 @@ struct Slice {
 
 using multislice_t = std::vector<Slice>;
 
-struct QuickSimResult {
-    double xmin{0.0};
-    double xmax{5.0};
-    std::vector<double> data;
+struct PointwiseData {
+    std::vector<double> bin_centers;
+    std::vector<double> values;
 };
 
 struct QuickSimInputData {
