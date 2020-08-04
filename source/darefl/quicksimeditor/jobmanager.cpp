@@ -38,7 +38,7 @@ void JobManager::requestSimulation(const multislice_t& multislice)
     // At this point, non-empty stack means that currently simulation thread is busy.
     // Replacing top value in a stack, meaning that we are droping previous request.
     SpecularToySimulation::InputData input_data;
-    input_data.sclice_data = multislice;
+    input_data.slice_data = multislice;
     m_requested_values.update_top(input_data);
 }
 

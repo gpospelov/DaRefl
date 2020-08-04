@@ -24,4 +24,15 @@ struct Slice {
 
 using multislice_t = std::vector<Slice>;
 
+struct QuickSimResult {
+    double xmin{0.0};
+    double xmax{5.0};
+    std::vector<double> data;
+};
+
+struct QuickSimInputData {
+    std::vector<double> qvalues;
+    multislice_t slice_data;
+};
+
 #endif // DAREFL_QUICKSIMEDITOR_QUICKSIM_TYPES_H

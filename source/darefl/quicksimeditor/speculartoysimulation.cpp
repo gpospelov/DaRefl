@@ -31,7 +31,7 @@ SpecularToySimulation::SpecularToySimulation(const InputData& input_data)
 
 void SpecularToySimulation::runSimulation()
 {
-    auto slices = ::Utils::createBornAgainSlices(m_inputData.sclice_data);
+    auto slices = ::Utils::createBornAgainSlices(m_inputData.slice_data);
     auto qvalues = ModelView::FixedBinAxisItem::create(simulation_points, m_specularResult.xmin,
                                                        m_specularResult.xmax)
                        ->binCenters();

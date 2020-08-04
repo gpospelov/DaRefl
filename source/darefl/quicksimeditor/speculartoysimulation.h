@@ -31,7 +31,8 @@ public:
 
     //! Represents data to run specular simulations.
     struct InputData {
-        multislice_t sclice_data;
+        std::vector<double> qvalues;
+        multislice_t slice_data;
     };
 
     SpecularToySimulation(const InputData& input_data);
