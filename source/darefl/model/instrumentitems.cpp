@@ -10,16 +10,23 @@
 #include <darefl/model/instrumentitems.h>
 #include <darefl/model/item_constants.h>
 
-SpecularInstrumentItem::SpecularInstrumentItem()
-    : ModelView::CompoundItem(::Constants::SpecularInstrumentItemType)
+QSpecScanItem::QSpecScanItem() : ModelView::FixedBinAxisItem(::Constants::QSpecScanItemType)
 {
-    addProperty<SpecularBeamItem>(P_BEAM);
+    setProperty(ModelView::FixedBinAxisItem::P_NBINS, 500);
+    setProperty(ModelView::FixedBinAxisItem::P_MIN, 0.0);
+    setProperty(ModelView::FixedBinAxisItem::P_MAX, 1.0);
 }
 
-SpecularBeamItem* SpecularInstrumentItem::beamItem() const
+// ----------------------------------------------------------------------------
+
+SpecularScanGroupItem::SpecularScanGroupItem()
+    : ModelView::GroupItem(::Constants::SpecularScanGroupItemType)
 {
-    return item<SpecularBeamItem>(P_BEAM);
+    registerItem<QSpecScanItem>("Q-scan", /*make_selected*/ true);
+    init_group();
 }
+
+// ----------------------------------------------------------------------------
 
 SpecularBeamItem::SpecularBeamItem() : ModelView::CompoundItem(::Constants::SpecularBeamItemType)
 {
@@ -36,16 +43,15 @@ std::vector<double> SpecularBeamItem::qScanValues() const
     return result;
 }
 
-SpecularScanGroupItem::SpecularScanGroupItem()
-    : ModelView::GroupItem(::Constants::SpecularScanGroupItemType)
+// ----------------------------------------------------------------------------
+
+SpecularInstrumentItem::SpecularInstrumentItem()
+    : ModelView::CompoundItem(::Constants::SpecularInstrumentItemType)
 {
-    registerItem<QSpecScanItem>("Q-scan", /*make_selected*/ true);
-    init_group();
+    addProperty<SpecularBeamItem>(P_BEAM);
 }
 
-QSpecScanItem::QSpecScanItem() : ModelView::FixedBinAxisItem(::Constants::QSpecScanItemType)
+SpecularBeamItem* SpecularInstrumentItem::beamItem() const
 {
-    setProperty(ModelView::FixedBinAxisItem::P_NBINS, 500);
-    setProperty(ModelView::FixedBinAxisItem::P_MIN, 0.0);
-    setProperty(ModelView::FixedBinAxisItem::P_MAX, 1.0);
+    return item<SpecularBeamItem>(P_BEAM);
 }

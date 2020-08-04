@@ -17,18 +17,21 @@
 #include <mvvm/model/groupitem.h>
 #include <mvvm/standarditems/axisitems.h>
 
-//! Represents specular instrument.
+//! Represents Q-space specular scan.
 
-class SpecularBeamItem;
-
-class SpecularInstrumentItem : public ModelView::CompoundItem
+class QSpecScanItem : public ModelView::FixedBinAxisItem
 {
 public:
-    static inline const std::string P_BEAM = "P_BEAM";
+    static inline const std::string P_QMIN = "P_BEAM";
+    QSpecScanItem();
+};
 
-    SpecularInstrumentItem();
+//! Represent selection of possible specular scans.
 
-    SpecularBeamItem* beamItem() const;
+class SpecularScanGroupItem : public ModelView::GroupItem
+{
+public:
+    SpecularScanGroupItem();
 };
 
 //! Represents specular beam, contains settings of scan parameters.
@@ -44,21 +47,16 @@ public:
     std::vector<double> qScanValues() const;
 };
 
-//! Represent selection of possible specular scans.
+//! Represents specular instrument.
 
-class SpecularScanGroupItem : public ModelView::GroupItem
+class SpecularInstrumentItem : public ModelView::CompoundItem
 {
 public:
-    SpecularScanGroupItem();
-};
+    static inline const std::string P_BEAM = "P_BEAM";
 
-//! Represents Q-space specular scan.
+    SpecularInstrumentItem();
 
-class QSpecScanItem : public ModelView::FixedBinAxisItem
-{
-public:
-    static inline const std::string P_QMIN = "P_BEAM";
-    QSpecScanItem();
+    SpecularBeamItem* beamItem() const;
 };
 
 #endif // DAREFL_MODEL_INSTRUMENTITEM_H
