@@ -55,6 +55,9 @@ void SLDElementController::connectMaterialModel()
     p_material_model->mapper()->setOnModelDestroyed(on_mat_model_destroyed, this);
 }
 
+// FIXME Consider switching to ModelHasChangedController, or ModelListener.
+// See quicksimcontroller.h or materialpropertycontroller.h as an example.
+
 //! Connect with signals of SampleModel
 void SLDElementController::connectLayerModel()
 {

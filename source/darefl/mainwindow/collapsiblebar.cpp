@@ -12,7 +12,7 @@
 #include <QIcon>
 #include <QLabel>
 #include <QMouseEvent>
-#include <darefl/importdataview/collapsiblebar.h>
+#include <darefl/mainwindow/collapsiblebar.h>
 #include <mvvm/widgets/widgetutils.h>
 
 CollapsibleBar::CollapsibleBar(QWidget* parent)

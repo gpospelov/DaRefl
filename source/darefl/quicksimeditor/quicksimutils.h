@@ -10,7 +10,7 @@
 #ifndef DAREFL_QUICKSIMEDITOR_QUICKSIMUTILS_H
 #define DAREFL_QUICKSIMEDITOR_QUICKSIMUTILS_H
 
-#include <darefl/quicksimeditor/slice.h>
+#include <darefl/quicksimeditor/quicksim_types.h>
 
 class MultiLayerItem;
 

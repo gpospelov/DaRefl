@@ -75,15 +75,16 @@ void MainWindow::init_components()
 
     // __________________________________________
     // THE NEW SIMULATION WIDGET UNCOMMENT TO USE
-    // m_sim_widget = new SimulationWidget();
-    // m_sim_widget->setModels(m_models.get());
+//     m_sim_widget = new SimulationWidget();
+//     m_sim_widget->setModels(m_models.get());
 
     m_barWidget->addWidget(m_welcomeView, "Project");
     m_barWidget->addWidget(m_importDataView, "Data");
     m_barWidget->addWidget(m_reflWindow, "Simulation");
     // __________________________________________
     // THE NEW SIMULATION WIDGET UNCOMMENT TO USE
-    m_barWidget->addWidget(new QWidget, "Fitting");//m_sim_widget, "Fitting");
+    m_barWidget->addWidget(new QWidget, "Fitting", false);
+//    m_barWidget->addWidget(m_sim_widget, "Fitting");
     m_barWidget->addWidget(new QWidget, "Export", false);
     m_barWidget->addWidget(m_settingsView, "Settings");
     m_barWidget->setCurrentIndex(0);

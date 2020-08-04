@@ -4,8 +4,16 @@ add_subdirectory(simulationwidget)
 target_sources(${library_name} PRIVATE
     actionmanager.cpp
     actionmanager.h
+    collapsiblebar.cpp
+    collapsiblebar.h
+    collapsiblelistwidget.cpp
+    collapsiblelistwidget.h
     dockscontroller.cpp
     dockscontroller.h
+    editortoolbar.cpp
+    editortoolbar.h
+    editorwidget.cpp
+    editorwidget.h
     fancytab.cpp
     fancytab.h
     mainbarwidget.cpp
@@ -16,9 +24,5 @@ target_sources(${library_name} PRIVATE
     refldockwindow.h
     styleutils.cpp
     styleutils.h
-    editortoolbar.h
-    editortoolbar.cpp
-    editorwidget.h
-    editorwidget.cpp
 )
 

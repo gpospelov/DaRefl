@@ -18,6 +18,8 @@ class Data1DItem;
 class GraphViewportItem;
 } // namespace ModelView
 
+class CanvasItem;
+
 //! Holds results of toy reflectivity simulation.
 
 class JobItem : public ModelView::CompoundItem
@@ -34,10 +36,12 @@ public:
     ModelView::GraphViewportItem* sld_viewport() const;
 
     ModelView::Data1DItem* specular_data() const;
-    ModelView::GraphViewportItem* specular_viewport() const;
+    CanvasItem* specular_viewport() const;
 
 private:
     void setup_graph(const std::string& data_tag, const std::string& viewport_tag);
+    void setup_sld_viewport();
+    void setup_specular_viewport();
 };
 
 #endif // DAREFL_MODEL_JOBITEM_H

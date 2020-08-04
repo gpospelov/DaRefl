@@ -23,7 +23,7 @@ EditorToolBar::EditorToolBar(std::string name, QWidget* parent) : QToolBar(paren
 {
     InitIconResources();
     setIconSize(StyleUtils::ToolBarIconSize());
-    setToolButtonStyle(Qt::ToolButtonIconOnly);
+    setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     setHeader(name);
     setBody();
     setTail();

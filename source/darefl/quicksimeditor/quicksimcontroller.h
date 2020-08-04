@@ -11,14 +11,17 @@
 #define DAREFL_QUICKSIMEDITOR_QUICKSIMCONTROLLER_H
 
 #include <QObject>
-#include <darefl/quicksimeditor/slice.h>
+#include <darefl/quicksimeditor/quicksim_types.h>
 #include <memory>
 
+namespace ModelView
+{
+class ModelHasChangedController;
+}
+
 class ApplicationModels;
-class MaterialModel;
-class SampleModel;
-class JobModel;
 class JobManager;
+class JobModel;
 
 //! Provides quick reflectometry simulations on any change of SampleModel and MaterialModel.
 //! Listens for any change in SampleModel and MaterialModel, extracts the data needed for
@@ -47,18 +50,20 @@ private slots:
     void onSimulationCompleted();
 
 private:
-    void setup_multilayer_tracking();
     void process_multilayer(bool submit_simulation = false);
     void update_sld_profile(const multislice_t& multilayer);
     void submit_specular_simulation(const multislice_t& multislice);
     void setup_jobmanager_connections();
 
-    SampleModel* sample_model{nullptr};
-    MaterialModel* material_model{nullptr};
-    JobModel* job_model{nullptr};
+    JobModel* jobModel() const;
+
+    ApplicationModels* m_models{nullptr};
     JobManager* job_manager{nullptr};
 
     bool in_realtime_mode{false}; //! Run simulation on every parameter change.
+
+    std::unique_ptr<ModelView::ModelHasChangedController> m_materialChangedController;
+    std::unique_ptr<ModelView::ModelHasChangedController> m_sampleChangedController;
 };
 
 #endif // DAREFL_QUICKSIMEDITOR_QUICKSIMCONTROLLER_H

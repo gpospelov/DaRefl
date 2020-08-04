@@ -19,6 +19,7 @@ class GraphViewportItem;
 } // namespace ModelView
 
 class JobItem;
+class CanvasItem;
 
 //! Contains results of quick reflectometry simulations.
 class JobModel : public ModelView::SessionModel
@@ -30,7 +31,7 @@ public:
     ModelView::GraphViewportItem* sld_viewport() const;
 
     ModelView::Data1DItem* specular_data() const;
-    ModelView::GraphViewportItem* specular_viewport() const;
+    CanvasItem* specular_viewport() const;
 
 private:
     JobItem* job_item() const;

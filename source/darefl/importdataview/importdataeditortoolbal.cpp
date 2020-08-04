@@ -51,22 +51,18 @@ ImportDataEditorToolBar::ImportDataEditorToolBar(ImportDataEditorActions* editor
     connect(delete_action, &QAction::triggered, [this]() { m_editorActions->onDeleteItem(); });
     addAction(delete_action);
 
-    //    auto reset_action = new QAction("Reset loaded", this);
-    //    reset_action->setToolTip("Reset all the loaded items.");
-    //    reset_action->setIcon(QIcon(":/icons/beaker-remove-outline.svg"));
-    //    connect(reset_action, &QAction::triggered, this, &ImportDataEditorToolBar::resetAll);
-    //    addAction(reset_action);
-
     addSeparator();
 
     auto undo_action = new QAction("Undo", this);
     undo_action->setToolTip("Undo the action last performed.");
     undo_action->setIcon(QIcon(":/icons/undo.svg"));
+    connect(undo_action, &QAction::triggered, [this]() { m_editorActions->onUndo(); });
     addAction(undo_action);
 
     auto redo_action = new QAction("Redo", this);
     redo_action->setToolTip("Redo the action just performed.");
     redo_action->setIcon(QIcon(":/icons/redo.svg"));
+    connect(redo_action, &QAction::triggered, [this]() { m_editorActions->onRedo(); });
     addAction(redo_action);
 
     auto empty = new QWidget(this);
@@ -74,7 +70,7 @@ ImportDataEditorToolBar::ImportDataEditorToolBar(ImportDataEditorActions* editor
     addWidget(empty);
 
     auto reset_graph_action = new QAction("Replot", this);
-    reset_graph_action->setToolTip("Reset the graph aspect ratio");
+    reset_graph_action->setToolTip("Set plot axes to default range");
     reset_graph_action->setIcon(QIcon(":/icons/aspect-ratio.svg"));
     connect(reset_graph_action, &QAction::triggered, this,
             &ImportDataEditorToolBar::updateViewportRequest);

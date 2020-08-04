@@ -7,8 +7,9 @@
 //
 // ************************************************************************** //
 
-#include <QDebug>
 #include <darefl/model/applicationmodels.h>
+#include <darefl/model/instrumentitems.h>
+#include <darefl/model/instrumentmodel.h>
 #include <darefl/model/jobmodel.h>
 #include <darefl/model/layeritems.h>
 #include <darefl/model/materialmodel.h>
@@ -17,10 +18,7 @@
 #include <darefl/quicksimeditor/materialprofile.h>
 #include <darefl/quicksimeditor/quicksimcontroller.h>
 #include <darefl/quicksimeditor/quicksimutils.h>
-#include <darefl/quicksimeditor/slice.h>
-#include <darefl/quicksimeditor/speculartoysimulation.h>
-#include <mvvm/model/modelutils.h>
-#include <mvvm/signals/modelmapper.h>
+#include <mvvm/project/modelhaschangedcontroller.h>
 #include <mvvm/standarditems/axisitems.h>
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
@@ -35,28 +33,22 @@ QuickSimController::QuickSimController(QObject* parent)
 {
 }
 
-QuickSimController::~QuickSimController()
-{
-    if (material_model)
-        material_model->mapper()->unsubscribe(this);
-    if (sample_model)
-        sample_model->mapper()->unsubscribe(this);
-}
+QuickSimController::~QuickSimController() = default;
 
 void QuickSimController::setModels(ApplicationModels* models)
 {
-    if (material_model)
-        material_model->mapper()->unsubscribe(this);
-    if (sample_model)
-        sample_model->mapper()->unsubscribe(this);
+    m_models = models;
 
-    sample_model = models->sampleModel();
-    material_model = models->materialModel();
-    job_model = models->jobModel();
+    auto on_model_change = [this]() { onMultiLayerChange(); };
+    m_materialChangedController = std::make_unique<ModelView::ModelHasChangedController>(
+        m_models->materialModel(), on_model_change);
+    m_sampleChangedController = std::make_unique<ModelView::ModelHasChangedController>(
+        m_models->sampleModel(), on_model_change);
 
-    if (material_model && material_model && job_model)
-        setup_multilayer_tracking();
     setup_jobmanager_connections();
+
+    onMultiLayerChange();
+    jobModel()->sld_viewport()->update_viewport();
 }
 
 //! Requests interruption of running simulaitons.
@@ -91,56 +83,17 @@ void QuickSimController::onMultiLayerChange()
 
 void QuickSimController::onSimulationCompleted()
 {
-    if (!job_model)
-        return;
-
-    auto [xmin, xmax, values] = job_manager->simulationResult();
-    auto data = job_model->specular_data();
-    data->setAxis(ModelView::FixedBinAxisItem::create(values.size(), xmin, xmax));
-    data->setContent(values);
-}
-
-//! Setups tracking of SampleModel and MaterialModel.
-
-void QuickSimController::setup_multilayer_tracking()
-{
-    // Setup MaterialModel
-    {
-        auto on_data_change = [this](ModelView::SessionItem*, int) { onMultiLayerChange(); };
-        material_model->mapper()->setOnDataChange(on_data_change, this);
-
-        auto on_item_removed = [this](ModelView::SessionItem*, ModelView::TagRow) {
-            onMultiLayerChange();
-        };
-        material_model->mapper()->setOnItemRemoved(on_item_removed, this);
-
-        auto on_model_destroyed = [this](ModelView::SessionModel*) { material_model = nullptr; };
-        material_model->mapper()->setOnModelDestroyed(on_model_destroyed, this);
-    }
-
-    // Setup SampleModel
-    {
-        auto on_data_change = [this](ModelView::SessionItem*, int) { onMultiLayerChange(); };
-        sample_model->mapper()->setOnDataChange(on_data_change, this);
-
-        auto on_item_removed = [this](ModelView::SessionItem*, ModelView::TagRow) {
-            onMultiLayerChange();
-        };
-        sample_model->mapper()->setOnItemRemoved(on_item_removed, this);
-
-        auto on_model_destroyed = [this](ModelView::SessionModel*) { sample_model = nullptr; };
-        sample_model->mapper()->setOnModelDestroyed(on_model_destroyed, this);
-    }
-
-    onMultiLayerChange();
-    job_model->sld_viewport()->update_viewport();
+    auto [qvalues, amplitudes] = job_manager->simulationResult();
+    auto data = jobModel()->specular_data();
+    data->setAxis(ModelView::PointwiseAxisItem::create(qvalues));
+    data->setContent(amplitudes);
 }
 
 //! Constructs multislice, calculates profile and submits specular simulation.
 
 void QuickSimController::process_multilayer(bool submit_simulation)
 {
-    auto multilayer = ModelView::Utils::TopItem<MultiLayerItem>(sample_model);
+    auto multilayer = m_models->sampleModel()->topItem<MultiLayerItem>();
     auto slices = ::Utils::CreateMultiSlice(*multilayer);
     update_sld_profile(slices);
     if (submit_simulation)
@@ -151,10 +104,9 @@ void QuickSimController::process_multilayer(bool submit_simulation)
 
 void QuickSimController::update_sld_profile(const multislice_t& multislice)
 {
-    qDebug() << "QuickSimController::update_sld_profile()";
     auto [xmin, xmax, values] =
         SpecularToySimulation::sld_profile(multislice, profile_points_count);
-    auto data = job_model->sld_data();
+    auto data = jobModel()->sld_data();
     data->setAxis(ModelView::FixedBinAxisItem::create(values.size(), xmin, xmax));
     data->setContent(values);
 }
@@ -163,7 +115,9 @@ void QuickSimController::update_sld_profile(const multislice_t& multislice)
 
 void QuickSimController::submit_specular_simulation(const multislice_t& multislice)
 {
-    job_manager->requestSimulation(multislice);
+    auto instrument = m_models->instrumentModel()->topItem<SpecularInstrumentItem>();
+    auto qvalues = instrument->beamItem()->qScanValues();
+    job_manager->requestSimulation(multislice, qvalues);
 }
 
 //! Connect signals going from JobManager. Connections are made queued since signals are emitted
@@ -179,4 +133,9 @@ void QuickSimController::setup_jobmanager_connections()
     // Notification about completed simulation from jobManager to this controller.
     connect(job_manager, &JobManager::simulationCompleted, this,
             &QuickSimController::onSimulationCompleted, Qt::QueuedConnection);
+}
+
+JobModel* QuickSimController::jobModel() const
+{
+    return m_models->jobModel();
 }

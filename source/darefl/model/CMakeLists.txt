@@ -6,6 +6,10 @@ target_sources(${library_name} PRIVATE
     experimentaldataitems.h
     experimentaldatamodel.cpp
     experimentaldatamodel.h
+    instrumentitems.cpp
+    instrumentitems.h
+    instrumentmodel.cpp
+    instrumentmodel.h
     item_constants.h
     jobitem.cpp
     jobitem.h

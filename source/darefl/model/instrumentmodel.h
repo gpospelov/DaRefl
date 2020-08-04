@@ -1,0 +1,23 @@
+// ************************************************************************** //
+//
+//  Reflectometry simulation software prototype
+//
+//! @license   GNU General Public License v3 or higher (see COPYING)
+//! @authors   see AUTHORS
+//
+// ************************************************************************** //
+
+#ifndef DAREFL_MODEL_INSTRUMENTMODEL_H
+#define DAREFL_MODEL_INSTRUMENTMODEL_H
+
+#include <mvvm/model/sessionmodel.h>
+
+//! Model to store specular instruments settings.
+
+class InstrumentModel : public ModelView::SessionModel
+{
+public:
+    InstrumentModel();
+};
+
+#endif // DAREFL_MODEL_INSTRUMENTMODEL_H

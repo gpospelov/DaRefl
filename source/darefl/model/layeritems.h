@@ -13,7 +13,6 @@
 //! @file layeritems.h
 //! Collection of layer and multi-layer items to populate SampleModel.
 
-#include <darefl/quicksimeditor/slice.h>
 #include <mvvm/model/compounditem.h>
 
 //! Item to represent the roughness of the layer.

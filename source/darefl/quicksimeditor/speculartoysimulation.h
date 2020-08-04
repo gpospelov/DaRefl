@@ -10,11 +10,13 @@
 #ifndef DAREFL_QUICKSIMEDITOR_SPECULARTOYSIMULATION_H
 #define DAREFL_QUICKSIMEDITOR_SPECULARTOYSIMULATION_H
 
-#include <darefl/quicksimeditor/materialprofile.h>
-#include <minikernel/MultiLayer/SpecularScalarTanhStrategy.h>
+#include <darefl/quicksimeditor/quicksim_types.h>
+#include <memory>
 #include <mvvm/utils/progresshandler.h>
 #include <vector>
-#include <memory>
+#include <tuple>
+
+class SpecularScalarTanhStrategy;
 
 //! Toy simulation to calculate "specular reflectivity.
 //! Used by JobManager to run simulation in mylti-threaded mode.
@@ -22,14 +24,23 @@
 class SpecularToySimulation
 {
 public:
+    using sld_profile_t = std::tuple<double, double, std::vector<double>>;
+
+    ~SpecularToySimulation();
+
     //! Represents results of the simulation.
     struct Result {
-        double xmin{0.0};
-        double xmax{5.0};
-        std::vector<double> data;
+        std::vector<double> qvalues;
+        std::vector<double> amplitudes;
     };
 
-    SpecularToySimulation(const multislice_t& multislice);
+    //! Represents data to run specular simulations.
+    struct InputData {
+        std::vector<double> qvalues;
+        multislice_t slice_data;
+    };
+
+    SpecularToySimulation(const InputData& input_data);
 
     void runSimulation();
 
@@ -37,14 +48,16 @@ public:
 
     Result simulationResult() const;
 
-    static Result sld_profile(const multislice_t& multislice, int n_points);
+    static sld_profile_t sld_profile(const multislice_t& multislice, int n_points);
 
 private:
-    ModelView::ProgressHandler progress_handler;
-    multislice_t input_data;
-    Result specular_result;
+    size_t scanPointsCount() const;
 
-    std::unique_ptr<SpecularScalarTanhStrategy> strategy;
+    ModelView::ProgressHandler m_progressHandler;
+    InputData m_inputData;
+    Result m_specularResult;
+
+    std::unique_ptr<SpecularScalarTanhStrategy> m_strategy;
 };
 
 #endif // DAREFL_QUICKSIMEDITOR_SPECULARTOYSIMULATION_H

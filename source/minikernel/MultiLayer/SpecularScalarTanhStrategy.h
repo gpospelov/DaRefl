@@ -17,8 +17,6 @@
 
 #include <minikernel/MultiLayer/SpecularScalarStrategy.h>
 
-class Slice;
-
 //! Implements an tanh transition function to model roughness in a scaler computation.
 //!
 //! Implements the transition function that includes the analytical roughness model

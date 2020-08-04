@@ -87,29 +87,15 @@ void QuickSimEditorToolBar::setup_simulation_elements()
     cancel_action->setToolTip("Cancel running simulation");
     connect(cancel_action, &QAction::triggered, this, &QuickSimEditorToolBar::cancelPressed);
     addAction(cancel_action);
-
-    // job settings
-    auto settings_action = new QAction("Setup", this);
-    settings_action->setIcon(QIcon(":/icons/alpha-s-circle-outline.svg"));
-    settings_action->setToolTip("Specular instrument setup for quick simulations");
-    connect(settings_action, &QAction::triggered, this,
-            &QuickSimEditorToolBar::instrumentSettingsRequest);
-    addAction(settings_action);
 }
 
 //! Setups actions to reset plot and access its settings.
 
 void QuickSimEditorToolBar::setup_plot_elements()
 {
-    auto reset_view = new QAction("Reset", this);
+    auto reset_view = new QAction("Replot", this);
     reset_view->setToolTip("Set plot axes to default range");
     reset_view->setIcon(QIcon(":/icons/aspect-ratio.svg"));
     connect(reset_view, &QAction::triggered, this, &QuickSimEditorToolBar::resetViewRequest);
     addAction(reset_view);
-
-    auto plot_settings = new QAction("Plot", this);
-    plot_settings->setToolTip("Plot settings");
-    plot_settings->setIcon(QIcon(":/icons/cog-outline.svg"));
-    connect(plot_settings, &QAction::triggered, this, &QuickSimEditorToolBar::plotSettingsRequest);
-    addAction(plot_settings);
 }
