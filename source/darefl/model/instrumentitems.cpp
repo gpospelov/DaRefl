@@ -7,28 +7,40 @@
 //
 // ************************************************************************** //
 
+#include <QColor>
 #include <darefl/model/instrumentitems.h>
 #include <darefl/model/item_constants.h>
+#include <mvvm/model/externalproperty.h>
 
-QSpecScanItem::QSpecScanItem() : ModelView::FixedBinAxisItem(::Constants::QSpecScanItemType)
+using namespace ModelView;
+
+QSpecScanItem::QSpecScanItem() : FixedBinAxisItem(::Constants::QSpecScanItemType)
 {
-    setProperty(ModelView::FixedBinAxisItem::P_NBINS, 500);
-    setProperty(ModelView::FixedBinAxisItem::P_MIN, 0.0);
-    setProperty(ModelView::FixedBinAxisItem::P_MAX, 1.0);
+    setProperty(FixedBinAxisItem::P_NBINS, 500);
+    setProperty(FixedBinAxisItem::P_MIN, 0.0);
+    setProperty(FixedBinAxisItem::P_MAX, 1.0);
 }
 
 // ----------------------------------------------------------------------------
 
-SpecularScanGroupItem::SpecularScanGroupItem()
-    : ModelView::GroupItem(::Constants::SpecularScanGroupItemType)
+ExperimentalScanItem::ExperimentalScanItem() : CompoundItem(::Constants::ExperimentalScanItemType)
+{
+    addProperty(P_IMPORTED_DATA, ExternalProperty("Undefined", QColor(Qt::red)))
+        ->setDisplayName("Graph");
+}
+
+// ----------------------------------------------------------------------------
+
+SpecularScanGroupItem::SpecularScanGroupItem() : GroupItem(::Constants::SpecularScanGroupItemType)
 {
     registerItem<QSpecScanItem>("Q-scan", /*make_selected*/ true);
+    registerItem<ExperimentalScanItem>("Based on data");
     init_group();
 }
 
 // ----------------------------------------------------------------------------
 
-SpecularBeamItem::SpecularBeamItem() : ModelView::CompoundItem(::Constants::SpecularBeamItemType)
+SpecularBeamItem::SpecularBeamItem() : CompoundItem(::Constants::SpecularBeamItemType)
 {
     addProperty(P_INTENSITY, 1.0)->setDisplayName("Intensity");
     addProperty<SpecularScanGroupItem>(P_SCAN_GROUP)->setDisplayName("Specular scan type");
@@ -46,7 +58,7 @@ std::vector<double> SpecularBeamItem::qScanValues() const
 // ----------------------------------------------------------------------------
 
 SpecularInstrumentItem::SpecularInstrumentItem()
-    : ModelView::CompoundItem(::Constants::SpecularInstrumentItemType)
+    : CompoundItem(::Constants::SpecularInstrumentItemType)
 {
     addProperty<SpecularBeamItem>(P_BEAM);
 }

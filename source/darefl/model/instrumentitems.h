@@ -22,8 +22,17 @@
 class QSpecScanItem : public ModelView::FixedBinAxisItem
 {
 public:
-    static inline const std::string P_QMIN = "P_BEAM";
+    static inline const std::string P_QMIN = "P_QMIN";
     QSpecScanItem();
+};
+
+//! Represents scan according to imported experimental data.
+
+class ExperimentalScanItem : public ModelView::CompoundItem
+{
+public:
+    static inline const std::string P_IMPORTED_DATA = "P_IMPORTED_DATA";
+    ExperimentalScanItem();
 };
 
 //! Represent selection of possible specular scans.

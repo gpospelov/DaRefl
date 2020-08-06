@@ -29,6 +29,7 @@ const std::string SpecularInstrumentItemType = "SpecularInstrument";
 const std::string SpecularBeamItemType = "SpecularBeam";
 const std::string SpecularScanGroupItemType = "SpecularScanGroup";
 const std::string QSpecScanItemType = "QSpecScan";
+const std::string ExperimentalScanItemType = "ExperimentalScan";
 
 } // namespace Constants
 
