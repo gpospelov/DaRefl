@@ -44,6 +44,8 @@ void QuickSimController::setModels(ApplicationModels* models)
         m_models->materialModel(), on_model_change);
     m_sampleChangedController = std::make_unique<ModelView::ModelHasChangedController>(
         m_models->sampleModel(), on_model_change);
+    m_instrumentChangedController = std::make_unique<ModelView::ModelHasChangedController>(
+        m_models->instrumentModel(), on_model_change);
 
     setup_jobmanager_connections();
 
