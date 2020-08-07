@@ -16,5 +16,5 @@ ImportDataView::ImportDataView(ApplicationModels* models, QWidget* parent)
     : QWidget(parent), models(models)
 {
     auto layout = new QVBoxLayout(this);
-    layout->addWidget(new ImportDataEditor(models->realDataModel()));
+    layout->addWidget(new ImportDataEditor(models->experimentalDataModel()));
 }

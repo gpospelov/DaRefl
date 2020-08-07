@@ -101,7 +101,7 @@ JobModel* ApplicationModels::jobModel()
     return p_impl->m_job_model.get();
 }
 
-ExperimentalDataModel* ApplicationModels::realDataModel()
+ExperimentalDataModel* ApplicationModels::experimentalDataModel()
 {
     return p_impl->m_realdata_model.get();
 }

@@ -51,7 +51,7 @@ CustomBeamPropertyEditorFactory::createEditor(const QModelIndex& index) const
     auto value = index.data(Qt::EditRole);
     if (ModelView::Utils::IsExtPropertyVariant(value)) {
         auto choice_callback = [this]() {
-            return available_graph_properties(m_models->realDataModel());
+            return available_graph_properties(m_models->experimentalDataModel());
         };
         return std::make_unique<ExternalPropertyComboEditor>(choice_callback);
     } else {

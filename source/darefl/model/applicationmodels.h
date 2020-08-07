@@ -38,7 +38,7 @@ public:
     SampleModel* sampleModel();
     SLDElementModel* sldViewModel();
     JobModel* jobModel();
-    ExperimentalDataModel* realDataModel();
+    ExperimentalDataModel* experimentalDataModel();
     InstrumentModel* instrumentModel();
 
     std::vector<ModelView::SessionModel*> persistent_models() const override;
