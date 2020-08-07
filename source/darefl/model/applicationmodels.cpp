@@ -8,6 +8,7 @@
 // ************************************************************************** //
 
 #include <darefl/model/applicationmodels.h>
+#include <darefl/model/experimentaldatacontroller.h>
 #include <darefl/model/experimentaldatamodel.h>
 #include <darefl/model/instrumentmodel.h>
 #include <darefl/model/jobmodel.h>
@@ -28,9 +29,10 @@ struct ApplicationModels::ApplicationModelsImpl {
     std::unique_ptr<SampleModel> m_sample_model;
     std::unique_ptr<SLDElementModel> m_sld_view_model;
     std::unique_ptr<JobModel> m_job_model;
-    std::unique_ptr<ExperimentalDataModel> m_realdata_model;
+    std::unique_ptr<ExperimentalDataModel> m_experimental_model;
     std::unique_ptr<InstrumentModel> m_instrument_model;
-    std::unique_ptr<MaterialPropertyController> m_property_controller;
+    std::unique_ptr<MaterialPropertyController> m_material_controller;
+    std::unique_ptr<ExperimentalDataController> m_data_controller;
     std::shared_ptr<ItemPool> item_pool;
 
     ApplicationModelsImpl()
@@ -40,10 +42,12 @@ struct ApplicationModels::ApplicationModelsImpl {
         m_sample_model = std::make_unique<SampleModel>(item_pool);
         m_sld_view_model = std::make_unique<SLDElementModel>();
         m_job_model = std::make_unique<JobModel>();
-        m_realdata_model = std::make_unique<ExperimentalDataModel>(item_pool);
+        m_experimental_model = std::make_unique<ExperimentalDataModel>(item_pool);
         m_instrument_model = std::make_unique<InstrumentModel>(item_pool);
-        m_property_controller = std::make_unique<MaterialPropertyController>(m_material_model.get(),
+        m_material_controller = std::make_unique<MaterialPropertyController>(m_material_model.get(),
                                                                              m_sample_model.get());
+        m_data_controller = std::make_unique<ExperimentalDataController>(m_experimental_model.get(),
+                                                                         m_instrument_model.get());
         m_sample_model->create_default_multilayer();
         update_material_properties();
     }
@@ -73,7 +77,7 @@ struct ApplicationModels::ApplicationModelsImpl {
     std::vector<SessionModel*> application_models() const
     {
         return {m_material_model.get(), m_sample_model.get(), m_instrument_model.get(),
-                m_sld_view_model.get(), m_job_model.get(),    m_realdata_model.get()};
+                m_sld_view_model.get(), m_job_model.get(),    m_experimental_model.get()};
     }
 };
 
@@ -103,7 +107,7 @@ JobModel* ApplicationModels::jobModel()
 
 ExperimentalDataModel* ApplicationModels::experimentalDataModel()
 {
-    return p_impl->m_realdata_model.get();
+    return p_impl->m_experimental_model.get();
 }
 
 InstrumentModel* ApplicationModels::instrumentModel()
