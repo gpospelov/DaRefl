@@ -11,19 +11,41 @@
 #include <darefl/model/instrumentitems.h>
 #include <darefl/model/item_constants.h>
 #include <mvvm/model/externalproperty.h>
+#include <mvvm/standarditems/axisitems.h>
 
 using namespace ModelView;
 
-QSpecScanItem::QSpecScanItem() : FixedBinAxisItem(::Constants::QSpecScanItemType)
+BasicSpecularScanItem::BasicSpecularScanItem(const std::string& model_type)
+    : CompoundItem(model_type)
 {
-    setProperty(FixedBinAxisItem::P_NBINS, 500);
-    setProperty(FixedBinAxisItem::P_MIN, 0.0);
-    setProperty(FixedBinAxisItem::P_MAX, 1.0);
+}
+
+std::vector<double> BasicSpecularScanItem::qScanValues() const
+{
+    return {};
 }
 
 // ----------------------------------------------------------------------------
 
-ExperimentalScanItem::ExperimentalScanItem() : CompoundItem(::Constants::ExperimentalScanItemType)
+QSpecScanItem::QSpecScanItem() : BasicSpecularScanItem(::Constants::QSpecScanItemType)
+{
+    addProperty(P_NBINS, 500);
+    addProperty(P_QMIN, 0.0);
+    addProperty(P_QMAX, 1.0);
+}
+
+std::vector<double> QSpecScanItem::qScanValues() const
+{
+    int nbins = property<int>(P_NBINS);
+    double qmin = property<double>(P_QMIN);
+    double qmax = property<double>(P_QMAX);
+    return FixedBinAxisItem::create(nbins, qmin, qmax)->binCenters();
+}
+
+// ----------------------------------------------------------------------------
+
+ExperimentalScanItem::ExperimentalScanItem()
+    : BasicSpecularScanItem(::Constants::ExperimentalScanItemType)
 {
     addProperty(P_IMPORTED_DATA, ExternalProperty("Undefined", QColor(Qt::red)))
         ->setDisplayName("Graph");
@@ -48,11 +70,11 @@ SpecularBeamItem::SpecularBeamItem() : CompoundItem(::Constants::SpecularBeamIte
 
 std::vector<double> SpecularBeamItem::qScanValues() const
 {
-    std::vector<double> result;
     auto scan_group = item<SpecularScanGroupItem>(P_SCAN_GROUP);
-    if (scan_group->currentType() == ::Constants::QSpecScanItemType)
-        result = static_cast<const QSpecScanItem*>(scan_group->currentItem())->binCenters();
-    return result;
+    if (auto scanItem = dynamic_cast<const BasicSpecularScanItem*>(scan_group->currentItem());
+        scanItem)
+        return scanItem->qScanValues();
+    return {};
 }
 
 // ----------------------------------------------------------------------------

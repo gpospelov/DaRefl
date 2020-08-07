@@ -15,20 +15,32 @@
 
 #include <mvvm/model/compounditem.h>
 #include <mvvm/model/groupitem.h>
-#include <mvvm/standarditems/axisitems.h>
 
-//! Represents Q-space specular scan.
+//! Represents base type for beam scan parameters.
 
-class QSpecScanItem : public ModelView::FixedBinAxisItem
+class BasicSpecularScanItem : public ModelView::CompoundItem
 {
 public:
+    BasicSpecularScanItem(const std::string& model_type);
+    virtual std::vector<double> qScanValues() const;
+};
+
+//! Represents Q-space specular scan with fixed bin size.
+
+class QSpecScanItem : public BasicSpecularScanItem
+{
+public:
+    static inline const std::string P_NBINS = "P_NBINS";
     static inline const std::string P_QMIN = "P_QMIN";
+    static inline const std::string P_QMAX = "P_QMAX";
     QSpecScanItem();
+
+    virtual std::vector<double> qScanValues() const;
 };
 
 //! Represents scan according to imported experimental data.
 
-class ExperimentalScanItem : public ModelView::CompoundItem
+class ExperimentalScanItem : public BasicSpecularScanItem
 {
 public:
     static inline const std::string P_IMPORTED_DATA = "P_IMPORTED_DATA";
