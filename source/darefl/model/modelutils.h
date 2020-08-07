@@ -11,6 +11,7 @@
 #define DAREFL_MODEL_MODELUTILS_H
 
 #include <vector>
+#include <string>
 
 namespace ModelView
 {
@@ -25,12 +26,14 @@ namespace Utils
 
 //! Returns property representing given graph.
 //! Used to link with the graph from various editors.
-
 ModelView::ExternalProperty CreateProperty(const ModelView::GraphItem* graph);
 
 //! Returns vector of properties representing GraphItem content of the model.
-
 std::vector<ModelView::ExternalProperty> CreateGraphProperties(ExperimentalDataModel* model);
+
+//! Finds the property with the same `id` in given vector and returns it.
+ModelView::ExternalProperty FindProperty(const std::vector<ModelView::ExternalProperty>& properties,
+                                         const std::string& id);
 
 } // namespace Utils
 

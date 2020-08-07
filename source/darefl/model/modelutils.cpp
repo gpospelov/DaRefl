@@ -27,3 +27,15 @@ std::vector<ModelView::ExternalProperty> Utils::CreateGraphProperties(Experiment
         result.push_back(::Utils::CreateProperty(graph));
     return result;
 }
+
+// FIXME unit tests
+ModelView::ExternalProperty
+Utils::FindProperty(const std::vector<ModelView::ExternalProperty>& properties,
+                    const std::string& id)
+{
+    for (const auto& prop : properties)
+        if (prop.identifier() == id)
+            return prop;
+
+    return ModelView::ExternalProperty::undefined();
+}
