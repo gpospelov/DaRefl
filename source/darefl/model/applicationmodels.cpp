@@ -41,7 +41,7 @@ struct ApplicationModels::ApplicationModelsImpl {
         m_sld_view_model = std::make_unique<SLDElementModel>();
         m_job_model = std::make_unique<JobModel>();
         m_realdata_model = std::make_unique<ExperimentalDataModel>(item_pool);
-        m_instrument_model = std::make_unique<InstrumentModel>();
+        m_instrument_model = std::make_unique<InstrumentModel>(item_pool);
         m_property_controller = std::make_unique<MaterialPropertyController>(m_material_model.get(),
                                                                              m_sample_model.get());
         m_sample_model->create_default_multilayer();
