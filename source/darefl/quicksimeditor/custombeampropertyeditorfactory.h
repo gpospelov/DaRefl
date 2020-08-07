@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_LAYEREDITOR_CUSTOMLAYERTREEEDITORFACTORY_H
-#define DAREFL_LAYEREDITOR_CUSTOMLAYERTREEEDITORFACTORY_H
+#ifndef DAREFL_QUICKSIMEDITOR_CUSTOMBEAMPROPERTYEDITORFACTORY_H
+#define DAREFL_QUICKSIMEDITOR_CUSTOMBEAMPROPERTYEDITORFACTORY_H
 
 #include <mvvm/editors/defaulteditorfactory.h>
 
@@ -17,11 +17,11 @@ class ApplicationModels;
 //! Custom editor factory for LayerTreeView. Substitutes default ExternalProperty editor
 //! with custom one, which will offer the choice between all defined materials.
 
-class CustomLayerTreeEditorFactory : public ModelView::DefaultEditorFactory
+class CustomBeamPropertyEditorFactory : public ModelView::DefaultEditorFactory
 {
 public:
-    CustomLayerTreeEditorFactory(ApplicationModels* models);
-    ~CustomLayerTreeEditorFactory();
+    CustomBeamPropertyEditorFactory(ApplicationModels* models);
+    ~CustomBeamPropertyEditorFactory();
 
     std::unique_ptr<ModelView::CustomEditor> createEditor(const QModelIndex& index) const;
 
@@ -29,4 +29,4 @@ private:
     ApplicationModels* m_models;
 };
 
-#endif // DAREFL_LAYEREDITOR_CUSTOMLAYERTREEEDITORFACTORY_H
+#endif // DAREFL_QUICKSIMEDITOR_CUSTOMBEAMPROPERTYEDITORFACTORY_H

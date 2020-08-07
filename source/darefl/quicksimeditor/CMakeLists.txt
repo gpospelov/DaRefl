@@ -1,4 +1,6 @@
 target_sources(${library_name} PRIVATE
+    custombeampropertyeditorfactory.cpp
+    custombeampropertyeditorfactory.h
     jobmanager.cpp
     jobmanager.h
     materialprofile.cpp
