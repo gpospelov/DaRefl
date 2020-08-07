@@ -10,8 +10,11 @@
 #include <QColor>
 #include <darefl/model/instrumentitems.h>
 #include <darefl/model/item_constants.h>
+#include <darefl/model/modelutils.h>
 #include <mvvm/model/externalproperty.h>
+#include <mvvm/model/sessionmodel.h>
 #include <mvvm/standarditems/axisitems.h>
+#include <mvvm/standarditems/graphitem.h>
 
 using namespace ModelView;
 
@@ -42,13 +45,26 @@ std::vector<double> QSpecScanItem::qScanValues() const
 ExperimentalScanItem::ExperimentalScanItem()
     : BasicSpecularScanItem(::Constants::ExperimentalScanItemType)
 {
-    addProperty(P_IMPORTED_DATA, ExternalProperty("Undefined", QColor(Qt::red)))
-        ->setDisplayName("Graph");
+    addProperty(P_IMPORTED_DATA, ExternalProperty::undefined())->setDisplayName("Graph");
+}
+
+void ExperimentalScanItem::setGraphItem(GraphItem* graph)
+{
+    setProperty(P_IMPORTED_DATA, ::Utils::CreateProperty(graph));
+}
+
+GraphItem* ExperimentalScanItem::graphItem() const
+{
+    if (model()) {
+        auto graph_id = property<ExternalProperty>(P_IMPORTED_DATA).identifier();
+        return dynamic_cast<GraphItem*>(model()->findItem(graph_id));
+    }
+    return nullptr;
 }
 
 std::vector<double> ExperimentalScanItem::qScanValues() const
 {
-    return {};
+    return graphItem() ? graphItem()->binCenters() : std::vector<double>();
 }
 
 // ----------------------------------------------------------------------------

@@ -16,6 +16,10 @@
 #include <mvvm/model/compounditem.h>
 #include <mvvm/model/groupitem.h>
 
+namespace ModelView {
+class GraphItem;
+}
+
 //! Represents base type for beam scan parameters.
 
 class BasicSpecularScanItem : public ModelView::CompoundItem
@@ -35,7 +39,7 @@ public:
     static inline const std::string P_QMAX = "P_QMAX";
     QSpecScanItem();
 
-    virtual std::vector<double> qScanValues() const override;
+    std::vector<double> qScanValues() const override;
 };
 
 //! Represents scan according to imported experimental data.
@@ -46,7 +50,11 @@ public:
     static inline const std::string P_IMPORTED_DATA = "P_IMPORTED_DATA";
     ExperimentalScanItem();
 
-    virtual std::vector<double> qScanValues() const override;
+    void setGraphItem(ModelView::GraphItem* graph);
+
+    ModelView::GraphItem* graphItem() const;
+
+    std::vector<double> qScanValues() const override;
 };
 
 //! Represent selection of possible specular scans.

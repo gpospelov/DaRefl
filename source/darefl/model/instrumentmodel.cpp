@@ -23,6 +23,7 @@ std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
     result->registerItem<SpecularBeamItem>();
     result->registerItem<SpecularScanGroupItem>();
     result->registerItem<QSpecScanItem>();
+    result->registerItem<ExperimentalScanItem>();
     return result;
 }
 
