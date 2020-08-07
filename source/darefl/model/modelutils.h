@@ -10,11 +10,15 @@
 #ifndef DAREFL_MODEL_MODELUTILS_H
 #define DAREFL_MODEL_MODELUTILS_H
 
+#include <vector>
+
 namespace ModelView
 {
 class GraphItem;
 class ExternalProperty;
 } // namespace ModelView
+
+class ExperimentalDataModel;
 
 namespace Utils
 {
@@ -23,6 +27,10 @@ namespace Utils
 //! Used to link with the graph from various editors.
 
 ModelView::ExternalProperty CreateProperty(const ModelView::GraphItem* graph);
+
+//! Returns vector of properties representing GraphItem content of the model.
+
+std::vector<ModelView::ExternalProperty> CreateGraphProperties(ExperimentalDataModel* model);
 
 } // namespace Utils
 

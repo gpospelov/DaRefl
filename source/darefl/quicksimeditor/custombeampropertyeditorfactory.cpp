@@ -31,9 +31,8 @@ namespace
 std::vector<ModelView::ExternalProperty> available_graph_properties(ExperimentalDataModel* model)
 {
     std::vector<ModelView::ExternalProperty> result{ExternalProperty::undefined()};
-
-    for (auto graph : ModelView::Utils::FindItems<GraphItem>(model))
-        result.push_back(::Utils::CreateProperty(graph));
+    auto properties = ::Utils::CreateGraphProperties(model);
+    std::copy(properties.begin(), properties.end(), std::back_inserter(result));
     return result;
 }
 } // namespace
