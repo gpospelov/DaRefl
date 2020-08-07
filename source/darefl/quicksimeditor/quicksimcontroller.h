@@ -64,6 +64,7 @@ private:
 
     std::unique_ptr<ModelView::ModelHasChangedController> m_materialChangedController;
     std::unique_ptr<ModelView::ModelHasChangedController> m_sampleChangedController;
+    std::unique_ptr<ModelView::ModelHasChangedController> m_instrumentChangedController;
 };
 
 #endif // DAREFL_QUICKSIMEDITOR_QUICKSIMCONTROLLER_H

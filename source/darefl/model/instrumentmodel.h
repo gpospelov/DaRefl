@@ -18,6 +18,10 @@ class InstrumentModel : public ModelView::SessionModel
 {
 public:
     InstrumentModel();
+    InstrumentModel(std::shared_ptr<ModelView::ItemPool> pool);
+
+private:
+    void init_model();
 };
 
 #endif // DAREFL_MODEL_INSTRUMENTMODEL_H

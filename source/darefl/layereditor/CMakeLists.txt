@@ -1,6 +1,6 @@
 target_sources(${library_name} PRIVATE
-    customeditorfactory.cpp
-    customeditorfactory.h
+    customlayertreeeditorfactory.cpp
+    customlayertreeeditorfactory.h
     layereditor.cpp
     layereditor.h
     layereditoractions.cpp

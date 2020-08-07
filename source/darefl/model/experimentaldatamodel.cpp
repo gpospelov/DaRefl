@@ -27,6 +27,8 @@ using namespace ModelView;
 namespace
 {
 
+const std::string model_name{"ExperimentalDataModel"};
+
 std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
 {
     auto result = std::make_unique<ModelView::ItemCatalogue>();
@@ -37,14 +39,16 @@ std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
 
 } // namespace
 
-ExperimentalDataModel::ExperimentalDataModel() : SessionModel("ExperimentalDataModel")
+ExperimentalDataModel::ExperimentalDataModel() : SessionModel(model_name)
 {
-    setItemCatalogue(CreateItemCatalogue());
+    init_model();
+}
 
-    insertItem<ExperimentalDataContainerItem>(rootItem());
-    insertItem<CanvasContainerItem>(rootItem());
+ExperimentalDataModel::ExperimentalDataModel(std::shared_ptr<ItemPool> pool)
+    : SessionModel(model_name, pool)
 
-    setUndoRedoEnabled(true);
+{
+    init_model();
 }
 
 //! Returns the data container of the model.
@@ -117,7 +121,7 @@ void ExperimentalDataModel::addDataToGroup(CanvasItem* data_group, RealDataStruc
     std::vector<double> axis_vec;
     std::vector<double> data_vec;
 
-    for (int i = 0; i < data_struct.data.size(); ++i) {
+    for (size_t i = 0; i < data_struct.data.size(); ++i) {
         if (!std::isnan(data_struct.axis.at(i)) && !std::isnan(data_struct.data.at(i))) {
             axis_vec.push_back(data_struct.axis.at(i));
             data_vec.push_back(data_struct.data.at(i));
@@ -245,4 +249,14 @@ bool ExperimentalDataModel::mergeItems(std::vector<ModelView::SessionItem*> item
 CanvasContainerItem* ExperimentalDataModel::canvasContainer() const
 {
     return topItem<CanvasContainerItem>();
+}
+
+void ExperimentalDataModel::init_model()
+{
+    setItemCatalogue(CreateItemCatalogue());
+
+    insertItem<ExperimentalDataContainerItem>(rootItem());
+    insertItem<CanvasContainerItem>(rootItem());
+
+    setUndoRedoEnabled(true);
 }

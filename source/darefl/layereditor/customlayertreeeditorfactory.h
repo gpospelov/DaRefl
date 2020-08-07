@@ -7,30 +7,21 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_LAYEREDITOR_CUSTOMEDITORFACTORY_H
-#define DAREFL_LAYEREDITOR_CUSTOMEDITORFACTORY_H
+#ifndef DAREFL_LAYEREDITOR_CUSTOMLAYERTREEEDITORFACTORY_H
+#define DAREFL_LAYEREDITOR_CUSTOMLAYERTREEEDITORFACTORY_H
 
 #include <mvvm/editors/defaulteditorfactory.h>
 
-namespace ModelView
-{
-class CustomEditor;
-}
-
 class ApplicationModels;
 
-/*!
-@class CustomEditorFactory
-@brief Editor factory with custom editors.
+//! Custom editor factory for LayerTreeView. Substitutes default ExternalProperty editor
+//! with custom one, which will offer the choice between all defined materials.
 
-Will create custom material selector for all cells containing ExternalProperty.
-*/
-
-class CustomEditorFactory : public ModelView::DefaultEditorFactory
+class CustomLayerTreeEditorFactory : public ModelView::DefaultEditorFactory
 {
 public:
-    CustomEditorFactory(ApplicationModels* models);
-    ~CustomEditorFactory();
+    CustomLayerTreeEditorFactory(ApplicationModels* models);
+    ~CustomLayerTreeEditorFactory();
 
     std::unique_ptr<ModelView::CustomEditor> createEditor(const QModelIndex& index) const;
 
@@ -38,4 +29,4 @@ private:
     ApplicationModels* m_models;
 };
 
-#endif // DAREFL_LAYEREDITOR_CUSTOMEDITORFACTORY_H
+#endif // DAREFL_LAYEREDITOR_CUSTOMLAYERTREEEDITORFACTORY_H

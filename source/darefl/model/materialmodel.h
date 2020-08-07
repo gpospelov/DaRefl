@@ -23,10 +23,7 @@ class MaterialBaseItem;
 class MaterialContainerItem;
 class SLDMaterialItem;
 
-/*!
-@class MaterialModel
-@brief Model to hold MaterialItems.
-*/
+//! Model to hold MaterialItems.
 
 class MaterialModel : public ModelView::SessionModel
 {
@@ -39,8 +36,7 @@ public:
     std::vector<ModelView::ExternalProperty>
     material_data(std::string container_id = std::string()) const;
 
-    ModelView::ExternalProperty material_property(const std::string& id,
-                                                  std::string container_id = std::string());
+    ModelView::ExternalProperty material_property(const std::string& id);
 
     MaterialBaseItem* cloneMaterial(const MaterialBaseItem* item);
 

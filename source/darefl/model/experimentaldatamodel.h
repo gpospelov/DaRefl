@@ -31,7 +31,9 @@ class ExperimentalDataModel : public ModelView::SessionModel
 {
 public:
     using name_identifier_t = std::pair<std::string, std::string>;
+
     ExperimentalDataModel();
+    ExperimentalDataModel(std::shared_ptr<ModelView::ItemPool> pool);
 
     CanvasItem* addDataToCollection(RealDataStruct data_struct, CanvasContainerItem* data_node,
                                     CanvasItem* data_group = nullptr);
@@ -55,6 +57,8 @@ private:
 
     void addDataToGroup(CanvasItem* data_group, RealDataStruct& data_struct);
     void removeDataFromGroup(ModelView::GraphItem* item);
+
+    void init_model();
 };
 
 #endif // DAREFL_MODEL_EXPERIMENTALDATAMODEL_H

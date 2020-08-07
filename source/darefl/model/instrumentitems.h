@@ -15,15 +15,46 @@
 
 #include <mvvm/model/compounditem.h>
 #include <mvvm/model/groupitem.h>
-#include <mvvm/standarditems/axisitems.h>
 
-//! Represents Q-space specular scan.
+namespace ModelView {
+class GraphItem;
+}
 
-class QSpecScanItem : public ModelView::FixedBinAxisItem
+//! Represents base type for beam scan parameters.
+
+class BasicSpecularScanItem : public ModelView::CompoundItem
 {
 public:
-    static inline const std::string P_QMIN = "P_BEAM";
+    BasicSpecularScanItem(const std::string& model_type);
+    virtual std::vector<double> qScanValues() const = 0;
+};
+
+//! Represents Q-space specular scan with fixed bin size.
+
+class QSpecScanItem : public BasicSpecularScanItem
+{
+public:
+    static inline const std::string P_NBINS = "P_NBINS";
+    static inline const std::string P_QMIN = "P_QMIN";
+    static inline const std::string P_QMAX = "P_QMAX";
     QSpecScanItem();
+
+    std::vector<double> qScanValues() const override;
+};
+
+//! Represents scan according to imported experimental data.
+
+class ExperimentalScanItem : public BasicSpecularScanItem
+{
+public:
+    static inline const std::string P_IMPORTED_DATA = "P_IMPORTED_DATA";
+    ExperimentalScanItem();
+
+    void setGraphItem(ModelView::GraphItem* graph);
+
+    ModelView::GraphItem* graphItem() const;
+
+    std::vector<double> qScanValues() const override;
 };
 
 //! Represent selection of possible specular scans.
