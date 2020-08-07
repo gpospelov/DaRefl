@@ -27,6 +27,8 @@ using namespace ModelView;
 namespace
 {
 
+const std::string model_name{"ExperimentalDataModel"};
+
 std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
 {
     auto result = std::make_unique<ModelView::ItemCatalogue>();
@@ -37,14 +39,16 @@ std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
 
 } // namespace
 
-ExperimentalDataModel::ExperimentalDataModel() : SessionModel("ExperimentalDataModel")
+ExperimentalDataModel::ExperimentalDataModel() : SessionModel(model_name)
 {
-    setItemCatalogue(CreateItemCatalogue());
+    init_model();
+}
 
-    insertItem<ExperimentalDataContainerItem>(rootItem());
-    insertItem<CanvasContainerItem>(rootItem());
+ExperimentalDataModel::ExperimentalDataModel(std::shared_ptr<ItemPool> pool)
+    : SessionModel(model_name, pool)
 
-    setUndoRedoEnabled(true);
+{
+    init_model();
 }
 
 //! Returns the data container of the model.
@@ -245,4 +249,14 @@ bool ExperimentalDataModel::mergeItems(std::vector<ModelView::SessionItem*> item
 CanvasContainerItem* ExperimentalDataModel::canvasContainer() const
 {
     return topItem<CanvasContainerItem>();
+}
+
+void ExperimentalDataModel::init_model()
+{
+    setItemCatalogue(CreateItemCatalogue());
+
+    insertItem<ExperimentalDataContainerItem>(rootItem());
+    insertItem<CanvasContainerItem>(rootItem());
+
+    setUndoRedoEnabled(true);
 }

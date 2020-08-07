@@ -23,10 +23,7 @@ class MaterialBaseItem;
 class MaterialContainerItem;
 class SLDMaterialItem;
 
-/*!
-@class MaterialModel
-@brief Model to hold MaterialItems.
-*/
+//! Model to hold MaterialItems.
 
 class MaterialModel : public ModelView::SessionModel
 {
