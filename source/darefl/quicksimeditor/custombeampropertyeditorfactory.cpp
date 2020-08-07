@@ -13,6 +13,7 @@
 #include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/experimentaldatamodel.h>
 #include <darefl/model/materialmodel.h>
+#include <darefl/model/modelutils.h>
 #include <darefl/quicksimeditor/custombeampropertyeditorfactory.h>
 #include <mvvm/editors/externalpropertycomboeditor.h>
 #include <mvvm/model/externalproperty.h>
@@ -31,11 +32,8 @@ std::vector<ModelView::ExternalProperty> get_choice_of_graphs(ExperimentalDataMo
 {
     std::vector<ModelView::ExternalProperty> result{ExternalProperty::undefined()};
 
-    for (auto graph : Utils::FindItems<GraphItem>(model)) {
-        std::string name = graph->parent()->displayName() + "/" + graph->displayName();
-        auto color = graph->property<QColor>(GraphItem::P_COLOR);
-        result.push_back(ExternalProperty(name, color, graph->identifier()));
-    }
+    for (auto graph : ModelView::Utils::FindItems<GraphItem>(model))
+        result.push_back(::Utils::CreateProperty(graph));
     return result;
 }
 } // namespace
@@ -51,7 +49,7 @@ std::unique_ptr<CustomEditor>
 CustomBeamPropertyEditorFactory::createEditor(const QModelIndex& index) const
 {
     auto value = index.data(Qt::EditRole);
-    if (Utils::IsExtPropertyVariant(value)) {
+    if (ModelView::Utils::IsExtPropertyVariant(value)) {
         auto choice_callback = [this]() { return get_choice_of_graphs(m_models->realDataModel()); };
         return std::make_unique<ExternalPropertyComboEditor>(choice_callback);
     } else {

@@ -23,6 +23,8 @@ target_sources(${library_name} PRIVATE
     materialmodel.h
     materialpropertycontroller.cpp
     materialpropertycontroller.h
+    modelutils.cpp
+    modelutils.h
     samplemodel.cpp
     samplemodel.h
 )
