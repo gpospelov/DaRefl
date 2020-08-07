@@ -2,6 +2,8 @@ target_sources(${library_name} PRIVATE
     applicationmodels.cpp
     applicationmodels.h
     experimentaldata_types.h
+    experimentaldatacontroller.cpp
+    experimentaldatacontroller.h
     experimentaldataitems.cpp
     experimentaldataitems.h
     experimentaldatamodel.cpp
