@@ -9,7 +9,7 @@
 
 #include <QModelIndex>
 #include <algorithm>
-#include <darefl/layereditor/customeditorfactory.h>
+#include <darefl/layereditor/customlayertreeeditorfactory.h>
 #include <darefl/model/applicationmodels.h>
 #include <darefl/model/materialmodel.h>
 #include <mvvm/editors/externalpropertycomboeditor.h>
@@ -31,11 +31,15 @@ std::vector<ModelView::ExternalProperty> get_choice_of_materials(MaterialModel* 
 
 using namespace ModelView;
 
-CustomEditorFactory::~CustomEditorFactory() = default;
+CustomLayerTreeEditorFactory::~CustomLayerTreeEditorFactory() = default;
 
-CustomEditorFactory::CustomEditorFactory(ApplicationModels* models) : m_models(models) {}
+CustomLayerTreeEditorFactory::CustomLayerTreeEditorFactory(ApplicationModels* models)
+    : m_models(models)
+{
+}
 
-std::unique_ptr<CustomEditor> CustomEditorFactory::createEditor(const QModelIndex& index) const
+std::unique_ptr<CustomEditor>
+CustomLayerTreeEditorFactory::createEditor(const QModelIndex& index) const
 {
     auto value = index.data(Qt::EditRole);
     if (Utils::IsExtPropertyVariant(value)) {

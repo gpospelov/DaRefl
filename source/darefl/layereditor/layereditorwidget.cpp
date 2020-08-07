@@ -8,7 +8,7 @@
 // ************************************************************************** //
 
 #include <QVBoxLayout>
-#include <darefl/layereditor/customeditorfactory.h>
+#include <darefl/layereditor/customlayertreeeditorfactory.h>
 #include <darefl/layereditor/layereditorwidget.h>
 #include <darefl/layereditor/layerselectionmodel.h>
 #include <darefl/layereditor/layertreeview.h>
@@ -39,7 +39,7 @@ void LayerEditorWidget::setModels(ApplicationModels* models)
     view_model = std::make_unique<LayerViewModel>(models->sampleModel());
     selection_model = new LayerSelectionModel(view_model.get(), this);
 
-    m_delegate->setEditorFactory(std::make_unique<CustomEditorFactory>(models));
+    m_delegate->setEditorFactory(std::make_unique<CustomLayerTreeEditorFactory>(models));
     view_model->setRootSessionItem(
         ModelView::Utils::TopItem<MultiLayerItem>(models->sampleModel()));
     layer_view->setModel(view_model.get());
