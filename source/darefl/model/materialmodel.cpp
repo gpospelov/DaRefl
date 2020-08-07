@@ -103,9 +103,8 @@ std::vector<ExternalProperty> MaterialModel::material_data(std::string container
 
 //! Returns property from given material id.
 
-ExternalProperty MaterialModel::material_property(const std::string& id, std::string container_id)
+ExternalProperty MaterialModel::material_property(const std::string& id)
 {
-    auto materials = material_data(container_id);
     for (const auto& prop : material_data())
         if (prop.identifier() == id)
             return prop;
