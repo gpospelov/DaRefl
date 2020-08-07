@@ -29,7 +29,7 @@ namespace
 
 std::vector<ModelView::ExternalProperty> get_choice_of_graphs(ExperimentalDataModel* model)
 {
-    std::vector<ModelView::ExternalProperty> result{ExternalProperty("Undefined", QColor(Qt::red))};
+    std::vector<ModelView::ExternalProperty> result{ExternalProperty::undefined()};
 
     for (auto graph : Utils::FindItems<GraphItem>(model)) {
         std::string name = graph->parent()->displayName() + "/" + graph->displayName();
