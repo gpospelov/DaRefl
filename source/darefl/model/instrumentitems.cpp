@@ -20,18 +20,13 @@ BasicSpecularScanItem::BasicSpecularScanItem(const std::string& model_type)
 {
 }
 
-std::vector<double> BasicSpecularScanItem::qScanValues() const
-{
-    return {};
-}
-
 // ----------------------------------------------------------------------------
 
 QSpecScanItem::QSpecScanItem() : BasicSpecularScanItem(::Constants::QSpecScanItemType)
 {
-    addProperty(P_NBINS, 500);
-    addProperty(P_QMIN, 0.0);
-    addProperty(P_QMAX, 1.0);
+    addProperty(P_NBINS, 500)->setDisplayName("Nbins");
+    addProperty(P_QMIN, 0.0)->setDisplayName("Qmin");
+    addProperty(P_QMAX, 1.0)->setDisplayName("Qmax");
 }
 
 std::vector<double> QSpecScanItem::qScanValues() const
@@ -49,6 +44,11 @@ ExperimentalScanItem::ExperimentalScanItem()
 {
     addProperty(P_IMPORTED_DATA, ExternalProperty("Undefined", QColor(Qt::red)))
         ->setDisplayName("Graph");
+}
+
+std::vector<double> ExperimentalScanItem::qScanValues() const
+{
+    return {};
 }
 
 // ----------------------------------------------------------------------------

@@ -22,7 +22,7 @@ class BasicSpecularScanItem : public ModelView::CompoundItem
 {
 public:
     BasicSpecularScanItem(const std::string& model_type);
-    virtual std::vector<double> qScanValues() const;
+    virtual std::vector<double> qScanValues() const = 0;
 };
 
 //! Represents Q-space specular scan with fixed bin size.
@@ -35,7 +35,7 @@ public:
     static inline const std::string P_QMAX = "P_QMAX";
     QSpecScanItem();
 
-    virtual std::vector<double> qScanValues() const;
+    virtual std::vector<double> qScanValues() const override;
 };
 
 //! Represents scan according to imported experimental data.
@@ -45,6 +45,8 @@ class ExperimentalScanItem : public BasicSpecularScanItem
 public:
     static inline const std::string P_IMPORTED_DATA = "P_IMPORTED_DATA";
     ExperimentalScanItem();
+
+    virtual std::vector<double> qScanValues() const override;
 };
 
 //! Represent selection of possible specular scans.
