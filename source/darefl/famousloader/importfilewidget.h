@@ -35,6 +35,7 @@ public:
 
     void readSettings();
     void writeSettings();
+    void addFiles();
 
 signals:
     void filesChanged(std::vector<std::string> files);
@@ -42,7 +43,6 @@ signals:
 
 private:
     void createWidgets();
-    void addFiles();
     void resetFiles();
     std::vector<std::string> currentFiles() const;
 
