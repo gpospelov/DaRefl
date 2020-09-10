@@ -47,6 +47,8 @@ public:
                     std::string current_target);
     DataImportLogic::ImportOutput result();
 
+    void triggerFileDialog();
+
 private:
     void setUpFileListSpace(QGroupBox* conainer);
     void setUpParameterSpace(QGroupBox* conainer);

@@ -97,6 +97,12 @@ DataImportLogic::ImportOutput DataLoaderDialog::result()
     return result;
 }
 
+//! Trigger the file dialog manually
+void DataLoaderDialog::triggerFileDialog()
+{
+    p_import_file_list->addFiles();
+}
+
 //! Helper function to set up the file list area
 void DataLoaderDialog::setUpFileListSpace(QGroupBox* conainer)
 {
