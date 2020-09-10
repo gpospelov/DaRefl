@@ -113,6 +113,7 @@ void ImportDataEditor::invokeImportDialog()
 {
     DataImportGui::DataLoaderDialog assistant(this);
     assistant.setTargets(p_model->availableCanvasesInfo(), activeCanvasName());
+    assistant.triggerFileDialog();
     if (assistant.exec() == QDialog::Accepted)
         onImportDialogAccept(assistant.result());
 }
