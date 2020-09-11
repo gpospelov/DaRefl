@@ -9,6 +9,7 @@
 
 #include <darefl/famousloader/importdatacolumn.h>
 #include <darefl/famousloader/importlogic.h>
+#include <iterator>
 
 namespace DataImportLogic
 {
