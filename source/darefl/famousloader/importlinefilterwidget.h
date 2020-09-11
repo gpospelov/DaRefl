@@ -12,6 +12,7 @@
 
 #include <mvvm/model/customvariants.h>
 
+#include <QGroupBox>
 #include <QProxyStyle>
 #include <QStyleOption>
 #include <QWidget>
@@ -75,7 +76,7 @@ public:
 
 // -------------------------------------------------
 //! This is the main dialog for the data loader
-class LineFilterWidget : public QWidget
+class LineFilterWidget : public QGroupBox
 {
     Q_OBJECT
 
@@ -113,7 +114,15 @@ private:
     DataImportLogic::LineFilter* p_line_filter;
     std::unique_ptr<QProxyStyle> p_style;
 
-    QTabWidget* p_tab_widget;
+    // --------------------------------
+    // --DEVELOP-- (Can be changed again to revert all functionalities)
+    // To revert: remove non commented code and uncomment commented code
+
+    // QTabWidget* p_tab_widget;
+    QWidget* p_tab_widget;
+
+    // --------------------------------
+
     SwitchSpace::Switch* p_active_checkbox;
     ModelView::ColorEditor* p_color_editor;
     QSpinBox* p_line_start;
