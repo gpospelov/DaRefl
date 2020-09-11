@@ -65,7 +65,14 @@ private:
     DataImportLogic::ImportLogic* p_import_logic;
 
     std::vector<LineFilterWidget*> m_line_filter_widgets;
-    QListWidget* p_list_widget;
+
+    // --------------------------------
+    // --DEVELOP-- (Can be changed again to revert all functionalities)
+    // To revert: remove non commented code and uncomment commented code
+
+    // QListWidget* p_list_widget;
+    
+    // --------------------------------
 };
 
 } // End of namespace DataImportGui
