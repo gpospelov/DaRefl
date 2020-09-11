@@ -27,11 +27,11 @@ namespace DataImportGui
 // -------------------------------------------------
 //! This is the constructor
 LineFilterWidget::LineFilterWidget(DataImportLogic::LineFilter* line_filter, QWidget* parent)
-    : QWidget(parent), p_line_filter(line_filter)
+    : QGroupBox(parent), p_line_filter(line_filter)
 {
     createComponents();
-    setLayout();
     initComponents();
+    setLayout();
     connectAll();
     setEnabled();
     grabFromLineFilter();
@@ -74,6 +74,7 @@ void LineFilterWidget::grabFromLineFilter()
         p_active_checkbox->init(p_line_filter->active());
     }
     p_type_select->setCurrentText(QString::fromStdString(p_line_filter->type()));
+    setTitle(QString::fromStdString(p_line_filter->type()));
     p_color_editor->setData(QColor(QString::fromStdString(p_line_filter->color())));
     p_line_start->setValue(p_line_filter->start());
     p_line_end->setValue(p_line_filter->end());
@@ -97,7 +98,7 @@ void LineFilterWidget::grabFromLineFilter()
 void LineFilterWidget::createComponents()
 {
     // Initialise all the widgets
-    p_tab_widget = new QTabWidget(this);
+    p_tab_widget = new QWidget(this);
     p_active_checkbox = new SwitchSpace::Switch(this);
     p_type_select = new QComboBox(this);
     p_line_start = new QSpinBox(this);
@@ -163,18 +164,26 @@ void LineFilterWidget::setSubwidgetToolTips()
 //! Initalize the components
 void LineFilterWidget::initComponents()
 {
-    p_tab_widget->setTabPosition(QTabWidget::West);
-    p_tab_widget->tabBar()->setStyle(new CustomTabStyle());
-    p_tab_widget->setStyle(p_style.get());
-    p_tab_widget->setFixedHeight(p_tab_widget->widget(0)->sizeHint().height() + 10);
-    p_tab_widget->setMinimumWidth(p_tab_widget->sizeHint().width());
-    p_tab_widget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
+    // --------------------------------
+    // --DEVELOP-- (Can be changed again to revert all functionalities)
+    // To revert: remove non commented code and uncomment commented code
 
-    p_color_editor->setContentsMargins(0, 0, 0, 0);
-    p_color_editor->layout()->setContentsMargins(0, 0, 0, 0);
-    p_color_editor->setData(QColor("blue"));
-    p_color_editor->setAutoFillBackground(false);
-    p_color_editor->layout()->takeAt(1);
+    // p_tab_widget->setTabPosition(QTabWidget::West);
+    // p_tab_widget->tabBar()->setStyle(new CustomTabStyle());
+    // p_tab_widget->setStyle(p_style.get());
+    // p_tab_widget->setFixedHeight(p_tab_widget->widget(0)->sizeHint().height() + 10);
+    // p_tab_widget->setMinimumWidth(p_tab_widget->sizeHint().width());
+    // p_tab_widget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+    // p_color_editor->setContentsMargins(0, 0, 0, 0);
+    // p_color_editor->layout()->setContentsMargins(0, 0, 0, 0);
+    // p_color_editor->setData(QColor("blue"));
+    // p_color_editor->setAutoFillBackground(false);
+    // p_color_editor->layout()->takeAt(1);
+
+    auto temp_layout = new QVBoxLayout(p_tab_widget);
+
+    // --------------------------------
 
     p_line_start->setMaximum(1e6);
     p_line_end->setMaximum(1e6);
@@ -207,12 +216,23 @@ void LineFilterWidget::setLayout()
 {
     auto layout_item = new QHBoxLayout(this);
 
-    auto sublayer_item = new QVBoxLayout();
-    sublayer_item->addWidget(p_filter_name);
-    sublayer_item->addWidget(p_active_checkbox);
-    sublayer_item->addWidget(p_color_editor);
+    // --------------------------------
+    // --DEVELOP-- (Can be changed again to revert all functionalities)
+    // To revert: remove non commented code and uncomment commented code
 
-    layout_item->addLayout(sublayer_item);
+    p_filter_name->setVisible(false);
+    p_active_checkbox->setVisible(false);
+    p_color_editor->setVisible(false);
+
+    // auto sublayer_item = new QVBoxLayout();
+    // sublayer_item->addWidget(p_filter_name);
+    // sublayer_item->addWidget(p_active_checkbox);
+    // sublayer_item->addWidget(p_color_editor);
+
+    // layout_item->addLayout(sublayer_item);
+
+    // --------------------------------
+
     layout_item->addWidget(p_tab_widget);
 
     setTypeLayout();
@@ -228,8 +248,21 @@ void LineFilterWidget::setTypeLayout()
     auto type_widget = new QWidget(p_tab_widget);
     p_type_layout = new QGridLayout(type_widget);
 
-    p_type_layout->addWidget(new QLabel("Filter type:"), 0, 0);
+    // --------------------------------
+    // --DEVELOP-- (Can be changed again to revert all functionalities)
+    // To revert: remove non commented code and uncomment commented code
+
+    // p_type_layout->addWidget(new QLabel("Filter type:"), 0, 0);
+    // p_type_layout->addWidget(p_type_select, 0, 1);
+
+    auto temp_label = new QLabel("Filter type:");
+    p_type_layout->addWidget(temp_label, 0, 0);
     p_type_layout->addWidget(p_type_select, 0, 1);
+    p_type_select->setVisible(false);
+    temp_label->setVisible(false);
+
+    // --------------------------------
+
     p_type_layout->addWidget(new QLabel("Separator:"), 1, 0);
     p_type_layout->addWidget(p_separators, 1, 1);
     p_type_layout->addWidget(new QLabel("Ignore strings:"), 2, 0);
@@ -245,7 +278,14 @@ void LineFilterWidget::setTypeLayout()
     p_type_layout->setHorizontalSpacing(5);
     p_type_layout->setVerticalSpacing(5);
 
-    p_tab_widget->addTab(type_widget, "Type");
+    // --------------------------------
+    // --DEVELOP-- (Can be changed again to revert all functionalities)
+    // To revert: remove non commented code and uncomment commented code
+
+    // p_tab_widget->addTab(type_widget, "Type");
+    p_tab_widget->layout()->addWidget(type_widget);
+
+    // --------------------------------
 }
 
 //! Set the layout of the widget
@@ -271,7 +311,14 @@ void LineFilterWidget::setRangeLayout()
     p_range_layout->setHorizontalSpacing(5);
     p_range_layout->setVerticalSpacing(5);
 
-    p_tab_widget->addTab(range_widget, "Range");
+    // --------------------------------
+    // --DEVELOP-- (Can be changed again to revert all functionalities)
+    // To revert: remove non commented code and uncomment commented code
+
+    // p_tab_widget->addTab(range_widget, "Range");
+    p_tab_widget->layout()->addWidget(range_widget);
+
+    // --------------------------------
 }
 
 //! Connect all the widgets of the layout
