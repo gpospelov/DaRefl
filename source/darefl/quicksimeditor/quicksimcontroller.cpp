@@ -25,7 +25,7 @@
 
 namespace
 {
-const int profile_points_count = 400;
+const int profile_points_count = 1000;
 }
 
 QuickSimController::QuickSimController(QObject* parent)
