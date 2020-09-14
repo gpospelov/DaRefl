@@ -19,7 +19,6 @@ class SLDEditor;
 class QuickSimEditor;
 class QWidget;
 class QMainWindow;
-class QLisWidget;
 class QMainWindow;
 class ApplicationModels;
 
@@ -52,7 +51,6 @@ private:
     QWidget* p_layout_widget{nullptr};
     QObject* p_layout_controller{nullptr};
 
-    QLisWidget* p_list_widget{nullptr};
     std::vector<QMainWindow*> m_windows;
 };
 
