@@ -11,6 +11,7 @@
 #define DAREFL_MODEL_JOBITEM_H
 
 #include <mvvm/model/compounditem.h>
+#include <mvvm/standarditems/graphviewportitem.h>
 
 namespace ModelView
 {
@@ -19,6 +20,18 @@ class GraphViewportItem;
 } // namespace ModelView
 
 class CanvasItem;
+
+//! Viewport intended for showing SLD profile.
+//! Provides custom y-axis range.
+
+class SLDCanvasItem : public ModelView::GraphViewportItem
+{
+public:
+    SLDCanvasItem();
+
+protected:
+    std::pair<double, double> data_yaxis_range() const override;
+};
 
 //! Holds results of toy reflectivity simulation.
 
@@ -33,7 +46,7 @@ public:
     JobItem();
 
     ModelView::Data1DItem* sld_data() const;
-    ModelView::GraphViewportItem* sld_viewport() const;
+    SLDCanvasItem* sld_viewport() const;
 
     ModelView::Data1DItem* specular_data() const;
     CanvasItem* specular_viewport() const;

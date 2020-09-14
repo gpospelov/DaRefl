@@ -17,6 +17,17 @@
 
 using namespace ModelView;
 
+SLDCanvasItem::SLDCanvasItem() : GraphViewportItem(::Constants::SLDCanvasItemType) {}
+
+std::pair<double, double> SLDCanvasItem::data_yaxis_range() const
+{
+    auto [ymin, ymax] = GraphViewportItem::data_yaxis_range();
+    double range = ymax - ymin;
+    return {ymin - range/10.0, ymax + range/10.0};
+}
+
+// ----------------------------------------------------------------------------
+
 JobItem::JobItem() : ModelView::CompoundItem(::Constants::JobItemType)
 {
     setup_sld_viewport();
@@ -28,9 +39,9 @@ Data1DItem* JobItem::sld_data() const
     return item<Data1DItem>(P_SLD_DATA);
 }
 
-GraphViewportItem* JobItem::sld_viewport() const
+SLDCanvasItem* JobItem::sld_viewport() const
 {
-    return item<GraphViewportItem>(P_SLD_VIEWPORT);
+    return item<SLDCanvasItem>(P_SLD_VIEWPORT);
 }
 
 Data1DItem* JobItem::specular_data() const
@@ -46,7 +57,7 @@ CanvasItem* JobItem::specular_viewport() const
 void JobItem::setup_sld_viewport()
 {
     auto data = addProperty<Data1DItem>(P_SLD_DATA);
-    auto viewport = addProperty<GraphViewportItem>(P_SLD_VIEWPORT);
+    auto viewport = addProperty<SLDCanvasItem>(P_SLD_VIEWPORT);
     auto graph = std::make_unique<GraphItem>();
     graph->setDataItem(data);
     viewport->insertItem(graph.release(), {ViewportItem::T_ITEMS, 0});

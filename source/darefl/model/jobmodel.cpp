@@ -27,6 +27,7 @@ std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
     auto result = std::make_unique<ModelView::ItemCatalogue>();
     result->registerItem<JobItem>();
     result->registerItem<CanvasItem>();
+    result->registerItem<SLDCanvasItem>();
     return result;
 }
 
