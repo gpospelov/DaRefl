@@ -25,7 +25,7 @@ class CollapsibleListWidget : public QWidget
 public:
     CollapsibleListWidget(QWidget* parent = nullptr);
 
-    void addWidget(QWidget* widget, const QString& title);
+    void addWidget(QWidget* widget, const QString& title, bool collapsed = false);
 
 private:
     QSplitter* m_splitter{nullptr};
