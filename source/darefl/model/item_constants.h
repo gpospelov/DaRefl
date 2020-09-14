@@ -22,6 +22,7 @@ const std::string SLDMaterialItemType = "SLDMaterial";
 const std::string MaterialContainerItemType = "MaterialContainer";
 const std::string JobItemType = "Job";
 const std::string CanvasItemType = "Canvas";
+const std::string SLDCanvasItemType = "SLDCanvas";
 const std::string CanvasContainerItemType = "CanvasContainer";
 const std::string RawDataMimeType = "quickrefl/moveDataItem";
 const std::string ExperimentalDataContainerItemType = "ExperimentalDataContainer";
