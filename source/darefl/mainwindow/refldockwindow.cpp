@@ -15,7 +15,7 @@
 #include <darefl/materialeditor/materialeditor.h>
 #include <darefl/model/applicationmodels.h>
 #include <darefl/quicksimeditor/quicksimeditor.h>
-#include <darefl/quicksimeditor/quicksimoptionswidget.h>
+#include <darefl/quicksimeditor/instrumentpropertyeditor.h>
 #include <darefl/sldeditor/sldeditor.h>
 
 ReflDockWindow::ReflDockWindow(ApplicationModels* models, QWidget* parent)
@@ -30,7 +30,7 @@ ReflDockWindow::ReflDockWindow(ApplicationModels* models, QWidget* parent)
     auto material_editor = new MaterialEditor(this);
     auto layer_editor = new LayerEditor(this);
     auto sld_editor = new SLDEditor(this);
-    auto instrument_editor = new QuickSimOptionsWidget(this);
+    auto instrument_editor = new InstrumentPropertyEditor(this);
 
     m_docksController->addWidget(0, material_editor, Qt::LeftDockWidgetArea);
     m_docksController->addWidget(1, layer_editor, Qt::LeftDockWidgetArea);
