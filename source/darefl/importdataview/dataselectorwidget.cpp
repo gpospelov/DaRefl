@@ -32,7 +32,7 @@ DataSelectorWidget::DataSelectorWidget(DataViewModel* view_model, QWidget* paren
 
     m_collapsibleWidget->addWidget(m_selectorTree, "Canvas list");
     m_collapsibleWidget->addWidget(m_canvasPropertyEditor, "Canvas properties");
-    m_collapsibleWidget->addWidget(m_graphPropertyEditor, "Graph properties");
+    m_collapsibleWidget->addWidget(m_graphPropertyEditor, "Graph properties", true);
 
     layout->addWidget(m_collapsibleWidget);
 

@@ -33,6 +33,7 @@ void CollapsibleBar::setWidget(QWidget* widget, const QString& title)
     m_controlledWidget = widget;
     m_titleLabel->setText(title);
     widget->installEventFilter(this);
+    updatePixmap();
 }
 
 void CollapsibleBar::mousePressEvent(QMouseEvent* event)
