@@ -69,8 +69,6 @@ void QuickSimController::onRealTimeRequest(bool status)
 
 void QuickSimController::onRunSimulationRequest()
 {
-    if (in_realtime_mode)
-        return;
     process_multilayer(/*submit_simulation*/ true);
 }
 
