@@ -60,7 +60,7 @@ private:
     ApplicationModels* m_models{nullptr};
     JobManager* job_manager{nullptr};
 
-    bool in_realtime_mode{false}; //! Run simulation on every parameter change.
+    bool in_realtime_mode{true}; //! Run simulation on every parameter change.
 
     std::unique_ptr<ModelView::ModelHasChangedController> m_materialChangedController;
     std::unique_ptr<ModelView::ModelHasChangedController> m_sampleChangedController;
