@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_QUICKSIMEDITOR_QUICKSIMOPTIONSWIDGET_H
-#define DAREFL_QUICKSIMEDITOR_QUICKSIMOPTIONSWIDGET_H
+#ifndef DAREFL_QUICKSIMEDITOR_INSTRUMENTPROPERTYEDITOR_H
+#define DAREFL_QUICKSIMEDITOR_INSTRUMENTPROPERTYEDITOR_H
 
 namespace ModelView
 {
@@ -19,15 +19,15 @@ class ApplicationModels;
 
 #include <QWidget>
 
-//! Widget with specular settings (Q-scan etc) for QuickSimulationWidget.
-//! Located under QuickSimulationEditor.
+//! Widget with InstrumentItem properties.
+//! Used to modify q-scan parameters, located under QuickSimEditor.
 
-class QuickSimOptionsWidget : public QWidget
+class InstrumentPropertyEditor : public QWidget
 {
     Q_OBJECT
 public:
-    QuickSimOptionsWidget(QWidget* parent = nullptr);
-    ~QuickSimOptionsWidget();
+    InstrumentPropertyEditor(QWidget* parent = nullptr);
+    ~InstrumentPropertyEditor();
 
     void setModels(ApplicationModels* models);
 
@@ -39,4 +39,4 @@ private:
 
 };
 
-#endif // DAREFL_QUICKSIMEDITOR_QUICKSIMOPTIONSWIDGET_H
+#endif // DAREFL_QUICKSIMEDITOR_INSTRUMENTPROPERTYEDITOR_H

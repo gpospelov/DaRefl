@@ -1,6 +1,8 @@
 target_sources(${library_name} PRIVATE
     custombeampropertyeditorfactory.cpp
     custombeampropertyeditorfactory.h
+    instrumentpropertyeditor.cpp
+    instrumentpropertyeditor.h
     jobmanager.cpp
     jobmanager.h
     materialprofile.cpp
@@ -12,8 +14,6 @@ target_sources(${library_name} PRIVATE
     quicksimeditor.h
     quicksimeditortoolbar.cpp
     quicksimeditortoolbar.h
-    quicksimoptionswidget.cpp
-    quicksimoptionswidget.h
     quicksimutils.cpp
     quicksimutils.h
     speculartoysimulation.cpp

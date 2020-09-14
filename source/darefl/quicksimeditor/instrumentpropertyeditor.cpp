@@ -13,13 +13,13 @@
 #include <darefl/model/instrumentitems.h>
 #include <darefl/model/instrumentmodel.h>
 #include <darefl/quicksimeditor/custombeampropertyeditorfactory.h>
-#include <darefl/quicksimeditor/quicksimoptionswidget.h>
+#include <darefl/quicksimeditor/instrumentpropertyeditor.h>
 #include <mvvm/viewmodel/viewmodeldelegate.h>
 #include <mvvm/widgets/propertytreeview.h>
 
 using namespace ModelView;
 
-QuickSimOptionsWidget::QuickSimOptionsWidget(QWidget* parent)
+InstrumentPropertyEditor::InstrumentPropertyEditor(QWidget* parent)
     : QWidget(parent), m_beamPropertyEditor(new ModelView::PropertyTreeView)
 
 {
@@ -27,9 +27,9 @@ QuickSimOptionsWidget::QuickSimOptionsWidget(QWidget* parent)
     layout->addWidget(m_beamPropertyEditor);
 }
 
-QuickSimOptionsWidget::~QuickSimOptionsWidget() = default;
+InstrumentPropertyEditor::~InstrumentPropertyEditor() = default;
 
-void QuickSimOptionsWidget::setModels(ApplicationModels* models)
+void InstrumentPropertyEditor::setModels(ApplicationModels* models)
 {
     auto instrument = models->instrumentModel()->topItem<SpecularInstrumentItem>();
 
@@ -41,12 +41,12 @@ void QuickSimOptionsWidget::setModels(ApplicationModels* models)
         instrument->item<SpecularBeamItem>(SpecularInstrumentItem::P_BEAM));
 }
 
-QSize QuickSimOptionsWidget::sizeHint() const
+QSize InstrumentPropertyEditor::sizeHint() const
 {
     return StyleUtils::DockSizeHint();
 }
 
-QSize QuickSimOptionsWidget::minimumSizeHint() const
+QSize InstrumentPropertyEditor::minimumSizeHint() const
 {
     return StyleUtils::DockMinimumSizeHint();
 }
