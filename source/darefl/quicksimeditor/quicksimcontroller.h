@@ -22,6 +22,7 @@ class ModelHasChangedController;
 class ApplicationModels;
 class JobManager;
 class JobModel;
+class InstrumentModel;
 
 //! Provides quick reflectometry simulations on any change of SampleModel and MaterialModel.
 //! Listens for any change in SampleModel and MaterialModel, extracts the data needed for
@@ -56,6 +57,7 @@ private:
     void setup_jobmanager_connections();
 
     JobModel* jobModel() const;
+    InstrumentModel* instrumentModel() const;
 
     ApplicationModels* m_models{nullptr};
     JobManager* job_manager{nullptr};
