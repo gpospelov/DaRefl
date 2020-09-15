@@ -38,6 +38,11 @@ JobModel::JobModel() : SessionModel("JobModel")
     init_model();
 }
 
+JobModel::JobModel(std::shared_ptr<ItemPool> pool) : SessionModel("JobModel", pool)
+{
+    init_model();
+}
+
 Data1DItem* JobModel::sld_data() const
 {
     return job_item()->sld_data();
