@@ -14,6 +14,8 @@
 #include <darefl/model/materialmodel.h>
 #include <mvvm/model/modelutils.h>
 #include <mvvm/viewmodel/viewmodel.h>
+#include <mvvm/model/sessionitemdata.h>
+#include <QFile>
 
 using namespace ModelView;
 
@@ -110,7 +112,63 @@ void MaterialEditorActions::onMoveDown()
 
 void MaterialEditorActions::onExport()
 {
-    qDebug() << "MaterialEditorActions::onExport()";
+    auto  item = p_impl->root_item();
+    const auto containers = item->children();
+
+    bool title = true; // print title only once in ascii file
+    QString tableData;
+    QString titleData;
+
+    for (auto container : containers) {
+        auto data = container->modelType();
+        for (auto fields: dynamic_cast<MaterialBaseItem*>(container)->children()) {
+            if (title) {
+                titleData += (fields->displayName()).c_str();
+                titleData += " ";
+            }
+            auto val = fields->data<QVariant>(1); // role 1 has the values.
+            if(strcmp(val.typeName() , "std::string") == 0) {
+                tableData += val.value<std::string>().c_str();
+                tableData += " ";
+            }
+            else if(strcmp(val.typeName() , "int") == 0) {
+                qDebug() << "Int Value: " << val.value<int>();
+                auto int_val = val.value<int>(); 
+                tableData += QString::number(int_val);
+                tableData += " ";
+            }
+            else if(strcmp(val.typeName() , "double") == 0) {
+                auto double_val = val.value<double>();
+                tableData += QString::number(double_val);
+                tableData += " ";
+            }
+            else if(strcmp(val.typeName() , "float") == 0) {
+                auto float_val = val.value<float>();
+                tableData += QString::number(float_val);
+                tableData += " ";
+            }
+            else {
+                auto color_str = val.toString();
+                tableData += color_str;
+                tableData += " ";
+            }
+        }
+        if (title) {
+            titleData += "\n";
+            tableData = titleData + tableData;
+        }
+        title = false;
+        tableData += "\n";
+    }
+    /*for text file*/
+    QFile txtFile("materialdata");
+    if(txtFile.open(QIODevice::WriteOnly)) {
+
+        QTextStream out(&txtFile);
+        out << tableData;
+
+        txtFile.close();
+    }
 }
 
 void MaterialEditorActions::onImport()
