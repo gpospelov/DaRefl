@@ -8,12 +8,18 @@
 // ************************************************************************** //
 
 #include <darefl/model/experimentaldataitems.h>
+#include <darefl/model/instrumentitems.h>
 #include <darefl/model/item_constants.h>
 #include <darefl/model/jobitem.h>
 #include <mvvm/standarditems/axisitems.h>
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
+
+namespace {
+const int row_sim_graph = 0;
+const int row_reference_graph = 1;
+}
 
 using namespace ModelView;
 
@@ -23,7 +29,7 @@ std::pair<double, double> SLDCanvasItem::data_yaxis_range() const
 {
     auto [ymin, ymax] = GraphViewportItem::data_yaxis_range();
     double range = ymax - ymin;
-    return {ymin - range/10.0, ymax + range/10.0};
+    return {ymin - range / 10.0, ymax + range / 10.0};
 }
 
 // ----------------------------------------------------------------------------
@@ -32,6 +38,7 @@ JobItem::JobItem() : ModelView::CompoundItem(::Constants::JobItemType)
 {
     setup_sld_viewport();
     setup_specular_viewport();
+    setup_reference_graph();
 }
 
 Data1DItem* JobItem::sld_data() const
@@ -54,6 +61,17 @@ CanvasItem* JobItem::specular_viewport() const
     return item<CanvasItem>(P_SPECULAR_VIEWPORT);
 }
 
+GraphItem* JobItem::referenceGraph() const
+{
+    return specular_viewport()->graphItems().at(row_reference_graph);
+}
+
+void JobItem::updateReferenceGraphFrom(const SpecularInstrumentItem* instrument)
+{
+    if (auto graph = instrument->beamItem()->experimentalGraphItem(); graph)
+        referenceGraph()->setDataItem(graph->dataItem());
+}
+
 void JobItem::setup_sld_viewport()
 {
     auto data = addProperty<Data1DItem>(P_SLD_DATA);
@@ -69,5 +87,12 @@ void JobItem::setup_specular_viewport()
     auto viewport = addProperty<CanvasItem>(P_SPECULAR_VIEWPORT);
     auto graph = std::make_unique<GraphItem>();
     graph->setDataItem(data);
-    viewport->insertItem(graph.release(), {ViewportItem::T_ITEMS, 0});
+    viewport->insertItem(graph.release(), {ViewportItem::T_ITEMS, row_sim_graph});
+}
+
+void JobItem::setup_reference_graph()
+{
+    auto viewport = specular_viewport();
+    auto graph = std::make_unique<GraphItem>();
+    viewport->insertItem(graph.release(), {ViewportItem::T_ITEMS, row_reference_graph});
 }

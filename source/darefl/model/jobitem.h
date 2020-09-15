@@ -20,6 +20,7 @@ class GraphViewportItem;
 } // namespace ModelView
 
 class CanvasItem;
+class SpecularInstrumentItem;
 
 //! Viewport intended for showing SLD profile.
 //! Provides custom y-axis range.
@@ -51,10 +52,15 @@ public:
     ModelView::Data1DItem* specular_data() const;
     CanvasItem* specular_viewport() const;
 
+    ModelView::GraphItem* referenceGraph() const;
+
+    void updateReferenceGraphFrom(const SpecularInstrumentItem* instrument);
+
 private:
     void setup_graph(const std::string& data_tag, const std::string& viewport_tag);
     void setup_sld_viewport();
     void setup_specular_viewport();
+    void setup_reference_graph();
 };
 
 #endif // DAREFL_MODEL_JOBITEM_H
