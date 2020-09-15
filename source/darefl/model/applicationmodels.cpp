@@ -41,7 +41,7 @@ struct ApplicationModels::ApplicationModelsImpl {
         m_material_model = std::make_unique<MaterialModel>(item_pool);
         m_sample_model = std::make_unique<SampleModel>(item_pool);
         m_sld_view_model = std::make_unique<SLDElementModel>();
-        m_job_model = std::make_unique<JobModel>();
+        m_job_model = std::make_unique<JobModel>(item_pool);
         m_experimental_model = std::make_unique<ExperimentalDataModel>(item_pool);
         m_instrument_model = std::make_unique<InstrumentModel>(item_pool);
         m_material_controller = std::make_unique<MaterialPropertyController>(m_material_model.get(),

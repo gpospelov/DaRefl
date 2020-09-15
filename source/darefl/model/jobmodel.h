@@ -16,6 +16,7 @@ namespace ModelView
 {
 class Data1DItem;
 class GraphViewportItem;
+class ItemPool;
 } // namespace ModelView
 
 class JobItem;
@@ -26,6 +27,7 @@ class JobModel : public ModelView::SessionModel
 {
 public:
     JobModel();
+    JobModel(std::shared_ptr<ModelView::ItemPool> pool);
 
     ModelView::Data1DItem* sld_data() const;
     ModelView::GraphViewportItem* sld_viewport() const;
