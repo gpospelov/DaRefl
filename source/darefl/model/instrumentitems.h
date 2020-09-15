@@ -76,6 +76,8 @@ public:
     SpecularBeamItem();
 
     std::vector<double> qScanValues() const;
+
+    ModelView::GraphItem* experimentalGraphItem() const;
 };
 
 //! Represents specular instrument.

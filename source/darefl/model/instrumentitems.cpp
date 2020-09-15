@@ -93,6 +93,18 @@ std::vector<double> SpecularBeamItem::qScanValues() const
     return {};
 }
 
+//! Returns corresponding experimental graph. If current setup is based on simple q-scan, will
+//! return nullptr.
+
+GraphItem* SpecularBeamItem::experimentalGraphItem() const
+{
+    auto scan_group = item<SpecularScanGroupItem>(P_SCAN_GROUP);
+    if (auto scanItem = dynamic_cast<const ExperimentalScanItem*>(scan_group->currentItem());
+        scanItem)
+        return scanItem->graphItem();
+    return nullptr;
+}
+
 // ----------------------------------------------------------------------------
 
 SpecularInstrumentItem::SpecularInstrumentItem()

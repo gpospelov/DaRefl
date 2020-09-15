@@ -10,6 +10,7 @@
 #include <darefl/model/applicationmodels.h>
 #include <darefl/model/instrumentitems.h>
 #include <darefl/model/instrumentmodel.h>
+#include <darefl/model/jobitem.h>
 #include <darefl/model/jobmodel.h>
 #include <darefl/model/layeritems.h>
 #include <darefl/model/materialmodel.h>
@@ -87,6 +88,9 @@ void QuickSimController::onSimulationCompleted()
     auto data = jobModel()->specular_data();
     data->setAxis(ModelView::PointwiseAxisItem::create(qvalues));
     data->setContent(amplitudes);
+
+    auto instrument = instrumentModel()->topItem<SpecularInstrumentItem>();
+    jobModel()->topItem<JobItem>()->updateReferenceGraphFrom(instrument);
 }
 
 //! Constructs multislice, calculates profile and submits specular simulation.
@@ -138,4 +142,9 @@ void QuickSimController::setup_jobmanager_connections()
 JobModel* QuickSimController::jobModel() const
 {
     return m_models->jobModel();
+}
+
+InstrumentModel* QuickSimController::instrumentModel() const
+{
+    return m_models->instrumentModel();
 }
