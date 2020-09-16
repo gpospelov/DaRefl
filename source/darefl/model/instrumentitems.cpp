@@ -93,6 +93,11 @@ std::vector<double> SpecularBeamItem::qScanValues() const
     return {};
 }
 
+double SpecularBeamItem::intensity() const
+{
+    return property<double>(P_INTENSITY);
+}
+
 //! Returns corresponding experimental graph. If current setup is based on simple q-scan, will
 //! return nullptr.
 

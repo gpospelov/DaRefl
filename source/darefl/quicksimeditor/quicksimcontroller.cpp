@@ -121,9 +121,9 @@ void QuickSimController::update_sld_profile(const multislice_t& multislice)
 
 void QuickSimController::submit_specular_simulation(const multislice_t& multislice)
 {
-    auto instrument = m_models->instrumentModel()->topItem<SpecularInstrumentItem>();
-    auto qvalues = instrument->beamItem()->qScanValues();
-    job_manager->requestSimulation(multislice, qvalues);
+    auto instrument = instrumentModel()->topItem<SpecularInstrumentItem>();
+    auto beam = instrument->beamItem();
+    job_manager->requestSimulation(multislice, beam->qScanValues());
 }
 
 //! Connect signals going from JobManager. Connections are made queued since signals are emitted

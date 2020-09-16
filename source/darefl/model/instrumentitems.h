@@ -16,7 +16,8 @@
 #include <mvvm/model/compounditem.h>
 #include <mvvm/model/groupitem.h>
 
-namespace ModelView {
+namespace ModelView
+{
 class GraphItem;
 }
 
@@ -76,6 +77,8 @@ public:
     SpecularBeamItem();
 
     std::vector<double> qScanValues() const;
+
+    double intensity() const;
 
     ModelView::GraphItem* experimentalGraphItem() const;
 };
