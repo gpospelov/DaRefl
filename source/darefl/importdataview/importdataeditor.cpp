@@ -87,16 +87,16 @@ void ImportDataEditor::selectionChanged()
              ++it) {
             graph_items.push_back(dynamic_cast<ModelView::GraphItem*>(*it));
         }
-        viewport->setSelected(graph_items);
+        viewport->setVisible(graph_items);
         return;
     }
 
     auto item = items.at(0);
     if (auto viewport = dynamic_cast<ModelView::GraphViewportItem*>(item); viewport) {
-        viewport->resetSelected();
+        viewport->setAllVisible();
     } else if (auto graph_item = dynamic_cast<ModelView::GraphItem*>(item); graph_item) {
         auto viewport = dynamic_cast<ModelView::GraphViewportItem*>(graph_item->parent());
-        viewport->setSelected(std::vector<ModelView::GraphItem*>{graph_item});
+        viewport->setVisible(std::vector<ModelView::GraphItem*>{graph_item});
     }
 }
 
