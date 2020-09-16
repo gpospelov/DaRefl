@@ -17,6 +17,7 @@
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
+#include <QColor>
 
 using namespace ModelView;
 
@@ -77,12 +78,16 @@ GraphItem* JobItem::referenceGraph() const
     return graphs.size() > 1 ? graphs.at(row_reference_graph) : nullptr;
 }
 
+//! Updates reference graph in specular viewport from current instrument settings.
+
 void JobItem::updateReferenceGraphFrom(const SpecularInstrumentItem* instrument)
 {
     if (auto graph = instrument->beamItem()->experimentalGraphItem(); graph) {
+        // instrument has experimental graph available, i.e. scan depends on data
         auto reference_graph = referenceGraph() ? referenceGraph() : create_reference_graph(this);
         reference_graph->setFromGraphItem(graph);
     } else {
+        // instrument doesn't have experimental data attached, scan is manual, no graph to show
         auto reference_graph = referenceGraph();
         if (reference_graph)
             ModelView::Utils::DeleteItemFromModel(reference_graph);
@@ -103,6 +108,7 @@ void JobItem::setup_specular_viewport()
     auto data = addProperty<Data1DItem>(P_SPECULAR_DATA);
     auto viewport = addProperty<CanvasItem>(P_SPECULAR_VIEWPORT);
     auto graph = std::make_unique<GraphItem>();
+    graph->setProperty(GraphItem::P_COLOR, QColor(Qt::blue));
     graph->setDataItem(data);
     viewport->insertItem(graph.release(), {ViewportItem::T_ITEMS, row_sim_graph});
 }
