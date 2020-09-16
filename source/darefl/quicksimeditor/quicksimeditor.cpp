@@ -47,6 +47,7 @@ void QuickSimEditor::setModels(ApplicationModels* models)
 {
     app_models = models;
     sim_controller->setModels(models);
+    plot_controller->setModels(models);
     // toolbar->setModels(models);
     spec_canvas->setItem(app_models->jobModel()->specular_viewport());
 }
