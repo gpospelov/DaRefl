@@ -38,6 +38,7 @@ public:
     struct InputData {
         std::vector<double> qvalues;
         multislice_t slice_data;
+        double intensity;
     };
 
     SpecularToySimulation(const InputData& input_data);

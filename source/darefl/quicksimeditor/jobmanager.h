@@ -30,7 +30,8 @@ signals:
     void simulationCompleted();
 
 public slots:
-    void requestSimulation(const multislice_t& multislice, const std::vector<double>& qvalues);
+    void requestSimulation(const multislice_t& multislice, const std::vector<double>& qvalues,
+                           double intensity);
     void onInterruptRequest();
 
 private:
