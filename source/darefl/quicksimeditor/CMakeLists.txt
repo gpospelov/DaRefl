@@ -16,6 +16,8 @@ target_sources(${library_name} PRIVATE
     quicksimeditortoolbar.h
     quicksimutils.cpp
     quicksimutils.h
+    simplotcontroller.cpp
+    simplotcontroller.h
     speculartoysimulation.cpp
     speculartoysimulation.h
 )
