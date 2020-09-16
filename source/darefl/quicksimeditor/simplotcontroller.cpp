@@ -29,7 +29,7 @@ void SimPlotController::setModels(ApplicationModels* models)
 void SimPlotController::onInstrumentChange()
 {
     auto instrument = m_models->instrumentModel()->topItem<SpecularInstrumentItem>();
-    m_models->jobModel()->topItem<JobItem>()->updateReferenceGraphFrom(instrument);
+    m_models->jobModel()->updateReferenceGraphFrom(instrument);
 }
 
 SimPlotController::~SimPlotController() = default;

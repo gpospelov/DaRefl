@@ -21,6 +21,7 @@ class ItemPool;
 
 class JobItem;
 class CanvasItem;
+class SpecularInstrumentItem;
 
 //! Contains results of quick reflectometry simulations.
 class JobModel : public ModelView::SessionModel
@@ -34,6 +35,8 @@ public:
 
     ModelView::Data1DItem* specular_data() const;
     CanvasItem* specular_viewport() const;
+
+    void updateReferenceGraphFrom(const SpecularInstrumentItem* instrument);
 
 private:
     JobItem* job_item() const;

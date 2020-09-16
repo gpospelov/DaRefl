@@ -16,6 +16,7 @@
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
 #include <darefl/model/experimentaldataitems.h>
+#include <darefl/model/instrumentitems.h>
 
 using namespace ModelView;
 
@@ -61,6 +62,11 @@ Data1DItem* JobModel::specular_data() const
 CanvasItem* JobModel::specular_viewport() const
 {
     return job_item()->specular_viewport();
+}
+
+void JobModel::updateReferenceGraphFrom(const SpecularInstrumentItem* instrument)
+{
+    job_item()->updateReferenceGraphFrom(instrument);
 }
 
 JobItem* JobModel::job_item() const
