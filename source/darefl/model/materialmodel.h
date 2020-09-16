@@ -31,8 +31,6 @@ public:
     MaterialModel();
     MaterialModel(std::shared_ptr<ModelView::ItemPool> pool);
 
-    static ModelView::ExternalProperty undefined_material();
-
     std::vector<ModelView::ExternalProperty>
     material_data(std::string container_id = std::string()) const;
 

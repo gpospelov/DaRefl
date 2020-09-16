@@ -27,7 +27,7 @@ RoughnessItem::RoughnessItem() : ModelView::CompoundItem(::Constants::RoughnessI
 LayerItem::LayerItem() : ModelView::CompoundItem(::Constants::LayerItemType)
 {
     addProperty(P_NAME, "Unnamed")->setDisplayName("Name");
-    addProperty(P_MATERIAL, MaterialModel::undefined_material())->setDisplayName("Material");
+    addProperty(P_MATERIAL, ModelView::ExternalProperty::undefined())->setDisplayName("Material");
     addProperty(P_THICKNESS, 0.0)->setDisplayName("Thickness");
     addProperty<RoughnessItem>(P_ROUGHNESS);
 }
