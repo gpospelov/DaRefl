@@ -70,7 +70,8 @@ struct ApplicationModels::ApplicationModelsImpl {
     //! Models intended for saving.
     std::vector<SessionModel*> persistent_models() const
     {
-        return {m_material_model.get(), m_sample_model.get(), m_instrument_model.get()};
+        return {m_material_model.get(), m_sample_model.get(), m_instrument_model.get(),
+                m_experimental_model.get()};
     }
 
     //! All application models.
