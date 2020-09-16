@@ -123,7 +123,7 @@ void QuickSimController::submit_specular_simulation(const multislice_t& multisli
 {
     auto instrument = instrumentModel()->topItem<SpecularInstrumentItem>();
     auto beam = instrument->beamItem();
-    job_manager->requestSimulation(multislice, beam->qScanValues());
+    job_manager->requestSimulation(multislice, beam->qScanValues(), beam->intensity());
 }
 
 //! Connect signals going from JobManager. Connections are made queued since signals are emitted

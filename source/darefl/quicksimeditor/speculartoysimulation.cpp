@@ -41,7 +41,8 @@ void SpecularToySimulation::runSimulation()
         auto kz = -0.5 * q;
         auto kzs = KzComputation::computeKzFromSLDs(slices, kz);
         auto coeff = std::move(m_strategy->Execute(slices, kzs).front());
-        m_specularResult.amplitudes.emplace_back(std::norm(coeff->getScalarR()));
+        auto amplitude = std::norm(coeff->getScalarR()) * m_inputData.intensity;
+        m_specularResult.amplitudes.emplace_back(amplitude);
 
         m_progressHandler.setCompletedTicks(1);
     }
