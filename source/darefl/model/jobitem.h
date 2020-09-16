@@ -60,7 +60,6 @@ private:
     void setup_graph(const std::string& data_tag, const std::string& viewport_tag);
     void setup_sld_viewport();
     void setup_specular_viewport();
-    void setup_reference_graph();
 };
 
 #endif // DAREFL_MODEL_JOBITEM_H
