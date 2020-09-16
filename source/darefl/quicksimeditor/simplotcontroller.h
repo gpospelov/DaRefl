@@ -11,6 +11,12 @@
 #define DAREFL_QUICKSIMEDITOR_SIMPLOTCONTROLLER_H
 
 #include <QObject>
+#include <memory>
+
+namespace ModelView
+{
+class ModelHasChangedController;
+}
 
 class ApplicationModels;
 
@@ -26,7 +32,10 @@ public:
     void setModels(ApplicationModels* models);
 
 private:
+    void onInstrumentChange();
+
     ApplicationModels* m_models{nullptr};
+    std::unique_ptr<ModelView::ModelHasChangedController> m_instrumentChangedController;
 };
 
 #endif // DAREFL_QUICKSIMEDITOR_SIMPLOTCONTROLLER_H

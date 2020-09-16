@@ -90,9 +90,6 @@ void QuickSimController::onSimulationCompleted()
     auto data = jobModel()->specular_data();
     data->setAxis(ModelView::PointwiseAxisItem::create(qvalues));
     data->setContent(amplitudes);
-
-    auto instrument = instrumentModel()->topItem<SpecularInstrumentItem>();
-    jobModel()->topItem<JobItem>()->updateReferenceGraphFrom(instrument);
 }
 
 //! Constructs multislice, calculates profile and submits specular simulation.
