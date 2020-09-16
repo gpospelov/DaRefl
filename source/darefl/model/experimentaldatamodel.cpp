@@ -34,6 +34,7 @@ std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
     auto result = std::make_unique<ModelView::ItemCatalogue>();
     result->registerItem<CanvasItem>();
     result->registerItem<CanvasContainerItem>();
+    result->registerItem<ExperimentalDataContainerItem>();
     return result;
 }
 
