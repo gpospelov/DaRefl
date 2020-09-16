@@ -11,17 +11,28 @@
 #include <darefl/model/instrumentitems.h>
 #include <darefl/model/item_constants.h>
 #include <darefl/model/jobitem.h>
+#include <darefl/model/jobmodel.h>
+#include <mvvm/model/modelutils.h>
 #include <mvvm/standarditems/axisitems.h>
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
 
-namespace {
+using namespace ModelView;
+
+namespace
+{
 const int row_sim_graph = 0;
 const int row_reference_graph = 1;
+
+GraphItem* create_reference_graph(JobItem* item)
+{
+    auto model = item->model();
+    return model->insertItem<GraphItem>(item->specular_viewport(),
+                                        {ViewportItem::T_ITEMS, row_reference_graph});
 }
 
-using namespace ModelView;
+} // namespace
 
 SLDCanvasItem::SLDCanvasItem() : GraphViewportItem(::Constants::SLDCanvasItemType) {}
 
@@ -38,7 +49,6 @@ JobItem::JobItem() : ModelView::CompoundItem(::Constants::JobItemType)
 {
     setup_sld_viewport();
     setup_specular_viewport();
-    setup_reference_graph();
 }
 
 Data1DItem* JobItem::sld_data() const
@@ -63,13 +73,20 @@ CanvasItem* JobItem::specular_viewport() const
 
 GraphItem* JobItem::referenceGraph() const
 {
-    return specular_viewport()->graphItems().at(row_reference_graph);
+    auto graphs = specular_viewport()->graphItems();
+    return graphs.size() > 1 ? graphs.at(row_reference_graph) : nullptr;
 }
 
 void JobItem::updateReferenceGraphFrom(const SpecularInstrumentItem* instrument)
 {
-    if (auto graph = instrument->beamItem()->experimentalGraphItem(); graph)
-        referenceGraph()->setDataItem(graph->dataItem());
+    if (auto graph = instrument->beamItem()->experimentalGraphItem(); graph) {
+        auto reference_graph = referenceGraph() ? referenceGraph() : create_reference_graph(this);
+        reference_graph->setFromGraphItem(graph);
+    } else {
+        auto reference_graph = referenceGraph();
+        if (reference_graph)
+            ModelView::Utils::DeleteItemFromModel(reference_graph);
+    }
 }
 
 void JobItem::setup_sld_viewport()
@@ -88,11 +105,4 @@ void JobItem::setup_specular_viewport()
     auto graph = std::make_unique<GraphItem>();
     graph->setDataItem(data);
     viewport->insertItem(graph.release(), {ViewportItem::T_ITEMS, row_sim_graph});
-}
-
-void JobItem::setup_reference_graph()
-{
-    auto viewport = specular_viewport();
-    auto graph = std::make_unique<GraphItem>();
-    viewport->insertItem(graph.release(), {ViewportItem::T_ITEMS, row_reference_graph});
 }
