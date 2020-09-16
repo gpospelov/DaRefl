@@ -70,13 +70,6 @@ MaterialModel::MaterialModel(std::shared_ptr<ModelView::ItemPool> pool)
     init_model();
 }
 
-//! Returns default property representing non-existent material.
-
-ExternalProperty MaterialModel::undefined_material()
-{
-    return ExternalProperty("Undefined", QColor(Qt::red));
-}
-
 //! Returns vector of properties representing possible choice of materials for the given container.
 //! Here we assume that all materials seats in top level material containers.
 //! If no container_id was given, the very first container is examined.
@@ -109,7 +102,7 @@ ExternalProperty MaterialModel::material_property(const std::string& id)
         if (prop.identifier() == id)
             return prop;
 
-    return undefined_material();
+    return ExternalProperty::undefined();
 }
 
 //! Clones material and adds it at the bottom of MaterialContainerItem.
