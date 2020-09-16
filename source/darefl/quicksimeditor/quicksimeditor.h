@@ -22,6 +22,7 @@ class JobModel;
 class ApplicationModels;
 class QuickSimController;
 class QuickSimEditorToolBar;
+class SimPlotController;
 
 //! Quick reflectivity simulations.
 
@@ -43,6 +44,7 @@ private:
 
     ApplicationModels* app_models{nullptr};
     QuickSimController* sim_controller{nullptr};
+    SimPlotController* plot_controller{nullptr};
     ModelView::GraphCanvas* spec_canvas{nullptr};
 };
 
