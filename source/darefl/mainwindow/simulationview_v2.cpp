@@ -40,9 +40,9 @@ void SimulationViewV2::initEditorList()
     auto instrument_editor = new InstrumentPropertyEditor(this);
 
     m_editorList->addWidget(material_editor, "Material editor");
-    m_editorList->addWidget(layer_editor, "Layer editor");
-    m_editorList->addWidget(instrument_editor, "Instrument editor", true);
-    m_editorList->addWidget(sld_editor, "SLD editor", true);
+    m_editorList->addWidget(layer_editor, "Layer editor", /*set_collapsed*/true);
+    m_editorList->addWidget(instrument_editor, "Instrument editor", /*set_collapsed*/true);
+    m_editorList->addWidget(sld_editor, "SLD editor", /*set_collapsed*/true);
 
     material_editor->setModels(m_models);
     layer_editor->setModels(m_models);
