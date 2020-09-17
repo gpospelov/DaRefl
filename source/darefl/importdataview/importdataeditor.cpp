@@ -57,6 +57,7 @@ void ImportDataEditor::setupConnections()
 void ImportDataEditor::setupLayout()
 {
     auto main_layout = new QVBoxLayout(this);
+    main_layout->setContentsMargins(0, 0, 0, 0);
     auto main_splitter = new QSplitter(this);
 
     main_splitter->addWidget(m_dataSelectorWidget);
