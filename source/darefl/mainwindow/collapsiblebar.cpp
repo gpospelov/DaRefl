@@ -59,8 +59,11 @@ bool CollapsibleBar::eventFilter(QObject* obj, QEvent* event)
 
 void CollapsibleBar::updatePixmap()
 {
-    if (m_controlledWidget->isVisible())
+    if (m_controlledWidget->isVisible()) {
         m_pixmapLabel->setPixmap(QPixmap(":/icons/chevron-down.svg"));
-    else
+        setFrameStyle(QFrame::StyledPanel);
+    } else {
         m_pixmapLabel->setPixmap(QPixmap(":/icons/chevron-right.svg"));
+        setFrameStyle(QFrame::StyledPanel | QFrame::Raised);
+    }
 }
