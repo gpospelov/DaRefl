@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_MAINWINDOW_REFLDOCKWINDOW_H
-#define DAREFL_MAINWINDOW_REFLDOCKWINDOW_H
+#ifndef DAREFL_MAINWINDOW_SIMULATIONVIEWV1_H
+#define DAREFL_MAINWINDOW_SIMULATIONVIEWV1_H
 
 #include <QMainWindow>
 #include <memory>
@@ -20,12 +20,12 @@ class QuickSimEditor;
 
 //! Main reflectometry window with all components for quick sample editing and simulations.
 
-class ReflDockWindow : public QMainWindow
+class SimulationViewV1 : public QMainWindow
 {
     Q_OBJECT
 public:
-    ReflDockWindow(ApplicationModels* m_models, QWidget* parent = nullptr);
-    ~ReflDockWindow();
+    SimulationViewV1(ApplicationModels* m_models, QWidget* parent = nullptr);
+    ~SimulationViewV1();
 
 private:
     void setup_toolbar();
@@ -36,4 +36,4 @@ private:
     QuickSimEditor* m_quickSimEditor{nullptr};
 };
 
-#endif // DAREFL_MAINWINDOW_REFLDOCKWINDOW_H
+#endif // DAREFL_MAINWINDOW_SIMULATIONVIEWV1_H

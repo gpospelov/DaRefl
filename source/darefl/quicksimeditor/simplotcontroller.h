@@ -20,7 +20,7 @@ class ModelHasChangedController;
 
 class ApplicationModels;
 
-//! Updates reference curve in JobItem when BemItem is changed.
+//! Updates reference curve in JobItem when BeamItem is changed.
 
 class SimPlotController : public QObject
 {
