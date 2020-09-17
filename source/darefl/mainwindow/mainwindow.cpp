@@ -12,8 +12,8 @@
 #include <QFileDialog>
 #include <QMenuBar>
 #include <QSettings>
-#include <darefl/mainwindow/actionmanager.h>
 #include <darefl/importdataview/importdataview.h>
+#include <darefl/mainwindow/actionmanager.h>
 #include <darefl/mainwindow/mainbarwidget.h>
 #include <darefl/mainwindow/mainwindow.h>
 #include <darefl/mainwindow/simulationview_v1.h>
@@ -69,22 +69,22 @@ void MainWindow::init_components()
 {
     m_welcomeView = new WelcomeView(m_models.get());
     m_importDataView = new ImportDataView(m_models.get());
-    m_reflWindow = new SimulationViewV1(m_models.get());
+    m_simView = new SimulationViewV1(m_models.get());
     m_settingsView = new SettingsView(m_models.get());
     m_barWidget = new MainBarWidget;
 
     // __________________________________________
     // THE NEW SIMULATION WIDGET UNCOMMENT TO USE
-//     m_sim_widget = new SimulationWidget();
-//     m_sim_widget->setModels(m_models.get());
+    //     m_sim_widget = new SimulationWidget();
+    //     m_sim_widget->setModels(m_models.get());
 
     m_barWidget->addWidget(m_welcomeView, "Project");
     m_barWidget->addWidget(m_importDataView, "Data");
-    m_barWidget->addWidget(m_reflWindow, "Simulation");
+    m_barWidget->addWidget(m_simView, "Simulation");
     // __________________________________________
     // THE NEW SIMULATION WIDGET UNCOMMENT TO USE
     m_barWidget->addWidget(new QWidget, "Fitting", false);
-//    m_barWidget->addWidget(m_sim_widget, "Fitting");
+    //    m_barWidget->addWidget(m_sim_widget, "Fitting");
     m_barWidget->addWidget(new QWidget, "Export", false);
     m_barWidget->addWidget(m_settingsView, "Settings");
     m_barWidget->setCurrentIndex(0);
