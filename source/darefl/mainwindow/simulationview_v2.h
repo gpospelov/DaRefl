@@ -7,32 +7,24 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_MAINWINDOW_SIMULATIONVIEWV1_H
-#define DAREFL_MAINWINDOW_SIMULATIONVIEWV1_H
+#ifndef DAREFL_MAINWINDOW_SIMULATIONVIEWV2_H
+#define DAREFL_MAINWINDOW_SIMULATIONVIEWV2_H
 
 #include <QMainWindow>
+#include <memory>
 
-class DocksController;
 class ApplicationModels;
-class QToolBar;
-class QuickSimEditor;
 
 //! Main simulation window with all components for quick sample editing and simulations.
 
-class SimulationViewV1 : public QMainWindow
+class SimulationViewV2 : public QMainWindow
 {
     Q_OBJECT
 public:
-    SimulationViewV1(ApplicationModels* models, QWidget* parent = nullptr);
-    ~SimulationViewV1();
+    SimulationViewV2(ApplicationModels* m_models, QWidget* parent = nullptr);
 
 private:
-    void setup_toolbar();
-
-    QToolBar* m_toolBar{nullptr};
-    DocksController* m_docksController{nullptr};
     ApplicationModels* m_models{nullptr};
-    QuickSimEditor* m_quickSimEditor{nullptr};
 };
 
-#endif // DAREFL_MAINWINDOW_SIMULATIONVIEWV1_H
+#endif // DAREFL_MAINWINDOW_SIMULATIONVIEWV2_H

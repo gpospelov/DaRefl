@@ -14,8 +14,8 @@
 #include <darefl/mainwindow/simulationview_v1.h>
 #include <darefl/materialeditor/materialeditor.h>
 #include <darefl/model/applicationmodels.h>
-#include <darefl/quicksimeditor/quicksimeditor.h>
 #include <darefl/quicksimeditor/instrumentpropertyeditor.h>
+#include <darefl/quicksimeditor/quicksimeditor.h>
 #include <darefl/sldeditor/sldeditor.h>
 
 SimulationViewV1::SimulationViewV1(ApplicationModels* models, QWidget* parent)
