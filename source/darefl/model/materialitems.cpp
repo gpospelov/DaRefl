@@ -57,8 +57,8 @@ void MaterialBaseItem::init_magnetic_field()
 
 SLDMaterialItem::SLDMaterialItem() : MaterialBaseItem(::Constants::SLDMaterialItemType)
 {
-    addProperty(P_SLD_REAL, 1e-06)->setDisplayName("Re(SLD)");
-    addProperty(P_SLD_IMAG, 1e-08)->setDisplayName("Im(SLD)");
+    addProperty(P_SLD_REAL, 1e-06)->setDisplayName("Re(SLD)")->setLimits(RealLimits::limitless());
+    addProperty(P_SLD_IMAG, 1e-08)->setDisplayName("Im(SLD)")->setLimits(RealLimits::limitless());
     init_magnetic_field();
 }
 
