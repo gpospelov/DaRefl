@@ -10,7 +10,7 @@
 #ifndef DAREFL_IMPORTDATAVIEW_COLLAPSIBLEBAR_H
 #define DAREFL_IMPORTDATAVIEW_COLLAPSIBLEBAR_H
 
-#include <QWidget>
+#include <QFrame>
 
 class QLabel;
 class QString;
@@ -19,7 +19,7 @@ class QString;
 //! It is intended for placement into the QSplitter and makes visible/invisible client widget
 //! on clicks.
 
-class CollapsibleBar : public QWidget
+class CollapsibleBar : public QFrame
 {
     Q_OBJECT
 public:
