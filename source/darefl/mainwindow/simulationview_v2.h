@@ -23,9 +23,11 @@ class SimulationViewV2 : public QMainWindow
 {
     Q_OBJECT
 public:
-    SimulationViewV2(ApplicationModels* m_models, QWidget* parent = nullptr);
+    SimulationViewV2(ApplicationModels* models, QWidget* parent = nullptr);
 
 private:
+    void initEditorList();
+
     CollapsibleListWidget* m_editorList{nullptr};
     QuickSimEditor* m_simEditor{nullptr};
     ApplicationModels* m_models{nullptr};
