@@ -44,7 +44,7 @@ private:
     ActionManager* m_actionManager{nullptr};
     WelcomeView* m_welcomeView{nullptr};
     ImportDataView* m_importDataView{nullptr};
-    SimulationViewV1* m_reflWindow{nullptr};
+    SimulationViewV1* m_simView{nullptr};
     SettingsView* m_settingsView{nullptr};
     SimulationWidget* m_sim_widget{nullptr};
     MainBarWidget* m_barWidget{nullptr};
