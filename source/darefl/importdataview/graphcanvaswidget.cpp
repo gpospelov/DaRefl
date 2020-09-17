@@ -17,6 +17,7 @@ GraphCanvasWidget::GraphCanvasWidget(QWidget* parent)
 {
     auto layout = new QVBoxLayout(this);
     layout->addWidget(m_graphCanvas);
+    layout->setContentsMargins(0, 5, 5, 5);
 }
 
 void GraphCanvasWidget::setItem(CanvasItem* canvas_item)

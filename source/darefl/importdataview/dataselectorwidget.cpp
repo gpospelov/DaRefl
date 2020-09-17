@@ -12,10 +12,10 @@
 #include <QSplitter>
 #include <QTreeView>
 #include <QVBoxLayout>
-#include <darefl/mainwindow/collapsiblelistwidget.h>
 #include <darefl/importdataview/dataselectionmodel.h>
 #include <darefl/importdataview/dataselectorwidget.h>
 #include <darefl/importdataview/dataviewmodel.h>
+#include <darefl/mainwindow/collapsiblelistwidget.h>
 #include <darefl/model/experimentaldataitems.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/widgets/standardtreeviews.h>
@@ -31,8 +31,10 @@ DataSelectorWidget::DataSelectorWidget(DataViewModel* view_model, QWidget* paren
     auto layout = new QVBoxLayout(this);
 
     m_collapsibleWidget->addWidget(m_selectorTree, "Canvas list");
-    m_collapsibleWidget->addWidget(m_canvasPropertyEditor, "Canvas properties");
-    m_collapsibleWidget->addWidget(m_graphPropertyEditor, "Graph properties", true);
+    m_collapsibleWidget->addWidget(m_canvasPropertyEditor, "Canvas properties",
+                                   /*set_collapsed*/ true);
+    m_collapsibleWidget->addWidget(m_graphPropertyEditor, "Graph properties",
+                                   /*set_collapsed*/ true);
 
     layout->addWidget(m_collapsibleWidget);
 
