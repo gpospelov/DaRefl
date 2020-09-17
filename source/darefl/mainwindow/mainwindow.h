@@ -15,7 +15,7 @@
 
 class WelcomeView;
 class ImportDataView;
-class ReflDockWindow;
+class SimulationViewV1;
 class SimulationWidget;
 class MainBarWidget;
 class ApplicationModels;
@@ -44,7 +44,7 @@ private:
     ActionManager* m_actionManager{nullptr};
     WelcomeView* m_welcomeView{nullptr};
     ImportDataView* m_importDataView{nullptr};
-    ReflDockWindow* m_reflWindow{nullptr};
+    SimulationViewV1* m_reflWindow{nullptr};
     SettingsView* m_settingsView{nullptr};
     SimulationWidget* m_sim_widget{nullptr};
     MainBarWidget* m_barWidget{nullptr};

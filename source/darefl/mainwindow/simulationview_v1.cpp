@@ -11,14 +11,14 @@
 #include <QToolBar>
 #include <darefl/layereditor/layereditor.h>
 #include <darefl/mainwindow/dockscontroller.h>
-#include <darefl/mainwindow/refldockwindow.h>
+#include <darefl/mainwindow/simulationview_v1.h>
 #include <darefl/materialeditor/materialeditor.h>
 #include <darefl/model/applicationmodels.h>
 #include <darefl/quicksimeditor/quicksimeditor.h>
 #include <darefl/quicksimeditor/instrumentpropertyeditor.h>
 #include <darefl/sldeditor/sldeditor.h>
 
-ReflDockWindow::ReflDockWindow(ApplicationModels* models, QWidget* parent)
+SimulationViewV1::SimulationViewV1(ApplicationModels* models, QWidget* parent)
     : QMainWindow(parent), m_toolBar(new QToolBar), m_docksController(new DocksController(this)),
       m_models(models), m_quickSimEditor(new QuickSimEditor(this))
 {
@@ -46,9 +46,9 @@ ReflDockWindow::ReflDockWindow(ApplicationModels* models, QWidget* parent)
     instrument_editor->setModels(models);
 }
 
-ReflDockWindow::~ReflDockWindow() = default;
+SimulationViewV1::~SimulationViewV1() = default;
 
-void ReflDockWindow::setup_toolbar()
+void SimulationViewV1::setup_toolbar()
 {
     const int toolbar_icon_size = 24;
     m_toolBar->setIconSize(QSize(toolbar_icon_size, toolbar_icon_size));

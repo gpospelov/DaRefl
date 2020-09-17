@@ -16,7 +16,7 @@
 #include <darefl/importdataview/importdataview.h>
 #include <darefl/mainwindow/mainbarwidget.h>
 #include <darefl/mainwindow/mainwindow.h>
-#include <darefl/mainwindow/refldockwindow.h>
+#include <darefl/mainwindow/simulationview_v1.h>
 #include <darefl/mainwindow/simulationwidget/simulationwidget.h>
 #include <darefl/model/applicationmodels.h>
 #include <darefl/settingsview/settingsview.h>
@@ -69,7 +69,7 @@ void MainWindow::init_components()
 {
     m_welcomeView = new WelcomeView(m_models.get());
     m_importDataView = new ImportDataView(m_models.get());
-    m_reflWindow = new ReflDockWindow(m_models.get());
+    m_reflWindow = new SimulationViewV1(m_models.get());
     m_settingsView = new SettingsView(m_models.get());
     m_barWidget = new MainBarWidget;
 

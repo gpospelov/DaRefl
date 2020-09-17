@@ -20,8 +20,8 @@ target_sources(${library_name} PRIVATE
     mainbarwidget.h
     mainwindow.cpp
     mainwindow.h
-    refldockwindow.cpp
-    refldockwindow.h
+    simulationview_v1.cpp
+    simulationview_v1.h
     styleutils.cpp
     styleutils.h
 )
