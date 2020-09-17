@@ -23,6 +23,17 @@ SimulationViewV2::SimulationViewV2(ApplicationModels* models, QWidget* parent)
 {
     auto splitter = new QSplitter;
 
+    initEditorList();
+
+    splitter->addWidget(m_editorList);
+    splitter->addWidget(m_simEditor);
+
+    setCentralWidget(splitter);
+}
+
+void SimulationViewV2::initEditorList()
+{
+    m_editorList->layout()->setContentsMargins(4, 4, 4, 4);
     auto material_editor = new MaterialEditor(this);
     auto layer_editor = new LayerEditor(this);
     auto sld_editor = new SLDEditor(this);
@@ -33,14 +44,9 @@ SimulationViewV2::SimulationViewV2(ApplicationModels* models, QWidget* parent)
     m_editorList->addWidget(instrument_editor, "Instrument editor", true);
     m_editorList->addWidget(sld_editor, "SLD editor", true);
 
-    splitter->addWidget(m_editorList);
-    splitter->addWidget(m_simEditor);
-
-    setCentralWidget(splitter);
-
-    material_editor->setModels(models);
-    layer_editor->setModels(models);
-    sld_editor->setModels(models);
-    m_simEditor->setModels(models);
-    instrument_editor->setModels(models);
+    material_editor->setModels(m_models);
+    layer_editor->setModels(m_models);
+    sld_editor->setModels(m_models);
+    m_simEditor->setModels(m_models);
+    instrument_editor->setModels(m_models);
 }
