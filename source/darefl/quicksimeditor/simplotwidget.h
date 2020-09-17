@@ -30,6 +30,8 @@ public:
 
     void setModels(ApplicationModels* models);
 
+    void update_viewport();
+
 private:
     ApplicationModels* m_models{nullptr};
     ModelView::GraphCanvas* m_specularCanvas{nullptr};

@@ -26,15 +26,12 @@ using namespace ModelView;
 
 QuickSimEditor::QuickSimEditor(QWidget* parent)
     : EditorWidget(parent), sim_controller(new QuickSimController(this)),
-      plot_controller(new SimPlotController(this)), spec_canvas(new ModelView::GraphCanvas),
-      m_plotWidget(new SimPlotWidget)
+      plot_controller(new SimPlotController(this)), m_plotWidget(new SimPlotWidget)
 {
     setWindowTitle(QString("Reflectivity plot"));
     p_toolbar = dynamic_cast<EditorToolBar*>(new QuickSimEditorToolBar);
-    p_toolbar->setToggleWidget(spec_canvas);
     auto layout = new QVBoxLayout(this);
     layout->addWidget(p_toolbar);
-    layout->addWidget(spec_canvas);
     layout->addWidget(m_plotWidget);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
@@ -52,7 +49,7 @@ void QuickSimEditor::setModels(ApplicationModels* models)
     sim_controller->setModels(models);
     plot_controller->setModels(models);
     // toolbar->setModels(models);
-    spec_canvas->setItem(app_models->jobModel()->specular_viewport());
+    m_plotWidget->setModels(models);
 }
 
 QSize QuickSimEditor::sizeHint() const
@@ -70,7 +67,7 @@ QSize QuickSimEditor::minimumSizeHint() const
 void QuickSimEditor::setup_toolbar_connections()
 {
     // Request to reset plot is propagated from toolbar to viewports.
-    auto on_reset_view = [this]() { spec_canvas->update_viewport(); };
+    auto on_reset_view = [this]() { m_plotWidget->update_viewport(); };
     connect(dynamic_cast<QuickSimEditorToolBar*>(p_toolbar),
             &QuickSimEditorToolBar::resetViewRequest, on_reset_view);
 

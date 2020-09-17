@@ -7,11 +7,16 @@
 //
 // ************************************************************************** //
 
-#include <darefl/quicksimeditor/simplotwidget.h>
-#include <mvvm/plotting/graphcanvas.h>
+#include <QList>
 #include <QSplitter>
 #include <QVBoxLayout>
-#include <QList>
+#include <darefl/model/applicationmodels.h>
+#include <darefl/model/experimentaldataitems.h>
+#include <darefl/model/jobitem.h>
+#include <darefl/model/jobmodel.h>
+#include <darefl/quicksimeditor/simplotwidget.h>
+#include <mvvm/plotting/graphcanvas.h>
+#include <mvvm/standarditems/graphviewportitem.h>
 
 SimPlotWidget::SimPlotWidget(QWidget* parent)
     : QWidget(parent), m_specularCanvas(new ModelView::GraphCanvas),
@@ -26,6 +31,7 @@ SimPlotWidget::SimPlotWidget(QWidget* parent)
     splitter->addWidget(m_specularCanvas);
     splitter->addWidget(m_diffCanvas);
 
+    //    splitter->setStyleSheet("background-color:white;");
     splitter->setSizes(QList<int>() << 300 << 100);
 
     layout->addWidget(splitter);
@@ -34,4 +40,11 @@ SimPlotWidget::SimPlotWidget(QWidget* parent)
 void SimPlotWidget::setModels(ApplicationModels* models)
 {
     m_models = models;
+
+    m_specularCanvas->setItem(m_models->jobModel()->specular_viewport());
+}
+
+void SimPlotWidget::update_viewport()
+{
+    m_specularCanvas->update_viewport();
 }
