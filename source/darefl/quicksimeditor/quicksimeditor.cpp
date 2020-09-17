@@ -17,6 +17,7 @@
 #include <darefl/quicksimeditor/quicksimeditor.h>
 #include <darefl/quicksimeditor/quicksimeditortoolbar.h>
 #include <darefl/quicksimeditor/simplotcontroller.h>
+#include <darefl/quicksimeditor/simplotwidget.h>
 #include <mvvm/model/modelutils.h>
 #include <mvvm/plotting/graphcanvas.h>
 #include <mvvm/standarditems/graphviewportitem.h>
@@ -25,7 +26,8 @@ using namespace ModelView;
 
 QuickSimEditor::QuickSimEditor(QWidget* parent)
     : EditorWidget(parent), sim_controller(new QuickSimController(this)),
-      plot_controller(new SimPlotController(this)), spec_canvas(new ModelView::GraphCanvas)
+      plot_controller(new SimPlotController(this)), spec_canvas(new ModelView::GraphCanvas),
+      m_plotWidget(new SimPlotWidget)
 {
     setWindowTitle(QString("Reflectivity plot"));
     p_toolbar = dynamic_cast<EditorToolBar*>(new QuickSimEditorToolBar);
@@ -33,6 +35,7 @@ QuickSimEditor::QuickSimEditor(QWidget* parent)
     auto layout = new QVBoxLayout(this);
     layout->addWidget(p_toolbar);
     layout->addWidget(spec_canvas);
+    layout->addWidget(m_plotWidget);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
 

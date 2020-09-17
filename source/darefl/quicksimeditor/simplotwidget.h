@@ -12,6 +12,11 @@
 
 #include <QWidget>
 
+namespace ModelView
+{
+class GraphCanvas;
+}
+
 class ApplicationModels;
 
 //! Presents simulation results together with reference experimental data on two canvas.
@@ -27,6 +32,8 @@ public:
 
 private:
     ApplicationModels* m_models{nullptr};
+    ModelView::GraphCanvas* m_specularCanvas{nullptr};
+    ModelView::GraphCanvas* m_diffCanvas{nullptr};
 };
 
 #endif // DAREFL_QUICKSIMEDITOR_SIMPLOTWIDGET_H

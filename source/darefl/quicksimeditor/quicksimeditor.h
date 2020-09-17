@@ -23,6 +23,7 @@ class ApplicationModels;
 class QuickSimController;
 class QuickSimEditorToolBar;
 class SimPlotController;
+class SimPlotWidget;
 
 //! Quick reflectivity simulations.
 
@@ -46,6 +47,7 @@ private:
     QuickSimController* sim_controller{nullptr};
     SimPlotController* plot_controller{nullptr};
     ModelView::GraphCanvas* spec_canvas{nullptr};
+    SimPlotWidget* m_plotWidget{nullptr};
 };
 
 #endif // DAREFL_QUICKSIMEDITOR_QUICKSIMEDITOR_H
