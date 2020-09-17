@@ -14,6 +14,8 @@
 #include <memory>
 
 class ApplicationModels;
+class CollapsibleListWidget;
+class QuickSimEditor;
 
 //! Main simulation window with all components for quick sample editing and simulations.
 
@@ -24,6 +26,8 @@ public:
     SimulationViewV2(ApplicationModels* m_models, QWidget* parent = nullptr);
 
 private:
+    CollapsibleListWidget* m_editorList{nullptr};
+    QuickSimEditor* m_simEditor{nullptr};
     ApplicationModels* m_models{nullptr};
 };
 
