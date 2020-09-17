@@ -11,12 +11,6 @@
 #define DAREFL_QUICKSIMEDITOR_QUICKSIMEDITOR_H
 
 #include <darefl/mainwindow/editorwidget.h>
-#include <memory>
-
-namespace ModelView
-{
-class GraphCanvas;
-}
 
 class JobModel;
 class ApplicationModels;
@@ -46,7 +40,6 @@ private:
     ApplicationModels* app_models{nullptr};
     QuickSimController* sim_controller{nullptr};
     SimPlotController* plot_controller{nullptr};
-    ModelView::GraphCanvas* spec_canvas{nullptr};
     SimPlotWidget* m_plotWidget{nullptr};
 };
 
