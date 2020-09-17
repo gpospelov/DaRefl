@@ -22,6 +22,8 @@ target_sources(${library_name} PRIVATE
     mainwindow.h
     simulationview_v1.cpp
     simulationview_v1.h
+    simulationview_v2.cpp
+    simulationview_v2.h
     styleutils.cpp
     styleutils.h
 )
