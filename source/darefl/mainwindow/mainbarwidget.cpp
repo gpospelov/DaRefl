@@ -20,12 +20,10 @@ MainBarWidget::MainBarWidget(QWidget* parent)
 {
     label_layout->setContentsMargins(0, 0, 0, 0);
 
-    auto layout = new QVBoxLayout;
+    auto layout = new QVBoxLayout(this);
     layout->addLayout(label_layout);
     layout->addWidget(stacked_widget);
     layout->setContentsMargins(0, 0, 0, 0);
-
-    setLayout(layout);
 }
 
 MainBarWidget::~MainBarWidget() = default;
