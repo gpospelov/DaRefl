@@ -16,16 +16,18 @@
 #include <mvvm/widgets/widgetutils.h>
 
 CollapsibleBar::CollapsibleBar(QWidget* parent)
-    : QWidget(parent), m_pixmapLabel(new QLabel), m_titleLabel(new QLabel)
+    : QFrame(parent), m_pixmapLabel(new QLabel), m_titleLabel(new QLabel)
 {
     m_pixmapLabel->setPixmap(QPixmap(":/icons/chevron-down.svg"));
 
     auto layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 4, 0, 0);
+
     layout->addWidget(m_pixmapLabel, Qt::AlignLeft);
     layout->addWidget(m_titleLabel, Qt::AlignCenter);
 
     setFixedHeight(ModelView::Utils::HeightOfLetterM() * 2);
+    setFrameStyle(QFrame::StyledPanel | QFrame::Raised);
 }
 
 void CollapsibleBar::setWidget(QWidget* widget, const QString& title)
