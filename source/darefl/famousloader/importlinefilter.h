@@ -43,6 +43,7 @@ public:
     std::string color() const;
     std::vector<std::string> ignoreStrings() const;
     std::string ignoreString() const;
+    std::vector<std::vector<int>> ignoreLines() const;
     int start() const;
     int end() const;
 
@@ -54,8 +55,12 @@ public:
     void setColor(std::string color_string);
     void setIgnoreStrings(std::vector<std::string>& ignore_strings);
     void setIgnoreString(std::string ignore_string);
+    void setIgnoreLines(std::vector<std::vector<int>>);
     void setStart(int start_line);
     void setEnd(int end_line);
+
+private:
+    bool lineIgnored(int line_num) const;
 
 private:
     std::string m_name;
@@ -64,7 +69,7 @@ private:
     std::string m_color;
 
     std::vector<std::string> m_ignore_strings;
-    std::vector<int> m_ignore_lines;
+    std::vector<std::vector<int>> m_ignore_lines;
 
     bool m_active;
     char m_separator = ' ';
