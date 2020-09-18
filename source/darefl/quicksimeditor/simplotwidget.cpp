@@ -18,10 +18,10 @@
 #include <mvvm/model/modelutils.h>
 #include <mvvm/model/sessionmodel.h>
 #include <mvvm/plotting/graphcanvas.h>
+#include <mvvm/standarditems/axisitems.h>
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
-#include <mvvm/standarditems/axisitems.h>
 
 // ----------------------------------------------------------------------------
 
@@ -41,8 +41,8 @@ public:
 
     void clearGraphs()
     {
-//        for (auto graph : viewport->graphItems())
-//            ModelView::Utils::DeleteItemFromModel(graph);
+        //        for (auto graph : viewport->graphItems())
+        //            ModelView::Utils::DeleteItemFromModel(graph);
     }
 
     void updateDiffGraph(const ModelView::Data1DItem* g1, const ModelView::Data1DItem* g2)
@@ -55,10 +55,10 @@ public:
         std::vector<double> values2 = g2->binValues();
         std::vector<double> diff_values;
 
-        for (size_t i = 0; i< values1.size(); ++i) {
+        for (size_t i = 0; i < values1.size(); ++i) {
             double v1 = values1[i];
             double v2 = values2[i];
-            diff_values.push_back(2*(v1-v2)/(v1+v2));
+            diff_values.push_back(2 * (v1 - v2) / (v1 + v2));
         }
 
         diff_data->setAxis(ModelView::PointwiseAxisItem::create(g1->binCenters()));
@@ -103,9 +103,10 @@ void SimPlotWidget::setModels(ApplicationModels* models)
     m_diffCanvas->setItem(m_diffModel->viewport);
 }
 
-void SimPlotWidget::update_viewport()
+void SimPlotWidget::updateViewport()
 {
     m_specularCanvas->update_viewport();
+    m_diffCanvas->update_viewport();
 }
 
 //! Init the content of diff model

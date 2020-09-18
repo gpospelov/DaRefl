@@ -32,7 +32,7 @@ public:
 
     void setModels(ApplicationModels* models);
 
-    void update_viewport();
+    void updateViewport();
 
 private:
     void initDiffModel();

@@ -67,7 +67,7 @@ QSize QuickSimEditor::minimumSizeHint() const
 void QuickSimEditor::setup_toolbar_connections()
 {
     // Request to reset plot is propagated from toolbar to viewports.
-    auto on_reset_view = [this]() { m_plotWidget->update_viewport(); };
+    auto on_reset_view = [this]() { m_plotWidget->updateViewport(); };
     connect(dynamic_cast<QuickSimEditorToolBar*>(p_toolbar),
             &QuickSimEditorToolBar::resetViewRequest, on_reset_view);
 
