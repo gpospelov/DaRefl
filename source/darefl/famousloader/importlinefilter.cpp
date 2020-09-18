@@ -46,7 +46,8 @@ void LineFilter::processColors(std::vector<std::string>& color_vec) const
         return;
 
     for (int i = start; i < ((end < color_vec.size()) ? (end) : (color_vec.size())); ++i) {
-        color_vec.at(i) = m_color;
+        if (!lineIgnored(i))
+            color_vec.at(i) = m_color;
     }
 }
 
@@ -147,6 +148,12 @@ std::string LineFilter::ignoreString() const
     return output;
 }
 
+//! Getter for ignore lines
+std::vector<std::vector<int>> LineFilter::ignoreLines() const
+{
+    return m_ignore_lines;
+}
+
 //! Getter for the starting line integer
 int LineFilter::start() const
 {
@@ -215,6 +222,12 @@ void LineFilter::setIgnoreString(std::string ignore_string)
     setIgnoreStrings(result);
 }
 
+//! Set the ignore lines vector
+void LineFilter::setIgnoreLines(std::vector<std::vector<int>> ignore_lines)
+{
+    m_ignore_lines = ignore_lines;
+}
+
 //! Set the start line
 void LineFilter::setStart(int start_line)
 {
@@ -225,6 +238,20 @@ void LineFilter::setStart(int start_line)
 void LineFilter::setEnd(int end_line)
 {
     m_end_line = end_line;
+}
+
+//! Set the end line
+bool LineFilter::lineIgnored(int line_num) const
+{
+    for (int i = 0; i < m_ignore_lines.size(); ++i) {
+        if (m_ignore_lines[i].size() == 1 && m_ignore_lines[i][0] == line_num) {
+            return true;
+        } else {
+            if (m_ignore_lines[i][0] <= line_num && m_ignore_lines[i][1] >= line_num)
+                return true;
+        }
+    }
+    return false;
 }
 
 } // namespace DataImportLogic
