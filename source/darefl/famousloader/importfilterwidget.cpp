@@ -95,27 +95,28 @@ void ImportFilterWidget::setLayout()
 //! Initial display
 void ImportFilterWidget::initialise()
 {
-    for (int i = 0; i < 2; ++i) {
+    for (int i = 0; i < 1; ++i) {
         addLineFilter();
     }
+
+    DataImportLogic::LineFilter* line_filter;
+
     // --------------------------------
     // --DEVELOP-- (Can be changed again to revert all functionalities)
     // To revert: remove non commented code and uncomment commented code
 
-    DataImportLogic::LineFilter* line_filter;
     // QList<QListWidgetItem*> items = p_list_widget->findItems("*", Qt::MatchWildcard);
 
     // line_filter =
     //     dynamic_cast<LineFilterWidget*>(p_list_widget->itemWidget(items[0]))->lineFilter();
 
-    line_filter = dynamic_cast<LineFilterWidget*>(layout()->itemAt(0)->widget())->lineFilter();
+    // line_filter->setType("Header");
+    // line_filter->setActive(true);
+    // line_filter->setStart(2);
+    // line_filter->setEnd(3);
+    // line_filter->setSeparator("Space ( )");
+    // line_filter->setColor("red");
     // --------------------------------
-    line_filter->setType("Header");
-    line_filter->setActive(true);
-    line_filter->setStart(2);
-    line_filter->setEnd(3);
-    line_filter->setSeparator("Space ( )");
-    line_filter->setColor("red");
 
     // --------------------------------
     // --DEVELOP-- (Can be changed again to revert all functionalities)
@@ -123,7 +124,7 @@ void ImportFilterWidget::initialise()
     // line_filter =
     //     dynamic_cast<LineFilterWidget*>(p_list_widget->itemWidget(items[1]))->lineFilter();
 
-    line_filter = dynamic_cast<LineFilterWidget*>(layout()->itemAt(1)->widget())->lineFilter();
+    line_filter = dynamic_cast<LineFilterWidget*>(layout()->itemAt(0)->widget())->lineFilter();
     // --------------------------------
 
     line_filter->setType("Data");

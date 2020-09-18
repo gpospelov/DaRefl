@@ -27,7 +27,7 @@ namespace DataImportGui
 // -------------------------------------------------
 //! This is the constructor
 LineFilterWidget::LineFilterWidget(DataImportLogic::LineFilter* line_filter, QWidget* parent)
-    : QGroupBox(parent), p_line_filter(line_filter)
+    : QWidget(parent), p_line_filter(line_filter)
 {
     createComponents();
     initComponents();
@@ -74,7 +74,6 @@ void LineFilterWidget::grabFromLineFilter()
         p_active_checkbox->init(p_line_filter->active());
     }
     p_type_select->setCurrentText(QString::fromStdString(p_line_filter->type()));
-    setTitle(QString::fromStdString(p_line_filter->type()));
     p_color_editor->setData(QColor(QString::fromStdString(p_line_filter->color())));
     p_line_start->setValue(p_line_filter->start());
     p_line_end->setValue(p_line_filter->end());

@@ -76,7 +76,7 @@ public:
 
 // -------------------------------------------------
 //! This is the main dialog for the data loader
-class LineFilterWidget : public QGroupBox
+class LineFilterWidget : public QWidget
 {
     Q_OBJECT
 
