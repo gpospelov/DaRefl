@@ -52,6 +52,7 @@ public:
     ModelView::Data1DItem* specular_data() const;
     CanvasItem* specular_viewport() const;
 
+    ModelView::GraphItem* specularGraph() const;
     ModelView::GraphItem* referenceGraph() const;
 
     void updateReferenceGraphFrom(const SpecularInstrumentItem* instrument);

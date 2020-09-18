@@ -12,12 +12,15 @@
 #include <QVBoxLayout>
 #include <darefl/model/applicationmodels.h>
 #include <darefl/model/experimentaldataitems.h>
+#include <darefl/model/instrumentitems.h>
+#include <darefl/model/instrumentmodel.h>
 #include <darefl/model/jobitem.h>
 #include <darefl/model/jobmodel.h>
 #include <darefl/quicksimeditor/simplotwidget.h>
 #include <mvvm/model/modelutils.h>
 #include <mvvm/model/sessionmodel.h>
 #include <mvvm/plotting/graphcanvas.h>
+#include <mvvm/project/modelhaschangedcontroller.h>
 #include <mvvm/standarditems/axisitems.h>
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphitem.h>
@@ -27,6 +30,8 @@
 
 //! Simple model to hold graphs representing relative difference of Data1DItem's
 
+// FIXME consider replacement with qt-mvvm/DiffGraphViewportItem
+
 class DiffGraphModel : public ModelView::SessionModel
 {
 public:
@@ -34,22 +39,26 @@ public:
     {
         viewport = insertItem<ModelView::GraphViewportItem>();
         diff_data = insertItem<ModelView::Data1DItem>();
-        diff_graph = insertItem<ModelView::GraphItem>();
-
-        diff_graph->setDataItem(diff_data);
+        diff_graph = insertItem<ModelView::GraphItem>(viewport);
     }
 
     void clearGraphs()
     {
         //        for (auto graph : viewport->graphItems())
         //            ModelView::Utils::DeleteItemFromModel(graph);
+        diff_graph->setDataItem(nullptr);
     }
 
     void updateDiffGraph(const ModelView::Data1DItem* g1, const ModelView::Data1DItem* g2)
     {
-        assert(g1->binCenters().size() == g2->binCenters().size());
+        if (!g1 || !g2)
+            return;
 
-        std::vector<double> centers = g1->binCenters();
+        if (g1->binValues().size() != g2->binValues().size())
+            return;
+
+        std::vector<double> centers1 = g1->binCenters();
+        std::vector<double> centers2 = g2->binCenters();
 
         std::vector<double> values1 = g1->binValues();
         std::vector<double> values2 = g2->binValues();
@@ -63,6 +72,7 @@ public:
 
         diff_data->setAxis(ModelView::PointwiseAxisItem::create(g1->binCenters()));
         diff_data->setContent(diff_values);
+        diff_graph->setDataItem(diff_data);
     }
 
     ModelView::GraphViewportItem* viewport{nullptr};
@@ -89,8 +99,6 @@ SimPlotWidget::SimPlotWidget(QWidget* parent)
     splitter->setSizes(QList<int>() << 300 << 100);
 
     layout->addWidget(splitter);
-
-    initDiffModel();
 }
 
 SimPlotWidget::~SimPlotWidget() = default;
@@ -98,6 +106,10 @@ SimPlotWidget::~SimPlotWidget() = default;
 void SimPlotWidget::setModels(ApplicationModels* models)
 {
     m_models = models;
+
+    auto on_model_change = [this]() { updateDiffPlot(); };
+    m_jobModelChangedController = std::make_unique<ModelView::ModelHasChangedController>(
+        m_models->jobModel(), on_model_change);
 
     m_specularCanvas->setItem(m_models->jobModel()->specular_viewport());
     m_diffCanvas->setItem(m_diffModel->viewport);
@@ -109,6 +121,22 @@ void SimPlotWidget::updateViewport()
     m_diffCanvas->update_viewport();
 }
 
-//! Init the content of diff model
+// FIXME requires serious refactoring
 
-void SimPlotWidget::initDiffModel() {}
+//! Update difference plot.
+
+#include <QDebug>
+
+void SimPlotWidget::updateDiffPlot()
+{
+    auto job = m_models->jobModel()->topItem<JobItem>();
+    auto reference_graph = job->referenceGraph();
+    auto specular_graph = job->specularGraph();
+
+    qDebug() << "Model has changed";
+
+    if (reference_graph && specular_graph)
+        m_diffModel->updateDiffGraph(specular_graph->dataItem(), reference_graph->dataItem());
+    else
+        m_diffModel->clearGraphs();
+}
