@@ -199,6 +199,7 @@ void LineFilterWidget::initComponents()
     p_type_select->addItems(QStringList{"Header", "Units", "Data", "Comments", "Info"});
     p_range_start->addItems(QStringList{"Between lines", "At line"});
     p_range_end->addItems(QStringList{"and", "and end of file."});
+    p_ignore_lines->setPlaceholderText(QString("example: 5,10-15"));
 
     QStringList separators;
     if (p_line_filter) {
@@ -452,6 +453,8 @@ void LineFilterWidget::dataChanged()
     p_line_filter->setIgnoreString(p_ignore_strings->text().toStdString());
     p_line_filter->setStart(start);
     p_line_filter->setEnd(end);
+    p_line_filter->setIgnoreLines(
+        DataImportUtils::getRangesFromString(p_ignore_lines->text().toStdString()));
 
     emit parameterChanged();
 }
