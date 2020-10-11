@@ -4,10 +4,6 @@ add_subdirectory(simulationwidget)
 target_sources(${library_name} PRIVATE
     actionmanager.cpp
     actionmanager.h
-    collapsiblebar.cpp
-    collapsiblebar.h
-    collapsiblelistwidget.cpp
-    collapsiblelistwidget.h
     dockscontroller.cpp
     dockscontroller.h
     editortoolbar.cpp
