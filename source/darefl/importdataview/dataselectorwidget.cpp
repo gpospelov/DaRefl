@@ -15,7 +15,7 @@
 #include <darefl/importdataview/dataselectionmodel.h>
 #include <darefl/importdataview/dataselectorwidget.h>
 #include <darefl/importdataview/dataviewmodel.h>
-#include <darefl/mainwindow/collapsiblelistwidget.h>
+#include <mvvm/widgets/collapsiblelistwidget.h>
 #include <darefl/model/experimentaldataitems.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/widgets/standardtreeviews.h>
@@ -26,7 +26,7 @@ DataSelectorWidget::DataSelectorWidget(DataViewModel* view_model, QWidget* paren
       m_selectionModel(new DataSelectionModel(m_viewModel)), m_selectorTree(new QTreeView),
       m_canvasPropertyEditor(new ModelView::PropertyTreeView),
       m_graphPropertyEditor(new ModelView::PropertyTreeView),
-      m_collapsibleWidget(new CollapsibleListWidget)
+      m_collapsibleWidget(new ModelView::CollapsibleListWidget)
 {
     auto layout = new QVBoxLayout(this);
 

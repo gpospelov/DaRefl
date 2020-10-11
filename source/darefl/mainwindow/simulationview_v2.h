@@ -13,8 +13,11 @@
 #include <QMainWindow>
 #include <memory>
 
-class ApplicationModels;
+namespace ModelView {
 class CollapsibleListWidget;
+}
+
+class ApplicationModels;
 class QuickSimEditor;
 
 //! Main simulation window with all components for quick sample editing and simulations.
@@ -28,7 +31,7 @@ public:
 private:
     void initEditorList();
 
-    CollapsibleListWidget* m_editorList{nullptr};
+    ModelView::CollapsibleListWidget* m_editorList{nullptr};
     QuickSimEditor* m_simEditor{nullptr};
     ApplicationModels* m_models{nullptr};
 };

@@ -10,16 +10,18 @@
 #include <QSplitter>
 #include <QVBoxLayout>
 #include <darefl/layereditor/layereditor.h>
-#include <darefl/mainwindow/collapsiblelistwidget.h>
 #include <darefl/mainwindow/simulationview_v2.h>
 #include <darefl/materialeditor/materialeditor.h>
 #include <darefl/quicksimeditor/instrumentpropertyeditor.h>
 #include <darefl/quicksimeditor/quicksimeditor.h>
 #include <darefl/sldeditor/sldeditor.h>
+#include <mvvm/widgets/collapsiblelistwidget.h>
+
+using namespace ModelView;
 
 SimulationViewV2::SimulationViewV2(ApplicationModels* models, QWidget* parent)
-    : QMainWindow(parent), m_editorList(new CollapsibleListWidget), m_simEditor(new QuickSimEditor),
-      m_models(models)
+    : QMainWindow(parent), m_editorList(new CollapsibleListWidget),
+      m_simEditor(new QuickSimEditor), m_models(models)
 {
     auto splitter = new QSplitter;
 
@@ -40,9 +42,9 @@ void SimulationViewV2::initEditorList()
     auto instrument_editor = new InstrumentPropertyEditor(this);
 
     m_editorList->addWidget(material_editor, "Material editor");
-    m_editorList->addWidget(layer_editor, "Layer editor", /*set_collapsed*/true);
-    m_editorList->addWidget(instrument_editor, "Instrument editor", /*set_collapsed*/true);
-    m_editorList->addWidget(sld_editor, "SLD editor", /*set_collapsed*/true);
+    m_editorList->addWidget(layer_editor, "Layer editor", /*set_collapsed*/ true);
+    m_editorList->addWidget(instrument_editor, "Instrument editor", /*set_collapsed*/ true);
+    m_editorList->addWidget(sld_editor, "SLD editor", /*set_collapsed*/ true);
 
     material_editor->setModels(m_models);
     layer_editor->setModels(m_models);
