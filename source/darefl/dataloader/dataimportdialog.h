@@ -15,7 +15,7 @@
 #include <QGroupBox>
 #include <QSettings>
 #include <QTabWidget>
-#include <darefl/famousloader/importlogic.h>
+#include <darefl/dataloader/importlogic.h>
 
 #include <memory>
 #include <string>

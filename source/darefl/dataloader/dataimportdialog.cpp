@@ -7,13 +7,13 @@
 //
 // ************************************************************************** //
 
-#include <darefl/famousloader/dataimportdialog.h>
+#include <darefl/dataloader/dataimportdialog.h>
 
-#include <darefl/famousloader/importfilewidget.h>
-#include <darefl/famousloader/importfilterwidget.h>
-#include <darefl/famousloader/importtableview.h>
-#include <darefl/famousloader/importtextview.h>
-#include <darefl/famousloader/importutils.h>
+#include <darefl/dataloader/importfilewidget.h>
+#include <darefl/dataloader/importfilterwidget.h>
+#include <darefl/dataloader/importtableview.h>
+#include <darefl/dataloader/importtextview.h>
+#include <darefl/dataloader/importutils.h>
 
 #include <QDialogButtonBox>
 #include <QHBoxLayout>

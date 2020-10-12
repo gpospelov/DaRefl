@@ -8,9 +8,9 @@
 // ************************************************************************** //
 
 #include "google_test.h"
-#include <darefl/famousloader/importfilterwidget.h>
-#include <darefl/famousloader/importlinefilterwidget.h>
-#include <darefl/famousloader/importlogic.h>
+#include <darefl/dataloader/importfilterwidget.h>
+#include <darefl/dataloader/importlinefilterwidget.h>
+#include <darefl/dataloader/importlogic.h>
 #include <mvvm/model/customvariants.h>
 
 #include <QComboBox>

@@ -10,11 +10,11 @@
 #ifndef DAREFL_FAMOUSLOADER_IMPORTLOGIC_H
 #define DAREFL_FAMOUSLOADER_IMPORTLOGIC_H
 
-#include <darefl/famousloader/importdatastructure.h>
-#include <darefl/famousloader/importfile.h>
-#include <darefl/famousloader/importlinefilter.h>
-#include <darefl/famousloader/importoutput.h>
-#include <darefl/famousloader/importutils.h>
+#include <darefl/dataloader/importdatastructure.h>
+#include <darefl/dataloader/importfile.h>
+#include <darefl/dataloader/importlinefilter.h>
+#include <darefl/dataloader/importoutput.h>
+#include <darefl/dataloader/importutils.h>
 
 #include <map>
 #include <memory>

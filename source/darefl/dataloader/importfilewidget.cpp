@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include <darefl/famousloader/importfilewidget.h>
+#include <darefl/dataloader/importfilewidget.h>
 #include <darefl/mainwindow/styleutils.h>
 
 #include <QFileDialog>

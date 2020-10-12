@@ -18,7 +18,7 @@
 #include <QWidget>
 #include <memory>
 
-#include <darefl/famousloader/importlogic.h>
+#include <darefl/dataloader/importlogic.h>
 
 QT_BEGIN_NAMESPACE
 class QSpinBox;

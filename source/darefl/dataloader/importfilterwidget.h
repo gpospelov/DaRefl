@@ -13,7 +13,7 @@
 #include <QWidget>
 #include <vector>
 
-#include <darefl/famousloader/importlogic.h>
+#include <darefl/dataloader/importlogic.h>
 
 QT_BEGIN_NAMESPACE
 class QListWidget;

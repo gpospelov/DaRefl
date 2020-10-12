@@ -10,9 +10,9 @@
 #include "google_test.h"
 #include "test_utils.h"
 
-#include <darefl/famousloader/importdatacolumn.h>
-#include <darefl/famousloader/importdatastructure.h>
-#include <darefl/famousloader/importutils.h>
+#include <darefl/dataloader/importdatacolumn.h>
+#include <darefl/dataloader/importdatastructure.h>
+#include <darefl/dataloader/importutils.h>
 
 #include <cmath>
 #include <string>

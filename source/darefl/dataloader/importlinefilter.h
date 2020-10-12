@@ -10,8 +10,8 @@
 #ifndef DAREFL_FAMOUSLOADER_IMPORTLINEFILTER_H
 #define DAREFL_FAMOUSLOADER_IMPORTLINEFILTER_H
 
-#include <darefl/famousloader/importdatastructure.h>
-#include <darefl/famousloader/importoutput.h>
+#include <darefl/dataloader/importdatastructure.h>
+#include <darefl/dataloader/importoutput.h>
 
 #include <map>
 #include <string>

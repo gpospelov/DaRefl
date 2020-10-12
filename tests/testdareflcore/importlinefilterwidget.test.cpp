@@ -8,8 +8,8 @@
 // ************************************************************************** //
 
 #include "google_test.h"
-#include <darefl/famousloader/importlinefilter.h>
-#include <darefl/famousloader/importlinefilterwidget.h>
+#include <darefl/dataloader/importlinefilter.h>
+#include <darefl/dataloader/importlinefilterwidget.h>
 
 #include <QComboBox>
 #include <QLineEdit>

@@ -10,8 +10,8 @@
 #ifndef DAREFL_FAMOUSLOADER_IMPORTTABLEVIEW_H
 #define DAREFL_FAMOUSLOADER_IMPORTTABLEVIEW_H
 
-#include <darefl/famousloader/importdatastructure.h>
-#include <darefl/famousloader/importutils.h>
+#include <darefl/dataloader/importdatastructure.h>
+#include <darefl/dataloader/importutils.h>
 
 #include <QAbstractItemModel>
 #include <QModelIndex>
