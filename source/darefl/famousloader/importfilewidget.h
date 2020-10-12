@@ -47,9 +47,9 @@ private:
     std::vector<std::string> currentFiles() const;
 
 private:
-    QListView* p_list_view{nullptr};
-    QStringListModel* p_list_model{nullptr};
-    QString m_default_path{""};
+    QListView* m_listView{nullptr};
+    QStringListModel* m_listModel{nullptr};
+    QString m_defaultPath{""};
 };
 
 } // End of namespace DataImportGui

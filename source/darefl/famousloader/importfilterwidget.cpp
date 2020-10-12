@@ -26,7 +26,7 @@ namespace DataImportGui
 // -------------------------------------------------
 //! This is the constructor
 ImportFilterWidget::ImportFilterWidget(DataImportLogic::ImportLogic* import_logic, QWidget* parent)
-    : QWidget(parent), p_import_logic(import_logic)
+    : QWidget(parent), m_importLogic(import_logic)
 {
     setLayout();
     initialise();
@@ -147,7 +147,7 @@ void ImportFilterWidget::addLineFilter()
     // auto line_filter =
     //     p_import_logic->addLineFilter("Filter " + std::to_string(p_list_widget->count()));
 
-    auto line_filter = p_import_logic->addLineFilter("Filter " + std::to_string(0));
+    auto line_filter = m_importLogic->addLineFilter("Filter " + std::to_string(0));
 
     // --------------------------------
 
@@ -319,7 +319,7 @@ void ImportFilterWidget::handleInternalMoveEvent()
 //! This manages the naming by allowing only dofferent names and sends it upstream if changed
 void ImportFilterWidget::processNameChanged(std::string name, LineFilterWidget* widget)
 {
-    if (!p_import_logic->nameInFilters(name)) {
+    if (!m_importLogic->nameInFilters(name)) {
         widget->lineFilter()->setName(name);
         emit namesChanged();
     }
@@ -329,7 +329,7 @@ void ImportFilterWidget::processNameChanged(std::string name, LineFilterWidget* 
 //! This manages the types as only one data type and one header type is allowed
 void ImportFilterWidget::processTypeChanged(std::string type, LineFilterWidget* widget)
 {
-    auto line_filter = p_import_logic->typeInFilters(type);
+    auto line_filter = m_importLogic->typeInFilters(type);
     if (!line_filter || type == "Comments" || type == "Info") {
         widget->lineFilter()->setType(type);
     } else {

@@ -112,11 +112,11 @@ void ImportDataEditor::setMergeEnabled(bool enabled)
 
 void ImportDataEditor::invokeImportDialog()
 {
-    DataImportGui::DataLoaderDialog assistant(this);
-    assistant.setTargets(p_model->availableCanvasesInfo(), activeCanvasName());
-    assistant.triggerFileDialog();
-    if (assistant.exec() == QDialog::Accepted)
-        onImportDialogAccept(assistant.result());
+    DataImportGui::DataLoaderDialog dialog(this);
+    dialog.setTargets(p_model->availableCanvasesInfo(), activeCanvasName());
+    dialog.triggerFileDialog();
+    if (dialog.exec() == QDialog::Accepted)
+        onImportDialogAccept(dialog.result());
 }
 
 //! Find the first selected data group item is present and return his name.
