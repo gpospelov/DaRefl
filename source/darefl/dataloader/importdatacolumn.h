@@ -10,7 +10,7 @@
 #ifndef DAREFL_FAMOUSLOADER_IMPORTDATACOLUMN_H
 #define DAREFL_FAMOUSLOADER_IMPORTDATACOLUMN_H
 
-#include <darefl/famousloader/importutils.h>
+#include <darefl/dataloader/importutils.h>
 
 #include <memory>
 #include <string>

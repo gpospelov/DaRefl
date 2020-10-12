@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include <darefl/famousloader/importdatacolumn.h>
-#include <darefl/famousloader/importlogic.h>
+#include <darefl/dataloader/importdatacolumn.h>
+#include <darefl/dataloader/importlogic.h>
 #include <iterator>
 
 namespace DataImportLogic

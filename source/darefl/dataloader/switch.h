@@ -27,7 +27,7 @@
 #define DAREFL_FAMOUSLOADER_SWITCH_H
 
 #include <QtWidgets>
-#include <darefl/famousloader/style.h>
+#include <darefl/dataloader/style.h>
 
 namespace SwitchSpace
 {

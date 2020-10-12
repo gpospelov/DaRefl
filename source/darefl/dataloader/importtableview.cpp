@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include <darefl/famousloader/importdatacolumn.h>
-#include <darefl/famousloader/importtableview.h>
+#include <darefl/dataloader/importdatacolumn.h>
+#include <darefl/dataloader/importtableview.h>
 
 #include <mvvm/editors/scientificspinboxeditor.h>
 

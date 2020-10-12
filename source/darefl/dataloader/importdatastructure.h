@@ -10,8 +10,8 @@
 #ifndef DAREFL_FAMOUSLOADER_IMPORTDATASTRUCTURE_H
 #define DAREFL_FAMOUSLOADER_IMPORTDATASTRUCTURE_H
 
-#include <darefl/famousloader/importdatacolumn.h>
-#include <darefl/famousloader/importutils.h>
+#include <darefl/dataloader/importdatacolumn.h>
+#include <darefl/dataloader/importutils.h>
 
 #include <memory>
 #include <string>

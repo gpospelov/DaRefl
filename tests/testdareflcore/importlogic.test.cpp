@@ -11,8 +11,8 @@
 #include "test_utils.h"
 
 #include "importfile.creator.h"
-#include <darefl/famousloader/importlinefilter.h>
-#include <darefl/famousloader/importlogic.h>
+#include <darefl/dataloader/importlinefilter.h>
+#include <darefl/dataloader/importlogic.h>
 
 #include <chrono>
 #include <cmath>

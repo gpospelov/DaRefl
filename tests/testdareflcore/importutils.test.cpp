@@ -9,7 +9,7 @@
 
 #include "google_test.h"
 #include "test_utils.h"
-#include <darefl/famousloader/importutils.h>
+#include <darefl/dataloader/importutils.h>
 
 #include <cmath>
 #include <string>

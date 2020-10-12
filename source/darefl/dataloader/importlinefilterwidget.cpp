@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include <darefl/famousloader/importlinefilterwidget.h>
-#include <darefl/famousloader/switch.h>
+#include <darefl/dataloader/importlinefilterwidget.h>
+#include <darefl/dataloader/switch.h>
 
 #include <QComboBox>
 #include <QHBoxLayout>
