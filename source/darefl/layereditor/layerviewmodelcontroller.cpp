@@ -26,8 +26,8 @@ public:
         return QStringList() << "Name"
                              << "Nr."
                              << "Material"
-                             << "Thickness"
-                             << "Sigma";
+                             << "Thickness [nm]"
+                             << "Sigma [nm]";
     }
 
     std::vector<std::unique_ptr<ViewItem>> constructRow(SessionItem* item)
