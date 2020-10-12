@@ -16,6 +16,7 @@
 #include <darefl/quicksimeditor/instrumentpropertyeditor.h>
 #include <mvvm/viewmodel/viewmodeldelegate.h>
 #include <mvvm/widgets/propertytreeview.h>
+#include <QTreeView>
 
 using namespace ModelView;
 
@@ -39,6 +40,9 @@ void InstrumentPropertyEditor::setModels(ApplicationModels* models)
 
     m_beamPropertyEditor->setItem(
         instrument->item<SpecularBeamItem>(SpecularInstrumentItem::P_BEAM));
+
+    m_beamPropertyEditor->treeView()->setRootIsDecorated(true);
+    m_beamPropertyEditor->treeView()->expandAll();
 }
 
 QSize InstrumentPropertyEditor::sizeHint() const
