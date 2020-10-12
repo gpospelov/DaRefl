@@ -30,7 +30,7 @@ std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
     return result;
 }
 
-const double rho_si = 2.01e-05;
+const double rho_si = 2.0704e-06;
 const double mu_si = 5.96e-07;
 
 const double rho_default = 9.4245e-06;
