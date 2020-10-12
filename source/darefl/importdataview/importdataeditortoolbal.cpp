@@ -56,12 +56,14 @@ ImportDataEditorToolBar::ImportDataEditorToolBar(ImportDataEditorActions* editor
     auto undo_action = new QAction("Undo", this);
     undo_action->setToolTip("Undo the action last performed.");
     undo_action->setIcon(QIcon(":/icons/undo.svg"));
+    undo_action->setEnabled(false);
     connect(undo_action, &QAction::triggered, [this]() { m_editorActions->onUndo(); });
     addAction(undo_action);
 
     auto redo_action = new QAction("Redo", this);
     redo_action->setToolTip("Redo the action just performed.");
     redo_action->setIcon(QIcon(":/icons/redo.svg"));
+    redo_action->setEnabled(false);
     connect(redo_action, &QAction::triggered, [this]() { m_editorActions->onRedo(); });
     addAction(redo_action);
 
