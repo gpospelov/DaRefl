@@ -37,10 +37,10 @@ void ImportFileWidget::createWidgets()
     auto side_layout = new QVBoxLayout();
 
     // Set up the list
-    p_list_view = new QListView(this);
-    p_list_model = new QStringListModel(this);
-    p_list_view->setModel(p_list_model);
-    p_list_view->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    m_listView = new QListView(this);
+    m_listModel = new QStringListModel(this);
+    m_listView->setModel(m_listModel);
+    m_listView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     // Set up the buttons
     auto add_button = new QToolButton(this);
@@ -54,7 +54,7 @@ void ImportFileWidget::createWidgets()
     reset_button->setToolTip("Remove all currently selected files.");
 
     // Build the layout
-    main_layout->addWidget(p_list_view);
+    main_layout->addWidget(m_listView);
     side_layout->addWidget(add_button);
     side_layout->addWidget(reset_button);
     side_layout->addStretch();
@@ -63,14 +63,14 @@ void ImportFileWidget::createWidgets()
     // Connect the buttons
     connect(add_button, &QToolButton::clicked, this, &ImportFileWidget::addFiles);
     connect(reset_button, &QToolButton::clicked, this, &ImportFileWidget::resetFiles);
-    connect(p_list_view->selectionModel(), &QItemSelectionModel::currentChanged,
+    connect(m_listView->selectionModel(), &QItemSelectionModel::currentChanged,
             [=](QModelIndex, QModelIndex) { emit selectionChanged(); });
 }
 
 //! Get the current selection
 int ImportFileWidget::currentSelection() const
 {
-    return p_list_view->currentIndex().row();
+    return m_listView->currentIndex().row();
 }
 
 //! Read the settings froma QSetting structure
@@ -79,7 +79,7 @@ void ImportFileWidget::readSettings()
     QSettings settings;
 
     settings.beginGroup("Files");
-    m_default_path = settings.value("last_path", ".").toString();
+    m_defaultPath = settings.value("last_path", ".").toString();
     settings.endGroup();
 }
 
@@ -89,7 +89,7 @@ void ImportFileWidget::writeSettings()
     QSettings settings;
 
     settings.beginGroup("Files");
-    settings.setValue("last_path", m_default_path);
+    settings.setValue("last_path", m_defaultPath);
     settings.endGroup();
 }
 
@@ -97,43 +97,43 @@ void ImportFileWidget::writeSettings()
 void ImportFileWidget::addFiles()
 {
     QStringList files = QFileDialog::getOpenFileNames(this, "Select one or more files to load",
-                                                      m_default_path, "Text (*.txt);; CSV (*.csv)",
+                                                      m_defaultPath, "Text (*.txt);; CSV (*.csv)",
                                                       nullptr, QFileDialog::DontUseNativeDialog);
     if (files.count() > 0)
-        m_default_path = QFileInfo(files[0]).absoluteDir().absolutePath();
+        m_defaultPath = QFileInfo(files[0]).absoluteDir().absolutePath();
 
     // Save the current string
     QString current_input;
-    if (p_list_model->rowCount() != 0
-        && p_list_view->selectionModel()->selectedIndexes().count() != 0) {
-        current_input = p_list_model->data(p_list_view->selectionModel()->selectedIndexes()[0])
-                            .value<QString>();
+    if (m_listModel->rowCount() != 0
+        && m_listView->selectionModel()->selectedIndexes().count() != 0) {
+        current_input =
+            m_listModel->data(m_listView->selectionModel()->selectedIndexes()[0]).value<QString>();
     }
 
     // Refresh
-    files = p_list_model->stringList() + files;
+    files = m_listModel->stringList() + files;
     files.removeDuplicates();
-    p_list_model->setStringList(files);
+    m_listModel->setStringList(files);
     emit filesChanged(currentFiles());
 
     // Set back the initial string is present
-    if (p_list_model->rowCount() != 0) {
-        auto to_select = p_list_model->index(0, 0);
-        for (int i = 0; i < p_list_model->rowCount(); ++i) {
+    if (m_listModel->rowCount() != 0) {
+        auto to_select = m_listModel->index(0, 0);
+        for (int i = 0; i < m_listModel->rowCount(); ++i) {
             if (current_input.toStdString()
-                == p_list_model->data(p_list_model->index(i, 0)).value<QString>().toStdString()) {
-                to_select = p_list_model->index(i, 0);
+                == m_listModel->data(m_listModel->index(i, 0)).value<QString>().toStdString()) {
+                to_select = m_listModel->index(i, 0);
                 break;
             }
         }
-        p_list_view->setCurrentIndex(to_select);
+        m_listView->setCurrentIndex(to_select);
     }
 }
 
 //! This is the method called by the reset file button
 void ImportFileWidget::resetFiles()
 {
-    p_list_model->setStringList(QStringList());
+    m_listModel->setStringList(QStringList());
     emit filesChanged(currentFiles());
 }
 
@@ -141,7 +141,7 @@ void ImportFileWidget::resetFiles()
 std::vector<std::string> ImportFileWidget::currentFiles() const
 {
     std::vector<std::string> string_vector;
-    foreach (QString str, p_list_model->stringList()) {
+    foreach (QString str, m_listModel->stringList()) {
         string_vector.push_back(str.toStdString());
     }
     return string_vector;

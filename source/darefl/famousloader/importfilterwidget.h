@@ -62,9 +62,9 @@ private:
     void handleInternalMoveEvent();
 
 private:
-    DataImportLogic::ImportLogic* p_import_logic;
+    DataImportLogic::ImportLogic* m_importLogic;
 
-    std::vector<LineFilterWidget*> m_line_filter_widgets;
+    std::vector<LineFilterWidget*> m_lineFilterWidgets;
 
     // --------------------------------
     // --DEVELOP-- (Can be changed again to revert all functionalities)

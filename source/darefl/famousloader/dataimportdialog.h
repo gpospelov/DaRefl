@@ -67,13 +67,13 @@ protected:
     void accept() override;
 
 private:
-    ImportFileWidget* p_import_file_list{nullptr};
-    ImportFilterWidget* p_parameter_dialog{nullptr};
-    ImportTextView* p_text_view{nullptr};
-    ImportTableView* p_table_view{nullptr};
-    std::unique_ptr<DataImportLogic::ImportLogic> p_data_import_logic;
-    QTabWidget* p_selection_space{nullptr};
-    QComboBox* p_target_select{nullptr};
+    ImportFileWidget* m_importFileList{nullptr};
+    ImportFilterWidget* m_parameterDialog{nullptr};
+    ImportTextView* m_textView{nullptr};
+    ImportTableView* m_tableView{nullptr};
+    std::unique_ptr<DataImportLogic::ImportLogic> m_dataImportLogic;
+    QTabWidget* m_selectionSpace{nullptr};
+    QComboBox* m_targetSelect{nullptr};
 };
 
 } // End of namespace DataImportGui
