@@ -1,5 +1,32 @@
-file(GLOB source_files ${CMAKE_CURRENT_LIST_DIR}/*.cpp)
-file(GLOB include_files ${CMAKE_CURRENT_LIST_DIR}/*.h)
+target_sources(${library_name} PRIVATE
+    dataloaderdialog.cpp
+    dataloaderdialog.h
+    importdatacolumn.cpp
+    importdatacolumn.h
+    importdatastructure.cpp
+    importdatastructure.h
+    importfile.cpp
+    importfile.h
+    importfilewidget.cpp
+    importfilewidget.h
+    importfilterwidget.cpp
+    importfilterwidget.h
+    importlinefilter.cpp
+    importlinefilter.h
+    importlinefilterwidget.cpp
+    importlinefilterwidget.h
+    importlogic.cpp
+    importlogic.h
+    importoutput.cpp
+    importoutput.h
+    importtableview.cpp
+    importtableview.h
+    importtextview.cpp
+    importtextview.h
+    importutils.cpp
+    importutils.h
+    style.h
+    switch.cpp
+    switch.h
+)
 
-target_sources(${library_name} PRIVATE ${source_files} ${include_files})
-target_include_directories(${library_name} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>)
