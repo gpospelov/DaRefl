@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_IMPORTDATAWIDGETS_DATASELECTIONMODEL_H
-#define DAREFL_IMPORTDATAWIDGETS_DATASELECTIONMODEL_H
+#ifndef DAREFL_IMPORTDATAVIEW_DATASELECTIONMODEL_H
+#define DAREFL_IMPORTDATAVIEW_DATASELECTIONMODEL_H
 
 #include <QItemSelectionModel>
 #include <vector>
@@ -42,4 +42,4 @@ public:
     ModelView::GraphItem* selectedGraph() const;
 };
 
-#endif // DAREFL_IMPORTDATAWIDGETS_DATASELECTIONMODEL_H
+#endif // DAREFL_IMPORTDATAVIEW_DATASELECTIONMODEL_H

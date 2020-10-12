@@ -46,4 +46,4 @@ private:
     QString m_projectDir;
 };
 
-#endif // PROJECTPANEWIDGET_H
+#endif // DAREFL_WELCOMEVIEW_PROJECTPANEWIDGET_H

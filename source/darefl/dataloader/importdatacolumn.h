@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_FAMOUSLOADER_IMPORTDATACOLUMN_H
-#define DAREFL_FAMOUSLOADER_IMPORTDATACOLUMN_H
+#ifndef DAREFL_DATALOADER_IMPORTDATACOLUMN_H
+#define DAREFL_DATALOADER_IMPORTDATACOLUMN_H
 
 #include <darefl/dataloader/importutils.h>
 
@@ -59,4 +59,4 @@ private:
 
 } // end of namespace DataImportLogic
 
-#endif // DAREFL_FAMOUSLOADER_IMPORTDATACOLUMN_H
+#endif // DAREFL_DATALOADER_IMPORTDATACOLUMN_H

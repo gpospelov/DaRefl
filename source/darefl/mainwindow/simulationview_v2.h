@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_MAINWINDOW_SIMULATIONVIEWV2_H
-#define DAREFL_MAINWINDOW_SIMULATIONVIEWV2_H
+#ifndef DAREFL_MAINWINDOW_SIMULATIONVIEW_V2_H
+#define DAREFL_MAINWINDOW_SIMULATIONVIEW_V2_H
 
 #include <QMainWindow>
 #include <memory>
@@ -36,4 +36,4 @@ private:
     ApplicationModels* m_models{nullptr};
 };
 
-#endif // DAREFL_MAINWINDOW_SIMULATIONVIEWV2_H
+#endif // DAREFL_MAINWINDOW_SIMULATIONVIEW_V2_H

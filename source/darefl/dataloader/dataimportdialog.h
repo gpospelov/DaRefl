@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_FAMOUSLOADER_DATAIMPORTDIALOG_H
-#define DAREFL_FAMOUSLOADER_DATAIMPORTDIALOG_H
+#ifndef DAREFL_DATALOADER_DATAIMPORTDIALOG_H
+#define DAREFL_DATALOADER_DATAIMPORTDIALOG_H
 
 #include <QComboBox>
 #include <QDialog>
@@ -78,4 +78,4 @@ private:
 
 } // End of namespace DataImportGui
 
-#endif // DAREFL_FAMOUSLOADER_DATAIMPORTDIALOG_H
+#endif // DAREFL_DATALOADER_DATAIMPORTDIALOG_H

@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_FAMOUSLOADER_IMPORTFILE_H
-#define DAREFL_FAMOUSLOADER_IMPORTFILE_H
+#ifndef DAREFL_DATALOADER_IMPORTFILE_H
+#define DAREFL_DATALOADER_IMPORTFILE_H
 
 #include <string>
 #include <vector>
@@ -39,4 +39,4 @@ private:
 };
 } // namespace DataImportLogic
 
-#endif // DAREFL_FAMOUSLOADER_IMPORTFILE_H
+#endif // DAREFL_DATALOADER_IMPORTFILE_H

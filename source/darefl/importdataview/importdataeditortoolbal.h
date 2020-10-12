@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_IMPORTDATAVIEW_IMPORTDATAEDITORTOOLBAR_H
-#define DAREFL_IMPORTDATAVIEW_IMPORTDATAEDITORTOOLBAR_H
+#ifndef DAREFL_IMPORTDATAVIEW_IMPORTDATAEDITORTOOLBAL_H
+#define DAREFL_IMPORTDATAVIEW_IMPORTDATAEDITORTOOLBAL_H
 
 #include <QToolBar>
 
@@ -34,4 +34,4 @@ private:
     ImportDataEditorActions* m_editorActions{nullptr};
 };
 
-#endif // DAREFL_IMPORTDATAVIEW_IMPORTDATAEDITORTOOLBAR_H
+#endif // DAREFL_IMPORTDATAVIEW_IMPORTDATAEDITORTOOLBAL_H

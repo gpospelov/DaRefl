@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_MAINWINDOW_SIMULATIONVIEWV1_H
-#define DAREFL_MAINWINDOW_SIMULATIONVIEWV1_H
+#ifndef DAREFL_MAINWINDOW_SIMULATIONVIEW_V1_H
+#define DAREFL_MAINWINDOW_SIMULATIONVIEW_V1_H
 
 #include <QMainWindow>
 
@@ -35,4 +35,4 @@ private:
     QuickSimEditor* m_quickSimEditor{nullptr};
 };
 
-#endif // DAREFL_MAINWINDOW_SIMULATIONVIEWV1_H
+#endif // DAREFL_MAINWINDOW_SIMULATIONVIEW_V1_H
