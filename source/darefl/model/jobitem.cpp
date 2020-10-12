@@ -72,6 +72,12 @@ CanvasItem* JobItem::specular_viewport() const
     return item<CanvasItem>(P_SPECULAR_VIEWPORT);
 }
 
+GraphItem* JobItem::specularGraph() const
+{
+    auto graphs = specular_viewport()->graphItems();
+    return graphs.size() >= 0 ? graphs.at(row_sim_graph) : nullptr;
+}
+
 GraphItem* JobItem::referenceGraph() const
 {
     auto graphs = specular_viewport()->graphItems();
