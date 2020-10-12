@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_FAMOUSLOADER_IMPORTFILEWIDGET_H
-#define DAREFL_FAMOUSLOADER_IMPORTFILEWIDGET_H
+#ifndef DAREFL_DATALOADER_IMPORTFILEWIDGET_H
+#define DAREFL_DATALOADER_IMPORTFILEWIDGET_H
 
 #include <QWidget>
 
@@ -54,4 +54,4 @@ private:
 
 } // End of namespace DataImportGui
 
-#endif // DAREFL_FAMOUSLOADER_IMPORTFILEWIDGET_H
+#endif // DAREFL_DATALOADER_IMPORTFILEWIDGET_H

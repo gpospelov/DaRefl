@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_MAINWINDOW_SIMULATIONWIDGET_H
-#define DAREFL_MAINWINDOW_SIMULATIONWIDGET_H
+#ifndef MAINWINDOW_SIMULATIONWIDGET_SIMULATIONWIDGET_H
+#define MAINWINDOW_SIMULATIONWIDGET_SIMULATIONWIDGET_H
 
 #include <QWidget>
 #include <memory>
@@ -37,4 +37,4 @@ private:
     std::unique_ptr<SimWidgetController> p_widget_ctrl;
 };
 
-#endif // DAREFL_MAINWINDOW_SIMULATIONWIDGET_H
+#endif // MAINWINDOW_SIMULATIONWIDGET_SIMULATIONWIDGET_H

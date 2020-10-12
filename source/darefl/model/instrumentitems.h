@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_MODEL_INSTRUMENTITEM_H
-#define DAREFL_MODEL_INSTRUMENTITEM_H
+#ifndef DAREFL_MODEL_INSTRUMENTITEMS_H
+#define DAREFL_MODEL_INSTRUMENTITEMS_H
 
 //! @file instrumentitems.h
 //! Collection of items to construct specular instrument.
@@ -95,4 +95,4 @@ public:
     SpecularBeamItem* beamItem() const;
 };
 
-#endif // DAREFL_MODEL_INSTRUMENTITEM_H
+#endif // DAREFL_MODEL_INSTRUMENTITEMS_H

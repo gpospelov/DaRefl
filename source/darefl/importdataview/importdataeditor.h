@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_IMPORTDATAWIDGETS_IMPORTDATAEDITOR_H
-#define DAREFL_IMPORTDATAWIDGETS_IMPORTDATAEDITOR_H
+#ifndef DAREFL_IMPORTDATAVIEW_IMPORTDATAEDITOR_H
+#define DAREFL_IMPORTDATAVIEW_IMPORTDATAEDITOR_H
 
 #include <QWidget>
 #include <string>
@@ -61,4 +61,4 @@ private:
     GraphCanvasWidget* m_graphCanvasWidget{nullptr};
 };
 
-#endif // DAREFL_IMPORTDATAWIDGETS_IMPORTDATAEDITOR_H
+#endif // DAREFL_IMPORTDATAVIEW_IMPORTDATAEDITOR_H

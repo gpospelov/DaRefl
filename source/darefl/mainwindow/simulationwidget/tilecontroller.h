@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_MAINWINDOW_TILECONTROLLER_H
-#define DAREFL_MAINWINDOW_TILECONTROLLER_H
+#ifndef MAINWINDOW_SIMULATIONWIDGET_TILECONTROLLER_H
+#define MAINWINDOW_SIMULATIONWIDGET_TILECONTROLLER_H
 
 #include <QObject>
 #include <memory>
@@ -32,4 +32,4 @@ private:
     std::unique_ptr<TileControllerImpl> p_impl;
 };
 
-#endif // DAREFL_MAINWINDOW_TILECONTROLLER_H
+#endif // MAINWINDOW_SIMULATIONWIDGET_TILECONTROLLER_H

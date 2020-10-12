@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_FAMOUSLOADER_IMPORTUTILS_H
-#define DAREFL_FAMOUSLOADER_IMPORTUTILS_H
+#ifndef DAREFL_DATALOADER_IMPORTUTILS_H
+#define DAREFL_DATALOADER_IMPORTUTILS_H
 
 #include <algorithm>
 #include <map>
@@ -69,4 +69,4 @@ std::vector<std::vector<int>> getRangesFromString(const std::string text_input);
 
 } // namespace DataImportUtils
 
-#endif // DAREFL_FAMOUSLOADER_IMPORTUTILS_H
+#endif // DAREFL_DATALOADER_IMPORTUTILS_H

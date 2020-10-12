@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_MAINWINDOW_SIDECONTROLLER_H
-#define DAREFL_MAINWINDOW_SIDECONTROLLER_H
+#ifndef MAINWINDOW_SIMULATIONWIDGET_SIDECONTROLLER_H
+#define MAINWINDOW_SIMULATIONWIDGET_SIDECONTROLLER_H
 
 #include <QList>
 #include <QObject>
@@ -41,4 +41,4 @@ private:
     SideWidget* p_editor_widgets{nullptr};
 };
 
-#endif // DAREFL_MAINWINDOW_TILECONTROLLER_H
+#endif // MAINWINDOW_SIMULATIONWIDGET_SIDECONTROLLER_H

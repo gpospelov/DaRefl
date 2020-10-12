@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_MAINWINDOW_SIMWIDGETCTROLLER_H
-#define DAREFL_MAINWINDOW_SIMWIDGETCTROLLER_H
+#ifndef MAINWINDOW_SIMULATIONWIDGET_SIMWIDGETCONTROLLER_H
+#define MAINWINDOW_SIMULATIONWIDGET_SIMWIDGETCONTROLLER_H
 
 #include <QObject>
 #include <vector>
@@ -54,4 +54,4 @@ private:
     std::vector<QMainWindow*> m_windows;
 };
 
-#endif // DAREFL_MAINWINDOW_SIMWIDGETCTROLLER_H
+#endif // MAINWINDOW_SIMULATIONWIDGET_SIMWIDGETCONTROLLER_H

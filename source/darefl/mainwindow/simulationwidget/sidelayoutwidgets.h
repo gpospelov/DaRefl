@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_MAINWINDOW_LAYOUTWIDGETS_H
-#define DAREFL_MAINWINDOW_LAYOUTWIDGETS_H
+#ifndef MAINWINDOW_SIMULATIONWIDGET_SIDELAYOUTWIDGETS_H
+#define MAINWINDOW_SIMULATIONWIDGET_SIDELAYOUTWIDGETS_H
 
 #include <QPoint>
 #include <QScrollArea>
@@ -99,4 +99,4 @@ private:
     void handleChildResize(int delta_height);
 };
 
-#endif // DAREFL_MAINWINDOW_LAYOUTWIDGETS_H
+#endif // MAINWINDOW_SIMULATIONWIDGET_SIDELAYOUTWIDGETS_H

@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_IMPORTDATAWIDGETS_DATAROWSTRATEGY_H
-#define DAREFL_IMPORTDATAWIDGETS_DATAROWSTRATEGY_H
+#ifndef DAREFL_IMPORTDATAVIEW_DATAROWSTRATEGY_H
+#define DAREFL_IMPORTDATAVIEW_DATAROWSTRATEGY_H
 
 #include <memory>
 #include <mvvm/interfaces/rowstrategyinterface.h>
@@ -31,4 +31,4 @@ public:
     constructRow(ModelView::SessionItem*) override;
 };
 
-#endif // DAREFL_IMPORTDATAWIDGETS_DATAROWSTRATEGY_H
+#endif // DAREFL_IMPORTDATAVIEW_DATAROWSTRATEGY_H

@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_IMPORTDATAWIDGETS_DATAVIEWMODEL_H
-#define DAREFL_IMPORTDATAWIDGETS_DATAVIEWMODEL_H
+#ifndef DAREFL_IMPORTDATAVIEW_DATAVIEWMODEL_H
+#define DAREFL_IMPORTDATAVIEW_DATAVIEWMODEL_H
 
 #include <mvvm/viewmodel/topitemsviewmodel.h>
 
@@ -40,4 +40,4 @@ private:
     ExperimentalDataModel* dataModel() const;
 };
 
-#endif // DAREFL_IMPORTDATAWIDGETS_DATAVIEWMODEL_H
+#endif // DAREFL_IMPORTDATAVIEW_DATAVIEWMODEL_H
