@@ -44,7 +44,7 @@ int ImportTextView::lineNumberAreaWidth()
         ++digits;
     }
 
-    int space = 3 + fontMetrics().horizontalAdvance(QLatin1Char('9')) * digits;
+    int space = fontMetrics().horizontalAdvance(QLatin1Char('9')) * (digits + 1);
 
     return space;
 }
@@ -147,9 +147,9 @@ void ImportTextView::lineNumberAreaPaintEvent(QPaintEvent* event)
 
     while (block.isValid() && top <= event->rect().bottom()) {
         if (block.isVisible() && bottom >= event->rect().top()) {
-            QString number = QString::number(blockNumber);
+            QString number = QString::number(blockNumber + 1);
             painter.setPen(Qt::black);
-            painter.drawText(0, top, lineNumberArea->width(), fontMetrics().height(),
+            painter.drawText(0, top, lineNumberArea->width()-4, fontMetrics().height(),
                              Qt::AlignRight, number);
         }
 
@@ -158,5 +158,6 @@ void ImportTextView::lineNumberAreaPaintEvent(QPaintEvent* event)
         bottom = top + qRound(document()->documentLayout()->blockBoundingRect(block).height());
         ++blockNumber;
     }
+
 }
 } // namespace DataImportGui
