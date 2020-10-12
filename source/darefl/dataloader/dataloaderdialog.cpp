@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include <darefl/dataloader/dataimportdialog.h>
+#include <darefl/dataloader/dataloaderdialog.h>
 
 #include <darefl/dataloader/importfilewidget.h>
 #include <darefl/dataloader/importfilterwidget.h>
