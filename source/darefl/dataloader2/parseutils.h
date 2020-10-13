@@ -29,6 +29,9 @@ void ParseSpaceSeparatedDoubles(const std::string& str, std::vector<double>& res
 //! Strict: requires that string represents exactly one double and contains no other literals.
 std::optional<double> StringToDouble(const std::string& str);
 
+//! Loads ASCII file, returns it in the form of vector of strings.
+std::vector<std::string> LoadASCIIFile(const std::string& file_name);
+
 }
 
 #endif // DAREFL_DATALOADER2_PARSEUTILS_H

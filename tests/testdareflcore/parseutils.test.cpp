@@ -7,17 +7,23 @@
 //
 // ************************************************************************** //
 
-#include "google_test.h"
+#include "folderbasedtest.h"
+#include "test_utils.h"
 #include <darefl/dataloader2/parseutils.h>
 
 using namespace DataLoader;
 
 //! Tests of ParseUtils.
 
-class ParseUtilsTest : public ::testing::Test
+class ParseUtilsTest :  public FolderBasedTest
 {
 public:
+    ParseUtilsTest() : FolderBasedTest("test_ParseUtilsTest") {}
     ~ParseUtilsTest();
+
+    void create_test_file(const std::string& content) {
+
+    }
 };
 
 ParseUtilsTest::~ParseUtilsTest() = default;
@@ -81,3 +87,15 @@ TEST_F(ParseUtilsTest, ParseSpaceSeparatedDoubles)
     EXPECT_DOUBLE_EQ(ParseSpaceSeparatedDoubles("42 43")[0], 42.0);
     EXPECT_DOUBLE_EQ(ParseSpaceSeparatedDoubles("42 43")[1], 43.0);
 }
+
+TEST_F(ParseUtilsTest, LoadASCIIFile)
+{
+    std::string content = {"abc abc\n 123 456\n"};
+    auto file_name = TestUtils::CreateTestFile(testPath(), "a.txt", content);
+
+    auto raw_data = LoadASCIIFile(file_name);
+    EXPECT_EQ(raw_data.size(), 2u);
+    EXPECT_EQ(raw_data[0], std::string("abc abc"));
+    EXPECT_EQ(raw_data[1], std::string(" 123 456"));
+}
+
