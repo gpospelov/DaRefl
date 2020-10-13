@@ -12,6 +12,8 @@
 
 #include <QWidget>
 
+class ImportFileWidgetV2;
+
 //! Panel with settings for DataLoaderDialog.
 //! Located on its left side, contains file selection dialog and parsiong options.
 
@@ -23,7 +25,7 @@ public:
     LoaderSelectorPanel(QWidget* parent = nullptr);
 
 private:
-
+    ImportFileWidgetV2* m_fileSelectorWidget{nullptr};
 };
 
 #endif // DAREFL_DATALOADER2_LOADERSELECTORPANEL_H
