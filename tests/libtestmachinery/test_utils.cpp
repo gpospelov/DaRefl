@@ -46,7 +46,8 @@ std::string TestUtils::TestFileName(const std::string& test_sub_dir, const std::
     return TestDirectoryPath(test_sub_dir) + std::string("/") + file_name;
 }
 
-std::string TestUtils::CreateTestFile(const std::string& dirname, const std::string& fileName)
+std::string TestUtils::CreateTestFile(const std::string& dirname, const std::string& fileName,
+                                      const std::string& content)
 {
     std::string filename = dirname.empty() ? fileName : dirname + "/" + fileName;
 
@@ -56,7 +57,10 @@ std::string TestUtils::CreateTestFile(const std::string& dirname, const std::str
                                  "Can't create file");
 
     QTextStream out(&file);
-    out << "Test file " << 42 << "\n";
+    if (content.empty())
+        out << "Test file " << 42 << "\n";
+    else
+        out << QString::fromStdString(content);
     file.close();
 
     return filename;

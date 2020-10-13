@@ -8,6 +8,7 @@
 // ************************************************************************** //
 
 #include <darefl/dataloader2/parseutils.h>
+#include <fstream>
 #include <iostream>
 #include <iterator>
 #include <sstream>
@@ -38,4 +39,16 @@ std::optional<double> DataLoader::StringToDouble(const std::string& str)
     double value;
     iss >> value;
     return (!iss.fail() && iss.eof()) ? std::optional<double>(value) : std::optional<double>{};
+}
+
+std::vector<std::string> DataLoader::LoadASCIIFile(const std::string& file_name)
+{
+    std::vector<std::string> result;
+
+    std::ifstream file(file_name);
+    if (!file.is_open())
+        throw std::ios_base::failure("Unable to open file '" + file_name + "'");
+    for (std::string line; getline(file, line);)
+        result.emplace_back(line);
+    return result;
 }

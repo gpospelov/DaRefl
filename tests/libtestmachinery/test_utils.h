@@ -46,7 +46,8 @@ std::string TestFileName(const std::string& test_sub_dir, const std::string& fil
 
 //! Helper function to create test file in a given directory (directory should exist).
 //! Returns full path of the file.
-std::string CreateTestFile(const std::string& dirname, const std::string& fileName);
+std::string CreateTestFile(const std::string& dirname, const std::string& fileName,
+                           const std::string& content = {});
 
 //! Helper function to create empty file in a given directory (directory should exist).
 //! Returns full path of the file.
