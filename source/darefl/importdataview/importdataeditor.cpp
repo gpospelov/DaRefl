@@ -10,6 +10,7 @@
 #include <QSplitter>
 #include <QVBoxLayout>
 #include <darefl/dataloader/dataloaderdialog.h>
+#include <darefl/dataloader2/dataloaderdialog_v2.h>
 #include <darefl/importdataview/dataselectionmodel.h>
 #include <darefl/importdataview/dataselectorwidget.h>
 #include <darefl/importdataview/dataviewmodel.h>
@@ -23,6 +24,7 @@
 #include <mvvm/model/modelutils.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/utils/fileutils.h>
+#include <QDebug>
 
 using namespace ModelView;
 
@@ -112,11 +114,18 @@ void ImportDataEditor::setMergeEnabled(bool enabled)
 
 void ImportDataEditor::invokeImportDialog()
 {
-    DataImportGui::DataLoaderDialog dialog(this);
-    dialog.setTargets(p_model->availableCanvasesInfo(), activeCanvasName());
-    dialog.triggerFileDialog();
+//    DataImportGui::DataLoaderDialog dialog(this);
+//    dialog.setTargets(p_model->availableCanvasesInfo(), activeCanvasName());
+//    dialog.triggerFileDialog();
+//    if (dialog.exec() == QDialog::Accepted)
+//        onImportDialogAccept(dialog.result());
+
+    DataLoaderDialogV2 dialog(this);
     if (dialog.exec() == QDialog::Accepted)
-        onImportDialogAccept(dialog.result());
+        qDebug() << "accepted";
+    else
+        qDebug() << "rejected";
+
 }
 
 //! Find the first selected data group item is present and return his name.
