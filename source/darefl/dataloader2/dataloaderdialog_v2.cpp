@@ -10,6 +10,7 @@
 #include <QDialogButtonBox>
 #include <QSplitter>
 #include <QVBoxLayout>
+#include <darefl/dataloader2/datahandler.h>
 #include <darefl/dataloader2/dataloaderdialog_v2.h>
 #include <darefl/dataloader2/dataloadertoolbar.h>
 #include <darefl/dataloader2/loaderpreviewpanel.h>
@@ -17,7 +18,8 @@
 
 DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
     : QDialog(parent), m_toolBar(new DataLoaderToolBar), m_selectorPanel(new LoaderSelectorPanel),
-      m_previewPanel(new LoaderPreviewPanel), m_splitter(new QSplitter)
+      m_previewPanel(new LoaderPreviewPanel), m_splitter(new QSplitter),
+      m_dataHandler(std::make_unique<DataHandler>())
 {
     m_splitter->addWidget(m_selectorPanel);
     m_splitter->addWidget(m_previewPanel);
@@ -31,11 +33,14 @@ DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
     layout->addWidget(m_splitter);
     layout->addWidget(button_box);
 
-    init_connection();
+    init_connections();
 }
 
-void DataLoaderDialogV2::init_connection()
+DataLoaderDialogV2::~DataLoaderDialogV2() = default;
+
+void DataLoaderDialogV2::init_connections()
 {
+    // connect toolbar and LoaderSelectorPanel
     connect(m_toolBar, &DataLoaderToolBar::addFilesRequest, m_selectorPanel,
             &LoaderSelectorPanel::onAddFilesRequest);
     connect(m_toolBar, &DataLoaderToolBar::removeFilesRequest, m_selectorPanel,
