@@ -11,8 +11,8 @@
 #include <QSplitter>
 #include <QVBoxLayout>
 #include <darefl/dataloader2/dataloaderdialog_v2.h>
-#include <darefl/dataloader2/loaderpreviewpanel.h>
 #include <darefl/dataloader2/dataloadertoolbar.h>
+#include <darefl/dataloader2/loaderpreviewpanel.h>
 #include <darefl/dataloader2/loaderselectorpanel.h>
 
 DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
@@ -30,4 +30,14 @@ DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
     layout->addWidget(m_toolBar);
     layout->addWidget(m_splitter);
     layout->addWidget(button_box);
+
+    init_connection();
+}
+
+void DataLoaderDialogV2::init_connection()
+{
+    connect(m_toolBar, &DataLoaderToolBar::addFilesRequest, m_selectorPanel,
+            &LoaderSelectorPanel::onAddFilesRequest);
+    connect(m_toolBar, &DataLoaderToolBar::removeFilesRequest, m_selectorPanel,
+            &LoaderSelectorPanel::onRemoveFileRequest);
 }
