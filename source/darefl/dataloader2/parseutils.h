@@ -12,11 +12,22 @@
 
 #include <vector>
 #include <string>
+#include <optional>
 
 namespace DataLoader
 {
 
-std::vector<double> ParseDoubles(const std::string& str);
+//! Parses string for double values and returns result as a vector.
+//! All non-numeric symbols are ingored.
+std::vector<double> ParseSpaceSeparatedDoubles(const std::string& str);
+
+//! Parses string for double values and stores result in a vector.
+//! All non-numeric symbols are ingored.
+void ParseSpaceSeparatedDoubles(const std::string& str, std::vector<double>& result);
+
+//! Converts string to double value and returns it in the form of optional.
+//! Strict: requires that string represents exactly one double and contains no other literals.
+std::optional<double> StringToDouble(const std::string& str);
 
 }
 
