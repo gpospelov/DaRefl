@@ -10,5 +10,7 @@ target_sources(${library_name} PRIVATE
     loaderselectorpanel.h
     parseutils.cpp
     parseutils.h
+    importfilewidget_v2.cpp
+    importfilewidget_v2.h
 )
 
