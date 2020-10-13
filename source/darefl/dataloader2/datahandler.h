@@ -1,0 +1,35 @@
+// ************************************************************************** //
+//
+//  Reflectometry simulation software prototype
+//
+//! @license   GNU General Public License v3 or higher (see COPYING)
+//! @authors   see AUTHORS
+//
+// ************************************************************************** //
+
+#ifndef DAREFL_DATALOADER2_DATAHANDLER_H
+#define DAREFL_DATALOADER2_DATAHANDLER_H
+
+#include <memory>
+#include <string>
+#include <vector>
+#include <map>
+
+//! Handles raw data during the life time of DataHandlerDialog.
+//! Loads the data from multiple ASCII files and stores in a buffer of strings.
+
+class DataHandler
+{
+public:
+    DataHandler() = default;
+
+    void updateRawData(const std::vector<std::string>& file_names);
+
+private:
+    void readFile(const std::string& file_name);
+
+    //!< correspondence of file name to the raw data in the file (i.e. all strings)
+    std::map<std::string, std::vector<std::string>> m_raw_data;
+};
+
+#endif // DAREFL_DATALOADER2_DATAHANDLER_H

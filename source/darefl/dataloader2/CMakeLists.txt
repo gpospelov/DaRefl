@@ -12,5 +12,7 @@ target_sources(${library_name} PRIVATE
     parseutils.h
     importfilewidget_v2.cpp
     importfilewidget_v2.h
+    datahandler.cpp
+    datahandler.h
 )
 

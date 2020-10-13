@@ -25,6 +25,7 @@ ImportFileWidgetV2::ImportFileWidgetV2(QWidget* parent)
 
     m_listView->setModel(m_listModel);
     m_listView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    m_listView->setAlternatingRowColors(true);
 }
 
 //! Summons dialog for file selections, update list view with file names.
@@ -68,11 +69,9 @@ void ImportFileWidgetV2::updateCurrentWorkdir(const QStringList& file_names)
 
 void ImportFileWidgetV2::updateCurrentList(const QStringList& file_names)
 {
-    if (file_names.empty())
-        return;
-
     auto current_names = fileNames();
     QStringList updated_names = current_names + file_names;
+    updated_names.removeDuplicates();
 
     m_listModel->setStringList(updated_names);
 
