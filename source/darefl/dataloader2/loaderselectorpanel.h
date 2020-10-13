@@ -21,6 +21,9 @@ class LoaderSelectorPanel : public QWidget
 
 public:
     LoaderSelectorPanel(QWidget* parent = nullptr);
+
+private:
+
 };
 
 #endif // DAREFL_DATALOADER2_LOADERSELECTORPANEL_H

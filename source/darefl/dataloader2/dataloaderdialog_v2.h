@@ -13,6 +13,7 @@
 #include <QDialog>
 
 class QSplitter;
+class DataLoaderToolBar;
 class LoaderSelectorPanel;
 class LoaderPreviewPanel;
 
@@ -26,6 +27,7 @@ public:
     DataLoaderDialogV2(QWidget* parent = nullptr);
 
 private:
+    DataLoaderToolBar* m_toolBar{nullptr};
     LoaderSelectorPanel* m_selectorPanel{nullptr};
     LoaderPreviewPanel* m_previewPanel{nullptr};
     QSplitter* m_splitter{nullptr};
