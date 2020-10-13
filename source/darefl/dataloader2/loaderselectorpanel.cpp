@@ -8,6 +8,8 @@
 // ************************************************************************** //
 
 #include <darefl/dataloader2/loaderselectorpanel.h>
+#include <QVBoxLayout>
+
 
 LoaderSelectorPanel::LoaderSelectorPanel(QWidget* parent) : QWidget(parent)
 {
