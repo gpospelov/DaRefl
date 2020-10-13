@@ -45,4 +45,10 @@ void DataLoaderDialogV2::init_connections()
             &LoaderSelectorPanel::onAddFilesRequest);
     connect(m_toolBar, &DataLoaderToolBar::removeFilesRequest, m_selectorPanel,
             &LoaderSelectorPanel::onRemoveFileRequest);
+
+    // connect LoaderSElectorPanel with DataHandler
+    auto on_file_list_changed = [this]() {
+        m_dataHandler->updateRawData(m_selectorPanel->fileNames());
+    };
+    connect(m_selectorPanel, &LoaderSelectorPanel::fileNamesChanged, on_file_list_changed);
 }
