@@ -27,6 +27,10 @@ public:
 public slots:
     void onAddFilesRequest();
     void onRemoveFileRequest();
+    std::vector<std::string> fileNames() const;
+
+signals:
+    void fileNamesChanged();
 
 private:
     ImportFileWidgetV2* m_fileSelectorWidget{nullptr};
