@@ -28,9 +28,18 @@ public slots:
     void onAddFilesRequest();
     void onRemoveFileRequest();
 
+    QStringList fileNames() const;
+
+signals:
+    void fileNamesChanged();
+
 private:
+    void updateCurrentWorkdir(const QStringList& file_names);
+    void updateCurrentList(const QStringList& file_names);
+
     QListView* m_listView{nullptr};
     QStringListModel* m_listModel{nullptr};
+    QString m_currentWorkdir;
 };
 
 #endif // DAREFL_DATALOADER2_IMPORTFILEWIDGET_V2_H

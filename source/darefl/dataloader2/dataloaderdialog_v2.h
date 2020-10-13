@@ -27,6 +27,8 @@ public:
     DataLoaderDialogV2(QWidget* parent = nullptr);
 
 private:
+    void init_connection();
+
     DataLoaderToolBar* m_toolBar{nullptr};
     LoaderSelectorPanel* m_selectorPanel{nullptr};
     LoaderPreviewPanel* m_previewPanel{nullptr};

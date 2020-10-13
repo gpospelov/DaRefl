@@ -24,6 +24,10 @@ class LoaderSelectorPanel : public QWidget
 public:
     LoaderSelectorPanel(QWidget* parent = nullptr);
 
+public slots:
+    void onAddFilesRequest();
+    void onRemoveFileRequest();
+
 private:
     ImportFileWidgetV2* m_fileSelectorWidget{nullptr};
 };

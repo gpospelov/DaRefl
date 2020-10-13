@@ -17,3 +17,13 @@ LoaderSelectorPanel::LoaderSelectorPanel(QWidget* parent)
     auto layout = new QVBoxLayout(this);
     layout->addWidget(m_fileSelectorWidget);
 }
+
+void LoaderSelectorPanel::onAddFilesRequest()
+{
+    m_fileSelectorWidget->onAddFilesRequest();
+}
+
+void LoaderSelectorPanel::onRemoveFileRequest()
+{
+    m_fileSelectorWidget->onRemoveFileRequest();
+}
