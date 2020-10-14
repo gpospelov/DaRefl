@@ -24,7 +24,16 @@ class ParsingPropertyWidget : public QWidget
     Q_OBJECT
 
 public:
-//    enum ButtonID {AUTOMATIC, SPACE, COMMA, }
+    enum ButtonID {
+        AUTOMATIC,
+        SPACE,
+        COMMA,
+        CUSTOM,
+        STARTINGFROM,
+        LINENUMBERS,
+        NEWCANVAS,
+        EXISTINGCANVAS
+    };
 
     ParsingPropertyWidget(QWidget* parent = nullptr);
 
