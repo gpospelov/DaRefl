@@ -27,12 +27,14 @@ public:
 public slots:
     void onAddFilesRequest();
     void onRemoveFileRequest();
-    std::vector<std::string> fileNames() const;
 
 signals:
-    void fileNamesChanged();
+    void fileNamesChanged(const QStringList& file_names);
+    void fileSelectionChanged(const QStringList& file_names);
 
 private:
+    void init_connections();
+
     ImportFileWidgetV2* m_fileSelectorWidget{nullptr};
 };
 

@@ -18,8 +18,7 @@ LoaderSelectorPanel::LoaderSelectorPanel(QWidget* parent)
     auto layout = new QVBoxLayout(this);
     layout->addWidget(m_fileSelectorWidget);
 
-    connect(m_fileSelectorWidget, &ImportFileWidgetV2::fileNamesChanged,
-            [this] { fileNamesChanged(); });
+    init_connections();
 }
 
 void LoaderSelectorPanel::onAddFilesRequest()
@@ -32,10 +31,13 @@ void LoaderSelectorPanel::onRemoveFileRequest()
     m_fileSelectorWidget->onRemoveFileRequest();
 }
 
-std::vector<std::string> LoaderSelectorPanel::fileNames() const
+void LoaderSelectorPanel::init_connections()
 {
-    std::vector<std::string> result;
-    for (const auto& file_name : m_fileSelectorWidget->fileNames())
-        result.push_back(file_name.toStdString());
-    return result;
+    auto on_file_names_changed = [this]() { fileNamesChanged(m_fileSelectorWidget->fileNames()); };
+    connect(m_fileSelectorWidget, &ImportFileWidgetV2::fileNamesChanged, on_file_names_changed);
+
+    auto on_selection_changed = [this]() {
+        fileSelectionChanged(m_fileSelectorWidget->selectedFileNames());
+    };
+    connect(m_fileSelectorWidget, &ImportFileWidgetV2::fileSelectionChanged, on_selection_changed);
 }
