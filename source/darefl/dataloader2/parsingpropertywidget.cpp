@@ -22,21 +22,26 @@
 
 namespace
 {
-QLabel* createBoldLabel(const QString& text)
+
+//! Creates widget with label and little space above. Intended fro grid layouts.
+QWidget* createSectionWidget(const QString& text)
 {
-    auto result = new QLabel(text);
-    QFont font = result->font();
+    auto widget = new QWidget;
+    auto layout = new QVBoxLayout(widget);
+    layout->addSpacing(10);
+    auto label = new QLabel(text);
+    QFont font = label->font();
     font.setPointSize(ModelView::Utils::SystemPointSize() * 1.05);
     //    font.setBold(true);
-    result->setFont(font);
-    return result;
+    label->setFont(font);
+    layout->addWidget(label);
+    return widget;
 }
 } // namespace
 
 ParsingPropertyWidget::ParsingPropertyWidget(QWidget* parent) : QWidget(parent)
 {
     auto layout = new QVBoxLayout(this);
-
     layout->addLayout(createGridLayout());
     layout->addStretch(1);
 }
@@ -47,10 +52,17 @@ QGridLayout* ParsingPropertyWidget::createGridLayout()
 
     addSectionLabel("Separator", grid_layout);
     addSeparatorBlock(grid_layout);
+
     addSectionLabel("Ignore lines", grid_layout);
     addIgnoreLinesBlock(grid_layout);
+
     addSectionLabel("Import targed", grid_layout);
     addImportToBlock(grid_layout);
+
+    // make first colum with invisible label fixed
+    for(int col=0; col<grid_layout->columnCount(); ++col)
+        grid_layout->setColumnStretch(col, 10);
+    grid_layout->setColumnStretch(0, 0);
 
     return grid_layout;
 }
@@ -58,7 +70,7 @@ QGridLayout* ParsingPropertyWidget::createGridLayout()
 void ParsingPropertyWidget::addSectionLabel(const QString& text, QGridLayout* layout)
 {
     int row = layout->rowCount();
-    layout->addWidget(createBoldLabel(text), row, 0, 1, 3, Qt::AlignLeft);
+    layout->addWidget(createSectionWidget(text), row, 0, 1, 3, Qt::AlignLeft);
 }
 
 void ParsingPropertyWidget::addSeparatorBlock(QGridLayout* layout)
