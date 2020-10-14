@@ -24,6 +24,8 @@ class ParsingPropertyWidget : public QWidget
     Q_OBJECT
 
 public:
+//    enum ButtonID {AUTOMATIC, SPACE, COMMA, }
+
     ParsingPropertyWidget(QWidget* parent = nullptr);
 
 private:
@@ -33,8 +35,6 @@ private:
     void addSeparatorBlock(QGridLayout* layout);
     void addIgnoreLinesBlock(QGridLayout* layout);
     void addImportToBlock(QGridLayout* layout);
-
-    QLineEdit* m_customSeparatorLineEdit{nullptr};
 };
 
 #endif // DAREFL_DATALOADER2_PARSINGPROPERTYWIDGET_H
