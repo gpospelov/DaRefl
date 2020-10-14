@@ -12,6 +12,8 @@
 
 #include <QWidget>
 
+class ImportTextViewV2;
+
 //! Panel with settings for DataLoaderDialog.
 //! Located on its right side, contains text and table views.
 
@@ -21,6 +23,9 @@ class LoaderPreviewPanel : public QWidget
 
 public:
     LoaderPreviewPanel(QWidget* parent = nullptr);
+
+private:
+    ImportTextViewV2* m_textView{nullptr};
 };
 
 #endif // DAREFL_DATALOADER2_LOADERPREVIEW_H

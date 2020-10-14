@@ -7,6 +7,14 @@
 //
 // ************************************************************************** //
 
+#include <QVBoxLayout>
+#include <darefl/dataloader2/importtextview_v2.h>
 #include <darefl/dataloader2/loaderpreviewpanel.h>
 
-LoaderPreviewPanel::LoaderPreviewPanel(QWidget* parent) : QWidget(parent) {}
+LoaderPreviewPanel::LoaderPreviewPanel(QWidget* parent)
+    : QWidget(parent), m_textView(new ImportTextViewV2)
+{
+    auto layout = new QVBoxLayout(this);
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->addWidget(m_textView);
+}
