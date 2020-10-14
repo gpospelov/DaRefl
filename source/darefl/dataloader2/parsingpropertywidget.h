@@ -12,7 +12,9 @@
 
 #include <QWidget>
 
-//! Panel with settings for ASCII multi-column file parsing.
+class QLineEdit;
+
+//! Panel or ASCII parser properties.
 
 class ParsingPropertyWidget : public QWidget
 {
@@ -20,6 +22,9 @@ class ParsingPropertyWidget : public QWidget
 
 public:
     ParsingPropertyWidget(QWidget* parent = nullptr);
+
+private:
+    QLineEdit* m_customSeparatorLineEdit{nullptr};
 };
 
 #endif // DAREFL_DATALOADER2_PARSINGPROPERTYWIDGET_H
