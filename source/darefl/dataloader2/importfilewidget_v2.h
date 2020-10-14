@@ -30,12 +30,15 @@ public slots:
 
     QStringList fileNames() const;
 
+    QStringList selectedFileNames() const;
+
 signals:
     void fileNamesChanged();
+    void fileSelectionChanged();
 
 private:
     void updateCurrentWorkdir(const QStringList& file_names);
-    void updateCurrentList(const QStringList& file_names);
+    void addFileNamesToModel(const QStringList& file_names);
 
     QListView* m_listView{nullptr};
     QStringListModel* m_listModel{nullptr};

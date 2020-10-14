@@ -15,6 +15,18 @@
 #include <darefl/dataloader2/dataloadertoolbar.h>
 #include <darefl/dataloader2/loaderpreviewpanel.h>
 #include <darefl/dataloader2/loaderselectorpanel.h>
+#include <QDebug>
+
+namespace
+{
+std::vector<std::string> toStringVector(const QStringList& container)
+{
+    std::vector<std::string> result;
+    for (const auto& x : container)
+        result.push_back(x.toStdString());
+    return result;
+}
+} // namespace
 
 DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
     : QDialog(parent), m_toolBar(new DataLoaderToolBar), m_selectorPanel(new LoaderSelectorPanel),
@@ -46,9 +58,14 @@ void DataLoaderDialogV2::init_connections()
     connect(m_toolBar, &DataLoaderToolBar::removeFilesRequest, m_selectorPanel,
             &LoaderSelectorPanel::onRemoveFileRequest);
 
-    // connect LoaderSElectorPanel with DataHandler
-    auto on_file_list_changed = [this]() {
-        m_dataHandler->updateRawData(m_selectorPanel->fileNames());
+    // connect LoaderSelectorPanel with DataHandler
+    auto on_file_list_changed = [this](const auto& container) {
+        m_dataHandler->updateRawData(toStringVector(container));
     };
     connect(m_selectorPanel, &LoaderSelectorPanel::fileNamesChanged, on_file_list_changed);
+
+    auto on_selection_changed = [](const auto& container) {
+        qDebug() << "selected" << container;
+    };
+    connect(m_selectorPanel, &LoaderSelectorPanel::fileSelectionChanged, on_selection_changed);
 }
