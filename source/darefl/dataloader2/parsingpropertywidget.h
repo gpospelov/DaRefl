@@ -28,9 +28,11 @@ public:
 
 private:
     QGridLayout* createGridLayout();
-    QWidget* createGroup();
-    QBoxLayout* createSeparatorLayout();
-    QBoxLayout* createLinesLayout();
+
+    void addSectionLabel(const QString& text, QGridLayout* layout);
+    void addSeparatorBlock(QGridLayout* layout);
+    void addIgnoreLinesBlock(QGridLayout* layout);
+    void addImportToBlock(QGridLayout* layout);
 
     QLineEdit* m_customSeparatorLineEdit{nullptr};
 };

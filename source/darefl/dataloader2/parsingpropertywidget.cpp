@@ -7,28 +7,30 @@
 //
 // ************************************************************************** //
 
-#include <QLineEdit>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QGridLayout>
-#include <QLabel>
-#include <QRadioButton>
-#include <QGroupBox>
 #include <QComboBox>
+#include <QDebug>
+#include <QGridLayout>
+#include <QGroupBox>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QLineEdit>
+#include <QRadioButton>
+#include <QVBoxLayout>
 #include <darefl/dataloader2/parsingpropertywidget.h>
 #include <mvvm/widgets/widgetutils.h>
 
-namespace {
+namespace
+{
 QLabel* createBoldLabel(const QString& text)
 {
     auto result = new QLabel(text);
     QFont font = result->font();
     font.setPointSize(ModelView::Utils::SystemPointSize() * 1.05);
-//    font.setBold(true);
+    //    font.setBold(true);
     result->setFont(font);
     return result;
 }
-}
+} // namespace
 
 ParsingPropertyWidget::ParsingPropertyWidget(QWidget* parent)
     : QWidget(parent), m_customSeparatorLineEdit(new QLineEdit)
@@ -36,10 +38,6 @@ ParsingPropertyWidget::ParsingPropertyWidget(QWidget* parent)
     auto layout = new QVBoxLayout(this);
 
     layout->addLayout(createGridLayout());
-//    layout->addWidget(createGroup());
-    layout->addLayout(createSeparatorLayout());
-    layout->addSpacing(20);
-    layout->addLayout(createLinesLayout());
     layout->addStretch(1);
 }
 
@@ -47,155 +45,84 @@ QGridLayout* ParsingPropertyWidget::createGridLayout()
 {
     auto grid_layout = new QGridLayout;
 
-    // row 0
-    grid_layout->addWidget(createBoldLabel("Separator"), 0, 0, 1, 3, Qt::AlignLeft);
-
-    // row 1
-    auto automaticRadio = new QRadioButton;
-    automaticRadio->setText("Automatic");
-    auto spaceRadio = new QRadioButton;
-    spaceRadio->setText("Space");
-    auto commaRadio = new QRadioButton;
-    commaRadio->setText("Comma");
-    grid_layout->addWidget(new QLabel("  "), 1, 0, Qt::AlignLeft);
-    grid_layout->addWidget(automaticRadio, 1, 1, Qt::AlignLeft);
-    grid_layout->addWidget(spaceRadio, 1, 2, Qt::AlignLeft);
-    grid_layout->addWidget(commaRadio, 1, 3, Qt::AlignLeft);
-
-    // row 2
-    auto customRadio = new QRadioButton;
-    customRadio->setText("Custom");
-    m_customSeparatorLineEdit->setMaximumWidth(ModelView::Utils::WidthOfLetterM()*4);
-
-    grid_layout->addWidget(new QLabel("  "), 2, 0, Qt::AlignLeft);
-    grid_layout->addWidget(customRadio, 2, 1, Qt::AlignLeft);
-    grid_layout->addWidget(m_customSeparatorLineEdit, 2, 2, Qt::AlignLeft);
-
-    // row 3
-    grid_layout->addWidget(createBoldLabel("Ignore lines"), 3, 0, 1, 3, Qt::AlignLeft);
-
-    // row 4
-    auto startingFromRadio = new QRadioButton;
-    startingFromRadio->setText("Starting from");
-    auto startingFromTextEdit = new QLineEdit;
-    grid_layout->addWidget(new QLabel("  "), 4, 0, Qt::AlignLeft);
-    grid_layout->addWidget(startingFromRadio, 4, 1, Qt::AlignLeft);
-    grid_layout->addWidget(startingFromTextEdit, 4, 2, Qt::AlignLeft);
-
-    // row 5
-    auto lineNumbersRadio = new QRadioButton;
-    lineNumbersRadio->setText("Line numbers");
-    auto lineNumbersTextEdit = new QLineEdit;
-    grid_layout->addWidget(new QLabel("  "), 5, 0, Qt::AlignLeft);
-    grid_layout->addWidget(lineNumbersRadio, 5, 1, Qt::AlignLeft);
-    grid_layout->addWidget(lineNumbersTextEdit, 5, 2, Qt::AlignLeft);
-
-    // row 6
-    grid_layout->addWidget(createBoldLabel("Import targed"), 6, 0, 1, 3, Qt::AlignLeft);
-
-    // row 7
-    auto newCanvasRadio = new QRadioButton;
-    newCanvasRadio->setText("New canvas");
-    grid_layout->addWidget(new QLabel("  "), 7, 0, Qt::AlignLeft);
-    grid_layout->addWidget(newCanvasRadio, 7, 1, Qt::AlignLeft);
-
-    // row 8
-    auto existingCanvasRadio = new QRadioButton;
-    existingCanvasRadio->setText("Existing canvas");
-    auto existingCanvasCombo = new QComboBox;
-    grid_layout->addWidget(new QLabel("  "), 8, 0, Qt::AlignLeft);
-    grid_layout->addWidget(existingCanvasRadio, 8, 1, Qt::AlignLeft);
-    grid_layout->addWidget(existingCanvasCombo, 8, 2, Qt::AlignLeft);
+    addSectionLabel("Separator", grid_layout);
+    addSeparatorBlock(grid_layout);
+    addSectionLabel("Ignore lines", grid_layout);
+    addIgnoreLinesBlock(grid_layout);
+    addSectionLabel("Import targed", grid_layout);
+    addImportToBlock(grid_layout);
 
     return grid_layout;
 }
 
-QWidget* ParsingPropertyWidget::createGroup()
+void ParsingPropertyWidget::addSectionLabel(const QString& text, QGridLayout* layout)
 {
-    auto result = new QGroupBox("Separator");
-    auto layout = new QHBoxLayout(result);
-
-    auto automaticRadio = new QRadioButton;
-    automaticRadio->setText("Automatic");
-    auto spaceRadio = new QRadioButton;
-    spaceRadio->setText("Space");
-    auto commaRadio = new QRadioButton;
-    commaRadio->setText("Comma");
-
-    layout->addWidget(automaticRadio);
-    layout->addWidget(spaceRadio);
-    layout->addWidget(commaRadio);
-
-    return result;
-
+    int row = layout->rowCount();
+    layout->addWidget(createBoldLabel(text), row, 0, 1, 3, Qt::AlignLeft);
 }
 
-QBoxLayout* ParsingPropertyWidget::createSeparatorLayout()
+void ParsingPropertyWidget::addSeparatorBlock(QGridLayout* layout)
 {
-    auto result = new QVBoxLayout;
-
-    result->addWidget(createBoldLabel("Separator"), 0, Qt::AlignLeft);
-
-    auto hlayout0 = new QHBoxLayout;
-    hlayout0->addSpacing(20);
-
-    auto grid = new QGridLayout;
-    hlayout0->addLayout(grid);
-
+    // row
+    int row = layout->rowCount();
     auto automaticRadio = new QRadioButton;
     automaticRadio->setText("Automatic");
     auto spaceRadio = new QRadioButton;
     spaceRadio->setText("Space");
     auto commaRadio = new QRadioButton;
     commaRadio->setText("Comma");
+    layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
+    layout->addWidget(automaticRadio, row, 1, Qt::AlignLeft);
+    layout->addWidget(spaceRadio, row, 2, Qt::AlignLeft);
+    layout->addWidget(commaRadio, row, 3, Qt::AlignLeft);
 
-    grid->addWidget(automaticRadio, 0, 0);
-    grid->addWidget(spaceRadio, 0, 1);
-    grid->addWidget(commaRadio, 0, 2);
-
-    // ---
+    // row
+    row = layout->rowCount();
     auto customRadio = new QRadioButton;
     customRadio->setText("Custom");
+    m_customSeparatorLineEdit->setMaximumWidth(ModelView::Utils::WidthOfLetterM() * 4);
 
-    auto customEdit = new QLineEdit();
-
-    grid->addWidget(customRadio, 1, 0);
-    grid->addWidget(customEdit,1, 1);
-
-    result->addLayout(hlayout0);
-    return result;
+    layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
+    layout->addWidget(customRadio, row, 1, Qt::AlignLeft);
+    layout->addWidget(m_customSeparatorLineEdit, row, 2, Qt::AlignLeft);
 }
 
-QBoxLayout* ParsingPropertyWidget::createLinesLayout()
+void ParsingPropertyWidget::addIgnoreLinesBlock(QGridLayout* layout)
 {
-    auto result = new QVBoxLayout;
-
-    result->addWidget(createBoldLabel("Ignore lines"), 0, Qt::AlignLeft);
-
-    auto hlayout0 = new QHBoxLayout;
-    hlayout0->addSpacing(20);
-
-    auto grid = new QGridLayout;
-    hlayout0->addLayout(grid);
-
+    // row
+    int row = layout->rowCount();
     auto startingFromRadio = new QRadioButton;
-    startingFromRadio->setText("Staring from");
-    auto startingFromText = new QLineEdit;
-    grid->addWidget(startingFromRadio, 0, 0);
-    grid->addWidget(startingFromText, 0, 1);
-    grid->addWidget(new QLabel(" "), 0, 2);
+    startingFromRadio->setText("Starting from");
+    auto startingFromTextEdit = new QLineEdit;
+    layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
+    layout->addWidget(startingFromRadio, row, 1, Qt::AlignLeft);
+    layout->addWidget(startingFromTextEdit, row, 2, Qt::AlignLeft);
 
+    // row
+    row = layout->rowCount();
     auto lineNumbersRadio = new QRadioButton;
     lineNumbersRadio->setText("Line numbers");
-    auto lineNumbersText = new QLineEdit;
+    auto lineNumbersTextEdit = new QLineEdit;
+    layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
+    layout->addWidget(lineNumbersRadio, row, 1, Qt::AlignLeft);
+    layout->addWidget(lineNumbersTextEdit, row, 2, Qt::AlignLeft);
+}
 
-    grid->addWidget(lineNumbersRadio, 1, 0);
-    grid->addWidget(lineNumbersText, 1, 1);
+void ParsingPropertyWidget::addImportToBlock(QGridLayout* layout)
+{
+    // row
+    int row = layout->rowCount();
+    auto newCanvasRadio = new QRadioButton;
+    newCanvasRadio->setText("New canvas");
+    layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
+    layout->addWidget(newCanvasRadio, row, 1, Qt::AlignLeft);
 
-    auto spacer = new QWidget;
-    spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::MinimumExpanding);
-    grid->addWidget(spacer, 1, 2);
-
-    result->addLayout(hlayout0);
-    return result;
+    // row
+    row = layout->rowCount();
+    auto existingCanvasRadio = new QRadioButton;
+    existingCanvasRadio->setText("Existing canvas");
+    auto existingCanvasCombo = new QComboBox;
+    layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
+    layout->addWidget(existingCanvasRadio, row, 1, Qt::AlignLeft);
+    layout->addWidget(existingCanvasCombo, row, 2, Qt::AlignLeft);
 }
