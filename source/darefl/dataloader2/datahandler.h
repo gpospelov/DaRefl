@@ -25,8 +25,10 @@ public:
 
     void updateRawData(const std::vector<std::string>& file_names);
 
+    std::vector<std::string> textData(const std::string& file_name);
+
 private:
-    void readFile(const std::string& file_name);
+    void loadFile(const std::string& file_name);
 
     //!< correspondence of file name to the raw data in the file (i.e. all strings)
     std::map<std::string, std::vector<std::string>> m_raw_data;
