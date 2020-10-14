@@ -17,6 +17,11 @@ class QBoxLayout;
 class QLayout;
 class QGridLayout;
 
+namespace DataLoader
+{
+class ParsingOptions;
+}
+
 //! Panel or ASCII parser properties.
 
 class ParsingPropertyWidget : public QWidget
@@ -36,6 +41,11 @@ public:
     };
 
     ParsingPropertyWidget(QWidget* parent = nullptr);
+
+    DataLoader::ParsingOptions parsingOptions() const;
+
+signals:
+    void parsingPropertiesHaveChanged();
 
 private:
     QGridLayout* createGridLayout();

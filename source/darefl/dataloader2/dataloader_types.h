@@ -18,12 +18,10 @@ namespace DataLoader
 
 //! Parser options to process multi column ASCII files.
 
-struct ParseOptions {
+struct ParsingOptions {
     const std::string m_header_prefix = "#"; //!< prefix denoting header line
     const std::string m_separator = " ";     //!< column separator
-//    const std::vector<int> m_indices_to_skip; //!< list of line indices to skip
-    const std::string m_skip_index_pattern;  //!< pattern denoting line to skip (i.e. '0,10-12,42'),
-                                             //!< starting from 0
+    const std::string m_skip_index_pattern;  //!< pattern denoting line to skip (i.e. '1,10-12,42')
 };
 
 struct ParseResults
