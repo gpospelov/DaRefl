@@ -7,18 +7,33 @@
 //
 // ************************************************************************** //
 
+#include <QDebug>
 #include <QFileDialog>
 #include <QItemSelectionModel>
 #include <QListView>
+#include <QSettings>
 #include <QStringListModel>
 #include <QVBoxLayout>
 #include <darefl/dataloader2/importfilewidget_v2.h>
 #include <mvvm/utils/fileutils.h>
-#include <QDebug>
+
+namespace
+{
+const QString group_key = "dataloader";
+const QString current_workdir_key = "currentworkdir";
+
+const QString workdir_setting_name()
+{
+    return group_key + "/" + current_workdir_key;
+}
+
+} // namespace
 
 ImportFileWidgetV2::ImportFileWidgetV2(QWidget* parent)
     : QWidget(parent), m_listView(new QListView), m_listModel(new QStringListModel)
 {
+    readSettings();
+
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(m_listView);
@@ -29,6 +44,11 @@ ImportFileWidgetV2::ImportFileWidgetV2(QWidget* parent)
 
     connect(m_listView->selectionModel(), &QItemSelectionModel::selectionChanged, this,
             &ImportFileWidgetV2::fileSelectionChanged);
+}
+
+ImportFileWidgetV2::~ImportFileWidgetV2()
+{
+    writeSettings();
 }
 
 //! Summons dialog for file selections, update list view with file names.
@@ -67,6 +87,25 @@ QStringList ImportFileWidgetV2::selectedFileNames() const
     for (auto index : m_listView->selectionModel()->selectedIndexes())
         result.append(m_listModel->data(index).toString());
     return result;
+}
+
+//! Writes widget settings.
+
+void ImportFileWidgetV2::writeSettings()
+{
+    QSettings settings;
+    settings.setValue(workdir_setting_name(), m_currentWorkdir);
+}
+
+//! Loads widget settings.
+
+void ImportFileWidgetV2::readSettings()
+{
+    QSettings settings;
+    m_currentWorkdir = QDir::homePath();
+
+    if (settings.contains(workdir_setting_name()))
+        m_currentWorkdir = settings.value(workdir_setting_name()).toString();
 }
 
 //! Updates current working dir.

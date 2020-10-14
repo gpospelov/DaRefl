@@ -15,7 +15,9 @@
 class QListView;
 class QStringListModel;
 
-//! Contains list of files to import. Part of LoaderPreviewPanel.
+//! Provides the possibility to select file names on disk and add them to list view.
+//! List represents names of ASCII files which will be later imported and parsed.
+//! Part of LoaderPreviewPanel.
 
 class ImportFileWidgetV2 : public QWidget
 {
@@ -23,6 +25,7 @@ class ImportFileWidgetV2 : public QWidget
 
 public:
     ImportFileWidgetV2(QWidget* parent = nullptr);
+    ~ImportFileWidgetV2();
 
 public slots:
     void onAddFilesRequest();
@@ -37,6 +40,9 @@ signals:
     void fileSelectionChanged();
 
 private:
+    void writeSettings();
+    void readSettings();
+
     void updateCurrentWorkdir(const QStringList& file_names);
     void addFileNamesToModel(const QStringList& file_names);
 
