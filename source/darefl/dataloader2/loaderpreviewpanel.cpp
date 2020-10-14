@@ -7,9 +7,22 @@
 //
 // ************************************************************************** //
 
+#include <QColor>
+#include <QDebug>
 #include <QVBoxLayout>
 #include <darefl/dataloader2/importtextview_v2.h>
 #include <darefl/dataloader2/loaderpreviewpanel.h>
+
+namespace
+{
+
+//! Returns text wrapped into colored tag.
+QString get_colored_line(const QColor& color, const QString& text)
+{
+    QString result = QString("<div><font color=\"%1\">%2</font></div>").arg(color.name(), text);
+    return result;
+}
+} // namespace
 
 LoaderPreviewPanel::LoaderPreviewPanel(QWidget* parent)
     : QWidget(parent), m_textView(new ImportTextViewV2)
@@ -24,6 +37,9 @@ LoaderPreviewPanel::LoaderPreviewPanel(QWidget* parent)
 void LoaderPreviewPanel::setTextData(const std::vector<std::string>& textData)
 {
     m_textView->clear();
-    for (const auto& str : textData)
-        m_textView->appendPlainText(QString::fromStdString(str));
+    for (const auto& str : textData) {
+        auto text = QString::fromStdString(str);
+
+        m_textView->appendHtml(get_colored_line(QColor(Qt::red), text));
+    }
 }

@@ -46,6 +46,7 @@ DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
     layout->addWidget(button_box);
 
     init_connections();
+    setWindowTitle("Data import dialog");
 }
 
 DataLoaderDialogV2::~DataLoaderDialogV2() = default;
