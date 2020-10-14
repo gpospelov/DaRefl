@@ -17,6 +17,7 @@
 #include <QLineEdit>
 #include <QRadioButton>
 #include <QVBoxLayout>
+#include <darefl/dataloader2/dataloader_types.h>
 #include <darefl/dataloader2/parsingpropertywidget.h>
 #include <mvvm/widgets/widgetutils.h>
 
@@ -46,6 +47,11 @@ ParsingPropertyWidget::ParsingPropertyWidget(QWidget* parent) : QWidget(parent)
     layout->addStretch(1);
 }
 
+DataLoader::ParsingOptions ParsingPropertyWidget::parsingOptions() const
+{
+    return {};
+}
+
 QGridLayout* ParsingPropertyWidget::createGridLayout()
 {
     auto grid_layout = new QGridLayout;
@@ -60,7 +66,7 @@ QGridLayout* ParsingPropertyWidget::createGridLayout()
     addImportToBlock(grid_layout);
 
     // make first colum with invisible label fixed
-    for(int col=0; col<grid_layout->columnCount(); ++col)
+    for (int col = 0; col < grid_layout->columnCount(); ++col)
         grid_layout->setColumnStretch(col, 10);
     grid_layout->setColumnStretch(0, 0);
 
@@ -78,6 +84,7 @@ void ParsingPropertyWidget::addSeparatorBlock(QGridLayout* layout)
     // row
     int row = layout->rowCount();
     auto automaticRadio = new QRadioButton;
+    automaticRadio->setChecked(true);
     automaticRadio->setText("Automatic");
     automaticRadio->setToolTip("Try to guess column separator");
     auto spaceRadio = new QRadioButton;
@@ -105,10 +112,13 @@ void ParsingPropertyWidget::addSeparatorBlock(QGridLayout* layout)
     layout->addWidget(customSeparatorLineEdit, row, 2, Qt::AlignLeft);
 
     auto buttonGroup = new QButtonGroup;
-    buttonGroup->addButton(automaticRadio);
-    buttonGroup->addButton(spaceRadio);
-    buttonGroup->addButton(commaRadio);
-    buttonGroup->addButton(customRadio);
+    buttonGroup->addButton(automaticRadio, AUTOMATIC);
+    buttonGroup->addButton(spaceRadio, SPACE);
+    buttonGroup->addButton(commaRadio, COMMA);
+    buttonGroup->addButton(customRadio, CUSTOM);
+
+    auto on_button_group = [this](int id) { qDebug() << "id" << id; };
+    connect(buttonGroup, &QButtonGroup::idClicked, on_button_group);
 }
 
 void ParsingPropertyWidget::addIgnoreLinesBlock(QGridLayout* layout)
@@ -119,11 +129,10 @@ void ParsingPropertyWidget::addIgnoreLinesBlock(QGridLayout* layout)
     startingFromRadio->setText("Starting from");
     startingFromRadio->setAutoExclusive(false);
     startingFromRadio->setChecked(true);
-    startingFromRadio->setToolTip("All lines starting from a given character(s) will be ignored");
+    startingFromRadio->setToolTip("Ignore lines starting from a given character(s)");
     auto startingFromTextEdit = new QLineEdit;
     startingFromTextEdit->setText("#");
-    startingFromTextEdit->setToolTip(
-        "All lines starting from a given character(s) will be ignored");
+    startingFromTextEdit->setToolTip("Ignore lines starting from a given character(s)");
     layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
     layout->addWidget(startingFromRadio, row, 1, Qt::AlignLeft);
     layout->addWidget(startingFromTextEdit, row, 2, Qt::AlignLeft);
@@ -133,10 +142,10 @@ void ParsingPropertyWidget::addIgnoreLinesBlock(QGridLayout* layout)
     auto lineNumbersRadio = new QRadioButton;
     lineNumbersRadio->setAutoExclusive(false);
     lineNumbersRadio->setText("Line numbers");
-    lineNumbersRadio->setToolTip("All lines with numbers matching the pattern will be ignored");
+    lineNumbersRadio->setToolTip("Ignore lines with line numbers matching the pattern");
     auto lineNumbersTextEdit = new QLineEdit;
     lineNumbersTextEdit->setPlaceholderText("Example: 1-5,42");
-    lineNumbersTextEdit->setToolTip("All lines with numbers matching the pattern will be ignored");
+    lineNumbersTextEdit->setToolTip("Ignore lines with line numbers matching the pattern");
     layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
     layout->addWidget(lineNumbersRadio, row, 1, Qt::AlignLeft);
     layout->addWidget(lineNumbersTextEdit, row, 2, Qt::AlignLeft);
