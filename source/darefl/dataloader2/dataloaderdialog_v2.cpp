@@ -7,6 +7,7 @@
 //
 // ************************************************************************** //
 
+#include <QDebug>
 #include <QDialogButtonBox>
 #include <QSplitter>
 #include <QVBoxLayout>
@@ -15,7 +16,6 @@
 #include <darefl/dataloader2/dataloadertoolbar.h>
 #include <darefl/dataloader2/loaderpreviewpanel.h>
 #include <darefl/dataloader2/loaderselectorpanel.h>
-#include <QDebug>
 
 namespace
 {
@@ -50,6 +50,8 @@ DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
 
 DataLoaderDialogV2::~DataLoaderDialogV2() = default;
 
+//! Init interconnections of all widgets.
+
 void DataLoaderDialogV2::init_connections()
 {
     // connect toolbar and LoaderSelectorPanel
@@ -64,8 +66,10 @@ void DataLoaderDialogV2::init_connections()
     };
     connect(m_selectorPanel, &LoaderSelectorPanel::fileNamesChanged, on_file_list_changed);
 
-    auto on_selection_changed = [](const auto& container) {
+    auto on_selection_changed = [this](const auto& container) {
         qDebug() << "selected" << container;
+        if (!container.empty())
+            m_previewPanel->setTextData(m_dataHandler->textData(container.back().toStdString()));
     };
     connect(m_selectorPanel, &LoaderSelectorPanel::fileSelectionChanged, on_selection_changed);
 }

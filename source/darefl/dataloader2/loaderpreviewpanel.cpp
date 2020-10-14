@@ -17,4 +17,14 @@ LoaderPreviewPanel::LoaderPreviewPanel(QWidget* parent)
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(m_textView);
+
+    m_textView->setReadOnly(true);
+}
+
+//! Sets raw text to the TextView.
+
+void LoaderPreviewPanel::setTextData(const std::vector<std::string>& textData)
+{
+    for (const auto& str : textData)
+        m_textView->appendPlainText(QString::fromStdString(str));
 }

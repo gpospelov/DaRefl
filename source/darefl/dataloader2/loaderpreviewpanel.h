@@ -24,6 +24,8 @@ class LoaderPreviewPanel : public QWidget
 public:
     LoaderPreviewPanel(QWidget* parent = nullptr);
 
+    void setTextData(const std::vector<std::string>& textData);
+
 private:
     ImportTextViewV2* m_textView{nullptr};
 };
