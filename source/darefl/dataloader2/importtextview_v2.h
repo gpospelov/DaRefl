@@ -10,6 +10,9 @@
 #ifndef DAREFL_DATALOADER2_IMPORTTEXTVIEW_V2_H
 #define DAREFL_DATALOADER2_IMPORTTEXTVIEW_V2_H
 
+//! Based on Qt example "codeeditor"
+//! Copyright (C) 2016 The Qt Company Ltd.
+
 #include <QPlainTextEdit>
 
 class QPaintEvent;
