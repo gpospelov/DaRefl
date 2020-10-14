@@ -17,7 +17,9 @@ LoaderSelectorPanel::LoaderSelectorPanel(QWidget* parent)
     : QWidget(parent), m_fileSelectorWidget(new ImportFileWidgetV2), m_propertyWidget(new ParsingPropertyWidget)
 {
     auto layout = new QVBoxLayout(this);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(m_fileSelectorWidget);
+    layout->addWidget(m_propertyWidget);
 
     init_connections();
 }
