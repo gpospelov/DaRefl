@@ -42,4 +42,5 @@ void LoaderPreviewPanel::setTextData(const std::vector<std::string>& textData)
 
         m_textView->appendHtml(get_colored_line(QColor(Qt::red), text));
     }
+    m_textView->moveCursor(QTextCursor::Start);
 }
