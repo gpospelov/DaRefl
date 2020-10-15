@@ -31,13 +31,25 @@ public:
         return v;
     }
 
-    std::vector<std::pair<int, int>> toPairVector(std::initializer_list<std::pair<int, int>> list = {})
+    std::vector<std::pair<int, int>>
+    toPairVector(std::initializer_list<std::pair<int, int>> list = {})
     {
         return std::vector<std::pair<int, int>>(list.begin(), list.end());
     }
 };
 
 ParseUtilsTest::~ParseUtilsTest() = default;
+
+//! Testing function TrimWhitespace
+
+TEST_F(ParseUtilsTest, TrimWhiteSpace)
+{
+    EXPECT_EQ(TrimWhitespace(""), std::string());
+    EXPECT_EQ(TrimWhitespace(" "), std::string());
+    EXPECT_EQ(TrimWhitespace("abc"), std::string("abc"));
+    EXPECT_EQ(TrimWhitespace(" \t\n abc cde\n"), std::string("abc cde"));
+}
+
 
 //! Testing function StringToDouble.
 
@@ -58,6 +70,8 @@ TEST_F(ParseUtilsTest, StringToDouble)
 
     // valid double
     EXPECT_TRUE(StringToDouble("42").has_value());
+    EXPECT_TRUE(StringToDouble(" 42").has_value());
+    EXPECT_TRUE(StringToDouble(" 42 ").has_value());
     EXPECT_DOUBLE_EQ(StringToDouble("42").value(), 42.0);
     EXPECT_TRUE(StringToDouble("42.5").has_value());
     EXPECT_DOUBLE_EQ(StringToDouble("42.5").value(), 42.5);
@@ -137,10 +151,10 @@ TEST_F(ParseUtilsTest, toPairVector)
 
     expected = {};
     EXPECT_EQ(toPairVector(), expected);
-
-    expected = {{1,2}};
-    EXPECT_EQ(toPairVector({{1,2}}), expected);
-
+    expected = {{1, 2}};
+    EXPECT_EQ(toPairVector({{1, 2}}), expected);
+    expected = {{1, 2}, {3, 4}};
+    EXPECT_EQ(toPairVector({{1, 2}, {3, 4}}), expected);
 }
 
 //! Testing SplitString method.
@@ -165,11 +179,22 @@ TEST_F(ParseUtilsTest, SplitString)
     EXPECT_EQ(SplitString("aabbcc", "bb"), toStringVector("aa", "cc"));
 }
 
+//! Checking method to expand line numbers
+//! "1, 2-4" -> {0, 0}, {1, 3}
+
 TEST_F(ParseUtilsTest, ExpandLineNumberPattern)
 {
-    using container_t = std::vector<std::pair<int, int>>;
-    EXPECT_EQ(ExpandLineNumberPattern(""), container_t{});
+    EXPECT_EQ(ExpandLineNumberPattern(""), toPairVector());
+    EXPECT_EQ(ExpandLineNumberPattern(" "), toPairVector());
+    EXPECT_EQ(ExpandLineNumberPattern("aaa"), toPairVector());
+    EXPECT_EQ(ExpandLineNumberPattern("1"), toPairVector({{0, 0}}));
+    EXPECT_EQ(ExpandLineNumberPattern("42"), toPairVector({{41, 41}}));
 
-    container_t expected = {{0, 0}};
-    EXPECT_EQ(ExpandLineNumberPattern("1"), expected);
+    EXPECT_EQ(ExpandLineNumberPattern("1,1"), toPairVector({{0, 0}, {0, 0}}));
+    EXPECT_EQ(ExpandLineNumberPattern("1,2"), toPairVector({{0, 0}, {1, 1}}));
+
+    EXPECT_EQ(ExpandLineNumberPattern("1-1"), toPairVector({{0, 0}}));
+    EXPECT_EQ(ExpandLineNumberPattern("1-5"), toPairVector({{0, 4}}));
+
+    EXPECT_EQ(ExpandLineNumberPattern("1,2-3"), toPairVector({{0, 0}, {1, 2}}));
 }
