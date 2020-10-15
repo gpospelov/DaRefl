@@ -16,7 +16,8 @@
 class QGridLayout;
 class QButtonGroup;
 
-//! Panel or ASCII parser properties.
+//! Panel for ASCII parser properties.
+//! Contains selection of separator symbols, patterns to skip lines, and import target settings.
 
 class ParsingPropertyWidget : public QWidget
 {
