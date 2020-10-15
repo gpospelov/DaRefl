@@ -10,6 +10,7 @@
 #include "folderbasedtest.h"
 #include "test_utils.h"
 #include <darefl/dataloader2/parseutils.h>
+#include <initializer_list>
 #include <vector>
 
 using namespace DataLoader;
@@ -28,6 +29,11 @@ public:
         std::vector<T> v;
         (v.push_back(std::string(args)), ...);
         return v;
+    }
+
+    std::vector<std::pair<int, int>> toPairVector(std::initializer_list<std::pair<int, int>> list = {})
+    {
+        return std::vector<std::pair<int, int>>(list.begin(), list.end());
     }
 };
 
@@ -123,6 +129,20 @@ TEST_F(ParseUtilsTest, toStringVector)
     EXPECT_EQ(toStringVector("aaa", "bbb", ""), expected);
 }
 
+//! Testing local utility function.
+
+TEST_F(ParseUtilsTest, toPairVector)
+{
+    std::vector<std::pair<int, int>> expected;
+
+    expected = {};
+    EXPECT_EQ(toPairVector(), expected);
+
+    expected = {{1,2}};
+    EXPECT_EQ(toPairVector({{1,2}}), expected);
+
+}
+
 //! Testing SplitString method.
 //! Carefully checking that it is reproduces Python behavior, as promised in comments to the method.
 
@@ -133,15 +153,23 @@ TEST_F(ParseUtilsTest, SplitString)
     EXPECT_EQ(SplitString("", ","), toStringVector());
     EXPECT_EQ(SplitString(" ", " "), toStringVector("", ""));
     EXPECT_EQ(SplitString("a", " "), toStringVector("a"));
-    EXPECT_EQ(SplitString("a ", " "), toStringVector("a",""));
+    EXPECT_EQ(SplitString("a ", " "), toStringVector("a", ""));
 
-    EXPECT_EQ(SplitString("aa", "a"), toStringVector("","",""));
+    EXPECT_EQ(SplitString("a", "-"), toStringVector("a"));
 
-    EXPECT_EQ(SplitString("a,b", ","), toStringVector("a","b"));
+    EXPECT_EQ(SplitString("aa", "a"), toStringVector("", "", ""));
+
+    EXPECT_EQ(SplitString("a,b", ","), toStringVector("a", "b"));
+    EXPECT_EQ(SplitString("a,b,", ","), toStringVector("a", "b", ""));
+    EXPECT_EQ(SplitString(",a,b,", ","), toStringVector("", "a", "b", ""));
+    EXPECT_EQ(SplitString("aabbcc", "bb"), toStringVector("aa", "cc"));
 }
 
-// TEST_F(ParseUtilsTest, ExpandLineNumberPattern)
-//{
-//    using container_t = std::vector<std::pair<int, int> >;
-//    EXPECT_EQ(ExpandLineNumberPattern(""), container_t{});
-//}
+TEST_F(ParseUtilsTest, ExpandLineNumberPattern)
+{
+    using container_t = std::vector<std::pair<int, int>>;
+    EXPECT_EQ(ExpandLineNumberPattern(""), container_t{});
+
+    container_t expected = {{0, 0}};
+    EXPECT_EQ(ExpandLineNumberPattern("1"), expected);
+}
