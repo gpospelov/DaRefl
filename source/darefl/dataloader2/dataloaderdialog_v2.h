@@ -29,6 +29,10 @@ public:
     DataLoaderDialogV2(QWidget* parent = nullptr);
     ~DataLoaderDialogV2();
 
+
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
+
 private:
     void init_connections();
 
