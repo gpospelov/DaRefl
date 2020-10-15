@@ -10,9 +10,9 @@
 #ifndef DAREFL_DATALOADER2_PARSEUTILS_H
 #define DAREFL_DATALOADER2_PARSEUTILS_H
 
-#include <vector>
-#include <string>
 #include <optional>
+#include <string>
+#include <vector>
 
 namespace DataLoader
 {
@@ -32,6 +32,14 @@ std::optional<double> StringToDouble(const std::string& str);
 //! Loads ASCII file, returns it in the form of vector of strings.
 std::vector<std::string> LoadASCIIFile(const std::string& file_name);
 
-}
+//! Split string on substring using given delimeter. Reproduces Python str.split() behavior.
+std::vector<std::string> SplitString(const std::string& str, const std::string& delimeter);
+
+//! Expands string representing line number pattern to inclusive pairs of line indices.
+//! "1, 3-5" will be expanded to { {0, 0}, {2, 4} }
+//! Line numbers are counted starting from 1, indices starting from 0.
+std::vector<std::pair<int, int>> ExpandLineNumberPattern(const std::string& pattern);
+
+} // namespace DataLoader
 
 #endif // DAREFL_DATALOADER2_PARSEUTILS_H
