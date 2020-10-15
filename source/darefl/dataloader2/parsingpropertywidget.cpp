@@ -12,19 +12,17 @@
 #include <QDebug>
 #include <QGridLayout>
 #include <QGroupBox>
-#include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
 #include <QRadioButton>
 #include <QVBoxLayout>
-#include <darefl/dataloader2/dataloader_types.h>
 #include <darefl/dataloader2/parsingpropertywidget.h>
 #include <mvvm/widgets/widgetutils.h>
 
 namespace
 {
 
-//! Creates widget with label and little space above. Intended fro grid layouts.
+//! Creates widget with label and little space above. Intended for grid layouts.
 QWidget* createSectionWidget(const QString& text)
 {
     auto widget = new QWidget;
@@ -33,7 +31,6 @@ QWidget* createSectionWidget(const QString& text)
     auto label = new QLabel(text);
     QFont font = label->font();
     font.setPointSize(ModelView::Utils::SystemPointSize() * 1.05);
-    //    font.setBold(true);
     label->setFont(font);
     layout->addWidget(label);
     return widget;
@@ -67,10 +64,13 @@ QGridLayout* ParsingPropertyWidget::createGridLayout()
     auto grid_layout = new QGridLayout;
 
     addSectionLabel("Separator", grid_layout);
-    addSeparatorBlock(grid_layout);
+    auto buttonGroup = new QButtonGroup;
+    addStandardSeparatorRow(grid_layout, buttonGroup);
+    addCustomSeparatorRow(grid_layout, buttonGroup);
 
     addSectionLabel("Ignore lines", grid_layout);
-    addIgnoreLinesBlock(grid_layout);
+    addIgnoreStringPatternRow(grid_layout);
+    addIgnoreNumbersPatternRow(grid_layout);
 
     addSectionLabel("Import targed", grid_layout);
     addImportToBlock(grid_layout);
@@ -89,9 +89,11 @@ void ParsingPropertyWidget::addSectionLabel(const QString& text, QGridLayout* la
     layout->addWidget(createSectionWidget(text), row, 0, 1, 3, Qt::AlignLeft);
 }
 
-void ParsingPropertyWidget::addSeparatorBlock(QGridLayout* layout)
+//! Adds row to the grid: elements with standard separator settings.
+
+void ParsingPropertyWidget::addStandardSeparatorRow(QGridLayout* layout, QButtonGroup* group)
 {
-    // row
+    // automatic separator
     int row = layout->rowCount();
     auto automaticRadio = new QRadioButton;
     automaticRadio->setChecked(true);
@@ -102,6 +104,7 @@ void ParsingPropertyWidget::addSeparatorBlock(QGridLayout* layout)
         onParsingPropertiesChange();
     });
 
+    // space separator
     auto spaceRadio = new QRadioButton;
     spaceRadio->setText("Space");
     spaceRadio->setToolTip("Use empty space as column separator");
@@ -110,6 +113,7 @@ void ParsingPropertyWidget::addSeparatorBlock(QGridLayout* layout)
         onParsingPropertiesChange();
     });
 
+    // comma separator
     auto commaRadio = new QRadioButton;
     commaRadio->setText("Comma");
     commaRadio->setToolTip("Use comma as column separator");
@@ -118,16 +122,34 @@ void ParsingPropertyWidget::addSeparatorBlock(QGridLayout* layout)
         onParsingPropertiesChange();
     });
 
+    // adding all to layout
     layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
     layout->addWidget(automaticRadio, row, 1, Qt::AlignLeft);
     layout->addWidget(spaceRadio, row, 2, Qt::AlignLeft);
     layout->addWidget(commaRadio, row, 3, Qt::AlignLeft);
+    group->addButton(automaticRadio);
+    group->addButton(spaceRadio);
+    group->addButton(commaRadio);
+}
 
-    // row
-    row = layout->rowCount();
+//! Adds row to the grid: elements with custom separator settings.
+
+void ParsingPropertyWidget::addCustomSeparatorRow(QGridLayout* layout, QButtonGroup* group)
+{
+    int row = layout->rowCount();
     auto customSeparatorLineEdit = new QLineEdit;
     auto customRadio = new QRadioButton;
 
+    // custom separator radio
+    customRadio->setText("Custom");
+    customRadio->setToolTip("Use given symbols as column separator");
+    auto on_custom_separator = [this, customSeparatorLineEdit](auto) {
+        m_options.m_separator = customSeparatorLineEdit->text().toStdString();
+        onParsingPropertiesChange();
+    };
+    connect(customRadio, &QRadioButton::clicked, on_custom_separator);
+
+    // custom separator text
     customSeparatorLineEdit->setMaximumWidth(ModelView::Utils::WidthOfLetterM() * 4);
     customSeparatorLineEdit->setToolTip("Use given symbols as column separator");
     auto on_custom_lineedit = [this, customSeparatorLineEdit, customRadio]() {
@@ -137,44 +159,26 @@ void ParsingPropertyWidget::addSeparatorBlock(QGridLayout* layout)
     };
     connect(customSeparatorLineEdit, &QLineEdit::editingFinished, on_custom_lineedit);
 
-    customRadio->setText("Custom");
-    customRadio->setToolTip("Use given symbols as column separator");
-    auto on_custom_separator = [this, customSeparatorLineEdit](auto) {
-        m_options.m_separator = customSeparatorLineEdit->text().toStdString();
-        onParsingPropertiesChange();
-    };
-    connect(customRadio, &QRadioButton::clicked, on_custom_separator);
-
+    // adding to the layout
     layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
     layout->addWidget(customRadio, row, 1, Qt::AlignLeft);
     layout->addWidget(customSeparatorLineEdit, row, 2, Qt::AlignLeft);
-
-    auto buttonGroup = new QButtonGroup;
-    buttonGroup->addButton(automaticRadio, AUTOMATIC);
-    buttonGroup->addButton(spaceRadio, SPACE);
-    buttonGroup->addButton(commaRadio, COMMA);
-    buttonGroup->addButton(customRadio, CUSTOM);
-
-    auto on_button_group = [](int id) { qDebug() << "id" << id; };
-    connect(buttonGroup, &QButtonGroup::idClicked, on_button_group);
+    group->addButton(customRadio);
 }
 
-void ParsingPropertyWidget::addIgnoreLinesBlock(QGridLayout* layout)
+//! Adds row to the grid: elements with pattern to ignore lines.
+
+void ParsingPropertyWidget::addIgnoreStringPatternRow(QGridLayout* layout)
 {
-    // row
-    int row = layout->rowCount();
     auto startingFromRadio = new QRadioButton;
+    auto startingFromLineEdit = new QLineEdit;
+
+    // radio settings
+    int row = layout->rowCount();
     startingFromRadio->setText("Starting from");
     startingFromRadio->setAutoExclusive(false);
     startingFromRadio->setChecked(true);
     startingFromRadio->setToolTip("Ignore lines starting from a given character(s)");
-    auto startingFromLineEdit = new QLineEdit;
-    startingFromLineEdit->setText("#");
-    startingFromLineEdit->setToolTip("Ignore lines starting from a given character(s)");
-    layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
-    layout->addWidget(startingFromRadio, row, 1, Qt::AlignLeft);
-    layout->addWidget(startingFromLineEdit, row, 2, Qt::AlignLeft);
-
     auto on_startingfrom_radio = [this, startingFromLineEdit](auto checked) {
         m_options.m_header_prefix =
             checked ? startingFromLineEdit->text().toStdString() : std::string();
@@ -182,6 +186,9 @@ void ParsingPropertyWidget::addIgnoreLinesBlock(QGridLayout* layout)
     };
     connect(startingFromRadio, &QRadioButton::clicked, on_startingfrom_radio);
 
+    // line edit settings
+    startingFromLineEdit->setText("#");
+    startingFromLineEdit->setToolTip("Ignore lines starting from a given character(s)");
     auto on_startingfrom_lineedit = [this, startingFromRadio, startingFromLineEdit]() {
         if (startingFromRadio->isChecked())
             m_options.m_header_prefix = startingFromLineEdit->text().toStdString();
@@ -189,19 +196,22 @@ void ParsingPropertyWidget::addIgnoreLinesBlock(QGridLayout* layout)
     };
     connect(startingFromLineEdit, &QLineEdit::editingFinished, on_startingfrom_lineedit);
 
-    // row
-    row = layout->rowCount();
+    // adding to layout
+    layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
+    layout->addWidget(startingFromRadio, row, 1, Qt::AlignLeft);
+    layout->addWidget(startingFromLineEdit, row, 2, Qt::AlignLeft);
+}
+
+void ParsingPropertyWidget::addIgnoreNumbersPatternRow(QGridLayout* layout)
+{
     auto lineNumbersRadio = new QRadioButton;
+    auto lineNumbersLineEdit = new QLineEdit;
+
+    // radio settings
+    int row = layout->rowCount();
     lineNumbersRadio->setAutoExclusive(false);
     lineNumbersRadio->setText("Line numbers");
     lineNumbersRadio->setToolTip("Ignore lines with line numbers matching the pattern");
-    auto lineNumbersLineEdit = new QLineEdit;
-    lineNumbersLineEdit->setPlaceholderText("Example: 1-5,42");
-    lineNumbersLineEdit->setToolTip("Ignore lines with line numbers matching the pattern");
-    layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
-    layout->addWidget(lineNumbersRadio, row, 1, Qt::AlignLeft);
-    layout->addWidget(lineNumbersLineEdit, row, 2, Qt::AlignLeft);
-
     auto on_linenumbers_radio = [this, lineNumbersLineEdit](auto checked) {
         m_options.m_skip_index_pattern =
             checked ? lineNumbersLineEdit->text().toStdString() : std::string();
@@ -209,36 +219,46 @@ void ParsingPropertyWidget::addIgnoreLinesBlock(QGridLayout* layout)
     };
     connect(lineNumbersRadio, &QRadioButton::clicked, on_linenumbers_radio);
 
+    // line edit settings
+    lineNumbersLineEdit->setPlaceholderText("Example: 1-5,42");
+    lineNumbersLineEdit->setToolTip("Ignore lines with line numbers matching the pattern");
     auto on_linenumbers_lineedit = [this, lineNumbersRadio, lineNumbersLineEdit]() {
         if (lineNumbersRadio->isChecked())
             m_options.m_skip_index_pattern = lineNumbersLineEdit->text().toStdString();
         onParsingPropertiesChange();
     };
     connect(lineNumbersLineEdit, &QLineEdit::editingFinished, on_linenumbers_lineedit);
+
+    // adding to the layout
+    layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
+    layout->addWidget(lineNumbersRadio, row, 1, Qt::AlignLeft);
+    layout->addWidget(lineNumbersLineEdit, row, 2, Qt::AlignLeft);
 }
 
 void ParsingPropertyWidget::addImportToBlock(QGridLayout* layout)
 {
-    // row
-    int row = layout->rowCount();
     auto newCanvasRadio = new QRadioButton;
+    auto existingCanvasRadio = new QRadioButton;
+
+    // radio settings
     newCanvasRadio->setText("New canvas");
     newCanvasRadio->setChecked(true);
     newCanvasRadio->setToolTip("Data will be imported into the new canvas");
-    layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
-    layout->addWidget(newCanvasRadio, row, 1, Qt::AlignLeft);
 
-    // row
-    row = layout->rowCount();
-    auto existingCanvasRadio = new QRadioButton;
+    //combo settings
     existingCanvasRadio->setText("Existing canvas");
     existingCanvasRadio->setToolTip("Data will be imported into existing canvas");
     auto existingCanvasCombo = new QComboBox;
     existingCanvasCombo->setToolTip("Data will be imported into existing canvas");
+
+    // adding to the layout
+    int row = layout->rowCount();
+    layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
+    layout->addWidget(newCanvasRadio, row, 1, Qt::AlignLeft);
+    row = layout->rowCount();
     layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
     layout->addWidget(existingCanvasRadio, row, 1, Qt::AlignLeft);
     layout->addWidget(existingCanvasCombo, row, 2, Qt::AlignLeft);
-
     auto buttonGroup = new QButtonGroup;
     buttonGroup->addButton(newCanvasRadio);
     buttonGroup->addButton(existingCanvasRadio);
