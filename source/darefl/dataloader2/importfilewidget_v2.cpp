@@ -127,4 +127,11 @@ void ImportFileWidgetV2::addFileNamesToModel(const QStringList& file_names)
     m_listModel->setStringList(updated_names);
 
     emit fileNamesChanged();
+
+    // make last selected
+    if (m_listView->selectionModel()->selectedIndexes().empty()) {
+        auto flags = QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows;
+        auto toSelect = m_listModel->index(m_listModel->rowCount() - 1);
+        m_listView->selectionModel()->select(toSelect, flags);
+    }
 }
