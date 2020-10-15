@@ -13,6 +13,10 @@
 #include <QPainter>
 #include <QTextBlock>
 
+namespace {
+const int line_number_gap = 4;
+}
+
 ImportTextViewV2::ImportTextViewV2(QWidget* parent) : QPlainTextEdit(parent)
 {
     lineNumberArea = new LineNumberArea(this);
@@ -41,7 +45,7 @@ int ImportTextViewV2::lineNumberAreaWidth()
         ++digits;
     }
 
-    int space = 3 + fontMetrics().horizontalAdvance(QLatin1Char('9')) * digits;
+    int space = line_number_gap*2 + fontMetrics().horizontalAdvance(QLatin1Char('9')) * digits;
 
     return space;
 }
@@ -103,7 +107,7 @@ void ImportTextViewV2::lineNumberAreaPaintEvent(QPaintEvent* event)
         if (block.isVisible() && bottom >= event->rect().top()) {
             QString number = QString::number(blockNumber + 1);
             painter.setPen(Qt::black);
-            painter.drawText(0, top, lineNumberArea->width(), fontMetrics().height(),
+            painter.drawText(0, top, lineNumberArea->width()-line_number_gap, fontMetrics().height(),
                              Qt::AlignRight, number);
         }
 
