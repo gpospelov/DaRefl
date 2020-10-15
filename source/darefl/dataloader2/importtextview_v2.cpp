@@ -8,6 +8,7 @@
 // ************************************************************************** //
 
 #include <darefl/dataloader2/importtextview_v2.h>
+#include <mvvm/widgets/widgetutils.h>
 
 #include <QPainter>
 #include <QTextBlock>
@@ -27,6 +28,8 @@ ImportTextViewV2::ImportTextViewV2(QWidget* parent) : QPlainTextEdit(parent)
 
     setReadOnly(true);
     setWordWrapMode(QTextOption::NoWrap);
+
+    setFont(QFont("Monospace", ModelView::Utils::SystemPointSize()*0.8, QFont::Light));
 }
 
 int ImportTextViewV2::lineNumberAreaWidth()
