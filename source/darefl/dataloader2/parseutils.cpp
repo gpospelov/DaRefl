@@ -67,7 +67,7 @@ std::string DataLoader::TrimWhitespace(const std::string& str)
 
 std::optional<double> DataLoader::StringToDouble(const std::string& str)
 {
-    std::istringstream iss(str);
+    std::istringstream iss(TrimWhitespace(str));
     iss.imbue(std::locale::classic());
     double value;
     iss >> value;
