@@ -20,7 +20,7 @@ namespace
 //! no extra symbols are defined.
 std::optional<int> StringToInt(const std::string& str)
 {
-    std::istringstream iss(str);
+    std::istringstream iss(DataLoader::TrimWhitespace(str));
     int value;
     iss >> value;
     return (!iss.fail() && iss.eof()) ? std::optional<int>(value) : std::optional<int>{};
@@ -67,7 +67,7 @@ std::string DataLoader::TrimWhitespace(const std::string& str)
 
 std::optional<double> DataLoader::StringToDouble(const std::string& str)
 {
-    std::istringstream iss(TrimWhitespace(str));
+    std::istringstream iss(DataLoader::TrimWhitespace(str));
     iss.imbue(std::locale::classic());
     double value;
     iss >> value;

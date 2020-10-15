@@ -40,7 +40,7 @@ std::vector<std::string> LoadASCIIFile(const std::string& file_name);
 std::vector<std::string> SplitString(const std::string& str, const std::string& delimeter);
 
 //! Expands string representing line number pattern to inclusive pairs of line indices.
-//! "1, 3-5" will be expanded to { {0, 0}, {2, 4} }
+//! "1" will be expanded to { {0, 0} }, "1, 3-5" will be expanded to { {0, 0}, {2, 4} }
 //! Line numbers are counted starting from 1, indices starting from 0.
 std::vector<std::pair<int, int>> ExpandLineNumberPattern(const std::string& pattern);
 
