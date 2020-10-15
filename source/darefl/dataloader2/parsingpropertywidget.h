@@ -11,16 +11,12 @@
 #define DAREFL_DATALOADER2_PARSINGPROPERTYWIDGET_H
 
 #include <QWidget>
+#include <darefl/dataloader2/dataloader_types.h>
 
 class QLineEdit;
 class QBoxLayout;
 class QLayout;
 class QGridLayout;
-
-namespace DataLoader
-{
-class ParsingOptions;
-}
 
 //! Panel or ASCII parser properties.
 
@@ -47,6 +43,9 @@ public:
 signals:
     void parsingPropertiesHaveChanged();
 
+private slots:
+    void onParsingPropertiesChange();
+
 private:
     QGridLayout* createGridLayout();
 
@@ -54,6 +53,8 @@ private:
     void addSeparatorBlock(QGridLayout* layout);
     void addIgnoreLinesBlock(QGridLayout* layout);
     void addImportToBlock(QGridLayout* layout);
+
+    DataLoader::ParsingOptions m_options;
 };
 
 #endif // DAREFL_DATALOADER2_PARSINGPROPERTYWIDGET_H

@@ -38,6 +38,7 @@ QWidget* createSectionWidget(const QString& text)
     layout->addWidget(label);
     return widget;
 }
+
 } // namespace
 
 ParsingPropertyWidget::ParsingPropertyWidget(QWidget* parent) : QWidget(parent)
@@ -49,7 +50,16 @@ ParsingPropertyWidget::ParsingPropertyWidget(QWidget* parent) : QWidget(parent)
 
 DataLoader::ParsingOptions ParsingPropertyWidget::parsingOptions() const
 {
-    return {};
+    return m_options;
+}
+
+void ParsingPropertyWidget::onParsingPropertiesChange()
+{
+    qDebug() << "option"
+             << "header:" << QString::fromStdString(m_options.m_header_prefix)
+             << "separator:" << QString::fromStdString(m_options.m_separator) << "pattern"
+             << QString::fromStdString(m_options.m_skip_index_pattern);
+    emit parsingPropertiesHaveChanged();
 }
 
 QGridLayout* ParsingPropertyWidget::createGridLayout()
@@ -87,12 +97,27 @@ void ParsingPropertyWidget::addSeparatorBlock(QGridLayout* layout)
     automaticRadio->setChecked(true);
     automaticRadio->setText("Automatic");
     automaticRadio->setToolTip("Try to guess column separator");
+    connect(automaticRadio, &QRadioButton::clicked, [this](auto) {
+        m_options.m_separator.clear();
+        onParsingPropertiesChange();
+    });
+
     auto spaceRadio = new QRadioButton;
     spaceRadio->setText("Space");
     spaceRadio->setToolTip("Use empty space as column separator");
+    connect(spaceRadio, &QRadioButton::clicked, [this](auto) {
+        m_options.m_separator = " ";
+        onParsingPropertiesChange();
+    });
+
     auto commaRadio = new QRadioButton;
     commaRadio->setText("Comma");
     commaRadio->setToolTip("Use comma as column separator");
+    connect(commaRadio, &QRadioButton::clicked, [this](auto) {
+        m_options.m_separator = ",";
+        onParsingPropertiesChange();
+    });
+
     layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
     layout->addWidget(automaticRadio, row, 1, Qt::AlignLeft);
     layout->addWidget(spaceRadio, row, 2, Qt::AlignLeft);
@@ -100,12 +125,25 @@ void ParsingPropertyWidget::addSeparatorBlock(QGridLayout* layout)
 
     // row
     row = layout->rowCount();
-    auto customRadio = new QRadioButton;
-    customRadio->setText("Custom");
-    customRadio->setToolTip("Use given symbols as column separator");
     auto customSeparatorLineEdit = new QLineEdit;
+    auto customRadio = new QRadioButton;
+
     customSeparatorLineEdit->setMaximumWidth(ModelView::Utils::WidthOfLetterM() * 4);
     customSeparatorLineEdit->setToolTip("Use given symbols as column separator");
+    auto on_custom_lineedit = [this, customSeparatorLineEdit, customRadio]() {
+        if (customRadio->isChecked())
+            m_options.m_separator = customSeparatorLineEdit->text().toStdString();
+        onParsingPropertiesChange();
+    };
+    connect(customSeparatorLineEdit, &QLineEdit::editingFinished, on_custom_lineedit);
+
+    customRadio->setText("Custom");
+    customRadio->setToolTip("Use given symbols as column separator");
+    auto on_custom_separator = [this, customSeparatorLineEdit](auto) {
+        m_options.m_separator = customSeparatorLineEdit->text().toStdString();
+        onParsingPropertiesChange();
+    };
+    connect(customRadio, &QRadioButton::clicked, on_custom_separator);
 
     layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
     layout->addWidget(customRadio, row, 1, Qt::AlignLeft);
