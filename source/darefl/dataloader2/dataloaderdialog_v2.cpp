@@ -11,6 +11,8 @@
 #include <QDialogButtonBox>
 #include <QSplitter>
 #include <QVBoxLayout>
+#include <QPushButton>
+#include <QKeyEvent>
 #include <darefl/dataloader2/datahandler.h>
 #include <darefl/dataloader2/dataloaderdialog_v2.h>
 #include <darefl/dataloader2/dataloadertoolbar.h>
@@ -36,7 +38,15 @@ DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
     m_splitter->addWidget(m_selectorPanel);
     m_splitter->addWidget(m_previewPanel);
 
-    auto button_box = new QDialogButtonBox(QDialogButtonBox::Cancel | QDialogButtonBox::Ok);
+    auto button_box = new QDialogButtonBox;
+    auto button = button_box->addButton("Import data", QDialogButtonBox::AcceptRole);
+    button->setAutoDefault(false);
+    button->setDefault(false);
+
+    button = button_box->addButton("Cancel", QDialogButtonBox::RejectRole);
+    button->setAutoDefault(false);
+    button->setDefault(false);
+
     connect(button_box, &QDialogButtonBox::accepted, this, &DataLoaderDialogV2::accept);
     connect(button_box, &QDialogButtonBox::rejected, this, &DataLoaderDialogV2::reject);
 
@@ -47,6 +57,13 @@ DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
 
     init_connections();
     setWindowTitle("Data import dialog");
+}
+
+void DataLoaderDialogV2::keyPressEvent(QKeyEvent* event)
+{
+    if(event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return)
+        return;
+    QDialog::keyPressEvent(event);
 }
 
 DataLoaderDialogV2::~DataLoaderDialogV2() = default;
