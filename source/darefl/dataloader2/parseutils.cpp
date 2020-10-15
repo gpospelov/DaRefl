@@ -14,6 +14,28 @@
 #include <sstream>
 #include <string_view>
 
+namespace
+{
+//! Converts string to integer. Requires that string represents exactly one integer and
+//! no extra symbols are defined.
+std::optional<int> StringToInt(const std::string& str)
+{
+    std::istringstream iss(str);
+    int value;
+    iss >> value;
+    return (!iss.fail() && iss.eof()) ? std::optional<int>(value) : std::optional<int>{};
+}
+
+//! Returns true if given pair of values can represent range
+bool isRepresentRange(const std::optional<int>& v0, const std::optional<int>& v1)
+{
+    if (v0.has_value() && v1.has_value())
+        return v0.value() > 0 && v1.value() > 0 && v0.value() <= v1.value();
+    return false;
+}
+
+} // namespace
+
 std::vector<double> DataLoader::ParseSpaceSeparatedDoubles(const std::string& str)
 {
     std::vector<double> result;
@@ -64,37 +86,31 @@ std::vector<std::string> DataLoader::SplitString(const std::string& str,
 
     std::vector<std::string> result;
     std::string_view view(str);
-    size_t pos = view.find(delimeter);
+    size_t pos{0};
 
-    while (pos != std::string::npos) {
+    while ((pos = view.find(delimeter)) != std::string::npos) {
         result.emplace_back(std::string(view.substr(0, pos)));
         view.remove_prefix(pos + delimeter.length());
-        pos = view.find(delimeter);
     }
-
     result.emplace_back(std::string(view));
-
     return result;
 }
 
 std::vector<std::pair<int, int>> DataLoader::ExpandLineNumberPattern(const std::string& pattern)
 {
     std::vector<std::pair<int, int>> result;
-    //    std::vector<std::string> tokens;
-    //    std::string token;
 
-    //    std::istringstream istr(pattern);
-    //    while (getline(istr, token, ','))
-    //        tokens.push_back(token);
+    auto tokens = SplitString(pattern, ",");
 
-    //    for (const auto& x : tokens) {
-    //        if (x.find_first_of('-') == std::string::npos) {
-    //            int index = std::stoi(x) - 1;
-    //            result.push_back({index, index});
-    //        } else {
-
-    //        }
-    //    }
+    for (const auto& token : tokens) {
+        auto parts = SplitString(token, "-");
+        if (!parts.empty()) {
+            auto conv0 = StringToInt(parts[0]);
+            auto conv1 = parts.size() > 1 ? StringToInt(parts[1]) : conv0;
+            if (isRepresentRange(conv0, conv1))
+                result.push_back({conv0.value() - 1, conv1.value() - 1});
+        }
+    }
 
     return result;
 }
