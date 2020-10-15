@@ -202,6 +202,8 @@ void ParsingPropertyWidget::addIgnoreStringPatternRow(QGridLayout* layout)
     layout->addWidget(startingFromLineEdit, row, 2, Qt::AlignLeft);
 }
 
+//! Adds row to the grid: elements with pattern to ignore line numbers.
+
 void ParsingPropertyWidget::addIgnoreNumbersPatternRow(QGridLayout* layout)
 {
     auto lineNumbersRadio = new QRadioButton;
@@ -234,6 +236,8 @@ void ParsingPropertyWidget::addIgnoreNumbersPatternRow(QGridLayout* layout)
     layout->addWidget(lineNumbersRadio, row, 1, Qt::AlignLeft);
     layout->addWidget(lineNumbersLineEdit, row, 2, Qt::AlignLeft);
 }
+
+//! Adds row to the grid: elements related to the import target.
 
 void ParsingPropertyWidget::addImportToBlock(QGridLayout* layout)
 {
