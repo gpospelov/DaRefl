@@ -155,7 +155,7 @@ void ParsingPropertyWidget::addSeparatorBlock(QGridLayout* layout)
     buttonGroup->addButton(commaRadio, COMMA);
     buttonGroup->addButton(customRadio, CUSTOM);
 
-    auto on_button_group = [this](int id) { qDebug() << "id" << id; };
+    auto on_button_group = [](int id) { qDebug() << "id" << id; };
     connect(buttonGroup, &QButtonGroup::idClicked, on_button_group);
 }
 
@@ -168,12 +168,26 @@ void ParsingPropertyWidget::addIgnoreLinesBlock(QGridLayout* layout)
     startingFromRadio->setAutoExclusive(false);
     startingFromRadio->setChecked(true);
     startingFromRadio->setToolTip("Ignore lines starting from a given character(s)");
-    auto startingFromTextEdit = new QLineEdit;
-    startingFromTextEdit->setText("#");
-    startingFromTextEdit->setToolTip("Ignore lines starting from a given character(s)");
+    auto startingFromLineEdit = new QLineEdit;
+    startingFromLineEdit->setText("#");
+    startingFromLineEdit->setToolTip("Ignore lines starting from a given character(s)");
     layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
     layout->addWidget(startingFromRadio, row, 1, Qt::AlignLeft);
-    layout->addWidget(startingFromTextEdit, row, 2, Qt::AlignLeft);
+    layout->addWidget(startingFromLineEdit, row, 2, Qt::AlignLeft);
+
+    auto on_startingfrom_radio = [this, startingFromLineEdit](auto checked) {
+        m_options.m_header_prefix =
+            checked ? startingFromLineEdit->text().toStdString() : std::string();
+        onParsingPropertiesChange();
+    };
+    connect(startingFromRadio, &QRadioButton::clicked, on_startingfrom_radio);
+
+    auto on_startingfrom_lineedit = [this, startingFromRadio, startingFromLineEdit]() {
+        if (startingFromRadio->isChecked())
+            m_options.m_header_prefix = startingFromLineEdit->text().toStdString();
+        onParsingPropertiesChange();
+    };
+    connect(startingFromLineEdit, &QLineEdit::editingFinished, on_startingfrom_lineedit);
 
     // row
     row = layout->rowCount();
@@ -181,12 +195,26 @@ void ParsingPropertyWidget::addIgnoreLinesBlock(QGridLayout* layout)
     lineNumbersRadio->setAutoExclusive(false);
     lineNumbersRadio->setText("Line numbers");
     lineNumbersRadio->setToolTip("Ignore lines with line numbers matching the pattern");
-    auto lineNumbersTextEdit = new QLineEdit;
-    lineNumbersTextEdit->setPlaceholderText("Example: 1-5,42");
-    lineNumbersTextEdit->setToolTip("Ignore lines with line numbers matching the pattern");
+    auto lineNumbersLineEdit = new QLineEdit;
+    lineNumbersLineEdit->setPlaceholderText("Example: 1-5,42");
+    lineNumbersLineEdit->setToolTip("Ignore lines with line numbers matching the pattern");
     layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
     layout->addWidget(lineNumbersRadio, row, 1, Qt::AlignLeft);
-    layout->addWidget(lineNumbersTextEdit, row, 2, Qt::AlignLeft);
+    layout->addWidget(lineNumbersLineEdit, row, 2, Qt::AlignLeft);
+
+    auto on_linenumbers_radio = [this, lineNumbersLineEdit](auto checked) {
+        m_options.m_skip_index_pattern =
+            checked ? lineNumbersLineEdit->text().toStdString() : std::string();
+        onParsingPropertiesChange();
+    };
+    connect(lineNumbersRadio, &QRadioButton::clicked, on_linenumbers_radio);
+
+    auto on_linenumbers_lineedit = [this, lineNumbersRadio, lineNumbersLineEdit]() {
+        if (lineNumbersRadio->isChecked())
+            m_options.m_skip_index_pattern = lineNumbersLineEdit->text().toStdString();
+        onParsingPropertiesChange();
+    };
+    connect(lineNumbersLineEdit, &QLineEdit::editingFinished, on_linenumbers_lineedit);
 }
 
 void ParsingPropertyWidget::addImportToBlock(QGridLayout* layout)
