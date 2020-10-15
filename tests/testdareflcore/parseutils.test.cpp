@@ -10,19 +10,24 @@
 #include "folderbasedtest.h"
 #include "test_utils.h"
 #include <darefl/dataloader2/parseutils.h>
+#include <vector>
 
 using namespace DataLoader;
 
 //! Tests of ParseUtils.
 
-class ParseUtilsTest :  public FolderBasedTest
+class ParseUtilsTest : public FolderBasedTest
 {
 public:
     ParseUtilsTest() : FolderBasedTest("test_ParseUtilsTest") {}
     ~ParseUtilsTest();
 
-    void create_test_file(const std::string& content) {
-
+    template <typename T = std::string, typename... Args>
+    std::vector<T> toStringVector(Args&&... args)
+    {
+        std::vector<T> v;
+        (v.push_back(std::string(args)), ...);
+        return v;
     }
 };
 
@@ -99,3 +104,44 @@ TEST_F(ParseUtilsTest, LoadASCIIFile)
     EXPECT_EQ(raw_data[1], std::string(" 123 456"));
 }
 
+//! Testing local utility function.
+
+TEST_F(ParseUtilsTest, toStringVector)
+{
+    std::vector<std::string> expected;
+
+    expected = {};
+    EXPECT_EQ(toStringVector(), expected);
+
+    expected = {"a"};
+    EXPECT_EQ(toStringVector("a"), expected);
+
+    expected = {"a", "b"};
+    EXPECT_EQ(toStringVector("a", "b"), expected);
+
+    expected = {"aaa", "bbb", ""};
+    EXPECT_EQ(toStringVector("aaa", "bbb", ""), expected);
+}
+
+//! Testing SplitString method.
+//! Carefully checking that it is reproduces Python behavior, as promised in comments to the method.
+
+TEST_F(ParseUtilsTest, SplitString)
+{
+    EXPECT_THROW(SplitString("", ""), std::runtime_error);
+    EXPECT_EQ(SplitString("", " "), toStringVector());
+    EXPECT_EQ(SplitString("", ","), toStringVector());
+    EXPECT_EQ(SplitString(" ", " "), toStringVector("", ""));
+    EXPECT_EQ(SplitString("a", " "), toStringVector("a"));
+    EXPECT_EQ(SplitString("a ", " "), toStringVector("a",""));
+
+    EXPECT_EQ(SplitString("aa", "a"), toStringVector("","",""));
+
+    EXPECT_EQ(SplitString("a,b", ","), toStringVector("a","b"));
+}
+
+// TEST_F(ParseUtilsTest, ExpandLineNumberPattern)
+//{
+//    using container_t = std::vector<std::pair<int, int> >;
+//    EXPECT_EQ(ExpandLineNumberPattern(""), container_t{});
+//}
