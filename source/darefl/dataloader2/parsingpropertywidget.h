@@ -13,10 +13,8 @@
 #include <QWidget>
 #include <darefl/dataloader2/dataloader_types.h>
 
-class QLineEdit;
-class QBoxLayout;
-class QLayout;
 class QGridLayout;
+class QButtonGroup;
 
 //! Panel or ASCII parser properties.
 
@@ -25,17 +23,6 @@ class ParsingPropertyWidget : public QWidget
     Q_OBJECT
 
 public:
-    enum ButtonID {
-        AUTOMATIC,
-        SPACE,
-        COMMA,
-        CUSTOM,
-        STARTINGFROM,
-        LINENUMBERS,
-        NEWCANVAS,
-        EXISTINGCANVAS
-    };
-
     ParsingPropertyWidget(QWidget* parent = nullptr);
 
     DataLoader::ParsingOptions parsingOptions() const;
@@ -50,8 +37,10 @@ private:
     QGridLayout* createGridLayout();
 
     void addSectionLabel(const QString& text, QGridLayout* layout);
-    void addSeparatorBlock(QGridLayout* layout);
-    void addIgnoreLinesBlock(QGridLayout* layout);
+    void addStandardSeparatorRow(QGridLayout* layout, QButtonGroup* group);
+    void addCustomSeparatorRow(QGridLayout* layout, QButtonGroup* group);
+    void addIgnoreStringPatternRow(QGridLayout* layout);
+    void addIgnoreNumbersPatternRow(QGridLayout* layout);
     void addImportToBlock(QGridLayout* layout);
 
     DataLoader::ParsingOptions m_options;
