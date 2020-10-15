@@ -55,6 +55,16 @@ void DataLoader::ParseSpaceSeparatedDoubles(const std::string& str, std::vector<
     }
 }
 
+std::string DataLoader::TrimWhitespace(const std::string& str)
+{
+    const char whitespace[]{" \t\n"};
+    const size_t first = str.find_first_not_of(whitespace);
+    if (std::string::npos == first)
+        return {};
+    const size_t last = str.find_last_not_of(whitespace);
+    return str.substr(first, (last - first + 1));
+}
+
 std::optional<double> DataLoader::StringToDouble(const std::string& str)
 {
     std::istringstream iss(str);
