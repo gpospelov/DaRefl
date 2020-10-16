@@ -153,3 +153,16 @@ DataLoader::CreateLineNumberPatternValidator(const std::string& pattern)
     };
     return result;
 }
+
+DataLoader::accept_line_t
+DataLoader::CreateLineContentBaseValidator(const std::string& prefix_to_exclude)
+{
+    auto result = [prefix_to_exclude](const std::string& line) {
+        // line contains spaces only
+        if (line.empty() || line.find_first_not_of(' ') == std::string::npos)
+            return false;
+        // line starts from pattern
+        return line.find_first_of(prefix_to_exclude) == 0 ? false : true;
+    };
+    return result;
+}

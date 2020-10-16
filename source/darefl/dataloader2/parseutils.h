@@ -10,10 +10,10 @@
 #ifndef DAREFL_DATALOADER2_PARSEUTILS_H
 #define DAREFL_DATALOADER2_PARSEUTILS_H
 
+#include <functional>
 #include <optional>
 #include <string>
 #include <vector>
-#include <functional>
 
 namespace DataLoader
 {
@@ -53,6 +53,10 @@ std::string RemoveRepeatedSpaces(std::string str);
 using accept_line_number_t = std::function<bool(int)>;
 accept_line_number_t CreateLineNumberPatternValidator(const std::string& pattern);
 
+//! Creates a callback to define if given line has a valid content for further parsing.
+//! Empty lines and lines starting from a given prefix will be excluded.
+using accept_line_t = std::function<bool(const std::string& line)>;
+accept_line_t CreateLineContentBaseValidator(const std::string& prefix_to_exclude);
 
 } // namespace DataLoader
 
