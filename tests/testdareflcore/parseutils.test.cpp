@@ -174,6 +174,8 @@ TEST_F(ParseUtilsTest, SplitString)
     EXPECT_EQ(SplitString("aa", "a"), toStringVector("", "", ""));
 
     EXPECT_EQ(SplitString("a,b", ","), toStringVector("a", "b"));
+    EXPECT_EQ(SplitString("a, b", ","), toStringVector("a", " b"));
+
     EXPECT_EQ(SplitString("a,b,", ","), toStringVector("a", "b", ""));
     EXPECT_EQ(SplitString(",a,b,", ","), toStringVector("", "a", "b", ""));
     EXPECT_EQ(SplitString("aabbcc", "bb"), toStringVector("aa", "cc"));
@@ -262,4 +264,23 @@ TEST_F(ParseUtilsTest, CreateLineContentBaseValidator)
     EXPECT_FALSE(is_accepted(" "));
     EXPECT_FALSE(is_accepted("# abc"));
     EXPECT_TRUE(is_accepted("42  "));
+}
+
+TEST_F(ParseUtilsTest, CreateSeparatorBasedLineParser)
+{
+    auto parse = CreateSeparatorBasedLineParser(",");
+    EXPECT_EQ(parse("a"), toStringVector("a"));
+    EXPECT_EQ(parse("a,b"), toStringVector("a", "b"));
+    EXPECT_EQ(parse("a, b"), toStringVector("a", " b")); // shouldn't we trim white spaces?
+    EXPECT_EQ(parse(" a, b "), toStringVector("a", " b"));
+
+    EXPECT_EQ(parse("1.0,2.0,3.0"), toStringVector("1.0", "2.0", "3.0"));
+    EXPECT_EQ(parse("1.0, 2.0, 3.0"), toStringVector("1.0", " 2.0", " 3.0"));
+    EXPECT_EQ(parse("1.0, 2.0, 3.0,"), toStringVector("1.0", " 2.0", " 3.0", ""));
+
+    parse = CreateSeparatorBasedLineParser(" ");
+    EXPECT_EQ(parse("a"), toStringVector("a"));
+    EXPECT_EQ(parse("a b"), toStringVector("a", "b"));
+    EXPECT_EQ(parse(" a b "), toStringVector("a", "b"));
+    EXPECT_EQ(parse(" a    b "), toStringVector("a", "b"));
 }
