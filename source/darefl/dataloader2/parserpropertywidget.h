@@ -11,7 +11,12 @@
 #define DAREFL_DATALOADER2_PARSERPROPERTYWIDGET_H
 
 #include <QWidget>
+#include <memory>
 #include <darefl/dataloader2/dataloader_types.h>
+
+namespace DataLoader {
+class DefaultParser;
+}
 
 class QGridLayout;
 class QButtonGroup;
@@ -25,14 +30,15 @@ class ParserPropertyWidget : public QWidget
 
 public:
     ParserPropertyWidget(QWidget* parent = nullptr);
+    ~ParserPropertyWidget();
 
-    DataLoader::ParserOptions parsingOptions() const;
+    std::unique_ptr<DataLoader::DefaultParser> createParser() const;
 
 signals:
-    void parsingPropertiesHaveChanged();
+    void parserPropertyChanged();
 
 private slots:
-    void onParsingPropertiesChange();
+    void onParserPropertyChange();
 
 private:
     QGridLayout* createGridLayout();

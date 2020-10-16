@@ -17,6 +17,7 @@
 #include <QRadioButton>
 #include <QVBoxLayout>
 #include <darefl/dataloader2/parserpropertywidget.h>
+#include <darefl/dataloader2/defaultparser.h>
 #include <mvvm/widgets/widgetutils.h>
 
 namespace
@@ -45,18 +46,20 @@ ParserPropertyWidget::ParserPropertyWidget(QWidget* parent) : QWidget(parent)
     layout->addStretch(1);
 }
 
-DataLoader::ParserOptions ParserPropertyWidget::parsingOptions() const
+ParserPropertyWidget::~ParserPropertyWidget() = default;
+
+std::unique_ptr<DataLoader::DefaultParser> ParserPropertyWidget::createParser() const
 {
-    return m_options;
+    return std::make_unique<DataLoader::DefaultParser>(m_options);
 }
 
-void ParserPropertyWidget::onParsingPropertiesChange()
+void ParserPropertyWidget::onParserPropertyChange()
 {
     qDebug() << "option"
              << "header:" << QString::fromStdString(m_options.m_header_prefix)
              << "separator:" << QString::fromStdString(m_options.m_separator) << "pattern"
              << QString::fromStdString(m_options.m_skip_index_pattern);
-    emit parsingPropertiesHaveChanged();
+    emit parserPropertyChanged();
 }
 
 QGridLayout* ParserPropertyWidget::createGridLayout()
@@ -101,7 +104,7 @@ void ParserPropertyWidget::addStandardSeparatorRow(QGridLayout* layout, QButtonG
     automaticRadio->setToolTip("Try to guess column separator");
     connect(automaticRadio, &QRadioButton::clicked, [this](auto) {
         m_options.m_separator.clear();
-        onParsingPropertiesChange();
+        onParserPropertyChange();
     });
 
     // space separator
@@ -110,7 +113,7 @@ void ParserPropertyWidget::addStandardSeparatorRow(QGridLayout* layout, QButtonG
     spaceRadio->setToolTip("Use empty space as column separator");
     connect(spaceRadio, &QRadioButton::clicked, [this](auto) {
         m_options.m_separator = " ";
-        onParsingPropertiesChange();
+        onParserPropertyChange();
     });
 
     // comma separator
@@ -119,7 +122,7 @@ void ParserPropertyWidget::addStandardSeparatorRow(QGridLayout* layout, QButtonG
     commaRadio->setToolTip("Use comma as column separator");
     connect(commaRadio, &QRadioButton::clicked, [this](auto) {
         m_options.m_separator = ",";
-        onParsingPropertiesChange();
+        onParserPropertyChange();
     });
 
     // adding all to layout
@@ -145,7 +148,7 @@ void ParserPropertyWidget::addCustomSeparatorRow(QGridLayout* layout, QButtonGro
     customRadio->setToolTip("Use given symbols as column separator");
     auto on_custom_separator = [this, customSeparatorLineEdit](auto) {
         m_options.m_separator = customSeparatorLineEdit->text().toStdString();
-        onParsingPropertiesChange();
+        onParserPropertyChange();
     };
     connect(customRadio, &QRadioButton::clicked, on_custom_separator);
 
@@ -155,7 +158,7 @@ void ParserPropertyWidget::addCustomSeparatorRow(QGridLayout* layout, QButtonGro
     auto on_custom_lineedit = [this, customSeparatorLineEdit, customRadio]() {
         if (customRadio->isChecked())
             m_options.m_separator = customSeparatorLineEdit->text().toStdString();
-        onParsingPropertiesChange();
+        onParserPropertyChange();
     };
     connect(customSeparatorLineEdit, &QLineEdit::editingFinished, on_custom_lineedit);
 
@@ -182,7 +185,7 @@ void ParserPropertyWidget::addIgnoreStringPatternRow(QGridLayout* layout)
     auto on_startingfrom_radio = [this, startingFromLineEdit](auto checked) {
         m_options.m_header_prefix =
             checked ? startingFromLineEdit->text().toStdString() : std::string();
-        onParsingPropertiesChange();
+        onParserPropertyChange();
     };
     connect(startingFromRadio, &QRadioButton::clicked, on_startingfrom_radio);
 
@@ -192,7 +195,7 @@ void ParserPropertyWidget::addIgnoreStringPatternRow(QGridLayout* layout)
     auto on_startingfrom_lineedit = [this, startingFromRadio, startingFromLineEdit]() {
         if (startingFromRadio->isChecked())
             m_options.m_header_prefix = startingFromLineEdit->text().toStdString();
-        onParsingPropertiesChange();
+        onParserPropertyChange();
     };
     connect(startingFromLineEdit, &QLineEdit::editingFinished, on_startingfrom_lineedit);
 
@@ -217,7 +220,7 @@ void ParserPropertyWidget::addIgnoreNumbersPatternRow(QGridLayout* layout)
     auto on_linenumbers_radio = [this, lineNumbersLineEdit](auto checked) {
         m_options.m_skip_index_pattern =
             checked ? lineNumbersLineEdit->text().toStdString() : std::string();
-        onParsingPropertiesChange();
+        onParserPropertyChange();
     };
     connect(lineNumbersRadio, &QRadioButton::clicked, on_linenumbers_radio);
 
@@ -227,7 +230,7 @@ void ParserPropertyWidget::addIgnoreNumbersPatternRow(QGridLayout* layout)
     auto on_linenumbers_lineedit = [this, lineNumbersRadio, lineNumbersLineEdit]() {
         if (lineNumbersRadio->isChecked())
             m_options.m_skip_index_pattern = lineNumbersLineEdit->text().toStdString();
-        onParsingPropertiesChange();
+        onParserPropertyChange();
     };
     connect(lineNumbersLineEdit, &QLineEdit::editingFinished, on_linenumbers_lineedit);
 
@@ -249,7 +252,7 @@ void ParserPropertyWidget::addImportToBlock(QGridLayout* layout)
     newCanvasRadio->setChecked(true);
     newCanvasRadio->setToolTip("Data will be imported into the new canvas");
 
-    //combo settings
+    // combo settings
     existingCanvasRadio->setText("Existing canvas");
     existingCanvasRadio->setToolTip("Data will be imported into existing canvas");
     auto existingCanvasCombo = new QComboBox;
