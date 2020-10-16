@@ -13,7 +13,7 @@
 #include <QWidget>
 
 class ImportFileWidgetV2;
-class ParsingPropertyWidget;
+class ParserPropertyWidget;
 
 //! Panel with settings for DataLoaderDialog.
 //! Located on its left side, contains file selection dialog and parsiong options.
@@ -37,7 +37,7 @@ private:
     void init_connections();
 
     ImportFileWidgetV2* m_fileSelectorWidget{nullptr};
-    ParsingPropertyWidget* m_propertyWidget{nullptr};
+    ParserPropertyWidget* m_propertyWidget{nullptr};
 };
 
 #endif // DAREFL_DATALOADER2_LOADERSELECTORPANEL_H

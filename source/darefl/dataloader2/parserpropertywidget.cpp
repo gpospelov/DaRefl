@@ -16,7 +16,7 @@
 #include <QLineEdit>
 #include <QRadioButton>
 #include <QVBoxLayout>
-#include <darefl/dataloader2/parsingpropertywidget.h>
+#include <darefl/dataloader2/parserpropertywidget.h>
 #include <mvvm/widgets/widgetutils.h>
 
 namespace
@@ -38,19 +38,19 @@ QWidget* createSectionWidget(const QString& text)
 
 } // namespace
 
-ParsingPropertyWidget::ParsingPropertyWidget(QWidget* parent) : QWidget(parent)
+ParserPropertyWidget::ParserPropertyWidget(QWidget* parent) : QWidget(parent)
 {
     auto layout = new QVBoxLayout(this);
     layout->addLayout(createGridLayout());
     layout->addStretch(1);
 }
 
-DataLoader::ParsingOptions ParsingPropertyWidget::parsingOptions() const
+DataLoader::ParserOptions ParserPropertyWidget::parsingOptions() const
 {
     return m_options;
 }
 
-void ParsingPropertyWidget::onParsingPropertiesChange()
+void ParserPropertyWidget::onParsingPropertiesChange()
 {
     qDebug() << "option"
              << "header:" << QString::fromStdString(m_options.m_header_prefix)
@@ -59,7 +59,7 @@ void ParsingPropertyWidget::onParsingPropertiesChange()
     emit parsingPropertiesHaveChanged();
 }
 
-QGridLayout* ParsingPropertyWidget::createGridLayout()
+QGridLayout* ParserPropertyWidget::createGridLayout()
 {
     auto grid_layout = new QGridLayout;
 
@@ -83,7 +83,7 @@ QGridLayout* ParsingPropertyWidget::createGridLayout()
     return grid_layout;
 }
 
-void ParsingPropertyWidget::addSectionLabel(const QString& text, QGridLayout* layout)
+void ParserPropertyWidget::addSectionLabel(const QString& text, QGridLayout* layout)
 {
     int row = layout->rowCount();
     layout->addWidget(createSectionWidget(text), row, 0, 1, 3, Qt::AlignLeft);
@@ -91,7 +91,7 @@ void ParsingPropertyWidget::addSectionLabel(const QString& text, QGridLayout* la
 
 //! Adds row to the grid: elements with standard separator settings.
 
-void ParsingPropertyWidget::addStandardSeparatorRow(QGridLayout* layout, QButtonGroup* group)
+void ParserPropertyWidget::addStandardSeparatorRow(QGridLayout* layout, QButtonGroup* group)
 {
     // automatic separator
     int row = layout->rowCount();
@@ -134,7 +134,7 @@ void ParsingPropertyWidget::addStandardSeparatorRow(QGridLayout* layout, QButton
 
 //! Adds row to the grid: elements with custom separator settings.
 
-void ParsingPropertyWidget::addCustomSeparatorRow(QGridLayout* layout, QButtonGroup* group)
+void ParserPropertyWidget::addCustomSeparatorRow(QGridLayout* layout, QButtonGroup* group)
 {
     int row = layout->rowCount();
     auto customSeparatorLineEdit = new QLineEdit;
@@ -168,7 +168,7 @@ void ParsingPropertyWidget::addCustomSeparatorRow(QGridLayout* layout, QButtonGr
 
 //! Adds row to the grid: elements with pattern to ignore lines.
 
-void ParsingPropertyWidget::addIgnoreStringPatternRow(QGridLayout* layout)
+void ParserPropertyWidget::addIgnoreStringPatternRow(QGridLayout* layout)
 {
     auto startingFromRadio = new QRadioButton;
     auto startingFromLineEdit = new QLineEdit;
@@ -204,7 +204,7 @@ void ParsingPropertyWidget::addIgnoreStringPatternRow(QGridLayout* layout)
 
 //! Adds row to the grid: elements with pattern to ignore line numbers.
 
-void ParsingPropertyWidget::addIgnoreNumbersPatternRow(QGridLayout* layout)
+void ParserPropertyWidget::addIgnoreNumbersPatternRow(QGridLayout* layout)
 {
     auto lineNumbersRadio = new QRadioButton;
     auto lineNumbersLineEdit = new QLineEdit;
@@ -239,7 +239,7 @@ void ParsingPropertyWidget::addIgnoreNumbersPatternRow(QGridLayout* layout)
 
 //! Adds row to the grid: elements related to the import target.
 
-void ParsingPropertyWidget::addImportToBlock(QGridLayout* layout)
+void ParserPropertyWidget::addImportToBlock(QGridLayout* layout)
 {
     auto newCanvasRadio = new QRadioButton;
     auto existingCanvasRadio = new QRadioButton;

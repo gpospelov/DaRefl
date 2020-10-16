@@ -11,10 +11,10 @@
 #include <algorithm>
 #include <darefl/dataloader2/importfilewidget_v2.h>
 #include <darefl/dataloader2/loaderselectorpanel.h>
-#include <darefl/dataloader2/parsingpropertywidget.h>
+#include <darefl/dataloader2/parserpropertywidget.h>
 
 LoaderSelectorPanel::LoaderSelectorPanel(QWidget* parent)
-    : QWidget(parent), m_fileSelectorWidget(new ImportFileWidgetV2), m_propertyWidget(new ParsingPropertyWidget)
+    : QWidget(parent), m_fileSelectorWidget(new ImportFileWidgetV2), m_propertyWidget(new ParserPropertyWidget)
 {
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);

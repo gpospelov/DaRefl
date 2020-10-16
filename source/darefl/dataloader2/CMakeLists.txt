@@ -14,9 +14,10 @@ target_sources(${library_name} PRIVATE
     loaderpreviewpanel.h
     loaderselectorpanel.cpp
     loaderselectorpanel.h
+    parserinterface.h
+    parserpropertywidget.cpp
+    parserpropertywidget.h
     parseutils.cpp
     parseutils.h
-    parsingpropertywidget.cpp
-    parsingpropertywidget.h
 )
 
