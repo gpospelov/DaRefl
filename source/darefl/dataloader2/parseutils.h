@@ -44,6 +44,9 @@ std::vector<std::string> SplitString(const std::string& str, const std::string& 
 //! Line numbers are counted starting from 1, indices starting from 0.
 std::vector<std::pair<int, int>> ExpandLineNumberPattern(const std::string& pattern);
 
+//! Removes repeating blanks for a string.
+std::string RemoveRepeatedSpaces(std::string str);
+
 } // namespace DataLoader
 
 #endif // DAREFL_DATALOADER2_PARSEUTILS_H

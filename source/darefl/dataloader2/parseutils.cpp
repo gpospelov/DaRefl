@@ -7,6 +7,8 @@
 //
 // ************************************************************************** //
 
+#include <algorithm>
+#include <cctype>
 #include <darefl/dataloader2/parseutils.h>
 #include <fstream>
 #include <iostream>
@@ -17,7 +19,8 @@
 namespace
 {
 //! Converts string to integer. Requires that string represents exactly one integer and
-//! no extra symbols are defined.
+//! no extra symbols are defined. Empty spaces at the beginning and end of the string are still
+//! allowed.
 std::optional<int> StringToInt(const std::string& str)
 {
     std::istringstream iss(DataLoader::TrimWhitespace(str));
@@ -110,11 +113,12 @@ std::vector<std::pair<int, int>> DataLoader::ExpandLineNumberPattern(const std::
 {
     std::vector<std::pair<int, int>> result;
 
-    auto tokens = SplitString(pattern, ",");
-
-    for (const auto& token : tokens) {
+    // splitting "1, 2-3" first on comma-separated tokens, then on dash-separated
+    for (const auto& token : SplitString(pattern, ",")) {
         auto parts = SplitString(token, "-");
         if (!parts.empty()) {
+            // if no "-" is present, make from "1" a pair {0, 0}
+            // if "-" is present, make from "1-2" a pair {0,1}
             auto conv0 = StringToInt(parts[0]);
             auto conv1 = parts.size() > 1 ? StringToInt(parts[1]) : conv0;
             if (isRepresentRange(conv0, conv1))
@@ -123,4 +127,14 @@ std::vector<std::pair<int, int>> DataLoader::ExpandLineNumberPattern(const std::
     }
 
     return result;
+}
+
+std::string DataLoader::RemoveRepeatedSpaces(std::string str)
+{
+    if (str.empty())
+        return {};
+    auto it = std::unique(str.begin(), str.end(),
+                          [](auto x, auto y) { return x == y && std::isspace(x); });
+    str.erase(it, str.end());
+    return str;
 }
