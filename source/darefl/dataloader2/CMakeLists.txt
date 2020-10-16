@@ -19,5 +19,7 @@ target_sources(${library_name} PRIVATE
     parserpropertywidget.h
     parseutils.cpp
     parseutils.h
+    defaultparser.cpp
+    defaultparser.h
 )
 
