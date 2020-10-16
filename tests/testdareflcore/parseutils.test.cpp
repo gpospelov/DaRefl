@@ -247,3 +247,19 @@ TEST_F(ParseUtilsTest, CreateLineNumberPatternValidator)
     EXPECT_TRUE(is_accepted(46));
     EXPECT_FALSE(is_accepted(47));
 }
+
+TEST_F(ParseUtilsTest, CreateLineContentBaseValidator)
+{
+    auto is_accepted = CreateLineContentBaseValidator("");
+    EXPECT_FALSE(is_accepted(""));
+    EXPECT_FALSE(is_accepted(" "));
+    EXPECT_FALSE(is_accepted("                                       "));
+    EXPECT_TRUE(is_accepted("abc"));
+    EXPECT_TRUE(is_accepted(" abc  "));
+
+    is_accepted = CreateLineContentBaseValidator("#");
+    EXPECT_FALSE(is_accepted(""));
+    EXPECT_FALSE(is_accepted(" "));
+    EXPECT_FALSE(is_accepted("# abc"));
+    EXPECT_TRUE(is_accepted("42  "));
+}
