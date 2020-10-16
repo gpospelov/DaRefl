@@ -9,8 +9,8 @@
 
 #include "google_test.h"
 #include "test_utils.h"
-#include <darefl/dataloader2/defaultparser.h>
 #include <darefl/dataloader2/dataloader_types.h>
+#include <darefl/dataloader2/defaultparser.h>
 
 using namespace DataLoader;
 
@@ -26,20 +26,27 @@ DefaultParserTest::~DefaultParserTest() = default;
 
 TEST_F(DefaultParserTest, initialState)
 {
-    ParserOptions options = {"#", ",", ""}; // prefix, separator, line pattern
-    std::vector<std::string> raw_data = {
-        "# comment"
-    };
+    DefaultParser parser({});
 
-    EXPECT_EQ(0, 0);
+    EXPECT_EQ(parser.totalLineCount(), 0);
+    EXPECT_EQ(parser.dataRowCount(), 0);
 }
 
-//TEST_F(DefaultParserTest, initialState)
-//{
-//    ParserOptions options = {"#", ",", ""}; // prefix, separator, line pattern
-//    std::vector<std::string> raw_data = {
-//        "# comment"
-//    };
+ TEST_F(DefaultParserTest, parseScenario1)
+{
+    DefaultParser parser({"#", ",", ""});  // prefix, separator, line pattern
 
-//    EXPECT_EQ(0, 0);
-//}
+    std::vector<std::string> raw_data = {
+        "# comment",
+        "1, 2, 3"
+    };
+
+    parser.setRawData(raw_data);
+    EXPECT_EQ(parser.totalLineCount(), 2);
+    EXPECT_EQ(parser.dataRowCount(), 0);
+
+    parser.parse();
+//    EXPECT_EQ(parser.totalLineCount(), 2);
+//    EXPECT_EQ(parser.dataRowCount(), 1);
+
+}

@@ -169,13 +169,14 @@ DataLoader::CreateLineContentBaseValidator(const std::string& prefix_to_exclude)
 
 DataLoader::line_parser_t DataLoader::CreateSeparatorBasedLineParser(const std::string& separator)
 {
+    std::string sep = separator.empty() ? std::string(" ") : separator;
     bool is_space_only_separator = separator.find_first_not_of(' ') == std::string::npos;
-    auto result = [separator, is_space_only_separator](const std::string& line) {
+    auto result = [sep, is_space_only_separator](const std::string& line) {
         std::vector<std::string> values;
         std::string processed = TrimWhitespace(line);
         if (is_space_only_separator)
             processed = RemoveRepeatedSpaces(processed);
-        return SplitString(processed, separator);
+        return SplitString(processed, sep);
     };
     return result;
 }

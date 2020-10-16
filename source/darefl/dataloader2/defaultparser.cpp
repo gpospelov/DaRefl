@@ -15,6 +15,7 @@ DefaultParser::DefaultParser(const ParserOptions& options)
 {
     m_isValidLineNumber = CreateLineNumberPatternValidator(options.m_skip_index_pattern);
     m_isValidLineContent = CreateLineContentBaseValidator(options.m_header_prefix);
+    m_line_parser = CreateSeparatorBasedLineParser(options.m_separator);
 }
 
 void DefaultParser::setRawData(const std::vector<std::string>& raw_data)
@@ -36,13 +37,19 @@ size_t DefaultParser::dataRowCount() const
     return m_parsedData.size();
 }
 
+#include <iostream>
 void DefaultParser::parse()
 {
     m_parsedData.clear();
 
     int index{0};
     for (const auto& line : m_rawData) {
-        bool isValidLine = m_isValidLineContent(line) && m_isValidLineNumber(index + 1);
+//        bool isValidLine = m_isValidLineContent(line) && m_isValidLineNumber(index + 1);
+        bool isValidLine = m_isValidLineContent(line);
+
+        if (isValidLine)
+        std::cout << "xxx" << line << m_line_parser(line).size() << std::endl;
+            m_parsedData.emplace_back(m_line_parser(line));
 
         ++index;
     }

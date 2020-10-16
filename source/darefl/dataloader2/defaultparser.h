@@ -21,6 +21,8 @@ namespace DataLoader
 
 //! Provides basic algorirthm for parsing multi-string data representing content
 //! of multi-column ASCII file.
+//! + Can skip header, empty lines, lines matching line number pattern.
+//! + Parse data in columns basing on given separator value.
 
 class DefaultParser {
 public:
@@ -37,6 +39,7 @@ public:
 private:
     accept_line_number_t m_isValidLineNumber;
     accept_line_t m_isValidLineContent;
+    line_parser_t m_line_parser;
     std::vector<std::string> m_rawData;
     std::vector<std::vector<std::string>> m_parsedData;
 };
