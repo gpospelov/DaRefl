@@ -12,11 +12,16 @@
 
 #include <QWidget>
 
+namespace DataLoader
+{
+class DefaultParser;
+}
+
 class ImportFileWidgetV2;
 class ParserPropertyWidget;
 
 //! Panel with settings for DataLoaderDialog.
-//! Located on its left side, contains file selection dialog and parsiong options.
+//! Located on its left side, contains file selection dialog and parser property widget.
 
 class LoaderSelectorPanel : public QWidget
 {
@@ -24,6 +29,9 @@ class LoaderSelectorPanel : public QWidget
 
 public:
     LoaderSelectorPanel(QWidget* parent = nullptr);
+    ~LoaderSelectorPanel();
+
+    std::unique_ptr<DataLoader::DefaultParser> createParser() const;
 
 public slots:
     void onAddFilesRequest();
@@ -32,6 +40,7 @@ public slots:
 signals:
     void fileNamesChanged(const QStringList& file_names);
     void fileSelectionChanged(const QStringList& file_names);
+    void parserPropertyChanged();
 
 private:
     void init_connections();
