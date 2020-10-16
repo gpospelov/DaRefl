@@ -58,6 +58,10 @@ accept_line_number_t CreateLineNumberPatternValidator(const std::string& pattern
 using accept_line_t = std::function<bool(const std::string& line)>;
 accept_line_t CreateLineContentBaseValidator(const std::string& prefix_to_exclude);
 
+//! Creates line parser based on separator.
+using line_parser_t = std::function<std::vector<std::string>(const std::string& line)>;
+line_parser_t CreateSeparatorBasedLineParser(const std::string& separator);
+
 } // namespace DataLoader
 
 #endif // DAREFL_DATALOADER2_PARSEUTILS_H
