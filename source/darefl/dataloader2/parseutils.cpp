@@ -117,12 +117,12 @@ std::vector<std::pair<int, int>> DataLoader::ExpandLineNumberPattern(const std::
     for (const auto& token : SplitString(pattern, ",")) {
         auto parts = SplitString(token, "-");
         if (!parts.empty()) {
-            // if no "-" is present, make from "1" a pair {0, 0}
-            // if "-" is present, make from "1-2" a pair {0,1}
+            // if no "-" is present, make from "1" a pair {1, 1}
+            // if "-" is present, make from "1-2" a pair {1,2}
             auto conv0 = StringToInt(parts[0]);
             auto conv1 = parts.size() > 1 ? StringToInt(parts[1]) : conv0;
             if (isRepresentRange(conv0, conv1))
-                result.push_back({conv0.value() - 1, conv1.value() - 1});
+                result.push_back({conv0.value(), conv1.value()});
         }
     }
 
