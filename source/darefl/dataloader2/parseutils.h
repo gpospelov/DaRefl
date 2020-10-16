@@ -48,11 +48,10 @@ std::vector<std::pair<int, int>> ExpandLineNumberPattern(const std::string& patt
 //! Removes repeating blanks for a string.
 std::string RemoveRepeatedSpaces(std::string str);
 
-//! Creates a callback to define if given line index satisfies line number pattern.
-////! Line indices starts from 0, pattern starts from 1.
-////! "1, 4-5"
-//using accept_line_index_t = std::function<bool(int)>;
-//accept_line_index_t CreateLineIndexValidator(const std::string& pattern);
+//! Creates a callback to define if given line number satisfies line number pattern.
+////! "1, 4-6" will accept numbers {1, 4, 5, 6} and will refuse all others.
+using accept_line_number_t = std::function<bool(int)>;
+accept_line_number_t CreateLineNumberPatternValidator(const std::string& pattern);
 
 
 } // namespace DataLoader
