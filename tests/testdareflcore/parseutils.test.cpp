@@ -167,6 +167,9 @@ TEST_F(ParseUtilsTest, SplitString)
     EXPECT_EQ(SplitString("a", " "), toStringVector("a"));
     EXPECT_EQ(SplitString("a ", " "), toStringVector("a", ""));
 
+    EXPECT_EQ(SplitString("a b", " "), toStringVector("a", "b"));
+    EXPECT_EQ(SplitString("a  b", " "), toStringVector("a", "", "b"));
+
     EXPECT_EQ(SplitString("a", "-"), toStringVector("a"));
 
     EXPECT_EQ(SplitString("aa", "a"), toStringVector("", "", ""));
@@ -205,4 +208,14 @@ TEST_F(ParseUtilsTest, ExpandLineNumberPattern)
     EXPECT_EQ(ExpandLineNumberPattern("a,1,b"), toPairVector({{0, 0}}));
     EXPECT_EQ(ExpandLineNumberPattern("a-2"), toPairVector());
     EXPECT_EQ(ExpandLineNumberPattern("6-5"), toPairVector()); // wrong order
+}
+
+TEST_F(ParseUtilsTest, RemoveRepeatedSpaces)
+{
+    EXPECT_EQ(RemoveRepeatedSpaces(std::string{}), std::string{});
+    EXPECT_EQ(RemoveRepeatedSpaces(" "), std::string{" "});
+    EXPECT_EQ(RemoveRepeatedSpaces("a"), std::string{"a"});
+    EXPECT_EQ(RemoveRepeatedSpaces(" a "), std::string{" a "});
+    EXPECT_EQ(RemoveRepeatedSpaces("  a  "), std::string{" a "});
+    EXPECT_EQ(RemoveRepeatedSpaces("a  bb   ccc   "), std::string{"a bb ccc "});
 }
