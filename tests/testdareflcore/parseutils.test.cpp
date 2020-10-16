@@ -188,24 +188,24 @@ TEST_F(ParseUtilsTest, ExpandLineNumberPattern)
     EXPECT_EQ(ExpandLineNumberPattern(""), toPairVector());
     EXPECT_EQ(ExpandLineNumberPattern(" "), toPairVector());
     EXPECT_EQ(ExpandLineNumberPattern("aaa"), toPairVector());
-    EXPECT_EQ(ExpandLineNumberPattern("1"), toPairVector({{0, 0}}));
-    EXPECT_EQ(ExpandLineNumberPattern(" 1"), toPairVector({{0, 0}}));
-    EXPECT_EQ(ExpandLineNumberPattern(" 1 "), toPairVector({{0, 0}}));
-    EXPECT_EQ(ExpandLineNumberPattern("42"), toPairVector({{41, 41}}));
+    EXPECT_EQ(ExpandLineNumberPattern("1"), toPairVector({{1, 1}}));
+    EXPECT_EQ(ExpandLineNumberPattern(" 1"), toPairVector({{1, 1}}));
+    EXPECT_EQ(ExpandLineNumberPattern(" 1 "), toPairVector({{1, 1}}));
+    EXPECT_EQ(ExpandLineNumberPattern("42"), toPairVector({{42, 42}}));
 
-    EXPECT_EQ(ExpandLineNumberPattern("1,1"), toPairVector({{0, 0}, {0, 0}}));
-    EXPECT_EQ(ExpandLineNumberPattern("1,2"), toPairVector({{0, 0}, {1, 1}}));
-    EXPECT_EQ(ExpandLineNumberPattern(" 1 , 2 "), toPairVector({{0, 0}, {1, 1}}));
+    EXPECT_EQ(ExpandLineNumberPattern("1,1"), toPairVector({{1, 1}, {1, 1}}));
+    EXPECT_EQ(ExpandLineNumberPattern("1,2"), toPairVector({{1, 1}, {2, 2}}));
+    EXPECT_EQ(ExpandLineNumberPattern(" 1 , 2 "), toPairVector({{1, 1}, {2, 2}}));
 
-    EXPECT_EQ(ExpandLineNumberPattern("1-1"), toPairVector({{0, 0}}));
-    EXPECT_EQ(ExpandLineNumberPattern("1-5"), toPairVector({{0, 4}}));
+    EXPECT_EQ(ExpandLineNumberPattern("1-1"), toPairVector({{1, 1}}));
+    EXPECT_EQ(ExpandLineNumberPattern("1-5"), toPairVector({{1, 5}}));
 
-    EXPECT_EQ(ExpandLineNumberPattern("1,2-3"), toPairVector({{0, 0}, {1, 2}}));
-    EXPECT_EQ(ExpandLineNumberPattern("1, 2-3, 42"), toPairVector({{0, 0}, {1, 2}, {41, 41}}));
+    EXPECT_EQ(ExpandLineNumberPattern("1,2-3"), toPairVector({{1, 1}, {2, 3}}));
+    EXPECT_EQ(ExpandLineNumberPattern("1, 2-3, 42"), toPairVector({{1, 1}, {2, 3}, {42, 42}}));
 
     // more wrong patterns
-    EXPECT_EQ(ExpandLineNumberPattern("1,b"), toPairVector({{0, 0}}));
-    EXPECT_EQ(ExpandLineNumberPattern("a,1,b"), toPairVector({{0, 0}}));
+    EXPECT_EQ(ExpandLineNumberPattern("1,b"), toPairVector({{1, 1}}));
+    EXPECT_EQ(ExpandLineNumberPattern("a,1,b"), toPairVector({{1, 1}}));
     EXPECT_EQ(ExpandLineNumberPattern("a-2"), toPairVector());
     EXPECT_EQ(ExpandLineNumberPattern("6-5"), toPairVector()); // wrong order
 }

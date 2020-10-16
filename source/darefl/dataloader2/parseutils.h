@@ -13,6 +13,7 @@
 #include <optional>
 #include <string>
 #include <vector>
+#include <functional>
 
 namespace DataLoader
 {
@@ -39,13 +40,20 @@ std::vector<std::string> LoadASCIIFile(const std::string& file_name);
 //! Split string on substring using given delimeter. Reproduces Python str.split() behavior.
 std::vector<std::string> SplitString(const std::string& str, const std::string& delimeter);
 
-//! Expands string representing line number pattern to inclusive pairs of line indices.
-//! "1" will be expanded to { {0, 0} }, "1, 3-5" will be expanded to { {0, 0}, {2, 4} }
-//! Line numbers are counted starting from 1, indices starting from 0.
+//! Expands string representing line number pattern to inclusive pairs of line numbers.
+//! "1" will be expanded to { {1, 1} }, "1, 3-5" will be expanded to { {1, 1}, {3, 5} }
+//! Line numbers are counted starting from 1.
 std::vector<std::pair<int, int>> ExpandLineNumberPattern(const std::string& pattern);
 
 //! Removes repeating blanks for a string.
 std::string RemoveRepeatedSpaces(std::string str);
+
+//! Creates a callback to define if given line index satisfies line number pattern.
+////! Line indices starts from 0, pattern starts from 1.
+////! "1, 4-5"
+//using accept_line_index_t = std::function<bool(int)>;
+//accept_line_index_t CreateLineIndexValidator(const std::string& pattern);
+
 
 } // namespace DataLoader
 
