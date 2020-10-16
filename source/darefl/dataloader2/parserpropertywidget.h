@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER2_PARSINGPROPERTYWIDGET_H
-#define DAREFL_DATALOADER2_PARSINGPROPERTYWIDGET_H
+#ifndef DAREFL_DATALOADER2_PARSERPROPERTYWIDGET_H
+#define DAREFL_DATALOADER2_PARSERPROPERTYWIDGET_H
 
 #include <QWidget>
 #include <darefl/dataloader2/dataloader_types.h>
@@ -19,14 +19,14 @@ class QButtonGroup;
 //! Panel for ASCII parser properties.
 //! Contains selection of separator symbols, patterns to skip lines, and import target settings.
 
-class ParsingPropertyWidget : public QWidget
+class ParserPropertyWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    ParsingPropertyWidget(QWidget* parent = nullptr);
+    ParserPropertyWidget(QWidget* parent = nullptr);
 
-    DataLoader::ParsingOptions parsingOptions() const;
+    DataLoader::ParserOptions parsingOptions() const;
 
 signals:
     void parsingPropertiesHaveChanged();
@@ -44,7 +44,7 @@ private:
     void addIgnoreNumbersPatternRow(QGridLayout* layout);
     void addImportToBlock(QGridLayout* layout);
 
-    DataLoader::ParsingOptions m_options;
+    DataLoader::ParserOptions m_options;
 };
 
-#endif // DAREFL_DATALOADER2_PARSINGPROPERTYWIDGET_H
+#endif // DAREFL_DATALOADER2_PARSERPROPERTYWIDGET_H
