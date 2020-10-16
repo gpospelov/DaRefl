@@ -138,3 +138,18 @@ std::string DataLoader::RemoveRepeatedSpaces(std::string str)
     str.erase(it, str.end());
     return str;
 }
+
+DataLoader::accept_line_number_t
+DataLoader::CreateLineNumberPatternValidator(const std::string& pattern)
+{
+    std::vector<std::pair<int, int>> expanded_pattern =
+        DataLoader::ExpandLineNumberPattern(pattern);
+    auto result = [expanded_pattern](int line_number) {
+        for (auto pair : expanded_pattern) {
+            if (line_number >= pair.first && line_number <= pair.second)
+                return true;
+        }
+        return false;
+    };
+    return result;
+}

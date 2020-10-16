@@ -50,7 +50,6 @@ TEST_F(ParseUtilsTest, TrimWhiteSpace)
     EXPECT_EQ(TrimWhitespace(" \t\n abc cde\n"), std::string("abc cde"));
 }
 
-
 //! Testing function StringToDouble.
 
 TEST_F(ParseUtilsTest, StringToDouble)
@@ -94,8 +93,8 @@ TEST_F(ParseUtilsTest, ParseSpaceSeparatedDoubles)
     EXPECT_DOUBLE_EQ(ParseSpaceSeparatedDoubles("42")[0], 42.0);
 
     // this tests failing under MacOS
-//    ASSERT_EQ(ParseSpaceSeparatedDoubles("42aaa").size(), 1u);
-//    EXPECT_DOUBLE_EQ(ParseSpaceSeparatedDoubles("42aaa")[0], 42.0);
+    //    ASSERT_EQ(ParseSpaceSeparatedDoubles("42aaa").size(), 1u);
+    //    EXPECT_DOUBLE_EQ(ParseSpaceSeparatedDoubles("42aaa")[0], 42.0);
 
     EXPECT_EQ(ParseSpaceSeparatedDoubles("42,").size(), 1u);
     EXPECT_DOUBLE_EQ(ParseSpaceSeparatedDoubles("42,")[0], 42.0);
@@ -202,6 +201,7 @@ TEST_F(ParseUtilsTest, ExpandLineNumberPattern)
 
     EXPECT_EQ(ExpandLineNumberPattern("1,2-3"), toPairVector({{1, 1}, {2, 3}}));
     EXPECT_EQ(ExpandLineNumberPattern("1, 2-3, 42"), toPairVector({{1, 1}, {2, 3}, {42, 42}}));
+    EXPECT_EQ(ExpandLineNumberPattern("42, 2-3, 1"), toPairVector({{42, 42}, {2, 3}, {1, 1}}));
 
     // more wrong patterns
     EXPECT_EQ(ExpandLineNumberPattern("1,b"), toPairVector({{1, 1}}));
@@ -218,4 +218,32 @@ TEST_F(ParseUtilsTest, RemoveRepeatedSpaces)
     EXPECT_EQ(RemoveRepeatedSpaces(" a "), std::string{" a "});
     EXPECT_EQ(RemoveRepeatedSpaces("  a  "), std::string{" a "});
     EXPECT_EQ(RemoveRepeatedSpaces("a  bb   ccc   "), std::string{"a bb ccc "});
+}
+
+TEST_F(ParseUtilsTest, CreateLineNumberPatternValidator)
+{
+    auto is_accepted = CreateLineNumberPatternValidator("1");
+    EXPECT_FALSE(is_accepted(0));
+    EXPECT_TRUE(is_accepted(1));
+    EXPECT_FALSE(is_accepted(2));
+
+    is_accepted = CreateLineNumberPatternValidator("");
+    EXPECT_FALSE(is_accepted(0));
+    EXPECT_FALSE(is_accepted(1));
+    EXPECT_FALSE(is_accepted(2));
+
+    is_accepted = CreateLineNumberPatternValidator("1, 2");
+    EXPECT_FALSE(is_accepted(0));
+    EXPECT_TRUE(is_accepted(1));
+    EXPECT_TRUE(is_accepted(2));
+    EXPECT_FALSE(is_accepted(3));
+
+    is_accepted = CreateLineNumberPatternValidator("42, 44-46");
+    EXPECT_FALSE(is_accepted(0));
+    EXPECT_TRUE(is_accepted(42));
+    EXPECT_FALSE(is_accepted(43));
+    EXPECT_TRUE(is_accepted(44));
+    EXPECT_TRUE(is_accepted(45));
+    EXPECT_TRUE(is_accepted(46));
+    EXPECT_FALSE(is_accepted(47));
 }
