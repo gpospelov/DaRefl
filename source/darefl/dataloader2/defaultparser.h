@@ -10,11 +10,12 @@
 #ifndef DAREFL_DATALOADER2_DEFAULTPARSER_H
 #define DAREFL_DATALOADER2_DEFAULTPARSER_H
 
+#include <darefl/dataloader2/dataloader_types.h>
+#include <darefl/dataloader2/parserinterface.h>
+#include <darefl/dataloader2/parseutils.h>
+#include <functional>
 #include <string>
 #include <vector>
-#include <functional>
-#include <darefl/dataloader2/dataloader_types.h>
-#include <darefl/dataloader2/parseutils.h>
 
 namespace DataLoader
 {
@@ -22,10 +23,11 @@ namespace DataLoader
 //! Provides basic algorirthm for parsing multi-string data representing content
 //! of multi-column ASCII file.
 //! + Skips empty lines or lines matching the prefix.
-//! + Accepts lines matching line number pattern.
+//! + Skips lines matching given line number pattern.
 //! + Parse data in columns of basing on given separator value.
 
-class DefaultParser {
+class DefaultParser : public ParserInterface
+{
 public:
     DefaultParser(const ParserOptions& options);
 
@@ -42,7 +44,6 @@ private:
     std::vector<std::string> m_rawData;
     std::vector<std::vector<std::string>> m_parsedData;
 };
-
 
 } // namespace DataLoader
 

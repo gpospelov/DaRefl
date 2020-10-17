@@ -28,7 +28,7 @@ LoaderSelectorPanel::LoaderSelectorPanel(QWidget* parent)
 
 LoaderSelectorPanel::~LoaderSelectorPanel() = default;
 
-std::unique_ptr<DataLoader::DefaultParser> LoaderSelectorPanel::createParser() const
+std::unique_ptr<DataLoader::ParserInterface> LoaderSelectorPanel::createParser() const
 {
     return m_propertyWidget->createParser();
 }

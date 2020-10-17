@@ -14,7 +14,7 @@
 
 namespace DataLoader
 {
-class DefaultParser;
+class ParserInterface;
 }
 
 class ImportFileWidgetV2;
@@ -31,7 +31,7 @@ public:
     LoaderSelectorPanel(QWidget* parent = nullptr);
     ~LoaderSelectorPanel();
 
-    std::unique_ptr<DataLoader::DefaultParser> createParser() const;
+    std::unique_ptr<DataLoader::ParserInterface> createParser() const;
 
 public slots:
     void onAddFilesRequest();
