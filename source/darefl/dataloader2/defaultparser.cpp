@@ -8,6 +8,7 @@
 // ************************************************************************** //
 
 #include <darefl/dataloader2/defaultparser.h>
+#include <stdexcept>
 
 using namespace DataLoader;
 
@@ -48,4 +49,18 @@ size_t DefaultParser::totalLineCount() const
 size_t DefaultParser::dataRowCount() const
 {
     return m_parsedData.size();
+}
+
+std::pair<std::string, ParserInterface::LineType> DefaultParser::getLine(size_t index) const
+{
+    if (index >= m_rawData.size())
+        throw std::runtime_error("Error in DefaultParser: out of bounds.");
+
+    if (m_parsedData.empty())
+        return std::make_pair(m_rawData[index], ParserInterface::UNKNOWN);
+
+    if (m_parsedData.find(index) == m_parsedData.end())
+        return std::make_pair(m_rawData[index], ParserInterface::HEADER);
+    else
+        return std::make_pair(m_rawData[index], ParserInterface::DATA);
 }

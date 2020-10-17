@@ -32,18 +32,22 @@ class DefaultParser : public ParserInterface
 public:
     DefaultParser(const ParserOptions& options);
 
-    void process(const std::vector<std::string>& raw_data);
+    void process(const std::vector<std::string>& raw_data) override;
 
-    size_t totalLineCount() const;
+    size_t totalLineCount() const override;
 
-    size_t dataRowCount() const;
+    size_t dataRowCount() const override;
+
+    //! Returns a pair representing raw line and flag describing parsing results.
+    std::pair<std::string, LineType> getLine(size_t index) const override;
 
 private:
     accept_line_number_t m_isSkipLineNumber;
     accept_line_t m_isValidLineContent;
     line_parser_t m_line_parser;
     std::vector<std::string> m_rawData;
-    std::map<int, std::vector<std::string>> m_parsedData;
+    //!< correspondance of parsed data to original line index
+    std::map<size_t, std::vector<std::string>> m_parsedData;
 };
 
 } // namespace DataLoader

@@ -10,7 +10,6 @@
 #ifndef DAREFL_DATALOADER2_PARSERINTERFACE_H
 #define DAREFL_DATALOADER2_PARSERINTERFACE_H
 
-#include <functional>
 #include <string>
 #include <vector>
 
@@ -22,6 +21,9 @@ namespace DataLoader
 class ParserInterface
 {
 public:
+    //! Defines type of line
+    enum LineType {UNKNOWN, HEADER, DATA};
+
     virtual ~ParserInterface() = default;
 
     //! Parse data representing content of ASCII file.
@@ -32,6 +34,9 @@ public:
 
     //! Returns total number of rows representing multi-column data.
     virtual size_t dataRowCount() const = 0;
+
+    //! Returns a pair representing raw line and flag describing parsing results.
+    virtual std::pair<std::string, LineType> getLine(size_t index) const = 0;
 };
 
 } // namespace DataLoader
