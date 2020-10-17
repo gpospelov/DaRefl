@@ -32,21 +32,40 @@ TEST_F(DefaultParserTest, initialState)
     EXPECT_EQ(parser.dataRowCount(), 0);
 }
 
- TEST_F(DefaultParserTest, parseScenario1)
+//! Testing line acceptance with standard parser settings.
+
+TEST_F(DefaultParserTest, lineAcceptanceStandardParser)
 {
-    DefaultParser parser({"#", ",", ""});  // prefix, separator, line pattern
+    DefaultParser parser({"#", ",", ""}); // prefix, separator, line pattern
 
-    std::vector<std::string> raw_data = {
-        "# comment",
-        "1, 2, 3"
-    };
+    parser.process({"1, 2, 3"});
+    EXPECT_EQ(parser.totalLineCount(), 1);
+    EXPECT_EQ(parser.dataRowCount(), 1);
 
-    parser.setRawData(raw_data);
+    parser.process({"1, 2, 3", "4, 5, 6"});
     EXPECT_EQ(parser.totalLineCount(), 2);
+    EXPECT_EQ(parser.dataRowCount(), 2);
+
+    parser.process({"# 1, 2, 3"});
+    EXPECT_EQ(parser.totalLineCount(), 1);
     EXPECT_EQ(parser.dataRowCount(), 0);
 
-    parser.parse();
-//    EXPECT_EQ(parser.totalLineCount(), 2);
-//    EXPECT_EQ(parser.dataRowCount(), 1);
+    parser.process({"#1, 2, 3", "4, 5, 6"});
+    EXPECT_EQ(parser.totalLineCount(), 2);
+    EXPECT_EQ(parser.dataRowCount(), 1);
 
+    parser.process({"#1, 2, 3", "4, 5, 6", ""});
+    EXPECT_EQ(parser.totalLineCount(), 3);
+    EXPECT_EQ(parser.dataRowCount(), 1);
+}
+
+//! Testing line acceptance with standard parser settings.
+
+TEST_F(DefaultParserTest, lineAcceptanceNumberPatternParser)
+{
+    DefaultParser parser({"#", ",", "1-2"}); // prefix, separator, line pattern
+
+    parser.process({"1, 2, 3", "4, 5, 6", "7, 8, 9", "#", ""});
+    EXPECT_EQ(parser.totalLineCount(), 5);
+    EXPECT_EQ(parser.dataRowCount(), 1);
 }

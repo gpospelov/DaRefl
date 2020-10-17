@@ -92,6 +92,7 @@ std::vector<std::string> DataLoader::LoadASCIIFile(const std::string& file_name)
 std::vector<std::string> DataLoader::SplitString(const std::string& str,
                                                  const std::string& delimeter)
 {
+    // splitting string following Python's str.split()
     if (delimeter.empty())
         throw std::runtime_error("Empty delimeter");
     if (str.empty())
@@ -113,9 +114,10 @@ std::vector<std::pair<int, int>> DataLoader::ExpandLineNumberPattern(const std::
 {
     std::vector<std::pair<int, int>> result;
 
-    // splitting "1, 2-3" first on comma-separated tokens, then on dash-separated
+    // splitting "1, 2-3" first on comma-separated tokens
     for (const auto& token : SplitString(pattern, ",")) {
         auto parts = SplitString(token, "-");
+        // splitting on dash-separared tokens
         if (!parts.empty()) {
             // if no "-" is present, make from "1" a pair {1, 1}
             // if "-" is present, make from "1-2" a pair {1,2}
@@ -169,7 +171,9 @@ DataLoader::CreateLineContentBaseValidator(const std::string& prefix_to_exclude)
 
 DataLoader::line_parser_t DataLoader::CreateSeparatorBasedLineParser(const std::string& separator)
 {
+    // If no separator provided, use 'space'. Shall we throw exception instead?
     std::string sep = separator.empty() ? std::string(" ") : separator;
+
     bool is_space_only_separator = separator.find_first_not_of(' ') == std::string::npos;
     auto result = [sep, is_space_only_separator](const std::string& line) {
         std::vector<std::string> values;

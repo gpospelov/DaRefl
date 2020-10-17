@@ -37,15 +37,14 @@ std::optional<double> StringToDouble(const std::string& str);
 //! Loads ASCII file, returns it in the form of vector of strings.
 std::vector<std::string> LoadASCIIFile(const std::string& file_name);
 
-//! Split string on substring using given delimeter. Reproduces Python str.split() behavior.
+//! Split string on substring using given delimeter. Reproduces Python's str.split() behavior.
 std::vector<std::string> SplitString(const std::string& str, const std::string& delimeter);
 
 //! Expands string representing line number pattern to inclusive pairs of line numbers.
 //! "1" will be expanded to { {1, 1} }, "1, 3-5" will be expanded to { {1, 1}, {3, 5} }
-//! Line numbers are counted starting from 1.
 std::vector<std::pair<int, int>> ExpandLineNumberPattern(const std::string& pattern);
 
-//! Removes repeating blanks for a string.
+//! Removes repeating spaces for a string.
 std::string RemoveRepeatedSpaces(std::string str);
 
 //! Creates a callback to define if given line number satisfies line number pattern.
