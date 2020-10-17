@@ -16,7 +16,7 @@ DefaultParser::DefaultParser(const ParserOptions& options)
 {
     m_isSkipLineNumber = CreateLineNumberPatternValidator(options.m_skip_index_pattern);
     m_isValidLineContent = CreateLineContentBaseValidator(options.m_header_prefix);
-    m_line_parser = CreateSeparatorBasedSplitter(options.m_separator);
+    m_line_splitter = CreateSeparatorBasedSplitter(options.m_separator);
 }
 
 //! Parse data representing content of ASCII file.
@@ -31,7 +31,7 @@ void DefaultParser::process(const std::vector<std::string>& raw_data)
         bool isValidLine = m_isValidLineContent(line) && !m_isSkipLineNumber(index + 1);
 
         if (isValidLine)
-            m_parsedData.emplace(index, m_line_parser(line));
+            m_parsedData.emplace(index, m_line_splitter(line));
 
         ++index;
     }
@@ -50,6 +50,8 @@ size_t DefaultParser::dataRowCount() const
 {
     return m_parsedData.size();
 }
+
+//! Returns a pair representing raw line and flag describing parsing results.
 
 std::pair<std::string, ParserInterface::LineType> DefaultParser::getLine(size_t index) const
 {
