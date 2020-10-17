@@ -141,8 +141,7 @@ std::string DataLoader::RemoveRepeatedSpaces(std::string str)
     return str;
 }
 
-DataLoader::accept_int_t
-DataLoader::CreateLineNumberPatternValidator(const std::string& pattern)
+DataLoader::accept_int_t DataLoader::CreateLineNumberPatternValidator(const std::string& pattern)
 {
     std::vector<std::pair<int, int>> expanded_pattern =
         DataLoader::ExpandLineNumberPattern(pattern);
@@ -177,10 +176,37 @@ DataLoader::line_splitter_t DataLoader::CreateSeparatorBasedSplitter(const std::
     bool is_space_only_separator = separator.find_first_not_of(' ') == std::string::npos;
     auto result = [sep, is_space_only_separator](const std::string& line) {
         std::vector<std::string> values;
-        std::string processed = TrimWhitespace(line);
+        std::string trimmed = TrimWhitespace(line);
         if (is_space_only_separator)
-            processed = RemoveRepeatedSpaces(processed);
-        return SplitString(processed, sep);
+            trimmed = RemoveRepeatedSpaces(trimmed);
+        return SplitString(trimmed, sep);
     };
+    return result;
+}
+
+std::string DataLoader::AddHtmlColorTag(const std::string& line, const std::string& color)
+{
+    const std::string open_tag = "<div><font color=\"" + color + "\">";
+    const std::string close_tag = "</font></div>";
+    std::string result;
+    return open_tag + line + close_tag;
+}
+
+std::string DataLoader::AddHtmlColorTagToParts(const std::string& line,
+                                               const std::vector<std::string>& parts,
+                                               const std::string& color)
+{
+    std::string result;
+    std::string_view view(line);
+
+    const std::string open_tag = "<div><font color=\"" + color + "\">";
+    const std::string close_tag = "</font></div>";
+
+    for (auto part : parts) {
+        auto it = view.find_first_of(part);
+        result.append(view.substr(0, it));
+        result.append(AddHtmlColorTag(part, color));
+        view.remove_prefix(it + part.size());
+    }
     return result;
 }
