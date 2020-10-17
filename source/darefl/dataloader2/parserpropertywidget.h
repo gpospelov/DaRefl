@@ -21,8 +21,8 @@ class ParserInterface;
 class QGridLayout;
 class QButtonGroup;
 
-//! Panel for ASCII parser properties.
-//! Contains selection of separator symbols, patterns to skip lines, and import target settings.
+//! Panel to setup ASCII parser. Intended to configure DefaultParser, contains selection of
+//! separator symbols, patterns to skip lines, and import target settings.
 
 class ParserPropertyWidget : public QWidget
 {
