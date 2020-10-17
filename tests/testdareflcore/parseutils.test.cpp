@@ -266,9 +266,9 @@ TEST_F(ParseUtilsTest, CreateLineContentBaseValidator)
     EXPECT_TRUE(is_accepted("42  "));
 }
 
-TEST_F(ParseUtilsTest, CreateSeparatorBasedLineParser)
+TEST_F(ParseUtilsTest, CreateSeparatorSplitter)
 {
-    auto parse = CreateSeparatorBasedLineParser(",");
+    auto parse = CreateSeparatorBasedSplitter(",");
     EXPECT_EQ(parse("a"), toStringVector("a"));
     EXPECT_EQ(parse("a,b"), toStringVector("a", "b"));
     EXPECT_EQ(parse("a, b"), toStringVector("a", " b")); // shouldn't we trim white spaces?
@@ -278,7 +278,7 @@ TEST_F(ParseUtilsTest, CreateSeparatorBasedLineParser)
     EXPECT_EQ(parse("1.0, 2.0, 3.0"), toStringVector("1.0", " 2.0", " 3.0"));
     EXPECT_EQ(parse("1.0, 2.0, 3.0,"), toStringVector("1.0", " 2.0", " 3.0", ""));
 
-    parse = CreateSeparatorBasedLineParser(" ");
+    parse = CreateSeparatorBasedSplitter(" ");
     EXPECT_EQ(parse("a"), toStringVector("a"));
     EXPECT_EQ(parse("a b"), toStringVector("a", "b"));
     EXPECT_EQ(parse(" a b "), toStringVector("a", "b"));

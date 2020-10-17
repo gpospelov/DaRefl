@@ -141,7 +141,7 @@ std::string DataLoader::RemoveRepeatedSpaces(std::string str)
     return str;
 }
 
-DataLoader::accept_line_number_t
+DataLoader::accept_int_t
 DataLoader::CreateLineNumberPatternValidator(const std::string& pattern)
 {
     std::vector<std::pair<int, int>> expanded_pattern =
@@ -156,7 +156,7 @@ DataLoader::CreateLineNumberPatternValidator(const std::string& pattern)
     return result;
 }
 
-DataLoader::accept_line_t
+DataLoader::accept_string_t
 DataLoader::CreateLineContentBaseValidator(const std::string& prefix_to_exclude)
 {
     auto result = [prefix_to_exclude](const std::string& line) {
@@ -169,7 +169,7 @@ DataLoader::CreateLineContentBaseValidator(const std::string& prefix_to_exclude)
     return result;
 }
 
-DataLoader::line_parser_t DataLoader::CreateSeparatorBasedLineParser(const std::string& separator)
+DataLoader::line_splitter_t DataLoader::CreateSeparatorBasedSplitter(const std::string& separator)
 {
     // If no separator provided, use 'space'. Shall we throw exception instead?
     std::string sep = separator.empty() ? std::string(" ") : separator;

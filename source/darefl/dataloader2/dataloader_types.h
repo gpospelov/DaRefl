@@ -12,6 +12,7 @@
 
 #include <string>
 #include <vector>
+#include <functional>
 
 namespace DataLoader
 {
@@ -29,6 +30,16 @@ struct ParseResults
     //!< array with results of column parsing
     std::vector<std::vector<std::string>> m_data;
 };
+
+//! Function to define if given index satisfies criteria.
+using accept_int_t = std::function<bool(int)>;
+
+//! Function to define if given string should be accepted for further consideration.
+using accept_string_t = std::function<bool(const std::string& line)>;
+
+//! Function to define line splitter accordint to some criteria.
+using line_splitter_t = std::function<std::vector<std::string>(const std::string& line)>;
+
 
 } // namespace DataLoader
 
