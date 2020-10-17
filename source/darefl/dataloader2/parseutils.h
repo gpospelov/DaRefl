@@ -53,8 +53,15 @@ accept_int_t CreateLineNumberPatternValidator(const std::string& pattern);
 //! Empty lines and lines starting from a given prefix will be excluded.
 accept_string_t CreateLineContentBaseValidator(const std::string& prefix_to_exclude);
 
-//! Creates line parser based on separator.
+//! Creates line splitter based on separator.
 line_splitter_t CreateSeparatorBasedSplitter(const std::string& separator);
+
+//! Returns string representing original 'line' wrapped in html color tag.
+std::string AddHtmlColorTag(const std::string& line, const std::string& color);
+
+//! Returns string representing original 'line', where 'parts' are surrounded with color tag.
+std::string AddHtmlColorTagToParts(const std::string& line, const std::vector<std::string>& parts,
+                                   const std::string& color);
 
 } // namespace DataLoader
 

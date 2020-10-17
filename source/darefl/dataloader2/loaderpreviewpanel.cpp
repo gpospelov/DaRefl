@@ -13,6 +13,7 @@
 #include <darefl/dataloader2/importtextview_v2.h>
 #include <darefl/dataloader2/loaderpreviewpanel.h>
 #include <darefl/dataloader2/parserinterface.h>
+#include <darefl/dataloader2/parseutils.h>
 
 namespace
 {
@@ -58,7 +59,9 @@ void LoaderPreviewPanel::showData(const DataLoader::ParserInterface* parser)
     for (size_t index = 0; index < parser->totalLineCount(); ++index) {
         auto line_data = parser->getLine(index);
         QColor color = line_color(line_data.second);
-        m_textView->appendHtml(get_colored_line(color, QString::fromStdString(line_data.first)));
+        auto colored_line =
+            DataLoader::AddHtmlColorTag(line_data.first, color.name().toStdString());
+        m_textView->appendHtml(QString::fromStdString(colored_line));
     }
     m_textView->moveCursor(QTextCursor::Start);
 }
