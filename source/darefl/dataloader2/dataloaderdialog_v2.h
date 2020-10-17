@@ -35,6 +35,7 @@ protected:
 
 private:
     void init_connections();
+    void process_data();
 
     DataLoaderToolBar* m_toolBar{nullptr};
     LoaderSelectorPanel* m_selectorPanel{nullptr};

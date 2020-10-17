@@ -9,15 +9,16 @@
 
 #include <QDebug>
 #include <QDialogButtonBox>
+#include <QKeyEvent>
+#include <QPushButton>
 #include <QSplitter>
 #include <QVBoxLayout>
-#include <QPushButton>
-#include <QKeyEvent>
 #include <darefl/dataloader2/datahandler.h>
 #include <darefl/dataloader2/dataloaderdialog_v2.h>
 #include <darefl/dataloader2/dataloadertoolbar.h>
 #include <darefl/dataloader2/loaderpreviewpanel.h>
 #include <darefl/dataloader2/loaderselectorpanel.h>
+#include <darefl/dataloader2/parserinterface.h>
 
 namespace
 {
@@ -61,7 +62,7 @@ DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
 
 void DataLoaderDialogV2::keyPressEvent(QKeyEvent* event)
 {
-    if(event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return)
+    if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return)
         return;
     QDialog::keyPressEvent(event);
 }
@@ -84,10 +85,22 @@ void DataLoaderDialogV2::init_connections()
     };
     connect(m_selectorPanel, &LoaderSelectorPanel::fileNamesChanged, on_file_list_changed);
 
-    auto on_selection_changed = [this](const auto& container) {
-        qDebug() << "selected" << container;
-        if (!container.empty())
-            m_previewPanel->setTextData(m_dataHandler->textData(container.back().toStdString()));
-    };
-    connect(m_selectorPanel, &LoaderSelectorPanel::fileSelectionChanged, on_selection_changed);
+    connect(m_selectorPanel, &LoaderSelectorPanel::fileSelectionChanged,
+            [this]() { process_data(); });
+}
+
+//! Process currently selected file with given parser settings.
+
+void DataLoaderDialogV2::process_data()
+{
+    auto selected_files = m_selectorPanel->selectedFileNames();
+    if (selected_files.empty())
+        return;
+
+    auto data_to_parse = m_dataHandler->textData(selected_files.back().toStdString());
+
+    auto parser = m_selectorPanel->createParser();
+    parser->process(data_to_parse);
+
+    m_previewPanel->showData(parser.get());
 }

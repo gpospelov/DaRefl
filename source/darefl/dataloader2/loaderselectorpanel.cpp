@@ -43,6 +43,11 @@ void LoaderSelectorPanel::onRemoveFileRequest()
     m_fileSelectorWidget->onRemoveFileRequest();
 }
 
+QStringList LoaderSelectorPanel::selectedFileNames() const
+{
+    return m_fileSelectorWidget->selectedFileNames();
+}
+
 void LoaderSelectorPanel::init_connections()
 {
     auto on_file_names_changed = [this]() { fileNamesChanged(m_fileSelectorWidget->fileNames()); };

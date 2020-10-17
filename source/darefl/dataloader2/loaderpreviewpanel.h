@@ -13,6 +13,10 @@
 #include <QWidget>
 
 class ImportTextViewV2;
+namespace DataLoader
+{
+class ParserInterface;
+}
 
 //! Panel with settings for DataLoaderDialog.
 //! Located on its right side, contains text and table views.
@@ -25,6 +29,7 @@ public:
     LoaderPreviewPanel(QWidget* parent = nullptr);
 
     void setTextData(const std::vector<std::string>& textData);
+    void showData(const DataLoader::ParserInterface* parser);
 
 private:
     ImportTextViewV2* m_textView{nullptr};
