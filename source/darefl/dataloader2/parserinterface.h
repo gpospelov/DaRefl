@@ -22,7 +22,7 @@ class ParserInterface
 {
 public:
     //! Defines type of line
-    enum LineType {UNKNOWN, HEADER, DATA};
+    enum LineType { UNKNOWN, HEADER, DATA };
 
     virtual ~ParserInterface() = default;
 
@@ -37,6 +37,8 @@ public:
 
     //! Returns a pair representing raw line and flag describing parsing results.
     virtual std::pair<std::string, LineType> getLine(size_t index) const = 0;
+
+    virtual  std::vector<std::string> parseResults(size_t index) const = 0;
 };
 
 } // namespace DataLoader

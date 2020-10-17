@@ -66,3 +66,9 @@ std::pair<std::string, ParserInterface::LineType> DefaultParser::getLine(size_t 
     else
         return std::make_pair(m_rawData[index], ParserInterface::DATA);
 }
+
+std::vector<std::string> DefaultParser::parseResults(size_t index) const
+{
+    auto it = m_parsedData.find(index);
+    return it == m_parsedData.end() ? std::vector<std::string>() : it->second;
+}
