@@ -87,6 +87,9 @@ void DataLoaderDialogV2::init_connections()
 
     connect(m_selectorPanel, &LoaderSelectorPanel::fileSelectionChanged,
             [this]() { process_data(); });
+
+    connect(m_selectorPanel, &LoaderSelectorPanel::parserPropertyChanged,
+            [this]() { process_data(); });
 }
 
 //! Process currently selected file with given parser settings.
