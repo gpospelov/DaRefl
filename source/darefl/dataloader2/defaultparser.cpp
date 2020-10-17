@@ -18,7 +18,7 @@ DefaultParser::DefaultParser(const ParserOptions& options)
     m_line_parser = CreateSeparatorBasedLineParser(options.m_separator);
 }
 
-//! Par
+//! Parse data representing content of ASCII file.
 
 void DefaultParser::process(const std::vector<std::string>& raw_data)
 {
@@ -30,20 +30,20 @@ void DefaultParser::process(const std::vector<std::string>& raw_data)
         bool isValidLine = m_isValidLineContent(line) && !m_isSkipLineNumber(index + 1);
 
         if (isValidLine)
-            m_parsedData.emplace_back(m_line_parser(line));
+            m_parsedData.emplace(index, m_line_parser(line));
 
         ++index;
     }
 }
 
-//! Returns total number of lines in a vector.
+//! Returns total number of lines in raw data.
 
 size_t DefaultParser::totalLineCount() const
 {
     return m_rawData.size();
 }
 
-//! Returns the number of data rows, i.e. a number of successfully parsed lines.
+//! Returns total number of rows representing multi-column data.
 
 size_t DefaultParser::dataRowCount() const
 {

@@ -48,6 +48,8 @@ ParserPropertyWidget::ParserPropertyWidget(QWidget* parent) : QWidget(parent)
 
 ParserPropertyWidget::~ParserPropertyWidget() = default;
 
+//! Creates parser from parser properties.
+
 std::unique_ptr<DataLoader::ParserInterface> ParserPropertyWidget::createParser() const
 {
     return std::make_unique<DataLoader::DefaultParser>(m_options);

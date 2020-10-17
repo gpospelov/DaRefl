@@ -16,6 +16,7 @@
 #include <functional>
 #include <string>
 #include <vector>
+#include <map>
 
 namespace DataLoader
 {
@@ -42,7 +43,7 @@ private:
     accept_line_t m_isValidLineContent;
     line_parser_t m_line_parser;
     std::vector<std::string> m_rawData;
-    std::vector<std::vector<std::string>> m_parsedData;
+    std::map<int, std::vector<std::string>> m_parsedData;
 };
 
 } // namespace DataLoader
