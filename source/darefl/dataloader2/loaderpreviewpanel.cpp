@@ -17,6 +17,8 @@
 
 namespace
 {
+const std::string gray = ("#aab7b8");
+const std::string blue = ("#1b4f72");
 
 //! Returns text wrapped into colored tag.
 QString get_colored_line(const QColor& color, const QString& text)
@@ -25,9 +27,9 @@ QString get_colored_line(const QColor& color, const QString& text)
     return result;
 }
 
-QColor line_color(DataLoader::ParserInterface::LineType line_type)
+std::string line_color(DataLoader::ParserInterface::LineType line_type)
 {
-    return line_type == DataLoader::ParserInterface::DATA ? QColor(Qt::black) : QColor(Qt::gray);
+    return line_type == DataLoader::ParserInterface::DATA ? blue : gray;
 }
 
 } // namespace
@@ -58,9 +60,8 @@ void LoaderPreviewPanel::showData(const DataLoader::ParserInterface* parser)
     m_textView->clear();
     for (size_t index = 0; index < parser->totalLineCount(); ++index) {
         auto line_data = parser->getLine(index);
-        QColor color = line_color(line_data.second);
-        auto colored_line =
-            DataLoader::AddHtmlColorTag(line_data.first, color.name().toStdString());
+        auto color = line_color(line_data.second);
+        auto colored_line = DataLoader::AddHtmlColorTag(line_data.first, color);
         m_textView->appendHtml(QString::fromStdString(colored_line));
     }
     m_textView->moveCursor(QTextCursor::Start);
