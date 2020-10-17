@@ -40,6 +40,8 @@ public:
 
     std::pair<std::string, LineType> getLine(size_t index) const override;
 
+    std::vector<std::string> parseResults(size_t index) const override;
+
 private:
     accept_int_t m_isSkipLineNumber;
     accept_string_t m_isValidLineContent;

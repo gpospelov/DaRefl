@@ -25,10 +25,10 @@ struct ParserOptions {
     std::string m_skip_index_pattern;  //!< pattern denoting line to skip (i.e. '1,10-12,42')
 };
 
-struct ParseResults
+struct LineParseResults
 {
-    //!< array with results of column parsing
-    std::vector<std::vector<std::string>> m_data;
+    std::string m_orig_string;
+    std::vector<std::string> m_parts;
 };
 
 //! Function to define if given index satisfies criteria.
