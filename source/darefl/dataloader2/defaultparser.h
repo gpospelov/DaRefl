@@ -38,13 +38,12 @@ public:
 
     size_t dataRowCount() const override;
 
-    //! Returns a pair representing raw line and flag describing parsing results.
     std::pair<std::string, LineType> getLine(size_t index) const override;
 
 private:
     accept_int_t m_isSkipLineNumber;
     accept_string_t m_isValidLineContent;
-    line_splitter_t m_line_parser;
+    line_splitter_t m_line_splitter;
     std::vector<std::string> m_rawData;
     //!< correspondance of parsed data to original line index
     std::map<size_t, std::vector<std::string>> m_parsedData;
