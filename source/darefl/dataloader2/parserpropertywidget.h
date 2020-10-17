@@ -15,7 +15,7 @@
 #include <darefl/dataloader2/dataloader_types.h>
 
 namespace DataLoader {
-class DefaultParser;
+class ParserInterface;
 }
 
 class QGridLayout;
@@ -32,7 +32,7 @@ public:
     ParserPropertyWidget(QWidget* parent = nullptr);
     ~ParserPropertyWidget();
 
-    std::unique_ptr<DataLoader::DefaultParser> createParser() const;
+    std::unique_ptr<DataLoader::ParserInterface> createParser() const;
 
 signals:
     void parserPropertyChanged();

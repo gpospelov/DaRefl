@@ -10,28 +10,30 @@
 #ifndef DAREFL_DATALOADER2_PARSERINTERFACE_H
 #define DAREFL_DATALOADER2_PARSERINTERFACE_H
 
-#include <vector>
 #include <functional>
 #include <string>
+#include <vector>
 
 namespace DataLoader
 {
 
 //! Interface for all classes capable of parsing ASCII data into multicolumn presentation.
 
-class ParserInterface {
+class ParserInterface
+{
 public:
     virtual ~ParserInterface() = default;
 
-    using callback_rawdata_t = std::function<void(const std::string& line, bool status)>;
-    using callback_parseddata_t = std::function<void(const std::string& line, bool status)>;
+    //! Parse data representing content of ASCII file.
+    virtual void process(const std::vector<std::string>& raw_data) = 0;
 
+    //! Returns total number of lines in raw data.
+    virtual size_t totalLineCount() const = 0;
 
+    //! Returns total number of rows representing multi-column data.
+    virtual size_t dataRowCount() const = 0;
 };
 
-} // DataLoader
-
+} // namespace DataLoader
 
 #endif // DAREFL_DATALOADER2_PARSERINTERFACE_H
-
-
