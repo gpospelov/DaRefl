@@ -56,12 +56,18 @@ accept_string_t CreateLineContentBaseValidator(const std::string& prefix_to_excl
 //! Creates line splitter based on separator.
 line_splitter_t CreateSeparatorBasedSplitter(const std::string& separator);
 
+//! Returns string representing original 'line' wrapped in 'div' tag.
+std::string AddHtmlDivTag(const std::string& line);
+
 //! Returns string representing original 'line' wrapped in html color tag.
 std::string AddHtmlColorTag(const std::string& line, const std::string& color);
 
+//! Returns string representing original 'line' wrapped in 'div' tag.
+std::string AddHtmlBackgroundTag(const std::string& line, const std::string& color);
+
 //! Returns string representing original 'line', where 'parts' are surrounded with color tag.
 std::string AddHtmlColorTagToParts(const std::string& line, const std::vector<std::string>& parts,
-                                   const std::string& color);
+                                   const std::string& color_parts, const std::string& color_rest);
 
 } // namespace DataLoader
 
