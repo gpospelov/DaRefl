@@ -11,6 +11,7 @@
 #define DAREFL_DATALOADER2_LOADERSELECTORPANEL_H
 
 #include <QWidget>
+#include <memory>
 
 namespace DataLoader
 {
