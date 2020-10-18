@@ -37,7 +37,7 @@ using accept_int_t = std::function<bool(int)>;
 //! Function to define if given string should be accepted for further consideration.
 using accept_string_t = std::function<bool(const std::string& line)>;
 
-//! Function to define line splitter accordint to some criteria.
+//! Function to define line splitter according to some criteria.
 using line_splitter_t = std::function<std::vector<std::string>(const std::string& line)>;
 
 

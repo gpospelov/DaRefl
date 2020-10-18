@@ -11,9 +11,12 @@
 #define DAREFL_DATALOADER2_IMPORTDATVLEWIDGET_H
 
 #include <QWidget>
+#include <string>
+#include <vector>
 
 class QTableView;
 class QStandardItemModel;
+class ImportTableModelV2;
 
 //! Contains table with imported data.
 //! Belongs to LoaderPreviewPanel.
@@ -25,8 +28,10 @@ class ImportTableWidget : public QWidget
 public:
     ImportTableWidget(QWidget* parent = nullptr);
 
+    void setData(const std::vector<std::vector<std::string>>& table_data);
+
 private:
-    QStandardItemModel* m_model{nullptr};
+    ImportTableModelV2* m_tableModel{nullptr};
     QTableView* m_tableView{nullptr};
 };
 

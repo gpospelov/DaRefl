@@ -10,6 +10,8 @@ target_sources(${library_name} PRIVATE
     defaultparser.h
     importfilewidget_v2.cpp
     importfilewidget_v2.h
+    importtablemodel.cpp
+    importtablemodel.h
     importtablewidget.cpp
     importtablewidget.h
     importtextview_v2.cpp
