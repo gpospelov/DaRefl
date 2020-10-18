@@ -6,8 +6,12 @@ target_sources(${library_name} PRIVATE
     dataloaderdialog_v2.h
     dataloadertoolbar.cpp
     dataloadertoolbar.h
+    defaultparser.cpp
+    defaultparser.h
     importfilewidget_v2.cpp
     importfilewidget_v2.h
+    importtablewidget.cpp
+    importtablewidget.h
     importtextview_v2.cpp
     importtextview_v2.h
     loaderpreviewpanel.cpp
@@ -19,7 +23,5 @@ target_sources(${library_name} PRIVATE
     parserpropertywidget.h
     parseutils.cpp
     parseutils.h
-    defaultparser.cpp
-    defaultparser.h
 )
 
