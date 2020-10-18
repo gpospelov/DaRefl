@@ -12,6 +12,9 @@
 
 #include <QWidget>
 
+class QTableView;
+class QStandardItemModel;
+
 //! Contains table with imported data.
 //! Belongs to LoaderPreviewPanel.
 
@@ -21,6 +24,10 @@ class ImportTableWidget : public QWidget
 
 public:
     ImportTableWidget(QWidget* parent = nullptr);
+
+private:
+    QStandardItemModel* m_model{nullptr};
+    QTableView* m_tableView{nullptr};
 };
 
 #endif // DAREFL_DATALOADER2_IMPORTDATVLEWIDGET_H
