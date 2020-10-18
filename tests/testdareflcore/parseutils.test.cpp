@@ -287,18 +287,25 @@ TEST_F(ParseUtilsTest, CreateSeparatorSplitter)
 
 TEST_F(ParseUtilsTest, AddHtmlColorTag)
 {
-    EXPECT_EQ(AddHtmlColorTag("abc", "x"), "<div><font color=\"x\">abc</font></div>");
+    EXPECT_EQ(AddHtmlColorTag("abc", "x"), "<font color=\"x\">abc</font>");
+}
+
+TEST_F(ParseUtilsTest, AddHtmlDivTag)
+{
+    EXPECT_EQ(AddHtmlDivTag("abc"), "<div>abc</div>");
 }
 
 TEST_F(ParseUtilsTest, AddHtmlColorTagToParts)
 {
     auto parse = CreateSeparatorBasedSplitter(",");
     std::string line("a,b");
-    EXPECT_EQ(AddHtmlColorTagToParts(line, parse(line), "x"),
-              "<div><font color=\"x\">a</font></div>,<div><font color=\"x\">b</font></div>");
+    EXPECT_EQ(AddHtmlColorTagToParts(line, parse(line), "A", "B"),
+              "<div><font color=\"A\">a</font><span style=\"background-color:B\">,</span><font "
+              "color=\"A\">b</font></div>");
 
     parse = CreateSeparatorBasedSplitter(" | ");
     line = "abc | efg";
-    EXPECT_EQ(AddHtmlColorTagToParts(line, parse(line), "x"),
-              "<div><font color=\"x\">abc</font></div> | <div><font color=\"x\">efg</font></div>");
+    EXPECT_EQ(AddHtmlColorTagToParts(line, parse(line), "A", "B"),
+              "<div><font color=\"A\">abc</font><span style=\"background-color:B\"> | </span><font "
+              "color=\"A\">efg</font></div>");
 }

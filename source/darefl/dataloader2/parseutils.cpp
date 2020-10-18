@@ -184,29 +184,47 @@ DataLoader::line_splitter_t DataLoader::CreateSeparatorBasedSplitter(const std::
     return result;
 }
 
+std::string DataLoader::AddHtmlDivTag(const std::string& line)
+{
+    const std::string open_div = "<div>";
+    const std::string close_div = "</div>";
+    std::string result;
+    return open_div + line + close_div;
+}
+
 std::string DataLoader::AddHtmlColorTag(const std::string& line, const std::string& color)
 {
-    const std::string open_tag = "<div><font color=\"" + color + "\">";
-    const std::string close_tag = "</font></div>";
+    const std::string open_tag = "<font color=\"" + color + "\">";
+    const std::string close_tag = "</font>";
+    std::string result;
+    return open_tag + line + close_tag;
+}
+
+std::string DataLoader::AddHtmlBackgroundTag(const std::string& line, const std::string& color)
+{
+    const std::string open_tag = "<span style=\"background-color:" + color + "\">";
+    const std::string close_tag = "</span>";
     std::string result;
     return open_tag + line + close_tag;
 }
 
 std::string DataLoader::AddHtmlColorTagToParts(const std::string& line,
                                                const std::vector<std::string>& parts,
-                                               const std::string& color)
+                                               const std::string& color_parts,
+                                               const std::string& color_rest)
 {
     std::string result;
     std::string_view view(line);
 
-    const std::string open_tag = "<div><font color=\"" + color + "\">";
-    const std::string close_tag = "</font></div>";
+    if (parts.empty())
+        return AddHtmlDivTag(AddHtmlColorTag(line, color_rest));
 
     for (auto part : parts) {
         auto it = view.find_first_of(part);
-        result.append(view.substr(0, it));
-        result.append(AddHtmlColorTag(part, color));
+        if (it > 0)
+            result.append(AddHtmlBackgroundTag(std::string(view.substr(0, it)), color_rest));
+        result.append(AddHtmlColorTag(part, color_parts));
         view.remove_prefix(it + part.size());
     }
-    return result;
+    return AddHtmlDivTag(result);
 }
