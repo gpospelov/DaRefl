@@ -14,6 +14,7 @@
 #include <vector>
 
 using namespace DataLoader;
+using TestUtils::toStringVector;
 
 //! Tests of ParseUtils.
 
@@ -22,14 +23,6 @@ class ParseUtilsTest : public FolderBasedTest
 public:
     ParseUtilsTest() : FolderBasedTest("test_ParseUtilsTest") {}
     ~ParseUtilsTest();
-
-    template <typename T = std::string, typename... Args>
-    std::vector<T> toStringVector(Args&&... args)
-    {
-        std::vector<T> v;
-        (v.push_back(std::string(args)), ...);
-        return v;
-    }
 
     std::vector<std::pair<int, int>>
     toPairVector(std::initializer_list<std::pair<int, int>> list = {})
