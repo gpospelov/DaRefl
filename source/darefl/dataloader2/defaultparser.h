@@ -42,6 +42,8 @@ public:
 
     std::vector<std::string> parseResults(size_t index) const override;
 
+    std::vector<std::vector<std::string>> parseResults() const override;
+
 private:
     accept_int_t m_isSkipLineNumber;
     accept_string_t m_isValidLineContent;

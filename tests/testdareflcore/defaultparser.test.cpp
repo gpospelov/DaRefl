@@ -13,6 +13,7 @@
 #include <darefl/dataloader2/defaultparser.h>
 
 using namespace DataLoader;
+using TestUtils::toStringVector;
 
 //! Test DefaultParser.
 
@@ -68,4 +69,22 @@ TEST_F(DefaultParserTest, lineAcceptanceNumberPatternParser)
     parser.process({"1, 2, 3", "4, 5, 6", "7, 8, 9", "#", ""});
     EXPECT_EQ(parser.totalLineCount(), 5);
     EXPECT_EQ(parser.dataRowCount(), 1);
+}
+
+TEST_F(DefaultParserTest, parseResults)
+{
+    DefaultParser parser({"#", ",", ""}); // prefix, separator, line pattern
+
+    parser.process({"1, 2, 3"});
+    EXPECT_EQ(parser.parseResults().size(), 1);
+    EXPECT_EQ(parser.parseResults()[0], toStringVector("1", " 2", " 3"));
+
+    parser.process({"1, 2, 3", "4, 5, 6"});
+    EXPECT_EQ(parser.parseResults().size(), 2);
+    EXPECT_EQ(parser.parseResults()[0], toStringVector("1", " 2", " 3"));
+    EXPECT_EQ(parser.parseResults()[1], toStringVector("4", " 5", " 6"));
+
+    parser.process({"#1, 2, 3", "4, 5, 6"});
+    EXPECT_EQ(parser.parseResults().size(), 1);
+    EXPECT_EQ(parser.parseResults()[0], toStringVector("4", " 5", " 6"));
 }
