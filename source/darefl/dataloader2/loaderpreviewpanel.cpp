@@ -54,4 +54,6 @@ void LoaderPreviewPanel::showData(const DataLoader::ParserInterface* parser)
         m_textView->appendHtml(string_to_show);
     }
     m_textView->moveCursor(QTextCursor::Start);
+
+    m_tableWidget->setRawData(parser->parseResults());
 }

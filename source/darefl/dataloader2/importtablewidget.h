@@ -28,7 +28,7 @@ class ImportTableWidget : public QWidget
 public:
     ImportTableWidget(QWidget* parent = nullptr);
 
-    void setData(const std::vector<std::vector<std::string>>& table_data);
+    void setRawData(const std::vector<std::vector<std::string>>& table_data);
 
 private:
     ImportTableModelV2* m_tableModel{nullptr};

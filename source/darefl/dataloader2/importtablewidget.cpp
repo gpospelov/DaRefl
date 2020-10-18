@@ -23,7 +23,7 @@ ImportTableWidget::ImportTableWidget(QWidget* parent)
     m_tableView->setModel(m_tableModel);
 }
 
-void ImportTableWidget::setData(const std::vector<std::vector<std::string>>& table_data)
+void ImportTableWidget::setRawData(const std::vector<std::vector<std::string>>& table_data)
 {
     m_tableModel->setRawData(table_data);
 }
