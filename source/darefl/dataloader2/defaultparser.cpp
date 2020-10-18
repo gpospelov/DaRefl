@@ -72,3 +72,14 @@ std::vector<std::string> DefaultParser::parseResults(size_t index) const
     auto it = m_parsedData.find(index);
     return it == m_parsedData.end() ? std::vector<std::string>() : it->second;
 }
+
+std::vector<std::vector<std::string>> DefaultParser::parseResults() const
+{
+    std::vector<std::vector<std::string>> result;
+    for (size_t index = 0; index < totalLineCount(); ++index) {
+        if (auto it = m_parsedData.find(index); it != m_parsedData.end())
+            result.push_back(it->second);
+    }
+
+    return result;
+}

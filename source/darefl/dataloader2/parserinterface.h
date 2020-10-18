@@ -39,6 +39,9 @@ public:
     virtual std::pair<std::string, LineType> getLine(size_t index) const = 0;
 
     virtual  std::vector<std::string> parseResults(size_t index) const = 0;
+
+    virtual  std::vector<std::vector<std::string>> parseResults() const = 0;
+
 };
 
 } // namespace DataLoader
