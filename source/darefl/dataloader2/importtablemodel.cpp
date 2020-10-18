@@ -36,6 +36,16 @@ int ImportTableModelV2::columnCount(const QModelIndex&) const
 
 QVariant ImportTableModelV2::data(const QModelIndex& index, int role) const
 {
+    if (!index.isValid())
+        return QVariant();
+
+    if (role == Qt::DisplayRole || role == Qt::EditRole) {
+        if (index.column() <= static_cast<int>(m_rawData[index.row()].size())) {
+            auto str = m_rawData[static_cast<int>(index.row())][static_cast<int>(index.column())];
+            return QString::fromStdString(str);
+        }
+    }
+
     return QVariant();
 }
 
