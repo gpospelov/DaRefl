@@ -9,7 +9,9 @@
 
 #include <QColor>
 #include <QDebug>
+#include <QTabWidget>
 #include <QVBoxLayout>
+#include <darefl/dataloader2/importtablewidget.h>
 #include <darefl/dataloader2/importtextview_v2.h>
 #include <darefl/dataloader2/loaderpreviewpanel.h>
 #include <darefl/dataloader2/parserinterface.h>
@@ -17,24 +19,27 @@
 
 namespace
 {
-const std::string gray = ("#aab7b8");
-const std::string blue = ("#1b4f72");
+const std::string gray{"#aab7b8"};
+const std::string blue{"#1b4f72"};
 
 } // namespace
 
 LoaderPreviewPanel::LoaderPreviewPanel(QWidget* parent)
-    : QWidget(parent), m_textView(new ImportTextViewV2)
+    : QWidget(parent), m_textView(new ImportTextViewV2), m_tableWidget(new ImportTableWidget),
+      m_tabWidget(new QTabWidget)
 {
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
-    layout->addWidget(m_textView);
+
+    m_tabWidget->addTab(m_textView, "Text view");
+    m_tabWidget->addTab(m_tableWidget, "Table view");
+
+    layout->addWidget(m_tabWidget);
 }
 
 //! Sets raw text to the TextView.
 
-void LoaderPreviewPanel::setTextData(const std::vector<std::string>& )
-{
-}
+void LoaderPreviewPanel::setTextData(const std::vector<std::string>&) {}
 
 void LoaderPreviewPanel::showData(const DataLoader::ParserInterface* parser)
 {

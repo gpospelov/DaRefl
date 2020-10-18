@@ -13,6 +13,9 @@
 #include <QWidget>
 
 class ImportTextViewV2;
+class ImportTableWidget;
+class QTabWidget;
+
 namespace DataLoader
 {
 class ParserInterface;
@@ -33,6 +36,8 @@ public:
 
 private:
     ImportTextViewV2* m_textView{nullptr};
+    ImportTableWidget* m_tableWidget{nullptr};
+    QTabWidget* m_tabWidget{nullptr};
 };
 
 #endif // DAREFL_DATALOADER2_LOADERPREVIEW_H
