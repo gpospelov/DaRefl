@@ -14,6 +14,8 @@ target_sources(${library_name} PRIVATE
     importtablemodel.h
     importtablewidget.cpp
     importtablewidget.h
+    importtableheader.cpp
+    importtableheader.h
     importtextview_v2.cpp
     importtextview_v2.h
     loaderpreviewpanel.cpp
