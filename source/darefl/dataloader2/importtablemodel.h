@@ -33,7 +33,13 @@ public:
 
     void setRawData(const raw_data_t& raw_data);
 
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+
 private:
+    int utilityRowCount() const;
+
+    QVariant dataFromIndex(const QModelIndex& index) const;
+
     raw_data_t m_rawData;
     int m_maxColumnCount{0};
 };
