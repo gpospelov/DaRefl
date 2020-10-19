@@ -115,6 +115,16 @@ QVariant ImportTableModelV2::headerData(int section, Qt::Orientation orientation
                                        : QVariant(section - utilityRowCount() + 1);
 }
 
+Qt::ItemFlags ImportTableModelV2::flags(const QModelIndex& index) const
+{
+    Qt::ItemFlags result = QAbstractItemModel::flags(index);
+    if (index.row() < utilityRowCount())
+        result |= Qt::ItemIsEnabled | Qt::ItemIsEditable;
+    else
+        result |= Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+    return result;
+}
+
 void ImportTableModelV2::initHeaderData()
 {
     m_headerData.clear();
