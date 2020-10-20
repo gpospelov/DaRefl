@@ -20,10 +20,7 @@ class ViewModelDelegate;
 }
 
 class QTableView;
-class QStandardItemModel;
 class ImportTableModelV2;
-class QStyledItemDelegate;
-
 
 //! Contains table with imported data.
 //! Belongs to LoaderPreviewPanel.
@@ -42,7 +39,6 @@ private:
     ImportTableModelV2* m_tableModel{nullptr};
     QTableView* m_tableView{nullptr};
     std::unique_ptr<ModelView::ViewModelDelegate> m_delegate;
-    QStyledItemDelegate* m_styledDelegate;
 };
 
 #endif // DAREFL_DATALOADER2_IMPORTDATVLEWIDGET_H
