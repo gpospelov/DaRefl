@@ -79,17 +79,17 @@ int ImportTableHeader::columnCount() const
 
 QVariant ImportTableHeader::data(int row, int col) const
 {
-    if (row >= 0 && row < static_cast<int>(m_data.size()))
-        if (col >= 0 && col < static_cast<int>(m_data[row].size()))
-            return m_data[row][col];
-    return QVariant();
+    return isValid(row, col) ? m_data[row][col] : QVariant();
 }
 
-void ImportTableHeader::setData(const QVariant& variant, int row, int col)
+bool ImportTableHeader::setData(const QVariant& variant, int row, int col)
 {
-    if (row >= 0 && row < static_cast<int>(m_data.size()))
-        if (col >= 0 && col < static_cast<int>(m_data[row].size()))
-            m_data[row][col] = variant;
+    if (isValid(row, col)) {
+        m_data[row][col] = variant;
+        return true;
+    }
+
+    return false;
 }
 
 std::string ImportTableHeader::rowName(int row) const
@@ -103,4 +103,10 @@ void ImportTableHeader::init_data()
     m_data.push_back(CreateUnitVariants(columnCount()));
     m_data.push_back(CreateMultiplayerVariants(columnCount()));
     m_data.push_back(CreateNameVariants(columnCount()));
+}
+
+bool ImportTableHeader::isValid(int row, int col) const
+{
+    return (row >= 0 && row < static_cast<int>(m_data.size()))
+           && (col >= 0 && col < static_cast<int>(m_data[row].size()));
 }
