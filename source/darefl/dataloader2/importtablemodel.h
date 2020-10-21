@@ -13,6 +13,9 @@
 #include <QAbstractTableModel>
 #include <string>
 #include <vector>
+#include <memory>
+
+class ImportTableHeader;
 
 //! Table model to hold imported ASCII data after parsing it to multi-column presentation.
 
@@ -22,9 +25,9 @@ class ImportTableModelV2 : public QAbstractTableModel
 
 public:
     using raw_data_t = std::vector<std::vector<std::string>>;
-    using header_data_t = std::vector<std::vector<QVariant>>;
 
     ImportTableModelV2(QObject* parent = nullptr);
+    ~ImportTableModelV2() override;
 
     int rowCount(const QModelIndex& = QModelIndex()) const override;
 
@@ -36,14 +39,13 @@ public:
 
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-    Qt::ItemFlags flags(const QModelIndex& index) const;
+    Qt::ItemFlags flags(const QModelIndex& index) const override;
 
 private:
-    void initHeaderData();
     int utilityRowCount() const;
     QVariant dataFromIndex(const QModelIndex& index) const;
 
-    header_data_t m_headerData; //!
+    std::unique_ptr<ImportTableHeader> m_header;
     raw_data_t m_rawData; //! parsed column data
 
     int m_maxColumnCount{0};
