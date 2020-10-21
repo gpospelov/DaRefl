@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
+#include <darefl/dataloader2/importtableheader.h>
 #include <darefl/dataloader2/importtablemodel.h>
-#include <mvvm/model/comboproperty.h>
 
 namespace
 {
@@ -21,58 +21,16 @@ int maxColumnCount(const ImportTableModelV2::raw_data_t& data)
     return result;
 }
 
-//! Names of utility row on top of the table.
-const std::vector<std::string> utilityRowNames = {"Type", "Unit", "Multiplier", "Name"};
-
-const std::vector<std::string> typeNames = {"Axis", "Intensity", "Ignore"};
-
-const std::vector<std::string> unitNames = {"a.u.", "counts", "1/nm", "Angstrom"};
-
-using ModelView::ComboProperty;
-
-QVariant CreateTypeVariant(int col = 0)
-{
-    auto combo = ComboProperty::createFrom(typeNames);
-    auto selected_value = col == 0 ? typeNames[0] : typeNames[1];
-    combo.setValue(selected_value);
-    return QVariant::fromValue<ComboProperty>(combo);
-}
-
-std::vector<QVariant> CreateTypeVariants(int maxColumnCount)
-{
-    std::vector<QVariant> result;
-    for (int i = 0; i < maxColumnCount; ++i)
-        result.push_back(CreateTypeVariant(i));
-    return result;
-}
-
-std::vector<QVariant> CreateUnitVariants(int maxColumnCount)
-{
-    std::vector<QVariant> result;
-    for (int i = 0; i < maxColumnCount; ++i)
-        result.push_back(QVariant::fromValue<ComboProperty>(ComboProperty::createFrom(unitNames)));
-    return result;
-}
-
-std::vector<QVariant> CreateMultiplayerVariants(int maxColumnCount)
-{
-    std::vector<QVariant> result;
-    for (int i = 0; i < maxColumnCount; ++i)
-        result.push_back(QVariant::fromValue<double>(1.0));
-    return result;
-}
-
-std::vector<QVariant> CreateNameVariants(int maxColumnCount)
-{
-    std::vector<QVariant> result;
-    for (int i = 0; i < maxColumnCount; ++i)
-        result.push_back(QString(""));
-    return result;
-}
-
+const int default_header_ncols = 2;
 }; // namespace
 
-ImportTableModelV2::ImportTableModelV2(QObject* parent) : QAbstractTableModel(parent) {}
+ImportTableModelV2::ImportTableModelV2(QObject* parent)
+    : QAbstractTableModel(parent),
+      m_header(std::make_unique<ImportTableHeader>(default_header_ncols))
+{
+}
+
+ImportTableModelV2::~ImportTableModelV2() = default;
 
 int ImportTableModelV2::rowCount(const QModelIndex&) const
 {
@@ -100,9 +58,9 @@ QVariant ImportTableModelV2::data(const QModelIndex& index, int role) const
 void ImportTableModelV2::setRawData(const ImportTableModelV2::raw_data_t& raw_data)
 {
     beginResetModel();
+    m_maxColumnCount = maxColumnCount(raw_data);
+    m_header = std::make_unique<ImportTableHeader>(m_maxColumnCount);
     m_rawData = raw_data;
-    m_maxColumnCount = maxColumnCount(m_rawData);
-    initHeaderData();
     endResetModel();
 }
 
@@ -111,7 +69,7 @@ QVariant ImportTableModelV2::headerData(int section, Qt::Orientation orientation
     if (orientation == Qt::Horizontal || role != Qt::DisplayRole)
         return QVariant();
 
-    return section < utilityRowCount() ? QString::fromStdString(utilityRowNames.at(section))
+    return section < utilityRowCount() ? QString::fromStdString(m_header->rowName(section))
                                        : QVariant(section - utilityRowCount() + 1);
 }
 
@@ -125,18 +83,9 @@ Qt::ItemFlags ImportTableModelV2::flags(const QModelIndex& index) const
     return result;
 }
 
-void ImportTableModelV2::initHeaderData()
-{
-    m_headerData.clear();
-    m_headerData.push_back(CreateTypeVariants(columnCount()));
-    m_headerData.push_back(CreateUnitVariants(columnCount()));
-    m_headerData.push_back(CreateMultiplayerVariants(columnCount()));
-    m_headerData.push_back(CreateNameVariants(columnCount()));
-}
-
 int ImportTableModelV2::utilityRowCount() const
 {
-    return utilityRowNames.size();
+    return m_header ? m_header->rowCount() : 0;
 }
 
 //! Returns data from index. Combines header data with parsed user data.
@@ -147,7 +96,7 @@ QVariant ImportTableModelV2::dataFromIndex(const QModelIndex& index) const
         return QVariant();
 
     if (index.row() < utilityRowCount()) {
-        return m_headerData[index.row()][index.column()];
+        return m_header->data(index.row(), index.column());
 
     } else {
         int row = index.row() - utilityRowCount();
