@@ -46,17 +46,13 @@ std::vector<QVariant> CreateUnitVariants(int maxColumnCount)
 
 std::vector<QVariant> CreateMultiplierVariants(int maxColumnCount)
 {
-    std::vector<QVariant> result;
-    for (int i = 0; i < maxColumnCount; ++i)
-        result.push_back(QVariant::fromValue<double>(1.0));
+    std::vector<QVariant> result(maxColumnCount, 1.0);
     return result;
 }
 
 std::vector<QVariant> CreateNameVariants(int maxColumnCount)
 {
-    std::vector<QVariant> result;
-    for (int i = 0; i < maxColumnCount; ++i)
-        result.push_back(QString(""));
+    std::vector<QVariant> result(maxColumnCount, QString(""));
     return result;
 }
 
