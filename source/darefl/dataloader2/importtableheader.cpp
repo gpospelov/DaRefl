@@ -44,7 +44,7 @@ std::vector<QVariant> CreateUnitVariants(int maxColumnCount)
     return result;
 }
 
-std::vector<QVariant> CreateMultiplayerVariants(int maxColumnCount)
+std::vector<QVariant> CreateMultiplierVariants(int maxColumnCount)
 {
     std::vector<QVariant> result;
     for (int i = 0; i < maxColumnCount; ++i)
@@ -77,15 +77,15 @@ int ImportTableHeader::columnCount() const
     return m_maxColumnCount;
 }
 
-QVariant ImportTableHeader::data(int row, int col) const
+QVariant ImportTableHeader::data(int row, int column) const
 {
-    return isValid(row, col) ? m_data[row][col] : QVariant();
+    return isValid(row, column) ? m_data[row][column] : QVariant();
 }
 
-bool ImportTableHeader::setData(const QVariant& variant, int row, int col)
+bool ImportTableHeader::setData(int row, int column, const QVariant& variant)
 {
-    if (isValid(row, col)) {
-        m_data[row][col] = variant;
+    if (isValid(row, column)) {
+        m_data[row][column] = variant;
         return true;
     }
 
@@ -101,12 +101,14 @@ void ImportTableHeader::init_data()
 {
     m_data.push_back(CreateTypeVariants(columnCount()));
     m_data.push_back(CreateUnitVariants(columnCount()));
-    m_data.push_back(CreateMultiplayerVariants(columnCount()));
+    m_data.push_back(CreateMultiplierVariants(columnCount()));
     m_data.push_back(CreateNameVariants(columnCount()));
 }
 
-bool ImportTableHeader::isValid(int row, int col) const
+//! Returns true if given pair of indices are valid for data array.
+
+bool ImportTableHeader::isValid(int row, int column) const
 {
     return (row >= 0 && row < static_cast<int>(m_data.size()))
-           && (col >= 0 && col < static_cast<int>(m_data[row].size()));
+           && (column >= 0 && column < static_cast<int>(m_data[row].size()));
 }

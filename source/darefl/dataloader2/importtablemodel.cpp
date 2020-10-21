@@ -70,7 +70,7 @@ bool ImportTableModelV2::setData(const QModelIndex& index, const QVariant& value
         return false;
 
     if (index.row() < utilityRowCount() && role == Qt::EditRole)
-        return m_header->setData(value, index.row(), index.column());
+        return m_header->setData(index.row(), index.column(), value);
 
     return false;
 }
