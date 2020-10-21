@@ -32,6 +32,17 @@ ImportTableModelV2::ImportTableModelV2(QObject* parent)
 
 ImportTableModelV2::~ImportTableModelV2() = default;
 
+//! Sets content of the model.
+
+void ImportTableModelV2::setRawData(const ImportTableModelV2::raw_data_t& raw_data)
+{
+    beginResetModel();
+    m_maxColumnCount = maxColumnCount(raw_data);
+    m_header = std::make_unique<ImportTableHeader>(m_maxColumnCount);
+    m_rawData = raw_data;
+    endResetModel();
+}
+
 int ImportTableModelV2::rowCount(const QModelIndex&) const
 {
     return static_cast<int>(m_rawData.size()) + utilityRowCount();
@@ -53,15 +64,15 @@ QVariant ImportTableModelV2::data(const QModelIndex& index, int role) const
     return QVariant();
 }
 
-//! Sets content of the model.
-
-void ImportTableModelV2::setRawData(const ImportTableModelV2::raw_data_t& raw_data)
+bool ImportTableModelV2::setData(const QModelIndex& index, const QVariant& value, int role)
 {
-    beginResetModel();
-    m_maxColumnCount = maxColumnCount(raw_data);
-    m_header = std::make_unique<ImportTableHeader>(m_maxColumnCount);
-    m_rawData = raw_data;
-    endResetModel();
+    if (!index.isValid())
+        return false;
+
+    if (index.row() < utilityRowCount() && role == Qt::EditRole)
+        return m_header->setData(value, index.row(), index.column());
+
+    return false;
 }
 
 QVariant ImportTableModelV2::headerData(int section, Qt::Orientation orientation, int role) const

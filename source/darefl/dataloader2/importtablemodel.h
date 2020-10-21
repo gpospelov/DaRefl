@@ -29,13 +29,15 @@ public:
     ImportTableModelV2(QObject* parent = nullptr);
     ~ImportTableModelV2() override;
 
+    void setRawData(const raw_data_t& raw_data);
+
     int rowCount(const QModelIndex& = QModelIndex()) const override;
 
     int columnCount(const QModelIndex& = QModelIndex()) const override;
 
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 
-    void setRawData(const raw_data_t& raw_data);
+    bool setData(const QModelIndex& index, const QVariant& value, int role) override;
 
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 

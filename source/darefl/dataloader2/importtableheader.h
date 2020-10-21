@@ -28,12 +28,13 @@ public:
 
     QVariant data(int row, int col) const;
 
-    void setData(const QVariant& variant, int row, int col);
+    bool setData(const QVariant& variant, int row, int col);
 
     std::string rowName(int row) const;
 
 private:
     void init_data();
+    bool isValid(int row, int col) const;
 
     header_data_t m_data;
     int m_maxColumnCount;
