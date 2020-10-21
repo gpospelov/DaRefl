@@ -25,12 +25,6 @@ struct ParserOptions {
     std::string m_skip_index_pattern;  //!< pattern denoting line to skip (i.e. '1,10-12,42')
 };
 
-struct LineParseResults
-{
-    std::string m_orig_string;
-    std::vector<std::string> m_parts;
-};
-
 //! Function to define if given index satisfies criteria.
 using accept_int_t = std::function<bool(int)>;
 
