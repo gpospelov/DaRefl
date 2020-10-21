@@ -94,37 +94,21 @@ std::string ImportTableHeader::rowName(int row) const
     return utilityRowNames[row];
 }
 
-DataLoader::ColumnInfo ImportTableHeader::columnInfo(int column) const
+std::vector<DataLoader::ColumnInfo> ImportTableHeader::columnInfo() const
 {
-    if (column < 0 || column >= columnCount())
-        return {};
-
-    DataLoader::ColumnInfo result;
-    result.column = column;
-    result.type_name = data(TYPE, column).value<ComboProperty>().currentIndex();
-    result.units = data(UNITS, column).value<ComboProperty>().currentIndex();
-    result.multiplier = data(UNITS, column).value<double>();
-    result.title = data(TITLE, column).toString().toStdString();
+    std::vector<DataLoader::ColumnInfo> result;
+    for (int column = 0; column < columnCount(); ++column) {
+        DataLoader::ColumnInfo info;
+        info.column = column;
+        info.type_name = data(TYPE, column).value<ComboProperty>().currentIndex();
+        info.units = data(UNITS, column).value<ComboProperty>().currentIndex();
+        info.multiplier = data(UNITS, column).value<double>();
+        info.title = data(TITLE, column).toString().toStdString();
+        result.push_back(info);
+    }
 
     return result;
 }
-
-//! Returns vector of info objects describing x,y axes construction.
-
-// std::vector<ImportTableHeader::axes_info_t> ImportTableHeader::axesInfo() const
-//{
-//    return {};
-//}
-
-////! Returns info for all columns with given type_name set.
-
-// std::vector<DataLoader::ColumnInfo> ImportTableHeader::infoForType(const std::string& type_name)
-// const
-//{
-//    std::vector<DataLoader::ColumnInfo> result;
-
-//    return result;
-//}
 
 void ImportTableHeader::init_data()
 {

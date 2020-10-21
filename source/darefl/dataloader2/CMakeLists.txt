@@ -2,6 +2,7 @@ target_sources(${library_name} PRIVATE
     datahandler.cpp
     datahandler.h
     dataloader_types.h
+    dataloader_constants.h
     dataloaderdialog_v2.cpp
     dataloaderdialog_v2.h
     dataloadertoolbar.cpp
