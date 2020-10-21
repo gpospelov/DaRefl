@@ -8,12 +8,12 @@
 // ************************************************************************** //
 
 #ifndef DAREFL_DATALOADER2_IMPORTTABLEHEADER_H
-#define DAREFL_DATALOADER2_IMPORTTABLEMODEL_H
+#define DAREFL_DATALOADER2_IMPORTTABLEHEADER_H
 
 #include <QVariant>
 #include <vector>
 
-//!
+//! Holds all data related to the content of utility rows in ImportTableModel.
 
 class ImportTableHeader
 {
@@ -25,6 +25,13 @@ public:
     int rowCount() const;
 
     int columnCount() const;
+
+    QVariant data(int row, int col) const;
+
+    void setData(const QVariant& variant, int row, int col);
+
+    std::string rowName(int row) const;
+
 private:
     void init_data();
 
@@ -32,4 +39,4 @@ private:
     int m_maxColumnCount;
 };
 
-#endif // DAREFL_DATALOADER2_IMPORTTABLEMODEL_H
+#endif // DAREFL_DATALOADER2_IMPORTTABLEHEADER_H
