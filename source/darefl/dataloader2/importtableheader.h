@@ -26,15 +26,15 @@ public:
 
     int columnCount() const;
 
-    QVariant data(int row, int col) const;
+    QVariant data(int row, int column) const;
 
-    bool setData(const QVariant& variant, int row, int col);
+    bool setData(int row, int column, const QVariant& variant);
 
     std::string rowName(int row) const;
 
 private:
     void init_data();
-    bool isValid(int row, int col) const;
+    bool isValid(int row, int column) const;
 
     header_data_t m_data;
     int m_maxColumnCount;
