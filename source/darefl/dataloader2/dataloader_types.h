@@ -25,6 +25,16 @@ struct ParserOptions {
     std::string m_skip_index_pattern;  //!< pattern denoting line to skip (i.e. '1,10-12,42')
 };
 
+//! Info about the column as defined by the user via ImportTableWidget.
+
+struct ColumnInfo {
+    int column{-1};
+    std::string type_name;
+    std::string units;
+    double multiplier{0.0};
+    std::string title;
+};
+
 //! Function to define if given index satisfies criteria.
 using accept_int_t = std::function<bool(int)>;
 

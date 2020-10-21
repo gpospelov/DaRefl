@@ -7,6 +7,7 @@
 //
 // ************************************************************************** //
 
+#include <darefl/dataloader2/dataloader_types.h>
 #include <darefl/dataloader2/importtableheader.h>
 #include <mvvm/model/comboproperty.h>
 
@@ -92,6 +93,38 @@ std::string ImportTableHeader::rowName(int row) const
 {
     return utilityRowNames[row];
 }
+
+DataLoader::ColumnInfo ImportTableHeader::columnInfo(int column) const
+{
+    if (column < 0 || column >= columnCount())
+        return {};
+
+    DataLoader::ColumnInfo result;
+    result.column = column;
+    result.type_name = data(TYPE, column).value<ComboProperty>().currentIndex();
+    result.units = data(UNITS, column).value<ComboProperty>().currentIndex();
+    result.multiplier = data(UNITS, column).value<double>();
+    result.title = data(TITLE, column).toString().toStdString();
+
+    return result;
+}
+
+//! Returns vector of info objects describing x,y axes construction.
+
+// std::vector<ImportTableHeader::axes_info_t> ImportTableHeader::axesInfo() const
+//{
+//    return {};
+//}
+
+////! Returns info for all columns with given type_name set.
+
+// std::vector<DataLoader::ColumnInfo> ImportTableHeader::infoForType(const std::string& type_name)
+// const
+//{
+//    std::vector<DataLoader::ColumnInfo> result;
+
+//    return result;
+//}
 
 void ImportTableHeader::init_data()
 {
