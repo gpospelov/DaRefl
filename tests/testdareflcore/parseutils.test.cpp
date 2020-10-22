@@ -9,6 +9,7 @@
 
 #include "folderbasedtest.h"
 #include "test_utils.h"
+#include <darefl/dataloader2/dataloader_constants.h>
 #include <darefl/dataloader2/parseutils.h>
 #include <initializer_list>
 #include <vector>
@@ -330,4 +331,21 @@ TEST_F(ParseUtilsTest, ExtractTwoColumns)
     result = ExtractTwoColumns({{"1.0", "2.0", "3.0"}, {"4.0", "5.0", "6.0", "7.0"}}, 0, 3);
     EXPECT_EQ(result.first, vecToDouble({4.0}));
     EXPECT_EQ(result.second, vecToDouble({7.0}));
+}
+
+TEST_F(ParseUtilsTest, CreateGraphInfoPairs)
+{
+    ColumnInfo col0{0, DataLoader::Constants::AxisType, "", 0, ""};
+    ColumnInfo col1{1, DataLoader::Constants::IntensityType, "", 0, ""};
+    ColumnInfo col2{2, DataLoader::Constants::IgnoreType, "", 0, ""};
+    ColumnInfo col3{3, DataLoader::Constants::IntensityType, "", 0, ""};
+
+    std::vector<ColumnInfo> infos = {col0, col1, col2, col3};
+
+    auto info_pairs = CreateGraphInfoPairs(infos);
+    ASSERT_EQ(info_pairs.size(), 2);
+    EXPECT_EQ(info_pairs[0].first.column, 0);
+    EXPECT_EQ(info_pairs[0].second.column, 1);
+    EXPECT_EQ(info_pairs[1].first.column, 0);
+    EXPECT_EQ(info_pairs[1].second.column, 3);
 }
