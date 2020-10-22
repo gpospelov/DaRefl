@@ -38,6 +38,7 @@ public slots:
     void onAddFilesRequest();
     void onRemoveFileRequest();
     QStringList selectedFileNames() const;
+    QStringList fileNames() const;
 
 signals:
     void fileNamesChanged(const QStringList& file_names);
