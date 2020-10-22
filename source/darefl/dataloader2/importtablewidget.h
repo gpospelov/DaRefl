@@ -21,7 +21,7 @@ class ViewModelDelegate;
 
 namespace DataLoader
 {
-class ColumnInfo;
+struct ColumnInfo;
 }
 
 class QTableView;
