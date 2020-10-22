@@ -302,3 +302,32 @@ TEST_F(ParseUtilsTest, AddHtmlColorTagToParts)
               "<div><font color=\"A\">abc</font><span style=\"background-color:B\"> | </span><font "
               "color=\"A\">efg</font></div>");
 }
+
+TEST_F(ParseUtilsTest, ExtractTwoColumns)
+{
+    auto vecToDouble = [](std::initializer_list<double> args) {
+        return std::vector<double>(args.begin(), args.end());
+    };
+    auto result = ExtractTwoColumns({{}}, 0, 0);
+    EXPECT_EQ(result.first.size(), 0);
+    EXPECT_EQ(result.second.size(), 0);
+
+    // normal parsing
+    result = ExtractTwoColumns({{"1.0", "2.0"}, {"3.0", "4.0"}}, 0, 1);
+    EXPECT_EQ(result.first, vecToDouble({1.0, 3.0}));
+    EXPECT_EQ(result.second, vecToDouble({2.0, 4.0}));
+
+    result = ExtractTwoColumns({{" 1.0 ", " 2.0 "}, {" 3.0 ", " 4.0 "}}, 0, 1);
+    EXPECT_EQ(result.first, vecToDouble({1.0, 3.0}));
+    EXPECT_EQ(result.second, vecToDouble({2.0, 4.0}));
+
+    // partial parsing (nan in input)
+    result = ExtractTwoColumns({{"---", "2.0"}, {"3.0", "4.0"}}, 0, 1);
+    EXPECT_EQ(result.first, vecToDouble({3.0}));
+    EXPECT_EQ(result.second, vecToDouble({4.0}));
+
+    // partial parsing (different length of columns)
+    result = ExtractTwoColumns({{"1.0", "2.0", "3.0"}, {"4.0", "5.0", "6.0", "7.0"}}, 0, 3);
+    EXPECT_EQ(result.first, vecToDouble({4.0}));
+    EXPECT_EQ(result.second, vecToDouble({7.0}));
+}

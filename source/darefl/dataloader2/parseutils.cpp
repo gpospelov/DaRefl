@@ -228,3 +228,22 @@ std::string DataLoader::AddHtmlColorTagToParts(const std::string& line,
     }
     return AddHtmlDivTag(result);
 }
+
+std::pair<std::vector<double>, std::vector<double>>
+DataLoader::ExtractTwoColumns(const std::vector<std::vector<std::string>>& text_data, size_t col1,
+                              size_t col2)
+{
+    std::vector<double> vec1, vec2;
+    for (const auto& row : text_data) {
+        if (col1 < row.size() && col2 < row.size()) {
+            auto val1 = StringToDouble(row[col1]);
+            auto val2 = StringToDouble(row[col2]);
+            if (val1.has_value() && val2.has_value()) {
+                vec1.push_back(val1.value());
+                vec2.push_back(val2.value());
+            }
+        }
+    }
+
+    return std::make_pair(std::move(vec1), std::move(vec2));
+}

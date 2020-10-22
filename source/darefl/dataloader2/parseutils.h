@@ -69,6 +69,13 @@ std::string AddHtmlBackgroundTag(const std::string& line, const std::string& col
 std::string AddHtmlColorTagToParts(const std::string& line, const std::vector<std::string>& parts,
                                    const std::string& color_parts, const std::string& color_rest);
 
+//! Extracts double values from two columns of a string array.
+//! The row must be valid: string value must represent single double for both target columns,
+//! rows should have enough columns. If a row is invalid, it will be skipped, so resulting arrays
+//! have always the same length.
+
+std::pair<std::vector<double>, std::vector<double>>
+ExtractTwoColumns(const std::vector<std::vector<std::string>>& text_data, size_t col1, size_t col2);
 } // namespace DataLoader
 
 #endif // DAREFL_DATALOADER2_PARSEUTILS_H
