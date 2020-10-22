@@ -46,6 +46,7 @@ private:
     void invokeImportDialog();
     std::string activeCanvasName() const;
     void onImportDialogAccept(DataImportLogic::ImportOutput import_output);
+    void onImportDialogAccept2(const std::vector<RealDataStruct>& experimental_data);
     RealDataStruct convertToRealDataStruct(const std::string& path,
                                            const DataImportLogic::ParsedFileOutptut* import_output,
                                            const int column);

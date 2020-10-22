@@ -64,6 +64,11 @@ DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
     setWindowTitle("Data import dialog");
 }
 
+std::vector<RealDataStruct> DataLoaderDialogV2::importedData() const
+{
+    return m_parsedData;
+}
+
 void DataLoaderDialogV2::keyPressEvent(QKeyEvent* event)
 {
     if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return)
