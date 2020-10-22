@@ -16,7 +16,7 @@
 #include <memory>
 
 namespace DataLoader {
-class ColumnInfo;
+struct ColumnInfo;
 }
 
 class ImportTableHeader;

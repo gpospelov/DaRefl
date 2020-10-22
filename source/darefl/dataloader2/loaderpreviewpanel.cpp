@@ -39,8 +39,6 @@ LoaderPreviewPanel::LoaderPreviewPanel(QWidget* parent)
 
 //! Sets raw text to the TextView.
 
-void LoaderPreviewPanel::setTextData(const std::vector<std::string>&) {}
-
 void LoaderPreviewPanel::showData(const DataLoader::ParserInterface* parser)
 {
     m_textView->clear();
@@ -56,4 +54,9 @@ void LoaderPreviewPanel::showData(const DataLoader::ParserInterface* parser)
     m_textView->moveCursor(QTextCursor::Start);
 
     m_tableWidget->setRawData(parser->parseResults());
+}
+
+std::vector<DataLoader::ColumnInfo> LoaderPreviewPanel::columnInfo() const
+{
+    return m_tableWidget->columnInfo();
 }

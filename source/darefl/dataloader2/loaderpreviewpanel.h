@@ -19,6 +19,7 @@ class QTabWidget;
 namespace DataLoader
 {
 class ParserInterface;
+struct ColumnInfo;
 }
 
 //! Panel with settings for DataLoaderDialog.
@@ -33,6 +34,9 @@ public:
 
     void setTextData(const std::vector<std::string>& textData);
     void showData(const DataLoader::ParserInterface* parser);
+
+    std::vector<DataLoader::ColumnInfo> columnInfo() const;
+
 
 private:
     ImportTextViewV2* m_textView{nullptr};
