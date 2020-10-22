@@ -9,6 +9,7 @@
 
 #include <algorithm>
 #include <cctype>
+#include <darefl/dataloader2/dataloader_constants.h>
 #include <darefl/dataloader2/parseutils.h>
 #include <fstream>
 #include <iostream>
@@ -35,6 +36,15 @@ bool isRepresentRange(const std::optional<int>& v0, const std::optional<int>& v1
     if (v0.has_value() && v1.has_value())
         return v0.value() > 0 && v1.value() > 0 && v0.value() <= v1.value();
     return false;
+}
+
+std::vector<DataLoader::ColumnInfo> columnsForType(const std::vector<DataLoader::ColumnInfo>& input,
+                                                   const std::string& columnType)
+{
+    std::vector<DataLoader::ColumnInfo> result;
+    std::copy_if(input.begin(), input.end(), std::back_inserter(result),
+                 [columnType](auto x) { return x.type_name == columnType; });
+    return result;
 }
 
 } // namespace
@@ -246,4 +256,21 @@ DataLoader::ExtractTwoColumns(const std::vector<std::vector<std::string>>& text_
     }
 
     return std::make_pair(std::move(vec1), std::move(vec2));
+}
+
+std::vector<std::pair<DataLoader::ColumnInfo, DataLoader::ColumnInfo>>
+DataLoader::CreateGraphInfoPairs(const std::vector<DataLoader::ColumnInfo>& column_info)
+{
+    std::vector<std::pair<DataLoader::ColumnInfo, DataLoader::ColumnInfo>> result;
+
+    auto axis_columns = columnsForType(column_info, DataLoader::Constants::AxisType);
+    auto intensity_columns = columnsForType(column_info, DataLoader::Constants::IntensityType);
+
+    if (axis_columns.size() != 1)
+        throw std::runtime_error("There must be exactly one column with AxisType selected.");
+
+    for (const auto& intensity_info : intensity_columns)
+        result.push_back(std::make_pair(axis_columns.back(), intensity_info));
+
+    return result;
 }

@@ -25,7 +25,7 @@ std::vector<double> ParseSpaceSeparatedDoubles(const std::string& str);
 void ParseSpaceSeparatedDoubles(const std::string& str, std::vector<double>& result);
 
 //! Returns string after trimming whitespace surrounding.
-//! Tabs and new line included.
+//! Tabs and new line includcolumn_infoed.
 std::string TrimWhitespace(const std::string& str);
 
 //! Converts string to double value and returns it in the form of optional.
@@ -76,6 +76,14 @@ std::string AddHtmlColorTagToParts(const std::string& line, const std::vector<st
 
 std::pair<std::vector<double>, std::vector<double>>
 ExtractTwoColumns(const std::vector<std::vector<std::string>>& text_data, size_t col1, size_t col2);
+
+//! Pack ColumnInfo into pairs representing {AxisType, IntensityType}.
+//! For the moment we expect that only one column with AxisType exists. Number of intensity columns
+//! can be arbitrary.
+
+std::vector<std::pair<ColumnInfo, ColumnInfo>>
+CreateGraphInfoPairs(const std::vector<ColumnInfo>& column_info);
+
 } // namespace DataLoader
 
 #endif // DAREFL_DATALOADER2_PARSEUTILS_H
