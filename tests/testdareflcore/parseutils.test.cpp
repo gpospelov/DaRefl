@@ -32,10 +32,10 @@ public:
         return std::vector<std::pair<int, int>>(list.begin(), list.end());
     }
 
-    std::vector<double> toVector(std::initializer_list<double> args) {
+    std::vector<double> toVector(std::initializer_list<double> args)
+    {
         return std::vector<double>(args.begin(), args.end());
     };
-
 };
 
 ParseUtilsTest::~ParseUtilsTest() = default;
@@ -356,14 +356,13 @@ TEST_F(ParseUtilsTest, CreateGraphInfoPairs)
 TEST_F(ParseUtilsTest, CreateData)
 {
     ColumnInfo col0{0, DataLoader::Constants::AxisType, "units0", 1.0, "title0"};
-//    ColumnInfo col1{1, DataLoader::Constants::IgnoreType, "units1", 1.0, "title1"};
+    //    ColumnInfo col1{1, DataLoader::Constants::IgnoreType, "units1", 1.0, "title1"};
     ColumnInfo col2{2, DataLoader::Constants::IntensityType, "units2", 2.0, "title2"};
 
     std::vector<std::vector<std::string>> text_data = {{"1.0", "2.0", "3.0"},
                                                        {"4.0", "5.0", "6.0"},
                                                        {"7.0", "8.0", "9.0"},
                                                        {"10.0", "11.0", "12.0"}};
-
 
     auto data = DataLoader::CreateData(text_data, col0, col2);
 
