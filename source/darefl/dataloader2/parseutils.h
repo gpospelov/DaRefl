@@ -13,6 +13,8 @@
 #include <darefl/dataloader2/dataloader_types.h>
 #include <optional>
 
+class RealDataStruct;
+
 namespace DataLoader
 {
 
@@ -83,6 +85,11 @@ ExtractTwoColumns(const std::vector<std::vector<std::string>>& text_data, size_t
 
 std::vector<std::pair<ColumnInfo, ColumnInfo>>
 CreateGraphInfoPairs(const std::vector<ColumnInfo>& column_info);
+
+//! Creates structure from text data.
+
+RealDataStruct CreateData(const std::vector<std::vector<std::string>>& text_data,
+                          const ColumnInfo& axis, const ColumnInfo& intensity);
 
 } // namespace DataLoader
 

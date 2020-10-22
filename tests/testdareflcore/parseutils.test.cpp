@@ -11,6 +11,7 @@
 #include "test_utils.h"
 #include <darefl/dataloader2/dataloader_constants.h>
 #include <darefl/dataloader2/parseutils.h>
+#include <darefl/model/experimentaldata_types.h>
 #include <initializer_list>
 #include <vector>
 
@@ -30,6 +31,11 @@ public:
     {
         return std::vector<std::pair<int, int>>(list.begin(), list.end());
     }
+
+    std::vector<double> toVector(std::initializer_list<double> args) {
+        return std::vector<double>(args.begin(), args.end());
+    };
+
 };
 
 ParseUtilsTest::~ParseUtilsTest() = default;
@@ -306,31 +312,28 @@ TEST_F(ParseUtilsTest, AddHtmlColorTagToParts)
 
 TEST_F(ParseUtilsTest, ExtractTwoColumns)
 {
-    auto vecToDouble = [](std::initializer_list<double> args) {
-        return std::vector<double>(args.begin(), args.end());
-    };
     auto result = ExtractTwoColumns({{}}, 0, 0);
     EXPECT_EQ(result.first.size(), 0);
     EXPECT_EQ(result.second.size(), 0);
 
     // normal parsing
     result = ExtractTwoColumns({{"1.0", "2.0"}, {"3.0", "4.0"}}, 0, 1);
-    EXPECT_EQ(result.first, vecToDouble({1.0, 3.0}));
-    EXPECT_EQ(result.second, vecToDouble({2.0, 4.0}));
+    EXPECT_EQ(result.first, toVector({1.0, 3.0}));
+    EXPECT_EQ(result.second, toVector({2.0, 4.0}));
 
     result = ExtractTwoColumns({{" 1.0 ", " 2.0 "}, {" 3.0 ", " 4.0 "}}, 0, 1);
-    EXPECT_EQ(result.first, vecToDouble({1.0, 3.0}));
-    EXPECT_EQ(result.second, vecToDouble({2.0, 4.0}));
+    EXPECT_EQ(result.first, toVector({1.0, 3.0}));
+    EXPECT_EQ(result.second, toVector({2.0, 4.0}));
 
     // partial parsing (nan in input)
     result = ExtractTwoColumns({{"---", "2.0"}, {"3.0", "4.0"}}, 0, 1);
-    EXPECT_EQ(result.first, vecToDouble({3.0}));
-    EXPECT_EQ(result.second, vecToDouble({4.0}));
+    EXPECT_EQ(result.first, toVector({3.0}));
+    EXPECT_EQ(result.second, toVector({4.0}));
 
     // partial parsing (different length of columns)
     result = ExtractTwoColumns({{"1.0", "2.0", "3.0"}, {"4.0", "5.0", "6.0", "7.0"}}, 0, 3);
-    EXPECT_EQ(result.first, vecToDouble({4.0}));
-    EXPECT_EQ(result.second, vecToDouble({7.0}));
+    EXPECT_EQ(result.first, toVector({4.0}));
+    EXPECT_EQ(result.second, toVector({7.0}));
 }
 
 TEST_F(ParseUtilsTest, CreateGraphInfoPairs)
@@ -348,4 +351,28 @@ TEST_F(ParseUtilsTest, CreateGraphInfoPairs)
     EXPECT_EQ(info_pairs[0].second.column, 1);
     EXPECT_EQ(info_pairs[1].first.column, 0);
     EXPECT_EQ(info_pairs[1].second.column, 3);
+}
+
+TEST_F(ParseUtilsTest, CreateData)
+{
+    ColumnInfo col0{0, DataLoader::Constants::AxisType, "units0", 1.0, "title0"};
+//    ColumnInfo col1{1, DataLoader::Constants::IgnoreType, "units1", 1.0, "title1"};
+    ColumnInfo col2{2, DataLoader::Constants::IntensityType, "units2", 2.0, "title2"};
+
+    std::vector<std::vector<std::string>> text_data = {{"1.0", "2.0", "3.0"},
+                                                       {"4.0", "5.0", "6.0"},
+                                                       {"7.0", "8.0", "9.0"},
+                                                       {"10.0", "11.0", "12.0"}};
+
+
+    auto data = DataLoader::CreateData(text_data, col0, col2);
+
+    EXPECT_EQ(data.type, "");
+    EXPECT_EQ(data.name, "");
+    EXPECT_EQ(data.axis, toVector({1.0, 4.0, 7.0, 10.0}));
+    EXPECT_EQ(data.axis_name, "title0");
+    EXPECT_EQ(data.axis_unit, "units0");
+    EXPECT_EQ(data.data, toVector({6.0, 12.0, 18.0, 24.0}));
+    EXPECT_EQ(data.data_name, "title2");
+    EXPECT_EQ(data.data_unit, "units2");
 }

@@ -11,6 +11,7 @@
 #include <cctype>
 #include <darefl/dataloader2/dataloader_constants.h>
 #include <darefl/dataloader2/parseutils.h>
+#include <darefl/model/experimentaldata_types.h>
 #include <fstream>
 #include <iostream>
 #include <iterator>
@@ -271,6 +272,29 @@ DataLoader::CreateGraphInfoPairs(const std::vector<DataLoader::ColumnInfo>& colu
 
     for (const auto& intensity_info : intensity_columns)
         result.push_back(std::make_pair(axis_columns.back(), intensity_info));
+
+    return result;
+}
+
+RealDataStruct DataLoader::CreateData(const std::vector<std::vector<std::string>>& text_data,
+                                      const DataLoader::ColumnInfo& axis,
+                                      const DataLoader::ColumnInfo& intensity)
+{
+    RealDataStruct result;
+
+    auto [axis_values, intensity_values] =
+        DataLoader::ExtractTwoColumns(text_data, axis.column, intensity.column);
+
+    std::transform(intensity_values.begin(), intensity_values.end(), intensity_values.begin(),
+                   [&intensity](auto x) { return x * intensity.multiplier; });
+
+    result.axis = axis_values;
+    result.axis_name = axis.title;
+    result.axis_unit = axis.units;
+
+    result.data = intensity_values;
+    result.data_name = intensity.title;
+    result.data_unit = intensity.units;
 
     return result;
 }
