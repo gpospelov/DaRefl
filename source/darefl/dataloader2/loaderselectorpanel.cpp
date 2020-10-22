@@ -48,6 +48,11 @@ QStringList LoaderSelectorPanel::selectedFileNames() const
     return m_fileSelectorWidget->selectedFileNames();
 }
 
+QStringList LoaderSelectorPanel::fileNames() const
+{
+    return m_fileSelectorWidget->fileNames();
+}
+
 void LoaderSelectorPanel::init_connections()
 {
     auto on_file_names_changed = [this]() { fileNamesChanged(m_fileSelectorWidget->fileNames()); };

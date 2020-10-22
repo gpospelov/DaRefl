@@ -71,6 +71,16 @@ void DataLoaderDialogV2::keyPressEvent(QKeyEvent* event)
     QDialog::keyPressEvent(event);
 }
 
+void DataLoaderDialogV2::accept()
+{
+    qDebug() << "processing all";
+    process_all();
+    qDebug() << "done";
+
+    QDialog::accept();
+    close();
+}
+
 DataLoaderDialogV2::~DataLoaderDialogV2() = default;
 
 //! Init interconnections of all widgets.
@@ -117,7 +127,7 @@ void DataLoaderDialogV2::process_all()
     m_parsedData.clear();
 
     auto parser = m_selectorPanel->createParser();
-    for (const auto& name : m_selectorPanel->selectedFileNames()) {
+    for (const auto& name : m_selectorPanel->fileNames()) {
         auto data_to_parse = m_dataHandler->textData(name.toStdString());
 
         parser->process(data_to_parse);

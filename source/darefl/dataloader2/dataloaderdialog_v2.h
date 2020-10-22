@@ -34,6 +34,7 @@ public:
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
+    void accept() override;
 
 private:
     void init_connections();
