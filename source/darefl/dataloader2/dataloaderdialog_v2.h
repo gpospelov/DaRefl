@@ -12,6 +12,8 @@
 
 #include <QDialog>
 #include <memory>
+#include <vector>
+#include <darefl/model/experimentaldata_types.h>
 
 class QSplitter;
 class DataLoaderToolBar;
@@ -36,6 +38,7 @@ protected:
 private:
     void init_connections();
     void process_data();
+    void process_all();
 
     DataLoaderToolBar* m_toolBar{nullptr};
     LoaderSelectorPanel* m_selectorPanel{nullptr};
@@ -43,6 +46,7 @@ private:
     QSplitter* m_splitter{nullptr};
 
     std::unique_ptr<DataHandler> m_dataHandler;
+    std::vector<RealDataStruct> m_parsedData;
 };
 
 #endif // DAREFL_DATALOADER2_DATALOADERDIALOG_V2_H

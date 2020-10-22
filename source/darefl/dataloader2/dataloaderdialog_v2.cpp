@@ -14,11 +14,14 @@
 #include <QSplitter>
 #include <QVBoxLayout>
 #include <darefl/dataloader2/datahandler.h>
+#include <darefl/dataloader2/dataloader_types.h>
 #include <darefl/dataloader2/dataloaderdialog_v2.h>
 #include <darefl/dataloader2/dataloadertoolbar.h>
 #include <darefl/dataloader2/loaderpreviewpanel.h>
 #include <darefl/dataloader2/loaderselectorpanel.h>
 #include <darefl/dataloader2/parserinterface.h>
+#include <darefl/dataloader2/parseutils.h>
+#include <mvvm/utils/fileutils.h>
 
 namespace
 {
@@ -29,6 +32,7 @@ std::vector<std::string> toStringVector(const QStringList& container)
         result.push_back(x.toStdString());
     return result;
 }
+
 } // namespace
 
 DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
@@ -106,4 +110,24 @@ void DataLoaderDialogV2::process_data()
     parser->process(data_to_parse);
 
     m_previewPanel->showData(parser.get());
+}
+
+void DataLoaderDialogV2::process_all()
+{
+    m_parsedData.clear();
+
+    auto parser = m_selectorPanel->createParser();
+    for (const auto& name : m_selectorPanel->selectedFileNames()) {
+        auto data_to_parse = m_dataHandler->textData(name.toStdString());
+
+        parser->process(data_to_parse);
+        auto parsed_text = parser->parseResults();
+
+        auto columns = m_previewPanel->columnInfo();
+        for (auto [axis_info, intensity_info] : DataLoader::CreateGraphInfoPairs(columns)) {
+            auto data = DataLoader::CreateData(parsed_text, axis_info, intensity_info);
+            data.name = ModelView::Utils::base_name(name.toStdString());
+            m_parsedData.emplace_back(data);
+        }
+    }
 }
