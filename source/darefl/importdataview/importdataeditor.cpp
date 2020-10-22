@@ -7,6 +7,7 @@
 //
 // ************************************************************************** //
 
+#include <QDebug>
 #include <QSplitter>
 #include <QVBoxLayout>
 #include <darefl/dataloader/dataloaderdialog.h>
@@ -24,7 +25,6 @@
 #include <mvvm/model/modelutils.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/utils/fileutils.h>
-#include <QDebug>
 
 using namespace ModelView;
 
@@ -114,18 +114,19 @@ void ImportDataEditor::setMergeEnabled(bool enabled)
 
 void ImportDataEditor::invokeImportDialog()
 {
-//    DataImportGui::DataLoaderDialog dialog(this);
-//    dialog.setTargets(p_model->availableCanvasesInfo(), activeCanvasName());
-//    dialog.triggerFileDialog();
-//    if (dialog.exec() == QDialog::Accepted)
-//        onImportDialogAccept(dialog.result());
+    //    DataImportGui::DataLoaderDialog dialog(this);
+    //    dialog.setTargets(p_model->availableCanvasesInfo(), activeCanvasName());
+    //    dialog.triggerFileDialog();
+    //    if (dialog.exec() == QDialog::Accepted)
+    //        onImportDialogAccept(dialog.result());
 
     DataLoaderDialogV2 dialog(this);
-    if (dialog.exec() == QDialog::Accepted)
+    if (dialog.exec() == QDialog::Accepted) {
         qDebug() << "accepted";
-    else
+        onImportDialogAccept2(dialog.importedData());
+    } else {
         qDebug() << "rejected";
-
+    }
 }
 
 //! Find the first selected data group item is present and return his name.
@@ -150,6 +151,14 @@ void ImportDataEditor::onImportDialogAccept(DataImportLogic::ImportOutput import
         }
     }
     selectionModel()->selectItem(canvas);
+}
+
+void ImportDataEditor::onImportDialogAccept2(const std::vector<RealDataStruct>& experimental_data)
+{
+    CanvasContainerItem* canvas_container = p_model->canvasContainer();
+
+    for(auto & data : experimental_data)
+        p_model->addDataToCollection(data, canvas_container, nullptr);
 }
 
 //! Convert data column to RealDatastructure

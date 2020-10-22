@@ -31,6 +31,7 @@ public:
     DataLoaderDialogV2(QWidget* parent = nullptr);
     ~DataLoaderDialogV2();
 
+    std::vector<RealDataStruct> importedData() const;
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
