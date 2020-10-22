@@ -10,8 +10,15 @@
 #ifndef DAREFL_DATALOADER2_DATALOADER_CONSTANTS_H
 #define DAREFL_DATALOADER2_DATALOADER_CONSTANTS_H
 
+#include <vector>
+#include <string>
+
 namespace DataLoader ::Constants
 {
+
+const std::string AxisType = "Axis";
+const std::string IntensityType = "Intensity";
+const std::string IgnoreType = "Ignore";
 
 } // namespace DataLoader::Constants
 
