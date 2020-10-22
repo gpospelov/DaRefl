@@ -10,6 +10,7 @@
 #include <QStandardItemModel>
 #include <QTableView>
 #include <QVBoxLayout>
+#include <darefl/dataloader2/dataloader_types.h>
 #include <darefl/dataloader2/importtablemodel.h>
 #include <darefl/dataloader2/importtablewidget.h>
 #include <mvvm/editors/combopropertyeditor.h>
@@ -33,4 +34,9 @@ ImportTableWidget::~ImportTableWidget() = default;
 void ImportTableWidget::setRawData(const std::vector<std::vector<std::string>>& table_data)
 {
     m_tableModel->setRawData(table_data);
+}
+
+std::vector<DataLoader::ColumnInfo> ImportTableWidget::columnInfo() const
+{
+    return m_tableModel->columnInfo();
 }

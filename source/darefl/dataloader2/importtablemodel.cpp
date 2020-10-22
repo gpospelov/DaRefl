@@ -9,6 +9,7 @@
 
 #include <darefl/dataloader2/importtableheader.h>
 #include <darefl/dataloader2/importtablemodel.h>
+#include <darefl/dataloader2/dataloader_types.h>
 
 namespace
 {
@@ -92,6 +93,11 @@ Qt::ItemFlags ImportTableModelV2::flags(const QModelIndex& index) const
     else
         result |= Qt::ItemIsEnabled | Qt::ItemIsSelectable;
     return result;
+}
+
+std::vector<DataLoader::ColumnInfo> ImportTableModelV2::columnInfo() const
+{
+    return m_header->columnInfo();
 }
 
 int ImportTableModelV2::utilityRowCount() const

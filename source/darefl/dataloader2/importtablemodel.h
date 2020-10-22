@@ -15,6 +15,10 @@
 #include <vector>
 #include <memory>
 
+namespace DataLoader {
+class ColumnInfo;
+}
+
 class ImportTableHeader;
 
 //! Table model to hold imported ASCII data after parsing it to multi-column presentation.
@@ -42,6 +46,8 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
     Qt::ItemFlags flags(const QModelIndex& index) const override;
+
+    std::vector<DataLoader::ColumnInfo> columnInfo() const;
 
 private:
     int utilityRowCount() const;

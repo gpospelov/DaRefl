@@ -19,6 +19,11 @@ namespace ModelView
 class ViewModelDelegate;
 }
 
+namespace DataLoader
+{
+class ColumnInfo;
+}
+
 class QTableView;
 class ImportTableModelV2;
 
@@ -34,6 +39,8 @@ public:
     ~ImportTableWidget();
 
     void setRawData(const std::vector<std::vector<std::string>>& table_data);
+
+    std::vector<DataLoader::ColumnInfo> columnInfo() const;
 
 private:
     ImportTableModelV2* m_tableModel{nullptr};
