@@ -13,6 +13,7 @@
 #include <QWidget>
 #include <string>
 #include <vector>
+#include <memory>
 
 namespace ModelView
 {
