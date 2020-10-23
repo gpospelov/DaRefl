@@ -7,7 +7,6 @@
 //
 // ************************************************************************** //
 
-#include <QDebug>
 #include <QDialogButtonBox>
 #include <QKeyEvent>
 #include <QPushButton>
@@ -22,6 +21,7 @@
 #include <darefl/dataloader2/parserinterface.h>
 #include <darefl/dataloader2/parseutils.h>
 #include <mvvm/utils/fileutils.h>
+#include <QApplication>
 
 namespace
 {
@@ -102,9 +102,9 @@ void DataLoaderDialogV2::keyPressEvent(QKeyEvent* event)
 
 void DataLoaderDialogV2::accept()
 {
-    qDebug() << "processing all";
+    QApplication::setOverrideCursor(Qt::WaitCursor);
     process_all();
-    qDebug() << "done";
+    QApplication::restoreOverrideCursor();
 
     QDialog::accept();
     close();
@@ -124,7 +124,9 @@ void DataLoaderDialogV2::init_connections()
 
     // connect LoaderSelectorPanel with DataHandler
     auto on_file_list_changed = [this](const auto& container) {
+        QApplication::setOverrideCursor(Qt::WaitCursor);
         m_dataHandler->updateRawData(toStringVector(container));
+        QApplication::restoreOverrideCursor();
     };
     connect(m_selectorPanel, &LoaderSelectorPanel::fileNamesChanged, on_file_list_changed);
 
