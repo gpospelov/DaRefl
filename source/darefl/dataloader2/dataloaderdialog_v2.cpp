@@ -44,10 +44,16 @@ QStringList toStringList(const std::vector<std::string>& container)
 }
 
 const QString dialogsize_key = "dialogsize";
+const QString splittersize_key = "splittersize";
 
 const QString dialogsize_setting_name()
 {
     return Constants::DataLoaderGroupKey + "/" + dialogsize_key;
+}
+
+const QString splittersize_setting_name()
+{
+    return Constants::DataLoaderGroupKey + "/" + splittersize_key;
 }
 
 } // namespace
@@ -57,8 +63,6 @@ DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
       m_previewPanel(new LoaderPreviewPanel), m_splitter(new QSplitter),
       m_dataHandler(std::make_unique<DataHandler>())
 {
-    readSettings();
-
     m_splitter->setChildrenCollapsible(false);
     m_splitter->addWidget(m_selectorPanel);
     m_splitter->addWidget(m_previewPanel);
@@ -82,10 +86,12 @@ DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
 
     init_connections();
     setWindowTitle("Data import dialog");
+
+    readSettings();
 }
 
-
-DataLoaderDialogV2::~DataLoaderDialogV2() {
+DataLoaderDialogV2::~DataLoaderDialogV2()
+{
     writeSettings();
 }
 
@@ -127,18 +133,37 @@ void DataLoaderDialogV2::accept()
     close();
 }
 
+//! Saves dialog settings.
+
 void DataLoaderDialogV2::readSettings()
 {
     QSettings settings;
 
     if (settings.contains(dialogsize_setting_name()))
         resize(settings.value(dialogsize_setting_name(), QSize(800, 600)).toSize());
+
+    if (settings.contains(splittersize_setting_name())) {
+        QStringList splitter_sizes = QStringList() << "400"
+                                                   << "400";
+        splitter_sizes = settings.value(splittersize_setting_name(), splitter_sizes).toStringList();
+        QList<int> sizes;
+        for (auto num : splitter_sizes)
+            sizes.push_back(num.toInt());
+        m_splitter->setSizes(sizes);
+    }
 }
+
+//! Writes dialog settings.
 
 void DataLoaderDialogV2::writeSettings()
 {
     QSettings settings;
     settings.setValue(dialogsize_setting_name(), size());
+
+    QStringList splitter_sizes;
+    for (auto x : m_splitter->sizes())
+        splitter_sizes.push_back(QString::number(x));
+    settings.setValue(splittersize_setting_name(), splitter_sizes);
 }
 
 //! Init interconnections of all widgets.
@@ -181,6 +206,8 @@ void DataLoaderDialogV2::process_data()
 
     m_previewPanel->showData(parser.get());
 }
+
+//! Parse all string data and generate graph data.
 
 void DataLoaderDialogV2::process_all()
 {
