@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER_IMPORTFILEWIDGET_V2_H
-#define DAREFL_DATALOADER_IMPORTFILEWIDGET_V2_H
+#ifndef DAREFL_DATALOADER_IMPORTFILEWIDGET_H
+#define DAREFL_DATALOADER_IMPORTFILEWIDGET_H
 
 #include <QWidget>
 
@@ -19,13 +19,13 @@ class QStringListModel;
 //! List represents names of ASCII files which will be later imported and parsed.
 //! Part of LoaderPreviewPanel.
 
-class ImportFileWidgetV2 : public QWidget
+class ImportFileWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    ImportFileWidgetV2(QWidget* parent = nullptr);
-    ~ImportFileWidgetV2();
+    ImportFileWidget(QWidget* parent = nullptr);
+    ~ImportFileWidget();
 
 public slots:
     void onAddFilesRequest();
@@ -53,4 +53,4 @@ private:
     QString m_currentWorkdir;
 };
 
-#endif // DAREFL_DATALOADER_IMPORTFILEWIDGET_V2_H
+#endif // DAREFL_DATALOADER_IMPORTFILEWIDGET_H

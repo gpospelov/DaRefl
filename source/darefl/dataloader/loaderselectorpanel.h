@@ -18,7 +18,7 @@ namespace DataLoader
 class ParserInterface;
 }
 
-class ImportFileWidgetV2;
+class ImportFileWidget;
 class ParserPropertyWidget;
 class QSplitter;
 
@@ -54,7 +54,7 @@ private:
     void init_connections();
 
     int m_targetCanvasIndex{-1};
-    ImportFileWidgetV2* m_fileSelectorWidget{nullptr};
+    ImportFileWidget* m_fileSelectorWidget{nullptr};
     ParserPropertyWidget* m_propertyWidget{nullptr};    
     QSplitter* m_splitter{nullptr};
 };
