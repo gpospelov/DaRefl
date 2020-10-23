@@ -7,10 +7,8 @@
 //
 // ************************************************************************** //
 
-#include <QDebug>
 #include <QSplitter>
 #include <QVBoxLayout>
-#include <darefl/dataloader/dataloaderdialog.h>
 #include <darefl/dataloader2/dataloaderdialog_v2.h>
 #include <darefl/importdataview/dataselectionmodel.h>
 #include <darefl/importdataview/dataselectorwidget.h>
@@ -115,12 +113,6 @@ void ImportDataEditor::setMergeEnabled(bool enabled)
 
 void ImportDataEditor::invokeImportDialog()
 {
-    //    DataImportGui::DataLoaderDialog dialog(this);
-    //    dialog.setTargets(p_model->availableCanvasesInfo(), activeCanvasName());
-    //    dialog.triggerFileDialog();
-    //    if (dialog.exec() == QDialog::Accepted)
-    //        onImportDialogAccept(dialog.result());
-
     DataLoaderDialogV2 dialog(this);
 
     auto [names, index] = canvasInfo();
@@ -129,14 +121,11 @@ void ImportDataEditor::invokeImportDialog()
     dialog.invokeFileSelectorDialog();
 
     if (dialog.exec() == QDialog::Accepted) {
-        qDebug() << "accepted";
         auto canvases = Utils::FindItems<CanvasItem>(p_model);
         CanvasItem* target =
             dialog.targetCanvasIndex() >= 0 ? canvases[dialog.targetCanvasIndex()] : nullptr;
 
         onImportDialogAccept2(dialog.importedData(), target);
-    } else {
-        qDebug() << "rejected";
     }
 }
 
@@ -159,21 +148,6 @@ std::string ImportDataEditor::activeCanvasName() const
     return result;
 }
 
-//! Process the accepted state
-void ImportDataEditor::onImportDialogAccept(DataImportLogic::ImportOutput import_output)
-{
-    CanvasContainerItem* canvas_container = p_model->canvasContainer();
-    CanvasItem* canvas = dynamic_cast<CanvasItem*>(p_model->findItem(import_output.target()));
-    for (auto& path : import_output.keys()) {
-        auto parsed_file_output = import_output[path];
-        for (int i = 0; i < parsed_file_output->dataCount(); ++i) {
-            auto data_struct = convertToRealDataStruct(path, parsed_file_output, i);
-            canvas = p_model->addDataToCollection(data_struct, canvas_container, canvas);
-        }
-    }
-    selectionModel()->selectItem(canvas);
-}
-
 void ImportDataEditor::onImportDialogAccept2(const std::vector<RealDataStruct>& experimental_data,
                                              CanvasItem* canvas)
 {
@@ -181,28 +155,6 @@ void ImportDataEditor::onImportDialogAccept2(const std::vector<RealDataStruct>& 
     for (auto& data : experimental_data)
         canvas = p_model->addDataToCollection(data, canvas_container, canvas);
     selectionModel()->selectItem(canvas);
-}
-
-//! Convert data column to RealDatastructure
-RealDataStruct
-ImportDataEditor::convertToRealDataStruct(const std::string& path,
-                                          const DataImportLogic::ParsedFileOutptut* import_output,
-                                          const int column)
-{
-    auto data_struct = RealDataStruct();
-
-    data_struct.name = Utils::base_name(path);
-    data_struct.type = import_output->dataType(column);
-
-    data_struct.axis = import_output->axis();
-    data_struct.axis_name = import_output->axisName();
-    data_struct.axis_unit = import_output->axisUnit();
-
-    data_struct.data = import_output->data(column);
-    data_struct.data_name = import_output->dataName(column);
-    data_struct.data_unit = import_output->dataUnit(column);
-
-    return data_struct;
 }
 
 DataSelectionModel* ImportDataEditor::selectionModel() const
