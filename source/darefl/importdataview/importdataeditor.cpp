@@ -128,7 +128,11 @@ void ImportDataEditor::invokeImportDialog()
 
     if (dialog.exec() == QDialog::Accepted) {
         qDebug() << "accepted";
-        onImportDialogAccept2(dialog.importedData());
+        auto canvases = Utils::FindItems<CanvasItem>(p_model);
+        CanvasItem* target =
+            dialog.targetCanvasIndex() >= 0 ? canvases[dialog.targetCanvasIndex()] : nullptr;
+
+        onImportDialogAccept2(dialog.importedData(), target);
     } else {
         qDebug() << "rejected";
     }
@@ -168,12 +172,15 @@ void ImportDataEditor::onImportDialogAccept(DataImportLogic::ImportOutput import
     selectionModel()->selectItem(canvas);
 }
 
-void ImportDataEditor::onImportDialogAccept2(const std::vector<RealDataStruct>& experimental_data)
+void ImportDataEditor::onImportDialogAccept2(const std::vector<RealDataStruct>& experimental_data,
+                                             CanvasItem* canvas)
 {
     CanvasContainerItem* canvas_container = p_model->canvasContainer();
+    qDebug() << "xxx" << canvas;
+
 
     for (auto& data : experimental_data)
-        p_model->addDataToCollection(data, canvas_container, nullptr);
+        canvas = p_model->addDataToCollection(data, canvas_container, canvas);
 }
 
 //! Convert data column to RealDatastructure

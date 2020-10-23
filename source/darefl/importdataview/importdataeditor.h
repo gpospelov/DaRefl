@@ -27,6 +27,7 @@ class ImportDataEditorActions;
 class ImportDataEditorToolBar;
 class DataSelectorWidget;
 class GraphCanvasWidget;
+class CanvasItem;
 
 //! Main editor to import user data.
 
@@ -49,7 +50,7 @@ private:
 
     std::string activeCanvasName() const;
     void onImportDialogAccept(DataImportLogic::ImportOutput import_output);
-    void onImportDialogAccept2(const std::vector<RealDataStruct>& experimental_data);
+    void onImportDialogAccept2(const std::vector<RealDataStruct>& experimental_data, CanvasItem* canvas);
     RealDataStruct convertToRealDataStruct(const std::string& path,
                                            const DataImportLogic::ParsedFileOutptut* import_output,
                                            const int column);

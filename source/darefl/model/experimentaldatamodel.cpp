@@ -65,6 +65,7 @@ CanvasItem* ExperimentalDataModel::addDataToCollection(RealDataStruct data_struc
                                                        CanvasContainerItem* data_node,
                                                        CanvasItem* data_group)
 {
+    // FIXME What an awfull method!
     auto group_item = data_group;
     if (!group_item) {
         group_item = insertItem<CanvasItem>(data_node);
