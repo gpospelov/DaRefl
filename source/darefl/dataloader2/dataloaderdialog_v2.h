@@ -44,6 +44,9 @@ protected:
     void accept() override;
 
 private:
+    void readSettings();
+    void writeSettings();
+
     void init_connections();
     void process_data();
     void process_all();

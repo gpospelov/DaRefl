@@ -7,11 +7,14 @@
 //
 // ************************************************************************** //
 
+#include <QApplication>
 #include <QDialogButtonBox>
 #include <QKeyEvent>
 #include <QPushButton>
+#include <QSettings>
 #include <QSplitter>
 #include <QVBoxLayout>
+#include <darefl/core/app_constants.h>
 #include <darefl/dataloader2/datahandler.h>
 #include <darefl/dataloader2/dataloader_types.h>
 #include <darefl/dataloader2/dataloaderdialog_v2.h>
@@ -21,7 +24,6 @@
 #include <darefl/dataloader2/parserinterface.h>
 #include <darefl/dataloader2/parseutils.h>
 #include <mvvm/utils/fileutils.h>
-#include <QApplication>
 
 namespace
 {
@@ -41,6 +43,13 @@ QStringList toStringList(const std::vector<std::string>& container)
     return result;
 }
 
+const QString dialogsize_key = "dialogsize";
+
+const QString dialogsize_setting_name()
+{
+    return Constants::DataLoaderGroupKey + "/" + dialogsize_key;
+}
+
 } // namespace
 
 DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
@@ -48,6 +57,8 @@ DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
       m_previewPanel(new LoaderPreviewPanel), m_splitter(new QSplitter),
       m_dataHandler(std::make_unique<DataHandler>())
 {
+    readSettings();
+
     m_splitter->setChildrenCollapsible(false);
     m_splitter->addWidget(m_selectorPanel);
     m_splitter->addWidget(m_previewPanel);
@@ -71,6 +82,11 @@ DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
 
     init_connections();
     setWindowTitle("Data import dialog");
+}
+
+
+DataLoaderDialogV2::~DataLoaderDialogV2() {
+    writeSettings();
 }
 
 std::vector<RealDataStruct> DataLoaderDialogV2::importedData() const
@@ -111,7 +127,19 @@ void DataLoaderDialogV2::accept()
     close();
 }
 
-DataLoaderDialogV2::~DataLoaderDialogV2() = default;
+void DataLoaderDialogV2::readSettings()
+{
+    QSettings settings;
+
+    if (settings.contains(dialogsize_setting_name()))
+        resize(settings.value(dialogsize_setting_name(), QSize(800, 600)).toSize());
+}
+
+void DataLoaderDialogV2::writeSettings()
+{
+    QSettings settings;
+    settings.setValue(dialogsize_setting_name(), size());
+}
 
 //! Init interconnections of all widgets.
 

@@ -24,7 +24,7 @@ const QString current_workdir_key = "currentworkdir";
 
 const QString workdir_setting_name()
 {
-    return Constants::GroupDataLoader + "/" + current_workdir_key;
+    return Constants::DataLoaderGroupKey + "/" + current_workdir_key;
 }
 
 } // namespace
@@ -101,14 +101,6 @@ QStringList ImportFileWidgetV2::selectedFileNames() const
     return result;
 }
 
-//! Writes widget settings.
-
-void ImportFileWidgetV2::writeSettings()
-{
-    QSettings settings;
-    settings.setValue(workdir_setting_name(), m_currentWorkdir);
-}
-
 //! Loads widget settings.
 
 void ImportFileWidgetV2::readSettings()
@@ -118,6 +110,14 @@ void ImportFileWidgetV2::readSettings()
 
     if (settings.contains(workdir_setting_name()))
         m_currentWorkdir = settings.value(workdir_setting_name()).toString();
+}
+
+//! Writes widget settings.
+
+void ImportFileWidgetV2::writeSettings()
+{
+    QSettings settings;
+    settings.setValue(workdir_setting_name(), m_currentWorkdir);
 }
 
 //! Updates current working dir.

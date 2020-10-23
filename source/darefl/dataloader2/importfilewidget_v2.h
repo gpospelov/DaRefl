@@ -40,8 +40,8 @@ signals:
     void fileSelectionChanged();
 
 private:
-    void writeSettings();
     void readSettings();
+    void writeSettings();
 
     void updateCurrentWorkdir(const QStringList& file_names);
     void addFileNamesToModel(const QStringList& file_names);
