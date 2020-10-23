@@ -181,16 +181,16 @@ DataLoader::CreateLineContentBaseValidator(const std::string& prefix_to_exclude)
 
 DataLoader::line_splitter_t DataLoader::CreateSeparatorBasedSplitter(const std::string& separator)
 {
-    // If no separator provided, use 'space'. Shall we throw exception instead?
-    std::string sep = separator.empty() ? std::string(" ") : separator;
+    if (separator.empty())
+        throw std::runtime_error("Error, empty separator.");
 
     bool is_space_only_separator = separator.find_first_not_of(' ') == std::string::npos;
-    auto result = [sep, is_space_only_separator](const std::string& line) {
+    auto result = [separator, is_space_only_separator](const std::string& line) {
         std::vector<std::string> values;
         std::string trimmed = TrimWhitespace(line);
         if (is_space_only_separator)
             trimmed = RemoveRepeatedSpaces(trimmed);
-        return SplitString(trimmed, sep);
+        return SplitString(trimmed, separator);
     };
     return result;
 }

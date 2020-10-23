@@ -52,7 +52,11 @@ ParserPropertyWidget::~ParserPropertyWidget() = default;
 
 std::unique_ptr<DataLoader::ParserInterface> ParserPropertyWidget::createParser() const
 {
-    return std::make_unique<DataLoader::DefaultParser>(m_options);
+    DataLoader::ParserOptions options = m_options;
+
+    // sanity check for empty separator
+    options.m_separator = options.m_separator.empty() ? std::string(" ") : options.m_separator;
+    return std::make_unique<DataLoader::DefaultParser>(options);
 }
 
 //! Sets list of canvas names as possible import targets.
