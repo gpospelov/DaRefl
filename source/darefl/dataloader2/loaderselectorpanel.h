@@ -20,6 +20,7 @@ class ParserInterface;
 
 class ImportFileWidgetV2;
 class ParserPropertyWidget;
+class QSplitter;
 
 //! Panel with settings for DataLoaderDialog.
 //! Located on its left side, contains file selection dialog and parser property widget.
@@ -44,7 +45,6 @@ public slots:
     QStringList selectedFileNames() const;
     QStringList fileNames() const;
 
-
 signals:
     void fileNamesChanged(const QStringList& file_names);
     void fileSelectionChanged(const QStringList& file_names);
@@ -53,9 +53,10 @@ signals:
 private:
     void init_connections();
 
-    ImportFileWidgetV2* m_fileSelectorWidget{nullptr};
-    ParserPropertyWidget* m_propertyWidget{nullptr};
     int m_targetCanvasIndex{-1};
+    ImportFileWidgetV2* m_fileSelectorWidget{nullptr};
+    ParserPropertyWidget* m_propertyWidget{nullptr};    
+    QSplitter* m_splitter{nullptr};
 };
 
 #endif // DAREFL_DATALOADER2_LOADERSELECTORPANEL_H

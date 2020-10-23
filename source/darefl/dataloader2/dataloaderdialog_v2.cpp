@@ -48,6 +48,7 @@ DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
       m_previewPanel(new LoaderPreviewPanel), m_splitter(new QSplitter),
       m_dataHandler(std::make_unique<DataHandler>())
 {
+    m_splitter->setChildrenCollapsible(false);
     m_splitter->addWidget(m_selectorPanel);
     m_splitter->addWidget(m_previewPanel);
 

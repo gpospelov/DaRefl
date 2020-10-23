@@ -7,9 +7,8 @@
 //
 // ************************************************************************** //
 
-#include <QDebug>
+#include <QSplitter>
 #include <QVBoxLayout>
-#include <algorithm>
 #include <darefl/dataloader2/defaultparser.h>
 #include <darefl/dataloader2/importfilewidget_v2.h>
 #include <darefl/dataloader2/loaderselectorpanel.h>
@@ -17,12 +16,18 @@
 
 LoaderSelectorPanel::LoaderSelectorPanel(QWidget* parent)
     : QWidget(parent), m_fileSelectorWidget(new ImportFileWidgetV2),
-      m_propertyWidget(new ParserPropertyWidget)
+      m_propertyWidget(new ParserPropertyWidget), m_splitter(new QSplitter)
 {
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
-    layout->addWidget(m_fileSelectorWidget);
-    layout->addWidget(m_propertyWidget);
+
+    m_splitter->setOrientation(Qt::Vertical);
+    m_splitter->setChildrenCollapsible(false);
+
+    m_splitter->addWidget(m_fileSelectorWidget);
+    m_splitter->addWidget(m_propertyWidget);
+
+    layout->addWidget(m_splitter);
 
     init_connections();
 }
@@ -77,8 +82,6 @@ void LoaderSelectorPanel::init_connections()
     connect(m_propertyWidget, &ParserPropertyWidget::parserPropertyChanged, this,
             &LoaderSelectorPanel::parserPropertyChanged);
 
-    connect(m_propertyWidget, &ParserPropertyWidget::targetCanvasChanged, [this](auto index) {
-        m_targetCanvasIndex = index;
-        qDebug() << "changed" << m_targetCanvasIndex;
-    });
+    auto on_target_changed = [this](auto index) { m_targetCanvasIndex = index; };
+    connect(m_propertyWidget, &ParserPropertyWidget::targetCanvasChanged, on_target_changed);
 }
