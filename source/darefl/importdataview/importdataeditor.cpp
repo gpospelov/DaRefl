@@ -9,7 +9,7 @@
 
 #include <QSplitter>
 #include <QVBoxLayout>
-#include <darefl/dataloader/dataloaderdialog_v2.h>
+#include <darefl/dataloader/dataloaderdialog.h>
 #include <darefl/importdataview/dataselectionmodel.h>
 #include <darefl/importdataview/dataselectorwidget.h>
 #include <darefl/importdataview/dataviewmodel.h>
@@ -113,7 +113,7 @@ void ImportDataEditor::setMergeEnabled(bool enabled)
 
 void ImportDataEditor::invokeImportDialog()
 {
-    DataLoaderDialogV2 dialog(this);
+    DataLoaderDialog dialog(this);
 
     auto [names, index] = canvasInfo();
     dialog.setTargetCanvas(names, index);

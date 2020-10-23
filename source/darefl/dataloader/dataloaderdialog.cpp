@@ -17,7 +17,7 @@
 #include <darefl/core/app_constants.h>
 #include <darefl/dataloader/datahandler.h>
 #include <darefl/dataloader/dataloader_types.h>
-#include <darefl/dataloader/dataloaderdialog_v2.h>
+#include <darefl/dataloader/dataloaderdialog.h>
 #include <darefl/dataloader/dataloadertoolbar.h>
 #include <darefl/dataloader/loaderpreviewpanel.h>
 #include <darefl/dataloader/loaderselectorpanel.h>
@@ -58,7 +58,7 @@ const QString splittersize_setting_name()
 
 } // namespace
 
-DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
+DataLoaderDialog::DataLoaderDialog(QWidget* parent)
     : QDialog(parent), m_toolBar(new DataLoaderToolBar), m_selectorPanel(new LoaderSelectorPanel),
       m_previewPanel(new LoaderPreviewPanel), m_splitter(new QSplitter),
       m_dataHandler(std::make_unique<DataHandler>())
@@ -76,8 +76,8 @@ DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
     button->setAutoDefault(false);
     button->setDefault(false);
 
-    connect(button_box, &QDialogButtonBox::accepted, this, &DataLoaderDialogV2::accept);
-    connect(button_box, &QDialogButtonBox::rejected, this, &DataLoaderDialogV2::reject);
+    connect(button_box, &QDialogButtonBox::accepted, this, &DataLoaderDialog::accept);
+    connect(button_box, &QDialogButtonBox::rejected, this, &DataLoaderDialog::reject);
 
     auto layout = new QVBoxLayout(this);
     layout->addWidget(m_toolBar);
@@ -90,40 +90,40 @@ DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
     readSettings();
 }
 
-DataLoaderDialogV2::~DataLoaderDialogV2()
+DataLoaderDialog::~DataLoaderDialog()
 {
     writeSettings();
 }
 
-std::vector<RealDataStruct> DataLoaderDialogV2::importedData() const
+std::vector<RealDataStruct> DataLoaderDialog::importedData() const
 {
     return m_parsedData;
 }
 
-void DataLoaderDialogV2::setTargetCanvas(const std::vector<std::string>& canvas_names,
+void DataLoaderDialog::setTargetCanvas(const std::vector<std::string>& canvas_names,
                                          int current_index)
 {
     m_selectorPanel->setTargetCanvas(toStringList(canvas_names), current_index);
 }
 
-int DataLoaderDialogV2::targetCanvasIndex() const
+int DataLoaderDialog::targetCanvasIndex() const
 {
     return m_selectorPanel->targetCanvasIndex();
 }
 
-void DataLoaderDialogV2::invokeFileSelectorDialog()
+void DataLoaderDialog::invokeFileSelectorDialog()
 {
     m_selectorPanel->onAddFilesRequest();
 }
 
-void DataLoaderDialogV2::keyPressEvent(QKeyEvent* event)
+void DataLoaderDialog::keyPressEvent(QKeyEvent* event)
 {
     if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return)
         return;
     QDialog::keyPressEvent(event);
 }
 
-void DataLoaderDialogV2::accept()
+void DataLoaderDialog::accept()
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
     process_all();
@@ -135,7 +135,7 @@ void DataLoaderDialogV2::accept()
 
 //! Saves dialog settings.
 
-void DataLoaderDialogV2::readSettings()
+void DataLoaderDialog::readSettings()
 {
     QSettings settings;
 
@@ -155,7 +155,7 @@ void DataLoaderDialogV2::readSettings()
 
 //! Writes dialog settings.
 
-void DataLoaderDialogV2::writeSettings()
+void DataLoaderDialog::writeSettings()
 {
     QSettings settings;
     settings.setValue(dialogsize_setting_name(), size());
@@ -168,7 +168,7 @@ void DataLoaderDialogV2::writeSettings()
 
 //! Init interconnections of all widgets.
 
-void DataLoaderDialogV2::init_connections()
+void DataLoaderDialog::init_connections()
 {
     // connect toolbar and LoaderSelectorPanel
     connect(m_toolBar, &DataLoaderToolBar::addFilesRequest, m_selectorPanel,
@@ -193,7 +193,7 @@ void DataLoaderDialogV2::init_connections()
 
 //! Process currently selected file with given parser settings.
 
-void DataLoaderDialogV2::process_data()
+void DataLoaderDialog::process_data()
 {
     auto selected_files = m_selectorPanel->selectedFileNames();
     if (selected_files.empty())
@@ -209,7 +209,7 @@ void DataLoaderDialogV2::process_data()
 
 //! Parse all string data and generate graph data.
 
-void DataLoaderDialogV2::process_all()
+void DataLoaderDialog::process_all()
 {
     m_parsedData.clear();
 
