@@ -101,7 +101,7 @@ std::vector<RealDataStruct> DataLoaderDialog::importedData() const
 }
 
 void DataLoaderDialog::setTargetCanvas(const std::vector<std::string>& canvas_names,
-                                         int current_index)
+                                       int current_index)
 {
     m_selectorPanel->setTargetCanvas(toStringList(canvas_names), current_index);
 }

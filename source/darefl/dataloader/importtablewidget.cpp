@@ -13,12 +13,10 @@
 #include <darefl/dataloader/dataloader_types.h>
 #include <darefl/dataloader/importtablemodel.h>
 #include <darefl/dataloader/importtablewidget.h>
-#include <mvvm/editors/combopropertyeditor.h>
-#include <mvvm/model/comboproperty.h>
 #include <mvvm/viewmodel/viewmodeldelegate.h>
 
 ImportTableWidget::ImportTableWidget(QWidget* parent)
-    : QWidget(parent), m_tableModel(new ImportTableModelV2), m_tableView(new QTableView),
+    : QWidget(parent), m_tableModel(new ImportTableModel), m_tableView(new QTableView),
       m_delegate(new ModelView::ViewModelDelegate)
 {
     auto layout = new QVBoxLayout(this);

@@ -10,7 +10,6 @@
 #ifndef DAREFL_DATALOADER_DATAHANDLER_H
 #define DAREFL_DATALOADER_DATAHANDLER_H
 
-#include <memory>
 #include <string>
 #include <vector>
 #include <map>

@@ -7,7 +7,6 @@
 //
 // ************************************************************************** //
 
-#include <QDebug>
 #include <darefl/dataloader/datahandler.h>
 #include <darefl/dataloader/parseutils.h>
 #include <iostream>

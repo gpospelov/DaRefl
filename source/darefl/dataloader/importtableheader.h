@@ -23,7 +23,7 @@ struct ColumnInfo;
 class ImportTableHeader
 {
 public:
-    enum RowTypes {TYPE, UNITS, MULTIPLIER, TITLE, MAX};
+    enum RowTypes { TYPE, UNITS, MULTIPLIER, TITLE, MAX };
     using header_data_t = std::vector<std::vector<QVariant>>;
 
     ImportTableHeader(int max_column_count);
