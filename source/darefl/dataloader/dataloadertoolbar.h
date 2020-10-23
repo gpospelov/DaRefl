@@ -12,7 +12,7 @@
 
 #include <QToolBar>
 
-class QComboBox;
+//! Tool bar for DataLoaderDialog.
 
 class DataLoaderToolBar : public QToolBar
 {
@@ -24,9 +24,6 @@ public:
 signals:
     void addFilesRequest();
     void removeFilesRequest();
-
-private:
-
 };
 
 #endif // DAREFL_DATALOADER_DATALOADERTOOLBAR_H

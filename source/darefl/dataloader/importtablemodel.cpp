@@ -7,14 +7,14 @@
 //
 // ************************************************************************** //
 
+#include <darefl/dataloader/dataloader_types.h>
 #include <darefl/dataloader/importtableheader.h>
 #include <darefl/dataloader/importtablemodel.h>
-#include <darefl/dataloader/dataloader_types.h>
 
 namespace
 {
 //! Returns maximum number of columns in 2D data vector.
-int maxColumnCount(const ImportTableModelV2::raw_data_t& data)
+int maxColumnCount(const ImportTableModel::raw_data_t& data)
 {
     int result{0};
     for (const auto& x : data)
@@ -25,17 +25,17 @@ int maxColumnCount(const ImportTableModelV2::raw_data_t& data)
 const int default_header_ncols = 2;
 }; // namespace
 
-ImportTableModelV2::ImportTableModelV2(QObject* parent)
+ImportTableModel::ImportTableModel(QObject* parent)
     : QAbstractTableModel(parent),
       m_header(std::make_unique<ImportTableHeader>(default_header_ncols))
 {
 }
 
-ImportTableModelV2::~ImportTableModelV2() = default;
+ImportTableModel::~ImportTableModel() = default;
 
 //! Sets content of the model.
 
-void ImportTableModelV2::setRawData(const ImportTableModelV2::raw_data_t& raw_data)
+void ImportTableModel::setRawData(const ImportTableModel::raw_data_t& raw_data)
 {
     beginResetModel();
     m_maxColumnCount = maxColumnCount(raw_data);
@@ -44,17 +44,17 @@ void ImportTableModelV2::setRawData(const ImportTableModelV2::raw_data_t& raw_da
     endResetModel();
 }
 
-int ImportTableModelV2::rowCount(const QModelIndex&) const
+int ImportTableModel::rowCount(const QModelIndex&) const
 {
     return static_cast<int>(m_rawData.size()) + utilityRowCount();
 }
 
-int ImportTableModelV2::columnCount(const QModelIndex&) const
+int ImportTableModel::columnCount(const QModelIndex&) const
 {
     return m_maxColumnCount;
 }
 
-QVariant ImportTableModelV2::data(const QModelIndex& index, int role) const
+QVariant ImportTableModel::data(const QModelIndex& index, int role) const
 {
     if (!index.isValid())
         return QVariant();
@@ -65,7 +65,7 @@ QVariant ImportTableModelV2::data(const QModelIndex& index, int role) const
     return QVariant();
 }
 
-bool ImportTableModelV2::setData(const QModelIndex& index, const QVariant& value, int role)
+bool ImportTableModel::setData(const QModelIndex& index, const QVariant& value, int role)
 {
     if (!index.isValid())
         return false;
@@ -76,7 +76,7 @@ bool ImportTableModelV2::setData(const QModelIndex& index, const QVariant& value
     return false;
 }
 
-QVariant ImportTableModelV2::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant ImportTableModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (orientation == Qt::Horizontal || role != Qt::DisplayRole)
         return QVariant();
@@ -85,7 +85,7 @@ QVariant ImportTableModelV2::headerData(int section, Qt::Orientation orientation
                                        : QVariant(section - utilityRowCount() + 1);
 }
 
-Qt::ItemFlags ImportTableModelV2::flags(const QModelIndex& index) const
+Qt::ItemFlags ImportTableModel::flags(const QModelIndex& index) const
 {
     Qt::ItemFlags result = QAbstractItemModel::flags(index);
     if (index.row() < utilityRowCount())
@@ -95,19 +95,19 @@ Qt::ItemFlags ImportTableModelV2::flags(const QModelIndex& index) const
     return result;
 }
 
-std::vector<DataLoader::ColumnInfo> ImportTableModelV2::columnInfo() const
+std::vector<DataLoader::ColumnInfo> ImportTableModel::columnInfo() const
 {
     return m_header->columnInfo();
 }
 
-int ImportTableModelV2::utilityRowCount() const
+int ImportTableModel::utilityRowCount() const
 {
     return m_header ? m_header->rowCount() : 0;
 }
 
 //! Returns data from index. Combines header data with parsed user data.
 
-QVariant ImportTableModelV2::dataFromIndex(const QModelIndex& index) const
+QVariant ImportTableModel::dataFromIndex(const QModelIndex& index) const
 {
     if (!index.isValid())
         return QVariant();

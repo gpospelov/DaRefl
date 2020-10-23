@@ -11,9 +11,9 @@
 #define DAREFL_DATALOADER_DATALOADERDIALOG_H
 
 #include <QDialog>
+#include <darefl/model/experimentaldata_types.h>
 #include <memory>
 #include <vector>
-#include <darefl/model/experimentaldata_types.h>
 
 class QSplitter;
 class DataLoaderToolBar;
@@ -40,7 +40,7 @@ public:
     void invokeFileSelectorDialog();
 
 protected:
-    void keyPressEvent(QKeyEvent *event) override;
+    void keyPressEvent(QKeyEvent* event) override;
     void accept() override;
 
 private:

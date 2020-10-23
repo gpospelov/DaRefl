@@ -26,7 +26,7 @@ struct ColumnInfo;
 }
 
 class QTableView;
-class ImportTableModelV2;
+class ImportTableModel;
 
 //! Contains table with imported data.
 //! Belongs to LoaderPreviewPanel.
@@ -44,7 +44,7 @@ public:
     std::vector<DataLoader::ColumnInfo> columnInfo() const;
 
 private:
-    ImportTableModelV2* m_tableModel{nullptr};
+    ImportTableModel* m_tableModel{nullptr};
     QTableView* m_tableView{nullptr};
     std::unique_ptr<ModelView::ViewModelDelegate> m_delegate;
 };

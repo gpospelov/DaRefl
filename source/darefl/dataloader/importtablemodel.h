@@ -23,15 +23,15 @@ class ImportTableHeader;
 
 //! Table model to hold imported ASCII data after parsing it to multi-column presentation.
 
-class ImportTableModelV2 : public QAbstractTableModel
+class ImportTableModel : public QAbstractTableModel
 {
     Q_OBJECT
 
 public:
     using raw_data_t = std::vector<std::vector<std::string>>;
 
-    ImportTableModelV2(QObject* parent = nullptr);
-    ~ImportTableModelV2() override;
+    ImportTableModel(QObject* parent = nullptr);
+    ~ImportTableModel() override;
 
     void setRawData(const raw_data_t& raw_data);
 

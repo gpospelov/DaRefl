@@ -8,7 +8,6 @@
 // ************************************************************************** //
 
 #include <QColor>
-#include <QDebug>
 #include <QTabWidget>
 #include <QVBoxLayout>
 #include <darefl/dataloader/importtablewidget.h>
