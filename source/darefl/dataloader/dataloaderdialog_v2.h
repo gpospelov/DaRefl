@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER2_DATALOADERDIALOG_V2_H
-#define DAREFL_DATALOADER2_DATALOADERDIALOG_V2_H
+#ifndef DAREFL_DATALOADER_DATALOADERDIALOG_V2_H
+#define DAREFL_DATALOADER_DATALOADERDIALOG_V2_H
 
 #include <QDialog>
 #include <memory>
@@ -60,4 +60,4 @@ private:
     std::vector<RealDataStruct> m_parsedData;
 };
 
-#endif // DAREFL_DATALOADER2_DATALOADERDIALOG_V2_H
+#endif // DAREFL_DATALOADER_DATALOADERDIALOG_V2_H

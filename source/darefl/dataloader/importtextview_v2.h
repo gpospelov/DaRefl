@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER2_IMPORTTEXTVIEW_V2_H
-#define DAREFL_DATALOADER2_IMPORTTEXTVIEW_V2_H
+#ifndef DAREFL_DATALOADER_IMPORTTEXTVIEW_V2_H
+#define DAREFL_DATALOADER_IMPORTTEXTVIEW_V2_H
 
 //! Based on Qt example "codeeditor"
 //! Copyright (C) 2016 The Qt Company Ltd.
@@ -62,4 +62,4 @@ private:
     ImportTextViewV2* codeEditor;
 };
 
-#endif // DAREFL_DATALOADER2_IMPORTTEXTVIEW_V2_H
+#endif // DAREFL_DATALOADER_IMPORTTEXTVIEW_V2_H

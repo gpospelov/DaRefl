@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER2_DATALOADER_CONSTANTS_H
-#define DAREFL_DATALOADER2_DATALOADER_CONSTANTS_H
+#ifndef DAREFL_DATALOADER_DATALOADER_CONSTANTS_H
+#define DAREFL_DATALOADER_DATALOADER_CONSTANTS_H
 
 #include <vector>
 #include <string>
@@ -22,4 +22,4 @@ const std::string IgnoreType = "Ignore";
 
 } // namespace DataLoader::Constants
 
-#endif // DAREFL_DATALOADER2_DATALOADER_CONSTANTS_H
+#endif // DAREFL_DATALOADER_DATALOADER_CONSTANTS_H

@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER2_PARSERINTERFACE_H
-#define DAREFL_DATALOADER2_PARSERINTERFACE_H
+#ifndef DAREFL_DATALOADER_PARSERINTERFACE_H
+#define DAREFL_DATALOADER_PARSERINTERFACE_H
 
 #include <string>
 #include <vector>
@@ -46,4 +46,4 @@ public:
 
 } // namespace DataLoader
 
-#endif // DAREFL_DATALOADER2_PARSERINTERFACE_H
+#endif // DAREFL_DATALOADER_PARSERINTERFACE_H

@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER2_IMPORTTABLEHEADER_H
-#define DAREFL_DATALOADER2_IMPORTTABLEHEADER_H
+#ifndef DAREFL_DATALOADER_IMPORTTABLEHEADER_H
+#define DAREFL_DATALOADER_IMPORTTABLEHEADER_H
 
 #include <QVariant>
 #include <vector>
@@ -48,4 +48,4 @@ private:
     int m_maxColumnCount;
 };
 
-#endif // DAREFL_DATALOADER2_IMPORTTABLEHEADER_H
+#endif // DAREFL_DATALOADER_IMPORTTABLEHEADER_H

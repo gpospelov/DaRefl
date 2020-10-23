@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER2_DATALOADERTOOLBAR_H
-#define DAREFL_DATALOADER2_DATALOADERTOOLBAR_H
+#ifndef DAREFL_DATALOADER_DATALOADERTOOLBAR_H
+#define DAREFL_DATALOADER_DATALOADERTOOLBAR_H
 
 #include <QToolBar>
 
@@ -29,4 +29,4 @@ private:
 
 };
 
-#endif // DAREFL_DATALOADER2_DATALOADERTOOLBAR_H
+#endif // DAREFL_DATALOADER_DATALOADERTOOLBAR_H

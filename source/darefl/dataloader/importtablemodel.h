@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER2_IMPORTTABLEMODEL_H
-#define DAREFL_DATALOADER2_IMPORTTABLEMODEL_H
+#ifndef DAREFL_DATALOADER_IMPORTTABLEMODEL_H
+#define DAREFL_DATALOADER_IMPORTTABLEMODEL_H
 
 #include <QAbstractTableModel>
 #include <string>
@@ -59,4 +59,4 @@ private:
     int m_maxColumnCount{0};
 };
 
-#endif // DAREFL_DATALOADER2_IMPORTTABLEMODEL_H
+#endif // DAREFL_DATALOADER_IMPORTTABLEMODEL_H

@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER2_IMPORTDATVLEWIDGET_H
-#define DAREFL_DATALOADER2_IMPORTDATVLEWIDGET_H
+#ifndef DAREFL_DATALOADER_IMPORTTABLEWIDGET_H
+#define DAREFL_DATALOADER_IMPORTTABLEWIDGET_H
 
 #include <QWidget>
 #include <string>
@@ -49,4 +49,4 @@ private:
     std::unique_ptr<ModelView::ViewModelDelegate> m_delegate;
 };
 
-#endif // DAREFL_DATALOADER2_IMPORTDATVLEWIDGET_H
+#endif // DAREFL_DATALOADER_IMPORTTABLEWIDGET_H
