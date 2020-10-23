@@ -20,9 +20,10 @@ class ParserInterface;
 
 class QGridLayout;
 class QButtonGroup;
+class QComboBox;
 
-//! Panel to setup ASCII parser. Intended to configure DefaultParser: contains selection of
-//! separator symbols, patterns to ignore lines, and import target settings.
+//! Panel to setup ASCII parser. Intended for concrete class DefaultParser.
+//! Contains selection of separator symbols, patterns to ignore lines, and import target settings.
 
 class ParserPropertyWidget : public QWidget
 {
@@ -34,8 +35,11 @@ public:
 
     std::unique_ptr<DataLoader::ParserInterface> createParser() const;
 
+    void setTargetCanvas(const QStringList& canvas_names, int current_index);
+
 signals:
     void parserPropertyChanged();
+    int targetCanvasChanged(int canvas_index);
 
 private slots:
     void onParserPropertyChange();
@@ -51,6 +55,7 @@ private:
     void addImportToBlock(QGridLayout* layout);
 
     DataLoader::ParserOptions m_options;
+    QComboBox* m_targetCanvasCombo{nullptr};
 };
 
 #endif // DAREFL_DATALOADER2_PARSERPROPERTYWIDGET_H

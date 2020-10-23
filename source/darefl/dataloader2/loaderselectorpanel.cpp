@@ -7,12 +7,13 @@
 //
 // ************************************************************************** //
 
+#include <QDebug>
 #include <QVBoxLayout>
 #include <algorithm>
+#include <darefl/dataloader2/defaultparser.h>
 #include <darefl/dataloader2/importfilewidget_v2.h>
 #include <darefl/dataloader2/loaderselectorpanel.h>
 #include <darefl/dataloader2/parserpropertywidget.h>
-#include <darefl/dataloader2/defaultparser.h>
 
 LoaderSelectorPanel::LoaderSelectorPanel(QWidget* parent)
     : QWidget(parent), m_fileSelectorWidget(new ImportFileWidgetV2),
@@ -31,6 +32,11 @@ LoaderSelectorPanel::~LoaderSelectorPanel() = default;
 std::unique_ptr<DataLoader::ParserInterface> LoaderSelectorPanel::createParser() const
 {
     return m_propertyWidget->createParser();
+}
+
+void LoaderSelectorPanel::setTargetCanvas(const QStringList& canvas_names, int current_index)
+{
+    m_propertyWidget->setTargetCanvas(canvas_names, current_index);
 }
 
 void LoaderSelectorPanel::onAddFilesRequest()
@@ -65,4 +71,9 @@ void LoaderSelectorPanel::init_connections()
 
     connect(m_propertyWidget, &ParserPropertyWidget::parserPropertyChanged, this,
             &LoaderSelectorPanel::parserPropertyChanged);
+
+    connect(m_propertyWidget, &ParserPropertyWidget::targetCanvasChanged, [this](auto index) {
+        m_targetCanvasIndex = index;
+        qDebug() << "changed" << m_targetCanvasIndex;
+    });
 }

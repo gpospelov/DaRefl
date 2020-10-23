@@ -34,11 +34,14 @@ public:
 
     std::unique_ptr<DataLoader::ParserInterface> createParser() const;
 
+    void setTargetCanvas(const QStringList& canvas_names, int current_index);
+
 public slots:
     void onAddFilesRequest();
     void onRemoveFileRequest();
     QStringList selectedFileNames() const;
     QStringList fileNames() const;
+
 
 signals:
     void fileNamesChanged(const QStringList& file_names);
@@ -50,6 +53,7 @@ private:
 
     ImportFileWidgetV2* m_fileSelectorWidget{nullptr};
     ParserPropertyWidget* m_propertyWidget{nullptr};
+    int m_targetCanvasIndex{-1};
 };
 
 #endif // DAREFL_DATALOADER2_LOADERSELECTORPANEL_H

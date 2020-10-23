@@ -16,8 +16,8 @@
 #include <QLineEdit>
 #include <QRadioButton>
 #include <QVBoxLayout>
-#include <darefl/dataloader2/parserpropertywidget.h>
 #include <darefl/dataloader2/defaultparser.h>
+#include <darefl/dataloader2/parserpropertywidget.h>
 #include <mvvm/widgets/widgetutils.h>
 
 namespace
@@ -53,6 +53,14 @@ ParserPropertyWidget::~ParserPropertyWidget() = default;
 std::unique_ptr<DataLoader::ParserInterface> ParserPropertyWidget::createParser() const
 {
     return std::make_unique<DataLoader::DefaultParser>(m_options);
+}
+
+//! Sets list of canvas names as possible import targets.
+
+void ParserPropertyWidget::setTargetCanvas(const QStringList& canvas_names, int current_index)
+{
+    m_targetCanvasCombo->insertItems(0, canvas_names);
+    m_targetCanvasCombo->setCurrentIndex(current_index);
 }
 
 void ParserPropertyWidget::onParserPropertyChange()
@@ -248,17 +256,35 @@ void ParserPropertyWidget::addImportToBlock(QGridLayout* layout)
 {
     auto newCanvasRadio = new QRadioButton;
     auto existingCanvasRadio = new QRadioButton;
+    m_targetCanvasCombo = new QComboBox;
 
     // radio settings
     newCanvasRadio->setText("New canvas");
     newCanvasRadio->setChecked(true);
     newCanvasRadio->setToolTip("Data will be imported into the new canvas");
+    auto on_newcanvas_radio = [this](auto checked) {
+        if (checked)
+            targetCanvasChanged(-1);
+    };
+    connect(newCanvasRadio, &QRadioButton::clicked, on_newcanvas_radio);
 
-    // combo settings
     existingCanvasRadio->setText("Existing canvas");
     existingCanvasRadio->setToolTip("Data will be imported into existing canvas");
-    auto existingCanvasCombo = new QComboBox;
-    existingCanvasCombo->setToolTip("Data will be imported into existing canvas");
+    auto on_existingcanvas_radio = [this](auto checked) {
+        if (checked)
+            targetCanvasChanged(m_targetCanvasCombo->currentIndex());
+    };
+    connect(existingCanvasRadio, &QRadioButton::clicked, on_existingcanvas_radio);
+
+    // combo settings
+    m_targetCanvasCombo->setToolTip("Data will be imported into existing canvas");
+    auto on_canvas_combo = [this, existingCanvasRadio](int index) {
+        if (existingCanvasRadio->isChecked())
+            targetCanvasChanged(index);
+    };
+    connect(m_targetCanvasCombo,
+            static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+            on_canvas_combo);
 
     // adding to the layout
     int row = layout->rowCount();
@@ -267,7 +293,7 @@ void ParserPropertyWidget::addImportToBlock(QGridLayout* layout)
     row = layout->rowCount();
     layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
     layout->addWidget(existingCanvasRadio, row, 1, Qt::AlignLeft);
-    layout->addWidget(existingCanvasCombo, row, 2, Qt::AlignLeft);
+    layout->addWidget(m_targetCanvasCombo, row, 2, Qt::AlignLeft);
     auto buttonGroup = new QButtonGroup;
     buttonGroup->addButton(newCanvasRadio);
     buttonGroup->addButton(existingCanvasRadio);
