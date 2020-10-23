@@ -14,12 +14,20 @@
 #include <mvvm/utils/containerutils.h>
 
 //! Load raw data from the list of files, if it was not loaded yet.
+//! Remove data which is not present.
 
 void DataHandler::updateRawData(const std::vector<std::string>& file_names)
 {
     for (const auto& file_name : file_names)
         if (auto it = m_raw_data.find(file_name); it == m_raw_data.end())
             loadFile(file_name);
+
+    for (auto it = m_raw_data.begin(); it != m_raw_data.end(); /* no increment */) {
+        if (ModelView::Utils::Contains(file_names, it->first))
+            it++;
+        else
+            m_raw_data.erase(it++);
+    }
 }
 
 //! Returns raw text data representing content of the file with given name.
