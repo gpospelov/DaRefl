@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER_DATALOADERDIALOG_V2_H
-#define DAREFL_DATALOADER_DATALOADERDIALOG_V2_H
+#ifndef DAREFL_DATALOADER_DATALOADERDIALOG_H
+#define DAREFL_DATALOADER_DATALOADERDIALOG_H
 
 #include <QDialog>
 #include <memory>
@@ -23,13 +23,13 @@ class DataHandler;
 
 //! This is the main dialog for the data loader.
 
-class DataLoaderDialogV2 : public QDialog
+class DataLoaderDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    DataLoaderDialogV2(QWidget* parent = nullptr);
-    ~DataLoaderDialogV2();
+    DataLoaderDialog(QWidget* parent = nullptr);
+    ~DataLoaderDialog();
 
     std::vector<RealDataStruct> importedData() const;
 
@@ -60,4 +60,4 @@ private:
     std::vector<RealDataStruct> m_parsedData;
 };
 
-#endif // DAREFL_DATALOADER_DATALOADERDIALOG_V2_H
+#endif // DAREFL_DATALOADER_DATALOADERDIALOG_H
