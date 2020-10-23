@@ -178,11 +178,9 @@ void ImportDataEditor::onImportDialogAccept2(const std::vector<RealDataStruct>& 
                                              CanvasItem* canvas)
 {
     CanvasContainerItem* canvas_container = p_model->canvasContainer();
-    qDebug() << "xxx" << canvas;
-
-
     for (auto& data : experimental_data)
         canvas = p_model->addDataToCollection(data, canvas_container, canvas);
+    selectionModel()->selectItem(canvas);
 }
 
 //! Convert data column to RealDatastructure
