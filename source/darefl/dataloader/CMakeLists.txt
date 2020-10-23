@@ -9,8 +9,8 @@ target_sources(${library_name} PRIVATE
     dataloadertoolbar.h
     defaultparser.cpp
     defaultparser.h
-    importfilewidget_v2.cpp
-    importfilewidget_v2.h
+    importfilewidget.cpp
+    importfilewidget.h
     importtablemodel.cpp
     importtablemodel.h
     importtablewidget.cpp

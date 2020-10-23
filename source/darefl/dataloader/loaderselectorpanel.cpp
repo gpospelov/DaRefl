@@ -10,12 +10,12 @@
 #include <QSplitter>
 #include <QVBoxLayout>
 #include <darefl/dataloader/defaultparser.h>
-#include <darefl/dataloader/importfilewidget_v2.h>
+#include <darefl/dataloader/importfilewidget.h>
 #include <darefl/dataloader/loaderselectorpanel.h>
 #include <darefl/dataloader/parserpropertywidget.h>
 
 LoaderSelectorPanel::LoaderSelectorPanel(QWidget* parent)
-    : QWidget(parent), m_fileSelectorWidget(new ImportFileWidgetV2),
+    : QWidget(parent), m_fileSelectorWidget(new ImportFileWidget),
       m_propertyWidget(new ParserPropertyWidget), m_splitter(new QSplitter)
 {
     auto layout = new QVBoxLayout(this);
@@ -72,12 +72,12 @@ QStringList LoaderSelectorPanel::fileNames() const
 void LoaderSelectorPanel::init_connections()
 {
     auto on_file_names_changed = [this]() { fileNamesChanged(m_fileSelectorWidget->fileNames()); };
-    connect(m_fileSelectorWidget, &ImportFileWidgetV2::fileNamesChanged, on_file_names_changed);
+    connect(m_fileSelectorWidget, &ImportFileWidget::fileNamesChanged, on_file_names_changed);
 
     auto on_selection_changed = [this]() {
         fileSelectionChanged(m_fileSelectorWidget->selectedFileNames());
     };
-    connect(m_fileSelectorWidget, &ImportFileWidgetV2::fileSelectionChanged, on_selection_changed);
+    connect(m_fileSelectorWidget, &ImportFileWidget::fileSelectionChanged, on_selection_changed);
 
     connect(m_propertyWidget, &ParserPropertyWidget::parserPropertyChanged, this,
             &LoaderSelectorPanel::parserPropertyChanged);

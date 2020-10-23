@@ -15,7 +15,7 @@
 #include <QStringListModel>
 #include <QVBoxLayout>
 #include <darefl/core/app_constants.h>
-#include <darefl/dataloader/importfilewidget_v2.h>
+#include <darefl/dataloader/importfilewidget.h>
 #include <mvvm/utils/fileutils.h>
 
 namespace
@@ -29,7 +29,7 @@ const QString workdir_setting_name()
 
 } // namespace
 
-ImportFileWidgetV2::ImportFileWidgetV2(QWidget* parent)
+ImportFileWidget::ImportFileWidget(QWidget* parent)
     : QWidget(parent), m_listView(new QListView), m_listModel(new QStringListModel)
 {
     readSettings();
@@ -44,17 +44,17 @@ ImportFileWidgetV2::ImportFileWidgetV2(QWidget* parent)
     m_listView->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     connect(m_listView->selectionModel(), &QItemSelectionModel::selectionChanged, this,
-            &ImportFileWidgetV2::fileSelectionChanged);
+            &ImportFileWidget::fileSelectionChanged);
 }
 
-ImportFileWidgetV2::~ImportFileWidgetV2()
+ImportFileWidget::~ImportFileWidget()
 {
     writeSettings();
 }
 
 //! Summons dialog for file selections, update list view with file names.
 
-void ImportFileWidgetV2::onAddFilesRequest()
+void ImportFileWidget::onAddFilesRequest()
 {
     QFileDialog dialog(this, "Select one or more files to load", m_currentWorkdir);
     dialog.setFileMode(QFileDialog::ExistingFiles);
@@ -73,7 +73,7 @@ void ImportFileWidgetV2::onAddFilesRequest()
 
 //! Removes currently selected file
 
-void ImportFileWidgetV2::onRemoveFileRequest()
+void ImportFileWidget::onRemoveFileRequest()
 {
     auto selected = m_listView->selectionModel()->selectedIndexes();
     while (!selected.empty()) {
@@ -86,14 +86,14 @@ void ImportFileWidgetV2::onRemoveFileRequest()
 
 //! Retuns the list of all file names imported by the user.
 
-QStringList ImportFileWidgetV2::fileNames() const
+QStringList ImportFileWidget::fileNames() const
 {
     return m_listModel->stringList();
 }
 
 //! Retuns the list of currently selected file names.
 
-QStringList ImportFileWidgetV2::selectedFileNames() const
+QStringList ImportFileWidget::selectedFileNames() const
 {
     QStringList result;
     for (auto index : m_listView->selectionModel()->selectedIndexes())
@@ -103,7 +103,7 @@ QStringList ImportFileWidgetV2::selectedFileNames() const
 
 //! Loads widget settings.
 
-void ImportFileWidgetV2::readSettings()
+void ImportFileWidget::readSettings()
 {
     QSettings settings;
     m_currentWorkdir = QDir::homePath();
@@ -114,7 +114,7 @@ void ImportFileWidgetV2::readSettings()
 
 //! Writes widget settings.
 
-void ImportFileWidgetV2::writeSettings()
+void ImportFileWidget::writeSettings()
 {
     QSettings settings;
     settings.setValue(workdir_setting_name(), m_currentWorkdir);
@@ -122,7 +122,7 @@ void ImportFileWidgetV2::writeSettings()
 
 //! Updates current working dir.
 
-void ImportFileWidgetV2::updateCurrentWorkdir(const QStringList& file_names)
+void ImportFileWidget::updateCurrentWorkdir(const QStringList& file_names)
 {
     auto file_name = file_names.back();
     auto parent_path = ModelView::Utils::parent_path(file_name.toStdString());
@@ -131,7 +131,7 @@ void ImportFileWidgetV2::updateCurrentWorkdir(const QStringList& file_names)
 
 //! Adds given list of file names to the model.
 
-void ImportFileWidgetV2::addFileNamesToModel(const QStringList& file_names)
+void ImportFileWidget::addFileNamesToModel(const QStringList& file_names)
 {
     auto current_names = fileNames();
     QStringList updated_names = current_names + file_names;
@@ -143,7 +143,7 @@ void ImportFileWidgetV2::addFileNamesToModel(const QStringList& file_names)
     makeLastSelected();
 }
 
-void ImportFileWidgetV2::makeLastSelected()
+void ImportFileWidget::makeLastSelected()
 {
     if (m_listView->selectionModel()->selectedIndexes().empty()) {
         auto flags = QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows;
