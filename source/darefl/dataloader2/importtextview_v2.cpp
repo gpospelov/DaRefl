@@ -28,7 +28,7 @@ ImportTextViewV2::ImportTextViewV2(QWidget* parent) : QPlainTextEdit(parent)
             &ImportTextViewV2::highlightCurrentLine);
 
     updateLineNumberAreaWidth(0);
-    highlightCurrentLine();
+//    highlightCurrentLine();
 
     setReadOnly(true);
     setWordWrapMode(QTextOption::NoWrap);
