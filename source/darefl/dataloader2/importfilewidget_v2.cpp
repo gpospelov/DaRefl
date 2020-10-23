@@ -14,17 +14,17 @@
 #include <QSettings>
 #include <QStringListModel>
 #include <QVBoxLayout>
+#include <darefl/core/app_constants.h>
 #include <darefl/dataloader2/importfilewidget_v2.h>
 #include <mvvm/utils/fileutils.h>
 
 namespace
 {
-const QString group_key = "dataloader";
 const QString current_workdir_key = "currentworkdir";
 
 const QString workdir_setting_name()
 {
-    return group_key + "/" + current_workdir_key;
+    return Constants::GroupDataLoader + "/" + current_workdir_key;
 }
 
 } // namespace
