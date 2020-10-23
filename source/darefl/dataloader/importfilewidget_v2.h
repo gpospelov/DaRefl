@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER2_IMPORTFILEWIDGET_V2_H
-#define DAREFL_DATALOADER2_IMPORTFILEWIDGET_V2_H
+#ifndef DAREFL_DATALOADER_IMPORTFILEWIDGET_V2_H
+#define DAREFL_DATALOADER_IMPORTFILEWIDGET_V2_H
 
 #include <QWidget>
 
@@ -53,4 +53,4 @@ private:
     QString m_currentWorkdir;
 };
 
-#endif // DAREFL_DATALOADER2_IMPORTFILEWIDGET_V2_H
+#endif // DAREFL_DATALOADER_IMPORTFILEWIDGET_V2_H

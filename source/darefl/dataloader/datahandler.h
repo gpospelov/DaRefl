@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER2_DATAHANDLER_H
-#define DAREFL_DATALOADER2_DATAHANDLER_H
+#ifndef DAREFL_DATALOADER_DATAHANDLER_H
+#define DAREFL_DATALOADER_DATAHANDLER_H
 
 #include <memory>
 #include <string>
@@ -34,4 +34,4 @@ private:
     std::map<std::string, std::vector<std::string>> m_raw_data;
 };
 
-#endif // DAREFL_DATALOADER2_DATAHANDLER_H
+#endif // DAREFL_DATALOADER_DATAHANDLER_H

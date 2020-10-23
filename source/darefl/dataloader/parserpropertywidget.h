@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER2_PARSERPROPERTYWIDGET_H
-#define DAREFL_DATALOADER2_PARSERPROPERTYWIDGET_H
+#ifndef DAREFL_DATALOADER_PARSERPROPERTYWIDGET_H
+#define DAREFL_DATALOADER_PARSERPROPERTYWIDGET_H
 
 #include <QWidget>
 #include <memory>
@@ -58,4 +58,4 @@ private:
     QComboBox* m_targetCanvasCombo{nullptr};
 };
 
-#endif // DAREFL_DATALOADER2_PARSERPROPERTYWIDGET_H
+#endif // DAREFL_DATALOADER_PARSERPROPERTYWIDGET_H

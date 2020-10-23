@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER2_LOADERPREVIEW_H
-#define DAREFL_DATALOADER2_LOADERPREVIEW_H
+#ifndef DAREFL_DATALOADER_LOADERPREVIEWPANEL_H
+#define DAREFL_DATALOADER_LOADERPREVIEWPANEL_H
 
 #include <QWidget>
 
@@ -44,4 +44,4 @@ private:
     QTabWidget* m_tabWidget{nullptr};
 };
 
-#endif // DAREFL_DATALOADER2_LOADERPREVIEW_H
+#endif // DAREFL_DATALOADER_LOADERPREVIEWPANEL_H

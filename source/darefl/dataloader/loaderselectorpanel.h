@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER2_LOADERSELECTORPANEL_H
-#define DAREFL_DATALOADER2_LOADERSELECTORPANEL_H
+#ifndef DAREFL_DATALOADER_LOADERSELECTORPANEL_H
+#define DAREFL_DATALOADER_LOADERSELECTORPANEL_H
 
 #include <QWidget>
 #include <memory>
@@ -59,4 +59,4 @@ private:
     QSplitter* m_splitter{nullptr};
 };
 
-#endif // DAREFL_DATALOADER2_LOADERSELECTORPANEL_H
+#endif // DAREFL_DATALOADER_LOADERSELECTORPANEL_H

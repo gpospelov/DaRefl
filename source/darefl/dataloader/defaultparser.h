@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER2_DEFAULTPARSER_H
-#define DAREFL_DATALOADER2_DEFAULTPARSER_H
+#ifndef DAREFL_DATALOADER_DEFAULTPARSER_H
+#define DAREFL_DATALOADER_DEFAULTPARSER_H
 
 #include <darefl/dataloader/dataloader_types.h>
 #include <darefl/dataloader/parserinterface.h>
@@ -51,4 +51,4 @@ private:
 
 } // namespace DataLoader
 
-#endif // DAREFL_DATALOADER2_DEFAULTPARSER_H
+#endif // DAREFL_DATALOADER_DEFAULTPARSER_H

@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER2_PARSEUTILS_H
-#define DAREFL_DATALOADER2_PARSEUTILS_H
+#ifndef DAREFL_DATALOADER_PARSEUTILS_H
+#define DAREFL_DATALOADER_PARSEUTILS_H
 
 #include <darefl/dataloader/dataloader_types.h>
 #include <optional>
@@ -93,4 +93,4 @@ RealDataStruct CreateData(const std::vector<std::vector<std::string>>& text_data
 
 } // namespace DataLoader
 
-#endif // DAREFL_DATALOADER2_PARSEUTILS_H
+#endif // DAREFL_DATALOADER_PARSEUTILS_H

@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER2_DATALOADER_TYPES_H
-#define DAREFL_DATALOADER2_DATALOADER_TYPES_H
+#ifndef DAREFL_DATALOADER_DATALOADER_TYPES_H
+#define DAREFL_DATALOADER_DATALOADER_TYPES_H
 
 #include <string>
 #include <vector>
@@ -47,4 +47,4 @@ using line_splitter_t = std::function<std::vector<std::string>(const std::string
 
 } // namespace DataLoader
 
-#endif // DAREFL_DATALOADER2_PARSEUTILS_H
+#endif // DAREFL_DATALOADER_DATALOADER_TYPES_H
