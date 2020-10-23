@@ -88,6 +88,11 @@ int DataLoaderDialogV2::targetCanvasIndex() const
     return m_selectorPanel->targetCanvasIndex();
 }
 
+void DataLoaderDialogV2::invokeFileSelectorDialog()
+{
+    m_selectorPanel->onAddFilesRequest();
+}
+
 void DataLoaderDialogV2::keyPressEvent(QKeyEvent* event)
 {
     if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return)

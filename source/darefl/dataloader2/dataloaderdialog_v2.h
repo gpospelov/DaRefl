@@ -37,6 +37,8 @@ public:
 
     int targetCanvasIndex() const;
 
+    void invokeFileSelectorDialog();
+
 protected:
     void keyPressEvent(QKeyEvent *event) override;
     void accept() override;

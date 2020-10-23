@@ -12,10 +12,6 @@
 
 #include <darefl/dataloader2/dataloader_types.h>
 #include <darefl/dataloader2/parserinterface.h>
-#include <darefl/dataloader2/parseutils.h>
-#include <functional>
-#include <string>
-#include <vector>
 #include <map>
 
 namespace DataLoader
