@@ -13,11 +13,6 @@
 #include <QWidget>
 #include <string>
 
-namespace DataImportLogic
-{
-class ImportOutput;
-class ParsedFileOutptut;
-} // namespace DataImportLogic
 
 class ExperimentalDataModel;
 class RealDataStruct;
@@ -49,11 +44,7 @@ private:
     std::pair<std::vector<std::string>, int> canvasInfo() const;
 
     std::string activeCanvasName() const;
-    void onImportDialogAccept(DataImportLogic::ImportOutput import_output);
     void onImportDialogAccept2(const std::vector<RealDataStruct>& experimental_data, CanvasItem* canvas);
-    RealDataStruct convertToRealDataStruct(const std::string& path,
-                                           const DataImportLogic::ParsedFileOutptut* import_output,
-                                           const int column);
 
 private:
     DataSelectionModel* selectionModel() const;

@@ -2,7 +2,6 @@ set(library_name dareflcore)
 
 add_library(${library_name} STATIC "")
 
-add_subdirectory(dataloader)
 add_subdirectory(dataloader2)
 add_subdirectory(importdataview)
 add_subdirectory(layereditor)
