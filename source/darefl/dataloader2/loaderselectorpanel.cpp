@@ -39,6 +39,11 @@ void LoaderSelectorPanel::setTargetCanvas(const QStringList& canvas_names, int c
     m_propertyWidget->setTargetCanvas(canvas_names, current_index);
 }
 
+int LoaderSelectorPanel::targetCanvasIndex() const
+{
+    return m_targetCanvasIndex;
+}
+
 void LoaderSelectorPanel::onAddFilesRequest()
 {
     m_fileSelectorWidget->onAddFilesRequest();

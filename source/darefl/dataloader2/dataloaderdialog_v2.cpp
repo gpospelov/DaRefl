@@ -33,6 +33,14 @@ std::vector<std::string> toStringVector(const QStringList& container)
     return result;
 }
 
+QStringList toStringList(const std::vector<std::string>& container)
+{
+    QStringList result;
+    for (const auto& x : container)
+        result.push_back(QString::fromStdString(x));
+    return result;
+}
+
 } // namespace
 
 DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
@@ -67,6 +75,17 @@ DataLoaderDialogV2::DataLoaderDialogV2(QWidget* parent)
 std::vector<RealDataStruct> DataLoaderDialogV2::importedData() const
 {
     return m_parsedData;
+}
+
+void DataLoaderDialogV2::setTargetCanvas(const std::vector<std::string>& canvas_names,
+                                         int current_index)
+{
+    m_selectorPanel->setTargetCanvas(toStringList(canvas_names), current_index);
+}
+
+int DataLoaderDialogV2::targetCanvasIndex() const
+{
+    return m_selectorPanel->targetCanvasIndex();
 }
 
 void DataLoaderDialogV2::keyPressEvent(QKeyEvent* event)

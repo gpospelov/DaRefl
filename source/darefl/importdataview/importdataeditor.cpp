@@ -24,6 +24,7 @@
 #include <darefl/model/experimentaldatamodel.h>
 #include <mvvm/model/modelutils.h>
 #include <mvvm/standarditems/graphitem.h>
+#include <mvvm/utils/containerutils.h>
 #include <mvvm/utils/fileutils.h>
 
 using namespace ModelView;
@@ -121,12 +122,26 @@ void ImportDataEditor::invokeImportDialog()
     //        onImportDialogAccept(dialog.result());
 
     DataLoaderDialogV2 dialog(this);
+
+    auto [names, index] = canvasInfo();
+    dialog.setTargetCanvas(names, index);
+
     if (dialog.exec() == QDialog::Accepted) {
         qDebug() << "accepted";
         onImportDialogAccept2(dialog.importedData());
     } else {
         qDebug() << "rejected";
     }
+}
+
+std::pair<std::vector<std::string>, int> ImportDataEditor::canvasInfo() const
+{
+    std::vector<std::string> names;
+    auto canvases = Utils::FindItems<CanvasItem>(p_model);
+    auto current_canvas = selectionModel()->activeCanvas();
+    std::transform(canvases.begin(), canvases.end(), std::back_inserter(names),
+                   [](auto x) { return x->displayName(); });
+    return std::make_pair(names, ModelView::Utils::IndexOfItem(canvases, current_canvas));
 }
 
 //! Find the first selected data group item is present and return his name.
@@ -157,7 +172,7 @@ void ImportDataEditor::onImportDialogAccept2(const std::vector<RealDataStruct>& 
 {
     CanvasContainerItem* canvas_container = p_model->canvasContainer();
 
-    for(auto & data : experimental_data)
+    for (auto& data : experimental_data)
         p_model->addDataToCollection(data, canvas_container, nullptr);
 }
 

@@ -36,6 +36,8 @@ public:
 
     void setTargetCanvas(const QStringList& canvas_names, int current_index);
 
+    int targetCanvasIndex() const;
+
 public slots:
     void onAddFilesRequest();
     void onRemoveFileRequest();

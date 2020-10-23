@@ -44,6 +44,9 @@ private:
     void setMergeEnabled(bool enabled);
 
     void invokeImportDialog();
+
+    std::pair<std::vector<std::string>, int> canvasInfo() const;
+
     std::string activeCanvasName() const;
     void onImportDialogAccept(DataImportLogic::ImportOutput import_output);
     void onImportDialogAccept2(const std::vector<RealDataStruct>& experimental_data);

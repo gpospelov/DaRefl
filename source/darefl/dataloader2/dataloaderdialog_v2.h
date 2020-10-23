@@ -33,6 +33,10 @@ public:
 
     std::vector<RealDataStruct> importedData() const;
 
+    void setTargetCanvas(const std::vector<std::string>& canvas_names, int current_index);
+
+    int targetCanvasIndex() const;
+
 protected:
     void keyPressEvent(QKeyEvent *event) override;
     void accept() override;
