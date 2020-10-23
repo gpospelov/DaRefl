@@ -12,7 +12,7 @@
 
 #include <QWidget>
 
-class ImportTextViewV2;
+class ImportTextView;
 class ImportTableWidget;
 class QTabWidget;
 
@@ -20,7 +20,7 @@ namespace DataLoader
 {
 class ParserInterface;
 struct ColumnInfo;
-}
+} // namespace DataLoader
 
 //! Panel with settings for DataLoaderDialog.
 //! Located on its right side, contains text and table views.
@@ -32,14 +32,12 @@ class LoaderPreviewPanel : public QWidget
 public:
     LoaderPreviewPanel(QWidget* parent = nullptr);
 
-    void setTextData(const std::vector<std::string>& textData);
     void showData(const DataLoader::ParserInterface* parser);
 
     std::vector<DataLoader::ColumnInfo> columnInfo() const;
 
-
 private:
-    ImportTextViewV2* m_textView{nullptr};
+    ImportTextView* m_textView{nullptr};
     ImportTableWidget* m_tableWidget{nullptr};
     QTabWidget* m_tabWidget{nullptr};
 };

@@ -1,8 +1,8 @@
 target_sources(${library_name} PRIVATE
     datahandler.cpp
     datahandler.h
-    dataloader_types.h
     dataloader_constants.h
+    dataloader_types.h
     dataloaderdialog.cpp
     dataloaderdialog.h
     dataloadertoolbar.cpp
@@ -11,14 +11,14 @@ target_sources(${library_name} PRIVATE
     defaultparser.h
     importfilewidget.cpp
     importfilewidget.h
+    importtableheader.cpp
+    importtableheader.h
     importtablemodel.cpp
     importtablemodel.h
     importtablewidget.cpp
     importtablewidget.h
-    importtableheader.cpp
-    importtableheader.h
-    importtextview_v2.cpp
-    importtextview_v2.h
+    importtextview.cpp
+    importtextview.h
     loaderpreviewpanel.cpp
     loaderpreviewpanel.h
     loaderselectorpanel.cpp

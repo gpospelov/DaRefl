@@ -12,7 +12,7 @@
 #include <QTabWidget>
 #include <QVBoxLayout>
 #include <darefl/dataloader/importtablewidget.h>
-#include <darefl/dataloader/importtextview_v2.h>
+#include <darefl/dataloader/importtextview.h>
 #include <darefl/dataloader/loaderpreviewpanel.h>
 #include <darefl/dataloader/parserinterface.h>
 #include <darefl/dataloader/parseutils.h>
@@ -25,7 +25,7 @@ const std::string blue{"#1b4f72"};
 } // namespace
 
 LoaderPreviewPanel::LoaderPreviewPanel(QWidget* parent)
-    : QWidget(parent), m_textView(new ImportTextViewV2), m_tableWidget(new ImportTableWidget),
+    : QWidget(parent), m_textView(new ImportTextView), m_tableWidget(new ImportTableWidget),
       m_tabWidget(new QTabWidget)
 {
     auto layout = new QVBoxLayout(this);
