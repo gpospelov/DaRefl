@@ -7,9 +7,9 @@
 //
 // ************************************************************************** //
 
-#include <darefl/dataloader2/importtableheader.h>
-#include <darefl/dataloader2/importtablemodel.h>
-#include <darefl/dataloader2/dataloader_types.h>
+#include <darefl/dataloader/importtableheader.h>
+#include <darefl/dataloader/importtablemodel.h>
+#include <darefl/dataloader/dataloader_types.h>
 
 namespace
 {

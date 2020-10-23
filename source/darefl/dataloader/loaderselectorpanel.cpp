@@ -9,10 +9,10 @@
 
 #include <QSplitter>
 #include <QVBoxLayout>
-#include <darefl/dataloader2/defaultparser.h>
-#include <darefl/dataloader2/importfilewidget_v2.h>
-#include <darefl/dataloader2/loaderselectorpanel.h>
-#include <darefl/dataloader2/parserpropertywidget.h>
+#include <darefl/dataloader/defaultparser.h>
+#include <darefl/dataloader/importfilewidget_v2.h>
+#include <darefl/dataloader/loaderselectorpanel.h>
+#include <darefl/dataloader/parserpropertywidget.h>
 
 LoaderSelectorPanel::LoaderSelectorPanel(QWidget* parent)
     : QWidget(parent), m_fileSelectorWidget(new ImportFileWidgetV2),

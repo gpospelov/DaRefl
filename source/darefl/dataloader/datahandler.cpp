@@ -8,8 +8,8 @@
 // ************************************************************************** //
 
 #include <QDebug>
-#include <darefl/dataloader2/datahandler.h>
-#include <darefl/dataloader2/parseutils.h>
+#include <darefl/dataloader/datahandler.h>
+#include <darefl/dataloader/parseutils.h>
 #include <iostream>
 #include <mvvm/utils/containerutils.h>
 

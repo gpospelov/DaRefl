@@ -9,8 +9,8 @@
 
 #include "google_test.h"
 #include "test_utils.h"
-#include <darefl/dataloader2/dataloader_types.h>
-#include <darefl/dataloader2/defaultparser.h>
+#include <darefl/dataloader/dataloader_types.h>
+#include <darefl/dataloader/defaultparser.h>
 
 using namespace DataLoader;
 using TestUtils::toStringVector;

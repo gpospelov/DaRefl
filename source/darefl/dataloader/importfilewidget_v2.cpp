@@ -15,7 +15,7 @@
 #include <QStringListModel>
 #include <QVBoxLayout>
 #include <darefl/core/app_constants.h>
-#include <darefl/dataloader2/importfilewidget_v2.h>
+#include <darefl/dataloader/importfilewidget_v2.h>
 #include <mvvm/utils/fileutils.h>
 
 namespace

@@ -9,7 +9,7 @@
 
 #include <QAction>
 #include <QComboBox>
-#include <darefl/dataloader2/dataloadertoolbar.h>
+#include <darefl/dataloader/dataloadertoolbar.h>
 #include <darefl/mainwindow/styleutils.h>
 #include <mvvm/widgets/widgetutils.h>
 

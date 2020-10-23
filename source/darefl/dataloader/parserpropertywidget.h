@@ -12,7 +12,7 @@
 
 #include <QWidget>
 #include <memory>
-#include <darefl/dataloader2/dataloader_types.h>
+#include <darefl/dataloader/dataloader_types.h>
 
 namespace DataLoader {
 class ParserInterface;

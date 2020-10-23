@@ -10,8 +10,8 @@
 #ifndef DAREFL_DATALOADER2_DEFAULTPARSER_H
 #define DAREFL_DATALOADER2_DEFAULTPARSER_H
 
-#include <darefl/dataloader2/dataloader_types.h>
-#include <darefl/dataloader2/parserinterface.h>
+#include <darefl/dataloader/dataloader_types.h>
+#include <darefl/dataloader/parserinterface.h>
 #include <map>
 
 namespace DataLoader

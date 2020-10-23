@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include <darefl/dataloader2/defaultparser.h>
-#include <darefl/dataloader2/parseutils.h>
+#include <darefl/dataloader/defaultparser.h>
+#include <darefl/dataloader/parseutils.h>
 #include <stdexcept>
 
 using namespace DataLoader;

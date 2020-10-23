@@ -11,11 +11,11 @@
 #include <QDebug>
 #include <QTabWidget>
 #include <QVBoxLayout>
-#include <darefl/dataloader2/importtablewidget.h>
-#include <darefl/dataloader2/importtextview_v2.h>
-#include <darefl/dataloader2/loaderpreviewpanel.h>
-#include <darefl/dataloader2/parserinterface.h>
-#include <darefl/dataloader2/parseutils.h>
+#include <darefl/dataloader/importtablewidget.h>
+#include <darefl/dataloader/importtextview_v2.h>
+#include <darefl/dataloader/loaderpreviewpanel.h>
+#include <darefl/dataloader/parserinterface.h>
+#include <darefl/dataloader/parseutils.h>
 
 namespace
 {

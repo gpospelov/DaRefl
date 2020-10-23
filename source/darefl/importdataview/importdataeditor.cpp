@@ -9,7 +9,7 @@
 
 #include <QSplitter>
 #include <QVBoxLayout>
-#include <darefl/dataloader2/dataloaderdialog_v2.h>
+#include <darefl/dataloader/dataloaderdialog_v2.h>
 #include <darefl/importdataview/dataselectionmodel.h>
 #include <darefl/importdataview/dataselectorwidget.h>
 #include <darefl/importdataview/dataviewmodel.h>
