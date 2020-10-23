@@ -9,8 +9,8 @@
 
 #include <algorithm>
 #include <cctype>
-#include <darefl/dataloader2/dataloader_constants.h>
-#include <darefl/dataloader2/parseutils.h>
+#include <darefl/dataloader/dataloader_constants.h>
+#include <darefl/dataloader/parseutils.h>
 #include <darefl/model/experimentaldata_types.h>
 #include <fstream>
 #include <iostream>

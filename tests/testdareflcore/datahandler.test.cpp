@@ -9,7 +9,7 @@
 
 #include "folderbasedtest.h"
 #include "test_utils.h"
-#include <darefl/dataloader2/datahandler.h>
+#include <darefl/dataloader/datahandler.h>
 #include <mvvm/utils/fileutils.h>
 
 using TestUtils::toStringVector;

@@ -15,14 +15,14 @@
 #include <QSplitter>
 #include <QVBoxLayout>
 #include <darefl/core/app_constants.h>
-#include <darefl/dataloader2/datahandler.h>
-#include <darefl/dataloader2/dataloader_types.h>
-#include <darefl/dataloader2/dataloaderdialog_v2.h>
-#include <darefl/dataloader2/dataloadertoolbar.h>
-#include <darefl/dataloader2/loaderpreviewpanel.h>
-#include <darefl/dataloader2/loaderselectorpanel.h>
-#include <darefl/dataloader2/parserinterface.h>
-#include <darefl/dataloader2/parseutils.h>
+#include <darefl/dataloader/datahandler.h>
+#include <darefl/dataloader/dataloader_types.h>
+#include <darefl/dataloader/dataloaderdialog_v2.h>
+#include <darefl/dataloader/dataloadertoolbar.h>
+#include <darefl/dataloader/loaderpreviewpanel.h>
+#include <darefl/dataloader/loaderselectorpanel.h>
+#include <darefl/dataloader/parserinterface.h>
+#include <darefl/dataloader/parseutils.h>
 #include <mvvm/utils/fileutils.h>
 
 namespace

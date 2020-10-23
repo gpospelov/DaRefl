@@ -10,7 +10,7 @@
 #ifndef DAREFL_DATALOADER2_PARSEUTILS_H
 #define DAREFL_DATALOADER2_PARSEUTILS_H
 
-#include <darefl/dataloader2/dataloader_types.h>
+#include <darefl/dataloader/dataloader_types.h>
 #include <optional>
 
 class RealDataStruct;

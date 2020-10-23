@@ -16,8 +16,8 @@
 #include <QLineEdit>
 #include <QRadioButton>
 #include <QVBoxLayout>
-#include <darefl/dataloader2/defaultparser.h>
-#include <darefl/dataloader2/parserpropertywidget.h>
+#include <darefl/dataloader/defaultparser.h>
+#include <darefl/dataloader/parserpropertywidget.h>
 #include <mvvm/widgets/widgetutils.h>
 
 namespace

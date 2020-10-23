@@ -10,9 +10,9 @@
 #include <QStandardItemModel>
 #include <QTableView>
 #include <QVBoxLayout>
-#include <darefl/dataloader2/dataloader_types.h>
-#include <darefl/dataloader2/importtablemodel.h>
-#include <darefl/dataloader2/importtablewidget.h>
+#include <darefl/dataloader/dataloader_types.h>
+#include <darefl/dataloader/importtablemodel.h>
+#include <darefl/dataloader/importtablewidget.h>
 #include <mvvm/editors/combopropertyeditor.h>
 #include <mvvm/model/comboproperty.h>
 #include <mvvm/viewmodel/viewmodeldelegate.h>

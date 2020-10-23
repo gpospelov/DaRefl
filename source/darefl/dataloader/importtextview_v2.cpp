@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include <darefl/dataloader2/importtextview_v2.h>
+#include <darefl/dataloader/importtextview_v2.h>
 #include <mvvm/widgets/widgetutils.h>
 
 #include <QPainter>
