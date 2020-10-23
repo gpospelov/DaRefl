@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_DATALOADER_IMPORTTEXTVIEW_V2_H
-#define DAREFL_DATALOADER_IMPORTTEXTVIEW_V2_H
+#ifndef DAREFL_DATALOADER_IMPORTTEXTVIEW_H
+#define DAREFL_DATALOADER_IMPORTTEXTVIEW_H
 
 //! Based on Qt example "codeeditor"
 //! Copyright (C) 2016 The Qt Company Ltd.
@@ -22,14 +22,14 @@ class QWidget;
 
 class LineNumberArea;
 
-//! Text view to show importedd data.
+//! Text view to show imported data.
 
-class ImportTextViewV2 : public QPlainTextEdit
+class ImportTextView : public QPlainTextEdit
 {
     Q_OBJECT
 
 public:
-    ImportTextViewV2(QWidget* parent = nullptr);
+    ImportTextView(QWidget* parent = nullptr);
 
     void lineNumberAreaPaintEvent(QPaintEvent* event);
     int lineNumberAreaWidth();
@@ -51,7 +51,7 @@ private:
 class LineNumberArea : public QWidget
 {
 public:
-    LineNumberArea(ImportTextViewV2* editor) : QWidget(editor), codeEditor(editor) {}
+    LineNumberArea(ImportTextView* editor) : QWidget(editor), codeEditor(editor) {}
 
     QSize sizeHint() const override { return QSize(codeEditor->lineNumberAreaWidth(), 0); }
 
@@ -59,7 +59,7 @@ protected:
     void paintEvent(QPaintEvent* event) override { codeEditor->lineNumberAreaPaintEvent(event); }
 
 private:
-    ImportTextViewV2* codeEditor;
+    ImportTextView* codeEditor;
 };
 
-#endif // DAREFL_DATALOADER_IMPORTTEXTVIEW_V2_H
+#endif // DAREFL_DATALOADER_IMPORTTEXTVIEW_H

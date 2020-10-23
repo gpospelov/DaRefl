@@ -7,8 +7,11 @@
 //
 // ************************************************************************** //
 
-#include <darefl/dataloader/importtextview_v2.h>
+#include <darefl/dataloader/importtextview.h>
 #include <mvvm/widgets/widgetutils.h>
+
+//! Based on Qt example "codeeditor"
+//! Copyright (C) 2016 The Qt Company Ltd.
 
 #include <QPainter>
 #include <QTextBlock>
@@ -17,15 +20,15 @@ namespace {
 const int line_number_gap = 4;
 }
 
-ImportTextViewV2::ImportTextViewV2(QWidget* parent) : QPlainTextEdit(parent)
+ImportTextView::ImportTextView(QWidget* parent) : QPlainTextEdit(parent)
 {
     lineNumberArea = new LineNumberArea(this);
 
-    connect(this, &ImportTextViewV2::blockCountChanged, this,
-            &ImportTextViewV2::updateLineNumberAreaWidth);
-    connect(this, &ImportTextViewV2::updateRequest, this, &ImportTextViewV2::updateLineNumberArea);
-    connect(this, &ImportTextViewV2::cursorPositionChanged, this,
-            &ImportTextViewV2::highlightCurrentLine);
+    connect(this, &ImportTextView::blockCountChanged, this,
+            &ImportTextView::updateLineNumberAreaWidth);
+    connect(this, &ImportTextView::updateRequest, this, &ImportTextView::updateLineNumberArea);
+    connect(this, &ImportTextView::cursorPositionChanged, this,
+            &ImportTextView::highlightCurrentLine);
 
     updateLineNumberAreaWidth(0);
 //    highlightCurrentLine();
@@ -36,7 +39,7 @@ ImportTextViewV2::ImportTextViewV2(QWidget* parent) : QPlainTextEdit(parent)
     setFont(QFont("Monospace", ModelView::Utils::SystemPointSize()*0.8, QFont::Light));
 }
 
-int ImportTextViewV2::lineNumberAreaWidth()
+int ImportTextView::lineNumberAreaWidth()
 {
     int digits = 1;
     int max = qMax(1, blockCount());
@@ -50,12 +53,12 @@ int ImportTextViewV2::lineNumberAreaWidth()
     return space;
 }
 
-void ImportTextViewV2::updateLineNumberAreaWidth(int /* newBlockCount */)
+void ImportTextView::updateLineNumberAreaWidth(int /* newBlockCount */)
 {
     setViewportMargins(lineNumberAreaWidth(), 0, 0, 0);
 }
 
-void ImportTextViewV2::updateLineNumberArea(const QRect& rect, int dy)
+void ImportTextView::updateLineNumberArea(const QRect& rect, int dy)
 {
     if (dy)
         lineNumberArea->scroll(0, dy);
@@ -66,7 +69,7 @@ void ImportTextViewV2::updateLineNumberArea(const QRect& rect, int dy)
         updateLineNumberAreaWidth(0);
 }
 
-void ImportTextViewV2::resizeEvent(QResizeEvent* e)
+void ImportTextView::resizeEvent(QResizeEvent* e)
 {
     QPlainTextEdit::resizeEvent(e);
 
@@ -74,7 +77,7 @@ void ImportTextViewV2::resizeEvent(QResizeEvent* e)
     lineNumberArea->setGeometry(QRect(cr.left(), cr.top(), lineNumberAreaWidth(), cr.height()));
 }
 
-void ImportTextViewV2::highlightCurrentLine()
+void ImportTextView::highlightCurrentLine()
 {
     QList<QTextEdit::ExtraSelection> extraSelections;
 
@@ -93,7 +96,7 @@ void ImportTextViewV2::highlightCurrentLine()
     setExtraSelections(extraSelections);
 }
 
-void ImportTextViewV2::lineNumberAreaPaintEvent(QPaintEvent* event)
+void ImportTextView::lineNumberAreaPaintEvent(QPaintEvent* event)
 {
     QPainter painter(lineNumberArea);
     painter.fillRect(event->rect(), Qt::lightGray);
