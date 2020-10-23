@@ -41,6 +41,7 @@ ImportFileWidgetV2::ImportFileWidgetV2(QWidget* parent)
     m_listView->setModel(m_listModel);
     m_listView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     m_listView->setAlternatingRowColors(true);
+    m_listView->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     connect(m_listView->selectionModel(), &QItemSelectionModel::selectionChanged, this,
             &ImportFileWidgetV2::fileSelectionChanged);
@@ -72,7 +73,16 @@ void ImportFileWidgetV2::onAddFilesRequest()
 
 //! Removes currently selected file
 
-void ImportFileWidgetV2::onRemoveFileRequest() {}
+void ImportFileWidgetV2::onRemoveFileRequest()
+{
+    auto selected = m_listView->selectionModel()->selectedIndexes();
+    while (!selected.empty()) {
+        m_listModel->removeRow(selected.back().row());
+        selected = m_listView->selectionModel()->selectedIndexes();
+    }
+
+    makeLastSelected();
+}
 
 //! Retuns the list of all file names imported by the user.
 
@@ -130,7 +140,11 @@ void ImportFileWidgetV2::addFileNamesToModel(const QStringList& file_names)
 
     emit fileNamesChanged();
 
-    // make last selected
+    makeLastSelected();
+}
+
+void ImportFileWidgetV2::makeLastSelected()
+{
     if (m_listView->selectionModel()->selectedIndexes().empty()) {
         auto flags = QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows;
         auto toSelect = m_listModel->index(m_listModel->rowCount() - 1);

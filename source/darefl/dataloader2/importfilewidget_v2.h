@@ -46,6 +46,8 @@ private:
     void updateCurrentWorkdir(const QStringList& file_names);
     void addFileNamesToModel(const QStringList& file_names);
 
+    void makeLastSelected();
+
     QListView* m_listView{nullptr};
     QStringListModel* m_listModel{nullptr};
     QString m_currentWorkdir;
