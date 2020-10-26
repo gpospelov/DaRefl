@@ -43,6 +43,8 @@ private:
     void readSettings();
     void writeSettings();
 
+    QStringList validateForBinaryFiles(const QStringList& file_names);
+
     void updateCurrentWorkdir(const QStringList& file_names);
     void addFileNamesToModel(const QStringList& file_names);
 
