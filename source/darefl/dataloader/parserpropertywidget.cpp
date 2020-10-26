@@ -16,6 +16,7 @@
 #include <QLineEdit>
 #include <QRadioButton>
 #include <QVBoxLayout>
+#include <QRegExpValidator>
 #include <darefl/dataloader/defaultparser.h>
 #include <darefl/dataloader/parserpropertywidget.h>
 #include <mvvm/widgets/widgetutils.h>
@@ -252,6 +253,10 @@ void ParserPropertyWidget::addIgnoreNumbersPatternRow(QGridLayout* layout)
     layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
     layout->addWidget(lineNumbersRadio, row, 1, Qt::AlignLeft);
     layout->addWidget(lineNumbersLineEdit, row, 2, Qt::AlignLeft);
+
+    // validator
+    auto validator = new QRegExpValidator(QRegExp("^[0-9,-]*$"), this);
+    lineNumbersLineEdit->setValidator(validator);
 }
 
 //! Adds row to the grid: elements related to the import target.
