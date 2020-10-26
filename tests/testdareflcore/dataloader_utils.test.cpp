@@ -10,7 +10,7 @@
 #include "folderbasedtest.h"
 #include "test_utils.h"
 #include <darefl/dataloader/dataloader_constants.h>
-#include <darefl/dataloader/parseutils.h>
+#include <darefl/dataloader/dataloader_utils.h>
 #include <darefl/model/experimentaldata_types.h>
 #include <initializer_list>
 #include <vector>

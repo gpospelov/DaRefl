@@ -3,6 +3,8 @@ target_sources(${library_name} PRIVATE
     datahandler.h
     dataloader_constants.h
     dataloader_types.h
+    dataloader_utils.cpp
+    dataloader_utils.h
     dataloaderdialog.cpp
     dataloaderdialog.h
     dataloadertoolbar.cpp
@@ -26,7 +28,5 @@ target_sources(${library_name} PRIVATE
     parserinterface.h
     parserpropertywidget.cpp
     parserpropertywidget.h
-    parseutils.cpp
-    parseutils.h
 )
 
