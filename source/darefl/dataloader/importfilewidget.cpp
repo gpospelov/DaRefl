@@ -7,7 +7,6 @@
 //
 // ************************************************************************** //
 
-#include <QDebug>
 #include <QFileDialog>
 #include <QItemSelectionModel>
 #include <QListView>
@@ -67,8 +66,6 @@ void ImportFileWidget::onAddFilesRequest()
 
     updateCurrentWorkdir(file_names);
     addFileNamesToModel(file_names);
-
-    emit fileNamesChanged();
 }
 
 //! Removes currently selected file
