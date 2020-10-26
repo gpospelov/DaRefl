@@ -7,6 +7,7 @@
 //
 // ************************************************************************** //
 
+#include <QBrush>
 #include <darefl/dataloader/dataloader_types.h>
 #include <darefl/dataloader/importtableheader.h>
 #include <darefl/dataloader/importtablemodel.h>
@@ -61,6 +62,9 @@ QVariant ImportTableModel::data(const QModelIndex& index, int role) const
 
     if (role == Qt::DisplayRole || role == Qt::EditRole)
         return dataFromIndex(index);
+
+    else if (role == Qt::BackgroundRole && index.row() < utilityRowCount())
+        return QBrush(Qt::lightGray);
 
     return QVariant();
 }
