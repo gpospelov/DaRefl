@@ -11,6 +11,7 @@
 #include <darefl/dataloader/dataloader_utils.h>
 #include <darefl/model/experimentaldata_types.h>
 #include <fstream>
+#include <algorithm>
 #include <mvvm/utils/stringutils.h>
 
 namespace
