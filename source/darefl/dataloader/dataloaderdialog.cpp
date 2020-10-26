@@ -28,6 +28,27 @@
 
 namespace
 {
+
+//! Wraps user method in try/catch and invoke it.
+//! Provides busy-sign while executing, and warning dialog on exception catch.
+template <typename T> void invoke_and_catch(T method)
+{
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    try {
+        std::invoke(method);
+        QApplication::restoreOverrideCursor();
+    } catch (const std::exception& ex) {
+        QApplication::restoreOverrideCursor();
+        QMessageBox msgBox;
+
+        QString message =
+            QString("Exception was thrown while trying to load files\n\n%1").arg(ex.what());
+        msgBox.setText(message);
+        msgBox.setIcon(msgBox.Critical);
+        msgBox.exec();
+    }
+}
+
 std::vector<std::string> toStringVector(const QStringList& container)
 {
     std::vector<std::string> result;
@@ -136,9 +157,7 @@ void DataLoaderDialog::keyPressEvent(QKeyEvent* event)
 
 void DataLoaderDialog::accept()
 {
-    QApplication::setOverrideCursor(Qt::WaitCursor);
-    onParseAllRequest();
-    QApplication::restoreOverrideCursor();
+    invoke_and_catch([this]() { onParseAllRequest(); });
 
     QDialog::accept();
     close();
@@ -148,20 +167,10 @@ void DataLoaderDialog::accept()
 
 void DataLoaderDialog::onLoadFilesRequest()
 {
-    QApplication::setOverrideCursor(Qt::WaitCursor);
-    try {
+    auto update_raw_data = [this]() {
         m_dataHandler->updateRawData(toStringVector(m_selectorPanel->fileNames()));
-        QApplication::restoreOverrideCursor();
-    } catch (const std::exception& ex) {
-        QApplication::restoreOverrideCursor();
-        QMessageBox msgBox;
-
-        QString message =
-            QString("Exception was thrown while trying to load files\n\n%1").arg(ex.what());
-        msgBox.setText(message);
-        msgBox.setIcon(msgBox.Critical);
-        msgBox.exec();
-    }
+    };
+    invoke_and_catch(update_raw_data);
 }
 
 //! Show content of selected file in text/table views.
