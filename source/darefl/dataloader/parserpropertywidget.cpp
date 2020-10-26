@@ -89,7 +89,7 @@ QGridLayout* ParserPropertyWidget::createGridLayout()
     addIgnoreStringPatternRow(grid_layout);
     addIgnoreNumbersPatternRow(grid_layout);
 
-    addSectionLabel("Import targed", grid_layout);
+    addSectionLabel("Import target", grid_layout);
     addImportToBlock(grid_layout);
 
     // make first colum with invisible label fixed
@@ -187,27 +187,27 @@ void ParserPropertyWidget::addCustomSeparatorRow(QGridLayout* layout, QButtonGro
 
 void ParserPropertyWidget::addIgnoreStringPatternRow(QGridLayout* layout)
 {
-    auto startingFromRadio = new QRadioButton;
+    auto startingWithRadio = new QRadioButton;
     auto startingFromLineEdit = new QLineEdit;
 
     // radio settings
     int row = layout->rowCount();
-    startingFromRadio->setText("Starting from");
-    startingFromRadio->setAutoExclusive(false);
-    startingFromRadio->setChecked(true);
-    startingFromRadio->setToolTip("Ignore lines starting from a given character(s)");
+    startingWithRadio->setText("Starting with");
+    startingWithRadio->setAutoExclusive(false);
+    startingWithRadio->setChecked(true);
+    startingWithRadio->setToolTip("Ignore lines starting with a given character(s)");
     auto on_startingfrom_radio = [this, startingFromLineEdit](auto checked) {
         m_options.m_header_prefix =
             checked ? startingFromLineEdit->text().toStdString() : std::string();
         onParserPropertyChange();
     };
-    connect(startingFromRadio, &QRadioButton::clicked, on_startingfrom_radio);
+    connect(startingWithRadio, &QRadioButton::clicked, on_startingfrom_radio);
 
     // line edit settings
     startingFromLineEdit->setText("#");
-    startingFromLineEdit->setToolTip("Ignore lines starting from a given character(s)");
-    auto on_startingfrom_lineedit = [this, startingFromRadio, startingFromLineEdit]() {
-        if (startingFromRadio->isChecked())
+    startingFromLineEdit->setToolTip("Ignore lines starting with a given character(s)");
+    auto on_startingfrom_lineedit = [this, startingWithRadio, startingFromLineEdit]() {
+        if (startingWithRadio->isChecked())
             m_options.m_header_prefix = startingFromLineEdit->text().toStdString();
         onParserPropertyChange();
     };
@@ -215,7 +215,7 @@ void ParserPropertyWidget::addIgnoreStringPatternRow(QGridLayout* layout)
 
     // adding to layout
     layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
-    layout->addWidget(startingFromRadio, row, 1, Qt::AlignLeft);
+    layout->addWidget(startingWithRadio, row, 1, Qt::AlignLeft);
     layout->addWidget(startingFromLineEdit, row, 2, Qt::AlignLeft);
 }
 
