@@ -134,6 +134,26 @@ void DataLoaderDialog::accept()
     close();
 }
 
+//! Loads ASCII data from all files in a list.
+
+void DataLoaderDialog::onLoadFilesRequest(const QStringList& file_names)
+{
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    try {
+        m_dataHandler->updateRawData(toStringVector(file_names));
+        QApplication::restoreOverrideCursor();
+    } catch (const std::exception& ex) {
+        QApplication::restoreOverrideCursor();
+        QMessageBox msgBox;
+
+        QString message =
+            QString("Exception was thrown while trying to load files\n\n%1").arg(ex.what());
+        msgBox.setText(message);
+        msgBox.setIcon(msgBox.Critical);
+        msgBox.exec();
+    }
+}
+
 //! Saves dialog settings.
 
 void DataLoaderDialog::readSettings()
@@ -178,23 +198,8 @@ void DataLoaderDialog::init_connections()
             &LoaderSelectorPanel::onRemoveFileRequest);
 
     // connect LoaderSelectorPanel with DataHandler
-    auto on_file_list_changed = [this](const auto& file_names) {
-        QApplication::setOverrideCursor(Qt::WaitCursor);
-        try {
-            m_dataHandler->updateRawData(toStringVector(file_names));
-            QApplication::restoreOverrideCursor();
-        } catch (const std::exception& ex) {
-            QApplication::restoreOverrideCursor();
-            QMessageBox msgBox;
-
-            QString message =
-                QString("Exception was thrown while trying to load files\n\n%1").arg(ex.what());
-            msgBox.setText(message);
-            msgBox.setIcon(msgBox.Critical);
-            msgBox.exec();
-        }
-    };
-    connect(m_selectorPanel, &LoaderSelectorPanel::fileNamesChanged, on_file_list_changed);
+    connect(m_selectorPanel, &LoaderSelectorPanel::fileNamesChanged, this,
+            &DataLoaderDialog::onLoadFilesRequest);
 
     connect(m_selectorPanel, &LoaderSelectorPanel::fileSelectionChanged,
             [this]() { process_data(); });

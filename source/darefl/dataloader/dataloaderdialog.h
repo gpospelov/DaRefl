@@ -43,6 +43,9 @@ protected:
     void keyPressEvent(QKeyEvent* event) override;
     void accept() override;
 
+private slots:
+    void onLoadFilesRequest(const QStringList&);
+
 private:
     void readSettings();
     void writeSettings();
