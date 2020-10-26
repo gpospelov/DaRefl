@@ -85,7 +85,7 @@ DataLoaderDialog::DataLoaderDialog(QWidget* parent)
     layout->addWidget(m_splitter);
     layout->addWidget(button_box);
 
-    init_connections();
+    initConnections();
     setWindowTitle("Data import dialog");
 
     readSettings();
@@ -96,10 +96,14 @@ DataLoaderDialog::~DataLoaderDialog()
     writeSettings();
 }
 
+//! Returns the result of whole parsing.
+
 std::vector<RealDataStruct> DataLoaderDialog::importedData() const
 {
     return m_parsedData;
 }
+
+//! Set list of target canvas to define entr where to import.
 
 void DataLoaderDialog::setTargetCanvas(const std::vector<std::string>& canvas_names,
                                        int current_index)
@@ -107,15 +111,21 @@ void DataLoaderDialog::setTargetCanvas(const std::vector<std::string>& canvas_na
     m_selectorPanel->setTargetCanvas(toStringList(canvas_names), current_index);
 }
 
+//! Returns index of target canvas for graph import.
+
 int DataLoaderDialog::targetCanvasIndex() const
 {
     return m_selectorPanel->targetCanvasIndex();
 }
 
+//! Invokes file selector dialog.
+
 void DataLoaderDialog::invokeFileSelectorDialog()
 {
     m_selectorPanel->onAddFilesRequest();
 }
+
+//! Make dialog intact to enter-key to handle it by LoadSelectorPanel.
 
 void DataLoaderDialog::keyPressEvent(QKeyEvent* event)
 {
@@ -127,7 +137,7 @@ void DataLoaderDialog::keyPressEvent(QKeyEvent* event)
 void DataLoaderDialog::accept()
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
-    process_all();
+    onParseAllRequest();
     QApplication::restoreOverrideCursor();
 
     QDialog::accept();
@@ -151,6 +161,45 @@ void DataLoaderDialog::onLoadFilesRequest(const QStringList& file_names)
         msgBox.setText(message);
         msgBox.setIcon(msgBox.Critical);
         msgBox.exec();
+    }
+}
+
+//! Show content of selected file in text/table views.
+
+void DataLoaderDialog::onShowFilePreviewRequest()
+{
+    auto selected_files = m_selectorPanel->selectedFileNames();
+    if (selected_files.empty())
+        return;
+
+    auto data_to_parse = m_dataHandler->textData(selected_files.back().toStdString());
+
+    // creating parser using current settings
+    auto parser = m_selectorPanel->createParser();
+    parser->process(data_to_parse);
+
+    m_previewPanel->showData(parser.get());
+}
+
+//! Parse all string data and generate graph data.
+
+void DataLoaderDialog::onParseAllRequest()
+{
+    m_parsedData.clear();
+
+    auto parser = m_selectorPanel->createParser();
+    for (const auto& name : m_selectorPanel->fileNames()) {
+        auto data_to_parse = m_dataHandler->textData(name.toStdString());
+
+        parser->process(data_to_parse);
+        auto parsed_text = parser->parseResults();
+
+        auto columns = m_previewPanel->columnInfo();
+        for (auto [axis_info, intensity_info] : DataLoader::CreateGraphInfoPairs(columns)) {
+            auto data = DataLoader::CreateData(parsed_text, axis_info, intensity_info);
+            data.name = ModelView::Utils::base_name(name.toStdString());
+            m_parsedData.emplace_back(data);
+        }
     }
 }
 
@@ -189,7 +238,7 @@ void DataLoaderDialog::writeSettings()
 
 //! Init interconnections of all widgets.
 
-void DataLoaderDialog::init_connections()
+void DataLoaderDialog::initConnections()
 {
     // connect toolbar and LoaderSelectorPanel
     connect(m_toolBar, &DataLoaderToolBar::addFilesRequest, m_selectorPanel,
@@ -197,51 +246,15 @@ void DataLoaderDialog::init_connections()
     connect(m_toolBar, &DataLoaderToolBar::removeFilesRequest, m_selectorPanel,
             &LoaderSelectorPanel::onRemoveFileRequest);
 
-    // connect LoaderSelectorPanel with DataHandler
+    // updates raw data container when file list changed
     connect(m_selectorPanel, &LoaderSelectorPanel::fileNamesChanged, this,
             &DataLoaderDialog::onLoadFilesRequest);
 
-    connect(m_selectorPanel, &LoaderSelectorPanel::fileSelectionChanged,
-            [this]() { process_data(); });
+    // update text/table view when file selection changed
+    connect(m_selectorPanel, &LoaderSelectorPanel::fileSelectionChanged, this,
+            &DataLoaderDialog::onShowFilePreviewRequest);
 
-    connect(m_selectorPanel, &LoaderSelectorPanel::parserPropertyChanged,
-            [this]() { process_data(); });
-}
-
-//! Process currently selected file with given parser settings.
-
-void DataLoaderDialog::process_data()
-{
-    auto selected_files = m_selectorPanel->selectedFileNames();
-    if (selected_files.empty())
-        return;
-
-    auto data_to_parse = m_dataHandler->textData(selected_files.back().toStdString());
-
-    auto parser = m_selectorPanel->createParser();
-    parser->process(data_to_parse);
-
-    m_previewPanel->showData(parser.get());
-}
-
-//! Parse all string data and generate graph data.
-
-void DataLoaderDialog::process_all()
-{
-    m_parsedData.clear();
-
-    auto parser = m_selectorPanel->createParser();
-    for (const auto& name : m_selectorPanel->fileNames()) {
-        auto data_to_parse = m_dataHandler->textData(name.toStdString());
-
-        parser->process(data_to_parse);
-        auto parsed_text = parser->parseResults();
-
-        auto columns = m_previewPanel->columnInfo();
-        for (auto [axis_info, intensity_info] : DataLoader::CreateGraphInfoPairs(columns)) {
-            auto data = DataLoader::CreateData(parsed_text, axis_info, intensity_info);
-            data.name = ModelView::Utils::base_name(name.toStdString());
-            m_parsedData.emplace_back(data);
-        }
-    }
+    // update text/table view when parser properties changed
+    connect(m_selectorPanel, &LoaderSelectorPanel::parserPropertyChanged, this,
+            &DataLoaderDialog::onShowFilePreviewRequest);
 }
