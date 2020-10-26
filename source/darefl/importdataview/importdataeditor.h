@@ -13,7 +13,6 @@
 #include <QWidget>
 #include <string>
 
-
 class ExperimentalDataModel;
 struct RealDataStruct;
 class DataViewModel;
@@ -43,14 +42,14 @@ private:
 
     std::pair<std::vector<std::string>, int> canvasInfo() const;
 
-    std::string activeCanvasName() const;
-    void onImportDialogAccept2(const std::vector<RealDataStruct>& experimental_data, CanvasItem* canvas);
+    void onImportDialogAccept(const std::vector<RealDataStruct>& experimental_data,
+                              CanvasItem* canvas);
 
 private:
     DataSelectionModel* selectionModel() const;
 
-    ExperimentalDataModel* p_model{nullptr};
-    DataViewModel* p_view_model{nullptr};
+    ExperimentalDataModel* m_dataModel{nullptr};
+    DataViewModel* m_viewModel{nullptr};
     ImportDataEditorActions* m_editorActions{nullptr};
     ImportDataEditorToolBar* m_editorToolBar{nullptr};
     DataSelectorWidget* m_dataSelectorWidget{nullptr};
