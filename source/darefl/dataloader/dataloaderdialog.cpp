@@ -146,11 +146,11 @@ void DataLoaderDialog::accept()
 
 //! Loads ASCII data from all files in a list.
 
-void DataLoaderDialog::onLoadFilesRequest(const QStringList& file_names)
+void DataLoaderDialog::onLoadFilesRequest()
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
     try {
-        m_dataHandler->updateRawData(toStringVector(file_names));
+        m_dataHandler->updateRawData(toStringVector(m_selectorPanel->fileNames()));
         QApplication::restoreOverrideCursor();
     } catch (const std::exception& ex) {
         QApplication::restoreOverrideCursor();
