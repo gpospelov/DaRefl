@@ -14,7 +14,7 @@
 #include <darefl/dataloader/importtextview.h>
 #include <darefl/dataloader/loaderpreviewpanel.h>
 #include <darefl/dataloader/parserinterface.h>
-#include <darefl/dataloader/parseutils.h>
+#include <darefl/dataloader/dataloader_utils.h>
 
 namespace
 {

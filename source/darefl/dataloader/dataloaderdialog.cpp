@@ -22,7 +22,7 @@
 #include <darefl/dataloader/loaderpreviewpanel.h>
 #include <darefl/dataloader/loaderselectorpanel.h>
 #include <darefl/dataloader/parserinterface.h>
-#include <darefl/dataloader/parseutils.h>
+#include <darefl/dataloader/dataloader_utils.h>
 #include <mvvm/utils/fileutils.h>
 
 namespace
