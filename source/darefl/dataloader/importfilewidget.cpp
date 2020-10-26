@@ -10,11 +10,13 @@
 #include <QFileDialog>
 #include <QItemSelectionModel>
 #include <QListView>
+#include <QMessageBox>
 #include <QSettings>
 #include <QStringListModel>
 #include <QVBoxLayout>
 #include <darefl/core/app_constants.h>
 #include <darefl/dataloader/importfilewidget.h>
+#include <mvvm/utils/binutils.h>
 #include <mvvm/utils/fileutils.h>
 
 namespace
@@ -60,6 +62,8 @@ void ImportFileWidget::onAddFilesRequest()
     dialog.setNameFilter("Text (*.txt *.csv);; Other (*.*)");
     dialog.setOption(QFileDialog::DontUseNativeDialog);
     QStringList file_names = dialog.exec() ? dialog.selectedFiles() : QStringList();
+
+    file_names = validateForBinaryFiles(file_names);
 
     if (file_names.empty())
         return;
@@ -115,6 +119,26 @@ void ImportFileWidget::writeSettings()
 {
     QSettings settings;
     settings.setValue(workdir_setting_name(), m_currentWorkdir);
+}
+
+//! Returns list validated for binary files.
+
+QStringList ImportFileWidget::validateForBinaryFiles(const QStringList& file_names)
+{
+    QStringList result;
+    for (const auto& file_name : file_names) {
+        if (ModelView::Utils::is_binary(file_name.toStdString())) {
+            QMessageBox msgBox;
+            msgBox.setText(file_name + "\nmay be a binary file. Open it anyway?");
+            msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+            int ret = msgBox.exec();
+            if (ret == QMessageBox::Yes)
+                result.push_back(file_name);
+        } else {
+            result.push_back(file_name);
+        }
+    }
+    return result;
 }
 
 //! Updates current working dir.
