@@ -7,29 +7,14 @@
 //
 // ************************************************************************** //
 
-#include <algorithm>
-#include <cctype>
 #include <darefl/dataloader/dataloader_constants.h>
 #include <darefl/dataloader/parseutils.h>
 #include <darefl/model/experimentaldata_types.h>
 #include <fstream>
-#include <iostream>
-#include <iterator>
-#include <sstream>
-#include <string_view>
+#include <mvvm/utils/stringutils.h>
 
 namespace
 {
-//! Converts string to integer. Requires that string represents exactly one integer and
-//! no extra symbols are defined. Empty spaces at the beginning and end of the string are still
-//! allowed.
-std::optional<int> StringToInt(const std::string& str)
-{
-    std::istringstream iss(DataLoader::TrimWhitespace(str));
-    int value;
-    iss >> value;
-    return (!iss.fail() && iss.eof()) ? std::optional<int>(value) : std::optional<int>{};
-}
 
 //! Returns true if given pair of values can represent range
 bool isRepresentRange(const std::optional<int>& v0, const std::optional<int>& v1)
@@ -39,6 +24,7 @@ bool isRepresentRange(const std::optional<int>& v0, const std::optional<int>& v1
     return false;
 }
 
+//! Finds in vector of ColumnInfo all columns of given type and returns it as a new vector.
 std::vector<DataLoader::ColumnInfo> columnsForType(const std::vector<DataLoader::ColumnInfo>& input,
                                                    const std::string& columnType)
 {
@@ -49,44 +35,6 @@ std::vector<DataLoader::ColumnInfo> columnsForType(const std::vector<DataLoader:
 }
 
 } // namespace
-
-std::vector<double> DataLoader::ParseSpaceSeparatedDoubles(const std::string& str)
-{
-    std::vector<double> result;
-    ParseSpaceSeparatedDoubles(str, result);
-    return result;
-}
-
-void DataLoader::ParseSpaceSeparatedDoubles(const std::string& str, std::vector<double>& result)
-{
-    std::istringstream iss(str);
-    iss.imbue(std::locale::classic());
-    std::copy(std::istream_iterator<double>(iss), std::istream_iterator<double>(),
-              back_inserter(result));
-
-    if (iss.fail()) {
-        std::cout << "in fail state\n";
-    }
-}
-
-std::string DataLoader::TrimWhitespace(const std::string& str)
-{
-    const char whitespace[]{" \t\n"};
-    const size_t first = str.find_first_not_of(whitespace);
-    if (std::string::npos == first)
-        return {};
-    const size_t last = str.find_last_not_of(whitespace);
-    return str.substr(first, (last - first + 1));
-}
-
-std::optional<double> DataLoader::StringToDouble(const std::string& str)
-{
-    std::istringstream iss(DataLoader::TrimWhitespace(str));
-    iss.imbue(std::locale::classic());
-    double value;
-    iss >> value;
-    return (!iss.fail() && iss.eof()) ? std::optional<double>(value) : std::optional<double>{};
-}
 
 std::vector<std::string> DataLoader::LoadASCIIFile(const std::string& file_name)
 {
@@ -100,56 +48,25 @@ std::vector<std::string> DataLoader::LoadASCIIFile(const std::string& file_name)
     return result;
 }
 
-std::vector<std::string> DataLoader::SplitString(const std::string& str,
-                                                 const std::string& delimeter)
-{
-    // splitting string following Python's str.split()
-    if (delimeter.empty())
-        throw std::runtime_error("Empty delimeter");
-    if (str.empty())
-        return {};
-
-    std::vector<std::string> result;
-    std::string_view view(str);
-    size_t pos{0};
-
-    while ((pos = view.find(delimeter)) != std::string::npos) {
-        result.emplace_back(std::string(view.substr(0, pos)));
-        view.remove_prefix(pos + delimeter.length());
-    }
-    result.emplace_back(std::string(view));
-    return result;
-}
-
 std::vector<std::pair<int, int>> DataLoader::ExpandLineNumberPattern(const std::string& pattern)
 {
     std::vector<std::pair<int, int>> result;
 
     // splitting "1, 2-3" first on comma-separated tokens
-    for (const auto& token : SplitString(pattern, ",")) {
-        auto parts = SplitString(token, "-");
+    for (const auto& token : ModelView::Utils::SplitString(pattern, ",")) {
+        auto parts = ModelView::Utils::SplitString(token, "-");
         // splitting on dash-separared tokens
         if (!parts.empty()) {
             // if no "-" is present, make from "1" a pair {1, 1}
             // if "-" is present, make from "1-2" a pair {1,2}
-            auto conv0 = StringToInt(parts[0]);
-            auto conv1 = parts.size() > 1 ? StringToInt(parts[1]) : conv0;
+            auto conv0 = ModelView::Utils::StringToInteger(parts[0]);
+            auto conv1 = parts.size() > 1 ? ModelView::Utils::StringToInteger(parts[1]) : conv0;
             if (isRepresentRange(conv0, conv1))
                 result.push_back({conv0.value(), conv1.value()});
         }
     }
 
     return result;
-}
-
-std::string DataLoader::RemoveRepeatedSpaces(std::string str)
-{
-    if (str.empty())
-        return {};
-    auto it = std::unique(str.begin(), str.end(),
-                          [](auto x, auto y) { return x == y && std::isspace(x); });
-    str.erase(it, str.end());
-    return str;
 }
 
 DataLoader::accept_int_t DataLoader::CreateLineNumberPatternValidator(const std::string& pattern)
@@ -187,10 +104,10 @@ DataLoader::line_splitter_t DataLoader::CreateSeparatorBasedSplitter(const std::
     bool is_space_only_separator = separator.find_first_not_of(' ') == std::string::npos;
     auto result = [separator, is_space_only_separator](const std::string& line) {
         std::vector<std::string> values;
-        std::string trimmed = TrimWhitespace(line);
+        std::string trimmed = ModelView::Utils::TrimWhitespace(line);
         if (is_space_only_separator)
-            trimmed = RemoveRepeatedSpaces(trimmed);
-        return SplitString(trimmed, separator);
+            trimmed = ModelView::Utils::RemoveRepeatedSpaces(trimmed);
+        return ModelView::Utils::SplitString(trimmed, separator);
     };
     return result;
 }
@@ -247,8 +164,8 @@ DataLoader::ExtractTwoColumns(const std::vector<std::vector<std::string>>& text_
     std::vector<double> vec1, vec2;
     for (const auto& row : text_data) {
         if (col1 < row.size() && col2 < row.size()) {
-            auto val1 = StringToDouble(row[col1]);
-            auto val2 = StringToDouble(row[col2]);
+            auto val1 = ModelView::Utils::StringToDouble(row[col1]);
+            auto val2 = ModelView::Utils::StringToDouble(row[col2]);
             if (val1.has_value() && val2.has_value()) {
                 vec1.push_back(val1.value());
                 vec2.push_back(val2.value());

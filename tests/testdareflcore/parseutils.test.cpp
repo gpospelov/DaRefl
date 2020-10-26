@@ -40,76 +40,6 @@ public:
 
 ParseUtilsTest::~ParseUtilsTest() = default;
 
-//! Testing function TrimWhitespace
-
-TEST_F(ParseUtilsTest, TrimWhiteSpace)
-{
-    EXPECT_EQ(TrimWhitespace(""), std::string());
-    EXPECT_EQ(TrimWhitespace(" "), std::string());
-    EXPECT_EQ(TrimWhitespace("abc"), std::string("abc"));
-    EXPECT_EQ(TrimWhitespace(" \t\n abc cde\n"), std::string("abc cde"));
-}
-
-//! Testing function StringToDouble.
-
-TEST_F(ParseUtilsTest, StringToDouble)
-{
-    // not a double
-    EXPECT_FALSE(StringToDouble("").has_value());
-    EXPECT_FALSE(StringToDouble(" ").has_value());
-    EXPECT_FALSE(StringToDouble("a").has_value());
-    EXPECT_FALSE(StringToDouble("a b").has_value());
-
-    // not a double: some mixture present
-    EXPECT_FALSE(StringToDouble("42a").has_value());
-    EXPECT_FALSE(StringToDouble("42.5.5").has_value());
-
-    // not a double: more than one double
-    EXPECT_FALSE(StringToDouble("42.5 52").has_value());
-
-    // valid double
-    EXPECT_TRUE(StringToDouble("42").has_value());
-    EXPECT_TRUE(StringToDouble(" 42").has_value());
-    EXPECT_TRUE(StringToDouble(" 42 ").has_value());
-    EXPECT_DOUBLE_EQ(StringToDouble("42").value(), 42.0);
-    EXPECT_TRUE(StringToDouble("42.5").has_value());
-    EXPECT_DOUBLE_EQ(StringToDouble("42.5").value(), 42.5);
-    EXPECT_TRUE(StringToDouble("-1.12e-06").has_value());
-    EXPECT_DOUBLE_EQ(StringToDouble("-1.12e-06").value(), -1.12e-06);
-}
-
-//! Testing ParseSpaceSeparatedDoubles.
-
-TEST_F(ParseUtilsTest, ParseSpaceSeparatedDoubles)
-{
-    std::vector<double> data;
-
-    EXPECT_TRUE(ParseSpaceSeparatedDoubles("").empty());
-    EXPECT_TRUE(ParseSpaceSeparatedDoubles(" ").empty());
-    EXPECT_TRUE(ParseSpaceSeparatedDoubles("a").empty());
-    EXPECT_TRUE(ParseSpaceSeparatedDoubles("a b").empty());
-
-    ASSERT_EQ(ParseSpaceSeparatedDoubles("4.02").size(), 1u);
-    EXPECT_DOUBLE_EQ(ParseSpaceSeparatedDoubles("42")[0], 42.0);
-
-    // this tests failing under MacOS
-    //    ASSERT_EQ(ParseSpaceSeparatedDoubles("42aaa").size(), 1u);
-    //    EXPECT_DOUBLE_EQ(ParseSpaceSeparatedDoubles("42aaa")[0], 42.0);
-
-    EXPECT_EQ(ParseSpaceSeparatedDoubles("42,").size(), 1u);
-    EXPECT_DOUBLE_EQ(ParseSpaceSeparatedDoubles("42,")[0], 42.0);
-
-    EXPECT_EQ(ParseSpaceSeparatedDoubles("42,43").size(), 1u);
-    EXPECT_DOUBLE_EQ(ParseSpaceSeparatedDoubles("42,43")[0], 42.0);
-
-    EXPECT_EQ(ParseSpaceSeparatedDoubles("42 ,43").size(), 1u);
-    EXPECT_DOUBLE_EQ(ParseSpaceSeparatedDoubles("42 ,43")[0], 42.0);
-
-    EXPECT_EQ(ParseSpaceSeparatedDoubles("42 43").size(), 2u);
-    EXPECT_DOUBLE_EQ(ParseSpaceSeparatedDoubles("42 43")[0], 42.0);
-    EXPECT_DOUBLE_EQ(ParseSpaceSeparatedDoubles("42 43")[1], 43.0);
-}
-
 TEST_F(ParseUtilsTest, LoadASCIIFile)
 {
     std::string content = {"abc abc\n 123 456\n"};
@@ -154,33 +84,6 @@ TEST_F(ParseUtilsTest, toPairVector)
     EXPECT_EQ(toPairVector({{1, 2}, {3, 4}}), expected);
 }
 
-//! Testing SplitString method.
-//! Carefully checking that it is reproduces Python behavior, as promised in comments to the method.
-
-TEST_F(ParseUtilsTest, SplitString)
-{
-    EXPECT_THROW(SplitString("", ""), std::runtime_error);
-    EXPECT_EQ(SplitString("", " "), toStringVector());
-    EXPECT_EQ(SplitString("", ","), toStringVector());
-    EXPECT_EQ(SplitString(" ", " "), toStringVector("", ""));
-    EXPECT_EQ(SplitString("a", " "), toStringVector("a"));
-    EXPECT_EQ(SplitString("a ", " "), toStringVector("a", ""));
-
-    EXPECT_EQ(SplitString("a b", " "), toStringVector("a", "b"));
-    EXPECT_EQ(SplitString("a  b", " "), toStringVector("a", "", "b"));
-
-    EXPECT_EQ(SplitString("a", "-"), toStringVector("a"));
-
-    EXPECT_EQ(SplitString("aa", "a"), toStringVector("", "", ""));
-
-    EXPECT_EQ(SplitString("a,b", ","), toStringVector("a", "b"));
-    EXPECT_EQ(SplitString("a, b", ","), toStringVector("a", " b"));
-
-    EXPECT_EQ(SplitString("a,b,", ","), toStringVector("a", "b", ""));
-    EXPECT_EQ(SplitString(",a,b,", ","), toStringVector("", "a", "b", ""));
-    EXPECT_EQ(SplitString("aabbcc", "bb"), toStringVector("aa", "cc"));
-}
-
 //! Checking method to expand line numbers
 //! "1, 2-4" -> {0, 0}, {1, 3}
 
@@ -210,16 +113,6 @@ TEST_F(ParseUtilsTest, ExpandLineNumberPattern)
     EXPECT_EQ(ExpandLineNumberPattern("a,1,b"), toPairVector({{1, 1}}));
     EXPECT_EQ(ExpandLineNumberPattern("a-2"), toPairVector());
     EXPECT_EQ(ExpandLineNumberPattern("6-5"), toPairVector()); // wrong order
-}
-
-TEST_F(ParseUtilsTest, RemoveRepeatedSpaces)
-{
-    EXPECT_EQ(RemoveRepeatedSpaces(std::string{}), std::string{});
-    EXPECT_EQ(RemoveRepeatedSpaces(" "), std::string{" "});
-    EXPECT_EQ(RemoveRepeatedSpaces("a"), std::string{"a"});
-    EXPECT_EQ(RemoveRepeatedSpaces(" a "), std::string{" a "});
-    EXPECT_EQ(RemoveRepeatedSpaces("  a  "), std::string{" a "});
-    EXPECT_EQ(RemoveRepeatedSpaces("a  bb   ccc   "), std::string{"a bb ccc "});
 }
 
 TEST_F(ParseUtilsTest, CreateLineNumberPatternValidator)
@@ -336,6 +229,8 @@ TEST_F(ParseUtilsTest, ExtractTwoColumns)
     EXPECT_EQ(result.second, toVector({7.0}));
 }
 
+//! Checks method CreateGraphInfoPairs.
+
 TEST_F(ParseUtilsTest, CreateGraphInfoPairs)
 {
     ColumnInfo col0{0, DataLoader::Constants::AxisType, "", 0, ""};
@@ -346,6 +241,10 @@ TEST_F(ParseUtilsTest, CreateGraphInfoPairs)
     std::vector<ColumnInfo> infos = {col0, col1, col2, col3};
 
     auto info_pairs = CreateGraphInfoPairs(infos);
+
+    // if we have one Axis and two Intesity columns, we have to get
+    // two pairs of info
+
     ASSERT_EQ(info_pairs.size(), 2);
     EXPECT_EQ(info_pairs[0].first.column, 0);
     EXPECT_EQ(info_pairs[0].second.column, 1);
