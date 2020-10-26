@@ -16,7 +16,7 @@
 class CanvasContainerItem;
 class ExperimentalDataContainerItem;
 class CanvasItem;
-class RealDataStruct;
+struct RealDataStruct;
 
 namespace ModelView
 {
