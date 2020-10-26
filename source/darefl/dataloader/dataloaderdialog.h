@@ -44,7 +44,7 @@ protected:
     void accept() override;
 
 private slots:
-    void onLoadFilesRequest(const QStringList&);
+    void onLoadFilesRequest();
     void onShowFilePreviewRequest();
     void onParseAllRequest();
 
