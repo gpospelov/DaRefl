@@ -57,16 +57,16 @@ void ImportDataEditor::setupConnections()
 //! Set up the layout of the widget
 void ImportDataEditor::setupLayout()
 {
-    auto main_layout = new QVBoxLayout(this);
-    main_layout->setContentsMargins(0, 0, 0, 0);
-    auto main_splitter = new QSplitter(this);
+    auto layout = new QVBoxLayout(this);
+    layout->setContentsMargins(0, 0, 0, 0);
 
-    main_splitter->addWidget(m_dataSelectorWidget);
-    main_splitter->addWidget(m_graphCanvasWidget);
-    main_splitter->setSizes(QList<int>() << 150 << 300);
+    auto splitter = new QSplitter;
+    splitter->addWidget(m_dataSelectorWidget);
+    splitter->addWidget(m_graphCanvasWidget);
+    splitter->setSizes(QList<int>() << 150 << 300);
 
-    main_layout->addWidget(m_editorToolBar);
-    main_layout->addWidget(main_splitter);
+    layout->addWidget(m_editorToolBar);
+    layout->addWidget(splitter);
 }
 
 //! Manage a selection change of the treeview
