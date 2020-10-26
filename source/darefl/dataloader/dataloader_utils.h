@@ -12,7 +12,7 @@
 
 #include <darefl/dataloader/dataloader_types.h>
 
-class RealDataStruct;
+struct RealDataStruct;
 
 namespace DataLoader
 {

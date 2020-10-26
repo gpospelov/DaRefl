@@ -15,7 +15,7 @@
 
 
 class ExperimentalDataModel;
-class RealDataStruct;
+struct RealDataStruct;
 class DataViewModel;
 class DataSelectionModel;
 class ImportDataEditorActions;
