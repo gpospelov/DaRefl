@@ -45,14 +45,13 @@ protected:
 
 private slots:
     void onLoadFilesRequest(const QStringList&);
+    void onShowFilePreviewRequest();
+    void onParseAllRequest();
 
 private:
     void readSettings();
     void writeSettings();
-
-    void init_connections();
-    void process_data();
-    void process_all();
+    void initConnections();
 
     DataLoaderToolBar* m_toolBar{nullptr};
     LoaderSelectorPanel* m_selectorPanel{nullptr};
