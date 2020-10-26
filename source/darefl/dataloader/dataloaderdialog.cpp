@@ -10,6 +10,7 @@
 #include <QApplication>
 #include <QDialogButtonBox>
 #include <QKeyEvent>
+#include <QMessageBox>
 #include <QPushButton>
 #include <QSettings>
 #include <QSplitter>
@@ -17,12 +18,12 @@
 #include <darefl/core/app_constants.h>
 #include <darefl/dataloader/datahandler.h>
 #include <darefl/dataloader/dataloader_types.h>
+#include <darefl/dataloader/dataloader_utils.h>
 #include <darefl/dataloader/dataloaderdialog.h>
 #include <darefl/dataloader/dataloadertoolbar.h>
 #include <darefl/dataloader/loaderpreviewpanel.h>
 #include <darefl/dataloader/loaderselectorpanel.h>
 #include <darefl/dataloader/parserinterface.h>
-#include <darefl/dataloader/dataloader_utils.h>
 #include <mvvm/utils/fileutils.h>
 
 namespace
@@ -177,10 +178,21 @@ void DataLoaderDialog::init_connections()
             &LoaderSelectorPanel::onRemoveFileRequest);
 
     // connect LoaderSelectorPanel with DataHandler
-    auto on_file_list_changed = [this](const auto& container) {
+    auto on_file_list_changed = [this](const auto& file_names) {
         QApplication::setOverrideCursor(Qt::WaitCursor);
-        m_dataHandler->updateRawData(toStringVector(container));
-        QApplication::restoreOverrideCursor();
+        try {
+            m_dataHandler->updateRawData(toStringVector(file_names));
+            QApplication::restoreOverrideCursor();
+        } catch (const std::exception& ex) {
+            QApplication::restoreOverrideCursor();
+            QMessageBox msgBox;
+
+            QString message =
+                QString("Exception was thrown while trying to load files\n\n%1").arg(ex.what());
+            msgBox.setText(message);
+            msgBox.setIcon(msgBox.Critical);
+            msgBox.exec();
+        }
     };
     connect(m_selectorPanel, &LoaderSelectorPanel::fileNamesChanged, on_file_list_changed);
 
