@@ -139,26 +139,6 @@ void ExperimentalDataModel::removeDataFromGroup(GraphItem* item)
     removeItem(item->parent(), item->tagRow());
 }
 
-//! check if all items are DataGroupItems, if yes return true
-ModelView::GraphViewportItem*
-ExperimentalDataModel::checkAllGraph(std::vector<ModelView::SessionItem*>& items) const
-{
-    ModelView::GraphViewportItem* parent{nullptr};
-
-    for (const auto item : items) {
-        if (!dynamic_cast<ModelView::GraphItem*>(item))
-            return nullptr;
-        if (!parent) {
-            parent = dynamic_cast<ModelView::GraphViewportItem*>(item->parent());
-        } else {
-            if (parent != dynamic_cast<ModelView::GraphViewportItem*>(item->parent()))
-                return nullptr;
-        }
-    }
-
-    return parent;
-}
-
 //! Check if an item should be editable or not
 bool ExperimentalDataModel::itemEditable(ModelView::SessionItem* item) const
 {
