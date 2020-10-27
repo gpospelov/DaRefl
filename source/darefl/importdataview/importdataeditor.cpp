@@ -73,40 +73,7 @@ void ImportDataEditor::setupLayout()
 void ImportDataEditor::selectionChanged()
 {
     auto selection_model = selectionModel();
-
     m_graphCanvasWidget->setItem(selection_model->activeCanvas());
-
-    auto items = selection_model->selectedItems();
-    items.erase(std::remove(begin(items), end(items), nullptr), end(items));
-    setMergeEnabled((items.size() > 1) ? (m_dataModel->checkAllGroup(items)) : (false));
-
-    if (items.size() == 0)
-        return;
-
-    if (auto viewport = m_dataModel->checkAllGraph(items); viewport) {
-        std::vector<ModelView::GraphItem*> graph_items;
-        for (std::vector<ModelView::SessionItem*>::iterator it = items.begin(); it != items.end();
-             ++it) {
-            graph_items.push_back(dynamic_cast<ModelView::GraphItem*>(*it));
-        }
-        viewport->setVisible(graph_items);
-        return;
-    }
-
-    auto item = items.at(0);
-    if (auto viewport = dynamic_cast<ModelView::GraphViewportItem*>(item); viewport) {
-        viewport->setAllVisible();
-    } else if (auto graph_item = dynamic_cast<ModelView::GraphItem*>(item); graph_item) {
-        auto viewport = dynamic_cast<ModelView::GraphViewportItem*>(graph_item->parent());
-        viewport->setVisible(std::vector<ModelView::GraphItem*>{graph_item});
-    }
-}
-
-//! check itf all items are DataGroupItems, if yes return true
-void ImportDataEditor::setMergeEnabled(bool enabled)
-{
-    auto action = findChild<QAction*>("merge_group_action");
-    action->setEnabled(enabled);
 }
 
 //! Invoke the data load dialog and connect its state.
