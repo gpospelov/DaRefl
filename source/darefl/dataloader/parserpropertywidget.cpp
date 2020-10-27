@@ -42,8 +42,14 @@ QWidget* createSectionWidget(const QString& text)
 
 const QString separatorgroupid_setting_name()
 {
-    const QString dialogsize_key = "separatorgroup_id";
-    return Constants::ParserPropertyGroupKey + "/" + dialogsize_key;
+    const QString key = "separatorgroup_id";
+    return Constants::ParserPropertyGroupKey + "/" + key;
+}
+
+const QString customseparatortext_setting_name()
+{
+    const QString key = "customseparator_text";
+    return Constants::ParserPropertyGroupKey + "/" + key;
 }
 
 } // namespace
@@ -101,6 +107,10 @@ void ParserPropertyWidget::readSettings()
         if (auto button = m_separatorButtonGroup->button(button_id); button)
             button->setChecked(true);
     }
+
+    if (settings.contains(customseparatortext_setting_name()))
+        m_customSeparatorLineEdit->setText(
+            settings.value(customseparatortext_setting_name()).toString());
 }
 
 //! Writes widget settings.
@@ -110,6 +120,7 @@ void ParserPropertyWidget::writeSettings()
     QSettings settings;
 
     settings.setValue(separatorgroupid_setting_name(), m_separatorButtonGroup->checkedId());
+    settings.setValue(customseparatortext_setting_name(), m_customSeparatorLineEdit->text());
 }
 
 QGridLayout* ParserPropertyWidget::createGridLayout()
@@ -190,32 +201,32 @@ void ParserPropertyWidget::addStandardSeparatorRow(QGridLayout* layout, QButtonG
 void ParserPropertyWidget::addCustomSeparatorRow(QGridLayout* layout, QButtonGroup* group)
 {
     int row = layout->rowCount();
-    auto customSeparatorLineEdit = new QLineEdit;
+    m_customSeparatorLineEdit = new QLineEdit;
     auto customRadio = new QRadioButton;
 
     // custom separator radio
     customRadio->setText("Custom");
     customRadio->setToolTip("Use given symbols as column separator");
-    auto on_custom_separator = [this, customSeparatorLineEdit](auto) {
-        m_options.m_separator = customSeparatorLineEdit->text().toStdString();
+    auto on_custom_separator = [this](auto) {
+        m_options.m_separator = m_customSeparatorLineEdit->text().toStdString();
         onParserPropertyChange();
     };
     connect(customRadio, &QRadioButton::clicked, on_custom_separator);
 
     // custom separator text
-    customSeparatorLineEdit->setMaximumWidth(ModelView::Utils::WidthOfLetterM() * 4);
-    customSeparatorLineEdit->setToolTip("Use given symbols as column separator");
-    auto on_custom_lineedit = [this, customSeparatorLineEdit, customRadio]() {
+    m_customSeparatorLineEdit->setMaximumWidth(ModelView::Utils::WidthOfLetterM() * 4);
+    m_customSeparatorLineEdit->setToolTip("Use given symbols as column separator");
+    auto on_custom_lineedit = [this, customRadio]() {
         if (customRadio->isChecked())
-            m_options.m_separator = customSeparatorLineEdit->text().toStdString();
+            m_options.m_separator = m_customSeparatorLineEdit->text().toStdString();
         onParserPropertyChange();
     };
-    connect(customSeparatorLineEdit, &QLineEdit::editingFinished, on_custom_lineedit);
+    connect(m_customSeparatorLineEdit, &QLineEdit::editingFinished, on_custom_lineedit);
 
     // adding to the layout
     layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
     layout->addWidget(customRadio, row, 1, Qt::AlignLeft);
-    layout->addWidget(customSeparatorLineEdit, row, 2, Qt::AlignLeft);
+    layout->addWidget(m_customSeparatorLineEdit, row, 2, Qt::AlignLeft);
     group->addButton(customRadio, CUSTOM);
 }
 
