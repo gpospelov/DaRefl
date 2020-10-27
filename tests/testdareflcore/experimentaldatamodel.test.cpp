@@ -136,26 +136,6 @@ TEST_F(ExperimentalDataModelTest, removeDataFromCollection)
     EXPECT_EQ(7 + default_child_count, data_group_item_1->childrenCount());
 }
 
-//! Test the canvasesNameIdentifier method.
-
-TEST_F(ExperimentalDataModelTest, availableCanvasesInfo)
-{
-    ExperimentalDataModel model;
-    auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
-
-    for (int i = 0; i < 10; ++i) {
-        model.addDataToCollection(getRealDataStruct(), root_view_item, nullptr);
-    }
-
-    auto data_group_names = model.availableCanvasesInfo();
-
-    EXPECT_EQ(10, data_group_names.size());
-    for (auto pair : data_group_names) {
-        auto item = model.findItem(pair.second);
-        EXPECT_EQ(pair.first, item->displayName());
-    }
-}
-
 //! test the checkAllGroup method
 TEST_F(ExperimentalDataModelTest, checkAllGroup)
 {

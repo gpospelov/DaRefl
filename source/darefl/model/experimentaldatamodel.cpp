@@ -103,16 +103,6 @@ void ExperimentalDataModel::removeDataFromCollection(
 }
 
 //! Insert the data into the group item
-std::vector<ExperimentalDataModel::name_identifier_t>
-ExperimentalDataModel::availableCanvasesInfo() const
-{
-    std::vector<name_identifier_t> result;
-    for (auto item : Utils::FindItems<CanvasItem>(this))
-        result.push_back({item->displayName(), item->identifier()});
-    return result;
-}
-
-//! Insert the data into the group item
 void ExperimentalDataModel::addDataToGroup(CanvasItem* data_group, RealDataStruct& data_struct)
 {
     if (data_struct.axis.empty()) {
