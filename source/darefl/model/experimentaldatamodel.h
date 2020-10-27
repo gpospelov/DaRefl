@@ -39,7 +39,6 @@ public:
     void removeAllDataFromCollection(CanvasContainerItem* data_node);
     void removeDataFromCollection(std::vector<ModelView::SessionItem*> item_to_remove);
 
-    bool checkAllGroup(std::vector<ModelView::SessionItem*>& items) const;
     ModelView::GraphViewportItem* checkAllGraph(std::vector<ModelView::SessionItem*>& items) const;
     bool itemEditable(ModelView::SessionItem* item) const;
     bool dragEnabled(ModelView::SessionItem* item) const;
