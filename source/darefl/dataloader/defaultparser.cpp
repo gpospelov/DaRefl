@@ -16,7 +16,7 @@ using namespace DataLoader;
 DefaultParser::DefaultParser(const ParserOptions& options)
 {
     m_isSkipLineNumber = CreateLineNumberPatternValidator(options.m_skip_index_pattern);
-    m_isValidLineContent = CreateLineContentBaseValidator(options.m_header_prefix);
+    m_isValidLineContent = CreateLinePrefixValidator(options.m_header_prefix);
     m_line_splitter = CreateSeparatorBasedSplitter(options.m_separator);
 }
 

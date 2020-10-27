@@ -85,7 +85,7 @@ DataLoader::accept_int_t DataLoader::CreateLineNumberPatternValidator(const std:
 }
 
 DataLoader::accept_string_t
-DataLoader::CreateLineContentBaseValidator(const std::string& prefix_to_exclude)
+DataLoader::CreateLinePrefixValidator(const std::string& prefix_to_exclude)
 {
     auto result = [prefix_to_exclude](const std::string& line) {
         // line contains spaces only
