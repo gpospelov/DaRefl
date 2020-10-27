@@ -25,10 +25,17 @@ const std::vector<std::string> typeNames = {Constants::AxisType, Constants::Inte
 
 const std::vector<std::string> unitNames = {"a.u.", "counts", "1/nm", "Angstrom"};
 
+
+//! Returns column type from column index.
+std::string suggestColumnTypeFromColumnIndex(int col)
+{
+    return col < static_cast<int>(typeNames.size()) ? typeNames[col] : Constants::IgnoreType;
+}
+
 QVariant CreateTypeVariant(int col = 0)
 {
     auto combo = ComboProperty::createFrom(typeNames);
-    auto selected_value = col == 0 ? Constants::AxisType : Constants::IntensityType;
+    auto selected_value = suggestColumnTypeFromColumnIndex(col);
     combo.setValue(selected_value);
     return QVariant::fromValue<ComboProperty>(combo);
 }

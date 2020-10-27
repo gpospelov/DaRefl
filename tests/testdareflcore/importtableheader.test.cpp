@@ -74,7 +74,7 @@ TEST_F(ImportTableHeaderTest, initialStateThreeColumn)
 
     // second column is by default represents Intensity
     EXPECT_EQ(header.columnInfo()[2].column, 2);
-    EXPECT_EQ(header.columnInfo()[2].type_name, Constants::IntensityType);
+    EXPECT_EQ(header.columnInfo()[2].type_name, Constants::IgnoreType);
     EXPECT_EQ(header.columnInfo()[2].units, std::string("a.u."));
     EXPECT_EQ(header.columnInfo()[2].multiplier, 1.0);
     EXPECT_EQ(header.columnInfo()[2].title, std::string(""));
