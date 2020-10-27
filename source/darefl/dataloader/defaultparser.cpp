@@ -47,18 +47,12 @@ size_t DefaultParser::totalLineCount() const
 
 //! Returns a pair representing raw line and flag describing parsing results.
 
-std::pair<std::string, ParserInterface::LineType> DefaultParser::getLine(size_t index) const
+std::string DefaultParser::getLine(size_t index) const
 {
     if (index >= m_rawData.size())
         throw std::runtime_error("Error in DefaultParser: out of bounds.");
 
-    if (m_parsedData.empty())
-        return std::make_pair(m_rawData[index], ParserInterface::UNKNOWN);
-
-    if (m_parsedData.find(index) == m_parsedData.end())
-        return std::make_pair(m_rawData[index], ParserInterface::HEADER);
-    else
-        return std::make_pair(m_rawData[index], ParserInterface::DATA);
+    return m_rawData[index];
 }
 
 std::vector<std::string> DefaultParser::parseResults(size_t index) const

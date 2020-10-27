@@ -21,9 +21,6 @@ namespace DataLoader
 class ParserInterface
 {
 public:
-    //! Defines type of line
-    enum LineType { UNKNOWN, HEADER, DATA };
-
     virtual ~ParserInterface() = default;
 
     //! Parse data representing content of ASCII file.
@@ -32,14 +29,15 @@ public:
     //! Returns total number of lines in raw data.
     virtual size_t totalLineCount() const = 0;
 
-    //! Returns a pair representing raw line and flag describing parsing results.
-    virtual std::pair<std::string, LineType> getLine(size_t index) const = 0;
+    //! Returns original line.
+    virtual std::string getLine(size_t index) const = 0;
 
-    virtual  std::vector<std::string> parseResults(size_t index) const = 0;
+    //! Returns parsed text for given line index. If line was skipped during parsing, returns empty
+    //! vector.
+    virtual std::vector<std::string> parseResults(size_t index) const = 0;
 
     //! Returns 2D vector representing parsed text. Skipped lines are not present.
-    virtual  std::vector<std::vector<std::string>> parsedData() const = 0;
-
+    virtual std::vector<std::vector<std::string>> parsedData() const = 0;
 };
 
 } // namespace DataLoader
