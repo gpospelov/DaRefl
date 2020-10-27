@@ -78,18 +78,3 @@ ImportDataEditorToolBar::ImportDataEditorToolBar(ImportDataEditorActions* editor
             &ImportDataEditorToolBar::updateViewportRequest);
     addAction(reset_graph_action);
 }
-
-//! Clears canvas container, all canvas and graphs will be removed.
-
-void ImportDataEditorToolBar::clearCanvasContainer()
-{
-    QMessageBox reset_message;
-    reset_message.setIcon(QMessageBox::Warning);
-    reset_message.setText("You are about to clear all the loaded data.");
-    reset_message.setInformativeText("Are you sure you want to proceed ?");
-    reset_message.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
-    reset_message.setDefaultButton(QMessageBox::Cancel);
-
-    if (reset_message.exec() == QMessageBox::Yes)
-        m_editorActions->onClearCanvasContainer();
-}

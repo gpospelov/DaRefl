@@ -76,23 +76,6 @@ TEST_F(ExperimentalDataModelTest, addDataToCollection)
     EXPECT_EQ(3, root_container_item->childrenCount());
 }
 
-//! Test the removeAllDataFromCollection method
-TEST_F(ExperimentalDataModelTest, removeAllDataFromCollection)
-{
-    ExperimentalDataModel model;
-    auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
-    auto root_container_item = Utils::TopItem<ExperimentalDataContainerItem>(&model);
-
-    auto data_group_item = model.addDataToCollection(getRealDataStruct(), root_view_item);
-    model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item);
-    model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item);
-
-    model.removeAllDataFromCollection(root_view_item);
-
-    EXPECT_EQ(0, root_view_item->childrenCount());
-    EXPECT_EQ(0, root_container_item->childrenCount());
-}
-
 //! test the removeDataFromCollection method
 TEST_F(ExperimentalDataModelTest, removeDataFromCollection)
 {

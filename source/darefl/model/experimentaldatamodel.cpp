@@ -78,14 +78,6 @@ CanvasItem* ExperimentalDataModel::addDataToCollection(RealDataStruct data_struc
 }
 
 //! Insert the data into the group item
-void ExperimentalDataModel::removeAllDataFromCollection(CanvasContainerItem* data_node)
-{
-    for (auto item : data_node->children()) {
-        removeDataFromCollection({item});
-    }
-}
-
-//! Insert the data into the group item
 void ExperimentalDataModel::removeDataFromCollection(
     std::vector<ModelView::SessionItem*> item_to_remove)
 {

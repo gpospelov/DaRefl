@@ -57,12 +57,6 @@ void ImportDataEditorActions::onDeleteItem()
     m_dataModel->removeDataFromCollection(m_selectionModel->selectedItems());
 }
 
-void ImportDataEditorActions::onClearCanvasContainer()
-{
-    auto data_node = ModelView::Utils::TopItem<CanvasContainerItem>(m_dataModel);
-    m_dataModel->removeAllDataFromCollection(data_node);
-}
-
 void ImportDataEditorActions::onUndo()
 {
     if (!m_dataModel->undoStack())
