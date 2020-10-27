@@ -27,9 +27,6 @@ signals:
     void invokeImportDialogRequest();
     void updateViewportRequest();
 
-private slots:
-    void clearCanvasContainer();
-
 private:
     ImportDataEditorActions* m_editorActions{nullptr};
 };

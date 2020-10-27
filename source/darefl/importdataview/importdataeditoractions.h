@@ -30,7 +30,6 @@ public slots:
     void onAddDataGroup();
     void onMergeDataGroups();
     void onDeleteItem();
-    void onClearCanvasContainer();
     void onUndo();
     void onRedo();
 
