@@ -36,7 +36,6 @@ private:
     void setupLayout();
 
     void selectionChanged();
-    void setMergeEnabled(bool enabled);
 
     void invokeImportDialog();
 
