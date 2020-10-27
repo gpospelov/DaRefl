@@ -36,6 +36,8 @@ public:
 
     std::vector<DataLoader::ColumnInfo> columnInfo() const;
 
+    void clearPanel();
+
 private:
     ImportTextView* m_textView{nullptr};
     ImportTableWidget* m_tableWidget{nullptr};

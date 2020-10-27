@@ -59,3 +59,9 @@ std::vector<DataLoader::ColumnInfo> LoaderPreviewPanel::columnInfo() const
 {
     return m_tableWidget->columnInfo();
 }
+
+void LoaderPreviewPanel::clearPanel()
+{
+    m_textView->clear();
+    m_tableWidget->setRawData({});
+}

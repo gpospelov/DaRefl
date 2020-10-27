@@ -8,6 +8,7 @@
 // ************************************************************************** //
 
 #include <QApplication>
+#include <QDebug>
 #include <QDialogButtonBox>
 #include <QKeyEvent>
 #include <QMessageBox>
@@ -178,8 +179,10 @@ void DataLoaderDialog::onLoadFilesRequest()
 void DataLoaderDialog::onShowFilePreviewRequest()
 {
     auto selected_files = m_selectorPanel->selectedFileNames();
-    if (selected_files.empty())
+    if (selected_files.empty()) {
+        m_previewPanel->clearPanel();
         return;
+    }
 
     auto data_to_parse = m_dataHandler->textData(selected_files.back().toStdString());
 

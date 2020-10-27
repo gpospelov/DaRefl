@@ -82,6 +82,8 @@ void ImportFileWidget::onRemoveFileRequest()
         selected = m_listView->selectionModel()->selectedIndexes();
     }
 
+    emit fileNamesChanged();
+
     makeLastSelected();
 }
 
