@@ -30,7 +30,7 @@ accept_int_t CreateLineNumberPatternValidator(const std::string& pattern);
 
 //! Creates a callback to define if given line has a valid content for further parsing.
 //! Empty lines and lines starting from a given prefix will be excluded.
-accept_string_t CreateLineContentBaseValidator(const std::string& prefix_to_exclude);
+accept_string_t CreateLinePrefixValidator(const std::string& prefix_to_exclude);
 
 //! Creates line splitter based on separator.
 line_splitter_t CreateSeparatorBasedSplitter(const std::string& separator);
