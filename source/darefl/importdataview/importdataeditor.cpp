@@ -17,13 +17,10 @@
 #include <darefl/importdataview/importdataeditor.h>
 #include <darefl/importdataview/importdataeditoractions.h>
 #include <darefl/importdataview/importdataeditortoolbal.h>
-#include <darefl/model/experimentaldata_types.h>
 #include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/experimentaldatamodel.h>
 #include <mvvm/model/modelutils.h>
-#include <mvvm/standarditems/graphitem.h>
 #include <mvvm/utils/containerutils.h>
-#include <mvvm/utils/fileutils.h>
 
 using namespace ModelView;
 
@@ -33,29 +30,6 @@ ImportDataEditor::ImportDataEditor(ExperimentalDataModel* model, QWidget* parent
       m_editorToolBar(new ImportDataEditorToolBar(m_editorActions, this)),
       m_dataSelectorWidget(new DataSelectorWidget(m_viewModel)),
       m_graphCanvasWidget(new GraphCanvasWidget)
-{
-    setupLayout();
-    setupConnections();
-
-    m_editorActions->setSelectionModel(m_dataSelectorWidget->selectionModel());
-    m_viewModel->setRootSessionItem(ModelView::Utils::TopItem<CanvasContainerItem>(model));
-}
-
-void ImportDataEditor::setupConnections()
-{
-    // connect toolbar  with this editor
-    connect(m_editorToolBar, &ImportDataEditorToolBar::invokeImportDialogRequest, this,
-            &ImportDataEditor::invokeImportDialog);
-    connect(m_editorToolBar, &ImportDataEditorToolBar::updateViewportRequest,
-            [this]() { m_graphCanvasWidget->updateViewport(); });
-
-    // connect selection model with this
-    connect(m_dataSelectorWidget, &DataSelectorWidget::selectionChanged, this,
-            &ImportDataEditor::selectionChanged);
-}
-
-//! Set up the layout of the widget
-void ImportDataEditor::setupLayout()
 {
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -67,13 +41,26 @@ void ImportDataEditor::setupLayout()
 
     layout->addWidget(m_editorToolBar);
     layout->addWidget(splitter);
+
+    setupConnections();
+
+    m_editorActions->setSelectionModel(m_dataSelectorWidget->selectionModel());
+    m_viewModel->setRootSessionItem(model->topItem<CanvasContainerItem>());
 }
 
-//! Manage a selection change of the treeview
-void ImportDataEditor::selectionChanged()
+void ImportDataEditor::setupConnections()
 {
-    auto selection_model = selectionModel();
-    m_graphCanvasWidget->setItem(selection_model->activeCanvas());
+    // connect toolbar  with this editor
+    connect(m_editorToolBar, &ImportDataEditorToolBar::invokeImportDialogRequest, this,
+            &ImportDataEditor::invokeImportDialog);
+    connect(m_editorToolBar, &ImportDataEditorToolBar::updateViewportRequest,
+            [this]() { m_graphCanvasWidget->updateViewport(); });
+
+    // connect selection model with this
+    auto on_selection_changed = [this]() {
+        m_graphCanvasWidget->setItem(selectionModel()->activeCanvas());
+    };
+    connect(m_dataSelectorWidget, &DataSelectorWidget::selectionChanged, on_selection_changed);
 }
 
 //! Invoke the data load dialog and connect its state.
@@ -84,7 +71,6 @@ void ImportDataEditor::invokeImportDialog()
 
     auto [names, index] = canvasInfo();
     dialog.setTargetCanvas(names, index);
-
     dialog.invokeFileSelectorDialog();
 
     if (dialog.exec() == QDialog::Accepted) {

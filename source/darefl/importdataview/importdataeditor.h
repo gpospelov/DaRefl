@@ -33,18 +33,11 @@ public:
 
 private:
     void setupConnections();
-    void setupLayout();
-
-    void selectionChanged();
-
     void invokeImportDialog();
 
     std::pair<std::vector<std::string>, int> canvasInfo() const;
-
     void onImportDialogAccept(const std::vector<RealDataStruct>& experimental_data,
                               CanvasItem* canvas);
-
-private:
     DataSelectionModel* selectionModel() const;
 
     ExperimentalDataModel* m_dataModel{nullptr};
