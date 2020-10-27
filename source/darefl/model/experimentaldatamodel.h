@@ -30,8 +30,6 @@ class GraphViewportItem;
 class ExperimentalDataModel : public ModelView::SessionModel
 {
 public:
-    using name_identifier_t = std::pair<std::string, std::string>;
-
     ExperimentalDataModel();
     ExperimentalDataModel(std::shared_ptr<ModelView::ItemPool> pool);
 
@@ -40,7 +38,6 @@ public:
 
     void removeAllDataFromCollection(CanvasContainerItem* data_node);
     void removeDataFromCollection(std::vector<ModelView::SessionItem*> item_to_remove);
-    std::vector<name_identifier_t> availableCanvasesInfo() const;
 
     bool checkAllGroup(std::vector<ModelView::SessionItem*>& items) const;
     ModelView::GraphViewportItem* checkAllGraph(std::vector<ModelView::SessionItem*>& items) const;
