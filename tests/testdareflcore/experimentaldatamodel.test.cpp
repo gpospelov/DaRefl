@@ -136,18 +136,6 @@ TEST_F(ExperimentalDataModelTest, removeDataFromCollection)
     EXPECT_EQ(7 + default_child_count, data_group_item_1->childrenCount());
 }
 
-//! test the checkAllGroup method
-TEST_F(ExperimentalDataModelTest, checkAllGroup)
-{
-    ExperimentalDataModel model;
-
-    std::vector<SessionItem*> items(10, new CanvasItem);
-    EXPECT_EQ(true, model.checkAllGroup(items));
-
-    items.push_back(new SessionItem);
-    EXPECT_EQ(false, model.checkAllGroup(items));
-}
-
 //! test the checkAllGraph method
 TEST_F(ExperimentalDataModelTest, checkAllGraph)
 {

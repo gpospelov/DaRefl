@@ -41,12 +41,13 @@ void ImportDataEditorActions::onAddDataGroup()
 
 void ImportDataEditorActions::onMergeDataGroups()
 {
-    auto items = m_selectionModel->selectedItems();
-    items.erase(std::remove(begin(items), end(items), nullptr), end(items));
-    if (!m_dataModel->checkAllGroup(items))
-        return;
+//    auto items = m_selectionModel->selectedItems();
+//    items.erase(std::remove(begin(items), end(items), nullptr), end(items));
+//    if (!m_dataModel->checkAllGroup(items))
+//        return;
 
-    m_dataModel->mergeItems(items);
+//    m_dataModel->mergeItems(items);
+    // FIXME restore
 }
 
 //! Delete the currently selected item

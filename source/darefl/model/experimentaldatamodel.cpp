@@ -140,17 +140,6 @@ void ExperimentalDataModel::removeDataFromGroup(GraphItem* item)
 }
 
 //! check if all items are DataGroupItems, if yes return true
-bool ExperimentalDataModel::checkAllGroup(std::vector<ModelView::SessionItem*>& items) const
-{
-    for (const auto item : items) {
-        if (!dynamic_cast<CanvasItem*>(item))
-            return false;
-    }
-
-    return true;
-}
-
-//! check if all items are DataGroupItems, if yes return true
 ModelView::GraphViewportItem*
 ExperimentalDataModel::checkAllGraph(std::vector<ModelView::SessionItem*>& items) const
 {
