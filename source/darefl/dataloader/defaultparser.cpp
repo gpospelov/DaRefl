@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include <darefl/dataloader/defaultparser.h>
 #include <darefl/dataloader/dataloader_utils.h>
+#include <darefl/dataloader/defaultparser.h>
 #include <stdexcept>
 
 using namespace DataLoader;
@@ -43,13 +43,6 @@ void DefaultParser::process(const std::vector<std::string>& raw_data)
 size_t DefaultParser::totalLineCount() const
 {
     return m_rawData.size();
-}
-
-//! Returns total number of rows representing multi-column data.
-
-size_t DefaultParser::dataRowCount() const
-{
-    return m_parsedData.size();
 }
 
 //! Returns a pair representing raw line and flag describing parsing results.
