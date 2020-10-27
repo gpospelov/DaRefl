@@ -30,6 +30,8 @@ class ParserPropertyWidget : public QWidget
     Q_OBJECT
 
 public:
+    enum SeparatorButtonId {AUTOMATIC, SPACE, COMMA, CUSTOM};
+
     ParserPropertyWidget(QWidget* parent = nullptr);
     ~ParserPropertyWidget();
 
@@ -45,6 +47,8 @@ private slots:
     void onParserPropertyChange();
 
 private:
+    void readSettings();
+    void writeSettings();
     QGridLayout* createGridLayout();
 
     void addSectionLabel(const QString& text, QGridLayout* layout);
@@ -55,6 +59,7 @@ private:
     void addImportToBlock(QGridLayout* layout);
 
     DataLoader::ParserOptions m_options;
+    QButtonGroup* m_separatorButtonGroup{nullptr};
     QComboBox* m_targetCanvasCombo{nullptr};
 };
 

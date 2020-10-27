@@ -212,7 +212,7 @@ void DataLoaderDialog::onParseAllRequest()
     }
 }
 
-//! Saves dialog settings.
+//! Reads dialog settings.
 
 void DataLoaderDialog::readSettings()
 {

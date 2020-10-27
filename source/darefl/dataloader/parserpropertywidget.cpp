@@ -15,8 +15,10 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QRadioButton>
-#include <QVBoxLayout>
 #include <QRegExpValidator>
+#include <QSettings>
+#include <QVBoxLayout>
+#include <darefl/core/app_constants.h>
 #include <darefl/dataloader/defaultparser.h>
 #include <darefl/dataloader/parserpropertywidget.h>
 #include <mvvm/widgets/widgetutils.h>
@@ -38,6 +40,12 @@ QWidget* createSectionWidget(const QString& text)
     return widget;
 }
 
+const QString separatorgroupid_setting_name()
+{
+    const QString dialogsize_key = "separatorgroup_id";
+    return Constants::ParserPropertyGroupKey + "/" + dialogsize_key;
+}
+
 } // namespace
 
 ParserPropertyWidget::ParserPropertyWidget(QWidget* parent) : QWidget(parent)
@@ -45,9 +53,14 @@ ParserPropertyWidget::ParserPropertyWidget(QWidget* parent) : QWidget(parent)
     auto layout = new QVBoxLayout(this);
     layout->addLayout(createGridLayout());
     layout->addStretch(1);
+
+    readSettings();
 }
 
-ParserPropertyWidget::~ParserPropertyWidget() = default;
+ParserPropertyWidget::~ParserPropertyWidget()
+{
+    writeSettings();
+}
 
 //! Creates parser from parser properties.
 
@@ -77,14 +90,36 @@ void ParserPropertyWidget::onParserPropertyChange()
     emit parserPropertyChanged();
 }
 
+//! Reads widget settings.
+
+void ParserPropertyWidget::readSettings()
+{
+    QSettings settings;
+
+    if (settings.contains(separatorgroupid_setting_name())) {
+        int button_id = settings.value(separatorgroupid_setting_name()).toInt();
+        if (auto button = m_separatorButtonGroup->button(button_id); button)
+            button->setChecked(true);
+    }
+}
+
+//! Writes widget settings.
+
+void ParserPropertyWidget::writeSettings()
+{
+    QSettings settings;
+
+    settings.setValue(separatorgroupid_setting_name(), m_separatorButtonGroup->checkedId());
+}
+
 QGridLayout* ParserPropertyWidget::createGridLayout()
 {
     auto grid_layout = new QGridLayout;
 
     addSectionLabel("Separator", grid_layout);
-    auto buttonGroup = new QButtonGroup;
-    addStandardSeparatorRow(grid_layout, buttonGroup);
-    addCustomSeparatorRow(grid_layout, buttonGroup);
+    m_separatorButtonGroup = new QButtonGroup;
+    addStandardSeparatorRow(grid_layout, m_separatorButtonGroup);
+    addCustomSeparatorRow(grid_layout, m_separatorButtonGroup);
 
     addSectionLabel("Ignore lines", grid_layout);
     addIgnoreStringPatternRow(grid_layout);
@@ -145,9 +180,9 @@ void ParserPropertyWidget::addStandardSeparatorRow(QGridLayout* layout, QButtonG
     layout->addWidget(automaticRadio, row, 1, Qt::AlignLeft);
     layout->addWidget(spaceRadio, row, 2, Qt::AlignLeft);
     layout->addWidget(commaRadio, row, 3, Qt::AlignLeft);
-    group->addButton(automaticRadio);
-    group->addButton(spaceRadio);
-    group->addButton(commaRadio);
+    group->addButton(automaticRadio, AUTOMATIC);
+    group->addButton(spaceRadio, SPACE);
+    group->addButton(commaRadio, COMMA);
 }
 
 //! Adds row to the grid: elements with custom separator settings.
@@ -181,7 +216,7 @@ void ParserPropertyWidget::addCustomSeparatorRow(QGridLayout* layout, QButtonGro
     layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
     layout->addWidget(customRadio, row, 1, Qt::AlignLeft);
     layout->addWidget(customSeparatorLineEdit, row, 2, Qt::AlignLeft);
-    group->addButton(customRadio);
+    group->addButton(customRadio, CUSTOM);
 }
 
 //! Adds row to the grid: elements with pattern to ignore lines.
