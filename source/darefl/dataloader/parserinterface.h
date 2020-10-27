@@ -37,7 +37,8 @@ public:
 
     virtual  std::vector<std::string> parseResults(size_t index) const = 0;
 
-    virtual  std::vector<std::vector<std::string>> parseResults() const = 0;
+    //! Returns 2D vector representing parsed text. Skipped lines are not present.
+    virtual  std::vector<std::vector<std::string>> parsedData() const = 0;
 
 };
 

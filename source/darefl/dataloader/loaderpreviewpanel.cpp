@@ -52,7 +52,7 @@ void LoaderPreviewPanel::showData(const DataLoader::ParserInterface* parser)
     }
     m_textView->moveCursor(QTextCursor::Start);
 
-    m_tableWidget->setRawData(parser->parseResults());
+    m_tableWidget->setRawData(parser->parsedData());
 }
 
 std::vector<DataLoader::ColumnInfo> LoaderPreviewPanel::columnInfo() const
