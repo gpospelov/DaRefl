@@ -32,9 +32,6 @@ public:
     //! Returns total number of lines in raw data.
     virtual size_t totalLineCount() const = 0;
 
-    //! Returns total number of rows representing multi-column data.
-    virtual size_t dataRowCount() const = 0;
-
     //! Returns a pair representing raw line and flag describing parsing results.
     virtual std::pair<std::string, LineType> getLine(size_t index) const = 0;
 
