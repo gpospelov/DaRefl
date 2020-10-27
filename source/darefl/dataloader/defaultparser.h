@@ -32,7 +32,7 @@ public:
 
     size_t totalLineCount() const override;
 
-    std::pair<std::string, LineType> getLine(size_t index) const override;
+    std::string getLine(size_t index) const override;
 
     std::vector<std::string> parseResults(size_t index) const override;
 

@@ -10,11 +10,11 @@
 #include <QColor>
 #include <QTabWidget>
 #include <QVBoxLayout>
+#include <darefl/dataloader/dataloader_utils.h>
 #include <darefl/dataloader/importtablewidget.h>
 #include <darefl/dataloader/importtextview.h>
 #include <darefl/dataloader/loaderpreviewpanel.h>
 #include <darefl/dataloader/parserinterface.h>
-#include <darefl/dataloader/dataloader_utils.h>
 
 namespace
 {
@@ -43,12 +43,9 @@ void LoaderPreviewPanel::showData(const DataLoader::ParserInterface* parser)
     m_textView->clear();
     for (size_t index = 0; index < parser->totalLineCount(); ++index) {
         auto line_data = parser->getLine(index);
-
         auto parts = parser->parseResults(index);
-        auto string_to_show = QString::fromStdString(
-            DataLoader::AddHtmlColorTagToParts(line_data.first, parts, blue, gray));
-
-        m_textView->appendHtml(string_to_show);
+        auto string_to_show = DataLoader::AddHtmlColorTagToParts(line_data, parts, blue, gray);
+        m_textView->appendHtml(QString::fromStdString(string_to_show));
     }
     m_textView->moveCursor(QTextCursor::Start);
 
