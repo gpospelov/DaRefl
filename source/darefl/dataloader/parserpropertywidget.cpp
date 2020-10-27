@@ -9,9 +9,9 @@
 
 #include <QButtonGroup>
 #include <QComboBox>
-#include <QDebug>
 #include <QGridLayout>
 #include <QGroupBox>
+#include <QDebug>
 #include <QLabel>
 #include <QLineEdit>
 #include <QRadioButton>
@@ -104,8 +104,9 @@ void ParserPropertyWidget::readSettings()
 
     if (settings.contains(separatorgroupid_setting_name())) {
         int button_id = settings.value(separatorgroupid_setting_name()).toInt();
-        if (auto button = m_separatorButtonGroup->button(button_id); button)
-            button->setChecked(true);
+        if (auto button = m_separatorButtonGroup->button(button_id); button) {
+            button->click();
+        }
     }
 
     if (settings.contains(customseparatortext_setting_name()))
