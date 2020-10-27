@@ -204,7 +204,7 @@ void DataLoaderDialog::onParseAllRequest()
         auto data_to_parse = m_dataHandler->textData(name.toStdString());
 
         parser->process(data_to_parse);
-        auto parsed_text = parser->parseResults();
+        auto parsed_text = parser->parsedData();
 
         auto columns = m_previewPanel->columnInfo();
         for (auto [axis_info, intensity_info] : DataLoader::CreateGraphInfoPairs(columns)) {

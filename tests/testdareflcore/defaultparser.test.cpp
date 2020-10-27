@@ -23,7 +23,7 @@ public:
     ~DefaultParserTest();
 
     int parsedDataRowCount(const DefaultParser& parser) {
-        return parser.parseResults().size();
+        return parser.parsedData().size();
     }
 };
 
@@ -80,15 +80,15 @@ TEST_F(DefaultParserTest, parseResults)
     DefaultParser parser({"#", ",", ""}); // prefix, separator, line pattern
 
     parser.process({"1, 2, 3"});
-    EXPECT_EQ(parser.parseResults().size(), 1);
-    EXPECT_EQ(parser.parseResults()[0], toStringVector("1", " 2", " 3"));
+    EXPECT_EQ(parser.parsedData().size(), 1);
+    EXPECT_EQ(parser.parsedData()[0], toStringVector("1", " 2", " 3"));
 
     parser.process({"1, 2, 3", "4, 5, 6"});
-    EXPECT_EQ(parser.parseResults().size(), 2);
-    EXPECT_EQ(parser.parseResults()[0], toStringVector("1", " 2", " 3"));
-    EXPECT_EQ(parser.parseResults()[1], toStringVector("4", " 5", " 6"));
+    EXPECT_EQ(parser.parsedData().size(), 2);
+    EXPECT_EQ(parser.parsedData()[0], toStringVector("1", " 2", " 3"));
+    EXPECT_EQ(parser.parsedData()[1], toStringVector("4", " 5", " 6"));
 
     parser.process({"#1, 2, 3", "4, 5, 6"});
-    EXPECT_EQ(parser.parseResults().size(), 1);
-    EXPECT_EQ(parser.parseResults()[0], toStringVector("4", " 5", " 6"));
+    EXPECT_EQ(parser.parsedData().size(), 1);
+    EXPECT_EQ(parser.parsedData()[0], toStringVector("4", " 5", " 6"));
 }
