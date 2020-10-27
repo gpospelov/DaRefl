@@ -136,34 +136,6 @@ TEST_F(ExperimentalDataModelTest, removeDataFromCollection)
     EXPECT_EQ(7 + default_child_count, data_group_item_1->childrenCount());
 }
 
-//! test the checkAllGraph method
-TEST_F(ExperimentalDataModelTest, checkAllGraph)
-{
-    ExperimentalDataModel model;
-    auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
-
-    CanvasItem* data_group_item_1 = nullptr;
-    for (int i = 0; i < 10; ++i) {
-        data_group_item_1 =
-            model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item_1);
-    }
-    auto data_children = data_group_item_1->children();
-    std::vector<SessionItem*> graph_items;
-    std::copy_if(data_children.begin(), data_children.end(), std::back_inserter(graph_items),
-                 [](auto item) { return dynamic_cast<GraphItem*>(item); });
-    EXPECT_EQ(data_group_item_1, model.checkAllGraph(graph_items));
-
-    CanvasItem* data_group_item_2 = nullptr;
-    for (int i = 0; i < 10; ++i) {
-        data_group_item_2 =
-            model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item_2);
-    }
-    data_children = data_group_item_2->children();
-    std::copy_if(data_children.begin(), data_children.end(), std::back_inserter(graph_items),
-                 [](auto item) { return dynamic_cast<GraphItem*>(item); });
-    EXPECT_EQ(nullptr, model.checkAllGraph(graph_items));
-}
-
 //! Test the itemIsEditable method
 TEST_F(ExperimentalDataModelTest, itemEditable)
 {
