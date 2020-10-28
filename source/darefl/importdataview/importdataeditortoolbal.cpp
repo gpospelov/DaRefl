@@ -27,13 +27,13 @@ ImportDataEditorToolBar::ImportDataEditorToolBar(ImportDataEditorActions* editor
 
     addSeparator();
 
-    auto add_group_action = new QAction("Add canvas", this);
-    add_group_action->setToolTip(
+    auto add_canvas_action = new QAction("Add canvas", this);
+    add_canvas_action->setToolTip(
         "Creates an empty canvas and appends it to the list.\n"
         "Canvas can hold multiple graphs, graphs can be moved between canvas.");
-    add_group_action->setIcon(QIcon(":/icons/plus-box-outline.svg"));
-    connect(add_group_action, &QAction::triggered, [this]() { m_editorActions->onAddDataGroup(); });
-    addAction(add_group_action);
+    add_canvas_action->setIcon(QIcon(":/icons/plus-box-outline.svg"));
+    connect(add_canvas_action, &QAction::triggered, [this]() { m_editorActions->onAddCanvas(); });
+    addAction(add_canvas_action);
 
     auto merge_group_action = new QAction("Merge", this);
     merge_group_action->setToolTip("Merge several selected canvas into one.\n"

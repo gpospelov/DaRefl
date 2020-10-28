@@ -39,6 +39,8 @@ class CanvasContainerItem : public ModelView::ContainerItem
 {
 public:
     CanvasContainerItem();
+
+    std::vector<CanvasItem*> canvasItems() const;
 };
 
 //! Holds a collection of Data1DItem's with raw data as imported by the user.

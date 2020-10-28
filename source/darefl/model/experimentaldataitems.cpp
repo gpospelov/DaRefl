@@ -27,6 +27,11 @@ std::pair<double, double> CanvasItem::data_yaxis_range() const
 
 CanvasContainerItem::CanvasContainerItem() : ContainerItem(::Constants::CanvasContainerItemType) {}
 
+std::vector<CanvasItem*> CanvasContainerItem::canvasItems() const
+{
+    return items<CanvasItem>(T_ITEMS);
+}
+
 ExperimentalDataContainerItem::ExperimentalDataContainerItem()
     : ContainerItem(::Constants::ExperimentalDataContainerItemType)
 {
