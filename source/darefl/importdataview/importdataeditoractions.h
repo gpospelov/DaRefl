@@ -27,7 +27,7 @@ public:
     void setSelectionModel(DataSelectionModel* selection_model);
 
 public slots:
-    void onAddDataGroup();
+    void onAddCanvas();
     void onMergeDataGroups();
     void onDeleteItem();
     void onUndo();
