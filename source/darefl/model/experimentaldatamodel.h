@@ -33,6 +33,19 @@ public:
     ExperimentalDataModel();
     ExperimentalDataModel(std::shared_ptr<ModelView::ItemPool> pool);
 
+    CanvasContainerItem* canvasContainer() const;
+
+    ExperimentalDataContainerItem* dataContainer() const;
+
+    CanvasItem* addCanvas();
+
+    ModelView::GraphItem* addGraph(const RealDataStruct& data_struct, CanvasItem& target_canvas);
+
+    void removeGraph(ModelView::GraphItem& graph);
+
+
+    // TODO cleanup below
+
     CanvasItem* addDataToCollection(RealDataStruct data_struct, CanvasContainerItem* data_node,
                                     CanvasItem* data_group = nullptr);
 
@@ -44,11 +57,8 @@ public:
     bool dragDropItem(ModelView::SessionItem* item, ModelView::SessionItem* target, int row = -1);
     bool mergeItems(std::vector<ModelView::SessionItem*> items);
 
-    CanvasContainerItem* canvasContainer() const;
 
 private:
-    ExperimentalDataContainerItem* dataContainer() const;
-
     void addDataToGroup(CanvasItem* data_group, RealDataStruct& data_struct);
     void removeDataFromGroup(ModelView::GraphItem* item);
 
