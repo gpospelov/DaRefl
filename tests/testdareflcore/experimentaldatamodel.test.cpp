@@ -47,6 +47,7 @@ TEST_F(ExperimentalDataModelTest, initialState)
 }
 
 //! Adding canvas to the model.
+
 TEST_F(ExperimentalDataModelTest, addCanvas)
 {
     ExperimentalDataModel model;
@@ -58,6 +59,7 @@ TEST_F(ExperimentalDataModelTest, addCanvas)
 }
 
 //! Adding graph from the data structure.
+
 TEST_F(ExperimentalDataModelTest, addGraph)
 {
     ExperimentalDataModel model;
@@ -79,6 +81,55 @@ TEST_F(ExperimentalDataModelTest, addGraph)
 
     EXPECT_EQ(model.dataContainer()->childrenCount(), 1);
     std::vector<Data1DItem*> expected_items = {graph->dataItem()};
+    EXPECT_EQ(model.dataContainer()->dataItems(), expected_items);
+}
+
+//! Removing just added graph.
+
+TEST_F(ExperimentalDataModelTest, removeGraph)
+{
+    ExperimentalDataModel model;
+    std::vector<double> bin_centers{1, 2, 3};
+    std::vector<double> bin_values{10, 20, 30};
+
+    RealDataStruct raw_data = {"", "", bin_centers, "", "", bin_values, "", ""};
+
+    auto canvas = model.addCanvas();
+
+    // adding graph
+    auto graph = model.addGraph(raw_data, *canvas);
+
+    // removing graph
+    model.removeGraph(*graph);
+
+    // should remoive bove graph, and underlying data item
+    EXPECT_EQ(canvas->graphItems().size(), 0);
+    EXPECT_EQ(model.dataContainer()->dataItems().size(), 0);
+}
+
+//! Removing middle graph from the collection.
+
+TEST_F(ExperimentalDataModelTest, removeMiddleGraph)
+{
+    ExperimentalDataModel model;
+    std::vector<double> bin_centers{1, 2, 3};
+    std::vector<double> bin_values{10, 20, 30};
+
+    RealDataStruct raw_data = {"", "", bin_centers, "", "", bin_values, "", ""};
+
+    auto canvas = model.addCanvas();
+
+    // adding graph, it should appear in canvas
+    auto graph0 = model.addGraph(raw_data, *canvas);
+    auto graph1 = model.addGraph(raw_data, *canvas);
+    auto graph2 = model.addGraph(raw_data, *canvas);
+
+    // removing graph
+    model.removeGraph(*graph1);
+
+    std::vector<GraphItem*> expected_graphs = {graph0, graph2};
+    ASSERT_EQ(canvas->graphItems(), expected_graphs);
+    std::vector<Data1DItem*> expected_items = {graph0->dataItem(), graph2->dataItem()};
     EXPECT_EQ(model.dataContainer()->dataItems(), expected_items);
 }
 
