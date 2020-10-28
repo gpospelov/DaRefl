@@ -52,11 +52,49 @@ ExperimentalDataModel::ExperimentalDataModel(std::shared_ptr<ItemPool> pool)
     init_model();
 }
 
+//! Returns the canvas container of the model.
+
+CanvasContainerItem* ExperimentalDataModel::canvasContainer() const
+{
+    return topItem<CanvasContainerItem>();
+}
+
 //! Returns the data container of the model.
 
 ExperimentalDataContainerItem* ExperimentalDataModel::dataContainer() const
 {
     return topItem<ExperimentalDataContainerItem>();
+}
+
+CanvasItem* ExperimentalDataModel::addCanvas()
+{
+    return insertItem<CanvasItem>(canvasContainer());
+}
+
+//! Adds graph to 'target_canvas' and returns the result.
+//! Internally add Data1DItem object to ExperimentalDataContainerItem,
+//! and set it to GraphItem.
+
+ModelView::GraphItem* ExperimentalDataModel::addGraph(const RealDataStruct& data_struct,
+                                                     CanvasItem& target_canvas)
+{
+    auto result = insertItem<GraphItem>(&target_canvas);
+
+    auto data = insertItem<Data1DItem>(dataContainer());
+    data->setAxis(PointwiseAxisItem::create(data_struct.axis));
+    data->setContent(data_struct.data);
+    result->setDataItem(data);
+
+    return result;
+}
+
+//! Remove graph from the model. Underlying DataItem will be removed too.
+
+void ExperimentalDataModel::removeGraph(GraphItem& graph)
+{
+    auto dataItem = graph.dataItem();
+    removeItem(graph.parent(), graph.tagRow());
+    removeItem(dataItem->parent(), dataItem->tagRow());
 }
 
 //! This will manage the group item tagret and then insert the data.
@@ -197,11 +235,6 @@ bool ExperimentalDataModel::mergeItems(std::vector<ModelView::SessionItem*> item
     }
 
     return true;
-}
-
-CanvasContainerItem* ExperimentalDataModel::canvasContainer() const
-{
-    return topItem<CanvasContainerItem>();
 }
 
 void ExperimentalDataModel::init_model()

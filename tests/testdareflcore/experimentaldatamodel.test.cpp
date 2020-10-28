@@ -12,6 +12,7 @@
 #include <darefl/model/experimentaldata_types.h>
 #include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/experimentaldatamodel.h>
+#include <darefl/model/item_constants.h>
 
 #include <QSignalSpy>
 #include <mvvm/model/modelutils.h>
@@ -30,6 +31,61 @@ public:
 
 ExperimentalDataModelTest::~ExperimentalDataModelTest() = default;
 
+//! Test the initial state of the model.
+
+TEST_F(ExperimentalDataModelTest, initialState)
+{
+    ExperimentalDataModel model;
+
+    ASSERT_TRUE(model.canvasContainer() != nullptr);
+    EXPECT_EQ(model.canvasContainer()->childrenCount(), 0);
+    EXPECT_EQ(model.canvasContainer()->modelType(), ::Constants::CanvasContainerItemType);
+
+    ASSERT_TRUE(model.dataContainer() != nullptr);
+    EXPECT_EQ(model.dataContainer()->childrenCount(), 0);
+    EXPECT_EQ(model.dataContainer()->modelType(), ::Constants::ExperimentalDataContainerItemType);
+}
+
+//! Adding canvas to the model.
+TEST_F(ExperimentalDataModelTest, addCanvas)
+{
+    ExperimentalDataModel model;
+
+    auto canvas = model.addCanvas();
+    ASSERT_TRUE(canvas != nullptr);
+    EXPECT_EQ(canvas->graphItems().size(), 0);
+    EXPECT_EQ(canvas->modelType(), ::Constants::CanvasItemType);
+}
+
+//! Adding graph from the data structure.
+TEST_F(ExperimentalDataModelTest, addGraph)
+{
+    ExperimentalDataModel model;
+    std::vector<double> bin_centers{1, 2, 3};
+    std::vector<double> bin_values{10, 20, 30};
+
+    RealDataStruct raw_data = {"", "", bin_centers, "", "", bin_values, "", ""};
+
+    auto canvas = model.addCanvas();
+
+    // adding graph, it should appear in canvas
+    auto graph = model.addGraph(raw_data, *canvas);
+    ASSERT_EQ(canvas->graphItems().size(), 1);
+    EXPECT_EQ(canvas->graphItems()[0], graph);
+
+    // graph should have values as defined in the raw_data
+    EXPECT_EQ(graph->binCenters(), bin_centers);
+    EXPECT_EQ(graph->binValues(), bin_values);
+
+    EXPECT_EQ(model.dataContainer()->childrenCount(), 1);
+    std::vector<Data1DItem*> expected_items = {graph->dataItem()};
+    EXPECT_EQ(model.dataContainer()->dataItems(), expected_items);
+}
+
+// -----------------------------------------------------------------------------------------
+// TODO cleanup below
+// -----------------------------------------------------------------------------------------
+
 RealDataStruct ExperimentalDataModelTest::getRealDataStruct() const
 {
     RealDataStruct output;
@@ -45,14 +101,6 @@ RealDataStruct ExperimentalDataModelTest::getRealDataStruct() const
     output.data_unit = "a.u.";
 
     return output;
-}
-
-//! Test the initial state of the model
-TEST_F(ExperimentalDataModelTest, initialState)
-{
-    ExperimentalDataModel model;
-
-    EXPECT_EQ(2, model.rootItem()->childrenCount());
 }
 
 //! Test the addDataToCollection method

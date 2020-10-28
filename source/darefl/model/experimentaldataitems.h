@@ -13,6 +13,11 @@
 #include <mvvm/standarditems/containeritem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
 
+namespace ModelView
+{
+class Data1DItem;
+}
+
 //! Holds a collection of GraphItem's for simultaneous plotting, as well as all information
 //! related to plotting properties. Used in the context of importing of 1D data. Serves as an input
 //! for GraphCanvas widget.
@@ -44,6 +49,8 @@ class ExperimentalDataContainerItem : public ModelView::ContainerItem
 {
 public:
     ExperimentalDataContainerItem();
+
+    std::vector<ModelView::Data1DItem*> dataItems() const;
 };
 
 #endif // DAREFL_MODEL_EXPERIMENTALDATAITEMS_H
