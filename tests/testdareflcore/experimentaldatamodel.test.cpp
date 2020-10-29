@@ -40,10 +40,12 @@ TEST_F(ExperimentalDataModelTest, initialState)
     ASSERT_TRUE(model.canvasContainer() != nullptr);
     EXPECT_EQ(model.canvasContainer()->childrenCount(), 0);
     EXPECT_EQ(model.canvasContainer()->modelType(), ::Constants::CanvasContainerItemType);
+    EXPECT_EQ(model.canvasContainer()->canvasItems().size(), 0);
 
     ASSERT_TRUE(model.dataContainer() != nullptr);
     EXPECT_EQ(model.dataContainer()->childrenCount(), 0);
     EXPECT_EQ(model.dataContainer()->modelType(), ::Constants::ExperimentalDataContainerItemType);
+    EXPECT_EQ(model.dataContainer()->dataItems().size(), 0);
 }
 
 //! Adding canvas to the model.
@@ -56,6 +58,8 @@ TEST_F(ExperimentalDataModelTest, addCanvas)
     ASSERT_TRUE(canvas != nullptr);
     EXPECT_EQ(canvas->graphItems().size(), 0);
     EXPECT_EQ(canvas->modelType(), ::Constants::CanvasItemType);
+    EXPECT_EQ(model.canvasContainer()->canvasItems().size(), 1);
+    EXPECT_EQ(model.canvasContainer()->canvasItems(), std::vector<CanvasItem*>() = {canvas});
 }
 
 //! Adding graph from the data structure.
@@ -131,6 +135,29 @@ TEST_F(ExperimentalDataModelTest, removeMiddleGraph)
     ASSERT_EQ(canvas->graphItems(), expected_graphs);
     std::vector<Data1DItem*> expected_items = {graph0->dataItem(), graph2->dataItem()};
     EXPECT_EQ(model.dataContainer()->dataItems(), expected_items);
+}
+
+//! Removing just added graph.
+
+TEST_F(ExperimentalDataModelTest, removeCanvasWithGraph)
+{
+    ExperimentalDataModel model;
+    std::vector<double> bin_centers{1, 2, 3};
+    std::vector<double> bin_values{10, 20, 30};
+
+    RealDataStruct raw_data = {"", "", bin_centers, "", "", bin_values, "", ""};
+
+    auto canvas = model.addCanvas();
+
+    // adding graph
+    model.addGraph(raw_data, *canvas);
+
+    // removing graph
+    model.removeCanvas(*canvas);
+
+    // should remoive bove graph, and underlying data item
+    EXPECT_EQ(model.dataContainer()->dataItems().size(), 0);
+    EXPECT_EQ(model.canvasContainer()->canvasItems().size(), 0);
 }
 
 // -----------------------------------------------------------------------------------------
