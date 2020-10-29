@@ -97,6 +97,15 @@ void ExperimentalDataModel::removeGraph(GraphItem& graph)
     removeItem(dataItem->parent(), dataItem->tagRow());
 }
 
+//! Remove canvas with all its graphs.
+
+void ExperimentalDataModel::removeCanvas(CanvasItem& canvas)
+{
+    for (auto graph : canvas.graphItems())
+        removeGraph(*graph);
+    removeItem(canvas.parent(), canvas.tagRow());
+}
+
 //! This will manage the group item tagret and then insert the data.
 //! The created group is then returned to allow insertion within the same
 CanvasItem* ExperimentalDataModel::addDataToCollection(RealDataStruct data_struct,

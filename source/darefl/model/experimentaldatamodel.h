@@ -43,6 +43,8 @@ public:
 
     void removeGraph(ModelView::GraphItem& graph);
 
+    void removeCanvas(CanvasItem& canvas);
+
 
     // TODO cleanup below
 
