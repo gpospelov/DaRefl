@@ -180,6 +180,4 @@ void ExperimentalDataModel::init_model()
 
     insertItem<ExperimentalDataContainerItem>(rootItem());
     insertItem<CanvasContainerItem>(rootItem());
-
-    setUndoRedoEnabled(true);
 }
