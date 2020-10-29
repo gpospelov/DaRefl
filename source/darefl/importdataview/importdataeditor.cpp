@@ -42,10 +42,10 @@ ImportDataEditor::ImportDataEditor(ExperimentalDataModel* model, QWidget* parent
     layout->addWidget(m_editorToolBar);
     layout->addWidget(splitter);
 
-    setupConnections();
-
     m_editorActions->setSelectionModel(m_dataSelectorWidget->selectionModel());
-    m_viewModel->setRootSessionItem(model->topItem<CanvasContainerItem>());
+    m_viewModel->setRootSessionItem(model->canvasContainer());
+
+    setupConnections();
 }
 
 void ImportDataEditor::setupConnections()
