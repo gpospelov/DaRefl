@@ -18,6 +18,7 @@
 #include <mvvm/viewmodel/viewmodel.h>
 #include <mvvm/viewmodel/viewmodelutils.h>
 #include <set>
+#include <QDebug>
 
 //! The constructor
 DataSelectionModel::DataSelectionModel(ModelView::ViewModel* view_model, QObject* parent)
@@ -85,4 +86,28 @@ ModelView::GraphItem* DataSelectionModel::selectedGraph() const
             return static_cast<ModelView::GraphItem*>(item);
 
     return nullptr;
+}
+
+//! Returns vector of currently slected canvas.
+
+std::vector<CanvasItem*> DataSelectionModel::selectedCanvas() const
+{
+    std::vector<CanvasItem*> result;
+
+    for (auto item : selectedItems())
+        if (item->modelType() == ::Constants::CanvasItemType)
+            result.push_back(static_cast<CanvasItem*>(item));
+
+    return result;
+}
+
+std::vector<ModelView::GraphItem*> DataSelectionModel::selectedGraphs() const
+{
+    std::vector<ModelView::GraphItem*> result;
+
+    for (auto item : selectedItems())
+        if (item->modelType() == ModelView::Constants::GraphItemType)
+            result.push_back(static_cast<ModelView::GraphItem*>(item));
+
+    return result;
 }
