@@ -62,6 +62,9 @@ TEST_F(DataSelectionModelTest, initialState)
     // checking that no selection exists
     EXPECT_FALSE(test_data.selection_model.hasSelection());
     EXPECT_EQ(test_data.selection_model.activeCanvas(), nullptr);
+    EXPECT_EQ(test_data.selection_model.selectedGraph(), nullptr);
+    EXPECT_EQ(test_data.selection_model.selectedCanvas().size(), 0);
+    EXPECT_EQ(test_data.selection_model.selectedGraphs().size(), 0);
 }
 
 //! Select single canvas and check that it was actually selected.
@@ -82,9 +85,12 @@ TEST_F(DataSelectionModelTest, selectCanvasItem)
 
     // check that selection model reports same canvas as active one
     EXPECT_EQ(test_data.selection_model.activeCanvas(), test_data.canvas0);
+    std::vector<CanvasItem*> expected_canvas{test_data.canvas0};
+    EXPECT_EQ(test_data.selection_model.selectedCanvas(), expected_canvas);
 
     // no graphs selected
     EXPECT_EQ(test_data.selection_model.selectedGraph(), nullptr);
+    EXPECT_EQ(test_data.selection_model.selectedGraphs().size(), 0);
 }
 
 //! Select single graph and check reported selection.
@@ -94,7 +100,7 @@ TEST_F(DataSelectionModelTest, selectGraph)
     TestData test_data;
     EXPECT_FALSE(test_data.selection_model.hasSelection());
 
-    // make canvas0 selected
+    // make graph0 selected
     test_data.selection_model.selectItem(test_data.graph_c0_a);
 
     EXPECT_TRUE(test_data.selection_model.hasSelection());
@@ -106,8 +112,13 @@ TEST_F(DataSelectionModelTest, selectGraph)
     // method should report parent of graph as active canvas
     EXPECT_EQ(test_data.selection_model.activeCanvas(), test_data.canvas0);
 
+    // no canvas selected
+    EXPECT_EQ(test_data.selection_model.selectedCanvas(), std::vector<CanvasItem*>());
+
     // method should report parent of graph as selected canvas
     EXPECT_EQ(test_data.selection_model.selectedGraph(), test_data.graph_c0_a);
+    std::vector<ModelView::GraphItem*> expected_graphs{test_data.graph_c0_a};
+    EXPECT_EQ(test_data.selection_model.selectedGraphs(), expected_graphs);
 }
 
 //! Select two graphs and check reported selection.
@@ -117,7 +128,7 @@ TEST_F(DataSelectionModelTest, selectTwoGraphs)
     TestData test_data;
     EXPECT_FALSE(test_data.selection_model.hasSelection());
 
-    // make canvas0 selected
+    // make two graphs selected
     std::vector<SessionItem*> expected = {test_data.graph_c0_a, test_data.graph_c0_b};
     test_data.selection_model.selectItems(expected);
 
@@ -128,7 +139,28 @@ TEST_F(DataSelectionModelTest, selectTwoGraphs)
 
     // method should report parent of graph as active canvas
     EXPECT_EQ(test_data.selection_model.activeCanvas(), test_data.canvas0);
+    EXPECT_EQ(test_data.selection_model.selectedCanvas().size(), 0);
 
     // method should report parent of graph as selected canvas
     EXPECT_EQ(test_data.selection_model.selectedGraph(), test_data.graph_c0_a);
+    std::vector<ModelView::GraphItem*> expected_graphs{test_data.graph_c0_a, test_data.graph_c0_b};
+    EXPECT_EQ(test_data.selection_model.selectedGraphs(), expected_graphs);
 }
+
+//! Select two graphs and check reported selection.
+
+// FIXME Enable test. For that DataSelectionModel should allow to select
+// parent+child programmatically.
+
+//TEST_F(DataSelectionModelTest, selectGraphAndCanvas)
+//{
+//    TestData test_data;
+//    EXPECT_FALSE(test_data.selection_model.hasSelection());
+
+//    // make two graphs selected
+//    std::vector<SessionItem*> expected = {test_data.graph_c0_a, test_data.canvas0};
+//    test_data.selection_model.selectItems(expected);
+
+//    EXPECT_TRUE(test_data.selection_model.hasSelection());
+//    EXPECT_EQ(test_data.selection_model.selectedIndexes().size(), 4); // GraphItem, LabelItem
+//}
