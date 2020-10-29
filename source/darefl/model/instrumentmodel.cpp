@@ -16,8 +16,6 @@ using namespace ModelView;
 namespace
 {
 
-const std::string model_name = "InstrumentModel";
-
 std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
 {
     auto result = std::make_unique<ModelView::ItemCatalogue>();
@@ -31,18 +29,8 @@ std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
 
 } // namespace
 
-InstrumentModel::InstrumentModel() : ModelView::SessionModel("InstrumentModel")
-{
-    init_model();
-}
-
 InstrumentModel::InstrumentModel(std::shared_ptr<ItemPool> pool)
-    : ModelView::SessionModel(model_name, pool)
-{
-    init_model();
-}
-
-void InstrumentModel::init_model()
+    : ModelView::SessionModel("InstrumentModel", pool)
 {
     setItemCatalogue(CreateItemCatalogue());
     insertItem<SpecularInstrumentItem>();

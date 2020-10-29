@@ -34,14 +34,10 @@ std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
 
 } // namespace
 
-JobModel::JobModel() : SessionModel("JobModel")
-{
-    init_model();
-}
-
 JobModel::JobModel(std::shared_ptr<ItemPool> pool) : SessionModel("JobModel", pool)
 {
-    init_model();
+    setItemCatalogue(CreateItemCatalogue());
+    insertItem<JobItem>();
 }
 
 Data1DItem* JobModel::sld_data() const
@@ -72,10 +68,4 @@ void JobModel::updateReferenceGraphFrom(const SpecularInstrumentItem* instrument
 JobItem* JobModel::job_item() const
 {
     return Utils::TopItem<JobItem>(this);
-}
-
-void JobModel::init_model()
-{
-    setItemCatalogue(CreateItemCatalogue());
-    insertItem<JobItem>();
 }

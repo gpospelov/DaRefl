@@ -16,13 +16,9 @@
 class SampleModel : public ModelView::SessionModel
 {
 public:
-    SampleModel();
-    SampleModel(std::shared_ptr<ModelView::ItemPool> pool);
+    SampleModel(std::shared_ptr<ModelView::ItemPool> pool = {});
 
     void create_default_multilayer();
-
-private:
-    void init_model();
 };
 
 #endif // DAREFL_MODEL_SAMPLEMODEL_H

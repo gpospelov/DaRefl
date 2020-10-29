@@ -30,8 +30,7 @@ class GraphViewportItem;
 class ExperimentalDataModel : public ModelView::SessionModel
 {
 public:
-    ExperimentalDataModel();
-    ExperimentalDataModel(std::shared_ptr<ModelView::ItemPool> pool);
+    ExperimentalDataModel(std::shared_ptr<ModelView::ItemPool> pool = {});
 
     CanvasContainerItem* canvasContainer() const;
 
