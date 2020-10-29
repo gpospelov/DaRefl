@@ -13,7 +13,6 @@
 #include <darefl/model/materialmodel.h>
 #include <mvvm/model/externalproperty.h>
 #include <mvvm/model/itemcatalogue.h>
-#include <mvvm/model/modelutils.h>
 #include <mvvm/widgets/widgetutils.h>
 
 using namespace ModelView;
@@ -21,7 +20,6 @@ using namespace ModelView;
 namespace
 {
 
-const std::string model_name{"MaterialModel"};
 std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
 {
     auto result = std::make_unique<ModelView::ItemCatalogue>();
@@ -59,13 +57,8 @@ QColor suggestMaterialColor(const std::string& name)
 
 } // namespace
 
-MaterialModel::MaterialModel() : SessionModel(model_name)
-{
-    init_model();
-}
-
 MaterialModel::MaterialModel(std::shared_ptr<ModelView::ItemPool> pool)
-    : SessionModel(model_name, pool)
+    : SessionModel("MaterialModel", pool)
 {
     init_model();
 }
@@ -81,7 +74,7 @@ std::vector<ExternalProperty> MaterialModel::material_data(std::string container
     std::vector<ExternalProperty> result;
     const auto containers = rootItem()->children();
     if (!containers.empty() && container_id.empty())
-        container_id = Utils::TopItem<MaterialContainerItem>(this)->identifier();
+        container_id = topItem<MaterialContainerItem>()->identifier();
 
     for (auto container : containers) {
         if (container->identifier() != container_id)
@@ -141,5 +134,5 @@ void MaterialModel::init_model()
 
 MaterialContainerItem* MaterialModel::materialContainer()
 {
-    return Utils::TopItem<MaterialContainerItem>(const_cast<MaterialModel*>(this));
+    return topItem<MaterialContainerItem>();
 }

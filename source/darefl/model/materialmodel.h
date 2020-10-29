@@ -28,8 +28,7 @@ class SLDMaterialItem;
 class MaterialModel : public ModelView::SessionModel
 {
 public:
-    MaterialModel();
-    MaterialModel(std::shared_ptr<ModelView::ItemPool> pool);
+    MaterialModel(std::shared_ptr<ModelView::ItemPool> pool = {});
 
     std::vector<ModelView::ExternalProperty>
     material_data(std::string container_id = std::string()) const;

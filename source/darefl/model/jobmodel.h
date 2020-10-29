@@ -27,8 +27,7 @@ class SpecularInstrumentItem;
 class JobModel : public ModelView::SessionModel
 {
 public:
-    JobModel();
-    JobModel(std::shared_ptr<ModelView::ItemPool> pool);
+    JobModel(std::shared_ptr<ModelView::ItemPool> pool = {});
 
     ModelView::Data1DItem* sld_data() const;
     ModelView::GraphViewportItem* sld_viewport() const;
@@ -40,7 +39,6 @@ public:
 
 private:
     JobItem* job_item() const;
-    void init_model();
 };
 
 #endif // DAREFL_MODEL_JOBMODEL_H

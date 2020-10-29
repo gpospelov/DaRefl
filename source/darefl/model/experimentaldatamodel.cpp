@@ -27,7 +27,6 @@ using namespace ModelView;
 namespace
 {
 
-const std::string model_name{"ExperimentalDataModel"};
 
 std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
 {
@@ -40,13 +39,8 @@ std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
 
 } // namespace
 
-ExperimentalDataModel::ExperimentalDataModel() : SessionModel(model_name)
-{
-    init_model();
-}
-
 ExperimentalDataModel::ExperimentalDataModel(std::shared_ptr<ItemPool> pool)
-    : SessionModel(model_name, pool)
+    : SessionModel("ExperimentalDataModel", pool)
 
 {
     init_model();
