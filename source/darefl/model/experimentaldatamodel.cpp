@@ -76,7 +76,7 @@ CanvasItem* ExperimentalDataModel::addCanvas()
 //! and set it to GraphItem.
 
 ModelView::GraphItem* ExperimentalDataModel::addGraph(const RealDataStruct& data_struct,
-                                                     CanvasItem& target_canvas)
+                                                      CanvasItem& target_canvas)
 {
     auto result = insertItem<GraphItem>(&target_canvas);
 
@@ -104,78 +104,6 @@ void ExperimentalDataModel::removeCanvas(CanvasItem& canvas)
     for (auto graph : canvas.graphItems())
         removeGraph(*graph);
     removeItem(canvas.parent(), canvas.tagRow());
-}
-
-//! This will manage the group item tagret and then insert the data.
-//! The created group is then returned to allow insertion within the same
-CanvasItem* ExperimentalDataModel::addDataToCollection(RealDataStruct data_struct,
-                                                       CanvasContainerItem* data_node,
-                                                       CanvasItem* data_group)
-{
-    // FIXME What an awfull method!
-    auto group_item = data_group;
-    if (!group_item) {
-        group_item = insertItem<CanvasItem>(data_node);
-    }
-
-    if (!data_struct.data.empty())
-        addDataToGroup(group_item, data_struct);
-
-    return group_item;
-}
-
-//! Insert the data into the group item
-void ExperimentalDataModel::removeDataFromCollection(
-    std::vector<ModelView::SessionItem*> item_to_remove)
-{
-    for (auto item : item_to_remove) {
-        if (auto group_item = dynamic_cast<CanvasItem*>(item)) {
-            for (auto temp_item : group_item->children()) {
-                if (auto sub_item = dynamic_cast<GraphItem*>(temp_item))
-                    removeDataFromGroup(sub_item);
-            }
-            removeItem(group_item->parent(), group_item->tagRow());
-        } else if (auto subitem = dynamic_cast<GraphItem*>(item)) {
-            removeDataFromGroup(subitem);
-        }
-    }
-}
-
-//! Insert the data into the group item
-void ExperimentalDataModel::addDataToGroup(CanvasItem* data_group, RealDataStruct& data_struct)
-{
-    if (data_struct.axis.empty()) {
-        data_struct.axis.resize(data_struct.data.size());
-        std::iota(data_struct.axis.begin(), data_struct.axis.end(), 0);
-    }
-
-    std::vector<double> axis_vec;
-    std::vector<double> data_vec;
-
-    for (size_t i = 0; i < data_struct.data.size(); ++i) {
-        if (!std::isnan(data_struct.axis.at(i)) && !std::isnan(data_struct.data.at(i))) {
-            axis_vec.push_back(data_struct.axis.at(i));
-            data_vec.push_back(data_struct.data.at(i));
-        }
-    }
-
-    auto data = insertItem<Data1DItem>(dataContainer());
-    data->setAxis(PointwiseAxisItem::create(axis_vec));
-    data->setContent(data_vec);
-
-    auto graph = insertItem<GraphItem>(data_group);
-    graph->setDisplayName(data_struct.data_name);
-    graph->setData(data_struct.name);
-    graph->setDataItem(data);
-    // TODO hack to refresh the ViewDataItem display (please fix)
-    moveItem(graph, graph->parent(), graph->tagRow());
-}
-
-//! Remove Graph and data items from the model
-void ExperimentalDataModel::removeDataFromGroup(GraphItem* item)
-{
-    removeItem(item->dataItem()->parent(), item->dataItem()->tagRow());
-    removeItem(item->parent(), item->tagRow());
 }
 
 //! Check if an item should be editable or not

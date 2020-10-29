@@ -45,13 +45,7 @@ public:
 
     void removeCanvas(CanvasItem& canvas);
 
-
     // TODO cleanup below
-
-    CanvasItem* addDataToCollection(RealDataStruct data_struct, CanvasContainerItem* data_node,
-                                    CanvasItem* data_group = nullptr);
-
-    void removeDataFromCollection(std::vector<ModelView::SessionItem*> item_to_remove);
 
     bool itemEditable(ModelView::SessionItem* item) const;
     bool dragEnabled(ModelView::SessionItem* item) const;
@@ -59,11 +53,7 @@ public:
     bool dragDropItem(ModelView::SessionItem* item, ModelView::SessionItem* target, int row = -1);
     bool mergeItems(std::vector<ModelView::SessionItem*> items);
 
-
 private:
-    void addDataToGroup(CanvasItem* data_group, RealDataStruct& data_struct);
-    void removeDataFromGroup(ModelView::GraphItem* item);
-
     void init_model();
 };
 

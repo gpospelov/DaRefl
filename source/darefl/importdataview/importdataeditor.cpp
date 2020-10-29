@@ -97,9 +97,10 @@ std::pair<std::vector<std::string>, int> ImportDataEditor::canvasInfo() const
 void ImportDataEditor::onImportDialogAccept(const std::vector<RealDataStruct>& experimental_data,
                                             CanvasItem* canvas)
 {
-    CanvasContainerItem* canvas_container = m_dataModel->canvasContainer();
+    if (!canvas)
+        canvas = m_dataModel->addCanvas();
     for (auto& data : experimental_data)
-        canvas = m_dataModel->addDataToCollection(data, canvas_container, canvas);
+        m_dataModel->addGraph(data, *canvas);
     selectionModel()->selectItem(canvas);
 }
 
