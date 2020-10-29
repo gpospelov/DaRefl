@@ -93,8 +93,10 @@ ModelView::GraphItem* ExperimentalDataModel::addGraph(const RealDataStruct& data
 void ExperimentalDataModel::removeGraph(GraphItem& graph)
 {
     auto dataItem = graph.dataItem();
-    removeItem(graph.parent(), graph.tagRow());
+
+    // FIXME FIXME will crash on graph deletion if change order of lines
     removeItem(dataItem->parent(), dataItem->tagRow());
+    removeItem(graph.parent(), graph.tagRow());
 }
 
 //! Remove canvas with all its graphs.
