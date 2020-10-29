@@ -28,7 +28,7 @@ public:
 
 public slots:
     void onAddCanvas();
-    void onMergeDataGroups();
+    void onMergeCanvas();
     void onDeleteItem();
     void onUndo();
     void onRedo();

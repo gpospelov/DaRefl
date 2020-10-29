@@ -27,7 +27,7 @@ void ImportDataEditorActions::setSelectionModel(DataSelectionModel* selection_mo
     m_selectionModel = selection_model;
 }
 
-//! Create a new data grou item in the current data collection item
+//! Create new canvas and append it to the end of canvas container.
 
 void ImportDataEditorActions::onAddCanvas()
 {
@@ -36,7 +36,7 @@ void ImportDataEditorActions::onAddCanvas()
 
 //! Merge the selected actions
 
-void ImportDataEditorActions::onMergeDataGroups()
+void ImportDataEditorActions::onMergeCanvas()
 {
     //    auto items = m_selectionModel->selectedItems();
     //    items.erase(std::remove(begin(items), end(items), nullptr), end(items));
@@ -47,11 +47,15 @@ void ImportDataEditorActions::onMergeDataGroups()
     // FIXME restore
 }
 
-//! Delete the currently selected item
+//! Delete currently selected items.
 
 void ImportDataEditorActions::onDeleteItem()
 {
-    m_dataModel->removeDataFromCollection(m_selectionModel->selectedItems());
+    for (auto canvas : m_selectionModel->selectedCanvas())
+        m_dataModel->removeCanvas(*canvas);
+
+    for (auto graph : m_selectionModel->selectedGraphs())
+        m_dataModel->removeGraph(*graph);
 }
 
 void ImportDataEditorActions::onUndo()
