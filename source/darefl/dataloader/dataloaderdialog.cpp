@@ -26,6 +26,7 @@
 #include <darefl/dataloader/loaderselectorpanel.h>
 #include <darefl/dataloader/parserinterface.h>
 #include <mvvm/utils/fileutils.h>
+#include <mvvm/widgets/widgetutils.h>
 
 namespace
 {
@@ -48,22 +49,6 @@ template <typename T> void invoke_and_catch(T method)
         msgBox.setIcon(msgBox.Critical);
         msgBox.exec();
     }
-}
-
-std::vector<std::string> toStringVector(const QStringList& container)
-{
-    std::vector<std::string> result;
-    for (const auto& x : container)
-        result.push_back(x.toStdString());
-    return result;
-}
-
-QStringList toStringList(const std::vector<std::string>& container)
-{
-    QStringList result;
-    for (const auto& x : container)
-        result.push_back(QString::fromStdString(x));
-    return result;
 }
 
 const QString dialogsize_key = "dialogsize";
@@ -130,7 +115,7 @@ std::vector<RealDataStruct> DataLoaderDialog::importedData() const
 void DataLoaderDialog::setTargetCanvas(const std::vector<std::string>& canvas_names,
                                        int current_index)
 {
-    m_selectorPanel->setTargetCanvas(toStringList(canvas_names), current_index);
+    m_selectorPanel->setTargetCanvas(ModelView::Utils::toStringList(canvas_names), current_index);
 }
 
 //! Returns index of target canvas for graph import.
@@ -169,7 +154,8 @@ void DataLoaderDialog::accept()
 void DataLoaderDialog::onLoadFilesRequest()
 {
     auto update_raw_data = [this]() {
-        m_dataHandler->updateRawData(toStringVector(m_selectorPanel->fileNames()));
+        m_dataHandler->updateRawData(
+            ModelView::Utils::fromStringList(m_selectorPanel->fileNames()));
     };
     invoke_and_catch(update_raw_data);
 }

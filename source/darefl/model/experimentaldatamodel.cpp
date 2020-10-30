@@ -88,7 +88,7 @@ void ExperimentalDataModel::removeGraph(GraphItem& graph)
 {
     auto dataItem = graph.dataItem();
 
-    // FIXME FIXME will crash on graph deletion if change order of lines
+    // FIXME FIXME will crash on graph deletion if change order of two lines below
     removeItem(dataItem->parent(), dataItem->tagRow());
     removeItem(graph.parent(), graph.tagRow());
 }
@@ -97,6 +97,7 @@ void ExperimentalDataModel::removeGraph(GraphItem& graph)
 
 void ExperimentalDataModel::removeCanvas(CanvasItem& canvas)
 {
+    // Remove graph first. Use special method for that, since we want to remove underlying items.
     for (auto graph : canvas.graphItems())
         removeGraph(*graph);
     removeItem(canvas.parent(), canvas.tagRow());
