@@ -34,17 +34,11 @@ void ImportDataEditorActions::onAddCanvas()
     m_dataModel->addCanvas();
 }
 
-//! Merge the selected actions
+//! Merge selected canvases. All graphs will appear below canvas selected first.
 
-void ImportDataEditorActions::onMergeCanvas()
+void ImportDataEditorActions::onMergeCanvases()
 {
-    //    auto items = m_selectionModel->selectedItems();
-    //    items.erase(std::remove(begin(items), end(items), nullptr), end(items));
-    //    if (!m_dataModel->checkAllGroup(items))
-    //        return;
-
-    //    m_dataModel->mergeItems(items);
-    // FIXME restore
+    m_dataModel->mergeCanvases(m_selectionModel->selectedCanvas());
 }
 
 //! Delete currently selected items.

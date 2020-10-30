@@ -35,14 +35,13 @@ ImportDataEditorToolBar::ImportDataEditorToolBar(ImportDataEditorActions* editor
     connect(add_canvas_action, &QAction::triggered, [this]() { m_editorActions->onAddCanvas(); });
     addAction(add_canvas_action);
 
-    auto merge_canvas_action = new QAction("Merge", this);
-    merge_canvas_action->setToolTip("Merge several selected canvas into one.\n"
-                                   "All graphs will appear on a single canvas.");
-    merge_canvas_action->setIcon(QIcon(":/icons/set-merge.svg"));
-    merge_canvas_action->setObjectName("merge_group_action");
-    connect(merge_canvas_action, &QAction::triggered,
-            [this]() { m_editorActions->onMergeCanvas(); });
-    addAction(merge_canvas_action);
+    auto merge_canvases_action = new QAction("Merge", this);
+    merge_canvases_action->setToolTip("Merge several selected canvases into one.\n"
+                                     "All graphs will appear on a single canvas.");
+    merge_canvases_action->setIcon(QIcon(":/icons/set-merge.svg"));
+    connect(merge_canvases_action, &QAction::triggered,
+            [this]() { m_editorActions->onMergeCanvases(); });
+    addAction(merge_canvases_action);
 
     auto delete_action = new QAction("Remove", this);
     delete_action->setToolTip("Remove the currently selected item,\n"
