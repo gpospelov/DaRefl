@@ -14,6 +14,7 @@
 
 class ExperimentalDataModel;
 class DataSelectionModel;
+class QItemSelection;
 
 //! Actions for ImportDataEditor.
 
@@ -32,6 +33,9 @@ public slots:
     void onDeleteItem();
     void onUndo();
     void onRedo();
+
+private slots:
+    void onSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
 
 private:
     ExperimentalDataModel* m_dataModel{nullptr};
