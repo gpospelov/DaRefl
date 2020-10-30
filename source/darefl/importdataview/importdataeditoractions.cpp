@@ -13,8 +13,31 @@
 #include <darefl/model/experimentaldata_types.h>
 #include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/experimentaldatamodel.h>
+#include <mvvm/model/comboproperty.h>
+#include <mvvm/model/itemutils.h>
+#include <mvvm/standarditems/graphitem.h>
+#include <mvvm/viewmodel/viewmodelutils.h>
 
-using namespace ModelView;
+namespace
+{
+template <typename T> std::vector<T*> itemsFromIndexList(const QModelIndexList& indices)
+{
+    auto items = ModelView::Utils::ItemsFromIndex(indices);
+    auto unique_items = ModelView::Utils::UniqueItems(items);
+
+    std::vector<T*> result;
+
+    for (auto item : unique_items)
+        if (auto casted_item = dynamic_cast<T*>(item); casted_item)
+            result.push_back(casted_item);
+
+    return result;
+}
+
+const int selected_graph_combo_index = 2; // from graphitem.cpp, "DashLine"
+const int default_graph_combo_index = 1;  // from graphitem.cpp, "SolidLine"
+
+} // namespace
 
 ImportDataEditorActions::ImportDataEditorActions(ExperimentalDataModel* model, QObject* parent)
     : QObject(parent), m_dataModel(model)
@@ -75,7 +98,23 @@ void ImportDataEditorActions::onRedo()
     m_dataModel->undoStack()->redo();
 }
 
-//! Processes changed selection. Particularly
+//! Processes changed selection. Will change line style of selected graph from
+//! solid to dashed line.
 
-void ImportDataEditorActions::onSelectionChanged(const QItemSelection& selected, const QItemSelection& deselected)
-{}
+void ImportDataEditorActions::onSelectionChanged(const QItemSelection& selected,
+                                                 const QItemSelection& deselected)
+{
+    auto selected_graphs = itemsFromIndexList<ModelView::GraphItem>(selected.indexes());
+    for (auto graph : selected_graphs) {
+        auto pencombo = graph->property<ModelView::ComboProperty>(ModelView::GraphItem::P_PENSTYLE);
+        pencombo.setCurrentIndex(selected_graph_combo_index);
+        graph->setProperty(ModelView::GraphItem::P_PENSTYLE, pencombo);
+    }
+
+    auto deselected_graphs = itemsFromIndexList<ModelView::GraphItem>(deselected.indexes());
+    for (auto graph : deselected_graphs) {
+        auto pencombo = graph->property<ModelView::ComboProperty>(ModelView::GraphItem::P_PENSTYLE);
+        pencombo.setCurrentIndex(default_graph_combo_index);
+        graph->setProperty(ModelView::GraphItem::P_PENSTYLE, pencombo);
+    }
+}
