@@ -17,6 +17,7 @@
 #include <QSignalSpy>
 #include <mvvm/model/modelutils.h>
 #include <mvvm/standarditems/graphitem.h>
+#include <mvvm/standarditems/data1ditem.h>
 
 using namespace ModelView;
 
@@ -160,76 +161,61 @@ TEST_F(ExperimentalDataModelTest, removeCanvasWithGraph)
     EXPECT_EQ(model.canvasContainer()->canvasItems().size(), 0);
 }
 
+//! Merge single canvas into itself. Nothing should happen.
+
+TEST_F(ExperimentalDataModelTest, mergeSingleCanvas)
+{
+    ExperimentalDataModel model;
+
+    RealDataStruct raw_data = {"", "", {1}, "", "", {10}, "", ""};
+    auto canvas = model.addCanvas();
+    auto graph = model.addGraph(raw_data, *canvas);
+
+    // removing graph
+    model.mergeCanvases(std::vector<CanvasItem*>({canvas}));
+
+    // should remove bove graph, and underlying data item
+    EXPECT_EQ(model.dataContainer()->dataItems().size(), 1);
+    EXPECT_EQ(model.canvasContainer()->canvasItems().size(), 1);
+    EXPECT_EQ(canvas->graphItems(), std::vector<GraphItem*>({graph}));
+}
+
+//! Merge single canvas into itself. Nothing should happen.
+
+TEST_F(ExperimentalDataModelTest, mergeTwoCanvases)
+{
+    ExperimentalDataModel model;
+
+    RealDataStruct raw_data0 = {"", "", {1}, "", "", {10}, "", ""};
+    RealDataStruct raw_data1 = {"", "", {2}, "", "", {20}, "", ""};
+    RealDataStruct raw_data2 = {"", "", {3}, "", "", {30}, "", ""};
+
+    auto canvas0 = model.addCanvas();
+    auto graph0 = model.addGraph(raw_data0, *canvas0);
+
+    auto canvas1 = model.addCanvas();
+    auto graph1 = model.addGraph(raw_data1, *canvas1);
+    auto graph2 = model.addGraph(raw_data2, *canvas1);
+
+    // removing graph
+    model.mergeCanvases(std::vector<CanvasItem*>({canvas0, canvas1}));
+
+    // should remoive bove graph, and underlying data item
+    EXPECT_EQ(model.dataContainer()->dataItems().size(), 3);
+    EXPECT_EQ(model.canvasContainer()->canvasItems(), std::vector<CanvasItem*>({canvas0}));
+    EXPECT_EQ(canvas0->graphItems(), std::vector<GraphItem*>({graph0, graph1, graph2}));
+
+    EXPECT_EQ(graph0->dataItem()->binCenters(), std::vector<double>({1}));
+    EXPECT_EQ(graph1->dataItem()->binCenters(), std::vector<double>({2}));
+    EXPECT_EQ(graph2->dataItem()->binCenters(), std::vector<double>({3}));
+}
+
 // -----------------------------------------------------------------------------------------
 // TODO cleanup below
 // -----------------------------------------------------------------------------------------
 
-////! Test the addDataToCollection method
-//TEST_F(ExperimentalDataModelTest, addDataToCollection)
-//{
-//    ExperimentalDataModel model;
-//    int default_child_count = CanvasItem().childrenCount();
-//    auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
-//    auto root_container_item = Utils::TopItem<ExperimentalDataContainerItem>(&model);
-
-//    auto data_group_item = model.addDataToCollection(getRealDataStruct(), root_view_item);
-//    EXPECT_EQ(default_child_count + 1, data_group_item->childrenCount());
-//    EXPECT_EQ(1, root_container_item->childrenCount());
-
-//    model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item);
-//    EXPECT_EQ(default_child_count + 2, data_group_item->childrenCount());
-//    EXPECT_EQ(2, root_container_item->childrenCount());
-
-//    model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item);
-//    EXPECT_EQ(default_child_count + 3, data_group_item->childrenCount());
-//    EXPECT_EQ(3, root_container_item->childrenCount());
-//}
-
-////! test the removeDataFromCollection method
-//TEST_F(ExperimentalDataModelTest, removeDataFromCollection)
-//{
-//    ExperimentalDataModel model;
-//    int default_child_count = CanvasItem().childrenCount();
-//    auto root_view_item = Utils::TopItem<CanvasContainerItem>(&model);
-//    auto root_container_item = Utils::TopItem<ExperimentalDataContainerItem>(&model);
-
-//    CanvasItem* data_group_item_1 = nullptr;
-//    for (int i = 0; i < 10; ++i) {
-//        data_group_item_1 =
-//            model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item_1);
-//    }
-
-//    CanvasItem* data_group_item_2 = nullptr;
-//    for (int i = 0; i < 10; ++i) {
-//        data_group_item_2 =
-//            model.addDataToCollection(getRealDataStruct(), root_view_item, data_group_item_2);
-//    }
-
-//    EXPECT_EQ(2, root_view_item->childrenCount());
-//    EXPECT_EQ(20, root_container_item->childrenCount());
-//    EXPECT_EQ(10 + default_child_count, data_group_item_1->childrenCount());
-//    EXPECT_EQ(10 + default_child_count, data_group_item_2->childrenCount());
-
-//    std::vector<SessionItem*> items_to_delete;
-//    auto children = data_group_item_1->children();
-//    for (int i = default_child_count + 2; i < 5 + default_child_count; ++i) {
-//        items_to_delete.push_back(children[i]);
-//    }
-
-//    model.removeDataFromCollection(items_to_delete);
-//    EXPECT_EQ(2, root_view_item->childrenCount());
-//    EXPECT_EQ(17, root_container_item->childrenCount());
-//    EXPECT_EQ(7 + default_child_count, data_group_item_1->childrenCount());
-//    EXPECT_EQ(10 + default_child_count, data_group_item_2->childrenCount());
-
-//    model.removeDataFromCollection({data_group_item_2});
-//    EXPECT_EQ(1, root_view_item->childrenCount());
-//    EXPECT_EQ(7, root_container_item->childrenCount());
-//    EXPECT_EQ(7 + default_child_count, data_group_item_1->childrenCount());
-//}
-
 ////! Test the itemIsEditable method
-//TEST_F(ExperimentalDataModelTest, itemEditable)
+// TEST_F(ExperimentalDataModelTest, itemEditable)
 //{
 //    ExperimentalDataModel model;
 
@@ -240,7 +226,7 @@ TEST_F(ExperimentalDataModelTest, removeCanvasWithGraph)
 //}
 
 ////! Test the dragEnabled method
-//TEST_F(ExperimentalDataModelTest, dragEnabled)
+// TEST_F(ExperimentalDataModelTest, dragEnabled)
 //{
 //    ExperimentalDataModel model;
 
@@ -251,7 +237,7 @@ TEST_F(ExperimentalDataModelTest, removeCanvasWithGraph)
 //}
 
 ////! Test the dropEnabled method
-//TEST_F(ExperimentalDataModelTest, dropEnabled)
+// TEST_F(ExperimentalDataModelTest, dropEnabled)
 //{
 //    ExperimentalDataModel model;
 
@@ -262,7 +248,7 @@ TEST_F(ExperimentalDataModelTest, removeCanvasWithGraph)
 //}
 
 ////! test the dragDropItem method with two groups
-//TEST_F(ExperimentalDataModelTest, dragDropItemGroup)
+// TEST_F(ExperimentalDataModelTest, dragDropItemGroup)
 //{
 //    ExperimentalDataModel model;
 //    int default_child_count = CanvasItem().childrenCount();
@@ -293,7 +279,7 @@ TEST_F(ExperimentalDataModelTest, removeCanvasWithGraph)
 //}
 
 ////! test the dragDropItem method with graph item
-//TEST_F(ExperimentalDataModelTest, dragDropItemGraph)
+// TEST_F(ExperimentalDataModelTest, dragDropItemGraph)
 //{
 //    ExperimentalDataModel model;
 //    int default_child_count = CanvasItem().childrenCount();
@@ -332,7 +318,7 @@ TEST_F(ExperimentalDataModelTest, removeCanvasWithGraph)
 //}
 
 ////! test the mergeItems method
-//TEST_F(ExperimentalDataModelTest, mergeItems)
+// TEST_F(ExperimentalDataModelTest, mergeItems)
 //{
 //    ExperimentalDataModel model;
 //    int default_child_count = CanvasItem().childrenCount();

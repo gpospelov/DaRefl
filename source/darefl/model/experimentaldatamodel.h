@@ -44,6 +44,8 @@ public:
 
     void removeCanvas(CanvasItem& canvas);
 
+    void mergeCanvases(const std::vector<CanvasItem*>& canvases);
+
     // TODO cleanup below
 
     bool itemEditable(ModelView::SessionItem* item) const;

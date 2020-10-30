@@ -27,7 +27,6 @@ using namespace ModelView;
 namespace
 {
 
-
 std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
 {
     auto result = std::make_unique<ModelView::ItemCatalogue>();
@@ -101,6 +100,23 @@ void ExperimentalDataModel::removeCanvas(CanvasItem& canvas)
     for (auto graph : canvas.graphItems())
         removeGraph(*graph);
     removeItem(canvas.parent(), canvas.tagRow());
+}
+
+//! Merge canvas from the vector. All graphs will be the children of the first canvas in the vector.
+//! All other canvas will be emptied and deleted.
+
+void ExperimentalDataModel::mergeCanvases(const std::vector<CanvasItem*>& canvases)
+{
+    if (canvases.size() <= 1)
+        return;
+
+    CanvasItem* target = canvases.front();
+    for (auto it = std::next(canvases.begin()); it < canvases.end(); ++it) {
+        CanvasItem* source = (*it);
+        for (auto graph : source->graphItems())
+            moveItem(graph, target, {"", -1});
+        removeItem(source->parent(), source->tagRow());
+    }
 }
 
 //! Check if an item should be editable or not
