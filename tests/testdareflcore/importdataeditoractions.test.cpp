@@ -9,13 +9,15 @@
 
 #include "google_test.h"
 #include "test_utils.h"
+#include <darefl/importdataview/dataselectionmodel.h>
+#include <darefl/importdataview/dataviewmodel.h>
 #include <darefl/importdataview/importdataeditoractions.h>
+#include <darefl/model/experimentaldata_types.h>
 #include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/experimentaldatamodel.h>
-#include <darefl/importdataview/dataviewmodel.h>
-#include <darefl/importdataview/dataselectionmodel.h>
-#include <darefl/model/experimentaldata_types.h>
+#include <mvvm/model/comboproperty.h>
 #include <mvvm/model/modelutils.h>
+#include <mvvm/standarditems/graphitem.h>
 
 using namespace ModelView;
 
@@ -31,19 +33,21 @@ public:
         DataViewModel view_model{&data_model};
         DataSelectionModel selection_model{&view_model};
         CanvasItem* canvas0{nullptr};
+        ModelView::GraphItem* graph0{nullptr};
+        ModelView::GraphItem* graph1{nullptr};
         ImportDataEditorActions actions{&data_model};
         TestData()
         {
             canvas0 = data_model.addCanvas();
 
             RealDataStruct raw_data = {"", "", {42}, "", "", {42}, "", ""};
-            data_model.addGraph(raw_data, *canvas0);
+            graph0 = data_model.addGraph(raw_data, *canvas0);
+            graph1 = data_model.addGraph(raw_data, *canvas0);
 
             view_model.setRootSessionItem(data_model.canvasContainer());
             actions.setSelectionModel(&selection_model);
         }
     };
-
 };
 
 ImportDataEditorActionsTest::~ImportDataEditorActionsTest() = default;
@@ -66,7 +70,7 @@ TEST_F(ImportDataEditorActionsTest, onDeleteItem)
 {
     TestData test_data;
     EXPECT_EQ(test_data.data_model.canvasContainer()->canvasItems().size(), 1);
-    EXPECT_EQ(test_data.data_model.dataContainer()->dataItems().size(), 1);
+    EXPECT_EQ(test_data.data_model.dataContainer()->dataItems().size(), 2);
 
     test_data.selection_model.selectItem(test_data.canvas0);
 
@@ -74,4 +78,28 @@ TEST_F(ImportDataEditorActionsTest, onDeleteItem)
 
     EXPECT_EQ(test_data.data_model.canvasContainer()->canvasItems().size(), 0);
     EXPECT_EQ(test_data.data_model.dataContainer()->dataItems().size(), 0);
+}
+
+//! Checks line style change on selection changed.
+
+TEST_F(ImportDataEditorActionsTest, onSelectionChanged)
+{
+    TestData test_data;
+
+    test_data.selection_model.selectItem(test_data.graph0);
+
+    auto pencombo0 =
+        test_data.graph0->property<ModelView::ComboProperty>(ModelView::GraphItem::P_PENSTYLE);
+    auto pencombo1 =
+        test_data.graph1->property<ModelView::ComboProperty>(ModelView::GraphItem::P_PENSTYLE);
+    EXPECT_EQ(pencombo0.currentIndex(), 2); // correspond to dashed line (i.e. selected)
+    EXPECT_EQ(pencombo1.currentIndex(), 1); // correspond to solid line
+
+    test_data.selection_model.selectItem(test_data.graph1);
+    pencombo0 =
+        test_data.graph0->property<ModelView::ComboProperty>(ModelView::GraphItem::P_PENSTYLE);
+    pencombo1 =
+        test_data.graph1->property<ModelView::ComboProperty>(ModelView::GraphItem::P_PENSTYLE);
+    EXPECT_EQ(pencombo0.currentIndex(), 1); // correspond to solid line
+    EXPECT_EQ(pencombo1.currentIndex(), 2); // correspond to dashed line (i.e. selected)
 }
