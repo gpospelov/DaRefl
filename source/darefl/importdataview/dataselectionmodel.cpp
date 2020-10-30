@@ -11,6 +11,7 @@
 #include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/item_constants.h>
 
+#include <QDebug>
 #include <mvvm/model/itemutils.h>
 #include <mvvm/model/mvvm_types.h>
 #include <mvvm/model/sessionitem.h>
@@ -18,7 +19,6 @@
 #include <mvvm/viewmodel/viewmodel.h>
 #include <mvvm/viewmodel/viewmodelutils.h>
 #include <set>
-#include <QDebug>
 
 //! The constructor
 DataSelectionModel::DataSelectionModel(ModelView::ViewModel* view_model, QObject* parent)
@@ -81,33 +81,18 @@ CanvasItem* DataSelectionModel::activeCanvas() const
 
 ModelView::GraphItem* DataSelectionModel::selectedGraph() const
 {
-    for (auto item : selectedItems())
-        if (item->modelType() == ModelView::Constants::GraphItemType)
-            return static_cast<ModelView::GraphItem*>(item);
-
-    return nullptr;
+    auto graphs = selectedGraphs();
+    return graphs.empty() ? nullptr : graphs.at(0);
 }
 
 //! Returns vector of currently slected canvas.
 
 std::vector<CanvasItem*> DataSelectionModel::selectedCanvas() const
 {
-    std::vector<CanvasItem*> result;
-
-    for (auto item : selectedItems())
-        if (item->modelType() == ::Constants::CanvasItemType)
-            result.push_back(static_cast<CanvasItem*>(item));
-
-    return result;
+    return items<CanvasItem>(selectedItems());
 }
 
 std::vector<ModelView::GraphItem*> DataSelectionModel::selectedGraphs() const
 {
-    std::vector<ModelView::GraphItem*> result;
-
-    for (auto item : selectedItems())
-        if (item->modelType() == ModelView::Constants::GraphItemType)
-            result.push_back(static_cast<ModelView::GraphItem*>(item));
-
-    return result;
+    return items<ModelView::GraphItem>(selectedItems());
 }

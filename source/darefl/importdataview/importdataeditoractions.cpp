@@ -13,7 +13,6 @@
 #include <darefl/model/experimentaldata_types.h>
 #include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/experimentaldatamodel.h>
-#include <mvvm/model/modelutils.h>
 
 using namespace ModelView;
 
@@ -24,7 +23,15 @@ ImportDataEditorActions::ImportDataEditorActions(ExperimentalDataModel* model, Q
 
 void ImportDataEditorActions::setSelectionModel(DataSelectionModel* selection_model)
 {
+    if (m_selectionModel)
+        disconnect(m_selectionModel, &DataSelectionModel::selectionChanged, this,
+                   &ImportDataEditorActions::onSelectionChanged);
+
     m_selectionModel = selection_model;
+
+    if (m_selectionModel)
+        connect(m_selectionModel, &DataSelectionModel::selectionChanged, this,
+                &ImportDataEditorActions::onSelectionChanged);
 }
 
 //! Create new canvas and append it to the end of canvas container.
@@ -67,3 +74,8 @@ void ImportDataEditorActions::onRedo()
 
     m_dataModel->undoStack()->redo();
 }
+
+//! Processes changed selection. Particularly
+
+void ImportDataEditorActions::onSelectionChanged(const QItemSelection& selected, const QItemSelection& deselected)
+{}

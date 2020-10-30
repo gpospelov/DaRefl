@@ -18,7 +18,7 @@ namespace ModelView
 class ViewModel;
 class SessionItem;
 class GraphItem;
-}
+} // namespace ModelView
 
 class CanvasItem;
 
@@ -44,6 +44,23 @@ public:
     std::vector<CanvasItem*> selectedCanvas() const;
 
     std::vector<ModelView::GraphItem*> selectedGraphs() const;
+
+    template <typename T>
+    std::vector<T*> items(const std::vector<ModelView::SessionItem*>& item_vect) const;
 };
+
+
+template <typename T>
+std::vector<T*>
+DataSelectionModel::items(const std::vector<ModelView::SessionItem*>& item_vect) const
+{
+    std::vector<T*> result;
+
+    for (auto item : item_vect)
+        if (auto casted_item = dynamic_cast<T*>(item); casted_item)
+            result.push_back(casted_item);
+
+    return result;
+}
 
 #endif // DAREFL_IMPORTDATAVIEW_DATASELECTIONMODEL_H
