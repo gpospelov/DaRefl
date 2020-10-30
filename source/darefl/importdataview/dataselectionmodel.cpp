@@ -20,6 +20,21 @@
 #include <mvvm/viewmodel/viewmodelutils.h>
 #include <set>
 
+namespace
+{
+template <typename T> std::vector<T*> items(const std::vector<ModelView::SessionItem*>& item_vect)
+{
+    std::vector<T*> result;
+
+    for (auto item : item_vect)
+        if (auto casted_item = dynamic_cast<T*>(item); casted_item)
+            result.push_back(casted_item);
+
+    return result;
+}
+
+} // namespace
+
 //! The constructor
 DataSelectionModel::DataSelectionModel(ModelView::ViewModel* view_model, QObject* parent)
     : QItemSelectionModel(view_model, parent)
