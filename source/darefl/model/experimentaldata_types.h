@@ -16,7 +16,6 @@
 //! Convenience data transfer structure
 
 struct RealDataStruct {
-    std::string type;
     std::string name;
 
     std::vector<double> bin_centers;
