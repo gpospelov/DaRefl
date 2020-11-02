@@ -7,11 +7,11 @@
 //
 // ************************************************************************** //
 
+#include <algorithm>
 #include <darefl/dataloader/dataloader_constants.h>
 #include <darefl/dataloader/dataloader_utils.h>
 #include <darefl/model/experimentaldata_types.h>
 #include <fstream>
-#include <algorithm>
 #include <mvvm/utils/stringutils.h>
 
 namespace
@@ -194,11 +194,11 @@ DataLoader::CreateGraphInfoPairs(const std::vector<DataLoader::ColumnInfo>& colu
     return result;
 }
 
-RealDataStruct DataLoader::CreateData(const std::vector<std::vector<std::string>>& text_data,
+GraphImportData DataLoader::CreateData(const std::vector<std::vector<std::string>>& text_data,
                                       const DataLoader::ColumnInfo& axis,
                                       const DataLoader::ColumnInfo& intensity)
 {
-    RealDataStruct result;
+    GraphImportData result;
 
     auto [axis_values, intensity_values] =
         DataLoader::ExtractTwoColumns(text_data, axis.column, intensity.column);
@@ -207,10 +207,10 @@ RealDataStruct DataLoader::CreateData(const std::vector<std::vector<std::string>
                    [&intensity](auto x) { return x * intensity.multiplier; });
 
     result.bin_centers = axis_values;
-    result.axis_unit = axis.units;
+    result.axis_units = axis.units;
 
     result.bin_values = intensity_values;
-    result.data_unit = intensity.units;
+    result.signal_units = intensity.units;
 
     return result;
 }

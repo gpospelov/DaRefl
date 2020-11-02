@@ -68,7 +68,7 @@ CanvasItem* ExperimentalDataModel::addCanvas()
 //! Internally add Data1DItem object to ExperimentalDataContainerItem,
 //! and set it to GraphItem.
 
-ModelView::GraphItem* ExperimentalDataModel::addGraph(const RealDataStruct& data_struct,
+ModelView::GraphItem* ExperimentalDataModel::addGraph(const GraphImportData& data_struct,
                                                       CanvasItem& target_canvas)
 {
     auto result = insertItem<GraphItem>(&target_canvas);

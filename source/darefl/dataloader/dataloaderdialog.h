@@ -31,7 +31,7 @@ public:
     DataLoaderDialog(QWidget* parent = nullptr);
     ~DataLoaderDialog();
 
-    std::vector<RealDataStruct> importedData() const;
+    std::vector<GraphImportData> importedData() const;
 
     void setTargetCanvas(const std::vector<std::string>& canvas_names, int current_index);
 
@@ -59,7 +59,7 @@ private:
     QSplitter* m_splitter{nullptr};
 
     std::unique_ptr<DataHandler> m_dataHandler;
-    std::vector<RealDataStruct> m_parsedData;
+    std::vector<GraphImportData> m_parsedData;
 };
 
 #endif // DAREFL_DATALOADER_DATALOADERDIALOG_H

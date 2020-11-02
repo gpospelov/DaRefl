@@ -94,7 +94,7 @@ std::pair<std::vector<std::string>, int> ImportDataEditor::canvasInfo() const
     return std::make_pair(names, ModelView::Utils::IndexOfItem(canvases, current_canvas));
 }
 
-void ImportDataEditor::onImportDialogAccept(const std::vector<RealDataStruct>& experimental_data,
+void ImportDataEditor::onImportDialogAccept(const std::vector<GraphImportData>& experimental_data,
                                             CanvasItem* canvas)
 {
     if (!canvas)

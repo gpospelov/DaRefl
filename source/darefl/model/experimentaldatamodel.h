@@ -16,7 +16,7 @@
 class CanvasContainerItem;
 class ExperimentalDataContainerItem;
 class CanvasItem;
-struct RealDataStruct;
+struct GraphImportData;
 
 namespace ModelView
 {
@@ -38,7 +38,7 @@ public:
 
     CanvasItem* addCanvas();
 
-    ModelView::GraphItem* addGraph(const RealDataStruct& data_struct, CanvasItem& target_canvas);
+    ModelView::GraphItem* addGraph(const GraphImportData& data_struct, CanvasItem& target_canvas);
 
     void removeGraph(ModelView::GraphItem& graph);
 

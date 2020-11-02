@@ -15,14 +15,14 @@
 
 //! Convenience data transfer structure
 
-struct RealDataStruct {
+struct GraphImportData {
     std::string graph_description;
 
     std::vector<double> bin_centers;
-    std::string axis_unit;
+    std::string axis_units;
 
     std::vector<double> bin_values;
-    std::string data_unit;
+    std::string signal_units;
 };
 
 #endif // DAREFL_MODEL_EXPERIMENTALDATA_TYPES_H

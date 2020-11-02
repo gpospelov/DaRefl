@@ -40,7 +40,7 @@ public:
         {
             canvas0 = data_model.addCanvas();
 
-            RealDataStruct raw_data = {"", {42}, "", {42}, ""};
+            GraphImportData raw_data = {"", {42}, "", {42}, ""};
             graph0 = data_model.addGraph(raw_data, *canvas0);
             graph1 = data_model.addGraph(raw_data, *canvas0);
 
