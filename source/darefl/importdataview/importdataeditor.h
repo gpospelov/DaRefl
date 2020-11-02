@@ -36,8 +36,7 @@ private:
     void invokeImportDialog();
 
     std::pair<std::vector<std::string>, int> canvasInfo() const;
-    void onImportDialogAccept(const std::vector<GraphImportData>& experimental_data,
-                              CanvasItem* canvas);
+    void onImportDialogAccept(const std::vector<GraphImportData>& graph_data, CanvasItem* canvas);
     DataSelectionModel* selectionModel() const;
 
     ExperimentalDataModel* m_dataModel{nullptr};

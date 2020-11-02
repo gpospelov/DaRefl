@@ -105,9 +105,9 @@ DataLoaderDialog::~DataLoaderDialog()
 
 //! Returns the result of whole parsing.
 
-std::vector<GraphImportData> DataLoaderDialog::importedData() const
+std::vector<GraphImportData> DataLoaderDialog::graphImportData() const
 {
-    return m_parsedData;
+    return m_graphImportData;
 }
 
 //! Set list of target canvas to define entr where to import.
@@ -183,7 +183,7 @@ void DataLoaderDialog::onShowFilePreviewRequest()
 
 void DataLoaderDialog::onParseAllRequest()
 {
-    m_parsedData.clear();
+    m_graphImportData.clear();
 
     auto parser = m_selectorPanel->createParser();
     for (const auto& name : m_selectorPanel->fileNames()) {
@@ -196,7 +196,7 @@ void DataLoaderDialog::onParseAllRequest()
         for (auto [axis_info, intensity_info] : DataLoader::CreateGraphInfoPairs(columns)) {
             auto data = DataLoader::CreateData(parsed_text, axis_info, intensity_info);
             data.graph_description = ModelView::Utils::base_name(name.toStdString());
-            m_parsedData.emplace_back(data);
+            m_graphImportData.emplace_back(data);
         }
     }
 }

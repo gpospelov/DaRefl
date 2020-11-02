@@ -38,7 +38,7 @@ public:
 
     CanvasItem* addCanvas();
 
-    ModelView::GraphItem* addGraph(const GraphImportData& data_struct, CanvasItem& target_canvas);
+    ModelView::GraphItem* addGraph(const GraphImportData& graph_data, CanvasItem& target_canvas);
 
     void removeGraph(ModelView::GraphItem& graph);
 
