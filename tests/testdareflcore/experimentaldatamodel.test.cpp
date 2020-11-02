@@ -16,8 +16,8 @@
 
 #include <QSignalSpy>
 #include <mvvm/model/modelutils.h>
-#include <mvvm/standarditems/graphitem.h>
 #include <mvvm/standarditems/data1ditem.h>
+#include <mvvm/standarditems/graphitem.h>
 
 using namespace ModelView;
 
@@ -71,7 +71,7 @@ TEST_F(ExperimentalDataModelTest, addGraph)
     std::vector<double> bin_centers{1, 2, 3};
     std::vector<double> bin_values{10, 20, 30};
 
-    RealDataStruct raw_data = {"", bin_centers, "", "", bin_values, "", ""};
+    RealDataStruct raw_data = {"", bin_centers, "", bin_values, ""};
 
     auto canvas = model.addCanvas();
 
@@ -97,7 +97,7 @@ TEST_F(ExperimentalDataModelTest, removeGraph)
     std::vector<double> bin_centers{1, 2, 3};
     std::vector<double> bin_values{10, 20, 30};
 
-    RealDataStruct raw_data = {"", bin_centers, "", "", bin_values, "", ""};
+    RealDataStruct raw_data = {"", bin_centers, "", bin_values, ""};
 
     auto canvas = model.addCanvas();
 
@@ -120,7 +120,7 @@ TEST_F(ExperimentalDataModelTest, removeMiddleGraph)
     std::vector<double> bin_centers{1, 2, 3};
     std::vector<double> bin_values{10, 20, 30};
 
-    RealDataStruct raw_data = {"", bin_centers, "", "", bin_values, "", ""};
+    RealDataStruct raw_data = {"", bin_centers, "", bin_values, ""};
 
     auto canvas = model.addCanvas();
 
@@ -146,7 +146,7 @@ TEST_F(ExperimentalDataModelTest, removeCanvasWithGraph)
     std::vector<double> bin_centers{1, 2, 3};
     std::vector<double> bin_values{10, 20, 30};
 
-    RealDataStruct raw_data = {"", bin_centers, "", "", bin_values, "", ""};
+    RealDataStruct raw_data = {"", bin_centers, "", bin_values, ""};
 
     auto canvas = model.addCanvas();
 
@@ -167,7 +167,7 @@ TEST_F(ExperimentalDataModelTest, mergeSingleCanvas)
 {
     ExperimentalDataModel model;
 
-    RealDataStruct raw_data = {"", {1}, "", "", {10}, "", ""};
+    RealDataStruct raw_data = {"", {1}, "", {10}, ""};
     auto canvas = model.addCanvas();
     auto graph = model.addGraph(raw_data, *canvas);
 
@@ -186,9 +186,9 @@ TEST_F(ExperimentalDataModelTest, mergeTwoCanvases)
 {
     ExperimentalDataModel model;
 
-    RealDataStruct raw_data0 = {"", {1}, "", "", {10}, "", ""};
-    RealDataStruct raw_data1 = {"", {2}, "", "", {20}, "", ""};
-    RealDataStruct raw_data2 = {"", {3}, "", "", {30}, "", ""};
+    RealDataStruct raw_data0 = {"", {1}, "", {10}, ""};
+    RealDataStruct raw_data1 = {"", {2}, "", {20}, ""};
+    RealDataStruct raw_data2 = {"", {3}, "", {30}, ""};
 
     auto canvas0 = model.addCanvas();
     auto graph0 = model.addGraph(raw_data0, *canvas0);
