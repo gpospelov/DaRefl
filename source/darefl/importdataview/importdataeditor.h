@@ -14,7 +14,7 @@
 #include <string>
 
 class ExperimentalDataModel;
-struct RealDataStruct;
+struct GraphImportData;
 class DataViewModel;
 class DataSelectionModel;
 class ImportDataEditorActions;
@@ -36,7 +36,7 @@ private:
     void invokeImportDialog();
 
     std::pair<std::vector<std::string>, int> canvasInfo() const;
-    void onImportDialogAccept(const std::vector<RealDataStruct>& experimental_data,
+    void onImportDialogAccept(const std::vector<GraphImportData>& experimental_data,
                               CanvasItem* canvas);
     DataSelectionModel* selectionModel() const;
 

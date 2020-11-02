@@ -12,7 +12,7 @@
 
 #include <darefl/dataloader/dataloader_types.h>
 
-struct RealDataStruct;
+struct GraphImportData;
 
 namespace DataLoader
 {
@@ -65,7 +65,7 @@ CreateGraphInfoPairs(const std::vector<ColumnInfo>& column_info);
 
 //! Creates structure from text data.
 
-RealDataStruct CreateData(const std::vector<std::vector<std::string>>& text_data,
+GraphImportData CreateData(const std::vector<std::vector<std::string>>& text_data,
                           const ColumnInfo& axis, const ColumnInfo& intensity);
 
 } // namespace DataLoader

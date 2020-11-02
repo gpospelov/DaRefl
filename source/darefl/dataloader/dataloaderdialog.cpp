@@ -105,7 +105,7 @@ DataLoaderDialog::~DataLoaderDialog()
 
 //! Returns the result of whole parsing.
 
-std::vector<RealDataStruct> DataLoaderDialog::importedData() const
+std::vector<GraphImportData> DataLoaderDialog::importedData() const
 {
     return m_parsedData;
 }
