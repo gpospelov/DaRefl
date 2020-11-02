@@ -19,11 +19,9 @@ struct RealDataStruct {
     std::string graph_description;
 
     std::vector<double> bin_centers;
-    std::string axis_name;
     std::string axis_unit;
 
     std::vector<double> bin_values;
-    std::string data_name;
     std::string data_unit;
 };
 

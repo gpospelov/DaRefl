@@ -207,11 +207,9 @@ RealDataStruct DataLoader::CreateData(const std::vector<std::vector<std::string>
                    [&intensity](auto x) { return x * intensity.multiplier; });
 
     result.bin_centers = axis_values;
-    result.axis_name = axis.title;
     result.axis_unit = axis.units;
 
     result.bin_values = intensity_values;
-    result.data_name = intensity.title;
     result.data_unit = intensity.units;
 
     return result;
