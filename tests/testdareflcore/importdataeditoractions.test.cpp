@@ -12,7 +12,7 @@
 #include <darefl/importdataview/dataselectionmodel.h>
 #include <darefl/importdataview/dataviewmodel.h>
 #include <darefl/importdataview/importdataeditoractions.h>
-#include <darefl/model/experimentaldata_types.h>
+#include <darefl/importdataview/graphimportdata.h>
 #include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/experimentaldatamodel.h>
 #include <mvvm/model/comboproperty.h>

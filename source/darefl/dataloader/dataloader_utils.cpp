@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <darefl/dataloader/dataloader_constants.h>
 #include <darefl/dataloader/dataloader_utils.h>
-#include <darefl/model/experimentaldata_types.h>
+#include <darefl/importdataview/graphimportdata.h>
 #include <fstream>
 #include <mvvm/utils/stringutils.h>
 

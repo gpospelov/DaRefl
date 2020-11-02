@@ -9,7 +9,7 @@
 
 #include "google_test.h"
 
-#include <darefl/model/experimentaldata_types.h>
+#include <darefl/importdataview/graphimportdata.h>
 #include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/experimentaldatamodel.h>
 #include <darefl/model/item_constants.h>
