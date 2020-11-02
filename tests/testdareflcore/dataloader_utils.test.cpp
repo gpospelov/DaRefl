@@ -267,10 +267,10 @@ TEST_F(ParseUtilsTest, CreateData)
 
     EXPECT_EQ(data.type, "");
     EXPECT_EQ(data.name, "");
-    EXPECT_EQ(data.axis, toVector({1.0, 4.0, 7.0, 10.0}));
+    EXPECT_EQ(data.bin_centers, toVector({1.0, 4.0, 7.0, 10.0}));
     EXPECT_EQ(data.axis_name, "title0");
     EXPECT_EQ(data.axis_unit, "units0");
-    EXPECT_EQ(data.data, toVector({6.0, 12.0, 18.0, 24.0}));
+    EXPECT_EQ(data.bin_values, toVector({6.0, 12.0, 18.0, 24.0}));
     EXPECT_EQ(data.data_name, "title2");
     EXPECT_EQ(data.data_unit, "units2");
 }

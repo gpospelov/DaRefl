@@ -19,11 +19,11 @@ struct RealDataStruct {
     std::string type;
     std::string name;
 
-    std::vector<double> axis;
+    std::vector<double> bin_centers;
     std::string axis_name;
     std::string axis_unit;
 
-    std::vector<double> data;
+    std::vector<double> bin_values;
     std::string data_name;
     std::string data_unit;
 };
