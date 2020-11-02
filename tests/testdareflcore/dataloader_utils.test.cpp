@@ -265,7 +265,7 @@ TEST_F(ParseUtilsTest, CreateData)
 
     auto data = DataLoader::CreateData(text_data, col0, col2);
 
-    EXPECT_EQ(data.name, "");
+    EXPECT_EQ(data.graph_description, "");
     EXPECT_EQ(data.bin_centers, toVector({1.0, 4.0, 7.0, 10.0}));
     EXPECT_EQ(data.axis_name, "title0");
     EXPECT_EQ(data.axis_unit, "units0");

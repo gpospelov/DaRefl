@@ -195,7 +195,7 @@ void DataLoaderDialog::onParseAllRequest()
         auto columns = m_previewPanel->columnInfo();
         for (auto [axis_info, intensity_info] : DataLoader::CreateGraphInfoPairs(columns)) {
             auto data = DataLoader::CreateData(parsed_text, axis_info, intensity_info);
-            data.name = ModelView::Utils::base_name(name.toStdString());
+            data.graph_description = ModelView::Utils::base_name(name.toStdString());
             m_parsedData.emplace_back(data);
         }
     }

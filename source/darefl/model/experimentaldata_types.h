@@ -16,7 +16,7 @@
 //! Convenience data transfer structure
 
 struct RealDataStruct {
-    std::string name;
+    std::string graph_description;
 
     std::vector<double> bin_centers;
     std::string axis_name;
