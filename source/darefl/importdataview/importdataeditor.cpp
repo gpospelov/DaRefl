@@ -78,7 +78,7 @@ void ImportDataEditor::invokeImportDialog()
         CanvasItem* target =
             dialog.targetCanvasIndex() >= 0 ? canvases[dialog.targetCanvasIndex()] : nullptr;
 
-        onImportDialogAccept(dialog.importedData(), target);
+        onImportDialogAccept(dialog.graphImportData(), target);
     }
 }
 
@@ -94,12 +94,12 @@ std::pair<std::vector<std::string>, int> ImportDataEditor::canvasInfo() const
     return std::make_pair(names, ModelView::Utils::IndexOfItem(canvases, current_canvas));
 }
 
-void ImportDataEditor::onImportDialogAccept(const std::vector<GraphImportData>& experimental_data,
+void ImportDataEditor::onImportDialogAccept(const std::vector<GraphImportData>& graph_data,
                                             CanvasItem* canvas)
 {
     if (!canvas)
         canvas = m_dataModel->addCanvas();
-    for (auto& data : experimental_data)
+    for (auto& data : graph_data)
         m_dataModel->addGraph(data, *canvas);
     selectionModel()->selectItem(canvas);
 }

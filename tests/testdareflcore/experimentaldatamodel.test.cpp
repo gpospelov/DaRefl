@@ -27,7 +27,6 @@ class ExperimentalDataModelTest : public ::testing::Test
 {
 public:
     ~ExperimentalDataModelTest();
-    GraphImportData getRealDataStruct() const;
 };
 
 ExperimentalDataModelTest::~ExperimentalDataModelTest() = default;

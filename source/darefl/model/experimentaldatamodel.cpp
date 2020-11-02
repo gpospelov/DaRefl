@@ -68,14 +68,14 @@ CanvasItem* ExperimentalDataModel::addCanvas()
 //! Internally add Data1DItem object to ExperimentalDataContainerItem,
 //! and set it to GraphItem.
 
-ModelView::GraphItem* ExperimentalDataModel::addGraph(const GraphImportData& data_struct,
+ModelView::GraphItem* ExperimentalDataModel::addGraph(const GraphImportData& graph_data,
                                                       CanvasItem& target_canvas)
 {
     auto result = insertItem<GraphItem>(&target_canvas);
 
     auto data = insertItem<Data1DItem>(dataContainer());
-    data->setAxis(PointwiseAxisItem::create(data_struct.bin_centers));
-    data->setContent(data_struct.bin_values);
+    data->setAxis(PointwiseAxisItem::create(graph_data.bin_centers));
+    data->setContent(graph_data.bin_values);
     result->setDataItem(data);
 
     return result;
