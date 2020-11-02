@@ -7,13 +7,13 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_MODEL_EXPERIMENTALDATA_TYPES_H
-#define DAREFL_MODEL_EXPERIMENTALDATA_TYPES_H
+#ifndef DAREFL_IMPORTDATAVIEW_GRAPHIMPORTDATA_TYPES_H
+#define DAREFL_IMPORTDATAVIEW_GRAPHIMPORTDATA_TYPES_H
 
 #include <string>
 #include <vector>
 
-//! Convenience data transfer structure
+//! Raw data to construct GraphItem and Data1DItem's.
 
 struct GraphImportData {
     std::string graph_description;
@@ -25,4 +25,4 @@ struct GraphImportData {
     std::string signal_units;
 };
 
-#endif // DAREFL_MODEL_EXPERIMENTALDATA_TYPES_H
+#endif // DAREFL_IMPORTDATAVIEW_EXPERIMENTALDATA_TYPES_H

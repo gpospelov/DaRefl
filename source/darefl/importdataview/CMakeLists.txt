@@ -9,6 +9,7 @@ target_sources(${library_name} PRIVATE
     dataviewmodel.h
     graphcanvaswidget.cpp
     graphcanvaswidget.h
+    graphimportdata.h
     importdataeditor.cpp
     importdataeditor.h
     importdataeditoractions.cpp

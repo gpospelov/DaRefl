@@ -11,7 +11,7 @@
 #define DAREFL_DATALOADER_DATALOADERDIALOG_H
 
 #include <QDialog>
-#include <darefl/model/experimentaldata_types.h>
+#include <darefl/importdataview/graphimportdata.h>
 #include <memory>
 #include <vector>
 
