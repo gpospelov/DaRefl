@@ -18,7 +18,7 @@ using namespace DataLoader;
 
 namespace
 {
-const std::vector<std::string> utilityRowNames = {"Type", "Unit", "Multiplier", "Name"};
+const std::vector<std::string> utilityRowNames = {"Type", "Unit", "Multiplier"};
 
 const std::vector<std::string> typeNames = {Constants::AxisType, Constants::IntensityType,
                                             Constants::IgnoreType};
@@ -59,12 +59,6 @@ std::vector<QVariant> CreateUnitVariants(int maxColumnCount)
 std::vector<QVariant> CreateMultiplierVariants(int maxColumnCount)
 {
     std::vector<QVariant> result(maxColumnCount, 1.0);
-    return result;
-}
-
-std::vector<QVariant> CreateNameVariants(int maxColumnCount)
-{
-    std::vector<QVariant> result(maxColumnCount, QString(""));
     return result;
 }
 
@@ -114,7 +108,6 @@ std::vector<DataLoader::ColumnInfo> ImportTableHeader::columnInfo() const
         info.type_name = data(TYPE, column).value<ComboProperty>().value();
         info.units = data(UNITS, column).value<ComboProperty>().value();
         info.multiplier = data(MULTIPLIER, column).value<double>();
-        info.title = data(TITLE, column).toString().toStdString();
         result.push_back(info);
     }
 
@@ -127,7 +120,6 @@ void ImportTableHeader::init_data()
     m_data[TYPE] = CreateTypeVariants(columnCount());
     m_data[UNITS] = CreateUnitVariants(columnCount());
     m_data[MULTIPLIER] = CreateMultiplierVariants(columnCount());
-    m_data[TITLE] = CreateNameVariants(columnCount());
 }
 
 //! Returns true if given pair of indices are valid for data array.

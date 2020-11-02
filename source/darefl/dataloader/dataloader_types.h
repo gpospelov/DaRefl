@@ -32,7 +32,6 @@ struct ColumnInfo {
     std::string type_name;
     std::string units;
     double multiplier{0.0};
-    std::string title;
 };
 
 //! Function to define if given index satisfies criteria.
