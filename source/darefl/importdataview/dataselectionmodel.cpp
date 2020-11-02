@@ -15,25 +15,10 @@
 #include <mvvm/model/itemutils.h>
 #include <mvvm/model/mvvm_types.h>
 #include <mvvm/model/sessionitem.h>
+#include <mvvm/model/itemutils.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/viewmodel/viewmodel.h>
 #include <mvvm/viewmodel/viewmodelutils.h>
-#include <set>
-
-namespace
-{
-template <typename T> std::vector<T*> items(const std::vector<ModelView::SessionItem*>& item_vect)
-{
-    std::vector<T*> result;
-
-    for (auto item : item_vect)
-        if (auto casted_item = dynamic_cast<T*>(item); casted_item)
-            result.push_back(casted_item);
-
-    return result;
-}
-
-} // namespace
 
 //! The constructor
 DataSelectionModel::DataSelectionModel(ModelView::ViewModel* view_model, QObject* parent)
@@ -104,10 +89,10 @@ ModelView::GraphItem* DataSelectionModel::selectedGraph() const
 
 std::vector<CanvasItem*> DataSelectionModel::selectedCanvas() const
 {
-    return items<CanvasItem>(selectedItems());
+    return ModelView::Utils::CastedItems<CanvasItem>(selectedItems());
 }
 
 std::vector<ModelView::GraphItem*> DataSelectionModel::selectedGraphs() const
 {
-    return items<ModelView::GraphItem>(selectedItems());
+    return ModelView::Utils::CastedItems<ModelView::GraphItem>(selectedItems());
 }

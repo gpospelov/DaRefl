@@ -22,16 +22,7 @@ namespace
 {
 template <typename T> std::vector<T*> itemsFromIndexList(const QModelIndexList& indices)
 {
-    auto items = ModelView::Utils::ItemsFromIndex(indices);
-    auto unique_items = ModelView::Utils::UniqueItems(items);
-
-    std::vector<T*> result;
-
-    for (auto item : unique_items)
-        if (auto casted_item = dynamic_cast<T*>(item); casted_item)
-            result.push_back(casted_item);
-
-    return result;
+    return ModelView::Utils::CastedItems<T>(ModelView::Utils::UniqueItemsFromIndex(indices));
 }
 
 const int selected_graph_combo_index = 2; // from graphitem.cpp, "DashLine"
