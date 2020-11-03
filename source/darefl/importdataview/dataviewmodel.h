@@ -36,8 +36,8 @@ public:
     bool dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column,
                       const QModelIndex& parent) override;
 
-private:
-    ExperimentalDataModel* dataModel() const;
+//private:
+//    ExperimentalDataModel* dataModel() const;
 };
 
 #endif // DAREFL_IMPORTDATAVIEW_DATAVIEWMODEL_H

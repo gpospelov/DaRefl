@@ -78,6 +78,10 @@ ModelView::GraphItem* ExperimentalDataModel::addGraph(const GraphImportData& gra
     data->setContent(graph_data.bin_values);
     result->setDataItem(data);
 
+//    result->setData(graph_data.graph_description, ItemDataRole::DATA);
+    result->setData(std::string("xxx abc"));
+
+
     return result;
 }
 
