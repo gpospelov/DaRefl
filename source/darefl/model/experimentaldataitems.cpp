@@ -17,6 +17,7 @@ using namespace ModelView;
 CanvasItem::CanvasItem() : GraphViewportItem(::Constants::CanvasItemType)
 {
     yAxis()->setProperty(ViewportAxisItem::P_IS_LOG, true);
+    setData(std::string(""));
 }
 
 std::pair<double, double> CanvasItem::data_yaxis_range() const
