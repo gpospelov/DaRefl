@@ -17,10 +17,7 @@ namespace ModelView
 class SessionModel;
 } // namespace ModelView
 
-/*!
-@class LayerViewModel
-@brief View model to display content of MultiLayerItem in table like views.
-*/
+//! View model to display content of MultiLayerItem in table like views.
 
 class LayerViewModel : public ModelView::ViewModel
 {
