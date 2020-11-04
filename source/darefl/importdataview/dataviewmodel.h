@@ -19,7 +19,7 @@ class SessionModel;
 
 class ExperimentalDataModel;
 
-//! This is the implementation of drag and drop support for the data editor
+//! View model for ExperimentalDataModel with drag-and-drop support.
 
 class DataViewModel : public ModelView::TopItemsViewModel
 {

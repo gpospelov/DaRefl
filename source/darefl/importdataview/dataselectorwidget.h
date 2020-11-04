@@ -16,7 +16,7 @@ namespace ModelView
 {
 class PropertyTreeView;
 class CollapsibleListWidget;
-}
+} // namespace ModelView
 
 class QTreeView;
 class DataSelectionModel;

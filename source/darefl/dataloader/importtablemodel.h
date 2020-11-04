@@ -11,11 +11,12 @@
 #define DAREFL_DATALOADER_IMPORTTABLEMODEL_H
 
 #include <QAbstractTableModel>
+#include <memory>
 #include <string>
 #include <vector>
-#include <memory>
 
-namespace DataLoader {
+namespace DataLoader
+{
 struct ColumnInfo;
 }
 

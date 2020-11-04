@@ -10,8 +10,8 @@
 #ifndef DAREFL_DATALOADER_DATALOADER_CONSTANTS_H
 #define DAREFL_DATALOADER_DATALOADER_CONSTANTS_H
 
-#include <vector>
 #include <string>
+#include <vector>
 
 namespace DataLoader ::Constants
 {

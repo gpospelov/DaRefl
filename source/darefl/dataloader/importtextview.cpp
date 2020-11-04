@@ -16,7 +16,8 @@
 #include <QPainter>
 #include <QTextBlock>
 
-namespace {
+namespace
+{
 const int line_number_gap = 4;
 }
 
@@ -31,12 +32,12 @@ ImportTextView::ImportTextView(QWidget* parent) : QPlainTextEdit(parent)
             &ImportTextView::highlightCurrentLine);
 
     updateLineNumberAreaWidth(0);
-//    highlightCurrentLine();
+    //    highlightCurrentLine();
 
     setReadOnly(true);
     setWordWrapMode(QTextOption::NoWrap);
 
-    setFont(QFont("Monospace", ModelView::Utils::SystemPointSize()*0.8, QFont::Light));
+    setFont(QFont("Monospace", ModelView::Utils::SystemPointSize() * 0.8, QFont::Light));
 }
 
 int ImportTextView::lineNumberAreaWidth()
@@ -48,7 +49,7 @@ int ImportTextView::lineNumberAreaWidth()
         ++digits;
     }
 
-    int space = line_number_gap*2 + fontMetrics().horizontalAdvance(QLatin1Char('9')) * digits;
+    int space = line_number_gap * 2 + fontMetrics().horizontalAdvance(QLatin1Char('9')) * digits;
 
     return space;
 }
@@ -110,8 +111,8 @@ void ImportTextView::lineNumberAreaPaintEvent(QPaintEvent* event)
         if (block.isVisible() && bottom >= event->rect().top()) {
             QString number = QString::number(blockNumber + 1);
             painter.setPen(Qt::black);
-            painter.drawText(0, top, lineNumberArea->width()-line_number_gap, fontMetrics().height(),
-                             Qt::AlignRight, number);
+            painter.drawText(0, top, lineNumberArea->width() - line_number_gap,
+                             fontMetrics().height(), Qt::AlignRight, number);
         }
 
         block = block.next();

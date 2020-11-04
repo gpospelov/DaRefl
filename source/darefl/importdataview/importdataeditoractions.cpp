@@ -9,8 +9,8 @@
 
 #include <QUndoStack>
 #include <darefl/importdataview/dataselectionmodel.h>
-#include <darefl/importdataview/importdataeditoractions.h>
 #include <darefl/importdataview/graphimportdata.h>
+#include <darefl/importdataview/importdataeditoractions.h>
 #include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/experimentaldatamodel.h>
 #include <mvvm/model/comboproperty.h>
@@ -95,6 +95,7 @@ void ImportDataEditorActions::onRedo()
 void ImportDataEditorActions::onSelectionChanged(const QItemSelection& selected,
                                                  const QItemSelection& deselected)
 {
+    // FIXME refactor code below after PenItem is implemented
     auto selected_graphs = itemsFromIndexList<ModelView::GraphItem>(selected.indexes());
     for (auto graph : selected_graphs) {
         auto pencombo = graph->property<ModelView::ComboProperty>(ModelView::GraphItem::P_PENSTYLE);

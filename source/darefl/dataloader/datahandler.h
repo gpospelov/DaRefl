@@ -10,9 +10,9 @@
 #ifndef DAREFL_DATALOADER_DATAHANDLER_H
 #define DAREFL_DATALOADER_DATAHANDLER_H
 
+#include <map>
 #include <string>
 #include <vector>
-#include <map>
 
 //! Handles raw data during the life time of DataHandlerDialog.
 //! Loads the data from multiple ASCII files and stores in a buffer of strings.

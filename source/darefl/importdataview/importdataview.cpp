@@ -13,7 +13,7 @@
 #include <darefl/model/applicationmodels.h>
 
 ImportDataView::ImportDataView(ApplicationModels* models, QWidget* parent)
-    : QWidget(parent), models(models)
+    : QWidget(parent), m_models(models)
 {
     auto layout = new QVBoxLayout(this);
     layout->addWidget(new ImportDataEditor(models->experimentalDataModel()));

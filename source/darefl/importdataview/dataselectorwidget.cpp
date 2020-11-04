@@ -15,9 +15,9 @@
 #include <darefl/importdataview/dataselectionmodel.h>
 #include <darefl/importdataview/dataselectorwidget.h>
 #include <darefl/importdataview/dataviewmodel.h>
-#include <mvvm/widgets/collapsiblelistwidget.h>
 #include <darefl/model/experimentaldataitems.h>
 #include <mvvm/standarditems/graphitem.h>
+#include <mvvm/widgets/collapsiblelistwidget.h>
 #include <mvvm/widgets/standardtreeviews.h>
 #include <mvvm/widgets/widgetutils.h>
 

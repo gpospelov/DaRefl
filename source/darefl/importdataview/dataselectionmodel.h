@@ -46,5 +46,4 @@ public:
     std::vector<ModelView::GraphItem*> selectedGraphs() const;
 };
 
-
 #endif // DAREFL_IMPORTDATAVIEW_DATASELECTIONMODEL_H

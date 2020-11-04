@@ -9,9 +9,9 @@
 
 #include <QButtonGroup>
 #include <QComboBox>
+#include <QDebug>
 #include <QGridLayout>
 #include <QGroupBox>
-#include <QDebug>
 #include <QLabel>
 #include <QLineEdit>
 #include <QRadioButton>

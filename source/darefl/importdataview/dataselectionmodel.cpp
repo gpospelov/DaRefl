@@ -15,7 +15,6 @@
 #include <mvvm/model/itemutils.h>
 #include <mvvm/model/mvvm_types.h>
 #include <mvvm/model/sessionitem.h>
-#include <mvvm/model/itemutils.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/viewmodel/viewmodel.h>
 #include <mvvm/viewmodel/viewmodelutils.h>

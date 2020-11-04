@@ -35,7 +35,7 @@ public slots:
     void onRedo();
 
 private slots:
-    void onSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
+    void onSelectionChanged(const QItemSelection& selected, const QItemSelection& deselected);
 
 private:
     ExperimentalDataModel* m_dataModel{nullptr};

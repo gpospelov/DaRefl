@@ -23,7 +23,7 @@ public:
     ImportDataView(ApplicationModels* models, QWidget* parent = nullptr);
 
 private:
-    ApplicationModels* models{nullptr};
+    ApplicationModels* m_models{nullptr};
 };
 
 #endif // DAREFL_IMPORTDATAVIEW_IMPORTDATAVIEW_H
