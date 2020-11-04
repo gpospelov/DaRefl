@@ -15,28 +15,13 @@
 #include <darefl/model/item_constants.h>
 #include <mvvm/model/sessionmodel.h>
 #include <mvvm/viewmodel/viewmodelutils.h>
+#include <mvvm/widgets/widgetutils.h>
 
 using namespace ModelView;
 
 namespace
 {
 const std::string ExperimentalDataMimeType = "darefl/ExperimentalDataMime";
-
-QByteArray serialize(const QStringList& data)
-{
-    QByteArray byteArray;
-    QDataStream out(&byteArray, QIODevice::WriteOnly);
-    out << data;
-    return byteArray;
-}
-
-QStringList deserialize(QByteArray byteArray)
-{
-    QStringList result;
-    QDataStream in(&byteArray, QIODevice::ReadOnly);
-    in >> result;
-    return result;
-}
 
 } // namespace
 
@@ -72,7 +57,8 @@ QMimeData* DataViewModel::mimeData(const QModelIndexList& index_list) const
     for (auto item : Utils::UniqueItemsFromIndex(index_list))
         identifiers.append(QString::fromStdString(item->identifier()));
 
-    result->setData(QString::fromStdString(ExperimentalDataMimeType), serialize(identifiers));
+    result->setData(QString::fromStdString(ExperimentalDataMimeType),
+                    Utils::serialize(identifiers));
 
     return result;
 }
@@ -114,7 +100,8 @@ bool DataViewModel::dropMimeData(const QMimeData* data, Qt::DropAction action, i
     int requested_row = parent.isValid() ? parent.row() : row;
 
     // retrieving list of item identifiers and accessing items
-    auto identifiers = deserialize(data->data(QString::fromStdString(ExperimentalDataMimeType)));
+    auto identifiers =
+        Utils::deserialize(data->data(QString::fromStdString(ExperimentalDataMimeType)));
     for (auto id : identifiers) {
         auto item = sessionModel()->findItem(id.toStdString());
 

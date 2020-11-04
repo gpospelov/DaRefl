@@ -27,6 +27,7 @@
 #include <darefl/dataloader/parserinterface.h>
 #include <mvvm/utils/fileutils.h>
 #include <mvvm/widgets/widgetutils.h>
+#include <sstream>
 
 namespace
 {
@@ -62,6 +63,18 @@ const QString dialogsize_setting_name()
 const QString splittersize_setting_name()
 {
     return Constants::DataLoaderGroupKey + "/" + splittersize_key;
+}
+
+//! Returns string representing import summary: filename and columns used for import.
+
+std::string createImportDescription(const QString& file_name,
+                                    const DataLoader::ColumnInfo& axis_info,
+                                    const DataLoader::ColumnInfo& intensity_info)
+{
+    std::ostringstream ostr;
+    ostr << "file: '" <<ModelView::Utils::WithTildeHomePath(file_name).toStdString() << "', ";
+    ostr << "columns: (" << axis_info.column << ", " << intensity_info.column << ")";
+    return ostr.str();
 }
 
 } // namespace
@@ -195,7 +208,7 @@ void DataLoaderDialog::onParseAllRequest()
         auto columns = m_previewPanel->columnInfo();
         for (auto [axis_info, intensity_info] : DataLoader::CreateGraphInfoPairs(columns)) {
             auto data = DataLoader::CreateData(parsed_text, axis_info, intensity_info);
-            data.graph_description = ModelView::Utils::base_name(name.toStdString());
+            data.graph_description = createImportDescription(name, axis_info, intensity_info);
             m_graphImportData.emplace_back(data);
         }
     }
