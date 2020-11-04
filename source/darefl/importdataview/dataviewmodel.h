@@ -21,7 +21,7 @@ class ExperimentalDataModel;
 
 //! This is the implementation of drag and drop support for the data editor
 
-class DataViewModel : public ModelView::ViewModel
+class DataViewModel : public ModelView::TopItemsViewModel
 {
     Q_OBJECT
 public:
@@ -35,9 +35,6 @@ public:
                          const QModelIndex& parent) const override;
     bool dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column,
                       const QModelIndex& parent) override;
-
-//private:
-//    ExperimentalDataModel* dataModel() const;
 };
 
 #endif // DAREFL_IMPORTDATAVIEW_DATAVIEWMODEL_H
