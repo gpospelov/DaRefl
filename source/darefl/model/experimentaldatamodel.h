@@ -46,14 +46,6 @@ public:
 
     void mergeCanvases(const std::vector<CanvasItem*>& canvases);
 
-    // TODO cleanup below
-
-    bool itemEditable(ModelView::SessionItem* item) const;
-    bool dragEnabled(ModelView::SessionItem* item) const;
-    bool dropEnabled(ModelView::SessionItem* item) const;
-    bool dragDropItem(ModelView::SessionItem* item, ModelView::SessionItem* target, int row = -1);
-    bool mergeItems(std::vector<ModelView::SessionItem*> items);
-
 private:
     void init_model();
 };

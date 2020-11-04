@@ -1,6 +1,4 @@
 target_sources(${library_name} PRIVATE
-    datarowstrategy.cpp
-    datarowstrategy.h
     dataselectionmodel.cpp
     dataselectionmodel.h
     dataselectorwidget.cpp

@@ -78,9 +78,8 @@ ModelView::GraphItem* ExperimentalDataModel::addGraph(const GraphImportData& gra
     data->setContent(graph_data.bin_values);
     result->setDataItem(data);
 
-//    result->setData(graph_data.graph_description, ItemDataRole::DATA);
+    //    result->setData(graph_data.graph_description, ItemDataRole::DATA);
     result->setData(std::string("xxx abc"));
-
 
     return result;
 }
@@ -120,74 +119,6 @@ void ExperimentalDataModel::mergeCanvases(const std::vector<CanvasItem*>& canvas
             moveItem(graph, target, {"", -1});
         removeItem(source->parent(), source->tagRow());
     }
-}
-
-//! Check if an item should be editable or not
-bool ExperimentalDataModel::itemEditable(ModelView::SessionItem* item) const
-{
-    if (dynamic_cast<GraphItem*>(item))
-        return true;
-    if (dynamic_cast<CanvasItem*>(item))
-        return true;
-    if (dynamic_cast<CanvasContainerItem*>(item))
-        return true;
-    return false;
-}
-
-//! Check if an item should be allowed to be dragged
-bool ExperimentalDataModel::dragEnabled(ModelView::SessionItem* item) const
-{
-    if (dynamic_cast<GraphItem*>(item))
-        return true;
-    if (dynamic_cast<CanvasItem*>(item))
-        return true;
-    return false;
-}
-
-//! Check if an item should be allowed to be receive drops
-bool ExperimentalDataModel::dropEnabled(ModelView::SessionItem* item) const
-{
-    if (dynamic_cast<CanvasItem*>(item))
-        return true;
-    return false;
-}
-
-//! process to the move of an item
-bool ExperimentalDataModel::dragDropItem(ModelView::SessionItem* item,
-                                         ModelView::SessionItem* target, int row)
-{
-    if (dynamic_cast<GraphItem*>(item) && dynamic_cast<CanvasItem*>(target)
-        && target != item->parent()) {
-        moveItem(dynamic_cast<GraphItem*>(item), dynamic_cast<CanvasItem*>(target),
-                 {dynamic_cast<CanvasItem*>(target)->defaultTag(), row});
-        return true;
-    }
-
-    if (dynamic_cast<CanvasItem*>(item) && dynamic_cast<CanvasItem*>(target)
-        && target != item->parent()) {
-        mergeItems(std::vector<ModelView::SessionItem*>{target, item});
-        return true;
-    }
-
-    return false;
-}
-
-//! Merges all items present into the first of the vector
-bool ExperimentalDataModel::mergeItems(std::vector<ModelView::SessionItem*> items)
-{
-    if (items.size() < 1)
-        return false;
-
-    for (int i = 1; i < items.size(); ++i) {
-        for (auto child : items.at(i)->children()) {
-            if (child->parent()->isSinglePropertyTag(child->tag()))
-                continue;
-            moveItem(child, items.at(0), {child->tag(), -1});
-        }
-        removeItem(items.at(i)->parent(), items.at(i)->tagRow());
-    }
-
-    return true;
 }
 
 void ExperimentalDataModel::init_model()
