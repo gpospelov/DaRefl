@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_IMPORTDATAVIEW_GRAPHIMPORTDATA_TYPES_H
-#define DAREFL_IMPORTDATAVIEW_GRAPHIMPORTDATA_TYPES_H
+#ifndef DAREFL_IMPORTDATAVIEW_GRAPHIMPORTDATA_H
+#define DAREFL_IMPORTDATAVIEW_GRAPHIMPORTDATA_H
 
 #include <string>
 #include <vector>
@@ -25,4 +25,4 @@ struct GraphImportData {
     std::string signal_units;
 };
 
-#endif // DAREFL_IMPORTDATAVIEW_EXPERIMENTALDATA_TYPES_H
+#endif // DAREFL_IMPORTDATAVIEW_GRAPHIMPORTDATA_H

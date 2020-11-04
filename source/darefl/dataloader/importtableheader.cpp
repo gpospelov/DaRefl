@@ -25,7 +25,6 @@ const std::vector<std::string> typeNames = {Constants::AxisType, Constants::Inte
 
 const std::vector<std::string> unitNames = {"a.u.", "counts", "1/nm", "Angstrom"};
 
-
 //! Returns column type from column index.
 std::string suggestColumnTypeFromColumnIndex(int col)
 {

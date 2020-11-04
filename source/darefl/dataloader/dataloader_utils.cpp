@@ -195,8 +195,8 @@ DataLoader::CreateGraphInfoPairs(const std::vector<DataLoader::ColumnInfo>& colu
 }
 
 GraphImportData DataLoader::CreateData(const std::vector<std::vector<std::string>>& text_data,
-                                      const DataLoader::ColumnInfo& axis,
-                                      const DataLoader::ColumnInfo& intensity)
+                                       const DataLoader::ColumnInfo& axis,
+                                       const DataLoader::ColumnInfo& intensity)
 {
     GraphImportData result;
 

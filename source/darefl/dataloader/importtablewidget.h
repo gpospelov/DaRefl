@@ -11,9 +11,9 @@
 #define DAREFL_DATALOADER_IMPORTTABLEWIDGET_H
 
 #include <QWidget>
+#include <memory>
 #include <string>
 #include <vector>
-#include <memory>
 
 namespace ModelView
 {

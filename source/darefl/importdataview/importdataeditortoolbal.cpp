@@ -8,7 +8,6 @@
 // ************************************************************************** //
 
 #include <QAction>
-#include <QMessageBox>
 #include <darefl/importdataview/importdataeditoractions.h>
 #include <darefl/importdataview/importdataeditortoolbal.h>
 #include <darefl/mainwindow/styleutils.h>
@@ -37,7 +36,7 @@ ImportDataEditorToolBar::ImportDataEditorToolBar(ImportDataEditorActions* editor
 
     auto merge_canvases_action = new QAction("Merge", this);
     merge_canvases_action->setToolTip("Merge several selected canvases into one.\n"
-                                     "All graphs will appear on a single canvas.");
+                                      "All graphs will appear on a single canvas.");
     merge_canvases_action->setIcon(QIcon(":/icons/set-merge.svg"));
     connect(merge_canvases_action, &QAction::triggered,
             [this]() { m_editorActions->onMergeCanvases(); });

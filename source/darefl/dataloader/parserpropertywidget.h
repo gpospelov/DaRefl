@@ -11,10 +11,11 @@
 #define DAREFL_DATALOADER_PARSERPROPERTYWIDGET_H
 
 #include <QWidget>
-#include <memory>
 #include <darefl/dataloader/dataloader_types.h>
+#include <memory>
 
-namespace DataLoader {
+namespace DataLoader
+{
 class ParserInterface;
 }
 
@@ -31,7 +32,7 @@ class ParserPropertyWidget : public QWidget
     Q_OBJECT
 
 public:
-    enum SeparatorButtonId {AUTOMATIC, SPACE, COMMA, CUSTOM};
+    enum SeparatorButtonId { AUTOMATIC, SPACE, COMMA, CUSTOM };
 
     ParserPropertyWidget(QWidget* parent = nullptr);
     ~ParserPropertyWidget();

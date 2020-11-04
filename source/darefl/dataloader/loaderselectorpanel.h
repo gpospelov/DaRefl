@@ -55,7 +55,7 @@ private:
 
     int m_targetCanvasIndex{-1};
     ImportFileWidget* m_fileSelectorWidget{nullptr};
-    ParserPropertyWidget* m_propertyWidget{nullptr};    
+    ParserPropertyWidget* m_propertyWidget{nullptr};
     QSplitter* m_splitter{nullptr};
 };
 

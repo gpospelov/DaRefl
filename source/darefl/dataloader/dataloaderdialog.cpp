@@ -72,7 +72,7 @@ std::string createImportDescription(const QString& file_name,
                                     const DataLoader::ColumnInfo& intensity_info)
 {
     std::ostringstream ostr;
-    ostr << "file: '" <<ModelView::Utils::WithTildeHomePath(file_name).toStdString() << "', ";
+    ostr << "file: '" << ModelView::Utils::WithTildeHomePath(file_name).toStdString() << "', ";
     ostr << "columns: (" << axis_info.column << ", " << intensity_info.column << ")";
     return ostr.str();
 }
