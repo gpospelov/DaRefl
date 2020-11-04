@@ -17,15 +17,15 @@
 #include <darefl/model/applicationmodels.h>
 
 LayerEditor::LayerEditor(QWidget* parent)
-    : EditorWidget(parent), p_actions(new LayerEditorActions(this)),
-      p_editor_widget(new LayerEditorWidget(this))
+    : EditorWidget(parent), m_actions(new LayerEditorActions(this)),
+      m_editorWidget(new LayerEditorWidget(this))
 {
     setWindowTitle("Layer editor");
-    p_toolbar = dynamic_cast<EditorToolBar*>(new LayerEditorToolBar(p_actions));
-    p_toolbar->setToggleWidget(p_editor_widget);
+    p_toolbar = dynamic_cast<EditorToolBar*>(new LayerEditorToolBar(m_actions));
+    p_toolbar->setToggleWidget(m_editorWidget);
     auto layout = new QVBoxLayout;
     layout->addWidget(p_toolbar);
-    layout->addWidget(p_editor_widget);
+    layout->addWidget(m_editorWidget);
     setLayout(layout);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
@@ -34,13 +34,13 @@ LayerEditor::LayerEditor(QWidget* parent)
 //! Set the mododel for the different items
 void LayerEditor::setModels(ApplicationModels* models)
 {
-    p_actions->setModel(models->sampleModel());
-    p_editor_widget->setModels(models);
+    m_actions->setModel(models->sampleModel());
+    m_editorWidget->setModels(models);
 
-    connect(p_editor_widget->selectionModel(), &LayerSelectionModel::selectionChanged, this,
+    connect(m_editorWidget->selectionModel(), &LayerSelectionModel::selectionChanged, this,
             &LayerEditor::selectionChanged);
 
-    p_actions->setSelectionModel(p_editor_widget->selectionModel());
+    m_actions->setSelectionModel(m_editorWidget->selectionModel());
 }
 
 QSize LayerEditor::sizeHint() const
@@ -56,8 +56,8 @@ QSize LayerEditor::minimumSizeHint() const
 void LayerEditor::selectionChanged()
 {
     dynamic_cast<LayerEditorToolBar*>(p_toolbar)->updateToolButtonStates(
-        p_editor_widget->selectionModel()->firstSelected(),
-        p_editor_widget->selectionModel()->lastSelected());
+        m_editorWidget->selectionModel()->firstSelected(),
+        m_editorWidget->selectionModel()->lastSelected());
 }
 
 LayerEditor::~LayerEditor() = default;

@@ -40,8 +40,8 @@ public:
     LayerEditorToolBar* toolbar() const;
 
 private:
-    LayerEditorActions* p_actions{nullptr};
-    LayerEditorWidget* p_editor_widget{nullptr};
+    LayerEditorActions* m_actions{nullptr};
+    LayerEditorWidget* m_editorWidget{nullptr};
 };
 
 #endif // DAREFL_LAYEREDITOR_LAYEREDITOR_H

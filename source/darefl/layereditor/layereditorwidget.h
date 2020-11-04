@@ -38,9 +38,9 @@ public:
     LayerSelectionModel* selectionModel() const;
 
 private:
-    std::unique_ptr<LayerViewModel> view_model;
-    LayerSelectionModel* selection_model{nullptr};
-    LayerTreeView* layer_view{nullptr};
+    std::unique_ptr<LayerViewModel> m_viewModel;
+    LayerSelectionModel* m_selectionModel{nullptr};
+    LayerTreeView* m_layerView{nullptr};
     std::unique_ptr<ModelView::ViewModelDelegate> m_delegate;
 };
 

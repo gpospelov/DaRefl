@@ -17,17 +17,13 @@ namespace ModelView
 class ViewModel;
 } // namespace ModelView
 
-/*!
-@class LayerViewModelController
-@brief Controller for LayerViewModel to show MultiLayerItem in a tree with custom layout.
-
-Will iterate through all top level items and creates rows with layer properties.
-*/
+//! Controller for LayerViewModel to show MultiLayerItem in a tree with custom layout.
+//! Will iterate through all top level items and creates rows with layer properties.
 
 class LayerViewModelController : public ModelView::ViewModelController
 {
 public:
-    explicit LayerViewModelController(ModelView::SessionModel* model,
+    LayerViewModelController(ModelView::SessionModel* model,
                                       ModelView::ViewModel* view_model);
 };
 
