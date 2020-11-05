@@ -15,13 +15,9 @@
 #include <QAction>
 #include <QToolButton>
 
-SLDEditorToolBar::SLDEditorToolBar(SLDEditorActions* actions, QWidget* parent)
-    : EditorToolBar("SLD Editor", parent)
+SLDEditorToolBar::SLDEditorToolBar(SLDEditorActions* actions, QWidget* parent) : QToolBar(parent)
 {
-    InitIconResources();
-
-    setIconSize(StyleUtils::ToolBarIconSize());
-    setToolButtonStyle(Qt::ToolButtonFollowStyle);
+    StyleUtils::SetToolBarStyleTextBesides(this);
 
     auto reset_view = new QToolButton;
     reset_view->setToolTip("Set axes to default range.");

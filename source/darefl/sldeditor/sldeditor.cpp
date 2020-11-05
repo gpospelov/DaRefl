@@ -21,21 +21,19 @@
 
 //! The constructor
 SLDEditor::SLDEditor(QWidget* parent)
-    : EditorWidget(parent), p_view_widget(new SLDViewWidget(this)),
-      p_editor_actions(new SLDEditorActions(this))
+    : QWidget(parent), m_editorActions(new SLDEditorActions(this)),
+      m_viewWidget(new SLDViewWidget(this)), m_toolBar(new SLDEditorToolBar(m_editorActions))
 {
     setWindowTitle("SLD editor");
-    p_toolbar = dynamic_cast<EditorToolBar*>(new SLDEditorToolBar(p_editor_actions));
-    p_toolbar->setToggleWidget(p_view_widget);
     auto layout = new QVBoxLayout;
-    layout->addWidget(p_toolbar);
-    layout->addWidget(p_view_widget);
+    layout->addWidget(m_toolBar);
+    layout->addWidget(m_viewWidget);
     setLayout(layout);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
-    
-    connect(dynamic_cast<SLDEditorToolBar*>(p_toolbar), &SLDEditorToolBar::resetViewport, [this]() {
-        GraphicsScene* scene_item = dynamic_cast<GraphicsScene*>(p_view_widget->scene());
+
+    connect(dynamic_cast<SLDEditorToolBar*>(m_toolBar), &SLDEditorToolBar::resetViewport, [this]() {
+        GraphicsScene* scene_item = dynamic_cast<GraphicsScene*>(m_viewWidget->scene());
         if (!scene_item)
             return;
         scene_item->graphCanvas()->update_viewport();
@@ -47,8 +45,8 @@ SLDEditor::~SLDEditor() = default;
 
 void SLDEditor::setModels(ApplicationModels* models)
 {
-    p_view_widget->setModels(models);
-    p_editor_actions->setModel(models->sldViewModel());
+    m_viewWidget->setModels(models);
+    m_editorActions->setModel(models->sldViewModel());
 }
 
 QSize SLDEditor::sizeHint() const
