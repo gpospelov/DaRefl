@@ -27,6 +27,7 @@ class DiffGraphModel;
 class SimPlotWidget : public QWidget
 {
     Q_OBJECT
+
 public:
     SimPlotWidget(QWidget* parent = nullptr);
     ~SimPlotWidget();

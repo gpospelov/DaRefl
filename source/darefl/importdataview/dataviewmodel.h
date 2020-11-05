@@ -24,6 +24,7 @@ class ExperimentalDataModel;
 class DataViewModel : public ModelView::TopItemsViewModel
 {
     Q_OBJECT
+
 public:
     DataViewModel(ExperimentalDataModel* model, QObject* parent = nullptr);
 

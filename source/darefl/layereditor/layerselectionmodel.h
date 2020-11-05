@@ -26,6 +26,7 @@ class LayerEditorActions;
 class LayerSelectionModel : public QItemSelectionModel
 {
     Q_OBJECT
+
 public:
     LayerSelectionModel(ModelView::ViewModel* view_model, QObject* parent = nullptr);
     ~LayerSelectionModel() = default;

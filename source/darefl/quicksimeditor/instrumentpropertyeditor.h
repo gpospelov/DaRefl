@@ -25,6 +25,7 @@ class ApplicationModels;
 class InstrumentPropertyEditor : public QWidget
 {
     Q_OBJECT
+
 public:
     InstrumentPropertyEditor(QWidget* parent = nullptr);
     ~InstrumentPropertyEditor();

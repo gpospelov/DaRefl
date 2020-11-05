@@ -19,6 +19,7 @@ class MaterialEditorActions;
 class MaterialEditorToolBar : public QToolBar
 {
     Q_OBJECT
+
 public:
     MaterialEditorToolBar(MaterialEditorActions* actions, QWidget* parent = nullptr);
     ~MaterialEditorToolBar() = default;

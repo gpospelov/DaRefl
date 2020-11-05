@@ -22,6 +22,7 @@ class LayerEditorActions;
 class LayerEditorToolBar : public QToolBar
 {
     Q_OBJECT
+
 public:
     LayerEditorToolBar(LayerEditorActions* actions, QWidget* parent = nullptr);
     ~LayerEditorToolBar() = default;

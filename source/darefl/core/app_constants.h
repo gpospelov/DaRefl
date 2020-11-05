@@ -15,7 +15,7 @@
 namespace Constants
 {
 
-//! Constants for QSettings
+//! Constants for QSettings.
 
 const QString DataLoaderGroupKey = "dataloader";
 const QString ParserPropertyGroupKey = "parserproperty";

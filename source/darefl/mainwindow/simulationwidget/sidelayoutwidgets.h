@@ -22,6 +22,7 @@ class QResizeEvent;
 class SideDockHandle : public QWidget
 {
     Q_OBJECT
+
 public:
     SideDockHandle(QWidget* parent = nullptr);
     ~SideDockHandle();

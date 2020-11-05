@@ -27,6 +27,7 @@ class AbstractViewModel;
 class LayerEditor : public QWidget
 {
     Q_OBJECT
+
 public:
     LayerEditor(QWidget* parent = nullptr);
     ~LayerEditor();

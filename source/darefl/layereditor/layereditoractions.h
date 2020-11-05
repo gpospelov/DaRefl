@@ -22,6 +22,7 @@ class LayerSelectionModel;
 class LayerEditorActions : public QObject
 {
     Q_OBJECT
+
 public:
     LayerEditorActions(QObject* parent = nullptr);
     ~LayerEditorActions();

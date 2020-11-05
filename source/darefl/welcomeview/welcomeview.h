@@ -24,6 +24,7 @@ class RecentProjectSettings;
 class WelcomeView : public QWidget
 {
     Q_OBJECT
+
 public:
     WelcomeView(ApplicationModels* models, QWidget* parent = nullptr);
     ~WelcomeView();

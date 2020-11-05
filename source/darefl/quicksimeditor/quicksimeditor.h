@@ -24,6 +24,7 @@ class SimPlotWidget;
 class QuickSimEditor : public EditorWidget
 {
     Q_OBJECT
+
 public:
     QuickSimEditor(QWidget* parent = nullptr);
     ~QuickSimEditor();

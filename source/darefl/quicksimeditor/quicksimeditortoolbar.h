@@ -24,6 +24,7 @@ class QCheckBox;
 class QuickSimEditorToolBar : public EditorToolBar
 {
     Q_OBJECT
+
 public:
     explicit QuickSimEditorToolBar(QWidget* parent = nullptr);
 
