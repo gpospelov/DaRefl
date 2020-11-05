@@ -66,7 +66,7 @@ void SimWidgetController::setSideLeftLayout()
     temp_layout_controller->addWidgetCenter(p_q_sim_editor);
 //    temp_layout_controller->addWidgetToList(p_mat_editor);
 //    temp_layout_controller->addWidgetToList(p_layer_editor);
-    temp_layout_controller->addWidgetToList(p_sld_editor);
+//    temp_layout_controller->addWidgetToList(p_sld_editor);
     p_layout_controller = temp_layout_controller;
 
     m_current_layout = LayoutType::left;
@@ -82,7 +82,7 @@ void SimWidgetController::setSideRightLayout()
     temp_layout_controller->addWidgetCenter(p_q_sim_editor);
 //    temp_layout_controller->addWidgetToList(p_mat_editor);
 //    temp_layout_controller->addWidgetToList(p_layer_editor);
-    temp_layout_controller->addWidgetToList(p_sld_editor);
+//    temp_layout_controller->addWidgetToList(p_sld_editor);
     p_layout_controller = temp_layout_controller;
 
     m_current_layout = LayoutType::right;

@@ -10,16 +10,17 @@
 #ifndef DAREFL_SLDEDITOR_SLDEDITOR_H
 #define DAREFL_SLDEDITOR_SLDEDITOR_H
 
+#include <QWidget>
+
 class SLDEditorActions;
 class SLDEditorToolBar;
 class SLDViewWidget;
 class ApplicationModels;
 
-#include <darefl/mainwindow/editorwidget.h>
-
 //! The SLD editor QWidget
-class SLDEditor : public EditorWidget
+class SLDEditor : public QWidget
 {
+    Q_OBJECT
 
 public:
     SLDEditor(QWidget* parent = nullptr);
@@ -31,8 +32,9 @@ public:
     QSize minimumSizeHint() const override;
 
 private:
-    SLDEditorActions* p_editor_actions{nullptr};
-    SLDViewWidget* p_view_widget{nullptr};
+    SLDEditorActions* m_editorActions{nullptr};
+    SLDViewWidget* m_viewWidget{nullptr};
+    SLDEditorToolBar* m_toolBar{nullptr};
 };
 
 #endif // DAREFL_SLDEDITOR_SLDEDITOR_H
