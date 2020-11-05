@@ -38,7 +38,7 @@ FancyTab::FancyTab(const QString& title, QWidget* parent)
 
 void FancyTab::setSelected(bool value)
 {
-    m_is_selected = value;
+    m_isSelected = value;
     update();
 }
 
@@ -49,7 +49,7 @@ void FancyTab::paintEvent(QPaintEvent*)
     if (m_widgetColor.isValid())
         painter.fillRect(0, 0, size().width(), size().height(), m_widgetColor);
 
-    if (m_is_selected && isEnabled())
+    if (m_isSelected && isEnabled())
         painter.fillRect(
             QRectF(QPointF(0, size().height() - 2), QPointF(size().width(), size().height())),
             QColor("#0d4283"));

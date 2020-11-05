@@ -16,13 +16,13 @@
 #include <darefl/mainwindow/mainbarwidget.h>
 
 MainBarWidget::MainBarWidget(QWidget* parent)
-    : QWidget(parent), stacked_widget(new QStackedWidget), label_layout(new QHBoxLayout)
+    : QWidget(parent), m_stackedWidget(new QStackedWidget), m_labelLayout(new QHBoxLayout)
 {
-    label_layout->setContentsMargins(0, 0, 0, 0);
+    m_labelLayout->setContentsMargins(0, 0, 0, 0);
 
     auto layout = new QVBoxLayout(this);
-    layout->addLayout(label_layout);
-    layout->addWidget(stacked_widget);
+    layout->addLayout(m_labelLayout);
+    layout->addWidget(m_stackedWidget);
     layout->setContentsMargins(0, 0, 0, 0);
 }
 
@@ -30,21 +30,21 @@ MainBarWidget::~MainBarWidget() = default;
 
 void MainBarWidget::addWidget(QWidget* widget, const QString& title, bool is_enabled)
 {
-    int index = stacked_widget->addWidget(widget);
+    int index = m_stackedWidget->addWidget(widget);
 
     auto tab = new FancyTab(title);
     tab->setEnabled(is_enabled);
     auto on_tab_clicked = [this, index]() { setCurrentIndex(index); };
     connect(tab, &FancyTab::clicked, on_tab_clicked);
 
-    index_to_tab[index] = tab;
-    label_layout->addWidget(tab);
+    m_indexToTab[index] = tab;
+    m_labelLayout->addWidget(tab);
 }
 
 void MainBarWidget::setCurrentIndex(int index)
 {
-    for (auto it : index_to_tab)
+    for (auto it : m_indexToTab)
         it.second->setSelected(it.first == index);
 
-    stacked_widget->setCurrentIndex(index);
+    m_stackedWidget->setCurrentIndex(index);
 }

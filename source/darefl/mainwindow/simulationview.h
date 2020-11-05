@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_MAINWINDOW_SIMULATIONVIEW_V2_H
-#define DAREFL_MAINWINDOW_SIMULATIONVIEW_V2_H
+#ifndef DAREFL_MAINWINDOW_SIMULATIONVIEW_H
+#define DAREFL_MAINWINDOW_SIMULATIONVIEW_H
 
 #include <QMainWindow>
 #include <memory>
@@ -22,12 +22,12 @@ class QuickSimEditor;
 
 //! Main simulation window with all components for quick sample editing and simulations.
 
-class SimulationViewV2 : public QMainWindow
+class SimulationView : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    SimulationViewV2(ApplicationModels* models, QWidget* parent = nullptr);
+    SimulationView(ApplicationModels* models, QWidget* parent = nullptr);
 
 private:
     void initEditorList();
@@ -37,4 +37,4 @@ private:
     ApplicationModels* m_models{nullptr};
 };
 
-#endif // DAREFL_MAINWINDOW_SIMULATIONVIEW_V2_H
+#endif // DAREFL_MAINWINDOW_SIMULATIONVIEW_H

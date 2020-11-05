@@ -10,7 +10,7 @@
 #include <QSplitter>
 #include <QVBoxLayout>
 #include <darefl/layereditor/layereditor.h>
-#include <darefl/mainwindow/simulationview_v2.h>
+#include <darefl/mainwindow/simulationview.h>
 #include <darefl/materialeditor/materialeditor.h>
 #include <darefl/quicksimeditor/instrumentpropertyeditor.h>
 #include <darefl/quicksimeditor/quicksimeditor.h>
@@ -19,9 +19,9 @@
 
 using namespace ModelView;
 
-SimulationViewV2::SimulationViewV2(ApplicationModels* models, QWidget* parent)
-    : QMainWindow(parent), m_editorList(new CollapsibleListWidget),
-      m_simEditor(new QuickSimEditor), m_models(models)
+SimulationView::SimulationView(ApplicationModels* models, QWidget* parent)
+    : QMainWindow(parent), m_editorList(new CollapsibleListWidget), m_simEditor(new QuickSimEditor),
+      m_models(models)
 {
     auto splitter = new QSplitter;
 
@@ -33,7 +33,7 @@ SimulationViewV2::SimulationViewV2(ApplicationModels* models, QWidget* parent)
     setCentralWidget(splitter);
 }
 
-void SimulationViewV2::initEditorList()
+void SimulationView::initEditorList()
 {
     m_editorList->layout()->setContentsMargins(4, 4, 4, 4);
     auto material_editor = new MaterialEditor(this);
