@@ -18,13 +18,13 @@
 
 LayerEditor::LayerEditor(QWidget* parent)
     : EditorWidget(parent), m_actions(new LayerEditorActions(this)),
-      m_editorWidget(new LayerEditorWidget(this))
+      m_editorWidget(new LayerEditorWidget(this)), m_toolBar(new LayerEditorToolBar(m_actions))
 {
+    StyleUtils::SetToolBarStyleTextBesides(m_toolBar);
+
     setWindowTitle("Layer editor");
-    p_toolbar = dynamic_cast<EditorToolBar*>(new LayerEditorToolBar(m_actions));
-    p_toolbar->setToggleWidget(m_editorWidget);
     auto layout = new QVBoxLayout;
-    layout->addWidget(p_toolbar);
+    layout->addWidget(m_toolBar);
     layout->addWidget(m_editorWidget);
     setLayout(layout);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -55,7 +55,7 @@ QSize LayerEditor::minimumSizeHint() const
 
 void LayerEditor::selectionChanged()
 {
-    dynamic_cast<LayerEditorToolBar*>(p_toolbar)->updateToolButtonStates(
+    dynamic_cast<LayerEditorToolBar*>(m_toolBar)->updateToolButtonStates(
         m_editorWidget->selectionModel()->firstSelected(),
         m_editorWidget->selectionModel()->lastSelected());
 }

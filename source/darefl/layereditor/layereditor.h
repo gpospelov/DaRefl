@@ -42,6 +42,7 @@ public:
 private:
     LayerEditorActions* m_actions{nullptr};
     LayerEditorWidget* m_editorWidget{nullptr};
+    LayerEditorToolBar* m_toolBar{nullptr};
 };
 
 #endif // DAREFL_LAYEREDITOR_LAYEREDITOR_H

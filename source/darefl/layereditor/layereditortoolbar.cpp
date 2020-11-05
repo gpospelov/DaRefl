@@ -15,7 +15,7 @@
 #include <darefl/mainwindow/styleutils.h>
 
 LayerEditorToolBar::LayerEditorToolBar(LayerEditorActions* actions, QWidget* parent)
-    : EditorToolBar("Layer Editor", parent)
+    : QToolBar(parent)
 {
 
     auto layer_menu = create_layer_menu(actions);
