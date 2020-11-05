@@ -17,6 +17,7 @@
 LayerEditorToolBar::LayerEditorToolBar(LayerEditorActions* actions, QWidget* parent)
     : QToolBar(parent)
 {
+    StyleUtils::SetToolBarStyleTextBesides(this);
 
     auto layer_menu = create_layer_menu(actions);
 

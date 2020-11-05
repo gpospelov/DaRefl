@@ -10,7 +10,7 @@
 #ifndef DAREFL_LAYEREDITOR_LAYEREDITOR_H
 #define DAREFL_LAYEREDITOR_LAYEREDITOR_H
 
-#include <darefl/mainwindow/editorwidget.h>
+#include <QWidget>
 
 class ApplicationModels;
 class LayerEditorActions;
@@ -24,7 +24,7 @@ class AbstractViewModel;
 
 //! Layer editor.
 
-class LayerEditor : public EditorWidget
+class LayerEditor : public QWidget
 {
     Q_OBJECT
 public:
@@ -36,8 +36,6 @@ public:
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
     void selectionChanged();
-
-    LayerEditorToolBar* toolbar() const;
 
 private:
     LayerEditorActions* m_actions{nullptr};

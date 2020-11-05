@@ -10,13 +10,13 @@
 #ifndef DAREFL_MATERIALEDITOR_MATERIALEDITORTOOLBAR_H
 #define DAREFL_MATERIALEDITOR_MATERIALEDITORTOOLBAR_H
 
-#include <darefl/mainwindow/editortoolbar.h>
+#include <QToolBar>
 
 class MaterialEditorActions;
 
 //! Material editor toolbar.
 
-class MaterialEditorToolBar : public EditorToolBar
+class MaterialEditorToolBar : public QToolBar
 {
     Q_OBJECT
 public:

@@ -14,8 +14,10 @@
 #include <darefl/materialeditor/materialeditortoolbar.h>
 
 MaterialEditorToolBar::MaterialEditorToolBar(MaterialEditorActions* actions, QWidget* parent)
-    : EditorToolBar("Material Editor", parent)
+    : QToolBar(parent)
 {
+    StyleUtils::SetToolBarStyleTextBesides(this);
+
     auto action = new QAction("Add material", this);
     action->setIcon(QIcon(":/icons/plus-circle-outline.svg"));
     action->setToolTip("Adds new material at the bottom of the list");
