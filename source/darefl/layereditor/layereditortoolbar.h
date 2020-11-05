@@ -31,7 +31,7 @@ public:
 
 private:
     QMenu* create_layer_menu(LayerEditorActions* editor_actions);
-    std::map<std::string, QWidget*> m_toolbar_widgets;
+    std::map<std::string, QWidget*> m_toolbarWidgets;
 };
 
 #endif // DAREFL_LAYEREDITOR_LAYEREDITORTOOLBAR_H

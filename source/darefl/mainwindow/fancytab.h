@@ -36,7 +36,7 @@ protected:
 
 private:
     QLabel* m_label{nullptr};
-    bool m_is_selected{false};
+    bool m_isSelected{false};
     QColor m_widgetColor;
 };
 

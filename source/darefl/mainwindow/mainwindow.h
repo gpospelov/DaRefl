@@ -15,7 +15,7 @@
 
 class WelcomeView;
 class ImportDataView;
-class SimulationViewV2;
+class SimulationView;
 class MainBarWidget;
 class ApplicationModels;
 class ActionManager;
@@ -44,7 +44,7 @@ private:
     ActionManager* m_actionManager{nullptr};
     WelcomeView* m_welcomeView{nullptr};
     ImportDataView* m_importDataView{nullptr};
-    SimulationViewV2* m_simView{nullptr};
+    SimulationView* m_simView{nullptr};
     SettingsView* m_settingsView{nullptr};
     MainBarWidget* m_barWidget{nullptr};
 };

@@ -34,9 +34,9 @@ public:
     void setCurrentIndex(int index);
 
 private:
-    QStackedWidget* stacked_widget{nullptr};
-    QHBoxLayout* label_layout{nullptr};
-    std::map<int, FancyTab*> index_to_tab;
+    QStackedWidget* m_stackedWidget{nullptr};
+    QHBoxLayout* m_labelLayout{nullptr};
+    std::map<int, FancyTab*> m_indexToTab;
 };
 
 #endif // DAREFL_MAINWINDOW_MAINBARWIDGET_H

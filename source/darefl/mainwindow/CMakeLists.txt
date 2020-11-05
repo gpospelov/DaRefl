@@ -7,8 +7,8 @@ target_sources(${library_name} PRIVATE
     mainbarwidget.h
     mainwindow.cpp
     mainwindow.h
-    simulationview_v2.cpp
-    simulationview_v2.h
+    simulationview.cpp
+    simulationview.h
     styleutils.cpp
     styleutils.h
 )
