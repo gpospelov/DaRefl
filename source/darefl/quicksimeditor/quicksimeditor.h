@@ -10,7 +10,7 @@
 #ifndef DAREFL_QUICKSIMEDITOR_QUICKSIMEDITOR_H
 #define DAREFL_QUICKSIMEDITOR_QUICKSIMEDITOR_H
 
-#include <darefl/mainwindow/editorwidget.h>
+#include <QWidget>
 
 class JobModel;
 class ApplicationModels;
@@ -21,7 +21,7 @@ class SimPlotWidget;
 
 //! Quick reflectivity simulations.
 
-class QuickSimEditor : public EditorWidget
+class QuickSimEditor : public QWidget
 {
     Q_OBJECT
 
@@ -38,10 +38,11 @@ private:
     void setup_toolbar_connections();
     void setup_controller_connections();
 
-    ApplicationModels* app_models{nullptr};
-    QuickSimController* sim_controller{nullptr};
-    SimPlotController* plot_controller{nullptr};
+    ApplicationModels* m_appModels{nullptr};
+    QuickSimController* m_simController{nullptr};
+    SimPlotController* m_plotController{nullptr};
     SimPlotWidget* m_plotWidget{nullptr};
+    QuickSimEditorToolBar* m_toolBar{nullptr};
 };
 
 #endif // DAREFL_QUICKSIMEDITOR_QUICKSIMEDITOR_H
