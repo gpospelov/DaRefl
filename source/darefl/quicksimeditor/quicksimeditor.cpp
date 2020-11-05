@@ -25,13 +25,13 @@
 using namespace ModelView;
 
 QuickSimEditor::QuickSimEditor(QWidget* parent)
-    : EditorWidget(parent), sim_controller(new QuickSimController(this)),
-      plot_controller(new SimPlotController(this)), m_plotWidget(new SimPlotWidget)
+    : QWidget(parent), m_simController(new QuickSimController(this)),
+      m_plotController(new SimPlotController(this)), m_plotWidget(new SimPlotWidget),
+      m_toolBar(new QuickSimEditorToolBar)
 {
     setWindowTitle(QString("Reflectivity plot"));
-    p_toolbar = dynamic_cast<EditorToolBar*>(new QuickSimEditorToolBar);
     auto layout = new QVBoxLayout(this);
-    layout->addWidget(p_toolbar);
+    layout->addWidget(m_toolBar);
     layout->addWidget(m_plotWidget);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
@@ -45,9 +45,9 @@ QuickSimEditor::~QuickSimEditor() = default;
 //! Set the mododel for the different items
 void QuickSimEditor::setModels(ApplicationModels* models)
 {
-    app_models = models;
-    sim_controller->setModels(models);
-    plot_controller->setModels(models);
+    m_appModels = models;
+    m_simController->setModels(models);
+    m_plotController->setModels(models);
     // toolbar->setModels(models);
     m_plotWidget->setModels(models);
 }
@@ -68,21 +68,21 @@ void QuickSimEditor::setup_toolbar_connections()
 {
     // Request to reset plot is propagated from toolbar to viewports.
     auto on_reset_view = [this]() { m_plotWidget->updateViewport(); };
-    connect(dynamic_cast<QuickSimEditorToolBar*>(p_toolbar),
+    connect(dynamic_cast<QuickSimEditorToolBar*>(m_toolBar),
             &QuickSimEditorToolBar::resetViewRequest, on_reset_view);
 
     // Simulation interrupt request is propagated from toolbar to controller.
-    connect(dynamic_cast<QuickSimEditorToolBar*>(p_toolbar), &QuickSimEditorToolBar::cancelPressed,
-            sim_controller, &QuickSimController::onInterruptRequest);
+    connect(dynamic_cast<QuickSimEditorToolBar*>(m_toolBar), &QuickSimEditorToolBar::cancelPressed,
+            m_simController, &QuickSimController::onInterruptRequest);
 
     // Request for real time mode is propagated from toobar to controller.
-    connect(dynamic_cast<QuickSimEditorToolBar*>(p_toolbar),
-            &QuickSimEditorToolBar::realTimeRequest, sim_controller,
+    connect(dynamic_cast<QuickSimEditorToolBar*>(m_toolBar),
+            &QuickSimEditorToolBar::realTimeRequest, m_simController,
             &QuickSimController::onRealTimeRequest);
 
     // RUn simulation is propagated from toobar to controller.
-    connect(dynamic_cast<QuickSimEditorToolBar*>(p_toolbar),
-            &QuickSimEditorToolBar::runSimulationRequest, sim_controller,
+    connect(dynamic_cast<QuickSimEditorToolBar*>(m_toolBar),
+            &QuickSimEditorToolBar::runSimulationRequest, m_simController,
             &QuickSimController::onRunSimulationRequest);
 }
 
@@ -91,7 +91,7 @@ void QuickSimEditor::setup_toolbar_connections()
 void QuickSimEditor::setup_controller_connections()
 {
     // Progress values propagated from controller to toolbar.
-    connect(sim_controller, &QuickSimController::progressChanged,
-            dynamic_cast<QuickSimEditorToolBar*>(p_toolbar),
+    connect(m_simController, &QuickSimController::progressChanged,
+            dynamic_cast<QuickSimEditorToolBar*>(m_toolBar),
             &QuickSimEditorToolBar::onProgressChanged);
 }
