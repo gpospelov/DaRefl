@@ -27,8 +27,7 @@
 //} // namespace
 
 QuickSimEditorToolBar::QuickSimEditorToolBar(QWidget* parent)
-    : EditorToolBar("Simulation", parent), live_checkbox(new QCheckBox),
-      progressbar(new QProgressBar)
+    : QToolBar(parent), m_liveCheckbox(new QCheckBox), m_progressBar(new QProgressBar)
 {
     const int toolbar_icon_size = 24;
     setIconSize(QSize(toolbar_icon_size, toolbar_icon_size));
@@ -44,7 +43,7 @@ QuickSimEditorToolBar::QuickSimEditorToolBar(QWidget* parent)
 
 void QuickSimEditorToolBar::onProgressChanged(int value)
 {
-    progressbar->setValue(value);
+    m_progressBar->setValue(value);
 }
 
 void QuickSimEditorToolBar::add_wide_separator()
@@ -61,12 +60,12 @@ void QuickSimEditorToolBar::setup_simulation_elements()
     // live check box and label
     const QString live_tooltip = "Automatically run simulation and update plot\n"
                                  "on any multilayer change.";
-    live_checkbox->setCheckState(Constants::live_simulation_default_on ? Qt::Checked
-                                                                       : Qt::Unchecked);
-    live_checkbox->setToolTip(live_tooltip);
+    m_liveCheckbox->setCheckState(Constants::live_simulation_default_on ? Qt::Checked
+                                                                        : Qt::Unchecked);
+    m_liveCheckbox->setToolTip(live_tooltip);
     auto on_check_state = [this](int state) { realTimeRequest(state == Qt::Checked); };
-    connect(live_checkbox, &QCheckBox::stateChanged, on_check_state);
-    addWidget(live_checkbox);
+    connect(m_liveCheckbox, &QCheckBox::stateChanged, on_check_state);
+    addWidget(m_liveCheckbox);
     auto label = new QLabel("Live");
     label->setToolTip(live_tooltip);
     addWidget(label);
@@ -79,9 +78,9 @@ void QuickSimEditorToolBar::setup_simulation_elements()
     addAction(run_action);
 
     // progress bar
-    progressbar->setFixedWidth(150);
-    progressbar->setTextVisible(false);
-    addWidget(progressbar);
+    m_progressBar->setFixedWidth(150);
+    m_progressBar->setTextVisible(false);
+    addWidget(m_progressBar);
 
     // cancel simulation
     auto cancel_action = new QAction("Cancel", this);
