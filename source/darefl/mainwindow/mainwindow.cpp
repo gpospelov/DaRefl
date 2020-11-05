@@ -18,7 +18,6 @@
 #include <darefl/mainwindow/mainwindow.h>
 #include <darefl/mainwindow/simulationview_v1.h>
 #include <darefl/mainwindow/simulationview_v2.h>
-#include <darefl/mainwindow/simulationwidget/simulationwidget.h>
 #include <darefl/model/applicationmodels.h>
 #include <darefl/settingsview/settingsview.h>
 #include <darefl/welcomeview/welcomeview.h>
