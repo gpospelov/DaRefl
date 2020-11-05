@@ -40,10 +40,10 @@ public:
     MaterialSelectionModel* selectionModel() const;
 
 private:
-    MaterialModel* material_model{nullptr};
-    std::unique_ptr<ModelView::ViewModel> view_model;
-    MaterialSelectionModel* selection_model{nullptr};
-    MaterialTreeView* material_view{nullptr};
+    MaterialModel* m_materialModel{nullptr};
+    std::unique_ptr<ModelView::ViewModel> m_viewModel;
+    MaterialSelectionModel* m_selectionModel{nullptr};
+    MaterialTreeView* m_materialView{nullptr};
     std::unique_ptr<ModelView::ViewModelDelegate> m_delegate;
 };
 
