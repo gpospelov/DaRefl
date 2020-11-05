@@ -16,7 +16,6 @@
 #include <darefl/mainwindow/actionmanager.h>
 #include <darefl/mainwindow/mainbarwidget.h>
 #include <darefl/mainwindow/mainwindow.h>
-#include <darefl/mainwindow/simulationview_v1.h>
 #include <darefl/mainwindow/simulationview_v2.h>
 #include <darefl/model/applicationmodels.h>
 #include <darefl/settingsview/settingsview.h>
@@ -73,18 +72,10 @@ void MainWindow::init_components()
     m_settingsView = new SettingsView(m_models.get());
     m_barWidget = new MainBarWidget;
 
-    // __________________________________________
-    // THE NEW SIMULATION WIDGET UNCOMMENT TO USE
-    //     m_sim_widget = new SimulationWidget();
-    //     m_sim_widget->setModels(m_models.get());
-
     m_barWidget->addWidget(m_welcomeView, "Project");
     m_barWidget->addWidget(m_importDataView, "Data");
     m_barWidget->addWidget(m_simView, "Simulation");
-    // __________________________________________
-    // THE NEW SIMULATION WIDGET UNCOMMENT TO USE
     m_barWidget->addWidget(new QWidget, "Fitting", false);
-    //    m_barWidget->addWidget(m_sim_widget, "Fitting");
     m_barWidget->addWidget(new QWidget, "Export", false);
     m_barWidget->addWidget(m_settingsView, "Settings");
     m_barWidget->setCurrentIndex(0);
