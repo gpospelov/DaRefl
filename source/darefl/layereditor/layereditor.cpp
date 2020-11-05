@@ -17,11 +17,9 @@
 #include <darefl/model/applicationmodels.h>
 
 LayerEditor::LayerEditor(QWidget* parent)
-    : EditorWidget(parent), m_actions(new LayerEditorActions(this)),
+    : QWidget(parent), m_actions(new LayerEditorActions(this)),
       m_editorWidget(new LayerEditorWidget(this)), m_toolBar(new LayerEditorToolBar(m_actions))
 {
-    StyleUtils::SetToolBarStyleTextBesides(m_toolBar);
-
     setWindowTitle("Layer editor");
     auto layout = new QVBoxLayout;
     layout->addWidget(m_toolBar);
