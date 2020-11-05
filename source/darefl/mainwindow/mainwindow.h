@@ -15,7 +15,6 @@
 
 class WelcomeView;
 class ImportDataView;
-class SimulationViewV1;
 class SimulationViewV2;
 class MainBarWidget;
 class ApplicationModels;
