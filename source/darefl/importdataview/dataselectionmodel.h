@@ -27,6 +27,7 @@ class CanvasItem;
 class DataSelectionModel : public QItemSelectionModel
 {
     Q_OBJECT
+
 public:
     DataSelectionModel(ModelView::ViewModel* view_model, QObject* parent = nullptr);
     ~DataSelectionModel() = default;

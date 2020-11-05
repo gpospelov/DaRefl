@@ -25,6 +25,7 @@ class ApplicationModels;
 class SimPlotController : public QObject
 {
     Q_OBJECT
+
 public:
     SimPlotController(QObject* parent = nullptr);
     ~SimPlotController();

@@ -22,6 +22,7 @@ class MaterialSelectionModel;
 class MaterialEditorActions : public QObject
 {
     Q_OBJECT
+
 public:
     MaterialEditorActions(QObject* parent = nullptr);
     ~MaterialEditorActions();

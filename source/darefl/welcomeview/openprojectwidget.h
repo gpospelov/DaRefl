@@ -23,6 +23,7 @@ class QLabel;
 class OpenProjectWidget : public QWidget
 {
     Q_OBJECT
+
 public:
     explicit OpenProjectWidget(QWidget* parent = nullptr);
 

@@ -31,6 +31,7 @@ class MaterialSelectionModel;
 class MaterialEditorWidget : public QWidget
 {
     Q_OBJECT
+
 public:
     MaterialEditorWidget(QWidget* parent = nullptr);
     ~MaterialEditorWidget();

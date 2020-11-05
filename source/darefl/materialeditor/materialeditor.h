@@ -22,6 +22,7 @@ class MaterialEditorWidget;
 class MaterialEditor : public QWidget
 {
     Q_OBJECT
+
 public:
     MaterialEditor(QWidget* parent = nullptr);
     ~MaterialEditor();

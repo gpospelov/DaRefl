@@ -28,6 +28,7 @@ class CanvasItem;
 class ImportDataEditor : public QWidget
 {
     Q_OBJECT
+
 public:
     ImportDataEditor(ExperimentalDataModel* model, QWidget* parent = nullptr);
 

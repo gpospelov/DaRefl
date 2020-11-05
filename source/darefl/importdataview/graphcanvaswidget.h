@@ -25,6 +25,7 @@ class CanvasItem;
 class GraphCanvasWidget : public QWidget
 {
     Q_OBJECT
+
 public:
     GraphCanvasWidget(QWidget* parent = nullptr);
 

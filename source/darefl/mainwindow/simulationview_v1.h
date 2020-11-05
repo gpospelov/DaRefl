@@ -22,6 +22,7 @@ class QuickSimEditor;
 class SimulationViewV1 : public QMainWindow
 {
     Q_OBJECT
+
 public:
     SimulationViewV1(ApplicationModels* models, QWidget* parent = nullptr);
     ~SimulationViewV1();

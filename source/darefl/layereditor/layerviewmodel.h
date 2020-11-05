@@ -22,6 +22,7 @@ class SessionModel;
 class LayerViewModel : public ModelView::ViewModel
 {
     Q_OBJECT
+
 public:
     LayerViewModel(ModelView::SessionModel* model, QObject* parent = nullptr);
 };

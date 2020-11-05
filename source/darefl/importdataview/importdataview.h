@@ -19,6 +19,7 @@ class ApplicationModels;
 class ImportDataView : public QWidget
 {
     Q_OBJECT
+
 public:
     ImportDataView(ApplicationModels* models, QWidget* parent = nullptr);
 

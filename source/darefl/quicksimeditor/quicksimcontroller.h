@@ -32,6 +32,7 @@ class InstrumentModel;
 class QuickSimController : public QObject
 {
     Q_OBJECT
+
 public:
     QuickSimController(QObject* parent = nullptr);
     ~QuickSimController();

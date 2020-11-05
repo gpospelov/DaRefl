@@ -32,6 +32,7 @@ class RecentProjectWidget;
 class ProjectHandler : public QObject
 {
     Q_OBJECT
+
 public:
     explicit ProjectHandler(ApplicationModels* models, QWidget* parent);
     ~ProjectHandler() override;
