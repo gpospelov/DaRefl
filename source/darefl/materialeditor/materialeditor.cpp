@@ -17,15 +17,15 @@
 #include <darefl/model/materialmodel.h>
 
 MaterialEditor::MaterialEditor(QWidget* parent)
-    : EditorWidget(parent), p_actions(new MaterialEditorActions(this)),
-      p_editor_widget(new MaterialEditorWidget)
+    : EditorWidget(parent), m_actions(new MaterialEditorActions(this)),
+      m_editorWidget(new MaterialEditorWidget)
 {
     setWindowTitle("Material editor");
-    p_toolbar = dynamic_cast<EditorToolBar*>(new MaterialEditorToolBar(p_actions));
-    p_toolbar->setToggleWidget(p_editor_widget);
+    p_toolbar = dynamic_cast<EditorToolBar*>(new MaterialEditorToolBar(m_actions));
+    p_toolbar->setToggleWidget(m_editorWidget);
     auto layout = new QVBoxLayout;
     layout->addWidget(p_toolbar);
-    layout->addWidget(p_editor_widget);
+    layout->addWidget(m_editorWidget);
     setLayout(layout);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
@@ -34,9 +34,9 @@ MaterialEditor::MaterialEditor(QWidget* parent)
 //! Set the mododel for the different items
 void MaterialEditor::setModels(ApplicationModels* models)
 {
-    p_editor_widget->setModels(models);
-    p_actions->setModel(models->materialModel());
-    p_actions->setMaterialSelectionModel(p_editor_widget->selectionModel());
+    m_editorWidget->setModels(models);
+    m_actions->setModel(models->materialModel());
+    m_actions->setMaterialSelectionModel(m_editorWidget->selectionModel());
 }
 
 QSize MaterialEditor::sizeHint() const

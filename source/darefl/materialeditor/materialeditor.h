@@ -17,11 +17,6 @@ class MaterialEditorActions;
 class MaterialEditorToolBar;
 class MaterialEditorWidget;
 
-namespace ModelView
-{
-class AbstractViewModel;
-}
-
 //! Material editor.
 
 class MaterialEditor : public EditorWidget
@@ -37,8 +32,8 @@ public:
     QSize minimumSizeHint() const override;
 
 private:
-    MaterialEditorActions* p_actions{nullptr};
-    MaterialEditorWidget* p_editor_widget{nullptr};
+    MaterialEditorActions* m_actions{nullptr};
+    MaterialEditorWidget* m_editorWidget{nullptr};
 };
 
 #endif // DAREFL_MATERIALEDITOR_MATERIALEDITOR_H
