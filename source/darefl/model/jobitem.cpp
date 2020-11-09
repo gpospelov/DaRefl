@@ -17,6 +17,7 @@
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
+#include <mvvm/standarditems/plottableitems.h>
 #include <QColor>
 
 using namespace ModelView;
@@ -114,7 +115,8 @@ void JobItem::setup_specular_viewport()
     auto data = addProperty<Data1DItem>(P_SPECULAR_DATA);
     auto viewport = addProperty<CanvasItem>(P_SPECULAR_VIEWPORT);
     auto graph = std::make_unique<GraphItem>();
-    graph->setProperty(GraphItem::P_COLOR, QColor(Qt::blue));
+    auto pen = graph->item<PenItem>(GraphItem::P_PEN);
+    pen->setProperty(PenItem::P_COLOR, QColor(Qt::blue));
     graph->setDataItem(data);
     viewport->insertItem(graph.release(), {ViewportItem::T_ITEMS, row_sim_graph});
 }

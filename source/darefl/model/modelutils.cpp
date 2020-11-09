@@ -12,11 +12,13 @@
 #include <mvvm/model/externalproperty.h>
 #include <mvvm/model/modelutils.h>
 #include <mvvm/standarditems/graphitem.h>
+#include <mvvm/standarditems/plottableitems.h>
 
 ModelView::ExternalProperty Utils::CreateProperty(const ModelView::GraphItem* graph)
 {
     std::string name = graph->parent()->displayName() + "/" + graph->displayName();
-    auto color = graph->property<QColor>(ModelView::GraphItem::P_COLOR);
+    auto pen = graph->item<ModelView::PenItem>(ModelView::GraphItem::P_PEN);
+    auto color = pen->property<QColor>(ModelView::PenItem::P_COLOR);
     return ModelView::ExternalProperty(name, color, graph->identifier());
 }
 
