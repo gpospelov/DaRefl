@@ -11,13 +11,14 @@
 #include "test_utils.h"
 #include <darefl/importdataview/dataselectionmodel.h>
 #include <darefl/importdataview/dataviewmodel.h>
-#include <darefl/importdataview/importdataeditoractions.h>
 #include <darefl/importdataview/graphimportdata.h>
+#include <darefl/importdataview/importdataeditoractions.h>
 #include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/experimentaldatamodel.h>
 #include <mvvm/model/comboproperty.h>
 #include <mvvm/model/modelutils.h>
 #include <mvvm/standarditems/graphitem.h>
+#include <mvvm/standarditems/plottableitems.h>
 
 using namespace ModelView;
 
@@ -88,18 +89,17 @@ TEST_F(ImportDataEditorActionsTest, onSelectionChanged)
 
     test_data.selection_model.selectItem(test_data.graph0);
 
-    auto pencombo0 =
-        test_data.graph0->property<ModelView::ComboProperty>(ModelView::GraphItem::P_PENSTYLE);
-    auto pencombo1 =
-        test_data.graph1->property<ModelView::ComboProperty>(ModelView::GraphItem::P_PENSTYLE);
+    auto pen0 = test_data.graph0->item<ModelView::PenItem>(ModelView::GraphItem::P_PEN);
+    auto pen1 = test_data.graph1->item<ModelView::PenItem>(ModelView::GraphItem::P_PEN);
+
+    auto pencombo0 = pen0->property<ModelView::ComboProperty>(ModelView::PenItem::P_STYLE);
+    auto pencombo1 = pen1->property<ModelView::ComboProperty>(ModelView::PenItem::P_STYLE);
     EXPECT_EQ(pencombo0.currentIndex(), 2); // correspond to dashed line (i.e. selected)
     EXPECT_EQ(pencombo1.currentIndex(), 1); // correspond to solid line
 
     test_data.selection_model.selectItem(test_data.graph1);
-    pencombo0 =
-        test_data.graph0->property<ModelView::ComboProperty>(ModelView::GraphItem::P_PENSTYLE);
-    pencombo1 =
-        test_data.graph1->property<ModelView::ComboProperty>(ModelView::GraphItem::P_PENSTYLE);
+    pencombo0 = pen0->property<ModelView::ComboProperty>(ModelView::PenItem::P_STYLE);
+    pencombo1 = pen1->property<ModelView::ComboProperty>(ModelView::PenItem::P_STYLE);
     EXPECT_EQ(pencombo0.currentIndex(), 1); // correspond to solid line
     EXPECT_EQ(pencombo1.currentIndex(), 2); // correspond to dashed line (i.e. selected)
 }

@@ -16,6 +16,7 @@
 #include <mvvm/model/comboproperty.h>
 #include <mvvm/model/itemutils.h>
 #include <mvvm/standarditems/graphitem.h>
+#include <mvvm/standarditems/plottableitems.h>
 #include <mvvm/viewmodel/viewmodelutils.h>
 
 namespace
@@ -24,9 +25,6 @@ template <typename T> std::vector<T*> itemsFromIndexList(const QModelIndexList& 
 {
     return ModelView::Utils::CastedItems<T>(ModelView::Utils::UniqueItemsFromIndex(indices));
 }
-
-const int selected_graph_combo_index = 2; // from graphitem.cpp, "DashLine"
-const int default_graph_combo_index = 1;  // from graphitem.cpp, "SolidLine"
 
 } // namespace
 
@@ -95,18 +93,11 @@ void ImportDataEditorActions::onRedo()
 void ImportDataEditorActions::onSelectionChanged(const QItemSelection& selected,
                                                  const QItemSelection& deselected)
 {
-    // FIXME refactor code below after PenItem is implemented
     auto selected_graphs = itemsFromIndexList<ModelView::GraphItem>(selected.indexes());
-    for (auto graph : selected_graphs) {
-        auto pencombo = graph->property<ModelView::ComboProperty>(ModelView::GraphItem::P_PENSTYLE);
-        pencombo.setCurrentIndex(selected_graph_combo_index);
-        graph->setProperty(ModelView::GraphItem::P_PENSTYLE, pencombo);
-    }
+    for (auto graph : selected_graphs)
+        graph->item<ModelView::PenItem>(ModelView::GraphItem::P_PEN)->setSelected(true);
 
     auto deselected_graphs = itemsFromIndexList<ModelView::GraphItem>(deselected.indexes());
-    for (auto graph : deselected_graphs) {
-        auto pencombo = graph->property<ModelView::ComboProperty>(ModelView::GraphItem::P_PENSTYLE);
-        pencombo.setCurrentIndex(default_graph_combo_index);
-        graph->setProperty(ModelView::GraphItem::P_PENSTYLE, pencombo);
-    }
+    for (auto graph : deselected_graphs)
+        graph->item<ModelView::PenItem>(ModelView::GraphItem::P_PEN)->setSelected(false);
 }
