@@ -25,9 +25,11 @@
 using namespace ModelView;
 
 QuickSimEditor::QuickSimEditor(QWidget* parent)
-    : QWidget(parent), m_simController(new QuickSimController(this)),
-      m_plotController(new SimPlotController(this)), m_plotWidget(new SimPlotWidget),
-      m_toolBar(new QuickSimEditorToolBar)
+    : QWidget(parent)
+    , m_simController(new QuickSimController(this))
+    , m_plotController(new SimPlotController(this))
+    , m_plotWidget(new SimPlotWidget)
+    , m_toolBar(new QuickSimEditorToolBar)
 {
     setWindowTitle(QString("Reflectivity plot"));
     auto layout = new QVBoxLayout(this);

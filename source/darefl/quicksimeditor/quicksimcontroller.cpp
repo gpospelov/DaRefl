@@ -31,8 +31,9 @@ const int profile_points_count = 1000;
 }
 
 QuickSimController::QuickSimController(QObject* parent)
-    : QObject(parent), job_manager(new JobManager(this)),
-      in_realtime_mode(Constants::live_simulation_default_on)
+    : QObject(parent)
+    , job_manager(new JobManager(this))
+    , in_realtime_mode(Constants::live_simulation_default_on)
 {
 }
 

@@ -10,8 +10,8 @@
 #ifndef DAREFL_MODEL_MODELUTILS_H
 #define DAREFL_MODEL_MODELUTILS_H
 
-#include <vector>
 #include <string>
+#include <vector>
 
 namespace ModelView
 {

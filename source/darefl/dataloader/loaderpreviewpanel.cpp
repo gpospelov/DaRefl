@@ -24,8 +24,10 @@ const std::string blue{"#1b4f72"};
 } // namespace
 
 LoaderPreviewPanel::LoaderPreviewPanel(QWidget* parent)
-    : QWidget(parent), m_textView(new ImportTextView), m_tableWidget(new ImportTableWidget),
-      m_tabWidget(new QTabWidget)
+    : QWidget(parent)
+    , m_textView(new ImportTextView)
+    , m_tableWidget(new ImportTableWidget)
+    , m_tabWidget(new QTabWidget)
 {
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);

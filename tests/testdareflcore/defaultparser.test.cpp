@@ -22,9 +22,7 @@ class DefaultParserTest : public ::testing::Test
 public:
     ~DefaultParserTest();
 
-    int parsedDataRowCount(const DefaultParser& parser) {
-        return parser.parsedData().size();
-    }
+    int parsedDataRowCount(const DefaultParser& parser) { return parser.parsedData().size(); }
 };
 
 DefaultParserTest::~DefaultParserTest() = default;

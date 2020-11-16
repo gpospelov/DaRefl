@@ -27,8 +27,8 @@ const int default_header_ncols = 2;
 }; // namespace
 
 ImportTableModel::ImportTableModel(QObject* parent)
-    : QAbstractTableModel(parent),
-      m_header(std::make_unique<ImportTableHeader>(default_header_ncols))
+    : QAbstractTableModel(parent)
+    , m_header(std::make_unique<ImportTableHeader>(default_header_ncols))
 {
 }
 

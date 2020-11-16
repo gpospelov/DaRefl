@@ -15,13 +15,14 @@
 #include <darefl/model/applicationmodels.h>
 #include <darefl/model/materialitems.h>
 #include <darefl/model/materialmodel.h>
-#include <mvvm/model/modelutils.h>
 #include <mvvm/factories/viewmodelfactory.h>
+#include <mvvm/model/modelutils.h>
 #include <mvvm/viewmodel/viewmodeldelegate.h>
 
 MaterialEditorWidget::MaterialEditorWidget(QWidget* parent)
-    : QWidget(parent), m_materialView(new MaterialTreeView),
-      m_delegate(std::make_unique<ModelView::ViewModelDelegate>())
+    : QWidget(parent)
+    , m_materialView(new MaterialTreeView)
+    , m_delegate(std::make_unique<ModelView::ViewModelDelegate>())
 {
     auto layout = new QVBoxLayout;
     layout->setContentsMargins(0, 0, 0, 0);

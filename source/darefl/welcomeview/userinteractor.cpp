@@ -9,8 +9,8 @@
 
 #include <QFileDialog>
 #include <QMessageBox>
-#include <darefl/welcomeview/userinteractor.h>
 #include <darefl/welcomeview/recentprojectsettings.h>
+#include <darefl/welcomeview/userinteractor.h>
 #include <map>
 #include <mvvm/project/project_types.h>
 #include <mvvm/project/projectutils.h>

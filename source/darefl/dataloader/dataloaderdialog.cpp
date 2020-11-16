@@ -80,9 +80,12 @@ std::string createImportDescription(const QString& file_name,
 } // namespace
 
 DataLoaderDialog::DataLoaderDialog(QWidget* parent)
-    : QDialog(parent), m_toolBar(new DataLoaderToolBar), m_selectorPanel(new LoaderSelectorPanel),
-      m_previewPanel(new LoaderPreviewPanel), m_splitter(new QSplitter),
-      m_dataHandler(std::make_unique<DataHandler>())
+    : QDialog(parent)
+    , m_toolBar(new DataLoaderToolBar)
+    , m_selectorPanel(new LoaderSelectorPanel)
+    , m_previewPanel(new LoaderPreviewPanel)
+    , m_splitter(new QSplitter)
+    , m_dataHandler(std::make_unique<DataHandler>())
 {
     m_splitter->setChildrenCollapsible(false);
     m_splitter->addWidget(m_selectorPanel);

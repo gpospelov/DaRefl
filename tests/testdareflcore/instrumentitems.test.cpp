@@ -9,8 +9,8 @@
 
 #include "google_test.h"
 #include <darefl/model/experimentaldataitems.h>
-#include <darefl/model/instrumentmodel.h>
 #include <darefl/model/instrumentitems.h>
+#include <darefl/model/instrumentmodel.h>
 #include <mvvm/model/sessionmodel.h>
 #include <mvvm/standarditems/axisitems.h>
 #include <mvvm/standarditems/data1ditem.h>

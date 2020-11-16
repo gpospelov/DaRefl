@@ -152,7 +152,7 @@ TEST_F(DataSelectionModelTest, selectTwoGraphs)
 // FIXME Enable test. For that DataSelectionModel should allow to select
 // parent+child programmatically.
 
-//TEST_F(DataSelectionModelTest, selectGraphAndCanvas)
+// TEST_F(DataSelectionModelTest, selectGraphAndCanvas)
 //{
 //    TestData test_data;
 //    EXPECT_FALSE(test_data.selection_model.hasSelection());

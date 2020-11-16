@@ -7,6 +7,7 @@
 //
 // ************************************************************************** //
 
+#include <QColor>
 #include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/instrumentitems.h>
 #include <darefl/model/item_constants.h>
@@ -18,7 +19,6 @@
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
 #include <mvvm/standarditems/plottableitems.h>
-#include <QColor>
 
 using namespace ModelView;
 

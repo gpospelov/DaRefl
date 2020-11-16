@@ -10,8 +10,8 @@
 #ifndef DAREFL_MAINWINDOW_FANCYTAB_H
 #define DAREFL_MAINWINDOW_FANCYTAB_H
 
-#include <QWidget>
 #include <QColor>
+#include <QWidget>
 
 class QLabel;
 class QString;
@@ -30,9 +30,9 @@ signals:
 
 protected:
     void paintEvent(QPaintEvent*) override;
-    void mousePressEvent(QMouseEvent *event) override;
-    void enterEvent(QEvent *) override;
-    void leaveEvent(QEvent *) override;
+    void mousePressEvent(QMouseEvent* event) override;
+    void enterEvent(QEvent*) override;
+    void leaveEvent(QEvent*) override;
 
 private:
     QLabel* m_label{nullptr};

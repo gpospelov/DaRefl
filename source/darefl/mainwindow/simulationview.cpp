@@ -20,8 +20,10 @@
 using namespace ModelView;
 
 SimulationView::SimulationView(ApplicationModels* models, QWidget* parent)
-    : QMainWindow(parent), m_editorList(new CollapsibleListWidget), m_simEditor(new QuickSimEditor),
-      m_models(models)
+    : QMainWindow(parent)
+    , m_editorList(new CollapsibleListWidget)
+    , m_simEditor(new QuickSimEditor)
+    , m_models(models)
 {
     auto splitter = new QSplitter;
 

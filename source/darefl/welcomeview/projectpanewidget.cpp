@@ -23,8 +23,10 @@ int widget_height()
 } // namespace
 
 ProjectPaneWidget::ProjectPaneWidget(QWidget* parent)
-    : QWidget(parent), m_currentProjectTitle(new QLabel(" ")), m_currentProjectDir(new QLabel(" ")),
-      m_widgetColor(QColor(Qt::white))
+    : QWidget(parent)
+    , m_currentProjectTitle(new QLabel(" "))
+    , m_currentProjectDir(new QLabel(" "))
+    , m_widgetColor(QColor(Qt::white))
 {
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     setFixedHeight(widget_height());

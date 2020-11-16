@@ -20,8 +20,11 @@
 #include <mvvm/widgets/widgetutils.h>
 
 SettingsView::SettingsView(ApplicationModels* models, QWidget* parent)
-    : QWidget(parent), m_listWidget(new QListWidget), m_stackedWidget(new QStackedWidget),
-      m_tabWidget(new QTabWidget), m_models(models)
+    : QWidget(parent)
+    , m_listWidget(new QListWidget)
+    , m_stackedWidget(new QStackedWidget)
+    , m_tabWidget(new QTabWidget)
+    , m_models(models)
 {
     init_list_selector();
     init_model_settings();

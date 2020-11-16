@@ -13,7 +13,8 @@
 #include <QMainWindow>
 #include <memory>
 
-namespace ModelView {
+namespace ModelView
+{
 class CollapsibleListWidget;
 }
 
