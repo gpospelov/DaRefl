@@ -89,7 +89,7 @@ void QuickSimController::onSimulationCompleted()
     auto [qvalues, amplitudes] = job_manager->simulationResult();
     auto data = jobModel()->specular_data();
     data->setAxis(ModelView::PointwiseAxisItem::create(qvalues));
-    data->setContent(amplitudes);
+    data->setValues(amplitudes);
 }
 
 //! Constructs multislice, calculates profile and submits specular simulation.
@@ -111,7 +111,7 @@ void QuickSimController::update_sld_profile(const multislice_t& multislice)
         SpecularToySimulation::sld_profile(multislice, profile_points_count);
     auto data = jobModel()->sld_data();
     data->setAxis(ModelView::FixedBinAxisItem::create(values.size(), xmin, xmax));
-    data->setContent(values);
+    data->setValues(values);
 }
 
 //! Submit data to JobManager for consequent specular simulation in a separate thread.

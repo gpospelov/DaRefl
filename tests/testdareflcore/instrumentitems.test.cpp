@@ -44,7 +44,7 @@ TEST_F(InstrumentItemsTest, experimentalScanGetValues)
     std::vector<double> expected_content = {1.0, 2.0, 3.0};
     std::vector<double> expected_centers = {0.5, 1.5, 2.5};
     data_item->setAxis(FixedBinAxisItem::create(3, 0.0, 3.0));
-    data_item->setContent(expected_content);
+    data_item->setValues(expected_content);
 
     // preparing GraphItem
     auto graph_item = model.insertItem<GraphItem>();
