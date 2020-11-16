@@ -83,8 +83,10 @@ public:
 // ----------------------------------------------------------------------------
 
 SimPlotWidget::SimPlotWidget(QWidget* parent)
-    : QWidget(parent), m_specularCanvas(new ModelView::GraphCanvas),
-      m_diffCanvas(new ModelView::GraphCanvas), m_diffModel(std::make_unique<DiffGraphModel>())
+    : QWidget(parent)
+    , m_specularCanvas(new ModelView::GraphCanvas)
+    , m_diffCanvas(new ModelView::GraphCanvas)
+    , m_diffModel(std::make_unique<DiffGraphModel>())
 {
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 5, 5, 5);

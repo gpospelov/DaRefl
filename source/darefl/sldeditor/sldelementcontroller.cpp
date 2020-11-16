@@ -31,8 +31,10 @@ using namespace ModelView;
 //! Contructor
 SLDElementController::SLDElementController(MaterialModel* material_model, SampleModel* sample_model,
                                            SLDElementModel* sld_model, GraphicsScene* scene_item)
-    : p_material_model(material_model), p_sample_model(sample_model), p_sld_model(sld_model),
-      p_scene_item(scene_item)
+    : p_material_model(material_model)
+    , p_sample_model(sample_model)
+    , p_sld_model(sld_model)
+    , p_scene_item(scene_item)
 {
     connectSLDElementModel();
     connectLayerModel();
@@ -126,7 +128,7 @@ void SLDElementController::buildSLD()
     string_vec identifiers = getIdentifierVector(p_sample_model->rootItem()->children().at(0));
     if (identifiers.size() == 0)
         return;
-        
+
     buildLayerControllers(identifiers);
     updateToView();
     connectSLDElementModel();
@@ -181,7 +183,8 @@ void SLDElementController::buildLayerControllers(string_vec& identifiers)
 
     for (auto& identifier : identifiers) {
         auto layer_element_item = p_sld_model->addLayer();
-        auto layer_element_controller = std::make_unique<LayerElementController>(layer_element_item);
+        auto layer_element_controller =
+            std::make_unique<LayerElementController>(layer_element_item);
         layer_element_controller->autoPopulate();
         layer_element_controller->setScene(p_scene_item);
         layer_element_controller->connectToModel();
@@ -193,11 +196,11 @@ void SLDElementController::buildLayerControllers(string_vec& identifiers)
         m_layer_controllers.at(i)->setLayerBelow(m_layer_controllers.at(i + 1).get());
     }
 
-    if (m_layer_controllers.size() > 0){
+    if (m_layer_controllers.size() > 0) {
         m_layer_controllers.at(0)->topSegment()->stretchRight(true);
         m_layer_controllers.at(0)->topSegment()->setFlag(QGraphicsItem::ItemIsMovable, false);
     }
-    if (m_layer_controllers.size() > 1){
+    if (m_layer_controllers.size() > 1) {
         m_layer_controllers.at(1)->sideSegment()->setFlag(QGraphicsItem::ItemIsMovable, false);
         m_layer_controllers.at(m_layer_controllers.size() - 1)->topSegment()->stretchLeft(true);
     }
@@ -206,7 +209,7 @@ void SLDElementController::buildLayerControllers(string_vec& identifiers)
 //! Connect the layer controllers
 void SLDElementController::connectLayerControllers()
 {
-    for (const auto &layer_controller : m_layer_controllers) {
+    for (const auto& layer_controller : m_layer_controllers) {
         QObject::connect(layer_controller.get(), &LayerElementController::heightChanged, this,
                          &SLDElementController::updateSLDFromView);
         QObject::connect(layer_controller.get(), &LayerElementController::widthChanged, this,
@@ -219,7 +222,7 @@ void SLDElementController::connectLayerControllers()
 //! Disconnect the layer controllers
 void SLDElementController::disconnectLayerControllers()
 {
-    for (const auto &layer_controller: m_layer_controllers) {
+    for (const auto& layer_controller : m_layer_controllers) {
         QObject::disconnect(layer_controller.get(), &LayerElementController::heightChanged, this,
                             &SLDElementController::updateSLDFromView);
         QObject::disconnect(layer_controller.get(), &LayerElementController::widthChanged, this,
@@ -237,10 +240,10 @@ void SLDElementController::updateToView(SessionItem* item)
         return;
     }
 
-    for (const auto &layer_controller: m_layer_controllers) {
+    for (const auto& layer_controller : m_layer_controllers) {
         auto layer_item =
             dynamic_cast<LayerItem*>(p_sample_model->findItem(layer_controller->sampleItemId()));
-        if (!layer_item){
+        if (!layer_item) {
             buildSLD();
             return;
         }

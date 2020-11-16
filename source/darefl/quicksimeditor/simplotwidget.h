@@ -16,7 +16,7 @@ namespace ModelView
 {
 class GraphCanvas;
 class ModelHasChangedController;
-}
+} // namespace ModelView
 
 class ApplicationModels;
 class DiffGraphModel;
@@ -39,7 +39,6 @@ public:
     void updateDiffPlot();
 
 private:
-
     ApplicationModels* m_models{nullptr};
     ModelView::GraphCanvas* m_specularCanvas{nullptr};
     ModelView::GraphCanvas* m_diffCanvas{nullptr};

@@ -19,8 +19,9 @@
 #include <mvvm/viewmodel/viewmodeldelegate.h>
 
 LayerEditorWidget::LayerEditorWidget(QWidget* parent)
-    : QWidget(parent), m_layerView(new LayerTreeView),
-      m_delegate(std::make_unique<ModelView::ViewModelDelegate>())
+    : QWidget(parent)
+    , m_layerView(new LayerTreeView)
+    , m_delegate(std::make_unique<ModelView::ViewModelDelegate>())
 {
     auto layout = new QVBoxLayout;
     layout->setContentsMargins(0, 0, 0, 0);

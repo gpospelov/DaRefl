@@ -23,8 +23,7 @@ class ViewModel;
 class LayerViewModelController : public ModelView::ViewModelController
 {
 public:
-    LayerViewModelController(ModelView::SessionModel* model,
-                                      ModelView::ViewModel* view_model);
+    LayerViewModelController(ModelView::SessionModel* model, ModelView::ViewModel* view_model);
 };
 
 #endif // DAREFL_LAYEREDITOR_LAYERVIEWMODELCONTROLLER_H

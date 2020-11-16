@@ -11,9 +11,9 @@
 #define DAREFL_SLDEDITOR_SLDELEMENTCONTROLLER_H
 
 #include <QObject>
+#include <darefl/sldeditor/layerelementcontroller.h>
 #include <mvvm/model/sessionitem.h>
 #include <mvvm/model/sessionmodel.h>
-#include <darefl/sldeditor/layerelementcontroller.h>
 #include <vector>
 
 class MaterialModel;

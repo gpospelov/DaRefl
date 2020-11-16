@@ -21,8 +21,10 @@
 
 //! The constructor
 SLDEditor::SLDEditor(QWidget* parent)
-    : QWidget(parent), m_editorActions(new SLDEditorActions(this)),
-      m_viewWidget(new SLDViewWidget(this)), m_toolBar(new SLDEditorToolBar(m_editorActions))
+    : QWidget(parent)
+    , m_editorActions(new SLDEditorActions(this))
+    , m_viewWidget(new SLDViewWidget(this))
+    , m_toolBar(new SLDEditorToolBar(m_editorActions))
 {
     setWindowTitle("SLD editor");
     auto layout = new QVBoxLayout;

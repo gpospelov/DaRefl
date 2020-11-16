@@ -37,7 +37,6 @@ public:
 
 private:
     ModelView::PropertyTreeView* m_beamPropertyEditor{nullptr};
-
 };
 
 #endif // DAREFL_QUICKSIMEDITOR_INSTRUMENTPROPERTYEDITOR_H

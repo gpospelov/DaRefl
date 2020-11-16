@@ -20,8 +20,11 @@
 #include <mvvm/widgets/widgetutils.h>
 
 WelcomeView::WelcomeView(ApplicationModels* models, QWidget* parent)
-    : QWidget(parent), m_models(models), m_projectHandler(new ProjectHandler(models, this)),
-      m_recentProjectWidget(new RecentProjectWidget), m_openProjectWidget(new OpenProjectWidget)
+    : QWidget(parent)
+    , m_models(models)
+    , m_projectHandler(new ProjectHandler(models, this))
+    , m_recentProjectWidget(new RecentProjectWidget)
+    , m_openProjectWidget(new OpenProjectWidget)
 {
     QPalette palette;
     palette.setColor(QPalette::Window, Qt::white);

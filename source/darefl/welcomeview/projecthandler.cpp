@@ -20,9 +20,10 @@
 using namespace ModelView;
 
 ProjectHandler::ProjectHandler(ApplicationModels* models, QWidget* parent)
-    : QObject(parent), m_recentProjectSettings(std::make_unique<RecentProjectSettings>()),
-      m_userInteractor(std::make_unique<UserInteractor>(m_recentProjectSettings.get(), parent)),
-      m_models(models)
+    : QObject(parent)
+    , m_recentProjectSettings(std::make_unique<RecentProjectSettings>())
+    , m_userInteractor(std::make_unique<UserInteractor>(m_recentProjectSettings.get(), parent))
+    , m_models(models)
 {
     initProjectManager();
     updateRecentProjectNames();

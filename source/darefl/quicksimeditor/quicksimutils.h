@@ -16,7 +16,7 @@ class MultiLayerItem;
 
 namespace BornAgain
 {
-    class Slice;
+class Slice;
 }
 
 //! Collection of utility funcitons for running quick simulations.

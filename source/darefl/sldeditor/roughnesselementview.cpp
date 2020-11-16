@@ -15,8 +15,11 @@
 
 //! The constructor
 RoughnessElementView::RoughnessElementView()
-    : ElementView(), m_left_path(QPainterPath()), m_right_path(QPainterPath()), m_brush(QBrush()),
-      m_pen(QPen())
+    : ElementView()
+    , m_left_path(QPainterPath())
+    , m_right_path(QPainterPath())
+    , m_brush(QBrush())
+    , m_pen(QPen())
 {
     setZValue(0);
 }

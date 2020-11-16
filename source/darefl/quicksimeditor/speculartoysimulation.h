@@ -13,8 +13,8 @@
 #include <darefl/quicksimeditor/quicksim_types.h>
 #include <memory>
 #include <mvvm/utils/progresshandler.h>
-#include <vector>
 #include <tuple>
+#include <vector>
 
 class SpecularScalarTanhStrategy;
 

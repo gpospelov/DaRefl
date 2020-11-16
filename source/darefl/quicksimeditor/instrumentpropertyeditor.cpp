@@ -7,6 +7,7 @@
 //
 // ************************************************************************** //
 
+#include <QTreeView>
 #include <QVBoxLayout>
 #include <darefl/mainwindow/styleutils.h>
 #include <darefl/model/applicationmodels.h>
@@ -16,7 +17,6 @@
 #include <darefl/quicksimeditor/instrumentpropertyeditor.h>
 #include <mvvm/viewmodel/viewmodeldelegate.h>
 #include <mvvm/widgets/propertytreeview.h>
-#include <QTreeView>
 
 using namespace ModelView;
 

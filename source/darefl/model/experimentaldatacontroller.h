@@ -23,7 +23,8 @@ class ExperimentalDataModel;
 class ExperimentalDataController : public ModelView::ModelListener<ExperimentalDataModel>
 {
 public:
-    ExperimentalDataController(ExperimentalDataModel* data_model, InstrumentModel* instrument_model);
+    ExperimentalDataController(ExperimentalDataModel* data_model,
+                               InstrumentModel* instrument_model);
 
 private:
     void update_all();

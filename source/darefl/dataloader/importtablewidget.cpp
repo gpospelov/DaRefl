@@ -16,8 +16,10 @@
 #include <mvvm/viewmodel/viewmodeldelegate.h>
 
 ImportTableWidget::ImportTableWidget(QWidget* parent)
-    : QWidget(parent), m_tableModel(new ImportTableModel), m_tableView(new QTableView),
-      m_delegate(new ModelView::ViewModelDelegate)
+    : QWidget(parent)
+    , m_tableModel(new ImportTableModel)
+    , m_tableView(new QTableView)
+    , m_delegate(new ModelView::ViewModelDelegate)
 {
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);

@@ -45,8 +45,9 @@ public:
         MaterialModel material_model;
         MultiLayerItem* multilayer{nullptr};
         TestData()
-            : item_pool(std::make_shared<ItemPool>()), sample_model(item_pool),
-              material_model(item_pool)
+            : item_pool(std::make_shared<ItemPool>())
+            , sample_model(item_pool)
+            , material_model(item_pool)
         {
             multilayer = sample_model.insertItem<MultiLayerItem>();
         }

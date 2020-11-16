@@ -15,8 +15,10 @@
 #include <darefl/dataloader/parserpropertywidget.h>
 
 LoaderSelectorPanel::LoaderSelectorPanel(QWidget* parent)
-    : QWidget(parent), m_fileSelectorWidget(new ImportFileWidget),
-      m_propertyWidget(new ParserPropertyWidget), m_splitter(new QSplitter)
+    : QWidget(parent)
+    , m_fileSelectorWidget(new ImportFileWidget)
+    , m_propertyWidget(new ParserPropertyWidget)
+    , m_splitter(new QSplitter)
 {
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
