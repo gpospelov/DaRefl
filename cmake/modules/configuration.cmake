@@ -5,6 +5,7 @@ message(STATUS "CMake version ${CMAKE_VERSION}")
 # -----------------------------------------------------------------------------
 
 include(CTest)
+include(CodeTools)
 include(GenerateExportHeader)
 include(GNUInstallDirs)
 
