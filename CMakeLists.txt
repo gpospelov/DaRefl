@@ -11,3 +11,6 @@ include(configuration)
 add_subdirectory(extern)
 add_subdirectory(source)
 add_subdirectory(tests)
+
+# Defines new 'make clangformat' target to beautify whole code. See CodeTools.cmake for details.
+#project_clangformat_setup()
