@@ -71,7 +71,7 @@ public:
         }
 
         diff_data->setAxis(ModelView::PointwiseAxisItem::create(g1->binCenters()));
-        diff_data->setContent(diff_values);
+        diff_data->setValues(diff_values);
         diff_graph->setDataItem(diff_data);
     }
 
