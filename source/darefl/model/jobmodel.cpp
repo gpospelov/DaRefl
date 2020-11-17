@@ -11,13 +11,13 @@
 #include <darefl/model/instrumentitems.h>
 #include <darefl/model/jobitem.h>
 #include <darefl/model/jobmodel.h>
+#include <darefl/quicksimeditor/quicksim_types.h>
 #include <mvvm/model/itemcatalogue.h>
 #include <mvvm/model/modelutils.h>
 #include <mvvm/standarditems/axisitems.h>
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
-#include <darefl/quicksimeditor/quicksim_types.h>
 
 using namespace ModelView;
 
@@ -41,22 +41,22 @@ JobModel::JobModel(std::shared_ptr<ItemPool> pool) : SessionModel("JobModel", po
     insertItem<JobItem>();
 }
 
-Data1DItem* JobModel::sld_data() const
+Data1DItem* JobModel::sldData() const
 {
     return job_item()->sld_data();
 }
 
-GraphViewportItem* JobModel::sld_viewport() const
+GraphViewportItem* JobModel::sldViewport() const
 {
     return job_item()->sld_viewport();
 }
 
-Data1DItem* JobModel::specular_data() const
+Data1DItem* JobModel::specularData() const
 {
     return job_item()->specular_data();
 }
 
-CanvasItem* JobModel::specular_viewport() const
+CanvasItem* JobModel::specularViewport() const
 {
     return job_item()->specular_viewport();
 }
@@ -66,13 +66,20 @@ void JobModel::updateReferenceGraphFrom(const SpecularInstrumentItem* instrument
     job_item()->updateReferenceGraphFrom(instrument);
 }
 
-//! Set simulation results to JobItem.
+//! Updates specular data in JobItem from simulation results.
 
-void JobModel::setJobResult(const SimulationResult& data)
+void JobModel::updateSpecularData(const SimulationResult& data)
 {
-    auto [qvalues, amplitudes] = data;
-    specular_data()->setAxis(ModelView::PointwiseAxisItem::create(qvalues));
-    specular_data()->setValues(amplitudes);
+    specularData()->setAxis(ModelView::PointwiseAxisItem::create(data.qvalues));
+    specularData()->setValues(data.amplitudes);
+}
+
+//! Updates SLD profile data.
+
+void JobModel::updateSLDProfile(const SLDProfile& data)
+{
+    sldData()->setAxis(FixedBinAxisItem::create(data.sld_real_values.size(), data.zmin, data.zmax));
+    sldData()->setValues(data.sld_real_values);
 }
 
 JobItem* JobModel::job_item() const

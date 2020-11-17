@@ -7,19 +7,19 @@
 //
 // ************************************************************************** //
 
+#include <darefl/core/app_constants.h>
 #include <darefl/model/applicationmodels.h>
 #include <darefl/model/instrumentitems.h>
 #include <darefl/model/instrumentmodel.h>
 #include <darefl/model/jobitem.h>
 #include <darefl/model/jobmodel.h>
-#include <darefl/model/sampleitems.h>
 #include <darefl/model/materialmodel.h>
+#include <darefl/model/sampleitems.h>
 #include <darefl/model/samplemodel.h>
 #include <darefl/quicksimeditor/jobmanager.h>
 #include <darefl/quicksimeditor/quicksimcontroller.h>
 #include <darefl/quicksimeditor/quicksimutils.h>
 #include <darefl/quicksimeditor/speculartoysimulation.h>
-#include <darefl/core/app_constants.h>
 #include <mvvm/project/modelhaschangedcontroller.h>
 #include <mvvm/standarditems/axisitems.h>
 #include <mvvm/standarditems/data1ditem.h>
@@ -52,7 +52,7 @@ void QuickSimController::setModels(ApplicationModels* models)
     setup_jobmanager_connections();
 
     onMultiLayerChange();
-    jobModel()->sld_viewport()->update_viewport();
+    jobModel()->sldViewport()->update_viewport();
 }
 
 //! Requests interruption of running simulaitons.
@@ -85,7 +85,7 @@ void QuickSimController::onMultiLayerChange()
 
 void QuickSimController::onSimulationCompleted()
 {
-    jobModel()->setJobResult(m_jobManager->simulationResult());
+    jobModel()->updateSpecularData(m_jobManager->simulationResult());
 }
 
 //! Constructs multislice, calculates profile and submits specular simulation.
@@ -103,11 +103,8 @@ void QuickSimController::process_multilayer(bool submit_simulation)
 
 void QuickSimController::update_sld_profile(const multislice_t& multislice)
 {
-    auto [xmin, xmax, values] =
-        SpecularToySimulation::sld_profile(multislice, profile_points_count);
-    auto data = jobModel()->sld_data();
-    data->setAxis(ModelView::FixedBinAxisItem::create(values.size(), xmin, xmax));
-    data->setValues(values);
+    auto data = SpecularToySimulation::sld_profile(multislice, profile_points_count);
+    jobModel()->updateSLDProfile(data);
 }
 
 //! Submit data to JobManager for consequent specular simulation in a separate thread.

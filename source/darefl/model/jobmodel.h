@@ -21,7 +21,9 @@ class GraphViewportItem;
 class JobItem;
 class CanvasItem;
 class SpecularInstrumentItem;
+
 struct SimulationResult;
+struct SLDProfile;
 
 //! Contains results of quick reflectometry simulations.
 class JobModel : public ModelView::SessionModel
@@ -29,16 +31,18 @@ class JobModel : public ModelView::SessionModel
 public:
     JobModel(std::shared_ptr<ModelView::ItemPool> pool = {});
 
-    ModelView::Data1DItem* sld_data() const;
-    ModelView::GraphViewportItem* sld_viewport() const;
+    ModelView::Data1DItem* sldData() const;
+    ModelView::GraphViewportItem* sldViewport() const;
 
-    ModelView::Data1DItem* specular_data() const;
+    ModelView::Data1DItem* specularData() const;
 
-    CanvasItem* specular_viewport() const;
+    CanvasItem* specularViewport() const;
 
     void updateReferenceGraphFrom(const SpecularInstrumentItem* instrument);
 
-    void setJobResult(const SimulationResult& data);
+    void updateSpecularData(const SimulationResult& data);
+
+    void updateSLDProfile(const SLDProfile& data);
 
 private:
     JobItem* job_item() const;

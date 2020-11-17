@@ -113,7 +113,7 @@ void SimPlotWidget::setModels(ApplicationModels* models)
     m_jobModelChangedController = std::make_unique<ModelView::ModelHasChangedController>(
         m_models->jobModel(), on_model_change);
 
-    m_specularCanvas->setItem(m_models->jobModel()->specular_viewport());
+    m_specularCanvas->setItem(m_models->jobModel()->specularViewport());
     m_diffCanvas->setItem(m_diffModel->viewport);
 }
 
