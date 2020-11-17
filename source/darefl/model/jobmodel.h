@@ -45,7 +45,7 @@ public:
     void updateSLDProfile(const SLDProfile& data);
 
 private:
-    JobItem* job_item() const;
+    JobItem* jobItem() const;
 };
 
 #endif // DAREFL_MODEL_JOBMODEL_H

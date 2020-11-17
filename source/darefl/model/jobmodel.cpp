@@ -43,27 +43,27 @@ JobModel::JobModel(std::shared_ptr<ItemPool> pool) : SessionModel("JobModel", po
 
 Data1DItem* JobModel::sldData() const
 {
-    return job_item()->sld_data();
+    return jobItem()->sldData();
 }
 
 GraphViewportItem* JobModel::sldViewport() const
 {
-    return job_item()->sld_viewport();
+    return jobItem()->sldViewport();
 }
 
 Data1DItem* JobModel::specularData() const
 {
-    return job_item()->specular_data();
+    return jobItem()->specularData();
 }
 
 CanvasItem* JobModel::specularViewport() const
 {
-    return job_item()->specular_viewport();
+    return jobItem()->specularViewport();
 }
 
 void JobModel::updateReferenceGraphFrom(const SpecularInstrumentItem* instrument)
 {
-    job_item()->updateReferenceGraphFrom(instrument);
+    jobItem()->updateReferenceGraphFrom(instrument);
 }
 
 //! Updates specular data in JobItem from simulation results.
@@ -82,7 +82,7 @@ void JobModel::updateSLDProfile(const SLDProfile& data)
     sldData()->setValues(data.sld_real_values);
 }
 
-JobItem* JobModel::job_item() const
+JobItem* JobModel::jobItem() const
 {
     return Utils::TopItem<JobItem>(this);
 }
