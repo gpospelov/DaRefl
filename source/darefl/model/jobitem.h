@@ -54,14 +54,15 @@ public:
     ModelView::Data1DItem* specularData() const;
     CanvasItem* specularViewport() const;
 
-    ModelView::GraphItem* specularGraph() const;
-    ModelView::GraphItem* referenceGraph() const;
-
     void updateReferenceGraphFrom(const SpecularInstrumentItem* instrument);
 
 private:
+    ModelView::GraphItem* specularGraph() const;
+    ModelView::GraphItem* referenceGraph() const;
+
     void setup_sld_viewport();
     void setup_specular_viewport();
+    void setup_diff_viewport();
 };
 
 #endif // DAREFL_MODEL_JOBITEM_H

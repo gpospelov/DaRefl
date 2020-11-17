@@ -34,6 +34,19 @@ GraphItem* create_reference_graph(JobItem* item)
                                         {ViewportItem::T_ITEMS, row_reference_graph});
 }
 
+//! Adds proper
+
+template <typename Data, typename Graph, typename Viewport>
+void initViewport(CompoundItem* item, const std::string& data_name,
+                  const std::string& viewport_name)
+{
+    auto data = item->addProperty<Data>(data_name);
+    auto viewport = item->addProperty<Viewport>(viewport_name);
+    auto graph = std::make_unique<GraphItem>();
+    graph->setDataItem(data);
+    viewport->insertItem(graph.release(), {ViewportItem::T_ITEMS, 0});
+}
+
 } // namespace
 
 SLDCanvasItem::SLDCanvasItem() : GraphViewportItem(::Constants::SLDCanvasItemType) {}
@@ -51,6 +64,7 @@ JobItem::JobItem() : ModelView::CompoundItem(::Constants::JobItemType)
 {
     setup_sld_viewport();
     setup_specular_viewport();
+    setup_diff_viewport();
 }
 
 Data1DItem* JobItem::sldData() const
@@ -73,18 +87,6 @@ CanvasItem* JobItem::specularViewport() const
     return item<CanvasItem>(P_SPECULAR_VIEWPORT);
 }
 
-GraphItem* JobItem::specularGraph() const
-{
-    auto graphs = specularViewport()->graphItems();
-    return graphs.size() >= 0 ? graphs.at(row_sim_graph) : nullptr;
-}
-
-GraphItem* JobItem::referenceGraph() const
-{
-    auto graphs = specularViewport()->graphItems();
-    return graphs.size() > 1 ? graphs.at(row_reference_graph) : nullptr;
-}
-
 //! Updates reference graph in specular viewport from current instrument settings.
 
 void JobItem::updateReferenceGraphFrom(const SpecularInstrumentItem* instrument)
@@ -101,6 +103,23 @@ void JobItem::updateReferenceGraphFrom(const SpecularInstrumentItem* instrument)
     }
 }
 
+//! Returns specular graph.
+
+GraphItem* JobItem::specularGraph() const
+{
+    auto graphs = specularViewport()->graphItems();
+    return graphs.size() >= 0 ? graphs.at(row_sim_graph) : nullptr;
+}
+
+//! Returns reference graph, if exists. It represents imported user data from ExperimentalScanItem.
+//! Here it is stored in SpecularViewport.
+
+GraphItem* JobItem::referenceGraph() const
+{
+    auto graphs = specularViewport()->graphItems();
+    return graphs.size() > 1 ? graphs.at(row_reference_graph) : nullptr;
+}
+
 void JobItem::setup_sld_viewport()
 {
     auto data = addProperty<Data1DItem>(P_SLD_DATA);
@@ -109,6 +128,9 @@ void JobItem::setup_sld_viewport()
     graph->setDataItem(data);
     viewport->insertItem(graph.release(), {ViewportItem::T_ITEMS, 0});
 }
+
+//! Setups a specular viewport together with a single graph in it and corresponding data item.
+//! Intended to store simulated specular curve, and possibly reference graphs.
 
 void JobItem::setup_specular_viewport()
 {
@@ -119,4 +141,12 @@ void JobItem::setup_specular_viewport()
     pen->setProperty(PenItem::P_COLOR, QColor(Qt::blue));
     graph->setDataItem(data);
     viewport->insertItem(graph.release(), {ViewportItem::T_ITEMS, row_sim_graph});
+}
+
+//! Setups viewport, difference graph, and its underlying data to show the difference between
+//! simulated and reference curves.
+
+void JobItem::setup_diff_viewport()
+{
+    initViewport<Data1DItem, GraphItem, CanvasItem>(this, P_DIFF_DATA, P_DIFF_VIEWPORT);
 }

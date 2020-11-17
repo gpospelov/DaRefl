@@ -131,14 +131,14 @@ void SimPlotWidget::updateViewport()
 
 void SimPlotWidget::updateDiffPlot()
 {
-    auto job = m_models->jobModel()->topItem<JobItem>();
-    auto reference_graph = job->referenceGraph();
-    auto specular_graph = job->specularGraph();
+//    auto job = m_models->jobModel()->topItem<JobItem>();
+//    auto reference_graph = job->referenceGraph();
+//    auto specular_graph = job->specularGraph();
 
-    qDebug() << "Model has changed";
+//    qDebug() << "Model has changed";
 
-    if (reference_graph && specular_graph)
-        m_diffModel->updateDiffGraph(specular_graph->dataItem(), reference_graph->dataItem());
-    else
-        m_diffModel->clearGraphs();
+//    if (reference_graph && specular_graph)
+//        m_diffModel->updateDiffGraph(specular_graph->dataItem(), reference_graph->dataItem());
+//    else
+//        m_diffModel->clearGraphs();
 }
