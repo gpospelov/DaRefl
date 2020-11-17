@@ -13,7 +13,6 @@
 #include <darefl/quicksimeditor/quicksim_types.h>
 #include <memory>
 #include <mvvm/utils/progresshandler.h>
-#include <tuple>
 #include <vector>
 
 class SpecularScalarTanhStrategy;
@@ -24,8 +23,6 @@ class SpecularScalarTanhStrategy;
 class SpecularToySimulation
 {
 public:
-    using sld_profile_t = std::tuple<double, double, std::vector<double>>;
-
     ~SpecularToySimulation();
 
     SpecularToySimulation(const SimulationInput& input_data);
@@ -36,7 +33,7 @@ public:
 
     SimulationResult simulationResult() const;
 
-    static sld_profile_t sld_profile(const multislice_t& multislice, int n_points);
+    static SLDProfile sld_profile(const multislice_t& multislice, int n_points);
 
 private:
     size_t scanPointsCount() const;

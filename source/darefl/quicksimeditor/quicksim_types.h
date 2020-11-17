@@ -36,4 +36,11 @@ struct SimulationResult {
     std::vector<double> amplitudes;
 };
 
+//! Represents results of SLD profile calculations.
+struct SLDProfile {
+    double zmin{0.0};
+    double zmax{0.0};
+    std::vector<double> sld_real_values;
+};
+
 #endif // DAREFL_QUICKSIMEDITOR_QUICKSIM_TYPES_H

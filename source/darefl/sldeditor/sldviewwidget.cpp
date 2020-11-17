@@ -34,7 +34,7 @@ void SLDViewWidget::setModels(ApplicationModels* models)
     m_sld_controller = std::make_unique<SLDElementController>(
         models->materialModel(), models->sampleModel(), models->sldViewModel(), nullptr);
     m_sld_controller->setScene(dynamic_cast<GraphicsScene*>(scene()));
-    dynamic_cast<GraphicsScene*>(scene())->setItem(models->jobModel()->sld_viewport());
+    dynamic_cast<GraphicsScene*>(scene())->setItem(models->jobModel()->sldViewport());
 }
 
 //! Resize event management
