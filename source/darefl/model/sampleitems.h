@@ -7,10 +7,10 @@
 //
 // ************************************************************************** //
 
-#ifndef DAREFL_MODEL_LAYERITEMS_H
-#define DAREFL_MODEL_LAYERITEMS_H
+#ifndef DAREFL_MODEL_SAMPLEITEMS_H
+#define DAREFL_MODEL_SAMPLEITEMS_H
 
-//! @file layeritems.h
+//! @file sampleitems.h
 //! Collection of layer and multi-layer items to populate SampleModel.
 
 #include <mvvm/model/compounditem.h>
@@ -57,4 +57,4 @@ private:
     void update_layer_appearance();
 };
 
-#endif // DAREFL_MODEL_LAYERITEMS_H
+#endif // DAREFL_MODEL_SAMPLEITEMS_H

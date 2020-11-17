@@ -7,7 +7,7 @@
 //
 // ************************************************************************** //
 
-#include <darefl/model/layeritems.h>
+#include <darefl/model/sampleitems.h>
 #include <darefl/model/samplemodel.h>
 #include <mvvm/model/itemcatalogue.h>
 

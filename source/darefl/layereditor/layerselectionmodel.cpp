@@ -9,7 +9,7 @@
 
 #include <QItemSelection>
 #include <darefl/layereditor/layerselectionmodel.h>
-#include <darefl/model/layeritems.h>
+#include <darefl/model/sampleitems.h>
 #include <mvvm/viewmodel/viewmodel.h>
 #include <mvvm/viewmodel/viewmodelutils.h>
 

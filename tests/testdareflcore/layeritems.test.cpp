@@ -9,7 +9,7 @@
 
 #include "google_test.h"
 #include "test_utils.h"
-#include <darefl/model/layeritems.h>
+#include <darefl/model/sampleitems.h>
 #include <darefl/model/samplemodel.h>
 
 using namespace ModelView;

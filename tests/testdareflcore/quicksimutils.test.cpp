@@ -9,7 +9,7 @@
 
 #include "google_test.h"
 #include <QColor>
-#include <darefl/model/layeritems.h>
+#include <darefl/model/sampleitems.h>
 #include <darefl/model/materialitems.h>
 #include <darefl/model/materialmodel.h>
 #include <darefl/model/samplemodel.h>

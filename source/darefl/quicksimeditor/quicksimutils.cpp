@@ -8,7 +8,7 @@
 // ************************************************************************** //
 
 #include <darefl/model/item_constants.h>
-#include <darefl/model/layeritems.h>
+#include <darefl/model/sampleitems.h>
 #include <darefl/model/materialitems.h>
 #include <darefl/quicksimeditor/quicksimutils.h>
 #include <minikernel/Computation/Slice.h>

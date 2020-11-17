@@ -12,7 +12,7 @@
 #include <darefl/model/experimentaldatamodel.h>
 #include <darefl/model/instrumentmodel.h>
 #include <darefl/model/jobmodel.h>
-#include <darefl/model/layeritems.h>
+#include <darefl/model/sampleitems.h>
 #include <darefl/model/materialmodel.h>
 #include <darefl/model/materialpropertycontroller.h>
 #include <darefl/model/samplemodel.h>
