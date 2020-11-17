@@ -35,13 +35,13 @@ public:
     };
 
     //! Represents data to run specular simulations.
-    struct InputData {
+    struct SimulationInput {
         std::vector<double> qvalues;
         multislice_t slice_data;
         double intensity;
     };
 
-    SpecularToySimulation(const InputData& input_data);
+    SpecularToySimulation(const SimulationInput& input_data);
 
     void runSimulation();
 
@@ -55,7 +55,7 @@ private:
     size_t scanPointsCount() const;
 
     ModelView::ProgressHandler m_progressHandler;
-    InputData m_inputData;
+    SimulationInput m_inputData;
     Result m_specularResult;
 
     std::unique_ptr<SpecularScalarTanhStrategy> m_strategy;

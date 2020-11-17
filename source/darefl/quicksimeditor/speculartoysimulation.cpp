@@ -22,7 +22,7 @@ using namespace ModelView;
 
 SpecularToySimulation::~SpecularToySimulation() = default;
 
-SpecularToySimulation::SpecularToySimulation(const InputData& input_data)
+SpecularToySimulation::SpecularToySimulation(const SimulationInput& input_data)
     : m_inputData(input_data), m_strategy(std::make_unique<SpecularScalarTanhStrategy>())
 {
 }
