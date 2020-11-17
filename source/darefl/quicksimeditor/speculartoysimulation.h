@@ -34,13 +34,6 @@ public:
         std::vector<double> amplitudes;
     };
 
-    //! Represents data to run specular simulations.
-    struct SimulationInput {
-        std::vector<double> qvalues;
-        multislice_t slice_data;
-        double intensity;
-    };
-
     SpecularToySimulation(const SimulationInput& input_data);
 
     void runSimulation();
