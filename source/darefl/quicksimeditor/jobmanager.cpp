@@ -24,10 +24,10 @@ JobManager::~JobManager()
 
 //! Returns vector representing results of a simulation.
 
-SpecularToySimulation::Result JobManager::simulationResult()
+SpecularToySimulation::SimulationResult JobManager::simulationResult()
 {
     auto result = m_simulation_results.try_pop();
-    return result ? *result.get() : SpecularToySimulation::Result();
+    return result ? *result.get() : SpecularToySimulation::SimulationResult();
 }
 
 //! Performs simulation request. Given multislice will be stored in a stack of values to trigger

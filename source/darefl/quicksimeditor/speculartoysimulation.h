@@ -29,7 +29,7 @@ public:
     ~SpecularToySimulation();
 
     //! Represents results of the simulation.
-    struct Result {
+    struct SimulationResult {
         std::vector<double> qvalues;
         std::vector<double> amplitudes;
     };
@@ -40,7 +40,7 @@ public:
 
     void setProgressCallback(ModelView::ProgressHandler::callback_t callback);
 
-    Result simulationResult() const;
+    SimulationResult simulationResult() const;
 
     static sld_profile_t sld_profile(const multislice_t& multislice, int n_points);
 
@@ -49,7 +49,7 @@ private:
 
     ModelView::ProgressHandler m_progressHandler;
     SimulationInput m_inputData;
-    Result m_specularResult;
+    SimulationResult m_specularResult;
 
     std::unique_ptr<SpecularScalarTanhStrategy> m_strategy;
 };

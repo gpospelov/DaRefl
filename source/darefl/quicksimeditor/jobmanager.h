@@ -25,7 +25,7 @@ public:
     JobManager(QObject* parent = nullptr);
     ~JobManager() override;
 
-    SpecularToySimulation::Result simulationResult();
+    SpecularToySimulation::SimulationResult simulationResult();
 
 signals:
     void progressChanged(int value);
@@ -41,7 +41,7 @@ private:
 
     std::thread m_sim_thread;
     ModelView::threadsafe_stack<SimulationInput> m_requested_values;
-    ModelView::threadsafe_stack<SpecularToySimulation::Result> m_simulation_results;
+    ModelView::threadsafe_stack<SpecularToySimulation::SimulationResult> m_simulation_results;
     std::atomic<bool> m_is_running;
     bool m_interrupt_request{false};
 };
