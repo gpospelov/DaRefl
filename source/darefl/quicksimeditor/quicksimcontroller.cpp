@@ -19,7 +19,7 @@
 #include <darefl/quicksimeditor/quicksimcontroller.h>
 #include <darefl/quicksimeditor/quicksimutils.h>
 #include <darefl/quicksimeditor/speculartoysimulation.h>
-#include <darefl/settingsview/constants.h>
+#include <darefl/core/app_constants.h>
 #include <mvvm/project/modelhaschangedcontroller.h>
 #include <mvvm/standarditems/axisitems.h>
 #include <mvvm/standarditems/data1ditem.h>

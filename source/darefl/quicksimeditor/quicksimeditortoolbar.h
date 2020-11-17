@@ -12,9 +12,6 @@
 
 #include <QToolBar>
 
-class QSlider;
-class QSpinBox;
-class QPushButton;
 class QProgressBar;
 class QCheckBox;
 
