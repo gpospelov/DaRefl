@@ -39,7 +39,7 @@ private:
     void wait_and_run();
 
     std::thread m_sim_thread;
-    ModelView::threadsafe_stack<SpecularToySimulation::InputData> m_requested_values;
+    ModelView::threadsafe_stack<SpecularToySimulation::SimulationInput> m_requested_values;
     ModelView::threadsafe_stack<SpecularToySimulation::Result> m_simulation_results;
     std::atomic<bool> m_is_running;
     bool m_interrupt_request{false};

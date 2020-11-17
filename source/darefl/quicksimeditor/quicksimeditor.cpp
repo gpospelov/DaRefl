@@ -50,7 +50,6 @@ void QuickSimEditor::setModels(ApplicationModels* models)
     m_appModels = models;
     m_simController->setModels(models);
     m_plotController->setModels(models);
-    // toolbar->setModels(models);
     m_plotWidget->setModels(models);
 }
 
