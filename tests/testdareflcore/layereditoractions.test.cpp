@@ -14,7 +14,7 @@
 #include <darefl/layereditor/layerselectionmodel.h>
 #include <darefl/layereditor/layerviewmodel.h>
 #include <darefl/model/item_constants.h>
-#include <darefl/model/layeritems.h>
+#include <darefl/model/sampleitems.h>
 #include <darefl/model/samplemodel.h>
 #include <mvvm/viewmodel/standardviewitems.h>
 #include <mvvm/viewmodel/viewmodelutils.h>

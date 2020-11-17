@@ -16,8 +16,6 @@ target_sources(${library_name} PRIVATE
     jobitem.h
     jobmodel.cpp
     jobmodel.h
-    layeritems.cpp
-    layeritems.h
     materialitems.cpp
     materialitems.h
     materialmodel.cpp
@@ -26,6 +24,8 @@ target_sources(${library_name} PRIVATE
     materialpropertycontroller.h
     modelutils.cpp
     modelutils.h
+    sampleitems.cpp
+    sampleitems.h
     samplemodel.cpp
     samplemodel.h
 )

@@ -14,7 +14,7 @@
 #include <darefl/layereditor/layertreeview.h>
 #include <darefl/layereditor/layerviewmodel.h>
 #include <darefl/model/applicationmodels.h>
-#include <darefl/model/layeritems.h>
+#include <darefl/model/sampleitems.h>
 #include <darefl/model/samplemodel.h>
 #include <mvvm/viewmodel/viewmodeldelegate.h>
 

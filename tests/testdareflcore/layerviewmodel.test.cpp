@@ -11,7 +11,7 @@
 #include "test_utils.h"
 #include <QSignalSpy>
 #include <darefl/layereditor/layerviewmodel.h>
-#include <darefl/model/layeritems.h>
+#include <darefl/model/sampleitems.h>
 #include <darefl/model/samplemodel.h>
 #include <mvvm/viewmodel/viewmodelutils.h>
 

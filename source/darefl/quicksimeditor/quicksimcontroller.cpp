@@ -12,7 +12,7 @@
 #include <darefl/model/instrumentmodel.h>
 #include <darefl/model/jobitem.h>
 #include <darefl/model/jobmodel.h>
-#include <darefl/model/layeritems.h>
+#include <darefl/model/sampleitems.h>
 #include <darefl/model/materialmodel.h>
 #include <darefl/model/samplemodel.h>
 #include <darefl/quicksimeditor/jobmanager.h>
