@@ -55,7 +55,7 @@ void SpecularToySimulation::setProgressCallback(ModelView::ProgressHandler::call
     m_progressHandler.subscribe(callback);
 }
 
-SpecularToySimulation::SimulationResult SpecularToySimulation::simulationResult() const
+SimulationResult SpecularToySimulation::simulationResult() const
 {
     return m_specularResult;
 }

@@ -12,7 +12,6 @@
 
 #include <QObject>
 #include <darefl/quicksimeditor/quicksim_types.h>
-#include <darefl/quicksimeditor/speculartoysimulation.h>
 #include <mvvm/utils/threadsafestack.h>
 
 //! Handles all thread activity for running job simulation in the background.
@@ -25,7 +24,7 @@ public:
     JobManager(QObject* parent = nullptr);
     ~JobManager() override;
 
-    SpecularToySimulation::SimulationResult simulationResult();
+    SimulationResult simulationResult();
 
 signals:
     void progressChanged(int value);
@@ -41,7 +40,7 @@ private:
 
     std::thread m_sim_thread;
     ModelView::threadsafe_stack<SimulationInput> m_requested_values;
-    ModelView::threadsafe_stack<SpecularToySimulation::SimulationResult> m_simulation_results;
+    ModelView::threadsafe_stack<SimulationResult> m_simulation_results;
     std::atomic<bool> m_is_running;
     bool m_interrupt_request{false};
 };

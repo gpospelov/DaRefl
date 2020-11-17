@@ -16,7 +16,6 @@
 using complex_t = std::complex<double>;
 
 //! Data structure for simple multilayer representation.
-
 struct Slice {
     complex_t material;
     double thickness{0.0};
@@ -25,11 +24,16 @@ struct Slice {
 using multislice_t = std::vector<Slice>;
 
 //! Represents data to run specular simulations.
-
 struct SimulationInput {
     std::vector<double> qvalues;
     multislice_t slice_data;
     double intensity;
+};
+
+//! Represents results of the simulation.
+struct SimulationResult {
+    std::vector<double> qvalues;
+    std::vector<double> amplitudes;
 };
 
 #endif // DAREFL_QUICKSIMEDITOR_QUICKSIM_TYPES_H

@@ -8,6 +8,7 @@
 // ************************************************************************** //
 
 #include <darefl/quicksimeditor/jobmanager.h>
+#include <darefl/quicksimeditor/speculartoysimulation.h>
 
 JobManager::JobManager(QObject* parent) : QObject(parent), m_is_running(true)
 {
@@ -24,10 +25,10 @@ JobManager::~JobManager()
 
 //! Returns vector representing results of a simulation.
 
-SpecularToySimulation::SimulationResult JobManager::simulationResult()
+SimulationResult JobManager::simulationResult()
 {
     auto result = m_simulation_results.try_pop();
-    return result ? *result.get() : SpecularToySimulation::SimulationResult();
+    return result ? *result.get() : SimulationResult();
 }
 
 //! Performs simulation request. Given multislice will be stored in a stack of values to trigger

@@ -16,14 +16,13 @@
 #include <darefl/model/materialmodel.h>
 #include <darefl/model/samplemodel.h>
 #include <darefl/quicksimeditor/jobmanager.h>
-#include <darefl/quicksimeditor/materialprofile.h>
 #include <darefl/quicksimeditor/quicksimcontroller.h>
 #include <darefl/quicksimeditor/quicksimutils.h>
+#include <darefl/quicksimeditor/speculartoysimulation.h>
 #include <darefl/settingsview/constants.h>
 #include <mvvm/project/modelhaschangedcontroller.h>
 #include <mvvm/standarditems/axisitems.h>
 #include <mvvm/standarditems/data1ditem.h>
-#include <mvvm/standarditems/graphviewportitem.h>
 
 namespace
 {
@@ -31,9 +30,8 @@ const int profile_points_count = 1000;
 }
 
 QuickSimController::QuickSimController(QObject* parent)
-    : QObject(parent)
-    , job_manager(new JobManager(this))
-    , in_realtime_mode(Constants::live_simulation_default_on)
+    : QObject(parent), job_manager(new JobManager(this)),
+      in_realtime_mode(Constants::live_simulation_default_on)
 {
 }
 
