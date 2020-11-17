@@ -16,12 +16,12 @@ namespace ModelView
 {
 class Data1DItem;
 class GraphViewportItem;
-class ItemPool;
 } // namespace ModelView
 
 class JobItem;
 class CanvasItem;
 class SpecularInstrumentItem;
+struct SimulationResult;
 
 //! Contains results of quick reflectometry simulations.
 class JobModel : public ModelView::SessionModel
@@ -33,9 +33,12 @@ public:
     ModelView::GraphViewportItem* sld_viewport() const;
 
     ModelView::Data1DItem* specular_data() const;
+
     CanvasItem* specular_viewport() const;
 
     void updateReferenceGraphFrom(const SpecularInstrumentItem* instrument);
+
+    void setJobResult(const SimulationResult& data);
 
 private:
     JobItem* job_item() const;

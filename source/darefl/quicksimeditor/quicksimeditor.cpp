@@ -81,7 +81,7 @@ void QuickSimEditor::setup_toolbar_connections()
             &QuickSimEditorToolBar::realTimeRequest, m_simController,
             &QuickSimController::onRealTimeRequest);
 
-    // RUn simulation is propagated from toobar to controller.
+    // Run simulation is propagated from toobar to controller.
     connect(dynamic_cast<QuickSimEditorToolBar*>(m_toolBar),
             &QuickSimEditorToolBar::runSimulationRequest, m_simController,
             &QuickSimController::onRunSimulationRequest);
