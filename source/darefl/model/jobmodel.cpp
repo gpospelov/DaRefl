@@ -17,6 +17,7 @@
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
+#include <darefl/quicksimeditor/quicksim_types.h>
 
 using namespace ModelView;
 
@@ -63,6 +64,15 @@ CanvasItem* JobModel::specular_viewport() const
 void JobModel::updateReferenceGraphFrom(const SpecularInstrumentItem* instrument)
 {
     job_item()->updateReferenceGraphFrom(instrument);
+}
+
+//! Set simulation results to JobItem.
+
+void JobModel::setJobResult(const SimulationResult& data)
+{
+    auto [qvalues, amplitudes] = data;
+    specular_data()->setAxis(ModelView::PointwiseAxisItem::create(qvalues));
+    specular_data()->setValues(amplitudes);
 }
 
 JobItem* JobModel::job_item() const

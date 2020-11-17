@@ -61,9 +61,9 @@ private:
     InstrumentModel* instrumentModel() const;
 
     ApplicationModels* m_models{nullptr};
-    JobManager* job_manager{nullptr};
+    JobManager* m_jobManager{nullptr};
 
-    bool in_realtime_mode; //! Run simulation on every parameter change.
+    bool m_isRealTimeMode; //! Run simulation on every parameter change.
 
     std::unique_ptr<ModelView::ModelHasChangedController> m_materialChangedController;
     std::unique_ptr<ModelView::ModelHasChangedController> m_sampleChangedController;

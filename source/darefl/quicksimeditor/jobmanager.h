@@ -38,11 +38,11 @@ public slots:
 private:
     void wait_and_run();
 
-    std::thread m_sim_thread;
-    ModelView::threadsafe_stack<SimulationInput> m_requested_values;
-    ModelView::threadsafe_stack<SimulationResult> m_simulation_results;
-    std::atomic<bool> m_is_running;
-    bool m_interrupt_request{false};
+    std::thread m_simThread;
+    ModelView::threadsafe_stack<SimulationInput> m_requestedInputValues;
+    ModelView::threadsafe_stack<SimulationResult> m_simulationResult;
+    std::atomic<bool> m_isRunning;
+    bool m_interruptRequest{false};
 };
 
 #endif // DAREFL_QUICKSIMEDITOR_JOBMANAGER_H

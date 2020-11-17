@@ -30,8 +30,8 @@ const int profile_points_count = 1000;
 }
 
 QuickSimController::QuickSimController(QObject* parent)
-    : QObject(parent), job_manager(new JobManager(this)),
-      in_realtime_mode(Constants::live_simulation_default_on)
+    : QObject(parent), m_jobManager(new JobManager(this)),
+      m_isRealTimeMode(Constants::live_simulation_default_on)
 {
 }
 
@@ -59,12 +59,12 @@ void QuickSimController::setModels(ApplicationModels* models)
 
 void QuickSimController::onInterruptRequest()
 {
-    job_manager->onInterruptRequest();
+    m_jobManager->onInterruptRequest();
 }
 
 void QuickSimController::onRealTimeRequest(bool status)
 {
-    in_realtime_mode = status;
+    m_isRealTimeMode = status;
 }
 
 //! Processes multilayer on request. Doesn't work in real time mode.
@@ -78,17 +78,14 @@ void QuickSimController::onRunSimulationRequest()
 
 void QuickSimController::onMultiLayerChange()
 {
-    process_multilayer(/*submit_simulation*/ in_realtime_mode);
+    process_multilayer(/*submit_simulation*/ m_isRealTimeMode);
 }
 
 //! Takes simulation results from JobManager and write into the model.
 
 void QuickSimController::onSimulationCompleted()
 {
-    auto [qvalues, amplitudes] = job_manager->simulationResult();
-    auto data = jobModel()->specular_data();
-    data->setAxis(ModelView::PointwiseAxisItem::create(qvalues));
-    data->setValues(amplitudes);
+    jobModel()->setJobResult(m_jobManager->simulationResult());
 }
 
 //! Constructs multislice, calculates profile and submits specular simulation.
@@ -119,7 +116,7 @@ void QuickSimController::submit_specular_simulation(const multislice_t& multisli
 {
     auto instrument = instrumentModel()->topItem<SpecularInstrumentItem>();
     auto beam = instrument->beamItem();
-    job_manager->requestSimulation(multislice, beam->qScanValues(), beam->intensity());
+    m_jobManager->requestSimulation(multislice, beam->qScanValues(), beam->intensity());
 }
 
 //! Connect signals going from JobManager. Connections are made queued since signals are emitted
@@ -129,11 +126,11 @@ void QuickSimController::setup_jobmanager_connections()
 {
 
     // Simulation progress is propagated from JobManager to this controller for further forwarding.
-    connect(job_manager, &JobManager::progressChanged, this, &QuickSimController::progressChanged,
+    connect(m_jobManager, &JobManager::progressChanged, this, &QuickSimController::progressChanged,
             Qt::QueuedConnection);
 
     // Notification about completed simulation from jobManager to this controller.
-    connect(job_manager, &JobManager::simulationCompleted, this,
+    connect(m_jobManager, &JobManager::simulationCompleted, this,
             &QuickSimController::onSimulationCompleted, Qt::QueuedConnection);
 }
 
