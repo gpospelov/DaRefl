@@ -28,12 +28,6 @@ public:
 
     ~SpecularToySimulation();
 
-    //! Represents results of the simulation.
-    struct SimulationResult {
-        std::vector<double> qvalues;
-        std::vector<double> amplitudes;
-    };
-
     SpecularToySimulation(const SimulationInput& input_data);
 
     void runSimulation();
