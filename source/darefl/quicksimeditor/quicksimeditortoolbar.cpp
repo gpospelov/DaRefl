@@ -9,22 +9,11 @@
 
 #include <QAction>
 #include <QCheckBox>
-#include <QDebug>
 #include <QLabel>
 #include <QProgressBar>
-#include <QPushButton>
-#include <QSlider>
-#include <QSpinBox>
 #include <QVBoxLayout>
+#include <darefl/core/app_constants.h>
 #include <darefl/quicksimeditor/quicksimeditortoolbar.h>
-#include <darefl/settingsview/constants.h>
-
-// namespace
-//{
-// const int initial_value = 50;
-// const int min_value = 0;
-// const int max_value = 100;
-//} // namespace
 
 QuickSimEditorToolBar::QuickSimEditorToolBar(QWidget* parent)
     : QToolBar(parent), m_liveCheckbox(new QCheckBox), m_progressBar(new QProgressBar)

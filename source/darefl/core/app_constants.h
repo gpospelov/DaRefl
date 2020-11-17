@@ -20,6 +20,11 @@ namespace Constants
 const QString DataLoaderGroupKey = "dataloader";
 const QString ParserPropertyGroupKey = "parserproperty";
 
+//! Initial state of some widgets.
+
+const inline bool live_simulation_default_on = false;
+
+
 } // namespace Constants
 
 #endif // DAREFL_CORE_APP_CONSTANTS_H
