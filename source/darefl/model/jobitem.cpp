@@ -30,7 +30,7 @@ const int row_reference_graph = 1;
 GraphItem* create_reference_graph(JobItem* item)
 {
     auto model = item->model();
-    return model->insertItem<GraphItem>(item->specular_viewport(),
+    return model->insertItem<GraphItem>(item->specularViewport(),
                                         {ViewportItem::T_ITEMS, row_reference_graph});
 }
 
@@ -53,35 +53,35 @@ JobItem::JobItem() : ModelView::CompoundItem(::Constants::JobItemType)
     setup_specular_viewport();
 }
 
-Data1DItem* JobItem::sld_data() const
+Data1DItem* JobItem::sldData() const
 {
     return item<Data1DItem>(P_SLD_DATA);
 }
 
-SLDCanvasItem* JobItem::sld_viewport() const
+SLDCanvasItem* JobItem::sldViewport() const
 {
     return item<SLDCanvasItem>(P_SLD_VIEWPORT);
 }
 
-Data1DItem* JobItem::specular_data() const
+Data1DItem* JobItem::specularData() const
 {
     return item<Data1DItem>(P_SPECULAR_DATA);
 }
 
-CanvasItem* JobItem::specular_viewport() const
+CanvasItem* JobItem::specularViewport() const
 {
     return item<CanvasItem>(P_SPECULAR_VIEWPORT);
 }
 
 GraphItem* JobItem::specularGraph() const
 {
-    auto graphs = specular_viewport()->graphItems();
+    auto graphs = specularViewport()->graphItems();
     return graphs.size() >= 0 ? graphs.at(row_sim_graph) : nullptr;
 }
 
 GraphItem* JobItem::referenceGraph() const
 {
-    auto graphs = specular_viewport()->graphItems();
+    auto graphs = specularViewport()->graphItems();
     return graphs.size() > 1 ? graphs.at(row_reference_graph) : nullptr;
 }
 

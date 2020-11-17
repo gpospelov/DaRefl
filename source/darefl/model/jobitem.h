@@ -43,14 +43,16 @@ public:
     static inline const std::string P_SLD_VIEWPORT = "P_SLD_VIEWPORT";
     static inline const std::string P_SPECULAR_DATA = "P_SPECULAR_DATA";
     static inline const std::string P_SPECULAR_VIEWPORT = "P_SPECULAR_VIEWPORT";
+    static inline const std::string P_DIFF_DATA = "P_DIFF_DATA";
+    static inline const std::string P_DIFF_VIEWPORT = "P_DIFF_VIEWPORT";
 
     JobItem();
 
-    ModelView::Data1DItem* sld_data() const;
-    SLDCanvasItem* sld_viewport() const;
+    ModelView::Data1DItem* sldData() const;
+    SLDCanvasItem* sldViewport() const;
 
-    ModelView::Data1DItem* specular_data() const;
-    CanvasItem* specular_viewport() const;
+    ModelView::Data1DItem* specularData() const;
+    CanvasItem* specularViewport() const;
 
     ModelView::GraphItem* specularGraph() const;
     ModelView::GraphItem* referenceGraph() const;
@@ -58,7 +60,6 @@ public:
     void updateReferenceGraphFrom(const SpecularInstrumentItem* instrument);
 
 private:
-    void setup_graph(const std::string& data_tag, const std::string& viewport_tag);
     void setup_sld_viewport();
     void setup_specular_viewport();
 };
