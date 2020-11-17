@@ -11,6 +11,7 @@
 #define DAREFL_QUICKSIMEDITOR_JOBMANAGER_H
 
 #include <QObject>
+#include <darefl/quicksimeditor/quicksim_types.h>
 #include <darefl/quicksimeditor/speculartoysimulation.h>
 #include <mvvm/utils/threadsafestack.h>
 
@@ -39,7 +40,7 @@ private:
     void wait_and_run();
 
     std::thread m_sim_thread;
-    ModelView::threadsafe_stack<SpecularToySimulation::SimulationInput> m_requested_values;
+    ModelView::threadsafe_stack<SimulationInput> m_requested_values;
     ModelView::threadsafe_stack<SpecularToySimulation::Result> m_simulation_results;
     std::atomic<bool> m_is_running;
     bool m_interrupt_request{false};
