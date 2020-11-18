@@ -9,7 +9,6 @@
 
 #include <QColor>
 #include <darefl/model/experimentaldataitems.h>
-#include <darefl/model/instrumentitems.h>
 #include <darefl/model/item_constants.h>
 #include <darefl/model/jobitem.h>
 #include <darefl/model/jobmodel.h>
@@ -36,9 +35,7 @@ GraphItem* create_reference_graph(JobItem* item)
 
 //! Creates viewport and data properties. Creates graph, adds data to the graph, and graph
 //! to viewport.
-
-// TODO consider to replace function below with classes, when it becomes cleare which
-// items have to populate JobItem.
+//! TODO consider to replace it with classes, when JobItem structure becomes clear.
 
 template <typename Data, typename Graph, typename Viewport>
 void initViewport(CompoundItem* item, const std::string& data_name,
@@ -91,16 +88,19 @@ CanvasItem* JobItem::specularViewport() const
     return item<CanvasItem>(P_SPECULAR_VIEWPORT);
 }
 
-//! Updates reference graph in specular viewport from current instrument settings.
+//! Updates reference graph in specular viewport from external graph.
+//! External graph represents user imported data, it will be used to
+//! is comming from another viewport (i.e. containing user imported data),
+//! and it is used
 
-void JobItem::updateReferenceGraphFrom(const SpecularInstrumentItem* instrument)
+void JobItem::updateReferenceGraph(const GraphItem* graph)
 {
-    if (auto graph = instrument->beamItem()->experimentalGraphItem(); graph) {
-        // instrument has experimental graph available, i.e. scan depends on data
+    if (graph) {
+        // updates our graph from external graph, creates if doesn't exist
         auto reference_graph = referenceGraph() ? referenceGraph() : create_reference_graph(this);
         reference_graph->setFromGraphItem(graph);
     } else {
-        // instrument doesn't have experimental data attached, scan is manual, no graph to show
+        // no graph provided, remove ours
         auto reference_graph = referenceGraph();
         if (reference_graph)
             ModelView::Utils::DeleteItemFromModel(reference_graph);

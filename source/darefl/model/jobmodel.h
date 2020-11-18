@@ -16,11 +16,11 @@ namespace ModelView
 {
 class Data1DItem;
 class GraphViewportItem;
+class GraphItem;
 } // namespace ModelView
 
 class JobItem;
 class CanvasItem;
-class SpecularInstrumentItem;
 
 struct SimulationResult;
 struct SLDProfile;
@@ -38,7 +38,7 @@ public:
 
     CanvasItem* specularViewport() const;
 
-    void updateReferenceGraphFrom(const SpecularInstrumentItem* instrument);
+    void updateReferenceGraph(const ModelView::GraphItem* graph);
 
     void updateSpecularData(const SimulationResult& data);
 
