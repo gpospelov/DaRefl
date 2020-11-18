@@ -34,7 +34,8 @@ protected:
     std::pair<double, double> data_yaxis_range() const override;
 };
 
-//! Holds results of toy reflectivity simulation.
+//! Represents state of QuickSimEditor.
+//! Holds results of realtime simulation, SLD profiles and difference plot.
 
 class JobItem : public ModelView::CompoundItem
 {
@@ -61,6 +62,9 @@ public:
 private:
     ModelView::GraphItem* specularGraph() const;
     ModelView::GraphItem* referenceGraph() const;
+
+    void setupReferenceGraphFrom(const ModelView::GraphItem* graph);
+    void removeReferenceGraph();
 
     void setup_sld_viewport();
     void setup_specular_viewport();
