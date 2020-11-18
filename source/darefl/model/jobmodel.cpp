@@ -40,19 +40,9 @@ JobModel::JobModel(std::shared_ptr<ItemPool> pool) : SessionModel("JobModel", po
     insertItem<JobItem>();
 }
 
-Data1DItem* JobModel::sldData() const
-{
-    return jobItem()->sldData();
-}
-
 GraphViewportItem* JobModel::sldViewport() const
 {
     return jobItem()->sldViewport();
-}
-
-Data1DItem* JobModel::specularData() const
-{
-    return jobItem()->specularData();
 }
 
 CanvasItem* JobModel::specularViewport() const
@@ -74,16 +64,18 @@ void JobModel::updateReferenceGraph(const ModelView::GraphItem* graph)
 
 void JobModel::updateSpecularData(const SimulationResult& data)
 {
-    specularData()->setAxis(ModelView::PointwiseAxisItem::create(data.qvalues));
-    specularData()->setValues(data.amplitudes);
+    auto specularData = jobItem()->specularData();
+    specularData->setAxis(ModelView::PointwiseAxisItem::create(data.qvalues));
+    specularData->setValues(data.amplitudes);
 }
 
 //! Updates SLD profile data.
 
 void JobModel::updateSLDProfile(const SLDProfile& data)
 {
-    sldData()->setAxis(FixedBinAxisItem::create(data.sld_real_values.size(), data.zmin, data.zmax));
-    sldData()->setValues(data.sld_real_values);
+    auto sldData = jobItem()->sldData();
+    sldData->setAxis(FixedBinAxisItem::create(data.sld_real_values.size(), data.zmin, data.zmax));
+    sldData->setValues(data.sld_real_values);
 }
 
 JobItem* JobModel::jobItem() const
