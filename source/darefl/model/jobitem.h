@@ -17,10 +17,10 @@ namespace ModelView
 {
 class Data1DItem;
 class GraphViewportItem;
+class GraphItem;
 } // namespace ModelView
 
 class CanvasItem;
-class SpecularInstrumentItem;
 
 //! Viewport intended for showing SLD profile.
 //! Provides custom y-axis range.
@@ -54,7 +54,7 @@ public:
     ModelView::Data1DItem* specularData() const;
     CanvasItem* specularViewport() const;
 
-    void updateReferenceGraphFrom(const SpecularInstrumentItem* instrument);
+    void updateReferenceGraph(const ModelView::GraphItem* graph);
 
 private:
     ModelView::GraphItem* specularGraph() const;

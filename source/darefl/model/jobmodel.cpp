@@ -8,7 +8,6 @@
 // ************************************************************************** //
 
 #include <darefl/model/experimentaldataitems.h>
-#include <darefl/model/instrumentitems.h>
 #include <darefl/model/jobitem.h>
 #include <darefl/model/jobmodel.h>
 #include <darefl/quicksimeditor/quicksim_types.h>
@@ -61,9 +60,9 @@ CanvasItem* JobModel::specularViewport() const
     return jobItem()->specularViewport();
 }
 
-void JobModel::updateReferenceGraphFrom(const SpecularInstrumentItem* instrument)
+void JobModel::updateReferenceGraph(const ModelView::GraphItem* graph)
 {
-    jobItem()->updateReferenceGraphFrom(instrument);
+    jobItem()->updateReferenceGraph(graph);
 }
 
 //! Updates specular data in JobItem from simulation results.
