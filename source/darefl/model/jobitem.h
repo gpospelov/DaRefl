@@ -60,11 +60,15 @@ public:
     void updateReferenceGraph(const ModelView::GraphItem* graph);
 
 private:
+    ModelView::Data1DItem* diffData() const;
     ModelView::GraphItem* specularGraph() const;
     ModelView::GraphItem* referenceGraph() const;
+    ModelView::GraphItem* differenceGraph() const;
 
     void setupReferenceGraphFrom(const ModelView::GraphItem* graph);
+    void setupDifferenceGraphFrom(const ModelView::GraphItem* graph);
     void removeReferenceGraph();
+    void removeDifferenceGraph();
 
     void setup_sld_viewport();
     void setup_specular_viewport();
