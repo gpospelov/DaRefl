@@ -41,3 +41,15 @@ Utils::FindProperty(const std::vector<ModelView::ExternalProperty>& properties,
 
     return ModelView::ExternalProperty::undefined();
 }
+
+std::vector<double> Utils::CreateDiffVector(const std::vector<double>& a,
+                                            const std::vector<double>& b)
+{
+    size_t length = std::min(a.size(), b.size());
+    std::vector<double> result(length, 0.0);
+    for (size_t i = 0; i < length; ++i) {
+        double denom = a[i] + b[i];
+        result[i] = denom != 0.0 ? 2 * (a[i] - b[i]) / (a[i] + b[i]) : 0.0;
+    }
+    return result;
+}

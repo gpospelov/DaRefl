@@ -35,6 +35,10 @@ std::vector<ModelView::ExternalProperty> CreateGraphProperties(ExperimentalDataM
 ModelView::ExternalProperty FindProperty(const std::vector<ModelView::ExternalProperty>& properties,
                                          const std::string& id);
 
+//! Returns vector representing elementwise 2*(a-b)/(a+b) difference over two vectors.
+//! Resulting vector will have size equal to min(a.size(), b.size())
+std::vector<double> CreateDiffVector(const std::vector<double>& a, const std::vector<double>& b);
+
 } // namespace Utils
 
 #endif // DAREFL_MODEL_MODELUTILS_H
