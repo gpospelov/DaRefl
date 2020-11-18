@@ -38,6 +38,9 @@ public:
 
     CanvasItem* specularViewport() const;
 
+    CanvasItem* diffViewport() const;
+
+
     void updateReferenceGraph(const ModelView::GraphItem* graph);
 
     void updateSpecularData(const SimulationResult& data);

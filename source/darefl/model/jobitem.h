@@ -54,6 +54,8 @@ public:
     ModelView::Data1DItem* specularData() const;
     CanvasItem* specularViewport() const;
 
+    CanvasItem* diffViewport() const;
+
     void updateReferenceGraph(const ModelView::GraphItem* graph);
 
 private:
