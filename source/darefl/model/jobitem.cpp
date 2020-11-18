@@ -12,6 +12,7 @@
 #include <darefl/model/item_constants.h>
 #include <darefl/model/jobitem.h>
 #include <darefl/model/jobmodel.h>
+#include <darefl/model/modelutils.h>
 #include <mvvm/model/modelutils.h>
 #include <mvvm/standarditems/axisitems.h>
 #include <mvvm/standarditems/data1ditem.h>
@@ -31,6 +32,12 @@ GraphItem* create_reference_graph(JobItem* item)
     auto model = item->model();
     return model->insertItem<GraphItem>(item->specularViewport(),
                                         {ViewportItem::T_ITEMS, row_reference_graph});
+}
+
+GraphItem* create_difference_graph(JobItem* item)
+{
+    auto model = item->model();
+    return model->insertItem<GraphItem>(item->diffViewport(), {ViewportItem::T_ITEMS, 0});
 }
 
 //! Creates viewport and data properties. Creates graph, adds data to the graph, and graph
@@ -100,10 +107,18 @@ CanvasItem* JobItem::diffViewport() const
 
 void JobItem::updateReferenceGraph(const GraphItem* graph)
 {
-    if (graph)
+    if (graph) {
         setupReferenceGraphFrom(graph);
-    else
+        setupDifferenceGraphFrom(graph);
+    } else {
         removeReferenceGraph();
+        removeDifferenceGraph();
+    }
+}
+
+Data1DItem* JobItem::diffData() const
+{
+    return item<Data1DItem>(P_DIFF_DATA);
 }
 
 //! Returns specular graph.
@@ -123,18 +138,48 @@ GraphItem* JobItem::referenceGraph() const
     return graphs.size() > 1 ? graphs.at(row_reference_graph) : nullptr;
 }
 
+//! Returns graph representing a numeric difference between simulated and reference curve.
+
+GraphItem* JobItem::differenceGraph() const
+{
+    auto graphs = diffViewport()->graphItems();
+    return graphs.size() >= 0 ? graphs.at(0) : nullptr;
+}
+
 void JobItem::setupReferenceGraphFrom(const GraphItem* graph)
 {
+    assert(graph);
     auto reference_graph = referenceGraph() ? referenceGraph() : create_reference_graph(this);
     reference_graph->setFromGraphItem(graph);
+}
+
+void JobItem::setupDifferenceGraphFrom(const GraphItem* graph)
+{
+    const auto reference_data = graph ? graph->dataItem() : nullptr;
+    auto diff_data = diffData();
+    const auto specular_data = specularData();
+    assert(reference_data && diff_data && specular_data);
+
+    ::Utils::SetDifference(specular_data, reference_data, diff_data);
+
+    auto diff_graph = differenceGraph() ? differenceGraph() : create_difference_graph(this);
+    diff_graph->setFromGraphItem(graph);
 }
 
 //! Removes reference graph from specular viewport.
 
 void JobItem::removeReferenceGraph()
 {
-    if (auto reference_graph = referenceGraph(); reference_graph)
-        ModelView::Utils::DeleteItemFromModel(reference_graph);
+    if (auto graph = referenceGraph(); graph)
+        ModelView::Utils::DeleteItemFromModel(graph);
+}
+
+//! Removes difference graph from specular viewport.
+
+void JobItem::removeDifferenceGraph()
+{
+    if (auto graph = referenceGraph(); graph)
+        ModelView::Utils::DeleteItemFromModel(graph);
 }
 
 void JobItem::setup_sld_viewport()
