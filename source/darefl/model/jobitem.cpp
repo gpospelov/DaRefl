@@ -100,16 +100,10 @@ CanvasItem* JobItem::diffViewport() const
 
 void JobItem::updateReferenceGraph(const GraphItem* graph)
 {
-    if (graph) {
-        // updates our graph from external graph, creates if doesn't exist
-        auto reference_graph = referenceGraph() ? referenceGraph() : create_reference_graph(this);
-        reference_graph->setFromGraphItem(graph);
-    } else {
-        // no graph provided, remove ours
-        auto reference_graph = referenceGraph();
-        if (reference_graph)
-            ModelView::Utils::DeleteItemFromModel(reference_graph);
-    }
+    if (graph)
+        setupReferenceGraphFrom(graph);
+    else
+        removeReferenceGraph();
 }
 
 //! Returns specular graph.
@@ -127,6 +121,20 @@ GraphItem* JobItem::referenceGraph() const
 {
     auto graphs = specularViewport()->graphItems();
     return graphs.size() > 1 ? graphs.at(row_reference_graph) : nullptr;
+}
+
+void JobItem::setupReferenceGraphFrom(const GraphItem* graph)
+{
+    auto reference_graph = referenceGraph() ? referenceGraph() : create_reference_graph(this);
+    reference_graph->setFromGraphItem(graph);
+}
+
+//! Removes reference graph from specular viewport.
+
+void JobItem::removeReferenceGraph()
+{
+    if (auto reference_graph = referenceGraph(); reference_graph)
+        ModelView::Utils::DeleteItemFromModel(reference_graph);
 }
 
 void JobItem::setup_sld_viewport()
