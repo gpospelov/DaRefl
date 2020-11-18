@@ -60,6 +60,11 @@ CanvasItem* JobModel::specularViewport() const
     return jobItem()->specularViewport();
 }
 
+CanvasItem* JobModel::diffViewport() const
+{
+    return jobItem()->diffViewport();
+}
+
 void JobModel::updateReferenceGraph(const ModelView::GraphItem* graph)
 {
     jobItem()->updateReferenceGraph(graph);

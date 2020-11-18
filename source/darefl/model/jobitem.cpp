@@ -88,6 +88,11 @@ CanvasItem* JobItem::specularViewport() const
     return item<CanvasItem>(P_SPECULAR_VIEWPORT);
 }
 
+CanvasItem* JobItem::diffViewport() const
+{
+    return item<CanvasItem>(P_DIFF_VIEWPORT);
+}
+
 //! Updates reference graph in specular viewport from external graph.
 //! External graph represents user imported data, it will be used to
 //! is comming from another viewport (i.e. containing user imported data),
