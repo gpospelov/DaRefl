@@ -34,7 +34,11 @@ GraphItem* create_reference_graph(JobItem* item)
                                         {ViewportItem::T_ITEMS, row_reference_graph});
 }
 
-//! Adds proper
+//! Creates viewport and data properties. Creates graph, adds data to the graph, and graph
+//! to viewport.
+
+// TODO consider to replace function below with classes, when it becomes cleare which
+// items have to populate JobItem.
 
 template <typename Data, typename Graph, typename Viewport>
 void initViewport(CompoundItem* item, const std::string& data_name,
@@ -122,11 +126,7 @@ GraphItem* JobItem::referenceGraph() const
 
 void JobItem::setup_sld_viewport()
 {
-    auto data = addProperty<Data1DItem>(P_SLD_DATA);
-    auto viewport = addProperty<SLDCanvasItem>(P_SLD_VIEWPORT);
-    auto graph = std::make_unique<GraphItem>();
-    graph->setDataItem(data);
-    viewport->insertItem(graph.release(), {ViewportItem::T_ITEMS, 0});
+    initViewport<Data1DItem, GraphItem, SLDCanvasItem>(this, P_SLD_DATA, P_SLD_VIEWPORT);
 }
 
 //! Setups a specular viewport together with a single graph in it and corresponding data item.
@@ -134,13 +134,10 @@ void JobItem::setup_sld_viewport()
 
 void JobItem::setup_specular_viewport()
 {
-    auto data = addProperty<Data1DItem>(P_SPECULAR_DATA);
-    auto viewport = addProperty<CanvasItem>(P_SPECULAR_VIEWPORT);
-    auto graph = std::make_unique<GraphItem>();
+    initViewport<Data1DItem, GraphItem, CanvasItem>(this, P_SPECULAR_DATA, P_SPECULAR_VIEWPORT);
+    auto graph = specularGraph();
     auto pen = graph->item<PenItem>(GraphItem::P_PEN);
     pen->setProperty(PenItem::P_COLOR, QColor(Qt::blue));
-    graph->setDataItem(data);
-    viewport->insertItem(graph.release(), {ViewportItem::T_ITEMS, row_sim_graph});
 }
 
 //! Setups viewport, difference graph, and its underlying data to show the difference between
