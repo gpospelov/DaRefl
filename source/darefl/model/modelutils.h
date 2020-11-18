@@ -16,6 +16,7 @@
 namespace ModelView
 {
 class GraphItem;
+class Data1DItem;
 class ExternalProperty;
 } // namespace ModelView
 
@@ -39,6 +40,9 @@ ModelView::ExternalProperty FindProperty(const std::vector<ModelView::ExternalPr
 //! Resulting vector will have size equal to min(a.size(), b.size())
 std::vector<double> CreateDiffVector(const std::vector<double>& a, const std::vector<double>& b);
 
+//! Make target item represent difference of two Data1DItems. Target will get an axis as in data1.
+void SetDifference(const ModelView::Data1DItem* data1, const ModelView::Data1DItem* data2,
+                   ModelView::Data1DItem* target);
 } // namespace Utils
 
 #endif // DAREFL_MODEL_MODELUTILS_H
