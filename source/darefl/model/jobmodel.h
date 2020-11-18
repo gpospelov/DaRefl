@@ -14,32 +14,28 @@
 
 namespace ModelView
 {
-class Data1DItem;
 class GraphViewportItem;
 class GraphItem;
 } // namespace ModelView
 
 class JobItem;
 class CanvasItem;
-
 struct SimulationResult;
 struct SLDProfile;
 
-//! Contains results of quick reflectometry simulations.
+//! The model to store results of (possibly) multiple reflectometry simulation, and all
+//! viewports, representing various graphs in QuickSimEditor widgets.
+
 class JobModel : public ModelView::SessionModel
 {
 public:
     JobModel(std::shared_ptr<ModelView::ItemPool> pool = {});
 
-    ModelView::Data1DItem* sldData() const;
     ModelView::GraphViewportItem* sldViewport() const;
-
-    ModelView::Data1DItem* specularData() const;
 
     CanvasItem* specularViewport() const;
 
     CanvasItem* diffViewport() const;
-
 
     void updateReferenceGraph(const ModelView::GraphItem* graph);
 
