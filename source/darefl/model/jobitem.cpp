@@ -116,7 +116,7 @@ void JobItem::updateReferenceGraph(const GraphItem* graph)
     }
 }
 
-Data1DItem* JobItem::diffData() const
+Data1DItem* JobItem::differenceData() const
 {
     return item<Data1DItem>(P_DIFF_DATA);
 }
@@ -126,7 +126,7 @@ Data1DItem* JobItem::diffData() const
 GraphItem* JobItem::specularGraph() const
 {
     auto graphs = specularViewport()->graphItems();
-    return graphs.size() >= 0 ? graphs.at(row_sim_graph) : nullptr;
+    return graphs.size() > 0 ? graphs.at(row_sim_graph) : nullptr;
 }
 
 //! Returns reference graph, if exists. It represents imported user data from ExperimentalScanItem.
@@ -143,7 +143,7 @@ GraphItem* JobItem::referenceGraph() const
 GraphItem* JobItem::differenceGraph() const
 {
     auto graphs = diffViewport()->graphItems();
-    return graphs.size() >= 0 ? graphs.at(0) : nullptr;
+    return graphs.size() > 0 ? graphs.at(0) : nullptr;
 }
 
 void JobItem::setupReferenceGraphFrom(const GraphItem* graph)
@@ -156,14 +156,14 @@ void JobItem::setupReferenceGraphFrom(const GraphItem* graph)
 void JobItem::setupDifferenceGraphFrom(const GraphItem* graph)
 {
     const auto reference_data = graph ? graph->dataItem() : nullptr;
-    auto diff_data = diffData();
+    auto diff_data = differenceData();
     const auto specular_data = specularData();
     assert(reference_data && diff_data && specular_data);
 
     ::Utils::SetDifference(specular_data, reference_data, diff_data);
 
     auto diff_graph = differenceGraph() ? differenceGraph() : create_difference_graph(this);
-    diff_graph->setFromGraphItem(graph);
+    diff_graph->setDataItem(diff_data);
 }
 
 //! Removes reference graph from specular viewport.
@@ -178,7 +178,7 @@ void JobItem::removeReferenceGraph()
 
 void JobItem::removeDifferenceGraph()
 {
-    if (auto graph = referenceGraph(); graph)
+    if (auto graph = differenceGraph(); graph)
         ModelView::Utils::DeleteItemFromModel(graph);
 }
 

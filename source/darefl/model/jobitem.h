@@ -60,7 +60,7 @@ public:
     void updateReferenceGraph(const ModelView::GraphItem* graph);
 
 private:
-    ModelView::Data1DItem* diffData() const;
+    ModelView::Data1DItem* differenceData() const;
     ModelView::GraphItem* specularGraph() const;
     ModelView::GraphItem* referenceGraph() const;
     ModelView::GraphItem* differenceGraph() const;
