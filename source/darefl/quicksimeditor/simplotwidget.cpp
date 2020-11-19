@@ -35,6 +35,12 @@ SimPlotWidget::SimPlotWidget(QWidget* parent)
     splitter->setSizes(QList<int>() << 300 << 100);
 
     layout->addWidget(splitter);
+
+    auto on_axis_margins = [this](int left, int, int right, int) {
+        // syncronizes left and right margins, leave top and bottom automatic
+        m_diffCanvas->setAxisMargins(left, -1, right, -1);
+    };
+    connect(m_specularCanvas, &ModelView::GraphCanvas::axisMarginsChanged, on_axis_margins);
 }
 
 SimPlotWidget::~SimPlotWidget() = default;
