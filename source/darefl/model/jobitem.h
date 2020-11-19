@@ -59,6 +59,8 @@ public:
 
     void updateReferenceGraph(const ModelView::GraphItem* graph);
 
+    void updateDifferenceData();
+
 private:
     ModelView::Data1DItem* differenceData() const;
     ModelView::GraphItem* specularGraph() const;

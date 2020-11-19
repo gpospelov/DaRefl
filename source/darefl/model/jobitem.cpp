@@ -116,6 +116,19 @@ void JobItem::updateReferenceGraph(const GraphItem* graph)
     }
 }
 
+//! Updates values stored in Data1DItem representing the difference between specular and reference
+//! graphs.
+
+void JobItem::updateDifferenceData()
+{
+    if (auto reference_graph = referenceGraph(); reference_graph) {
+        const auto reference_data = reference_graph->dataItem();
+        const auto specular_data = specularData();
+        auto diff_data = differenceData();
+        ::Utils::SetDifference(specular_data, reference_data, diff_data);
+    }
+}
+
 Data1DItem* JobItem::differenceData() const
 {
     return item<Data1DItem>(P_DIFF_DATA);
@@ -155,15 +168,12 @@ void JobItem::setupReferenceGraphFrom(const GraphItem* graph)
 
 void JobItem::setupDifferenceGraphFrom(const GraphItem* graph)
 {
-    const auto reference_data = graph ? graph->dataItem() : nullptr;
-    auto diff_data = differenceData();
-    const auto specular_data = specularData();
-    assert(reference_data && diff_data && specular_data);
+    if (!differenceGraph()) {
+        create_difference_graph(this);
+        differenceGraph()->setDataItem(differenceData());
+    }
 
-    ::Utils::SetDifference(specular_data, reference_data, diff_data);
-
-    auto diff_graph = differenceGraph() ? differenceGraph() : create_difference_graph(this);
-    diff_graph->setDataItem(diff_data);
+    updateDifferenceData();
 }
 
 //! Removes reference graph from specular viewport.

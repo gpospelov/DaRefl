@@ -67,6 +67,9 @@ void JobModel::updateSpecularData(const SimulationResult& data)
     auto specularData = jobItem()->specularData();
     specularData->setAxis(ModelView::PointwiseAxisItem::create(data.qvalues));
     specularData->setValues(data.amplitudes);
+
+    // updating difference graph
+    jobItem()->updateDifferenceData();
 }
 
 //! Updates SLD profile data.
