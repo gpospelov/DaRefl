@@ -148,6 +148,11 @@ void DataLoaderDialog::invokeFileSelectorDialog()
     m_selectorPanel->onAddFilesRequest();
 }
 
+QStringList DataLoaderDialog::fileNames() const
+{
+    return m_selectorPanel->fileNames();
+}
+
 //! Make dialog intact to enter-key to handle it by LoadSelectorPanel.
 
 void DataLoaderDialog::keyPressEvent(QKeyEvent* event)
