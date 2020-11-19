@@ -50,7 +50,7 @@ CanvasItem* JobModel::specularViewport() const
     return jobItem()->specularViewport();
 }
 
-CanvasItem* JobModel::diffViewport() const
+GraphViewportItem* JobModel::diffViewport() const
 {
     return jobItem()->diffViewport();
 }

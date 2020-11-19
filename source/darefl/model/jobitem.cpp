@@ -95,9 +95,9 @@ CanvasItem* JobItem::specularViewport() const
     return item<CanvasItem>(P_SPECULAR_VIEWPORT);
 }
 
-CanvasItem* JobItem::diffViewport() const
+GraphViewportItem* JobItem::diffViewport() const
 {
-    return item<CanvasItem>(P_DIFF_VIEWPORT);
+    return item<GraphViewportItem>(P_DIFF_VIEWPORT);
 }
 
 //! Updates reference graph in specular viewport from external graph.
@@ -213,5 +213,5 @@ void JobItem::setup_specular_viewport()
 
 void JobItem::setup_diff_viewport()
 {
-    initViewport<Data1DItem, GraphItem, CanvasItem>(this, P_DIFF_DATA, P_DIFF_VIEWPORT);
+    initViewport<Data1DItem, GraphItem, GraphViewportItem>(this, P_DIFF_DATA, P_DIFF_VIEWPORT);
 }
