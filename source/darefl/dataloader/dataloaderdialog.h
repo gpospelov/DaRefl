@@ -39,6 +39,8 @@ public:
 
     void invokeFileSelectorDialog();
 
+    QStringList fileNames() const;
+
 protected:
     void keyPressEvent(QKeyEvent* event) override;
     void accept() override;

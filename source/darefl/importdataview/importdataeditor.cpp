@@ -74,6 +74,8 @@ void ImportDataEditor::invokeImportDialog()
     auto [names, index] = canvasInfo();
     dialog.setTargetCanvas(names, index);
     dialog.invokeFileSelectorDialog();
+    if (dialog.fileNames().empty())
+        return;
 
     if (dialog.exec() == QDialog::Accepted) {
         auto canvases = Utils::FindItems<CanvasItem>(m_dataModel);
