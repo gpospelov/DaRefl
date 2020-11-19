@@ -52,7 +52,7 @@ QColor suggestMaterialColor(const std::string& name)
 {
     static auto color_map = name_to_color_map();
     auto it = color_map.find(name);
-    return it != color_map.end() ? it->second : Utils::random_color();
+    return it != color_map.end() ? it->second : Utils::RandomColor();
 }
 
 } // namespace

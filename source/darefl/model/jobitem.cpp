@@ -18,7 +18,6 @@
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
-#include <mvvm/standarditems/plottableitems.h>
 
 using namespace ModelView;
 
@@ -204,8 +203,7 @@ void JobItem::setup_specular_viewport()
 {
     initViewport<Data1DItem, GraphItem, CanvasItem>(this, P_SPECULAR_DATA, P_SPECULAR_VIEWPORT);
     auto graph = specularGraph();
-    auto pen = graph->item<PenItem>(GraphItem::P_PEN);
-    pen->setProperty(PenItem::P_COLOR, QColor(Qt::blue));
+    graph->setNamedColor("cornflowerblue");
 }
 
 //! Setups viewport, difference graph, and its underlying data to show the difference between

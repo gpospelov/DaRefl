@@ -13,15 +13,13 @@
 #include <mvvm/model/modelutils.h>
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphitem.h>
-#include <mvvm/standarditems/plottableitems.h>
 #include <mvvm/standarditems/axisitems.h>
 
 ModelView::ExternalProperty Utils::CreateProperty(const ModelView::GraphItem* graph)
 {
     std::string name = graph->parent()->displayName() + "/" + graph->displayName();
-    auto pen = graph->item<ModelView::PenItem>(ModelView::GraphItem::P_PEN);
-    auto color = pen->property<QColor>(ModelView::PenItem::P_COLOR);
-    return ModelView::ExternalProperty(name, color, graph->identifier());
+    auto colorName = QString::fromStdString(graph->colorName());
+    return ModelView::ExternalProperty(name, QColor(colorName), graph->identifier());
 }
 
 std::vector<ModelView::ExternalProperty> Utils::CreateGraphProperties(ExperimentalDataModel* model)
