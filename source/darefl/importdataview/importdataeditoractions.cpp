@@ -62,18 +62,30 @@ void ImportDataEditorActions::onAddCanvas()
 
 void ImportDataEditorActions::onMergeCanvases()
 {
+    if (isUndoEnabled())
+        undoStack()->beginMacro("onMergeCanvases");
+
     m_dataModel->mergeCanvases(m_selectionModel->selectedCanvas());
+
+    if (isUndoEnabled())
+        undoStack()->endMacro();
 }
 
 //! Delete currently selected items.
 
 void ImportDataEditorActions::onDeleteItem()
 {
+    if (isUndoEnabled())
+        undoStack()->beginMacro("onDeleteItem");
+
     for (auto canvas : m_selectionModel->selectedCanvas())
         m_dataModel->removeCanvas(*canvas);
 
     for (auto graph : m_selectionModel->selectedGraphs())
         m_dataModel->removeGraph(*graph);
+
+    if (isUndoEnabled())
+        undoStack()->endMacro();
 }
 
 void ImportDataEditorActions::onUndo()
@@ -90,6 +102,17 @@ void ImportDataEditorActions::onRedo()
         return;
 
     m_dataModel->undoStack()->redo();
+}
+
+void ImportDataEditorActions::onImportDialogRequest()
+{
+    if (isUndoEnabled())
+        undoStack()->beginMacro("onImportDialogRequest");
+
+    invokeImportDialogRequest();
+
+    if (isUndoEnabled())
+        undoStack()->endMacro();
 }
 
 //! Processes changed selection. Will change line style of selected graph from

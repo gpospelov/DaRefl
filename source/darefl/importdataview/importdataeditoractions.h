@@ -34,12 +34,16 @@ public:
 
     bool isUndoEnabled() const;
 
+signals:
+    void invokeImportDialogRequest();
+
 public slots:
     void onAddCanvas();
     void onMergeCanvases();
     void onDeleteItem();
     void onUndo();
     void onRedo();
+    void onImportDialogRequest();
 
 private slots:
     void onSelectionChanged(const QItemSelection& selected, const QItemSelection& deselected);
