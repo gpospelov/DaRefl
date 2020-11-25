@@ -24,7 +24,7 @@
 DataSelectorWidget::DataSelectorWidget(DataViewModel* view_model, QWidget* parent)
     : QWidget(parent)
     , m_viewModel(view_model)
-    , m_selectionModel(new DataSelectionModel(m_viewModel))
+    , m_selectionModel(new DataSelectionModel(m_viewModel, this))
     , m_selectorTree(new QTreeView)
     , m_canvasPropertyEditor(new ModelView::PropertyTreeView)
     , m_graphPropertyEditor(new ModelView::PropertyTreeView)

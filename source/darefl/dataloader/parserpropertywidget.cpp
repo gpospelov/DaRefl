@@ -129,7 +129,7 @@ QGridLayout* ParserPropertyWidget::createGridLayout()
     auto grid_layout = new QGridLayout;
 
     addSectionLabel("Separator", grid_layout);
-    m_separatorButtonGroup = new QButtonGroup;
+    m_separatorButtonGroup = new QButtonGroup(this);
     addStandardSeparatorRow(grid_layout, m_separatorButtonGroup);
     addCustomSeparatorRow(grid_layout, m_separatorButtonGroup);
 
@@ -350,7 +350,7 @@ void ParserPropertyWidget::addImportToBlock(QGridLayout* layout)
     layout->addWidget(new QLabel("  "), row, 0, Qt::AlignLeft);
     layout->addWidget(existingCanvasRadio, row, 1, Qt::AlignLeft);
     layout->addWidget(m_targetCanvasCombo, row, 2, Qt::AlignLeft);
-    auto buttonGroup = new QButtonGroup;
+    auto buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(newCanvasRadio);
     buttonGroup->addButton(existingCanvasRadio);
 }

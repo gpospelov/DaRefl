@@ -31,7 +31,7 @@ const QString workdir_setting_name()
 } // namespace
 
 ImportFileWidget::ImportFileWidget(QWidget* parent)
-    : QWidget(parent), m_listView(new QListView), m_listModel(new QStringListModel)
+    : QWidget(parent), m_listView(new QListView), m_listModel(new QStringListModel(this))
 {
     readSettings();
 
