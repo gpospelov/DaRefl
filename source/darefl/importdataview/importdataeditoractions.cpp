@@ -12,12 +12,12 @@
 #include <darefl/importdataview/importdataeditoractions.h>
 #include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/experimentaldatamodel.h>
+#include <mvvm/interfaces/undostackinterface.h>
 #include <mvvm/model/comboproperty.h>
 #include <mvvm/model/itemutils.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/standarditems/plottableitems.h>
 #include <mvvm/viewmodel/viewmodelutils.h>
-#include <mvvm/interfaces/undostackinterface.h>
 
 namespace
 {
@@ -44,6 +44,11 @@ void ImportDataEditorActions::setSelectionModel(DataSelectionModel* selection_mo
     if (m_selectionModel)
         connect(m_selectionModel, &DataSelectionModel::selectionChanged, this,
                 &ImportDataEditorActions::onSelectionChanged);
+}
+
+bool ImportDataEditorActions::isUndoEnabled() const
+{
+    return m_dataModel->undoStack() != nullptr;
 }
 
 //! Create new canvas and append it to the end of canvas container.
@@ -73,7 +78,7 @@ void ImportDataEditorActions::onDeleteItem()
 
 void ImportDataEditorActions::onUndo()
 {
-    if (!m_dataModel->undoStack())
+    if (!isUndoEnabled())
         return;
 
     m_dataModel->undoStack()->undo();
@@ -81,7 +86,7 @@ void ImportDataEditorActions::onUndo()
 
 void ImportDataEditorActions::onRedo()
 {
-    if (!m_dataModel->undoStack())
+    if (!isUndoEnabled())
         return;
 
     m_dataModel->undoStack()->redo();
@@ -100,4 +105,9 @@ void ImportDataEditorActions::onSelectionChanged(const QItemSelection& selected,
     auto deselected_graphs = itemsFromIndexList<ModelView::GraphItem>(deselected.indexes());
     for (auto graph : deselected_graphs)
         graph->item<ModelView::PenItem>(ModelView::GraphItem::P_PEN)->setSelected(false);
+}
+
+ModelView::UndoStackInterface* ImportDataEditorActions::undoStack() const
+{
+    return m_dataModel->undoStack();
 }
