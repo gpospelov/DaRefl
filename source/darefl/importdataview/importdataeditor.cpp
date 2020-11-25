@@ -53,8 +53,6 @@ ImportDataEditor::ImportDataEditor(ExperimentalDataModel* model, QWidget* parent
 void ImportDataEditor::setupConnections()
 {
     // connect toolbar  with this editor
-    connect(m_editorToolBar, &ImportDataEditorToolBar::invokeImportDialogRequest, this,
-            &ImportDataEditor::invokeImportDialog);
     connect(m_editorToolBar, &ImportDataEditorToolBar::updateViewportRequest,
             [this]() { m_graphCanvasWidget->updateViewport(); });
 
@@ -63,6 +61,10 @@ void ImportDataEditor::setupConnections()
         m_graphCanvasWidget->setItem(selectionModel()->activeCanvas());
     };
     connect(m_dataSelectorWidget, &DataSelectorWidget::selectionChanged, on_selection_changed);
+
+    // connect actions
+    connect(m_editorActions, &ImportDataEditorActions::invokeImportDialogRequest, this,
+            &ImportDataEditor::invokeImportDialog);
 }
 
 //! Invoke the data load dialog and connect its state.

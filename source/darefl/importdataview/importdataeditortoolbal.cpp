@@ -21,7 +21,7 @@ ImportDataEditorToolBar::ImportDataEditorToolBar(ImportDataEditorActions* editor
     auto action = new QAction("Import", this);
     action->setToolTip("Opens the data import dialog.");
     action->setIcon(QIcon(":/icons/import.svg"));
-    connect(action, &QAction::triggered, this, &ImportDataEditorToolBar::invokeImportDialogRequest);
+    connect(action, &QAction::triggered, this, [this]() { m_editorActions->onImportDialogRequest(); });
     addAction(action);
 
     addSeparator();
