@@ -17,7 +17,7 @@
 
 ImportTableWidget::ImportTableWidget(QWidget* parent)
     : QWidget(parent)
-    , m_tableModel(new ImportTableModel)
+    , m_tableModel(new ImportTableModel(this))
     , m_tableView(new QTableView)
     , m_delegate(new ModelView::ViewModelDelegate)
 {

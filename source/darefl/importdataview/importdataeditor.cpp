@@ -27,7 +27,7 @@ using namespace ModelView;
 ImportDataEditor::ImportDataEditor(ExperimentalDataModel* model, QWidget* parent)
     : QWidget(parent)
     , m_dataModel(model)
-    , m_viewModel(new DataViewModel(model))
+    , m_viewModel(new DataViewModel(model, this))
     , m_editorActions(new ImportDataEditorActions(m_dataModel, this))
     , m_editorToolBar(new ImportDataEditorToolBar(m_editorActions, this))
     , m_dataSelectorWidget(new DataSelectorWidget(m_viewModel))
