@@ -7,7 +7,6 @@
 //
 // ************************************************************************** //
 
-#include <QUndoStack>
 #include <darefl/importdataview/dataselectionmodel.h>
 #include <darefl/importdataview/graphimportdata.h>
 #include <darefl/importdataview/importdataeditoractions.h>
@@ -18,6 +17,7 @@
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/standarditems/plottableitems.h>
 #include <mvvm/viewmodel/viewmodelutils.h>
+#include <mvvm/interfaces/undostackinterface.h>
 
 namespace
 {
