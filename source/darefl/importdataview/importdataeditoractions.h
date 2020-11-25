@@ -12,6 +12,11 @@
 
 #include <QObject>
 
+namespace ModelView
+{
+class UndoStackInterface;
+}
+
 class ExperimentalDataModel;
 class DataSelectionModel;
 class QItemSelection;
@@ -27,6 +32,8 @@ public:
 
     void setSelectionModel(DataSelectionModel* selection_model);
 
+    bool isUndoEnabled() const;
+
 public slots:
     void onAddCanvas();
     void onMergeCanvases();
@@ -38,6 +45,8 @@ private slots:
     void onSelectionChanged(const QItemSelection& selected, const QItemSelection& deselected);
 
 private:
+    ModelView::UndoStackInterface* undoStack() const;
+
     ExperimentalDataModel* m_dataModel{nullptr};
     DataSelectionModel* m_selectionModel{nullptr};
 };
