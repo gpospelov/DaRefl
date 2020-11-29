@@ -65,7 +65,7 @@ void JobModel::updateReferenceGraph(const ModelView::GraphItem* graph)
 void JobModel::updateSpecularData(const SimulationResult& data)
 {
     auto specularData = jobItem()->specularData();
-    specularData->setAxis(ModelView::PointwiseAxisItem::create(data.qvalues));
+    specularData->setAxis<ModelView::PointwiseAxisItem>(data.qvalues);
     specularData->setValues(data.amplitudes);
 
     // updating difference graph
@@ -77,7 +77,7 @@ void JobModel::updateSpecularData(const SimulationResult& data)
 void JobModel::updateSLDProfile(const SLDProfile& data)
 {
     auto sldData = jobItem()->sldData();
-    sldData->setAxis(FixedBinAxisItem::create(data.sld_real_values.size(), data.zmin, data.zmax));
+    sldData->setAxis<FixedBinAxisItem>(data.sld_real_values.size(), data.zmin, data.zmax);
     sldData->setValues(data.sld_real_values);
 }
 

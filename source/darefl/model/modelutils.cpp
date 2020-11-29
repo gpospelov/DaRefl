@@ -57,6 +57,6 @@ std::vector<double> Utils::CreateDiffVector(const std::vector<double>& a,
 void Utils::SetDifference(const ModelView::Data1DItem* data1, const ModelView::Data1DItem* data2,
                           ModelView::Data1DItem* target)
 {
-    target->setAxis(ModelView::PointwiseAxisItem::create(data1->binCenters()));
+    target->setAxis<ModelView::PointwiseAxisItem>(data1->binCenters());
     target->setValues(CreateDiffVector(data1->binValues(), data2->binValues()));
 }

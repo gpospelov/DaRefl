@@ -74,7 +74,7 @@ ModelView::GraphItem* ExperimentalDataModel::addGraph(const GraphImportData& gra
     auto result = insertItem<GraphItem>(&target_canvas);
 
     auto data = insertItem<Data1DItem>(dataContainer());
-    data->setAxis(PointwiseAxisItem::create(graph_data.bin_centers));
+    data->setAxis<PointwiseAxisItem>(graph_data.bin_centers);
     data->setValues(graph_data.bin_values);
     result->setDataItem(data);
 
