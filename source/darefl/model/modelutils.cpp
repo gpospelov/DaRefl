@@ -57,9 +57,6 @@ std::vector<double> Utils::CreateDiffVector(const std::vector<double>& a,
 void Utils::SetDifference(const ModelView::Data1DItem* data1, const ModelView::Data1DItem* data2,
                           ModelView::Data1DItem* target)
 {
-    target->item<ModelView::PointwiseAxisItem>(ModelView::Data1DItem::T_AXIS)
-        ->setParameters(data1->binCenters());
-    // FIXME allow to change axis again, instead of awkward setting of its parameters
-    //    target->setAxis<ModelView::PointwiseAxisItem>(data1->binCenters());
+    // it is expected that difference graph has proper axis
     target->setValues(CreateDiffVector(data1->binValues(), data2->binValues()));
 }
