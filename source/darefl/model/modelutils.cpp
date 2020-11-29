@@ -11,9 +11,9 @@
 #include <darefl/model/modelutils.h>
 #include <mvvm/model/externalproperty.h>
 #include <mvvm/model/modelutils.h>
+#include <mvvm/standarditems/axisitems.h>
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphitem.h>
-#include <mvvm/standarditems/axisitems.h>
 
 ModelView::ExternalProperty Utils::CreateProperty(const ModelView::GraphItem* graph)
 {
@@ -57,6 +57,9 @@ std::vector<double> Utils::CreateDiffVector(const std::vector<double>& a,
 void Utils::SetDifference(const ModelView::Data1DItem* data1, const ModelView::Data1DItem* data2,
                           ModelView::Data1DItem* target)
 {
-    target->setAxis<ModelView::PointwiseAxisItem>(data1->binCenters());
+    target->item<ModelView::PointwiseAxisItem>(ModelView::Data1DItem::T_AXIS)
+        ->setParameters(data1->binCenters());
+    // FIXME allow to change axis again, instead of awkward setting of its parameters
+    //    target->setAxis<ModelView::PointwiseAxisItem>(data1->binCenters());
     target->setValues(CreateDiffVector(data1->binValues(), data2->binValues()));
 }
