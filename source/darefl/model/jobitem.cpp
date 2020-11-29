@@ -194,6 +194,7 @@ void JobItem::removeDifferenceGraph()
 void JobItem::setup_sld_viewport()
 {
     initViewport<Data1DItem, GraphItem, SLDCanvasItem>(this, P_SLD_DATA, P_SLD_VIEWPORT);
+    sldData()->setAxis<FixedBinAxisItem>(1, 0.0, 1.0);
 }
 
 //! Setups a specular viewport together with a single graph in it and corresponding data item.
@@ -204,6 +205,7 @@ void JobItem::setup_specular_viewport()
     initViewport<Data1DItem, GraphItem, CanvasItem>(this, P_SPECULAR_DATA, P_SPECULAR_VIEWPORT);
     auto graph = specularGraph();
     graph->setNamedColor("cornflowerblue");
+    specularData()->setAxis<PointwiseAxisItem>(std::vector<double>());
 }
 
 //! Setups viewport, difference graph, and its underlying data to show the difference between
@@ -212,4 +214,5 @@ void JobItem::setup_specular_viewport()
 void JobItem::setup_diff_viewport()
 {
     initViewport<Data1DItem, GraphItem, GraphViewportItem>(this, P_DIFF_DATA, P_DIFF_VIEWPORT);
+    differenceData()->setAxis<PointwiseAxisItem>(std::vector<double>());
 }
