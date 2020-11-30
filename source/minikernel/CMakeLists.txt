@@ -1,6 +1,6 @@
 set(library_name minikernel)
 
-add_library(${library_name} STATIC "")
+add_library(${library_name} SHARED "")
 
 add_subdirectory(Basics)
 add_subdirectory(Computation)

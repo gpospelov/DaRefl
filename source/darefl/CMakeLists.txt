@@ -1,6 +1,11 @@
 set(library_name dareflcore)
 
-add_library(${library_name} STATIC "")
+add_library(${library_name} SHARED "")
+
+# -- Generate header for export --
+
+set(export_filename ${DAREFL_AUTOGEN_DIR}/darefl/darefl_export.h)
+generate_export_header(${library_name} EXPORT_FILE_NAME ${export_filename})
 
 add_subdirectory(dataloader)
 add_subdirectory(importdataview)
