@@ -1,5 +1,9 @@
 set(library_name dareflcore)
 
+if(WIN32)
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBA_CORE_BUILD_DLL")
+endif()
+
 add_library(${library_name} SHARED "")
 
 # -- Generate header for export --
