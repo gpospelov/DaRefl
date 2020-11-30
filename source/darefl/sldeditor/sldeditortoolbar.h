@@ -11,14 +11,16 @@
 #define DAREFL_SLDEDITOR_SLDEDITORTOOLBAR_H
 
 #include <QToolBar>
+#include <darefl/darefl_export.h>
 
 class SLDEditorActions;
 
 //! Material editor toolbar.
 
-class SLDEditorToolBar : public QToolBar
+class DAREFLCORE_EXPORT SLDEditorToolBar : public QToolBar
 {
     Q_OBJECT
+
 public:
     SLDEditorToolBar(SLDEditorActions* actions, QWidget* parent = nullptr);
     ~SLDEditorToolBar() = default;

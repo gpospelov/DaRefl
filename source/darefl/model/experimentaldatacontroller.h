@@ -10,6 +10,7 @@
 #ifndef DAREFL_MODEL_EXPERIMENTALDATACONTROLLER_H
 #define DAREFL_MODEL_EXPERIMENTALDATACONTROLLER_H
 
+#include <darefl/darefl_export.h>
 #include <mvvm/model/sessionmodel.h>
 #include <mvvm/signals/modellistener.h>
 
@@ -20,7 +21,8 @@ class ExperimentalDataModel;
 //! Main task is to update links of ExperimentalScanItem to particular imported graph, when
 //! ExperimentalDataModel is changing.
 
-class ExperimentalDataController : public ModelView::ModelListener<ExperimentalDataModel>
+class DAREFLCORE_EXPORT ExperimentalDataController
+    : public ModelView::ModelListener<ExperimentalDataModel>
 {
 public:
     ExperimentalDataController(ExperimentalDataModel* data_model,

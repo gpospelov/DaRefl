@@ -12,6 +12,7 @@
 
 #include <QMainWindow>
 #include <memory>
+#include <darefl/darefl_export.h>
 
 namespace ModelView
 {
@@ -23,7 +24,7 @@ class QuickSimEditor;
 
 //! Main simulation window with all components for quick sample editing and simulations.
 
-class SimulationView : public QMainWindow
+class DAREFLCORE_EXPORT SimulationView : public QMainWindow
 {
     Q_OBJECT
 

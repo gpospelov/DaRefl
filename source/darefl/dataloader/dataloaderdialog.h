@@ -11,6 +11,7 @@
 #define DAREFL_DATALOADER_DATALOADERDIALOG_H
 
 #include <QDialog>
+#include <darefl/darefl_export.h>
 #include <darefl/importdataview/graphimportdata.h>
 #include <memory>
 #include <vector>
@@ -23,7 +24,7 @@ class DataHandler;
 
 //! This is the main dialog for the data loader.
 
-class DataLoaderDialog : public QDialog
+class DAREFLCORE_EXPORT DataLoaderDialog : public QDialog
 {
     Q_OBJECT
 

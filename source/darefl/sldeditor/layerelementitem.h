@@ -10,11 +10,12 @@
 #ifndef DAREFL_SLDEDITOR_LAYERELEMENTITEM_H
 #define DAREFL_SLDEDITOR_LAYERELEMENTITEM_H
 
+#include <darefl/darefl_export.h>
 #include <mvvm/model/compounditem.h>
 #include <mvvm/model/sessionmodel.h>
 
 //! The mvvm session item associated to a layer
-class LayerElementItem : public ModelView::CompoundItem
+class DAREFLCORE_EXPORT LayerElementItem : public ModelView::CompoundItem
 {
 public:
     static inline const std::string P_X_POS = "P_X_POS";

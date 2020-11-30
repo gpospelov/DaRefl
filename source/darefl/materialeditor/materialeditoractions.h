@@ -12,6 +12,7 @@
 
 #include <QObject>
 #include <memory>
+#include <darefl/darefl_export.h>
 
 class MaterialModel;
 class MaterialSelectionModel;
@@ -19,7 +20,7 @@ class MaterialSelectionModel;
 //! Handles user actions applied to material table.
 //! Belongs to MaterialEditor.
 
-class MaterialEditorActions : public QObject
+class DAREFLCORE_EXPORT MaterialEditorActions : public QObject
 {
     Q_OBJECT
 

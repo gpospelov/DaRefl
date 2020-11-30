@@ -11,6 +11,7 @@
 #define DAREFL_QUICKSIMEDITOR_SIMPLOTWIDGET_H
 
 #include <QWidget>
+#include <darefl/darefl_export.h>
 
 namespace ModelView
 {
@@ -22,7 +23,7 @@ class ApplicationModels;
 //! Presents simulation results together with reference experimental data on two canvas.
 //! The top canvas contains graphs itself, bottom canvas their relative difference.
 
-class SimPlotWidget : public QWidget
+class DAREFLCORE_EXPORT SimPlotWidget : public QWidget
 {
     Q_OBJECT
 

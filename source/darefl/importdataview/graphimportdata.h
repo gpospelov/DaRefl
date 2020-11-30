@@ -10,12 +10,13 @@
 #ifndef DAREFL_IMPORTDATAVIEW_GRAPHIMPORTDATA_H
 #define DAREFL_IMPORTDATAVIEW_GRAPHIMPORTDATA_H
 
+#include <darefl/darefl_export.h>
 #include <string>
 #include <vector>
 
 //! Raw data to construct GraphItem and Data1DItem's.
 
-struct GraphImportData {
+struct DAREFLCORE_EXPORT GraphImportData {
     std::string graph_description;
 
     std::vector<double> bin_centers;

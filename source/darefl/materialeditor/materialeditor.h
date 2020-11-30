@@ -11,6 +11,7 @@
 #define DAREFL_MATERIALEDITOR_MATERIALEDITOR_H
 
 #include <QWidget>
+#include <darefl/darefl_export.h>
 
 class ApplicationModels;
 class MaterialEditorActions;
@@ -19,7 +20,7 @@ class MaterialEditorWidget;
 
 //! Material editor.
 
-class MaterialEditor : public QWidget
+class DAREFLCORE_EXPORT MaterialEditor : public QWidget
 {
     Q_OBJECT
 

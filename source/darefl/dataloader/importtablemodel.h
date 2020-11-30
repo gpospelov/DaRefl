@@ -11,6 +11,7 @@
 #define DAREFL_DATALOADER_IMPORTTABLEMODEL_H
 
 #include <QAbstractTableModel>
+#include <darefl/darefl_export.h>
 #include <memory>
 #include <string>
 #include <vector>
@@ -24,7 +25,7 @@ class ImportTableHeader;
 
 //! Table model to hold imported ASCII data after parsing it to multi-column presentation.
 
-class ImportTableModel : public QAbstractTableModel
+class DAREFLCORE_EXPORT ImportTableModel : public QAbstractTableModel
 {
     Q_OBJECT
 

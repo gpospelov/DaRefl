@@ -12,13 +12,14 @@
 
 #include <mvvm/model/sessionmodel.h>
 #include <mvvm/signals/modellistener.h>
+#include <darefl/darefl_export.h>
 
 class SampleModel;
 class MaterialModel;
 
 //! Listens for all changes in material model and updates properties in SampleModel.
 
-class MaterialPropertyController : public ModelView::ModelListener<MaterialModel>
+class DAREFLCORE_EXPORT MaterialPropertyController : public ModelView::ModelListener<MaterialModel>
 {
 public:
     MaterialPropertyController(MaterialModel* material_model, SampleModel* sample_model);

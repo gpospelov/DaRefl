@@ -11,6 +11,7 @@
 #define DAREFL_IMPORTDATAVIEW_DATASELECTIONMODEL_H
 
 #include <QItemSelectionModel>
+#include <darefl/darefl_export.h>
 #include <vector>
 
 namespace ModelView
@@ -24,7 +25,7 @@ class CanvasItem;
 
 //! Custom selection model for data view model (AbstractViewModel).
 
-class DataSelectionModel : public QItemSelectionModel
+class DAREFLCORE_EXPORT DataSelectionModel : public QItemSelectionModel
 {
     Q_OBJECT
 

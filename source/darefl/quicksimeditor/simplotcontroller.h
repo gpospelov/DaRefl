@@ -11,6 +11,7 @@
 #define DAREFL_QUICKSIMEDITOR_SIMPLOTCONTROLLER_H
 
 #include <QObject>
+#include <darefl/darefl_export.h>
 #include <memory>
 
 namespace ModelView
@@ -22,7 +23,7 @@ class ApplicationModels;
 
 //! Updates reference curve in JobItem when BeamItem is changed.
 
-class SimPlotController : public QObject
+class DAREFLCORE_EXPORT SimPlotController : public QObject
 {
     Q_OBJECT
 

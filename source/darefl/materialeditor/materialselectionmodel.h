@@ -11,6 +11,7 @@
 #define DAREFL_MATERIALEDITOR_MATERIALSELECTIONMODEL_H
 
 #include <QItemSelectionModel>
+#include <darefl/darefl_export.h>
 #include <vector>
 
 namespace ModelView
@@ -26,7 +27,7 @@ class MaterialBaseItem;
 //! Reports clients about selected MaterialItem in material table and hides
 //! QModelIndex related machinery.
 
-class MaterialSelectionModel : public QItemSelectionModel
+class DAREFLCORE_EXPORT MaterialSelectionModel : public QItemSelectionModel
 {
     Q_OBJECT
 

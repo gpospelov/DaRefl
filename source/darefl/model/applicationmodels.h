@@ -12,6 +12,7 @@
 
 #include <memory>
 #include <mvvm/interfaces/applicationmodelsinterface.h>
+#include <darefl/darefl_export.h>
 
 namespace ModelView
 {
@@ -28,7 +29,7 @@ class InstrumentModel;
 
 //!  Main class to holds all models of GUI session.
 
-class ApplicationModels : public ModelView::ApplicationModelsInterface
+class DAREFLCORE_EXPORT ApplicationModels : public ModelView::ApplicationModelsInterface
 {
 public:
     ApplicationModels();

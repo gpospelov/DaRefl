@@ -11,6 +11,7 @@
 #define DAREFL_SETTINGSVIEW_SETTINGSVIEW_H
 
 #include <QWidget>
+#include <darefl/darefl_export.h>
 
 class QTabWidget;
 class ApplicationModels;
@@ -21,7 +22,7 @@ class QListWidget;
 //! For the moment contains QTabWidget with trees representating all application models.
 //! In the future, might be extended to have any type of settings.
 
-class SettingsView : public QWidget
+class DAREFLCORE_EXPORT SettingsView : public QWidget
 {
     Q_OBJECT
 

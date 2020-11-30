@@ -10,11 +10,11 @@
 #ifndef DAREFL_SLDEDITOR_LAYERELEMENTCONTROLLER_H
 #define DAREFL_SLDEDITOR_LAYERELEMENTCONTROLLER_H
 
+#include "mvvm/plotting/sceneadapterinterface.h"
 #include <QObject>
 #include <QPainterPath>
+#include <darefl/darefl_export.h>
 #include <vector>
-
-#include "mvvm/plotting/sceneadapterinterface.h"
 
 // The mvvm item associated to this layer
 class LayerElementItem;
@@ -28,7 +28,7 @@ class SegmentElementView;
 class RoughnessElementView;
 
 //! Manages the whole appearance of a layer on the graphicsscene
-class LayerElementController : public QObject
+class DAREFLCORE_EXPORT LayerElementController : public QObject
 {
     Q_OBJECT
 

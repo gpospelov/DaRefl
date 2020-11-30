@@ -8,13 +8,14 @@
 // ************************************************************************** //
 
 #include <QGraphicsView>
+#include <darefl/darefl_export.h>
 #include <memory>
 
 class ApplicationModels;
 class SLDElementController;
 
 //! The segment QGraphicsViewItem on the Graphicsscene
-class SLDViewWidget : public QGraphicsView
+class DAREFLCORE_EXPORT SLDViewWidget : public QGraphicsView
 {
     Q_OBJECT
 

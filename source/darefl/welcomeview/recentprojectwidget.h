@@ -11,6 +11,7 @@
 #define DAREFL_WELCOMEVIEW_RECENTPROJECTWIDGET_H
 
 #include <QWidget>
+#include <darefl/darefl_export.h>
 #include <memory>
 #include <vector>
 
@@ -20,7 +21,7 @@ class ProjectPaneWidget;
 //! Widget with the name of current project and collection of recent projects.
 //! Occupies left part of WelcomeView.
 
-class RecentProjectWidget : public QWidget
+class DAREFLCORE_EXPORT RecentProjectWidget : public QWidget
 {
     Q_OBJECT
 

@@ -11,6 +11,7 @@
 #define DAREFL_DATALOADER_LOADERSELECTORPANEL_H
 
 #include <QWidget>
+#include <darefl/darefl_export.h>
 #include <memory>
 
 namespace DataLoader
@@ -25,7 +26,7 @@ class QSplitter;
 //! Panel with settings for DataLoaderDialog.
 //! Located on its left side, contains file selection dialog and parser property widget.
 
-class LoaderSelectorPanel : public QWidget
+class DAREFLCORE_EXPORT LoaderSelectorPanel : public QWidget
 {
     Q_OBJECT
 

@@ -12,11 +12,12 @@
 
 #include <QColor>
 #include <QWidget>
+#include <darefl/darefl_export.h>
 
 class QLabel;
 class QString;
 
-class FancyTab : public QWidget
+class DAREFLCORE_EXPORT FancyTab : public QWidget
 {
     Q_OBJECT
 

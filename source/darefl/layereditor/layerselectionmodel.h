@@ -11,6 +11,7 @@
 #define DAREFL_LAYEREDITOR_LAYERSELECTIONMODEL_H
 
 #include <QItemSelectionModel>
+#include <darefl/darefl_export.h>
 #include <vector>
 
 namespace ModelView
@@ -23,7 +24,7 @@ class LayerEditorActions;
 
 //! Custom selection model for layer view model (AbstractViewModel).
 
-class LayerSelectionModel : public QItemSelectionModel
+class DAREFLCORE_EXPORT LayerSelectionModel : public QItemSelectionModel
 {
     Q_OBJECT
 

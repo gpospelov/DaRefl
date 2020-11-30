@@ -11,6 +11,7 @@
 #define DAREFL_QUICKSIMEDITOR_QUICKSIMCONTROLLER_H
 
 #include <QObject>
+#include <darefl/darefl_export.h>
 #include <darefl/quicksimeditor/quicksim_types.h>
 #include <memory>
 
@@ -29,7 +30,7 @@ class InstrumentModel;
 //! the simulation, and then submit simulation request to JobManager. As soon as JobManager reports
 //! about completed simulations, extract results from there and put them into JobModel.
 
-class QuickSimController : public QObject
+class DAREFLCORE_EXPORT QuickSimController : public QObject
 {
     Q_OBJECT
 

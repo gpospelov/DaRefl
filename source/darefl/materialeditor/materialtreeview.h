@@ -11,12 +11,13 @@
 #define DAREFL_MATERIALEDITOR_MATERIALTREEVIEW_H
 
 #include <QTreeView>
+#include <darefl/darefl_export.h>
 
 //! Extension of QTreeView for material editing.
 //! Provide better user experinece while navigating between cells.
 //! Part of MaterialTableWidget.
 
-class MaterialTreeView : public QTreeView
+class DAREFLCORE_EXPORT MaterialTreeView : public QTreeView
 {
 public:
     using QTreeView::QTreeView;

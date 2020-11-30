@@ -10,6 +10,8 @@
 #ifndef DAREFL_DATALOADER_IMPORTTEXTVIEW_H
 #define DAREFL_DATALOADER_IMPORTTEXTVIEW_H
 
+#include <darefl/darefl_export.h>
+
 //! Based on Qt example "codeeditor"
 //! Copyright (C) 2016 The Qt Company Ltd.
 
@@ -24,7 +26,7 @@ class LineNumberArea;
 
 //! Text view to show imported data.
 
-class ImportTextView : public QPlainTextEdit
+class DAREFLCORE_EXPORT ImportTextView : public QPlainTextEdit
 {
     Q_OBJECT
 
@@ -48,7 +50,7 @@ private:
 
 //! Area with line numbers.
 
-class LineNumberArea : public QWidget
+class DAREFLCORE_EXPORT LineNumberArea : public QWidget
 {
 public:
     LineNumberArea(ImportTextView* editor) : QWidget(editor), codeEditor(editor) {}

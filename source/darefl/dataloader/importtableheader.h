@@ -11,6 +11,7 @@
 #define DAREFL_DATALOADER_IMPORTTABLEHEADER_H
 
 #include <QVariant>
+#include <darefl/darefl_export.h>
 #include <vector>
 
 namespace DataLoader
@@ -20,7 +21,7 @@ struct ColumnInfo;
 
 //! Holds all data related to the content of utility rows in ImportTableModel.
 
-class ImportTableHeader
+class DAREFLCORE_EXPORT ImportTableHeader
 {
 public:
     enum RowTypes { TYPE, UNITS, MULTIPLIER, MAX };

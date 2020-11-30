@@ -11,12 +11,13 @@
 #define DAREFL_IMPORTDATAVIEW_IMPORTDATAEDITORTOOLBAL_H
 
 #include <QToolBar>
+#include <darefl/darefl_export.h>
 
 class ImportDataEditorActions;
 
 //! Toolbar for ImportDataEditor.
 
-class ImportDataEditorToolBar : public QToolBar
+class DAREFLCORE_EXPORT ImportDataEditorToolBar : public QToolBar
 {
     Q_OBJECT
 

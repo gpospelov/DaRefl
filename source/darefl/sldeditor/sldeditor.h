@@ -11,6 +11,7 @@
 #define DAREFL_SLDEDITOR_SLDEDITOR_H
 
 #include <QWidget>
+#include <darefl/darefl_export.h>
 
 class SLDEditorActions;
 class SLDEditorToolBar;
@@ -18,7 +19,7 @@ class SLDViewWidget;
 class ApplicationModels;
 
 //! The SLD editor QWidget
-class SLDEditor : public QWidget
+class DAREFLCORE_EXPORT SLDEditor : public QWidget
 {
     Q_OBJECT
 

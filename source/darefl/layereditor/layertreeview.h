@@ -11,10 +11,11 @@
 #define DAREFL_LAYEREDITOR_LAYERTREEVIEW_H
 
 #include <QTreeView>
+#include <darefl/darefl_export.h>
 
 //! Extension of QTreeView for layer editing.
 
-class LayerTreeView : public QTreeView
+class DAREFLCORE_EXPORT LayerTreeView : public QTreeView
 {
 public:
     using QTreeView::QTreeView;

@@ -11,6 +11,7 @@
 #define DAREFL_MODEL_JOBMODEL_H
 
 #include <mvvm/model/sessionmodel.h>
+#include <darefl/darefl_export.h>
 
 namespace ModelView
 {
@@ -26,7 +27,7 @@ struct SLDProfile;
 //! The model to store results of (possibly) multiple reflectometry simulation, and all
 //! viewports, representing various graphs in QuickSimEditor widgets.
 
-class JobModel : public ModelView::SessionModel
+class DAREFLCORE_EXPORT JobModel : public ModelView::SessionModel
 {
 public:
     JobModel(std::shared_ptr<ModelView::ItemPool> pool = {});

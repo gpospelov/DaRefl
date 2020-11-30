@@ -11,6 +11,7 @@
 #define DAREFL_MATERIALEDITOR_MATERIALEDITORWIDGET_H
 
 #include <QWidget>
+#include <darefl/darefl_export.h>
 #include <memory>
 
 namespace ModelView
@@ -28,7 +29,7 @@ class MaterialSelectionModel;
 //! Widget to hold material table (MaterialTreeView) and all corresponding models and delegates.
 //! Belongs to MaterialEditor.
 
-class MaterialEditorWidget : public QWidget
+class DAREFLCORE_EXPORT MaterialEditorWidget : public QWidget
 {
     Q_OBJECT
 

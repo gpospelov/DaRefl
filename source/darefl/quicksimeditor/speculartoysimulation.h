@@ -10,6 +10,7 @@
 #ifndef DAREFL_QUICKSIMEDITOR_SPECULARTOYSIMULATION_H
 #define DAREFL_QUICKSIMEDITOR_SPECULARTOYSIMULATION_H
 
+#include <darefl/darefl_export.h>
 #include <darefl/quicksimeditor/quicksim_types.h>
 #include <memory>
 #include <mvvm/utils/progresshandler.h>
@@ -20,7 +21,7 @@ class SpecularScalarTanhStrategy;
 //! Toy simulation to calculate "specular reflectivity.
 //! Used by JobManager to run simulation in mylti-threaded mode.
 
-class SpecularToySimulation
+class DAREFLCORE_EXPORT SpecularToySimulation
 {
 public:
     ~SpecularToySimulation();

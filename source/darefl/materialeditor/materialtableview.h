@@ -11,12 +11,13 @@
 #define DAREFL_MATERIALEDITOR_MATERIALTABLEVIEW_H
 
 #include <QTableView>
+#include <darefl/darefl_export.h>
 
 //! Extension of QTableView for material editing.
 //! Provide better user experinece while navigating between cells.
 //! Part of MaterialTableWidget.
 
-class MaterialTableView : public QTableView
+class DAREFLCORE_EXPORT MaterialTableView : public QTableView
 {
 public:
     using QTableView::QTableView;

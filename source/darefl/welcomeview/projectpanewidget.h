@@ -11,13 +11,14 @@
 #define DAREFL_WELCOMEVIEW_PROJECTPANEWIDGET_H
 
 #include <QWidget>
+#include <darefl/darefl_export.h>
 
 class QLabel;
 
 //! Panel with labels to hold project name and project dir. When user clicks on it,
 //! sends the request to open corresponding project. Part of RecentProjectsWidget.
 
-class ProjectPaneWidget : public QWidget
+class DAREFLCORE_EXPORT ProjectPaneWidget : public QWidget
 {
     Q_OBJECT
 

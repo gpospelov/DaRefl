@@ -11,6 +11,7 @@
 #define DAREFL_IMPORTDATAVIEW_GRAPHCANVASWIDGET_H
 
 #include <QWidget>
+#include <darefl/darefl_export.h>
 
 namespace ModelView
 {
@@ -22,7 +23,7 @@ class CanvasItem;
 //! Widget to show canvas with graph collection.
 //! Occupies the right part of ImportDataEditor.
 
-class GraphCanvasWidget : public QWidget
+class DAREFLCORE_EXPORT GraphCanvasWidget : public QWidget
 {
     Q_OBJECT
 

@@ -10,6 +10,7 @@
 #ifndef DAREFL_DATALOADER_LOADERPREVIEWPANEL_H
 #define DAREFL_DATALOADER_LOADERPREVIEWPANEL_H
 
+#include <darefl/darefl_export.h>
 #include <QWidget>
 
 class ImportTextView;
@@ -25,7 +26,7 @@ struct ColumnInfo;
 //! Panel with settings for DataLoaderDialog.
 //! Located on its right side, contains text and table views.
 
-class LoaderPreviewPanel : public QWidget
+class DAREFLCORE_EXPORT LoaderPreviewPanel : public QWidget
 {
     Q_OBJECT
 
