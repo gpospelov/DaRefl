@@ -20,5 +20,6 @@ add_subdirectory(sldeditor)
 add_subdirectory(welcomeview)
 
 target_link_libraries(${library_name} PUBLIC MVVM::View Qt5::Core Qt5::Gui Qt5::Widgets minikernel)
-target_include_directories(${library_name} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/..>)
-
+target_include_directories(${library_name} PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/..>
+    $<BUILD_INTERFACE:${DAREFL_AUTOGEN_DIR}>)

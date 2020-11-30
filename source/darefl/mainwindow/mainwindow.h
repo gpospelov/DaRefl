@@ -10,6 +10,7 @@
 #ifndef DAREFL_MAINWINDOW_MAINWINDOW_H
 #define DAREFL_MAINWINDOW_MAINWINDOW_H
 
+#include <darefl/darefl_export.h>
 #include <QMainWindow>
 #include <memory>
 
@@ -23,7 +24,7 @@ class SettingsView;
 
 //! Application main window.
 
-class MainWindow : public QMainWindow
+class DAREFLCORE_EXPORT MainWindow : public QMainWindow
 {
     Q_OBJECT
 
