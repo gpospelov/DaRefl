@@ -13,6 +13,8 @@
 #include <utility>
 #include <vector>
 #include <minikernel/Computation/Slice.h>
+#include <minikernel/Wrap/WinDllMacros.h>
+
 
 //! Object that can generate the material profile of a sample as a function of depth.
 namespace BornAgain
@@ -20,7 +22,7 @@ namespace BornAgain
 
 using multislice_t = std::vector<BornAgain::Slice>;
 
-class ProfileHelper
+class MINIKERNEL_EXPORT ProfileHelper
 {
 public:
     ProfileHelper(const multislice_t& sample);
