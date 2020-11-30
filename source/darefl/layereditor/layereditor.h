@@ -11,6 +11,7 @@
 #define DAREFL_LAYEREDITOR_LAYEREDITOR_H
 
 #include <QWidget>
+#include <darefl/darefl_export.h>
 
 class ApplicationModels;
 class LayerEditorActions;
@@ -24,7 +25,7 @@ class AbstractViewModel;
 
 //! Layer editor.
 
-class LayerEditor : public QWidget
+class DAREFLCORE_EXPORT LayerEditor : public QWidget
 {
     Q_OBJECT
 

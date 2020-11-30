@@ -11,12 +11,13 @@
 #define DAREFL_QUICKSIMEDITOR_JOBMANAGER_H
 
 #include <QObject>
+#include <darefl/darefl_export.h>
 #include <darefl/quicksimeditor/quicksim_types.h>
 #include <mvvm/utils/threadsafestack.h>
 
 //! Handles all thread activity for running job simulation in the background.
 
-class JobManager : public QObject
+class DAREFLCORE_EXPORT JobManager : public QObject
 {
     Q_OBJECT
 

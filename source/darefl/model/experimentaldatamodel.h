@@ -10,6 +10,7 @@
 #ifndef DAREFL_MODEL_EXPERIMENTALDATAMODEL_H
 #define DAREFL_MODEL_EXPERIMENTALDATAMODEL_H
 
+#include <darefl/darefl_export.h>
 #include <mvvm/model/sessionmodel.h>
 #include <vector>
 
@@ -27,7 +28,7 @@ class GraphViewportItem;
 
 //! The model to store imported reflectometry data.
 
-class ExperimentalDataModel : public ModelView::SessionModel
+class DAREFLCORE_EXPORT ExperimentalDataModel : public ModelView::SessionModel
 {
 public:
     ExperimentalDataModel(std::shared_ptr<ModelView::ItemPool> pool = {});

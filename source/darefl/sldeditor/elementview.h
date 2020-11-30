@@ -10,12 +10,13 @@
 #ifndef DAREFL_SLDEDITOR_ELEMENTVIEW_H
 #define DAREFL_SLDEDITOR_ELEMENTVIEW_H
 
+#include <darefl/darefl_export.h>
 #include <darefl/sldeditor/graphicsscene.h>
 
 #include <QGraphicsObject>
 
 //! The interface of any QGraphicsViewItem on GraphicsScene to the Sceneadapter
-class ElementView : public QGraphicsObject
+class DAREFLCORE_EXPORT ElementView : public QGraphicsObject
 {
     Q_OBJECT
 

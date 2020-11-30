@@ -11,6 +11,7 @@
 #define DAREFL_DATALOADER_PARSERPROPERTYWIDGET_H
 
 #include <QWidget>
+#include <darefl/darefl_export.h>
 #include <darefl/dataloader/dataloader_types.h>
 #include <memory>
 
@@ -27,7 +28,7 @@ class QLineEdit;
 //! Panel to setup ASCII parser. Intended for concrete class DefaultParser.
 //! Contains selection of separator symbols, patterns to ignore lines, and import target settings.
 
-class ParserPropertyWidget : public QWidget
+class DAREFLCORE_EXPORT ParserPropertyWidget : public QWidget
 {
     Q_OBJECT
 

@@ -11,6 +11,7 @@
 #define DAREFL_IMPORTDATAVIEW_DATASELECTORWIDGET_H
 
 #include <QWidget>
+#include <darefl/darefl_export.h>
 
 namespace ModelView
 {
@@ -25,7 +26,7 @@ class DataViewModel;
 //! Widget to select graphs and look at their properties.
 //! Occupies the left part of ImportDataEditor.
 
-class DataSelectorWidget : public QWidget
+class DAREFLCORE_EXPORT DataSelectorWidget : public QWidget
 {
     Q_OBJECT
 

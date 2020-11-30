@@ -10,6 +10,7 @@
 #ifndef DAREFL_SLDEDITOR_SEGMENTELEMENTVIEW_H
 #define DAREFL_SLDEDITOR_SEGMENTELEMENTVIEW_H
 
+#include <darefl/darefl_export.h>
 #include <darefl/sldeditor/elementview.h>
 
 #include <QBrush>
@@ -19,7 +20,7 @@
 class LayerElementController;
 
 //! The segment QGraphicsViewItem on the Graphicsscene
-class SegmentElementView : public ElementView
+class DAREFLCORE_EXPORT SegmentElementView : public ElementView
 {
 public:
     SegmentElementView();

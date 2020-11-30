@@ -11,6 +11,7 @@
 #define DAREFL_SLDEDITOR_GRAPHICSSCENE_H
 
 #include <QGraphicsScene>
+#include <darefl/darefl_export.h>
 #include <memory>
 
 namespace ModelView
@@ -24,7 +25,7 @@ class CustomPlotProxyWidget;
 class RegionOfInterestItem;
 
 //! Custom graphics scene to show QCustomPlot with additional elements on top.
-class GraphicsScene : public QGraphicsScene
+class DAREFLCORE_EXPORT GraphicsScene : public QGraphicsScene
 {
     Q_OBJECT
 

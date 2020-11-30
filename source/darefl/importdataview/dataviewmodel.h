@@ -10,6 +10,7 @@
 #ifndef DAREFL_IMPORTDATAVIEW_DATAVIEWMODEL_H
 #define DAREFL_IMPORTDATAVIEW_DATAVIEWMODEL_H
 
+#include <darefl/darefl_export.h>
 #include <mvvm/viewmodel/topitemsviewmodel.h>
 
 namespace ModelView
@@ -21,7 +22,7 @@ class ExperimentalDataModel;
 
 //! View model for ExperimentalDataModel with drag-and-drop support.
 
-class DataViewModel : public ModelView::TopItemsViewModel
+class DAREFLCORE_EXPORT DataViewModel : public ModelView::TopItemsViewModel
 {
     Q_OBJECT
 

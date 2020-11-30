@@ -11,11 +11,12 @@
 #define DAREFL_WELCOMEVIEW_RECENTPROJECTSETTINGS_H
 
 #include <QStringList>
+#include <darefl/darefl_export.h>
 
 //! Collection of settings for RecentProjectWidget. Used to save last directory selected
 //! by the user, and list of recent projects. Relies on QSettings machinery.
 
-class RecentProjectSettings
+class DAREFLCORE_EXPORT RecentProjectSettings
 {
 public:
     RecentProjectSettings();

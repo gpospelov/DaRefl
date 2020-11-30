@@ -11,12 +11,13 @@
 #define DAREFL_IMPORTDATAVIEW_IMPORTDATAVIEW_H
 
 #include <QWidget>
+#include <darefl/darefl_export.h>
 
 class ApplicationModels;
 
 //! Main window to import user data.
 
-class ImportDataView : public QWidget
+class DAREFLCORE_EXPORT ImportDataView : public QWidget
 {
     Q_OBJECT
 

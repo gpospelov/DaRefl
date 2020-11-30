@@ -10,11 +10,12 @@
 #ifndef DAREFL_DATALOADER_DATALOADERTOOLBAR_H
 #define DAREFL_DATALOADER_DATALOADERTOOLBAR_H
 
+#include <darefl/darefl_export.h>
 #include <QToolBar>
 
 //! Tool bar for DataLoaderDialog.
 
-class DataLoaderToolBar : public QToolBar
+class DAREFLCORE_EXPORT DataLoaderToolBar : public QToolBar
 {
     Q_OBJECT
 

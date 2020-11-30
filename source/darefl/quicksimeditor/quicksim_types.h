@@ -11,12 +11,13 @@
 #define DAREFL_QUICKSIMEDITOR_QUICKSIM_TYPES_H
 
 #include <complex>
+#include <darefl/darefl_export.h>
 #include <vector>
 
 using complex_t = std::complex<double>;
 
 //! Data structure for simple multilayer representation.
-struct Slice {
+struct DAREFLCORE_EXPORT Slice {
     complex_t material;
     double thickness{0.0};
     double sigma{0.0}; // top interface sigma
@@ -24,20 +25,20 @@ struct Slice {
 using multislice_t = std::vector<Slice>;
 
 //! Represents data to run specular simulations.
-struct SimulationInput {
+struct DAREFLCORE_EXPORT SimulationInput {
     std::vector<double> qvalues;
     multislice_t slice_data;
     double intensity;
 };
 
 //! Represents results of the simulation.
-struct SimulationResult {
+struct DAREFLCORE_EXPORT SimulationResult {
     std::vector<double> qvalues;
     std::vector<double> amplitudes;
 };
 
 //! Represents results of SLD profile calculations.
-struct SLDProfile {
+struct DAREFLCORE_EXPORT SLDProfile {
     double zmin{0.0};
     double zmax{0.0};
     std::vector<double> sld_real_values;

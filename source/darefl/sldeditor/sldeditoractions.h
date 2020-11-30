@@ -11,6 +11,7 @@
 #define DAREFL_SLDEDITOR_SLDEDITORACTIONS_H
 
 #include <QObject>
+#include <darefl/darefl_export.h>
 #include <memory>
 
 class SLDElementModel;
@@ -18,9 +19,10 @@ class SLDElementModel;
 //! Handles user actions applied to SLDEditor.
 //! Belongs to SLDEditor.
 
-class SLDEditorActions : public QObject
+class DAREFLCORE_EXPORT SLDEditorActions : public QObject
 {
     Q_OBJECT
+
 public:
     SLDEditorActions(QObject* parent = nullptr);
     ~SLDEditorActions();

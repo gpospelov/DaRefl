@@ -10,6 +10,7 @@
 #ifndef DAREFL_MODEL_MATERIALMODEL_H
 #define DAREFL_MODEL_MATERIALMODEL_H
 
+#include <darefl/darefl_export.h>
 #include <mvvm/model/sessionmodel.h>
 #include <mvvm/model/tagrow.h>
 #include <vector>
@@ -25,7 +26,7 @@ class SLDMaterialItem;
 
 //! Model to hold MaterialItems.
 
-class MaterialModel : public ModelView::SessionModel
+class DAREFLCORE_EXPORT MaterialModel : public ModelView::SessionModel
 {
 public:
     MaterialModel(std::shared_ptr<ModelView::ItemPool> pool = {});

@@ -11,6 +11,7 @@
 #define DAREFL_QUICKSIMEDITOR_QUICKSIMEDITORTOOLBAR_H
 
 #include <QToolBar>
+#include <darefl/darefl_export.h>
 
 class QProgressBar;
 class QCheckBox;
@@ -18,7 +19,7 @@ class QCheckBox;
 //! Toolbar for QuickSimEditor.
 //! Contains live simulation button, cancel button, simulation progress bar and settings buttons.
 
-class QuickSimEditorToolBar : public QToolBar
+class DAREFLCORE_EXPORT QuickSimEditorToolBar : public QToolBar
 {
     Q_OBJECT
 

@@ -10,6 +10,7 @@
 #ifndef DAREFL_DATALOADER_DATALOADER_TYPES_H
 #define DAREFL_DATALOADER_DATALOADER_TYPES_H
 
+#include <darefl/darefl_export.h>
 #include <functional>
 #include <string>
 #include <vector>
@@ -19,7 +20,7 @@ namespace DataLoader
 
 //! Parser options to process multi column ASCII files.
 
-struct ParserOptions {
+struct DAREFLCORE_EXPORT ParserOptions {
     std::string m_header_prefix = "#"; //!< prefix denoting header line
     std::string m_separator = " ";     //!< column separator
     std::string m_skip_index_pattern;  //!< pattern denoting line to skip (i.e. '1,10-12,42')
@@ -27,7 +28,7 @@ struct ParserOptions {
 
 //! Info about the column as defined by the user via ImportTableWidget.
 
-struct ColumnInfo {
+struct DAREFLCORE_EXPORT ColumnInfo {
     int column{-1};
     std::string type_name;
     std::string units;

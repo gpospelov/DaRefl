@@ -11,6 +11,7 @@
 #define DAREFL_WELCOMEVIEW_PROJECTHANDLER_H
 
 #include <QObject>
+#include <darefl/darefl_export.h>
 #include <memory>
 #include <vector>
 
@@ -29,7 +30,7 @@ class RecentProjectWidget;
 //! Main class to coordinate all activity on user's request to create new project,
 //! open existing one, or choose one of recent projects on disk.
 
-class ProjectHandler : public QObject
+class DAREFLCORE_EXPORT ProjectHandler : public QObject
 {
     Q_OBJECT
 

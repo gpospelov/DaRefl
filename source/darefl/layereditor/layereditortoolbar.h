@@ -12,6 +12,7 @@
 
 #include <QToolBar>
 #include <QWidget>
+#include <darefl/darefl_export.h>
 #include <map>
 #include <string>
 
@@ -19,7 +20,7 @@ class LayerEditorActions;
 
 //! Layer editor toolbar.
 
-class LayerEditorToolBar : public QToolBar
+class DAREFLCORE_EXPORT LayerEditorToolBar : public QToolBar
 {
     Q_OBJECT
 

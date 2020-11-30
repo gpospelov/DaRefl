@@ -10,6 +10,7 @@
 #ifndef DAREFL_MODEL_JOBITEM_H
 #define DAREFL_MODEL_JOBITEM_H
 
+#include <darefl/darefl_export.h>
 #include <mvvm/model/compounditem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
 
@@ -25,7 +26,7 @@ class CanvasItem;
 //! Viewport intended for showing SLD profile.
 //! Provides custom y-axis range.
 
-class SLDCanvasItem : public ModelView::GraphViewportItem
+class DAREFLCORE_EXPORT SLDCanvasItem : public ModelView::GraphViewportItem
 {
 public:
     SLDCanvasItem();
@@ -37,7 +38,7 @@ protected:
 //! Represents state of QuickSimEditor.
 //! Holds results of realtime simulation, SLD profiles and difference plot.
 
-class JobItem : public ModelView::CompoundItem
+class DAREFLCORE_EXPORT JobItem : public ModelView::CompoundItem
 {
 public:
     static inline const std::string P_SLD_DATA = "P_SLD_DATA";

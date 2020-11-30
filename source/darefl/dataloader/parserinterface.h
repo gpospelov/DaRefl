@@ -10,6 +10,7 @@
 #ifndef DAREFL_DATALOADER_PARSERINTERFACE_H
 #define DAREFL_DATALOADER_PARSERINTERFACE_H
 
+#include <darefl/darefl_export.h>
 #include <string>
 #include <vector>
 
@@ -18,7 +19,7 @@ namespace DataLoader
 
 //! Interface for all classes capable of parsing ASCII data into multicolumn presentation.
 
-class ParserInterface
+class DAREFLCORE_EXPORT ParserInterface
 {
 public:
     virtual ~ParserInterface() = default;

@@ -10,6 +10,7 @@
 #ifndef DAREFL_DATALOADER_DEFAULTPARSER_H
 #define DAREFL_DATALOADER_DEFAULTPARSER_H
 
+#include <darefl/darefl_export.h>
 #include <darefl/dataloader/dataloader_types.h>
 #include <darefl/dataloader/parserinterface.h>
 #include <map>
@@ -23,7 +24,7 @@ namespace DataLoader
 //! + Skips lines matching given line number pattern.
 //! + Parse data in columns of basing on given separator value.
 
-class DefaultParser : public ParserInterface
+class DAREFLCORE_EXPORT DefaultParser : public ParserInterface
 {
 public:
     DefaultParser(const ParserOptions& options);

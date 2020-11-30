@@ -10,6 +10,8 @@
 #ifndef DAREFL_MAINWINDOW_STYLEUTILS_H
 #define DAREFL_MAINWINDOW_STYLEUTILS_H
 
+#include <darefl/darefl_export.h>
+
 class QSize;
 class QFont;
 class QToolBar;
@@ -20,16 +22,16 @@ namespace StyleUtils
 {
 
 //! Size of tolbar icons for LayerEditor, MaterialEditor and similar.
-QSize ToolBarIconSize();
+DAREFLCORE_EXPORT QSize ToolBarIconSize();
 
 //! Hint on size of docks on main reflectometry window.
-QSize DockSizeHint();
+DAREFLCORE_EXPORT QSize DockSizeHint();
 
 //! Hint on minimum size of docks on main reflectometry window.
-QSize DockMinimumSizeHint();
+DAREFLCORE_EXPORT QSize DockMinimumSizeHint();
 
 //! Set common style for a toolbar.
-void SetToolBarStyleTextBesides(QToolBar* toolbar);
+DAREFLCORE_EXPORT void SetToolBarStyleTextBesides(QToolBar* toolbar);
 
 }; // namespace StyleUtils
 

@@ -10,6 +10,7 @@
 #ifndef DAREFL_MODEL_EXPERIMENTALDATAITEMS_H
 #define DAREFL_MODEL_EXPERIMENTALDATAITEMS_H
 
+#include <darefl/darefl_export.h>
 #include <mvvm/standarditems/containeritem.h>
 #include <mvvm/standarditems/graphviewportitem.h>
 
@@ -22,7 +23,7 @@ class Data1DItem;
 //! related to plotting properties. Used in the context of importing of 1D data. Serves as an input
 //! for GraphCanvas widget.
 
-class CanvasItem : public ModelView::GraphViewportItem
+class DAREFLCORE_EXPORT CanvasItem : public ModelView::GraphViewportItem
 {
 public:
     CanvasItem();
@@ -35,7 +36,7 @@ protected:
 //! Used in the context of importing of 1D data, when user groups different GraphItem's
 //! on different canvas for later plotting.
 
-class CanvasContainerItem : public ModelView::ContainerItem
+class DAREFLCORE_EXPORT CanvasContainerItem : public ModelView::ContainerItem
 {
 public:
     CanvasContainerItem();
@@ -47,7 +48,7 @@ public:
 //! The order of items in the collection chronologically corresponds to user activity.
 //! All other plotting entities (GraphItems) are linked to data items in this container.
 
-class ExperimentalDataContainerItem : public ModelView::ContainerItem
+class DAREFLCORE_EXPORT ExperimentalDataContainerItem : public ModelView::ContainerItem
 {
 public:
     ExperimentalDataContainerItem();

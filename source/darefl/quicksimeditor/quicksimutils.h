@@ -10,6 +10,7 @@
 #ifndef DAREFL_QUICKSIMEDITOR_QUICKSIMUTILS_H
 #define DAREFL_QUICKSIMEDITOR_QUICKSIMUTILS_H
 
+#include <darefl/darefl_export.h>
 #include <darefl/quicksimeditor/quicksim_types.h>
 
 class MultiLayerItem;
@@ -24,9 +25,10 @@ namespace Utils
 {
 
 //! Creates multi-slice presentation of internal multilayer structure.
-multislice_t CreateMultiSlice(const MultiLayerItem& multilayer);
+DAREFLCORE_EXPORT multislice_t CreateMultiSlice(const MultiLayerItem& multilayer);
 
-std::vector<BornAgain::Slice> createBornAgainSlices(const multislice_t& multislice);
+DAREFLCORE_EXPORT std::vector<BornAgain::Slice>
+createBornAgainSlices(const multislice_t& multislice);
 
 } // namespace Utils
 

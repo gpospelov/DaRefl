@@ -11,6 +11,7 @@
 #define DAREFL_IMPORTDATAVIEW_IMPORTDATAEDITOR_H
 
 #include <QWidget>
+#include <darefl/darefl_export.h>
 #include <string>
 
 class ExperimentalDataModel;
@@ -25,7 +26,7 @@ class CanvasItem;
 
 //! Main editor to import user data.
 
-class ImportDataEditor : public QWidget
+class DAREFLCORE_EXPORT ImportDataEditor : public QWidget
 {
     Q_OBJECT
 

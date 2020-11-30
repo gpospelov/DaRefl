@@ -10,6 +10,7 @@
 #ifndef DAREFL_DATALOADER_DATAHANDLER_H
 #define DAREFL_DATALOADER_DATAHANDLER_H
 
+#include <darefl/darefl_export.h>
 #include <map>
 #include <string>
 #include <vector>
@@ -17,7 +18,7 @@
 //! Handles raw data during the life time of DataHandlerDialog.
 //! Loads the data from multiple ASCII files and stores in a buffer of strings.
 
-class DataHandler
+class DAREFLCORE_EXPORT DataHandler
 {
 public:
     DataHandler() = default;

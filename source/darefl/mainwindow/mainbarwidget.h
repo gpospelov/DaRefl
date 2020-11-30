@@ -11,6 +11,7 @@
 #define DAREFL_MAINWINDOW_MAINBARWIDGET_H
 
 #include <QWidget>
+#include <darefl/darefl_export.h>
 #include <map>
 
 class QStackedWidget;
@@ -21,7 +22,7 @@ class FancyTab;
 //! Widget container with functionality similar to QTabWidget. Has large button bar on top,
 //! and stacked widget at bottom.
 
-class MainBarWidget : public QWidget
+class DAREFLCORE_EXPORT MainBarWidget : public QWidget
 {
     Q_OBJECT
 

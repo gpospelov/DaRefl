@@ -10,6 +10,7 @@
 #ifndef DAREFL_SLDEDITOR_SLDELEMENTMODEL_H
 #define DAREFL_SLDEDITOR_SLDELEMENTMODEL_H
 
+#include <darefl/darefl_export.h>
 #include <mvvm/model/sessionmodel.h>
 #include <vector>
 
@@ -22,7 +23,7 @@ class ExternalProperty;
 }
 
 //! The model of the sld layer visual representation
-class SLDElementModel : public ModelView::SessionModel
+class DAREFLCORE_EXPORT SLDElementModel : public ModelView::SessionModel
 {
 public:
     SLDElementModel();

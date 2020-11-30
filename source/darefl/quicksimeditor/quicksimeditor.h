@@ -11,6 +11,7 @@
 #define DAREFL_QUICKSIMEDITOR_QUICKSIMEDITOR_H
 
 #include <QWidget>
+#include <darefl/darefl_export.h>
 
 class JobModel;
 class ApplicationModels;
@@ -21,7 +22,7 @@ class SimPlotWidget;
 
 //! Quick reflectivity simulations.
 
-class QuickSimEditor : public QWidget
+class DAREFLCORE_EXPORT QuickSimEditor : public QWidget
 {
     Q_OBJECT
 

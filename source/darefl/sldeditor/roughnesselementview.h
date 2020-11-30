@@ -10,6 +10,7 @@
 #ifndef DAREFL_SLDEDITOR_ROUGHNESSELEMENTVIEW_H
 #define DAREFL_SLDEDITOR_ROUGHNESSELEMENTVIEW_H
 
+#include <darefl/darefl_export.h>
 #include <darefl/sldeditor/elementview.h>
 
 #include <QBrush>
@@ -17,7 +18,7 @@
 #include <QPen>
 
 //! The roughness QGraphicsViewItem
-class RoughnessElementView : public ElementView
+class DAREFLCORE_EXPORT RoughnessElementView : public ElementView
 {
 public:
     RoughnessElementView();

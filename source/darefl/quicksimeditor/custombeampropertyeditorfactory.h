@@ -11,13 +11,14 @@
 #define DAREFL_QUICKSIMEDITOR_CUSTOMBEAMPROPERTYEDITORFACTORY_H
 
 #include <mvvm/editors/defaulteditorfactory.h>
+#include <darefl/darefl_export.h>
 
 class ApplicationModels;
 
 //! Custom editor factory for LayerTreeView. Substitutes default ExternalProperty editor
 //! with custom one, which will offer the choice between all defined materials.
 
-class CustomBeamPropertyEditorFactory : public ModelView::DefaultEditorFactory
+class DAREFLCORE_EXPORT CustomBeamPropertyEditorFactory : public ModelView::DefaultEditorFactory
 {
 public:
     CustomBeamPropertyEditorFactory(ApplicationModels* models);

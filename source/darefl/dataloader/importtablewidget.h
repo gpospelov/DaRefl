@@ -11,6 +11,7 @@
 #define DAREFL_DATALOADER_IMPORTTABLEWIDGET_H
 
 #include <QWidget>
+#include <darefl/darefl_export.h>
 #include <memory>
 #include <string>
 #include <vector>
@@ -31,7 +32,7 @@ class ImportTableModel;
 //! Contains table with imported data.
 //! Belongs to LoaderPreviewPanel.
 
-class ImportTableWidget : public QWidget
+class DAREFLCORE_EXPORT ImportTableWidget : public QWidget
 {
     Q_OBJECT
 

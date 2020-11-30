@@ -10,6 +10,7 @@
 #ifndef DAREFL_SLDEDITOR_HANDLEELEMENTVIEW_H
 #define DAREFL_SLDEDITOR_HANDLEELEMENTVIEW_H
 
+#include <darefl/darefl_export.h>
 #include <darefl/sldeditor/elementview.h>
 
 #include <QBrush>
@@ -19,7 +20,7 @@
 class LayerElementController;
 
 //! The handle QGraphicsViewItem on GraphicsScene
-class HandleElementView : public ElementView
+class DAREFLCORE_EXPORT HandleElementView : public ElementView
 {
 public:
     HandleElementView();

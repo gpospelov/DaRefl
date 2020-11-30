@@ -11,6 +11,7 @@
 #define DAREFL_SLDEDITOR_SLDELEMENTCONTROLLER_H
 
 #include <QObject>
+#include <darefl/darefl_export.h>
 #include <darefl/sldeditor/layerelementcontroller.h>
 #include <mvvm/model/sessionitem.h>
 #include <mvvm/model/sessionmodel.h>
@@ -22,7 +23,7 @@ class SLDElementModel;
 class GraphicsScene;
 
 //! The controller of the sld layer visual representation
-class SLDElementController : public QObject
+class DAREFLCORE_EXPORT SLDElementController : public QObject
 {
     Q_OBJECT
 

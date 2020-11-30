@@ -10,6 +10,7 @@
 #ifndef DAREFL_DATALOADER_IMPORTFILEWIDGET_H
 #define DAREFL_DATALOADER_IMPORTFILEWIDGET_H
 
+#include <darefl/darefl_export.h>
 #include <QWidget>
 
 class QListView;
@@ -19,7 +20,7 @@ class QStringListModel;
 //! List represents names of ASCII files which will be later imported and parsed.
 //! Part of LoaderPreviewPanel.
 
-class ImportFileWidget : public QWidget
+class DAREFLCORE_EXPORT ImportFileWidget : public QWidget
 {
     Q_OBJECT
 

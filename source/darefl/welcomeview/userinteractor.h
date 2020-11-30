@@ -11,6 +11,7 @@
 #define DAREFL_WELCOMEVIEW_USERINTERACTOR_H
 
 #include <string>
+#include <darefl/darefl_export.h>
 
 namespace ModelView
 {
@@ -23,7 +24,7 @@ class RecentProjectSettings;
 //! Provide save/discard/cancel and similar dialogs on user request.
 //! Intended to work in pair with ProjectManagerDecorator.
 
-class UserInteractor
+class DAREFLCORE_EXPORT UserInteractor
 {
 public:
     UserInteractor(RecentProjectSettings* settings, QWidget* parent);

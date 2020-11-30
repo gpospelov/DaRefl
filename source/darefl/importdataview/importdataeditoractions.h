@@ -11,6 +11,7 @@
 #define DAREFL_IMPORTDATAVIEW_IMPORTDATAEDITORACTIONS_H
 
 #include <QObject>
+#include <darefl/darefl_export.h>
 
 namespace ModelView
 {
@@ -23,7 +24,7 @@ class QItemSelection;
 
 //! Actions for ImportDataEditor.
 
-class ImportDataEditorActions : public QObject
+class DAREFLCORE_EXPORT ImportDataEditorActions : public QObject
 {
     Q_OBJECT
 
