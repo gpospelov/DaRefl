@@ -22,7 +22,7 @@
 //! Limits for a real fit parameter.
 //! @ingroup fitting
 
-class BA_CORE_API_ RealLimits
+class MINIKERNEL_EXPORT RealLimits
 {
 public:
     RealLimits();

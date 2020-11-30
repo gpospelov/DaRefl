@@ -28,7 +28,7 @@ enum class MATERIAL_TYPES { InvalidMaterialType = -1, RefractiveMaterial = 0, Ma
 
 //! @ingroup materials
 
-class BA_CORE_API_ BaseMaterialImpl : public INamed
+class MINIKERNEL_EXPORT BaseMaterialImpl : public INamed
 {
 public:
     //! Constructs basic material with name

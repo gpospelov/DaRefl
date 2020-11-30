@@ -301,7 +301,7 @@ template <class T> inline bool operator!=(const BasicVector3D<T>& a, const Basic
 
 //! Creates a vector<double> as a wavevector with given wavelength and angles.
 //! Specifically needed for grazing-incidence scattering.
-BA_CORE_API_ BasicVector3D<double> vecOfLambdaAlphaPhi(double _lambda, double _alpha, double _phi);
+MINIKERNEL_EXPORT BasicVector3D<double> vecOfLambdaAlphaPhi(double _lambda, double _alpha, double _phi);
 
 // =============================================================================
 // ?? for API generation ??
@@ -329,30 +329,30 @@ inline auto BasicVector3D<T>::cross(const BasicVector3D<U>& v) const
 }
 #endif // SWIG
 
-template <> BA_CORE_API_ BasicVector3D<double> BasicVector3D<double>::conj() const;
+template <> MINIKERNEL_EXPORT BasicVector3D<double> BasicVector3D<double>::conj() const;
 
 template <>
-BA_CORE_API_ BasicVector3D<std::complex<double>> BasicVector3D<std::complex<double>>::conj() const;
+MINIKERNEL_EXPORT BasicVector3D<std::complex<double>> BasicVector3D<std::complex<double>>::conj() const;
 
-template <> BA_CORE_API_ double BasicVector3D<double>::phi() const;
+template <> MINIKERNEL_EXPORT double BasicVector3D<double>::phi() const;
 
-template <> BA_CORE_API_ double BasicVector3D<double>::theta() const;
+template <> MINIKERNEL_EXPORT double BasicVector3D<double>::theta() const;
 
-template <> BA_CORE_API_ double BasicVector3D<double>::cosTheta() const;
+template <> MINIKERNEL_EXPORT double BasicVector3D<double>::cosTheta() const;
 
-template <> BA_CORE_API_ double BasicVector3D<double>::sin2Theta() const;
+template <> MINIKERNEL_EXPORT double BasicVector3D<double>::sin2Theta() const;
 
-template <> BA_CORE_API_ BasicVector3D<std::complex<double>> BasicVector3D<double>::complex() const;
+template <> MINIKERNEL_EXPORT BasicVector3D<std::complex<double>> BasicVector3D<double>::complex() const;
 
-template <> BA_CORE_API_ BasicVector3D<double> BasicVector3D<double>::real() const;
+template <> MINIKERNEL_EXPORT BasicVector3D<double> BasicVector3D<double>::real() const;
 
-template <> BA_CORE_API_ BasicVector3D<double> BasicVector3D<std::complex<double>>::real() const;
+template <> MINIKERNEL_EXPORT BasicVector3D<double> BasicVector3D<std::complex<double>>::real() const;
 
-template <> BA_CORE_API_ BasicVector3D<double> BasicVector3D<double>::unit() const;
+template <> MINIKERNEL_EXPORT BasicVector3D<double> BasicVector3D<double>::unit() const;
 
 template <>
-BA_CORE_API_ BasicVector3D<std::complex<double>> BasicVector3D<std::complex<double>>::unit() const;
+MINIKERNEL_EXPORT BasicVector3D<std::complex<double>> BasicVector3D<std::complex<double>>::unit() const;
 
-template <> BA_CORE_API_ double BasicVector3D<double>::angle(const BasicVector3D<double>& v) const;
+template <> MINIKERNEL_EXPORT double BasicVector3D<double>::angle(const BasicVector3D<double>& v) const;
 
 #endif // BORNAGAIN_CORE_VECTOR_BASICVECTOR3D_H

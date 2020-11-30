@@ -28,7 +28,7 @@ namespace BornAgain {
 //!
 //! @ingroup algorithms_internal
 
-class BA_CORE_API_ Slice
+class MINIKERNEL_EXPORT Slice
 {
 public:
     Slice(double thickness, const Material& material);

@@ -24,7 +24,7 @@
 //! Vector transformations in three dimensions.
 //! @ingroup tools_internal
 
-class BA_CORE_API_ Transform3D
+class MINIKERNEL_EXPORT Transform3D
 {
 public:
     enum ERotationType { EULER, XAXIS, YAXIS, ZAXIS };

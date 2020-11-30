@@ -1,10 +1,9 @@
 set(library_name minikernel)
 
-if(WIN32)
-    add_definitions(-DBA_CORE_BUILD_DLL)
-endif()
-
 add_library(${library_name} SHARED "")
+
+set(export_filename ${DAREFL_AUTOGEN_DIR}/darefl/minikernel_export.h)
+generate_export_header(${library_name} EXPORT_FILE_NAME ${export_filename})
 
 add_subdirectory(Basics)
 add_subdirectory(Computation)
@@ -17,4 +16,6 @@ add_subdirectory(Vector)
 add_subdirectory(Tools)
 
 target_link_libraries(${library_name} PUBLIC Eigen3::Eigen)
-target_include_directories(${library_name} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/..>)
+target_include_directories(${library_name} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/..>
+    $<BUILD_INTERFACE:${DAREFL_AUTOGEN_DIR}>)
+

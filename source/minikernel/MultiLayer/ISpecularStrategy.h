@@ -32,7 +32,7 @@
 
 //! @ingroup algorithms_internal
 
-class BA_CORE_API_ ISpecularStrategy
+class MINIKERNEL_EXPORT ISpecularStrategy
 {
 public:
     virtual ~ISpecularStrategy() = default;

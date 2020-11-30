@@ -22,10 +22,10 @@
 //! Material implementation based on wavelength-independent data (valid for a range of wavelengths)
 //! @ingroup materials
 
-class BA_CORE_API_ MaterialBySLDImpl : public MagneticMaterialImpl
+class MINIKERNEL_EXPORT MaterialBySLDImpl : public MagneticMaterialImpl
 {
 public:
-    friend BA_CORE_API_ Material MaterialBySLD(const std::string& name, double sld_real,
+    friend MINIKERNEL_EXPORT Material MaterialBySLD(const std::string& name, double sld_real,
                                                double sld_imag, kvector_t magnetization);
 
     virtual ~MaterialBySLDImpl() = default;

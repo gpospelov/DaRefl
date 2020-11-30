@@ -23,7 +23,7 @@ class IteratorMemento;
 //!
 //! For definition of different strategies see https://en.wikipedia.org/wiki/Tree_traversal.
 
-class BA_CORE_API_ IterationStrategy
+class MINIKERNEL_EXPORT IterationStrategy
 {
 public:
     virtual ~IterationStrategy() {}
@@ -36,7 +36,7 @@ public:
 };
 
 //! Traverse tree; visit parents before their children.
-class BA_CORE_API_ PreorderStrategy : public IterationStrategy
+class MINIKERNEL_EXPORT PreorderStrategy : public IterationStrategy
 {
 public:
     PreorderStrategy();
@@ -50,7 +50,7 @@ public:
 };
 
 //! Traverse tree; visit children before their parents.
-class BA_CORE_API_ PostorderStrategy : public IterationStrategy
+class MINIKERNEL_EXPORT PostorderStrategy : public IterationStrategy
 {
 public:
     PostorderStrategy();

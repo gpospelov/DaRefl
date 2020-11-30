@@ -29,7 +29,7 @@ class WavevectorInfo;
 //! A wrapper for underlying material implementation
 //! @ingroup materials
 
-class BA_CORE_API_ Material
+class MINIKERNEL_EXPORT Material
 {
 public:
     //! Material copy-constructor
@@ -97,16 +97,16 @@ public:
 
     Material transformedMaterial(const Transform3D& transform) const;
 
-    friend BA_CORE_API_ std::ostream& operator<<(std::ostream& ostr, const Material& mat);
+    friend MINIKERNEL_EXPORT std::ostream& operator<<(std::ostream& ostr, const Material& mat);
 
 private:
     std::unique_ptr<BaseMaterialImpl> m_material_impl;
 };
 
 //! Comparison operator for material wrapper (equality check)
-BA_CORE_API_ bool operator==(const Material& left, const Material& right);
+MINIKERNEL_EXPORT bool operator==(const Material& left, const Material& right);
 
 //! Comparison operator for material wrapper (inequality check)
-BA_CORE_API_ bool operator!=(const Material& left, const Material& right);
+MINIKERNEL_EXPORT bool operator!=(const Material& left, const Material& right);
 
 #endif /* MATERIAL_H_ */
