@@ -23,7 +23,7 @@
 
 //! @ingroup tools_internal
 
-class BA_CORE_API_ ICloneable
+class MINIKERNEL_EXPORT ICloneable
 {
 public:
     ICloneable();

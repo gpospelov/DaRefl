@@ -23,7 +23,7 @@
 //! Base class for tree-like structures containing parameterized objects.
 //! @ingroup tools_internal
 
-class BA_CORE_API_ INode : public IParameterized
+class MINIKERNEL_EXPORT INode : public IParameterized
 {
 public:
     INode();

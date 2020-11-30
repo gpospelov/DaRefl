@@ -24,7 +24,7 @@
 //! coherent wave propagation in a multilayer by applying modified Fresnel coefficients.
 //!
 //! @ingroup algorithms_internal
-class BA_CORE_API_ SpecularScalarTanhStrategy : public SpecularScalarStrategy
+class MINIKERNEL_EXPORT SpecularScalarTanhStrategy : public SpecularScalarStrategy
 {
 private:
     //! Roughness is modelled by tanh profile [see e.g. Phys. Rev. B, vol. 47 (8), p. 4385 (1993)].

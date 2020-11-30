@@ -1,9 +1,5 @@
 set(library_name dareflcore)
 
-if(WIN32)
-    add_definitions(-DBA_CORE_BUILD_DLL)
-endif()
-
 add_library(${library_name} SHARED "")
 
 # -- Generate header for export --

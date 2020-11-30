@@ -21,7 +21,7 @@
 //! Attributes for a fit parameter. Currently, the only attribute is fixed/free.
 //! @ingroup fitting
 
-class BA_CORE_API_ Attributes
+class MINIKERNEL_EXPORT Attributes
 {
 public:
     Attributes() : m_is_fixed(false) {}

@@ -21,7 +21,7 @@
 //! Interface for named objects.
 //! @ingroup tools_internal
 
-class BA_CORE_API_ INamed
+class MINIKERNEL_EXPORT INamed
 {
 public:
     INamed() : m_name() {}

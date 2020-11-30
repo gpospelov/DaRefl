@@ -33,7 +33,7 @@ class Slice;
 //! Inherited by SpecularScalarNCStrategy, SpecularScalarTanhStrategy
 //!
 //! @ingroup algorithms_internal
-class BA_CORE_API_ SpecularScalarStrategy : public ISpecularStrategy
+class MINIKERNEL_EXPORT SpecularScalarStrategy : public ISpecularStrategy
 {
 public:
     //! Computes refraction angles and transmission/reflection coefficients
