@@ -16,9 +16,9 @@ namespace DaRefl
 
 DefaultParser::DefaultParser(const ParserOptions& options)
 {
-    m_isSkipLineNumber = DataLoader::CreateLineNumberPatternValidator(options.m_skip_index_pattern);
-    m_isValidLineContent = DataLoader::CreateLinePrefixValidator(options.m_header_prefix);
-    m_line_splitter = DataLoader::CreateSeparatorBasedSplitter(options.m_separator);
+    m_isSkipLineNumber = Utils::CreateLineNumberPatternValidator(options.m_skip_index_pattern);
+    m_isValidLineContent = Utils::CreateLinePrefixValidator(options.m_header_prefix);
+    m_line_splitter = Utils::CreateSeparatorBasedSplitter(options.m_separator);
 }
 
 //! Parse data representing content of ASCII file.

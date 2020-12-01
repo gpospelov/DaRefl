@@ -49,7 +49,7 @@ void LoaderPreviewPanel::showData(const ParserInterface* parser)
     for (size_t index = 0; index < parser->totalLineCount(); ++index) {
         auto line_data = parser->getLine(index);
         auto parts = parser->parseResults(index);
-        auto string_to_show = DataLoader::AddHtmlColorTagToParts(line_data, parts, blue, gray);
+        auto string_to_show = Utils::AddHtmlColorTagToParts(line_data, parts, blue, gray);
         m_textView->appendHtml(QString::fromStdString(string_to_show));
     }
     m_textView->moveCursor(QTextCursor::Start);

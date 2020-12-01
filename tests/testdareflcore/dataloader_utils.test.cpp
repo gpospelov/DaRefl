@@ -16,7 +16,6 @@
 #include <vector>
 
 using namespace DaRefl;
-using namespace DataLoader;
 using TestUtils::toStringVector;
 
 //! Tests of ParseUtils.
@@ -46,7 +45,7 @@ TEST_F(ParseUtilsTest, LoadASCIIFile)
     std::string content = {"abc abc\n 123 456\n"};
     auto file_name = TestUtils::CreateTestFile(testPath(), "a.txt", content);
 
-    auto raw_data = LoadASCIIFile(file_name);
+    auto raw_data = Utils::LoadASCIIFile(file_name);
     EXPECT_EQ(raw_data.size(), 2u);
     EXPECT_EQ(raw_data[0], std::string("abc abc"));
     EXPECT_EQ(raw_data[1], std::string(" 123 456"));
@@ -90,6 +89,7 @@ TEST_F(ParseUtilsTest, toPairVector)
 
 TEST_F(ParseUtilsTest, ExpandLineNumberPattern)
 {
+    using Utils::ExpandLineNumberPattern;
     EXPECT_EQ(ExpandLineNumberPattern(""), toPairVector());
     EXPECT_EQ(ExpandLineNumberPattern(" "), toPairVector());
     EXPECT_EQ(ExpandLineNumberPattern("aaa"), toPairVector());
@@ -118,6 +118,8 @@ TEST_F(ParseUtilsTest, ExpandLineNumberPattern)
 
 TEST_F(ParseUtilsTest, CreateLineNumberPatternValidator)
 {
+    using Utils::CreateLineNumberPatternValidator;
+
     auto is_accepted = CreateLineNumberPatternValidator("1");
     EXPECT_FALSE(is_accepted(0));
     EXPECT_TRUE(is_accepted(1));
@@ -146,6 +148,8 @@ TEST_F(ParseUtilsTest, CreateLineNumberPatternValidator)
 
 TEST_F(ParseUtilsTest, CreateLinePrefixValidator)
 {
+    using Utils::CreateLinePrefixValidator;
+
     auto is_accepted = CreateLinePrefixValidator("");
     EXPECT_FALSE(is_accepted(""));
     EXPECT_FALSE(is_accepted(" "));
@@ -162,6 +166,8 @@ TEST_F(ParseUtilsTest, CreateLinePrefixValidator)
 
 TEST_F(ParseUtilsTest, CreateSeparatorSplitter)
 {
+    using Utils::CreateSeparatorBasedSplitter;
+
     auto parse = CreateSeparatorBasedSplitter(",");
     EXPECT_EQ(parse("a"), toStringVector("a"));
     EXPECT_EQ(parse("a,b"), toStringVector("a", "b"));
@@ -181,31 +187,33 @@ TEST_F(ParseUtilsTest, CreateSeparatorSplitter)
 
 TEST_F(ParseUtilsTest, AddHtmlColorTag)
 {
-    EXPECT_EQ(AddHtmlColorTag("abc", "x"), "<font color=\"x\">abc</font>");
+    EXPECT_EQ(Utils::AddHtmlColorTag("abc", "x"), "<font color=\"x\">abc</font>");
 }
 
 TEST_F(ParseUtilsTest, AddHtmlDivTag)
 {
-    EXPECT_EQ(AddHtmlDivTag("abc"), "<div>abc</div>");
+    EXPECT_EQ(Utils::AddHtmlDivTag("abc"), "<div>abc</div>");
 }
 
 TEST_F(ParseUtilsTest, AddHtmlColorTagToParts)
 {
-    auto parse = CreateSeparatorBasedSplitter(",");
+    auto parse = Utils::CreateSeparatorBasedSplitter(",");
     std::string line("a,b");
-    EXPECT_EQ(AddHtmlColorTagToParts(line, parse(line), "A", "B"),
+    EXPECT_EQ(Utils::AddHtmlColorTagToParts(line, parse(line), "A", "B"),
               "<div><font color=\"A\">a</font><span style=\"background-color:B\">,</span><font "
               "color=\"A\">b</font></div>");
 
-    parse = CreateSeparatorBasedSplitter(" | ");
+    parse = Utils::CreateSeparatorBasedSplitter(" | ");
     line = "abc | efg";
-    EXPECT_EQ(AddHtmlColorTagToParts(line, parse(line), "A", "B"),
+    EXPECT_EQ(Utils::AddHtmlColorTagToParts(line, parse(line), "A", "B"),
               "<div><font color=\"A\">abc</font><span style=\"background-color:B\"> | </span><font "
               "color=\"A\">efg</font></div>");
 }
 
 TEST_F(ParseUtilsTest, ExtractTwoColumns)
 {
+    using Utils::ExtractTwoColumns;
+
     auto result = ExtractTwoColumns({{}}, 0, 0);
     EXPECT_EQ(result.first.size(), 0);
     EXPECT_EQ(result.second.size(), 0);
@@ -241,7 +249,7 @@ TEST_F(ParseUtilsTest, CreateGraphInfoPairs)
 
     std::vector<ColumnInfo> infos = {col0, col1, col2, col3};
 
-    auto info_pairs = CreateGraphInfoPairs(infos);
+    auto info_pairs = Utils::CreateGraphInfoPairs(infos);
 
     // if we have one Axis and two Intesity columns, we have to get
     // two pairs of info
@@ -263,7 +271,7 @@ TEST_F(ParseUtilsTest, CreateData)
                                                        {"7.0", "8.0", "9.0"},
                                                        {"10.0", "11.0", "12.0"}};
 
-    auto data = DataLoader::CreateData(text_data, col0, col2);
+    auto data = Utils::CreateData(text_data, col0, col2);
 
     EXPECT_EQ(data.graph_description, "");
     EXPECT_EQ(data.bin_centers, toVector({1.0, 4.0, 7.0, 10.0}));
