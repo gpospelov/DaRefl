@@ -10,14 +10,17 @@
 #ifndef DAREFL_MODEL_JOBMODEL_H
 #define DAREFL_MODEL_JOBMODEL_H
 
-#include <mvvm/model/sessionmodel.h>
 #include <darefl/darefl_export.h>
+#include <mvvm/model/sessionmodel.h>
 
 namespace ModelView
 {
 class GraphViewportItem;
 class GraphItem;
 } // namespace ModelView
+
+namespace DaRefl
+{
 
 class JobItem;
 class CanvasItem;
@@ -47,5 +50,7 @@ public:
 private:
     JobItem* jobItem() const;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_MODEL_JOBMODEL_H

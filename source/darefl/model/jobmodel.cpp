@@ -20,6 +20,9 @@
 
 using namespace ModelView;
 
+namespace DaRefl
+{
+
 namespace
 {
 
@@ -88,3 +91,5 @@ JobItem* JobModel::jobItem() const
 {
     return Utils::TopItem<JobItem>(this);
 }
+
+} // namespace DaRefl

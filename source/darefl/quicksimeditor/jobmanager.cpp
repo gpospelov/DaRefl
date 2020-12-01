@@ -10,6 +10,9 @@
 #include <darefl/quicksimeditor/jobmanager.h>
 #include <darefl/quicksimeditor/speculartoysimulation.h>
 
+namespace DaRefl
+{
+
 JobManager::JobManager(QObject* parent) : QObject(parent), m_isRunning(true)
 {
     // starting thread to run consequent simulations
@@ -90,3 +93,5 @@ void JobManager::wait_and_run()
         }
     }
 }
+
+} // namespace DaRefl

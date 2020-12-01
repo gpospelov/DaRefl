@@ -18,6 +18,9 @@ namespace ModelView
 class SessionModel;
 }
 
+namespace DaRefl
+{
+
 class ExperimentalDataModel;
 
 //! View model for ExperimentalDataModel with drag-and-drop support.
@@ -38,5 +41,7 @@ public:
     bool dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column,
                       const QModelIndex& parent) override;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_IMPORTDATAVIEW_DATAVIEWMODEL_H

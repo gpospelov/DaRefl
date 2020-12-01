@@ -16,6 +16,9 @@
 #include <darefl/dataloader/loaderpreviewpanel.h>
 #include <darefl/dataloader/parserinterface.h>
 
+namespace DaRefl
+{
+
 namespace
 {
 const std::string gray{"#aab7b8"};
@@ -64,3 +67,5 @@ void LoaderPreviewPanel::clearPanel()
     m_textView->clear();
     m_tableWidget->setRawData({});
 }
+
+} // namespace DaRefl

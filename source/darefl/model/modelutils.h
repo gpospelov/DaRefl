@@ -21,6 +21,9 @@ class Data1DItem;
 class ExternalProperty;
 } // namespace ModelView
 
+namespace DaRefl
+{
+
 class ExperimentalDataModel;
 
 namespace Utils
@@ -48,5 +51,7 @@ DAREFLCORE_EXPORT void SetDifference(const ModelView::Data1DItem* data1,
                                      const ModelView::Data1DItem* data2,
                                      ModelView::Data1DItem* target);
 } // namespace Utils
+
+}
 
 #endif // DAREFL_MODEL_MODELUTILS_H

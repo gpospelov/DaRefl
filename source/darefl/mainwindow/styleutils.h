@@ -16,6 +16,9 @@ class QSize;
 class QFont;
 class QToolBar;
 
+namespace DaRefl
+{
+
 //! Namespace for central access to all theme styling.
 
 namespace StyleUtils
@@ -34,5 +37,7 @@ DAREFLCORE_EXPORT QSize DockMinimumSizeHint();
 DAREFLCORE_EXPORT void SetToolBarStyleTextBesides(QToolBar* toolbar);
 
 }; // namespace StyleUtils
+
+} // namespace DaRefl
 
 #endif // DAREFL_MAINWINDOW_STYLEUTILS_H

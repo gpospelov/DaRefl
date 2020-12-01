@@ -14,6 +14,9 @@
 #include <darefl/darefl_export.h>
 #include <string>
 
+namespace DaRefl
+{
+
 class ExperimentalDataModel;
 struct GraphImportData;
 class DataViewModel;
@@ -48,5 +51,7 @@ private:
     DataSelectorWidget* m_dataSelectorWidget{nullptr};
     GraphCanvasWidget* m_graphCanvasWidget{nullptr};
 };
+
+}
 
 #endif // DAREFL_IMPORTDATAVIEW_IMPORTDATAEDITOR_H

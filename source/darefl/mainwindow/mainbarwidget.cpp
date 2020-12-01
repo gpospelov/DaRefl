@@ -15,6 +15,9 @@
 #include <darefl/mainwindow/fancytab.h>
 #include <darefl/mainwindow/mainbarwidget.h>
 
+namespace DaRefl
+{
+
 MainBarWidget::MainBarWidget(QWidget* parent)
     : QWidget(parent), m_stackedWidget(new QStackedWidget), m_labelLayout(new QHBoxLayout)
 {
@@ -48,3 +51,5 @@ void MainBarWidget::setCurrentIndex(int index)
 
     m_stackedWidget->setCurrentIndex(index);
 }
+
+} // namespace DaRefl

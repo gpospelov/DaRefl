@@ -21,6 +21,9 @@ namespace ModelView
 class ExternalProperty;
 }
 
+namespace DaRefl
+{
+
 //! Container to hold MaterialItems.
 
 class DAREFLCORE_EXPORT MaterialContainerItem : public ModelView::CompoundItem
@@ -60,5 +63,7 @@ public:
 
     void set_properties(const std::string& name, const QColor& color, double real, double imag);
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_MODEL_MATERIALITEMS_H

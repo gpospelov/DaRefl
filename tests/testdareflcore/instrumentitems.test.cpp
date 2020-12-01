@@ -16,6 +16,7 @@
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphitem.h>
 
+using namespace DaRefl;
 using namespace ModelView;
 
 //! Tests of ExperimentalDataModel.

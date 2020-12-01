@@ -13,6 +13,9 @@
 #include <QWidget>
 #include <darefl/darefl_export.h>
 
+namespace DaRefl
+{
+
 class JobModel;
 class ApplicationModels;
 class QuickSimController;
@@ -45,5 +48,7 @@ private:
     SimPlotWidget* m_plotWidget{nullptr};
     QuickSimEditorToolBar* m_toolBar{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_QUICKSIMEDITOR_QUICKSIMEDITOR_H

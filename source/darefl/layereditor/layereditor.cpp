@@ -16,6 +16,9 @@
 #include <darefl/mainwindow/styleutils.h>
 #include <darefl/model/applicationmodels.h>
 
+namespace DaRefl
+{
+
 LayerEditor::LayerEditor(QWidget* parent)
     : QWidget(parent)
     , m_actions(new LayerEditorActions(this))
@@ -61,3 +64,5 @@ void LayerEditor::selectionChanged()
 }
 
 LayerEditor::~LayerEditor() = default;
+
+} // namespace DaRefl

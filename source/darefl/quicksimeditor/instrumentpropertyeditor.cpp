@@ -20,6 +20,9 @@
 
 using namespace ModelView;
 
+namespace DaRefl
+{
+
 InstrumentPropertyEditor::InstrumentPropertyEditor(QWidget* parent)
     : QWidget(parent), m_beamPropertyEditor(new ModelView::PropertyTreeView)
 
@@ -54,3 +57,5 @@ QSize InstrumentPropertyEditor::minimumSizeHint() const
 {
     return StyleUtils::DockMinimumSizeHint();
 }
+
+} // namespace DaRefl

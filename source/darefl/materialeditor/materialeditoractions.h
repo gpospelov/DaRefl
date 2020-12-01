@@ -11,8 +11,11 @@
 #define DAREFL_MATERIALEDITOR_MATERIALEDITORACTIONS_H
 
 #include <QObject>
-#include <memory>
 #include <darefl/darefl_export.h>
+#include <memory>
+
+namespace DaRefl
+{
 
 class MaterialModel;
 class MaterialSelectionModel;
@@ -44,5 +47,7 @@ private:
     struct MaterialEditorActionsImpl;
     std::unique_ptr<MaterialEditorActionsImpl> p_impl;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_MATERIALEDITOR_MATERIALEDITORACTIONS_H

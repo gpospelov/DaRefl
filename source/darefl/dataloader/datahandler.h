@@ -15,6 +15,9 @@
 #include <string>
 #include <vector>
 
+namespace DaRefl
+{
+
 //! Handles raw data during the life time of DataHandlerDialog.
 //! Loads the data from multiple ASCII files and stores in a buffer of strings.
 
@@ -33,5 +36,7 @@ private:
     //!< correspondence of file name to the raw data in the file (i.e. all strings)
     std::map<std::string, std::vector<std::string>> m_raw_data;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_DATALOADER_DATAHANDLER_H

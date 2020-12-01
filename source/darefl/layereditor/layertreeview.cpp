@@ -11,6 +11,9 @@
 #include <QMouseEvent>
 #include <darefl/layereditor/layertreeview.h>
 
+namespace DaRefl
+{
+
 LayerTreeView::~LayerTreeView() = default;
 
 LayerTreeView::LayerTreeView(QWidget* parent) : QTreeView(parent)
@@ -27,3 +30,5 @@ void LayerTreeView::setModel(QAbstractItemModel* model)
     QTreeView::setModel(model);
     expandAll();
 }
+
+} // namespace DaRefl

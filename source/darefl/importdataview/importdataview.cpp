@@ -12,6 +12,9 @@
 #include <darefl/importdataview/importdataview.h>
 #include <darefl/model/applicationmodels.h>
 
+namespace DaRefl
+{
+
 ImportDataView::ImportDataView(ApplicationModels* models, QWidget* parent)
     : QWidget(parent), m_models(models)
 {
@@ -19,3 +22,5 @@ ImportDataView::ImportDataView(ApplicationModels* models, QWidget* parent)
     layout->addWidget(new ImportDataEditor(models->experimentalDataModel()));
     layout->setContentsMargins(0, 0, 0, 0);
 }
+
+} // namespace DaRefl

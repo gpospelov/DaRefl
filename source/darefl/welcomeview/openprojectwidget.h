@@ -18,6 +18,9 @@ class QBoxLayout;
 class QPushButton;
 class QLabel;
 
+namespace DaRefl
+{
+
 //! Widget with logo, name of the program and buttons to create new project or open existing one.
 //! Occupies right part of WelcomeView.
 
@@ -42,5 +45,7 @@ private:
     QLabel* m_newProjectLabel{nullptr};
     QLabel* m_openProjectLabel{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_WELCOMEVIEW_OPENPROJECTWIDGET_H

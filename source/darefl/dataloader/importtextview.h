@@ -22,6 +22,9 @@ class QResizeEvent;
 class QSize;
 class QWidget;
 
+namespace DaRefl
+{
+
 class LineNumberArea;
 
 //! Text view to show imported data.
@@ -63,5 +66,7 @@ protected:
 private:
     ImportTextView* codeEditor;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_DATALOADER_IMPORTTEXTVIEW_H

@@ -17,6 +17,9 @@ namespace ModelView
 class PropertyTreeView;
 }
 
+namespace DaRefl
+{
+
 class ApplicationModels;
 
 #include <QWidget>
@@ -40,5 +43,7 @@ public:
 private:
     ModelView::PropertyTreeView* m_beamPropertyEditor{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_QUICKSIMEDITOR_INSTRUMENTPROPERTYEDITOR_H

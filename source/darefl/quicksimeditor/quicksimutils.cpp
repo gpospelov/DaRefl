@@ -18,6 +18,9 @@
 #include <mvvm/model/sessionmodel.h>
 #include <stdexcept>
 
+namespace DaRefl
+{
+
 namespace
 {
 
@@ -58,6 +61,7 @@ void AddToMultiSlice(multislice_t& result, const ModelView::SessionItem& multila
 
 } // namespace
 
+
 multislice_t Utils::CreateMultiSlice(const MultiLayerItem& multilayer)
 {
     multislice_t result;
@@ -78,4 +82,6 @@ std::vector<BornAgain::Slice> Utils::createBornAgainSlices(const multislice_t& m
     }
 
     return result;
+}
+
 }

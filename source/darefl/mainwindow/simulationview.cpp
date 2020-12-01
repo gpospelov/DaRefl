@@ -19,6 +19,9 @@
 
 using namespace ModelView;
 
+namespace DaRefl
+{
+
 SimulationView::SimulationView(ApplicationModels* models, QWidget* parent)
     : QMainWindow(parent)
     , m_editorList(new CollapsibleListWidget)
@@ -54,3 +57,5 @@ void SimulationView::initEditorList()
     m_simEditor->setModels(m_models);
     instrument_editor->setModels(m_models);
 }
+
+} // namespace DaRefl

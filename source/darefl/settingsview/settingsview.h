@@ -14,9 +14,13 @@
 #include <darefl/darefl_export.h>
 
 class QTabWidget;
-class ApplicationModels;
 class QStackedWidget;
 class QListWidget;
+
+namespace DaRefl
+{
+
+class ApplicationModels;
 
 //! Main settings view, belongs directly to MainWindow.
 //! For the moment contains QTabWidget with trees representating all application models.
@@ -40,5 +44,7 @@ private:
 
     ApplicationModels* m_models{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_SETTINGSVIEW_SETTINGSVIEW_H

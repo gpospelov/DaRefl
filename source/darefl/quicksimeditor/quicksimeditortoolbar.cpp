@@ -15,6 +15,9 @@
 #include <darefl/core/app_constants.h>
 #include <darefl/quicksimeditor/quicksimeditortoolbar.h>
 
+namespace DaRefl
+{
+
 QuickSimEditorToolBar::QuickSimEditorToolBar(QWidget* parent)
     : QToolBar(parent), m_liveCheckbox(new QCheckBox), m_progressBar(new QProgressBar)
 {
@@ -89,3 +92,5 @@ void QuickSimEditorToolBar::setup_plot_elements()
     connect(reset_view, &QAction::triggered, this, &QuickSimEditorToolBar::resetViewRequest);
     addAction(reset_view);
 }
+
+} // namespace DaRefl

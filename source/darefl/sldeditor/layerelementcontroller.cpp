@@ -21,6 +21,9 @@
 
 using namespace ModelView;
 
+namespace DaRefl
+{
+
 //! Constructor
 LayerElementController::LayerElementController(LayerElementItem* layer_view_item)
     : QObject(), p_model_item(layer_view_item), m_sample_item_id(" ")
@@ -901,3 +904,5 @@ void LayerElementController::setRoughnessInLimits(double roughness, bool active)
     if (active)
         layerElementItem()->setProperty(LayerElementItem::P_ROUGHNESS, roughness);
 }
+
+} // namespace DaRefl

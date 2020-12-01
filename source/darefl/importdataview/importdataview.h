@@ -13,6 +13,9 @@
 #include <QWidget>
 #include <darefl/darefl_export.h>
 
+namespace DaRefl
+{
+
 class ApplicationModels;
 
 //! Main window to import user data.
@@ -27,5 +30,7 @@ public:
 private:
     ApplicationModels* m_models{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_IMPORTDATAVIEW_IMPORTDATAVIEW_H

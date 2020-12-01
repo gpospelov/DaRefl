@@ -15,6 +15,9 @@
 #include <darefl/dataloader/importtablewidget.h>
 #include <mvvm/viewmodel/viewmodeldelegate.h>
 
+namespace DaRefl
+{
+
 ImportTableWidget::ImportTableWidget(QWidget* parent)
     : QWidget(parent)
     , m_tableModel(new ImportTableModel(this))
@@ -40,3 +43,5 @@ std::vector<DataLoader::ColumnInfo> ImportTableWidget::columnInfo() const
 {
     return m_tableModel->columnInfo();
 }
+
+} // namespace DaRefl

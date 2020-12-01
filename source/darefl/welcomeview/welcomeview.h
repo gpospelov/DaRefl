@@ -11,8 +11,11 @@
 #define DAREFL_WELCOMEVIEW_WELCOMEVIEW_H
 
 #include <QWidget>
-#include <memory>
 #include <darefl/darefl_export.h>
+#include <memory>
+
+namespace DaRefl
+{
 
 class ApplicationModels;
 class ProjectHandler;
@@ -54,5 +57,7 @@ private:
     RecentProjectWidget* m_recentProjectWidget{nullptr};
     OpenProjectWidget* m_openProjectWidget{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_WELCOMEVIEW_WELCOMEVIEW_H

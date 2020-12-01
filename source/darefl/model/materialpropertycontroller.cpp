@@ -16,6 +16,9 @@
 
 using namespace ModelView;
 
+namespace DaRefl
+{
+
 MaterialPropertyController::MaterialPropertyController(MaterialModel* material_model,
                                                        SampleModel* sample_model)
     : ModelListener(material_model), m_sample_model(sample_model)
@@ -39,3 +42,5 @@ void MaterialPropertyController::update_all()
             layer->setProperty(LayerItem::P_MATERIAL, updated);
     }
 }
+
+} // namespace DaRefl

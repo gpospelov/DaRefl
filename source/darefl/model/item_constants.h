@@ -12,7 +12,7 @@
 
 #include <string>
 
-namespace Constants
+namespace DaRefl::Constants
 {
 
 const std::string CanvasContainerItemType = "CanvasContainer";

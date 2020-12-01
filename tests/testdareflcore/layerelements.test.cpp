@@ -25,6 +25,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QSignalSpy>
 
+using namespace DaRefl;
 using namespace ModelView;
 
 class LayerElementControllerFriend : public LayerElementController

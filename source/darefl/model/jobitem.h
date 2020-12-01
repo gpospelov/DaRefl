@@ -21,6 +21,9 @@ class GraphViewportItem;
 class GraphItem;
 } // namespace ModelView
 
+namespace DaRefl
+{
+
 class CanvasItem;
 
 //! Viewport intended for showing SLD profile.
@@ -77,5 +80,7 @@ private:
     void setup_specular_viewport();
     void setup_diff_viewport();
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_MODEL_JOBITEM_H

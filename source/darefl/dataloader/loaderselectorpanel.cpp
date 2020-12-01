@@ -14,6 +14,9 @@
 #include <darefl/dataloader/loaderselectorpanel.h>
 #include <darefl/dataloader/parserpropertywidget.h>
 
+namespace DaRefl
+{
+
 LoaderSelectorPanel::LoaderSelectorPanel(QWidget* parent)
     : QWidget(parent)
     , m_fileSelectorWidget(new ImportFileWidget)
@@ -87,3 +90,5 @@ void LoaderSelectorPanel::init_connections()
     auto on_target_changed = [this](auto index) { m_targetCanvasIndex = index; };
     connect(m_propertyWidget, &ParserPropertyWidget::targetCanvasChanged, on_target_changed);
 }
+
+} // namespace DaRefl

@@ -20,6 +20,9 @@
 
 using namespace ModelView;
 
+namespace DaRefl
+{
+
 SpecularToySimulation::~SpecularToySimulation() = default;
 
 SpecularToySimulation::SpecularToySimulation(const SimulationInput& input_data)
@@ -29,7 +32,7 @@ SpecularToySimulation::SpecularToySimulation(const SimulationInput& input_data)
 
 void SpecularToySimulation::runSimulation()
 {
-    auto slices = ::Utils::createBornAgainSlices(m_inputData.slice_data);
+    auto slices = Utils::createBornAgainSlices(m_inputData.slice_data);
 
     m_specularResult.amplitudes.reserve(scanPointsCount());
 
@@ -71,3 +74,5 @@ size_t SpecularToySimulation::scanPointsCount() const
 {
     return m_inputData.qvalues.size();
 }
+
+} // namespace DaRefl

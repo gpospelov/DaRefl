@@ -16,6 +16,9 @@
 #include <QPainter>
 #include <QTextBlock>
 
+namespace DaRefl
+{
+
 namespace
 {
 const int line_number_gap = 4;
@@ -121,3 +124,5 @@ void ImportTextView::lineNumberAreaPaintEvent(QPaintEvent* event)
         ++blockNumber;
     }
 }
+
+} // namespace DaRefl

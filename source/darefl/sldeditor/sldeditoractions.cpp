@@ -10,12 +10,13 @@
 #include <darefl/sldeditor/layerelementitem.h>
 #include <darefl/sldeditor/sldeditoractions.h>
 #include <darefl/sldeditor/sldelementmodel.h>
-
-#include <QDebug>
 #include <mvvm/model/modelutils.h>
 #include <mvvm/viewmodel/viewmodel.h>
 
 using namespace ModelView;
+
+namespace DaRefl
+{
 
 struct SLDEditorActions::SLDEditorActionsImpl {
     SLDElementModel* sld_element_model{nullptr};
@@ -33,3 +34,5 @@ void SLDEditorActions::setModel(SLDElementModel* model)
 }
 
 SLDEditorActions::~SLDEditorActions() = default;
+
+} // namespace DaRefl

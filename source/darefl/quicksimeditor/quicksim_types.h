@@ -14,6 +14,9 @@
 #include <darefl/darefl_export.h>
 #include <vector>
 
+namespace DaRefl
+{
+
 using complex_t = std::complex<double>;
 
 //! Data structure for simple multilayer representation.
@@ -43,5 +46,7 @@ struct DAREFLCORE_EXPORT SLDProfile {
     double zmax{0.0};
     std::vector<double> sld_real_values;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_QUICKSIMEDITOR_QUICKSIM_TYPES_H

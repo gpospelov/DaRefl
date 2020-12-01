@@ -13,6 +13,9 @@
 #include <QWidget>
 #include <darefl/darefl_export.h>
 
+namespace DaRefl
+{
+
 class ApplicationModels;
 class MaterialEditorActions;
 class MaterialEditorToolBar;
@@ -38,5 +41,7 @@ private:
     MaterialEditorWidget* m_editorWidget{nullptr};
     MaterialEditorToolBar* m_toolBar{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_MATERIALEDITOR_MATERIALEDITOR_H

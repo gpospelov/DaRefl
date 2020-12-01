@@ -13,6 +13,9 @@
 #include <darefl/darefl_export.h>
 #include <darefl/quicksimeditor/quicksim_types.h>
 
+namespace DaRefl
+{
+
 //! Collection of methods borrowed from BornAgain for material profile calculations.
 
 namespace MaterialProfile
@@ -30,5 +33,7 @@ DefaultMaterialProfileLimits(const multislice_t& multilayer);
 DAREFLCORE_EXPORT std::vector<double> GenerateZValues(int n_points, double z_min, double z_max);
 
 } // namespace MaterialProfile
+
+}
 
 #endif // DAREFL_QUICKSIMEDITOR_MATERIALPROFILE_H

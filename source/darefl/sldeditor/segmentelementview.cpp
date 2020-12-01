@@ -14,6 +14,9 @@
 #include <QPainter>
 #include <QStyleOption>
 
+namespace DaRefl
+{
+
 //! The constructor
 SegmentElementView::SegmentElementView()
     : ElementView()
@@ -86,3 +89,5 @@ QPointF SegmentElementView::getLastPos() const
 {
     return m_pos;
 }
+
+} // namespace DaRefl

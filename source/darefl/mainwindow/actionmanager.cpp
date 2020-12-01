@@ -14,6 +14,9 @@
 #include <darefl/mainwindow/actionmanager.h>
 #include <mvvm/widgets/widgetutils.h>
 
+namespace DaRefl
+{
+
 ActionManager::ActionManager(QMainWindow* mainwindow)
     : QObject(mainwindow), m_mainWindow(mainwindow)
 {
@@ -98,4 +101,6 @@ void ActionManager::setupMenus(QMenuBar* menubar)
 
     fileMenu->addSeparator();
     fileMenu->addAction(m_exitAction);
+}
+
 }

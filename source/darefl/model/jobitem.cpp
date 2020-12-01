@@ -21,6 +21,9 @@
 
 using namespace ModelView;
 
+namespace DaRefl
+{
+
 namespace
 {
 const int row_sim_graph = 0;
@@ -56,7 +59,7 @@ void initViewport(CompoundItem* item, const std::string& data_name,
 
 } // namespace
 
-SLDCanvasItem::SLDCanvasItem() : GraphViewportItem(::Constants::SLDCanvasItemType) {}
+SLDCanvasItem::SLDCanvasItem() : GraphViewportItem(Constants::SLDCanvasItemType) {}
 
 std::pair<double, double> SLDCanvasItem::data_yaxis_range() const
 {
@@ -67,7 +70,7 @@ std::pair<double, double> SLDCanvasItem::data_yaxis_range() const
 
 // ----------------------------------------------------------------------------
 
-JobItem::JobItem() : ModelView::CompoundItem(::Constants::JobItemType)
+JobItem::JobItem() : ModelView::CompoundItem(Constants::JobItemType)
 {
     setup_sld_viewport();
     setup_specular_viewport();
@@ -124,7 +127,7 @@ void JobItem::updateDifferenceData()
         const auto reference_data = reference_graph->dataItem();
         const auto specular_data = specularData();
         auto diff_data = differenceData();
-        ::Utils::SetDifference(specular_data, reference_data, diff_data);
+        Utils::SetDifference(specular_data, reference_data, diff_data);
     }
 }
 
@@ -167,6 +170,7 @@ void JobItem::setupReferenceGraphFrom(const GraphItem* graph)
 
 void JobItem::setupDifferenceGraphFrom(const GraphItem* graph)
 {
+    // FIXME rename unused graph
     if (!differenceGraph()) {
         create_difference_graph(this);
         differenceGraph()->setDataItem(differenceData());
@@ -216,3 +220,5 @@ void JobItem::setup_diff_viewport()
     initViewport<Data1DItem, GraphItem, GraphViewportItem>(this, P_DIFF_DATA, P_DIFF_VIEWPORT);
     differenceData()->setAxis<PointwiseAxisItem>(std::vector<double>());
 }
+
+} // namespace DaRefl

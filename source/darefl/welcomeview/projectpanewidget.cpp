@@ -22,6 +22,9 @@ int widget_height()
 }
 } // namespace
 
+namespace DaRefl
+{
+
 ProjectPaneWidget::ProjectPaneWidget(QWidget* parent)
     : QWidget(parent)
     , m_currentProjectTitle(new QLabel(" "))
@@ -95,3 +98,5 @@ void ProjectPaneWidget::mousePressEvent(QMouseEvent* event)
     if (m_active && event->button() == Qt::LeftButton)
         projectSelected(m_projectDir);
 }
+
+} // namespace DaRefl

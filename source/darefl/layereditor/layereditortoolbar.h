@@ -16,6 +16,9 @@
 #include <map>
 #include <string>
 
+namespace DaRefl
+{
+
 class LayerEditorActions;
 
 //! Layer editor toolbar.
@@ -34,5 +37,7 @@ private:
     QMenu* create_layer_menu(LayerEditorActions* editor_actions);
     std::map<std::string, QWidget*> m_toolbarWidgets;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_LAYEREDITOR_LAYEREDITORTOOLBAR_H

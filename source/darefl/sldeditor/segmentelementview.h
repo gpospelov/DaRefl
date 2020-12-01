@@ -17,6 +17,9 @@
 #include <QPen>
 #include <QRectF>
 
+namespace DaRefl
+{
+
 class LayerElementController;
 
 //! The segment QGraphicsViewItem on the Graphicsscene
@@ -44,5 +47,7 @@ protected:
     QBrush m_brush;
     QPen m_pen;
 };
+
+}
 
 #endif // DAREFL_SLDEDITOR_SEGMENTELEMENTVIEW_H

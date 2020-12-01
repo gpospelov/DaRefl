@@ -18,6 +18,9 @@ namespace ModelView
 class GraphCanvas;
 }
 
+namespace DaRefl
+{
+
 class CanvasItem;
 
 //! Widget to show canvas with graph collection.
@@ -37,5 +40,7 @@ public:
 private:
     ModelView::GraphCanvas* m_graphCanvas{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_IMPORTDATAVIEW_GRAPHCANVASWIDGET_H

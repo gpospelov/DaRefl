@@ -20,6 +20,9 @@ namespace ModelView
 class ModelHasChangedController;
 }
 
+namespace DaRefl
+{
+
 class ApplicationModels;
 class JobManager;
 class JobModel;
@@ -70,5 +73,7 @@ private:
     std::unique_ptr<ModelView::ModelHasChangedController> m_sampleChangedController;
     std::unique_ptr<ModelView::ModelHasChangedController> m_instrumentChangedController;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_QUICKSIMEDITOR_QUICKSIMCONTROLLER_H

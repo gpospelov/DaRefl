@@ -12,7 +12,7 @@
 
 #include <QString>
 
-namespace Constants
+namespace DaRefl::Constants
 {
 
 //! Constants for QSettings.
@@ -24,7 +24,6 @@ const QString ParserPropertyGroupKey = "parserproperty";
 
 const inline bool live_simulation_default_on = false;
 
-
-} // namespace Constants
+} // namespace DaRefl::Constants
 
 #endif // DAREFL_CORE_APP_CONSTANTS_H

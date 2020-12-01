@@ -12,6 +12,9 @@
 #include <darefl/dataloader/importtableheader.h>
 #include <darefl/dataloader/importtablemodel.h>
 
+namespace DaRefl
+{
+
 namespace
 {
 //! Returns maximum number of columns in 2D data vector.
@@ -131,3 +134,5 @@ QVariant ImportTableModel::dataFromIndex(const QModelIndex& index) const
     }
     return QVariant();
 }
+
+} // namespace DaRefl

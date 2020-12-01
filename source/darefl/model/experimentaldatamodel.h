@@ -14,17 +14,20 @@
 #include <mvvm/model/sessionmodel.h>
 #include <vector>
 
-class CanvasContainerItem;
-class ExperimentalDataContainerItem;
-class CanvasItem;
-struct GraphImportData;
-
 namespace ModelView
 {
 class SessionItem;
 class GraphItem;
 class GraphViewportItem;
 } // namespace ModelView
+
+namespace DaRefl
+{
+
+class CanvasContainerItem;
+class ExperimentalDataContainerItem;
+class CanvasItem;
+struct GraphImportData;
 
 //! The model to store imported reflectometry data.
 
@@ -50,5 +53,7 @@ public:
 private:
     void init_model();
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_MODEL_EXPERIMENTALDATAMODEL_H

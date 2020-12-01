@@ -14,6 +14,9 @@
 #include <QPainter>
 #include <QStyleOption>
 
+namespace DaRefl
+{
+
 //! The constructor
 HandleElementView::HandleElementView()
     : ElementView()
@@ -86,4 +89,6 @@ void HandleElementView::setPen(QPen pen)
 QPointF HandleElementView::getLastPos() const
 {
     return m_pos;
+}
+
 }

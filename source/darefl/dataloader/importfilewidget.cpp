@@ -19,6 +19,9 @@
 #include <mvvm/utils/binutils.h>
 #include <mvvm/utils/fileutils.h>
 
+namespace DaRefl
+{
+
 namespace
 {
 const QString current_workdir_key = "currentworkdir";
@@ -174,3 +177,5 @@ void ImportFileWidget::makeLastSelected()
         m_listView->selectionModel()->select(toSelect, flags);
     }
 }
+
+} // namespace DaRefl

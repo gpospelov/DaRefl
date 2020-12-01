@@ -13,6 +13,9 @@
 #include <mvvm/editors/defaulteditorfactory.h>
 #include <darefl/darefl_export.h>
 
+namespace DaRefl
+{
+
 class ApplicationModels;
 
 //! Custom editor factory for LayerTreeView. Substitutes default ExternalProperty editor
@@ -27,7 +30,9 @@ public:
     std::unique_ptr<ModelView::CustomEditor> createEditor(const QModelIndex& index) const;
 
 private:
-    ApplicationModels* m_models;
+    ApplicationModels* m_models{nullptr};
 };
+
+}
 
 #endif // DAREFL_QUICKSIMEDITOR_CUSTOMBEAMPROPERTYEDITORFACTORY_H

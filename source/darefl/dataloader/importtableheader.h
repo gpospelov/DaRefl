@@ -14,6 +14,9 @@
 #include <darefl/darefl_export.h>
 #include <vector>
 
+namespace DaRefl
+{
+
 namespace DataLoader
 {
 struct ColumnInfo;
@@ -48,5 +51,7 @@ private:
     header_data_t m_data;
     int m_maxColumnCount;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_DATALOADER_IMPORTTABLEHEADER_H

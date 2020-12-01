@@ -15,6 +15,9 @@
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphitem.h>
 
+namespace DaRefl
+{
+
 ModelView::ExternalProperty Utils::CreateProperty(const ModelView::GraphItem* graph)
 {
     std::string name = graph->parent()->displayName() + "/" + graph->displayName();
@@ -26,7 +29,7 @@ std::vector<ModelView::ExternalProperty> Utils::CreateGraphProperties(Experiment
 {
     std::vector<ModelView::ExternalProperty> result;
     for (auto graph : ModelView::Utils::FindItems<ModelView::GraphItem>(model))
-        result.push_back(::Utils::CreateProperty(graph));
+        result.push_back(Utils::CreateProperty(graph));
     return result;
 }
 
@@ -60,3 +63,5 @@ void Utils::SetDifference(const ModelView::Data1DItem* data1, const ModelView::D
     // it is expected that difference graph has proper axis
     target->setValues(CreateDiffVector(data1->binValues(), data2->binValues()));
 }
+
+} // namespace DaRefl

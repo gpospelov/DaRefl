@@ -14,6 +14,9 @@
 #include <darefl/layereditor/layereditortoolbar.h>
 #include <darefl/mainwindow/styleutils.h>
 
+namespace DaRefl
+{
+
 LayerEditorToolBar::LayerEditorToolBar(LayerEditorActions* actions, QWidget* parent)
     : QToolBar(parent)
 {
@@ -108,3 +111,5 @@ void LayerEditorToolBar::updateToolButtonStates(bool first_present, bool last_pr
     m_toolbarWidgets["Up"]->setEnabled((!first_present) ? (true) : (false));
     m_toolbarWidgets["Down"]->setEnabled((!last_present) ? (true) : (false));
 }
+
+} // namespace DaRefl

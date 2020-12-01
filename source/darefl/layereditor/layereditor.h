@@ -13,15 +13,18 @@
 #include <QWidget>
 #include <darefl/darefl_export.h>
 
-class ApplicationModels;
-class LayerEditorActions;
-class LayerEditorToolBar;
-class LayerEditorWidget;
-
 namespace ModelView
 {
 class AbstractViewModel;
 }
+
+namespace DaRefl
+{
+
+class ApplicationModels;
+class LayerEditorActions;
+class LayerEditorToolBar;
+class LayerEditorWidget;
 
 //! Layer editor.
 
@@ -44,5 +47,7 @@ private:
     LayerEditorWidget* m_editorWidget{nullptr};
     LayerEditorToolBar* m_toolBar{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_LAYEREDITOR_LAYEREDITOR_H

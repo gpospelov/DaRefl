@@ -12,6 +12,9 @@
 
 #include <darefl/dataloader/dataloader_types.h>
 
+namespace DaRefl
+{
+
 struct GraphImportData;
 
 namespace DataLoader
@@ -73,5 +76,7 @@ DAREFLCORE_EXPORT GraphImportData CreateData(const std::vector<std::vector<std::
                                              const ColumnInfo& axis, const ColumnInfo& intensity);
 
 } // namespace DataLoader
+
+} // namespace DaRefl
 
 #endif // DAREFL_DATALOADER_PARSEUTILS_H

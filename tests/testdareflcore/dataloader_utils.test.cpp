@@ -15,6 +15,7 @@
 #include <initializer_list>
 #include <vector>
 
+using namespace DaRefl;
 using namespace DataLoader;
 using TestUtils::toStringVector;
 
@@ -233,10 +234,10 @@ TEST_F(ParseUtilsTest, ExtractTwoColumns)
 
 TEST_F(ParseUtilsTest, CreateGraphInfoPairs)
 {
-    ColumnInfo col0{0, DataLoader::Constants::AxisType, "", 0};
-    ColumnInfo col1{1, DataLoader::Constants::IntensityType, "", 0};
-    ColumnInfo col2{2, DataLoader::Constants::IgnoreType, "", 0};
-    ColumnInfo col3{3, DataLoader::Constants::IntensityType, "", 0};
+    ColumnInfo col0{0, Constants::AxisType, "", 0};
+    ColumnInfo col1{1, Constants::IntensityType, "", 0};
+    ColumnInfo col2{2, Constants::IgnoreType, "", 0};
+    ColumnInfo col3{3, Constants::IntensityType, "", 0};
 
     std::vector<ColumnInfo> infos = {col0, col1, col2, col3};
 
@@ -254,8 +255,8 @@ TEST_F(ParseUtilsTest, CreateGraphInfoPairs)
 
 TEST_F(ParseUtilsTest, CreateData)
 {
-    ColumnInfo col0{0, DataLoader::Constants::AxisType, "units0", 1.0};
-    ColumnInfo col2{2, DataLoader::Constants::IntensityType, "units2", 2.0};
+    ColumnInfo col0{0, Constants::AxisType, "units0", 1.0};
+    ColumnInfo col2{2, Constants::IntensityType, "units2", 2.0};
 
     std::vector<std::vector<std::string>> text_data = {{"1.0", "2.0", "3.0"},
                                                        {"4.0", "5.0", "6.0"},

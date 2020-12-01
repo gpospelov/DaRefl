@@ -22,6 +22,9 @@ namespace ModelView
 class GraphItem;
 }
 
+namespace DaRefl
+{
+
 //! Represents base type for beam scan parameters.
 
 class DAREFLCORE_EXPORT BasicSpecularScanItem : public ModelView::CompoundItem
@@ -95,5 +98,7 @@ public:
 
     SpecularBeamItem* beamItem() const;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_MODEL_INSTRUMENTITEMS_H

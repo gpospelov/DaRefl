@@ -19,6 +19,9 @@
 #include <mvvm/project/projectutils.h>
 #include <mvvm/widgets/widgetutils.h>
 
+namespace DaRefl
+{
+
 WelcomeView::WelcomeView(ApplicationModels* models, QWidget* parent)
     : QWidget(parent)
     , m_models(models)
@@ -101,3 +104,5 @@ void WelcomeView::setup_connections()
     connect(m_projectHandler, &ProjectHandler::recentProjectsListModified, this,
             &WelcomeView::recentProjectsListModified);
 }
+
+} // namespace DaRefl

@@ -15,6 +15,9 @@
 #include <darefl/quicksimeditor/quicksim_types.h>
 #include <mvvm/utils/threadsafestack.h>
 
+namespace DaRefl
+{
+
 //! Handles all thread activity for running job simulation in the background.
 
 class DAREFLCORE_EXPORT JobManager : public QObject
@@ -45,5 +48,7 @@ private:
     std::atomic<bool> m_isRunning;
     bool m_interruptRequest{false};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_QUICKSIMEDITOR_JOBMANAGER_H

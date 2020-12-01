@@ -20,6 +20,9 @@ class ViewModel;
 class ViewModelDelegate;
 } // namespace ModelView
 
+namespace DaRefl
+{
+
 class ApplicationModels;
 class MaterialModel;
 class MaterialTableView;
@@ -48,5 +51,7 @@ private:
     MaterialTreeView* m_materialView{nullptr};
     std::unique_ptr<ModelView::ViewModelDelegate> m_delegate;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_MATERIALEDITOR_MATERIALEDITORWIDGET_H

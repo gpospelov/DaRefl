@@ -17,6 +17,7 @@
 #include <mvvm/model/modelutils.h>
 #include <mvvm/standarditems/graphitem.h>
 
+using namespace DaRefl;
 using namespace ModelView;
 
 //! Tests of DataSelectionModel.

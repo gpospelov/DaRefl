@@ -14,6 +14,9 @@
 #include <darefl/sldeditor/sldelementcontroller.h>
 #include <darefl/sldeditor/sldviewwidget.h>
 
+namespace DaRefl
+{
+
 //! The constructor
 SLDViewWidget::SLDViewWidget(QWidget* parent) : QGraphicsView(parent)
 {
@@ -44,3 +47,5 @@ void SLDViewWidget::resizeEvent(QResizeEvent* event)
     GraphicsScene* scene_item = static_cast<GraphicsScene*>(scene());
     scene_item->update_size(event->size());
 }
+
+} // namespace DaRefl

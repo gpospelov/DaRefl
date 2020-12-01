@@ -19,6 +19,9 @@
 #include <mvvm/model/modelutils.h>
 #include <mvvm/viewmodel/viewmodeldelegate.h>
 
+namespace DaRefl
+{
+
 MaterialEditorWidget::MaterialEditorWidget(QWidget* parent)
     : QWidget(parent)
     , m_materialView(new MaterialTreeView)
@@ -48,3 +51,5 @@ MaterialSelectionModel* MaterialEditorWidget::selectionModel() const
 {
     return m_selectionModel;
 }
+
+} // namespace DaRefl

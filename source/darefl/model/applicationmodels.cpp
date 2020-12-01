@@ -12,15 +12,18 @@
 #include <darefl/model/experimentaldatamodel.h>
 #include <darefl/model/instrumentmodel.h>
 #include <darefl/model/jobmodel.h>
-#include <darefl/model/sampleitems.h>
 #include <darefl/model/materialmodel.h>
 #include <darefl/model/materialpropertycontroller.h>
+#include <darefl/model/sampleitems.h>
 #include <darefl/model/samplemodel.h>
 #include <darefl/sldeditor/sldelementmodel.h>
 #include <mvvm/model/externalproperty.h>
 #include <mvvm/model/itempool.h>
 #include <mvvm/model/modelutils.h>
 #include <mvvm/model/sessionitem.h>
+
+namespace DaRefl
+{
 
 using namespace ModelView;
 
@@ -127,3 +130,5 @@ std::vector<SessionModel*> ApplicationModels::application_models() const
 {
     return p_impl->application_models();
 }
+
+} // namespace DaRefl

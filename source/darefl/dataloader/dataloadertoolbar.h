@@ -10,8 +10,11 @@
 #ifndef DAREFL_DATALOADER_DATALOADERTOOLBAR_H
 #define DAREFL_DATALOADER_DATALOADERTOOLBAR_H
 
-#include <darefl/darefl_export.h>
 #include <QToolBar>
+#include <darefl/darefl_export.h>
+
+namespace DaRefl
+{
 
 //! Tool bar for DataLoaderDialog.
 
@@ -26,5 +29,7 @@ signals:
     void addFilesRequest();
     void removeFilesRequest();
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_DATALOADER_DATALOADERTOOLBAR_H

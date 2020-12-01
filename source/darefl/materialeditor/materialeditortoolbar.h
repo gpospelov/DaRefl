@@ -13,6 +13,9 @@
 #include <QToolBar>
 #include <darefl/darefl_export.h>
 
+namespace DaRefl
+{
+
 class MaterialEditorActions;
 
 //! Material editor toolbar.
@@ -25,5 +28,7 @@ public:
     MaterialEditorToolBar(MaterialEditorActions* actions, QWidget* parent = nullptr);
     ~MaterialEditorToolBar() = default;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_MATERIALEDITOR_MATERIALEDITORTOOLBAR_H

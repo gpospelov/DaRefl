@@ -15,6 +15,7 @@
 #include <darefl/model/samplemodel.h>
 #include <mvvm/viewmodel/viewmodelutils.h>
 
+using namespace DaRefl;
 using namespace ModelView;
 
 //! Tests of LayerSelectionModel.

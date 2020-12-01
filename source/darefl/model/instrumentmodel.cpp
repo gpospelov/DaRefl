@@ -19,15 +19,18 @@ namespace
 std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
 {
     auto result = std::make_unique<ModelView::ItemCatalogue>();
-    result->registerItem<SpecularInstrumentItem>();
-    result->registerItem<SpecularBeamItem>();
-    result->registerItem<SpecularScanGroupItem>();
-    result->registerItem<QSpecScanItem>();
-    result->registerItem<ExperimentalScanItem>();
+    result->registerItem<DaRefl::SpecularInstrumentItem>();
+    result->registerItem<DaRefl::SpecularBeamItem>();
+    result->registerItem<DaRefl::SpecularScanGroupItem>();
+    result->registerItem<DaRefl::QSpecScanItem>();
+    result->registerItem<DaRefl::ExperimentalScanItem>();
     return result;
 }
 
 } // namespace
+
+namespace DaRefl
+{
 
 InstrumentModel::InstrumentModel(std::shared_ptr<ItemPool> pool)
     : ModelView::SessionModel("InstrumentModel", pool)
@@ -35,3 +38,5 @@ InstrumentModel::InstrumentModel(std::shared_ptr<ItemPool> pool)
     setItemCatalogue(CreateItemCatalogue());
     insertItem<SpecularInstrumentItem>();
 }
+
+} // namespace DaRefl

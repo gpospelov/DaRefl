@@ -7,17 +7,18 @@
 //
 // ************************************************************************** //
 
-#include <darefl/sldeditor/sldeditor.h>
-
+#include <QVBoxLayout>
+#include <darefl/mainwindow/styleutils.h>
 #include <darefl/model/applicationmodels.h>
 #include <darefl/sldeditor/graphicsscene.h>
+#include <darefl/sldeditor/sldeditor.h>
 #include <darefl/sldeditor/sldeditoractions.h>
 #include <darefl/sldeditor/sldeditortoolbar.h>
 #include <darefl/sldeditor/sldviewwidget.h>
-
-#include <QVBoxLayout>
-#include <darefl/mainwindow/styleutils.h>
 #include <mvvm/plotting/graphcanvas.h>
+
+namespace DaRefl
+{
 
 //! The constructor
 SLDEditor::SLDEditor(QWidget* parent)
@@ -60,3 +61,5 @@ QSize SLDEditor::minimumSizeHint() const
 {
     return StyleUtils::DockMinimumSizeHint();
 }
+
+} // namespace DaRefl

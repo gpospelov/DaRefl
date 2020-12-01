@@ -11,7 +11,8 @@
 #include <darefl/dataloader/defaultparser.h>
 #include <stdexcept>
 
-using namespace DataLoader;
+namespace DaRefl::DataLoader
+{
 
 DefaultParser::DefaultParser(const ParserOptions& options)
 {
@@ -71,3 +72,5 @@ std::vector<std::vector<std::string>> DefaultParser::parsedData() const
 
     return result;
 }
+
+} // namespace DaRefl::DataLoader

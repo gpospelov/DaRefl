@@ -32,6 +32,9 @@ const QString recent_projects_setting_name()
 
 } // namespace
 
+namespace DaRefl
+{
+
 RecentProjectSettings::RecentProjectSettings()
 {
     readSettings();
@@ -104,3 +107,5 @@ void RecentProjectSettings::readSettings()
     if (settings.contains(recent_projects_setting_name()))
         m_recentProjects = settings.value(recent_projects_setting_name()).toStringList();
 }
+
+} // namespace DaRefl

@@ -24,6 +24,9 @@
 
 using namespace ModelView;
 
+namespace DaRefl
+{
+
 ImportDataEditor::ImportDataEditor(ExperimentalDataModel* model, QWidget* parent)
     : QWidget(parent)
     , m_dataModel(model)
@@ -114,3 +117,5 @@ DataSelectionModel* ImportDataEditor::selectionModel() const
 {
     return m_dataSelectorWidget->selectionModel();
 }
+
+} // namespace DaRefl

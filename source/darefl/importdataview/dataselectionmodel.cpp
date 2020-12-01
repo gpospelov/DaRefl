@@ -10,14 +10,15 @@
 #include <darefl/importdataview/dataselectionmodel.h>
 #include <darefl/model/experimentaldataitems.h>
 #include <darefl/model/item_constants.h>
-
-#include <QDebug>
 #include <mvvm/model/itemutils.h>
 #include <mvvm/model/mvvm_types.h>
 #include <mvvm/model/sessionitem.h>
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/viewmodel/viewmodel.h>
 #include <mvvm/viewmodel/viewmodelutils.h>
+
+namespace DaRefl
+{
 
 //! The constructor
 DataSelectionModel::DataSelectionModel(ModelView::ViewModel* view_model, QObject* parent)
@@ -68,7 +69,7 @@ const ModelView::ViewModel* DataSelectionModel::viewModel() const
 CanvasItem* DataSelectionModel::activeCanvas() const
 {
     for (auto item : selectedItems()) {
-        if (item->modelType() == ::Constants::CanvasItemType)
+        if (item->modelType() == Constants::CanvasItemType)
             return static_cast<CanvasItem*>(item);
         else if (item->modelType() == ModelView::Constants::GraphItemType)
             return static_cast<CanvasItem*>(item->parent());
@@ -95,3 +96,5 @@ std::vector<ModelView::GraphItem*> DataSelectionModel::selectedGraphs() const
 {
     return ModelView::Utils::CastedItems<ModelView::GraphItem>(selectedItems());
 }
+
+} // namespace DaRefl

@@ -18,6 +18,9 @@ namespace ModelView
 class SessionModel;
 } // namespace ModelView
 
+namespace DaRefl
+{
+
 //! View model to display content of MultiLayerItem in table like views.
 
 class DAREFLCORE_EXPORT LayerViewModel : public ModelView::ViewModel
@@ -27,5 +30,7 @@ class DAREFLCORE_EXPORT LayerViewModel : public ModelView::ViewModel
 public:
     LayerViewModel(ModelView::SessionModel* model, QObject* parent = nullptr);
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_LAYEREDITOR_LAYERVIEWMODEL_H

@@ -16,6 +16,10 @@
 #include <vector>
 
 class QBoxLayout;
+
+namespace DaRefl
+{
+
 class ProjectPaneWidget;
 
 //! Widget with the name of current project and collection of recent projects.
@@ -46,5 +50,7 @@ private:
     ProjectPaneWidget* m_currentProjectPane;
     std::vector<ProjectPaneWidget*> m_recentProjectPanes;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_WELCOMEVIEW_RECENTPROJECTWIDGET_H

@@ -14,6 +14,9 @@
 #include <string>
 #include <vector>
 
+namespace DaRefl
+{
+
 //! Raw data to construct GraphItem and Data1DItem's.
 
 struct DAREFLCORE_EXPORT GraphImportData {
@@ -25,5 +28,7 @@ struct DAREFLCORE_EXPORT GraphImportData {
     std::vector<double> bin_values;
     std::string signal_units;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_IMPORTDATAVIEW_GRAPHIMPORTDATA_H

@@ -12,6 +12,9 @@
 #include <darefl/model/experimentaldataitems.h>
 #include <mvvm/plotting/graphcanvas.h>
 
+namespace DaRefl
+{
+
 GraphCanvasWidget::GraphCanvasWidget(QWidget* parent)
     : QWidget(parent), m_graphCanvas(new ModelView::GraphCanvas)
 {
@@ -29,3 +32,5 @@ void GraphCanvasWidget::updateViewport()
 {
     m_graphCanvas->update_viewport();
 }
+
+} // namespace DaRefl

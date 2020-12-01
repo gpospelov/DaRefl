@@ -13,6 +13,9 @@
 #include <darefl/darefl_export.h>
 #include <mvvm/editors/defaulteditorfactory.h>
 
+namespace DaRefl
+{
+
 class ApplicationModels;
 
 //! Custom editor factory for LayerTreeView. Substitutes default ExternalProperty editor
@@ -29,5 +32,7 @@ public:
 private:
     ApplicationModels* m_models;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_LAYEREDITOR_CUSTOMLAYERTREEEDITORFACTORY_H

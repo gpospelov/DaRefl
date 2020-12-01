@@ -10,6 +10,8 @@
 #include "google_test.h"
 #include <darefl/quicksimeditor/materialprofile.h>
 
+using namespace DaRefl;
+
 //! Tests utility functions from MaterialProfile namespace.
 
 class MaterialProfileTest : public ::testing::Test

@@ -13,6 +13,9 @@
 #include <mvvm/viewmodel/viewmodel.h>
 #include <mvvm/viewmodel/viewmodelutils.h>
 
+namespace DaRefl
+{
+
 LayerSelectionModel::LayerSelectionModel(ModelView::ViewModel* view_model, QObject* parent)
     : QItemSelectionModel(view_model, parent)
 {
@@ -91,3 +94,5 @@ bool LayerSelectionModel::lastSelected() const
     }
     return false;
 }
+
+} // namespace DaRefl

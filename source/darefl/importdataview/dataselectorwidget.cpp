@@ -21,6 +21,9 @@
 #include <mvvm/widgets/standardtreeviews.h>
 #include <mvvm/widgets/widgetutils.h>
 
+namespace DaRefl
+{
+
 DataSelectorWidget::DataSelectorWidget(DataViewModel* view_model, QWidget* parent)
     : QWidget(parent)
     , m_viewModel(view_model)
@@ -61,4 +64,6 @@ void DataSelectorWidget::onSelectionChanged()
     m_graphPropertyEditor->setItem(m_selectionModel->selectedGraph());
 
     selectionChanged(); // emmit further
+}
+
 }

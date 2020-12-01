@@ -21,6 +21,9 @@ class SessionItem;
 class GraphItem;
 } // namespace ModelView
 
+namespace DaRefl
+{
+
 class CanvasItem;
 
 //! Custom selection model for data view model (AbstractViewModel).
@@ -47,5 +50,7 @@ public:
 
     std::vector<ModelView::GraphItem*> selectedGraphs() const;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_IMPORTDATAVIEW_DATASELECTIONMODEL_H
