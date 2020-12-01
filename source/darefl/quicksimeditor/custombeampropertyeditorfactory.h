@@ -10,8 +10,8 @@
 #ifndef DAREFL_QUICKSIMEDITOR_CUSTOMBEAMPROPERTYEDITORFACTORY_H
 #define DAREFL_QUICKSIMEDITOR_CUSTOMBEAMPROPERTYEDITORFACTORY_H
 
-#include <mvvm/editors/defaulteditorfactory.h>
 #include <darefl/darefl_export.h>
+#include <mvvm/editors/defaulteditorfactory.h>
 
 namespace DaRefl
 {
@@ -33,6 +33,6 @@ private:
     ApplicationModels* m_models{nullptr};
 };
 
-}
+} // namespace DaRefl
 
 #endif // DAREFL_QUICKSIMEDITOR_CUSTOMBEAMPROPERTYEDITORFACTORY_H

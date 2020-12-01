@@ -11,8 +11,8 @@
 
 #include "test_utils.h"
 #include <QGraphicsScene>
-#include <darefl/model/sampleitems.h>
 #include <darefl/model/materialmodel.h>
+#include <darefl/model/sampleitems.h>
 #include <darefl/model/samplemodel.h>
 #include <darefl/sldeditor/graphicsscene.h>
 #include <darefl/sldeditor/layerelementcontroller.h>

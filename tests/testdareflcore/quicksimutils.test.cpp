@@ -9,9 +9,9 @@
 
 #include "google_test.h"
 #include <QColor>
-#include <darefl/model/sampleitems.h>
 #include <darefl/model/materialitems.h>
 #include <darefl/model/materialmodel.h>
+#include <darefl/model/sampleitems.h>
 #include <darefl/model/samplemodel.h>
 #include <darefl/quicksimeditor/quicksimutils.h>
 #include <mvvm/model/externalproperty.h>
@@ -55,7 +55,8 @@ public:
 
         //! Add layer to given multilayer models. At the same time corresponding material will
         //! be added to MaterialModel and the Layer will be linked to it.
-        void addLayer(DaRefl::MultiLayerItem* _multilayer, double thickness, double sigma, complex_t sld)
+        void addLayer(DaRefl::MultiLayerItem* _multilayer, double thickness, double sigma,
+                      complex_t sld)
         {
             auto material = material_model.insertItem<SLDMaterialItem>();
             material->set_properties("gold", QColor(), sld.real(), sld.imag());

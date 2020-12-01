@@ -43,7 +43,8 @@ TEST_F(ExperimentalDataModelTest, initialState)
 
     ASSERT_TRUE(model.dataContainer() != nullptr);
     EXPECT_EQ(model.dataContainer()->childrenCount(), 0);
-    EXPECT_EQ(model.dataContainer()->modelType(), DaRefl::Constants::ExperimentalDataContainerItemType);
+    EXPECT_EQ(model.dataContainer()->modelType(),
+              DaRefl::Constants::ExperimentalDataContainerItemType);
     EXPECT_EQ(model.dataContainer()->dataItems().size(), 0);
 }
 

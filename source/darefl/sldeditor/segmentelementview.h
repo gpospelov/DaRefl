@@ -48,6 +48,6 @@ protected:
     QPen m_pen;
 };
 
-}
+} // namespace DaRefl
 
 #endif // DAREFL_SLDEDITOR_SEGMENTELEMENTVIEW_H

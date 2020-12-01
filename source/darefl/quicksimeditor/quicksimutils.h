@@ -30,6 +30,6 @@ DAREFLCORE_EXPORT multislice_t CreateMultiSlice(const MultiLayerItem& multilayer
 DAREFLCORE_EXPORT std::vector<BornAgain::Slice>
 createBornAgainSlices(const multislice_t& multislice);
 
-} // namespace Utils
+} // namespace DaRefl::Utils
 
 #endif // DAREFL_QUICKSIMEDITOR_QUICKSIMUTILS_H

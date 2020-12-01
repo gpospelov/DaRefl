@@ -31,6 +31,6 @@ const std::string SpecularBeamItemType = "SpecularBeam";
 const std::string SpecularInstrumentItemType = "SpecularInstrument";
 const std::string SpecularScanGroupItemType = "SpecularScanGroup";
 
-} // namespace Constants
+} // namespace DaRefl::Constants
 
 #endif // DAREFL_MODEL_ITEM_CONSTANTS_H

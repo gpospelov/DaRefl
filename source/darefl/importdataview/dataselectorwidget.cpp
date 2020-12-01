@@ -66,4 +66,4 @@ void DataSelectorWidget::onSelectionChanged()
     selectionChanged(); // emmit further
 }
 
-}
+} // namespace DaRefl

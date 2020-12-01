@@ -75,7 +75,7 @@ CreateGraphInfoPairs(const std::vector<ColumnInfo>& column_info);
 DAREFLCORE_EXPORT GraphImportData CreateData(const std::vector<std::vector<std::string>>& text_data,
                                              const ColumnInfo& axis, const ColumnInfo& intensity);
 
-} // namespace DataLoader
+} // namespace Utils
 
 } // namespace DaRefl
 

@@ -169,9 +169,7 @@ void MaterialEditorActions::onExport()
     }
 }
 
-void MaterialEditorActions::onImport()
-{
-}
+void MaterialEditorActions::onImport() {}
 
 MaterialEditorActions::~MaterialEditorActions() = default;
 

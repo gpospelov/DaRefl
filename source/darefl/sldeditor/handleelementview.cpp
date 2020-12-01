@@ -91,4 +91,4 @@ QPointF HandleElementView::getLastPos() const
     return m_pos;
 }
 
-}
+} // namespace DaRefl

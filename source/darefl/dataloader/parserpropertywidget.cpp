@@ -54,7 +54,6 @@ const QString customseparatortext_setting_name()
 
 } // namespace
 
-
 namespace DaRefl
 {
 

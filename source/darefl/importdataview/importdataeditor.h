@@ -52,6 +52,6 @@ private:
     GraphCanvasWidget* m_graphCanvasWidget{nullptr};
 };
 
-}
+} // namespace DaRefl
 
 #endif // DAREFL_IMPORTDATAVIEW_IMPORTDATAEDITOR_H

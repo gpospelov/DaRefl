@@ -52,6 +52,6 @@ DAREFLCORE_EXPORT void SetDifference(const ModelView::Data1DItem* data1,
                                      ModelView::Data1DItem* target);
 } // namespace Utils
 
-}
+} // namespace DaRefl
 
 #endif // DAREFL_MODEL_MODELUTILS_H

@@ -52,4 +52,4 @@ LayerElementItem::LayerElementItem() : ModelView::CompoundItem("LayerElement")
         ->setDisplayName("Roughness handle pen color");
 }
 
-}
+} // namespace DaRefl
