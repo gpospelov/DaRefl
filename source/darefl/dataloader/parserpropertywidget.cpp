@@ -74,7 +74,7 @@ ParserPropertyWidget::~ParserPropertyWidget()
 
 //! Creates parser from parser properties.
 
-std::unique_ptr<DataLoader::ParserInterface> ParserPropertyWidget::createParser() const
+std::unique_ptr<ParserInterface> ParserPropertyWidget::createParser() const
 {
     ParserOptions options = m_options;
 

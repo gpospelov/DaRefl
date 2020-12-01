@@ -43,7 +43,7 @@ LoaderPreviewPanel::LoaderPreviewPanel(QWidget* parent)
 
 //! Sets raw text to the TextView.
 
-void LoaderPreviewPanel::showData(const DataLoader::ParserInterface* parser)
+void LoaderPreviewPanel::showData(const ParserInterface* parser)
 {
     m_textView->clear();
     for (size_t index = 0; index < parser->totalLineCount(); ++index) {

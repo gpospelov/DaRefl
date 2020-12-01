@@ -23,10 +23,7 @@ class QLineEdit;
 namespace DaRefl
 {
 
-namespace DataLoader
-{
 class ParserInterface;
-}
 
 //! Panel to setup ASCII parser. Intended for concrete class DefaultParser.
 //! Contains selection of separator symbols, patterns to ignore lines, and import target settings.
@@ -41,7 +38,7 @@ public:
     ParserPropertyWidget(QWidget* parent = nullptr);
     ~ParserPropertyWidget();
 
-    std::unique_ptr<DataLoader::ParserInterface> createParser() const;
+    std::unique_ptr<ParserInterface> createParser() const;
 
     void setTargetCanvas(const QStringList& canvas_names, int current_index);
 

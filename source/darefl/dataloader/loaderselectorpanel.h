@@ -19,11 +19,7 @@ class QSplitter;
 namespace DaRefl
 {
 
-namespace DataLoader
-{
 class ParserInterface;
-}
-
 class ImportFileWidget;
 class ParserPropertyWidget;
 
@@ -38,7 +34,7 @@ public:
     LoaderSelectorPanel(QWidget* parent = nullptr);
     ~LoaderSelectorPanel();
 
-    std::unique_ptr<DataLoader::ParserInterface> createParser() const;
+    std::unique_ptr<ParserInterface> createParser() const;
 
     void setTargetCanvas(const QStringList& canvas_names, int current_index);
 
