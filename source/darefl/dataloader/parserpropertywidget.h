@@ -64,7 +64,7 @@ private:
     void addIgnoreNumbersPatternRow(QGridLayout* layout);
     void addImportToBlock(QGridLayout* layout);
 
-    DataLoader::ParserOptions m_options;
+    ParserOptions m_options;
     QButtonGroup* m_separatorButtonGroup{nullptr};
     QComboBox* m_targetCanvasCombo{nullptr};
     QLineEdit* m_customSeparatorLineEdit{nullptr};

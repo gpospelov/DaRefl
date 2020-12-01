@@ -17,10 +17,7 @@
 namespace DaRefl
 {
 
-namespace DataLoader
-{
 struct ColumnInfo;
-}
 
 //! Holds all data related to the content of utility rows in ImportTableModel.
 
@@ -42,7 +39,7 @@ public:
 
     std::string rowName(int row) const;
 
-    std::vector<DataLoader::ColumnInfo> columnInfo() const;
+    std::vector<ColumnInfo> columnInfo() const;
 
 private:
     void init_data();

@@ -102,7 +102,7 @@ Qt::ItemFlags ImportTableModel::flags(const QModelIndex& index) const
     return result;
 }
 
-std::vector<DataLoader::ColumnInfo> ImportTableModel::columnInfo() const
+std::vector<ColumnInfo> ImportTableModel::columnInfo() const
 {
     return m_header->columnInfo();
 }

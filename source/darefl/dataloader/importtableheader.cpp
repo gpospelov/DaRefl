@@ -99,11 +99,11 @@ std::string ImportTableHeader::rowName(int row) const
     return utilityRowNames[row];
 }
 
-std::vector<DataLoader::ColumnInfo> ImportTableHeader::columnInfo() const
+std::vector<ColumnInfo> ImportTableHeader::columnInfo() const
 {
-    std::vector<DataLoader::ColumnInfo> result;
+    std::vector<ColumnInfo> result;
     for (int column = 0; column < columnCount(); ++column) {
-        DataLoader::ColumnInfo info;
+        ColumnInfo info;
         info.column = column;
         info.type_name = data(TYPE, column).value<ComboProperty>().value();
         info.units = data(UNITS, column).value<ComboProperty>().value();

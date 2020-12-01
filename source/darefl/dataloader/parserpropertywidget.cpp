@@ -76,7 +76,7 @@ ParserPropertyWidget::~ParserPropertyWidget()
 
 std::unique_ptr<DataLoader::ParserInterface> ParserPropertyWidget::createParser() const
 {
-    DataLoader::ParserOptions options = m_options;
+    ParserOptions options = m_options;
 
     // sanity check for empty separator
     options.m_separator = options.m_separator.empty() ? std::string(" ") : options.m_separator;

@@ -26,10 +26,7 @@ class ViewModelDelegate;
 namespace DaRefl
 {
 
-namespace DataLoader
-{
 struct ColumnInfo;
-}
 
 class ImportTableModel;
 
@@ -46,7 +43,7 @@ public:
 
     void setRawData(const std::vector<std::vector<std::string>>& table_data);
 
-    std::vector<DataLoader::ColumnInfo> columnInfo() const;
+    std::vector<ColumnInfo> columnInfo() const;
 
 private:
     ImportTableModel* m_tableModel{nullptr};
