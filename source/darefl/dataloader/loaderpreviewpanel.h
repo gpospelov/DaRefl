@@ -20,11 +20,7 @@ class QTabWidget;
 namespace DaRefl
 {
 
-namespace DataLoader
-{
 class ParserInterface;
-} // namespace DataLoader
-
 struct ColumnInfo;
 
 //! Panel with settings for DataLoaderDialog.
@@ -37,7 +33,7 @@ class DAREFLCORE_EXPORT LoaderPreviewPanel : public QWidget
 public:
     LoaderPreviewPanel(QWidget* parent = nullptr);
 
-    void showData(const DataLoader::ParserInterface* parser);
+    void showData(const ParserInterface* parser);
 
     std::vector<ColumnInfo> columnInfo() const;
 
