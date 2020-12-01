@@ -30,6 +30,6 @@ public:
     LayerViewModelController(ModelView::SessionModel* model, ModelView::ViewModel* view_model);
 };
 
-}
+} // namespace DaRefl
 
 #endif // DAREFL_LAYEREDITOR_LAYERVIEWMODELCONTROLLER_H

@@ -60,6 +60,6 @@ private:
     DataSelectionModel* m_selectionModel{nullptr};
 };
 
-}
+} // namespace DaRefl
 
 #endif // DAREFL_IMPORTDATAVIEW_IMPORTDATAEDITORACTIONS_H

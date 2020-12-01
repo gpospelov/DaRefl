@@ -81,4 +81,4 @@ ModelView::SceneAdapterInterface* GraphicsScene::sceneAdapter() const
     return scene_adapter.get();
 }
 
-}
+} // namespace DaRefl

@@ -53,6 +53,6 @@ public:
     LayerElementItem();
 };
 
-}
+} // namespace DaRefl
 
 #endif // DAREFL_SLDEDITOR_LAYERELEMENTITEM_H

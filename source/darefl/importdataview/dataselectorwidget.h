@@ -15,7 +15,6 @@
 
 class QTreeView;
 
-
 namespace ModelView
 {
 class PropertyTreeView;
@@ -55,6 +54,6 @@ private:
     ModelView::CollapsibleListWidget* m_collapsibleWidget{nullptr};
 };
 
-}
+} // namespace DaRefl
 
 #endif // DAREFL_IMPORTDATAVIEW_DATASELECTORWIDGET_H

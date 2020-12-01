@@ -34,6 +34,6 @@ DAREFLCORE_EXPORT std::vector<double> GenerateZValues(int n_points, double z_min
 
 } // namespace MaterialProfile
 
-}
+} // namespace DaRefl
 
 #endif // DAREFL_QUICKSIMEDITOR_MATERIALPROFILE_H

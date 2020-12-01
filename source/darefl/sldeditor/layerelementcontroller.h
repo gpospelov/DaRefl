@@ -152,6 +152,6 @@ private:
     LayerElementController* p_controller_below = nullptr;
 };
 
-}
+} // namespace DaRefl
 
 #endif // DAREFL_SLDEDITOR_LAYERELEMENTCONTROLLER_H

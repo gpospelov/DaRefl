@@ -39,4 +39,4 @@ void StyleUtils::SetToolBarStyleTextBesides(QToolBar* toolbar)
     toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 }
 
-}
+} // namespace DaRefl

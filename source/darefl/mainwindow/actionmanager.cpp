@@ -103,4 +103,4 @@ void ActionManager::setupMenus(QMenuBar* menubar)
     fileMenu->addAction(m_exitAction);
 }
 
-}
+} // namespace DaRefl
