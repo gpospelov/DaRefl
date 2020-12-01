@@ -44,7 +44,7 @@ std::vector<std::string> DataHandler::textData(const std::string& file_name)
 
 void DataHandler::loadFile(const std::string& file_name)
 {
-    m_raw_data[file_name] = DataLoader::LoadASCIIFile(file_name);
+    m_raw_data[file_name] = Utils::LoadASCIIFile(file_name);
 }
 
 } // namespace DaRefl

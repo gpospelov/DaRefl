@@ -217,8 +217,8 @@ void DataLoaderDialog::onParseAllRequest()
         auto parsed_text = parser->parsedData();
 
         auto columns = m_previewPanel->columnInfo();
-        for (auto [axis_info, intensity_info] : DataLoader::CreateGraphInfoPairs(columns)) {
-            auto data = DataLoader::CreateData(parsed_text, axis_info, intensity_info);
+        for (auto [axis_info, intensity_info] : Utils::CreateGraphInfoPairs(columns)) {
+            auto data = Utils::CreateData(parsed_text, axis_info, intensity_info);
             data.graph_description = createImportDescription(name, axis_info, intensity_info);
             m_graphImportData.emplace_back(data);
         }

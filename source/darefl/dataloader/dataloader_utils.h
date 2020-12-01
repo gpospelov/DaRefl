@@ -17,7 +17,7 @@ namespace DaRefl
 
 struct GraphImportData;
 
-namespace DataLoader
+namespace Utils
 {
 
 //! Loads ASCII file, returns it in the form of vector of strings.
