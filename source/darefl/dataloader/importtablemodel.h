@@ -19,10 +19,7 @@
 namespace DaRefl
 {
 
-namespace DataLoader
-{
 struct ColumnInfo;
-}
 
 class ImportTableHeader;
 
@@ -52,7 +49,7 @@ public:
 
     Qt::ItemFlags flags(const QModelIndex& index) const override;
 
-    std::vector<DataLoader::ColumnInfo> columnInfo() const;
+    std::vector<ColumnInfo> columnInfo() const;
 
 private:
     int utilityRowCount() const;

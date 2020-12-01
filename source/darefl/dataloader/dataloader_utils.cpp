@@ -29,10 +29,10 @@ bool isRepresentRange(const std::optional<int>& v0, const std::optional<int>& v1
 }
 
 //! Finds in vector of ColumnInfo all columns of given type and returns it as a new vector.
-std::vector<DataLoader::ColumnInfo> columnsForType(const std::vector<DataLoader::ColumnInfo>& input,
-                                                   const std::string& columnType)
+std::vector<ColumnInfo> columnsForType(const std::vector<ColumnInfo>& input,
+                                       const std::string& columnType)
 {
-    std::vector<DataLoader::ColumnInfo> result;
+    std::vector<ColumnInfo> result;
     std::copy_if(input.begin(), input.end(), std::back_inserter(result),
                  [columnType](auto x) { return x.type_name == columnType; });
     return result;
@@ -73,7 +73,7 @@ std::vector<std::pair<int, int>> DataLoader::ExpandLineNumberPattern(const std::
     return result;
 }
 
-DataLoader::accept_int_t DataLoader::CreateLineNumberPatternValidator(const std::string& pattern)
+accept_int_t DataLoader::CreateLineNumberPatternValidator(const std::string& pattern)
 {
     std::vector<std::pair<int, int>> expanded_pattern =
         DataLoader::ExpandLineNumberPattern(pattern);
@@ -87,8 +87,7 @@ DataLoader::accept_int_t DataLoader::CreateLineNumberPatternValidator(const std:
     return result;
 }
 
-DataLoader::accept_string_t
-DataLoader::CreateLinePrefixValidator(const std::string& prefix_to_exclude)
+accept_string_t DataLoader::CreateLinePrefixValidator(const std::string& prefix_to_exclude)
 {
     auto result = [prefix_to_exclude](const std::string& line) {
         // line contains spaces only
@@ -100,7 +99,7 @@ DataLoader::CreateLinePrefixValidator(const std::string& prefix_to_exclude)
     return result;
 }
 
-DataLoader::line_splitter_t DataLoader::CreateSeparatorBasedSplitter(const std::string& separator)
+line_splitter_t DataLoader::CreateSeparatorBasedSplitter(const std::string& separator)
 {
     if (separator.empty())
         throw std::runtime_error("Error, empty separator.");
@@ -180,10 +179,10 @@ DataLoader::ExtractTwoColumns(const std::vector<std::vector<std::string>>& text_
     return std::make_pair(std::move(vec1), std::move(vec2));
 }
 
-std::vector<std::pair<DataLoader::ColumnInfo, DataLoader::ColumnInfo>>
-DataLoader::CreateGraphInfoPairs(const std::vector<DataLoader::ColumnInfo>& column_info)
+std::vector<std::pair<ColumnInfo, ColumnInfo>>
+DataLoader::CreateGraphInfoPairs(const std::vector<ColumnInfo>& column_info)
 {
-    std::vector<std::pair<DataLoader::ColumnInfo, DataLoader::ColumnInfo>> result;
+    std::vector<std::pair<ColumnInfo, ColumnInfo>> result;
 
     auto axis_columns = columnsForType(column_info, Constants::AxisType);
     auto intensity_columns = columnsForType(column_info, Constants::IntensityType);
@@ -198,8 +197,7 @@ DataLoader::CreateGraphInfoPairs(const std::vector<DataLoader::ColumnInfo>& colu
 }
 
 GraphImportData DataLoader::CreateData(const std::vector<std::vector<std::string>>& text_data,
-                                       const DataLoader::ColumnInfo& axis,
-                                       const DataLoader::ColumnInfo& intensity)
+                                       const ColumnInfo& axis, const ColumnInfo& intensity)
 {
     GraphImportData result;
 

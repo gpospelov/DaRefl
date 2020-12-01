@@ -39,7 +39,7 @@ void ImportTableWidget::setRawData(const std::vector<std::vector<std::string>>& 
     m_tableModel->setRawData(table_data);
 }
 
-std::vector<DataLoader::ColumnInfo> ImportTableWidget::columnInfo() const
+std::vector<ColumnInfo> ImportTableWidget::columnInfo() const
 {
     return m_tableModel->columnInfo();
 }

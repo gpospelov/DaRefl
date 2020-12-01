@@ -15,7 +15,7 @@
 #include <string>
 #include <vector>
 
-namespace DaRefl::DataLoader
+namespace DaRefl
 {
 
 //! Parser options to process multi column ASCII files.
@@ -44,6 +44,6 @@ using accept_string_t = std::function<bool(const std::string& line)>;
 //! Function to define line splitter according to some criteria.
 using line_splitter_t = std::function<std::vector<std::string>(const std::string& line)>;
 
-} // namespace DaRefl::DataLoader
+} // namespace DaRefl
 
 #endif // DAREFL_DATALOADER_DATALOADER_TYPES_H

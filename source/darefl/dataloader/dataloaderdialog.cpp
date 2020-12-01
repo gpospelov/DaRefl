@@ -71,8 +71,8 @@ const QString splittersize_setting_name()
 //! Returns string representing import summary: filename and columns used for import.
 
 std::string createImportDescription(const QString& file_name,
-                                    const DataLoader::ColumnInfo& axis_info,
-                                    const DataLoader::ColumnInfo& intensity_info)
+                                    const ColumnInfo& axis_info,
+                                    const ColumnInfo& intensity_info)
 {
     std::ostringstream ostr;
     ostr << "file: '" << ModelView::Utils::WithTildeHomePath(file_name).toStdString() << "', ";

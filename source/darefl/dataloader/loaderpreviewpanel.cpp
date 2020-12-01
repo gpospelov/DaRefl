@@ -57,7 +57,7 @@ void LoaderPreviewPanel::showData(const DataLoader::ParserInterface* parser)
     m_tableWidget->setRawData(parser->parsedData());
 }
 
-std::vector<DataLoader::ColumnInfo> LoaderPreviewPanel::columnInfo() const
+std::vector<ColumnInfo> LoaderPreviewPanel::columnInfo() const
 {
     return m_tableWidget->columnInfo();
 }

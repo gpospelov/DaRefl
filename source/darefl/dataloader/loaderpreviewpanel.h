@@ -23,8 +23,9 @@ namespace DaRefl
 namespace DataLoader
 {
 class ParserInterface;
-struct ColumnInfo;
 } // namespace DataLoader
+
+struct ColumnInfo;
 
 //! Panel with settings for DataLoaderDialog.
 //! Located on its right side, contains text and table views.
@@ -38,7 +39,7 @@ public:
 
     void showData(const DataLoader::ParserInterface* parser);
 
-    std::vector<DataLoader::ColumnInfo> columnInfo() const;
+    std::vector<ColumnInfo> columnInfo() const;
 
     void clearPanel();
 
