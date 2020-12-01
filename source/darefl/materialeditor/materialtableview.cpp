@@ -11,6 +11,9 @@
 #include <QMouseEvent>
 #include <darefl/materialeditor/materialtableview.h>
 
+namespace DaRefl
+{
+
 MaterialTableView::~MaterialTableView() = default;
 
 void MaterialTableView::setModel(QAbstractItemModel* model)
@@ -58,3 +61,5 @@ bool MaterialTableView::isKeyboardEditable(const QModelIndex& index) const
 {
     return index.isValid();
 }
+
+} // namespace DaRefl

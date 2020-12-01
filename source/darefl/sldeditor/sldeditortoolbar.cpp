@@ -7,13 +7,15 @@
 //
 // ************************************************************************** //
 
+#include <QAction>
+#include <QToolButton>
 #include <darefl/mainwindow/styleutils.h>
 #include <darefl/resources/resources.h>
 #include <darefl/sldeditor/sldeditoractions.h>
 #include <darefl/sldeditor/sldeditortoolbar.h>
 
-#include <QAction>
-#include <QToolButton>
+namespace DaRefl
+{
 
 SLDEditorToolBar::SLDEditorToolBar(SLDEditorActions* actions, QWidget* parent) : QToolBar(parent)
 {
@@ -25,3 +27,5 @@ SLDEditorToolBar::SLDEditorToolBar(SLDEditorActions* actions, QWidget* parent) :
     addWidget(reset_view);
     connect(reset_view, &QToolButton::clicked, [this]() { resetViewport(); });
 }
+
+} // namespace DaRefl

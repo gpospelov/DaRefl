@@ -13,6 +13,9 @@
 #include <QToolBar>
 #include <darefl/darefl_export.h>
 
+namespace DaRefl
+{
+
 class SLDEditorActions;
 
 //! Material editor toolbar.
@@ -28,5 +31,7 @@ public:
 signals:
     void resetViewport();
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_SLDEDITOR_SLDEDITORTOOLBAR_H

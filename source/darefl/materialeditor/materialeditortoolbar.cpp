@@ -13,6 +13,9 @@
 #include <darefl/materialeditor/materialeditoractions.h>
 #include <darefl/materialeditor/materialeditortoolbar.h>
 
+namespace DaRefl
+{
+
 MaterialEditorToolBar::MaterialEditorToolBar(MaterialEditorActions* actions, QWidget* parent)
     : QToolBar(parent)
 {
@@ -64,3 +67,5 @@ MaterialEditorToolBar::MaterialEditorToolBar(MaterialEditorActions* actions, QWi
     connect(action, &QAction::triggered, actions, &MaterialEditorActions::onExport);
     addAction(action);
 }
+
+} // namespace DaRefl

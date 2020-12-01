@@ -22,6 +22,10 @@ class GraphViewportItem;
 } // namespace ModelView
 
 class CustomPlotProxyWidget;
+
+namespace DaRefl
+{
+
 class RegionOfInterestItem;
 
 //! Custom graphics scene to show QCustomPlot with additional elements on top.
@@ -45,5 +49,7 @@ private:
     std::unique_ptr<ModelView::SceneAdapterInterface> scene_adapter;
     ModelView::GraphCanvas* graph_canvas{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_SLDEDITOR_GRAPHICSSCENE_H

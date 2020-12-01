@@ -16,6 +16,9 @@
 #include <mvvm/model/externalproperty.h>
 #include <mvvm/model/modelutils.h>
 
+namespace DaRefl
+{
+
 ExperimentalDataController::ExperimentalDataController(ExperimentalDataModel* data_model,
                                                        InstrumentModel* instrument_model)
     : ModelListener(data_model), m_instrument_model(instrument_model)
@@ -41,3 +44,5 @@ void ExperimentalDataController::update_all()
             scan->setProperty(ExperimentalScanItem::P_IMPORTED_DATA, updated);
     }
 }
+
+} // namespace DaRefl

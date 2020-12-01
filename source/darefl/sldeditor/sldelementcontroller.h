@@ -17,6 +17,9 @@
 #include <mvvm/model/sessionmodel.h>
 #include <vector>
 
+namespace DaRefl
+{
+
 class MaterialModel;
 class SampleModel;
 class SLDElementModel;
@@ -63,5 +66,7 @@ private:
     GraphicsScene* p_scene_item;
     layer_ctrl_vec m_layer_controllers;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_SLDEDITOR_SLDELEMENTCONTROLLER_H

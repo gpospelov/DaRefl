@@ -15,15 +15,18 @@
 #include <darefl/dataloader/dataloader_types.h>
 #include <memory>
 
-namespace DataLoader
-{
-class ParserInterface;
-}
-
 class QGridLayout;
 class QButtonGroup;
 class QComboBox;
 class QLineEdit;
+
+namespace DaRefl
+{
+
+namespace DataLoader
+{
+class ParserInterface;
+}
 
 //! Panel to setup ASCII parser. Intended for concrete class DefaultParser.
 //! Contains selection of separator symbols, patterns to ignore lines, and import target settings.
@@ -66,5 +69,7 @@ private:
     QComboBox* m_targetCanvasCombo{nullptr};
     QLineEdit* m_customSeparatorLineEdit{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_DATALOADER_PARSERPROPERTYWIDGET_H

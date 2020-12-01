@@ -17,6 +17,7 @@
 #include <mvvm/standarditems/data1ditem.h>
 #include <mvvm/standarditems/graphitem.h>
 
+using namespace DaRefl;
 using namespace ModelView;
 
 //! Tests of ExperimentalDataModel.
@@ -37,12 +38,12 @@ TEST_F(ExperimentalDataModelTest, initialState)
 
     ASSERT_TRUE(model.canvasContainer() != nullptr);
     EXPECT_EQ(model.canvasContainer()->childrenCount(), 0);
-    EXPECT_EQ(model.canvasContainer()->modelType(), ::Constants::CanvasContainerItemType);
+    EXPECT_EQ(model.canvasContainer()->modelType(), DaRefl::Constants::CanvasContainerItemType);
     EXPECT_EQ(model.canvasContainer()->canvasItems().size(), 0);
 
     ASSERT_TRUE(model.dataContainer() != nullptr);
     EXPECT_EQ(model.dataContainer()->childrenCount(), 0);
-    EXPECT_EQ(model.dataContainer()->modelType(), ::Constants::ExperimentalDataContainerItemType);
+    EXPECT_EQ(model.dataContainer()->modelType(), DaRefl::Constants::ExperimentalDataContainerItemType);
     EXPECT_EQ(model.dataContainer()->dataItems().size(), 0);
 }
 
@@ -55,7 +56,7 @@ TEST_F(ExperimentalDataModelTest, addCanvas)
     auto canvas = model.addCanvas();
     ASSERT_TRUE(canvas != nullptr);
     EXPECT_EQ(canvas->graphItems().size(), 0);
-    EXPECT_EQ(canvas->modelType(), ::Constants::CanvasItemType);
+    EXPECT_EQ(canvas->modelType(), DaRefl::Constants::CanvasItemType);
     EXPECT_EQ(model.canvasContainer()->canvasItems().size(), 1);
     EXPECT_EQ(model.canvasContainer()->canvasItems(), std::vector<CanvasItem*>() = {canvas});
 }

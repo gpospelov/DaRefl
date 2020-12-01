@@ -13,6 +13,9 @@
 #include <QStringList>
 #include <darefl/darefl_export.h>
 
+namespace DaRefl
+{
+
 //! Collection of settings for RecentProjectWidget. Used to save last directory selected
 //! by the user, and list of recent projects. Relies on QSettings machinery.
 
@@ -39,5 +42,7 @@ private:
     QString m_currentWorkdir;
     QStringList m_recentProjects;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_WELCOMEVIEW_RECENTPROJECTSETTINGS_H

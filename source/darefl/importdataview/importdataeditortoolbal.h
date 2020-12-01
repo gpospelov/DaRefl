@@ -13,6 +13,9 @@
 #include <QToolBar>
 #include <darefl/darefl_export.h>
 
+namespace DaRefl
+{
+
 class ImportDataEditorActions;
 
 //! Toolbar for ImportDataEditor.
@@ -30,5 +33,7 @@ signals:
 private:
     ImportDataEditorActions* m_editorActions{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_IMPORTDATAVIEW_IMPORTDATAEDITORTOOLBAL_H

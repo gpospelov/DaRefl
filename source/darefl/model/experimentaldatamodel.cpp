@@ -30,13 +30,16 @@ namespace
 std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
 {
     auto result = std::make_unique<ModelView::ItemCatalogue>();
-    result->registerItem<CanvasItem>();
-    result->registerItem<CanvasContainerItem>();
-    result->registerItem<ExperimentalDataContainerItem>();
+    result->registerItem<DaRefl::CanvasItem>();
+    result->registerItem<DaRefl::CanvasContainerItem>();
+    result->registerItem<DaRefl::ExperimentalDataContainerItem>();
     return result;
 }
 
 } // namespace
+
+namespace DaRefl
+{
 
 ExperimentalDataModel::ExperimentalDataModel(std::shared_ptr<ItemPool> pool)
     : SessionModel("ExperimentalDataModel", pool)
@@ -129,3 +132,5 @@ void ExperimentalDataModel::init_model()
 
     setUndoRedoEnabled(true);
 }
+
+} // namespace DaRefl

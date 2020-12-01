@@ -16,6 +16,9 @@
 
 using namespace ModelView;
 
+namespace DaRefl
+{
+
 namespace
 {
 std::unique_ptr<ItemCatalogue> CreateItemCatalogue()
@@ -39,3 +42,5 @@ LayerElementItem* SLDElementModel::addLayer()
     auto layer_element_item = insertItem<LayerElementItem>();
     return layer_element_item;
 }
+
+} // namespace DaRefl

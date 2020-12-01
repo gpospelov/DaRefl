@@ -20,6 +20,7 @@
 #include <mvvm/standarditems/graphitem.h>
 #include <mvvm/standarditems/plottableitems.h>
 
+using namespace DaRefl;
 using namespace ModelView;
 
 //! Tests of ImportDataEditorActions.

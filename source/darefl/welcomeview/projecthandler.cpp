@@ -19,6 +19,9 @@
 
 using namespace ModelView;
 
+namespace DaRefl
+{
+
 ProjectHandler::ProjectHandler(ApplicationModels* models, QWidget* parent)
     : QObject(parent)
     , m_recentProjectSettings(std::make_unique<RecentProjectSettings>())
@@ -114,3 +117,5 @@ void ProjectHandler::updateRecentProjectNames()
         QString::fromStdString(m_projectManager->currentProjectDir()));
     recentProjectsListModified(m_recentProjectSettings->recentProjects());
 }
+
+} // namespace DaRefl

@@ -12,7 +12,12 @@
 
 using namespace ModelView;
 
+namespace DaRefl
+{
+
 LayerViewModel::LayerViewModel(SessionModel* model, QObject* parent)
     : ViewModel(std::make_unique<LayerViewModelController>(model, this), parent)
 {
 }
+
+} // namespace DaRefl

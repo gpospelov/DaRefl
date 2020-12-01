@@ -14,10 +14,13 @@
 
 using namespace ModelView;
 
-MaterialContainerItem::MaterialContainerItem()
-    : ModelView::CompoundItem(::Constants::MaterialContainerItemType)
+namespace DaRefl
 {
-    registerTag(TagInfo::universalTag(T_MATERIALS, {::Constants::SLDMaterialItemType}),
+
+MaterialContainerItem::MaterialContainerItem()
+    : ModelView::CompoundItem(Constants::MaterialContainerItemType)
+{
+    registerTag(TagInfo::universalTag(T_MATERIALS, {Constants::SLDMaterialItemType}),
                 /*set_as_default*/ true);
 }
 
@@ -55,7 +58,7 @@ void MaterialBaseItem::init_magnetic_field()
 
 // ----------------------------------------------------------------------------
 
-SLDMaterialItem::SLDMaterialItem() : MaterialBaseItem(::Constants::SLDMaterialItemType)
+SLDMaterialItem::SLDMaterialItem() : MaterialBaseItem(Constants::SLDMaterialItemType)
 {
     addProperty(P_SLD_REAL, 1e-06)->setDisplayName("Re(SLD)")->setLimits(RealLimits::limitless());
     addProperty(P_SLD_IMAG, 1e-08)->setDisplayName("Im(SLD)")->setLimits(RealLimits::limitless());
@@ -70,3 +73,5 @@ void SLDMaterialItem::set_properties(const std::string& name, const QColor& colo
     setProperty(P_SLD_REAL, real);
     setProperty(P_SLD_IMAG, imag);
 }
+
+} // namespace DaRefl

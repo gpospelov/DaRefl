@@ -22,6 +22,9 @@
 
 using namespace ModelView;
 
+namespace DaRefl
+{
+
 namespace
 {
 
@@ -31,7 +34,7 @@ namespace
 std::vector<ModelView::ExternalProperty> available_graph_properties(ExperimentalDataModel* model)
 {
     std::vector<ModelView::ExternalProperty> result{ExternalProperty::undefined()};
-    auto properties = ::Utils::CreateGraphProperties(model);
+    auto properties = Utils::CreateGraphProperties(model);
     std::copy(properties.begin(), properties.end(), std::back_inserter(result));
     return result;
 }
@@ -57,3 +60,5 @@ CustomBeamPropertyEditorFactory::createEditor(const QModelIndex& index) const
         return DefaultEditorFactory::createEditor(index);
     }
 }
+
+} // namespace DaRefl

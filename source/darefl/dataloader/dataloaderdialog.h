@@ -17,6 +17,10 @@
 #include <vector>
 
 class QSplitter;
+
+namespace DaRefl
+{
+
 class DataLoaderToolBar;
 class LoaderSelectorPanel;
 class LoaderPreviewPanel;
@@ -64,5 +68,7 @@ private:
     std::unique_ptr<DataHandler> m_dataHandler;
     std::vector<GraphImportData> m_graphImportData;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_DATALOADER_DATALOADERDIALOG_H

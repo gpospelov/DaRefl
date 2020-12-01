@@ -29,9 +29,13 @@ namespace
 const int profile_points_count = 1000;
 }
 
+namespace DaRefl
+{
+
 QuickSimController::QuickSimController(QObject* parent)
-    : QObject(parent), m_jobManager(new JobManager(this)),
-      m_isRealTimeMode(Constants::live_simulation_default_on)
+    : QObject(parent)
+    , m_jobManager(new JobManager(this))
+    , m_isRealTimeMode(Constants::live_simulation_default_on)
 {
 }
 
@@ -93,7 +97,7 @@ void QuickSimController::onSimulationCompleted()
 void QuickSimController::process_multilayer(bool submit_simulation)
 {
     auto multilayer = m_models->sampleModel()->topItem<MultiLayerItem>();
-    auto slices = ::Utils::CreateMultiSlice(*multilayer);
+    auto slices = Utils::CreateMultiSlice(*multilayer);
     update_sld_profile(slices);
     if (submit_simulation)
         submit_specular_simulation(slices);
@@ -140,3 +144,5 @@ InstrumentModel* QuickSimController::instrumentModel() const
 {
     return m_models->instrumentModel();
 }
+
+} // namespace DaRefl

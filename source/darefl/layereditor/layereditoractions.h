@@ -14,6 +14,9 @@
 #include <darefl/darefl_export.h>
 #include <memory>
 
+namespace DaRefl
+{
+
 class SampleModel;
 class LayerSelectionModel;
 
@@ -43,5 +46,7 @@ private:
     struct LayerEditorActionsImpl;
     std::unique_ptr<LayerEditorActionsImpl> p_impl;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_LAYEREDITOR_LAYEREDITORACTIONS_H

@@ -16,6 +16,9 @@
 #include <darefl/darefl_export.h>
 #include <mvvm/model/compounditem.h>
 
+namespace DaRefl
+{
+
 //! Item to represent the roughness of the layer.
 
 class DAREFLCORE_EXPORT RoughnessItem : public ModelView::CompoundItem
@@ -57,5 +60,7 @@ public:
 private:
     void update_layer_appearance();
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_MODEL_SAMPLEITEMS_H

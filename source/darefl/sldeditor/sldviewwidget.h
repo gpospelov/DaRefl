@@ -7,9 +7,15 @@
 //
 // ************************************************************************** //
 
+#ifndef DAREFL_SLDEDITOR_SLDVIEWWIDGET_H
+#define DAREFL_SLDEDITOR_SLDVIEWWIDGET_H
+
 #include <QGraphicsView>
 #include <darefl/darefl_export.h>
 #include <memory>
+
+namespace DaRefl
+{
 
 class ApplicationModels;
 class SLDElementController;
@@ -31,3 +37,7 @@ protected:
 private:
     std::unique_ptr<SLDElementController> m_sld_controller;
 };
+
+} // namespace DaRefl
+
+#endif

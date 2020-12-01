@@ -20,6 +20,9 @@ class ViewModel;
 class SessionItem;
 } // namespace ModelView
 
+namespace DaRefl
+{
+
 class LayerEditorActions;
 
 //! Custom selection model for layer view model (AbstractViewModel).
@@ -41,5 +44,7 @@ public:
 
     const ModelView::ViewModel* viewModel() const;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_LAYEREDITOR_LAYERSELECTIONMODEL_H

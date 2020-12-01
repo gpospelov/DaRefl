@@ -14,6 +14,11 @@
 #include <darefl/darefl_export.h>
 #include <memory>
 
+class QSplitter;
+
+namespace DaRefl
+{
+
 namespace DataLoader
 {
 class ParserInterface;
@@ -21,7 +26,6 @@ class ParserInterface;
 
 class ImportFileWidget;
 class ParserPropertyWidget;
-class QSplitter;
 
 //! Panel with settings for DataLoaderDialog.
 //! Located on its left side, contains file selection dialog and parser property widget.
@@ -59,5 +63,7 @@ private:
     ParserPropertyWidget* m_propertyWidget{nullptr};
     QSplitter* m_splitter{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_DATALOADER_LOADERSELECTORPANEL_H

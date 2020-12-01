@@ -10,9 +10,11 @@
 #ifndef DAREFL_MODEL_MATERIALPROPERTYCONTROLLER_H
 #define DAREFL_MODEL_MATERIALPROPERTYCONTROLLER_H
 
-#include <mvvm/model/sessionmodel.h>
-#include <mvvm/signals/modellistener.h>
 #include <darefl/darefl_export.h>
+#include <mvvm/signals/modellistener.h>
+
+namespace DaRefl
+{
 
 class SampleModel;
 class MaterialModel;
@@ -29,5 +31,7 @@ private:
 
     SampleModel* m_sample_model{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_MODEL_MATERIALPROPERTYCONTROLLER_H

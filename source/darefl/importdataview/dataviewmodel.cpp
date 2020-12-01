@@ -25,6 +25,9 @@ const std::string ExperimentalDataMimeType = "darefl/ExperimentalDataMime";
 
 } // namespace
 
+namespace DaRefl
+{
+
 DataViewModel::DataViewModel(ExperimentalDataModel* model, QObject* parent)
     : ModelView::TopItemsViewModel(model, parent)
 {
@@ -39,7 +42,7 @@ Qt::ItemFlags DataViewModel::flags(const QModelIndex& index) const
     if (auto item = sessionItemFromIndex(index); item) {
         if (item->modelType() == ModelView::Constants::GraphItemType)
             result |= Qt::ItemIsDragEnabled;
-        else if (item->modelType() == ::Constants::CanvasItemType)
+        else if (item->modelType() == Constants::CanvasItemType)
             result |= Qt::ItemIsDropEnabled;
     }
 
@@ -84,7 +87,7 @@ bool DataViewModel::canDropMimeData(const QMimeData* data, Qt::DropAction, int, 
 {
     if (data->hasFormat(QString::fromStdString(ExperimentalDataMimeType)))
         if (auto target = sessionItemFromIndex(parent); target)
-            return target->modelType() == ::Constants::CanvasItemType;
+            return target->modelType() == Constants::CanvasItemType;
 
     return false;
 }
@@ -111,3 +114,5 @@ bool DataViewModel::dropMimeData(const QMimeData* data, Qt::DropAction action, i
 
     return true;
 }
+
+} // namespace DaRefl

@@ -13,6 +13,9 @@
 #include <QTreeView>
 #include <darefl/darefl_export.h>
 
+namespace DaRefl
+{
+
 //! Extension of QTreeView for material editing.
 //! Provide better user experinece while navigating between cells.
 //! Part of MaterialTableWidget.
@@ -36,5 +39,7 @@ private:
     bool isTextField(const QModelIndex& index) const;
     bool isKeyboardEditable(const QModelIndex& index) const;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_MATERIALEDITOR_MATERIALTREEVIEW_H

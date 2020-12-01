@@ -15,6 +15,9 @@
 #include <mvvm/utils/numericutils.h>
 #include <mvvm/utils/reallimits.h>
 
+namespace DaRefl
+{
+
 LayerElementItem::LayerElementItem() : ModelView::CompoundItem("LayerElement")
 {
     addProperty(P_X_POS, 0.)->setDisplayName("Position");
@@ -47,4 +50,6 @@ LayerElementItem::LayerElementItem() : ModelView::CompoundItem("LayerElement")
     addProperty(P_ROUGHNESS_PEN_WIDTH, 2.)->setDisplayName("Roughness handle pen width");
     addProperty(P_ROUGHNESS_PEN_COLOR, QColor("black"))
         ->setDisplayName("Roughness handle pen color");
+}
+
 }

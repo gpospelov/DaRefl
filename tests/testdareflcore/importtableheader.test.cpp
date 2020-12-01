@@ -14,6 +14,7 @@
 #include <darefl/dataloader/importtableheader.h>
 #include <mvvm/model/comboproperty.h>
 
+using namespace DaRefl;
 using namespace DataLoader;
 
 //! Test the data column item

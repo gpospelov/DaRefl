@@ -29,6 +29,9 @@
 #include <mvvm/widgets/widgetutils.h>
 #include <sstream>
 
+namespace DaRefl
+{
+
 namespace
 {
 
@@ -277,3 +280,5 @@ void DataLoaderDialog::initConnections()
     connect(m_selectorPanel, &LoaderSelectorPanel::parserPropertyChanged, this,
             &DataLoaderDialog::onShowFilePreviewRequest);
 }
+
+} // namespace DaRefl

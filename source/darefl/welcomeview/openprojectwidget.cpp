@@ -29,6 +29,9 @@ const QString str_new = "New";
 
 } // namespace
 
+namespace DaRefl
+{
+
 OpenProjectWidget::OpenProjectWidget(QWidget* parent) : QWidget(parent)
 {
     auto layout = new QVBoxLayout(this);
@@ -91,3 +94,5 @@ QBoxLayout* OpenProjectWidget::createLinkedLabelLayout()
 
     return result;
 }
+
+} // namespace DaRefl

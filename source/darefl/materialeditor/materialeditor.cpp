@@ -16,6 +16,9 @@
 #include <darefl/model/applicationmodels.h>
 #include <darefl/model/materialmodel.h>
 
+namespace DaRefl
+{
+
 MaterialEditor::MaterialEditor(QWidget* parent)
     : QWidget(parent)
     , m_actions(new MaterialEditorActions(this))
@@ -50,3 +53,5 @@ QSize MaterialEditor::minimumSizeHint() const
 }
 
 MaterialEditor::~MaterialEditor() = default;
+
+} // namespace DaRefl

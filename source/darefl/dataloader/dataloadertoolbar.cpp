@@ -11,6 +11,9 @@
 #include <darefl/dataloader/dataloadertoolbar.h>
 #include <darefl/mainwindow/styleutils.h>
 
+namespace DaRefl
+{
+
 DataLoaderToolBar::DataLoaderToolBar(QWidget* parent) : QToolBar(parent)
 {
     StyleUtils::SetToolBarStyleTextBesides(this);
@@ -30,3 +33,5 @@ DataLoaderToolBar::DataLoaderToolBar(QWidget* parent) : QToolBar(parent)
     connect(action, &QAction::triggered, [this]() { this->removeFilesRequest(); });
     addAction(action);
 }
+
+} // namespace DaRefl

@@ -17,6 +17,10 @@
 class QStackedWidget;
 class QHBoxLayout;
 class QPushButton;
+
+namespace DaRefl
+{
+
 class FancyTab;
 
 //! Widget container with functionality similar to QTabWidget. Has large button bar on top,
@@ -39,5 +43,7 @@ private:
     QHBoxLayout* m_labelLayout{nullptr};
     std::map<int, FancyTab*> m_indexToTab;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_MAINWINDOW_MAINBARWIDGET_H

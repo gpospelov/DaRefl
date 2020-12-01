@@ -19,6 +19,7 @@
 #include <mvvm/viewmodel/standardviewitems.h>
 #include <mvvm/viewmodel/viewmodelutils.h>
 
+using namespace DaRefl;
 using namespace ModelView;
 
 //! Tests of LayerEditorActions.
@@ -132,7 +133,7 @@ TEST_F(LayerEditorActionsTest, addNewMultiLayerAfterSelection)
     EXPECT_EQ(layers.at(2), test_data.bottom);
 
     // checking that layer was added
-    EXPECT_EQ(layers.at(1)->modelType(), ::Constants::MultiLayerItemType);
+    EXPECT_EQ(layers.at(1)->modelType(), DaRefl::Constants::MultiLayerItemType);
     auto sublayers = layers.at(1)->getItems(MultiLayerItem::T_LAYERS);
     EXPECT_EQ(sublayers.size(), 2);
 

@@ -14,6 +14,9 @@
 #include <fstream>
 #include <mvvm/utils/stringutils.h>
 
+namespace DaRefl
+{
+
 namespace
 {
 
@@ -182,8 +185,8 @@ DataLoader::CreateGraphInfoPairs(const std::vector<DataLoader::ColumnInfo>& colu
 {
     std::vector<std::pair<DataLoader::ColumnInfo, DataLoader::ColumnInfo>> result;
 
-    auto axis_columns = columnsForType(column_info, DataLoader::Constants::AxisType);
-    auto intensity_columns = columnsForType(column_info, DataLoader::Constants::IntensityType);
+    auto axis_columns = columnsForType(column_info, Constants::AxisType);
+    auto intensity_columns = columnsForType(column_info, Constants::IntensityType);
 
     if (axis_columns.size() != 1)
         throw std::runtime_error("There must be exactly one column with AxisType selected.");
@@ -214,3 +217,5 @@ GraphImportData DataLoader::CreateData(const std::vector<std::vector<std::string
 
     return result;
 }
+
+} // namespace DaRefl

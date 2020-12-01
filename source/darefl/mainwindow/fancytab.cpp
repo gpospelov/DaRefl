@@ -23,6 +23,9 @@ QColor defaultColor()
 }
 } // namespace
 
+namespace DaRefl
+{
+
 FancyTab::FancyTab(const QString& title, QWidget* parent)
     : QWidget(parent), m_label(new QLabel(title))
 {
@@ -74,3 +77,5 @@ void FancyTab::leaveEvent(QEvent*)
         m_widgetColor = defaultColor();
     update();
 }
+
+} // namespace DaRefl

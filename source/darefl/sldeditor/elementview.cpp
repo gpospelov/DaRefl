@@ -15,6 +15,9 @@
 #include <QPainter>
 #include <QPainterPath>
 
+namespace DaRefl
+{
+
 //! The constructor
 ElementView::ElementView() : QGraphicsObject()
 {
@@ -255,3 +258,5 @@ void ElementView::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
         setCursor(QCursor(Qt::OpenHandCursor));
     QGraphicsItem::mouseReleaseEvent(event);
 }
+
+} // namespace DaRefl

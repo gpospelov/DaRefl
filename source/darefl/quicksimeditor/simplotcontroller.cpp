@@ -15,6 +15,9 @@
 #include <darefl/quicksimeditor/simplotcontroller.h>
 #include <mvvm/project/modelhaschangedcontroller.h>
 
+namespace DaRefl
+{
+
 SimPlotController::SimPlotController(QObject* parent) : QObject(parent) {}
 
 void SimPlotController::setModels(ApplicationModels* models)
@@ -34,3 +37,5 @@ void SimPlotController::onInstrumentChange()
 }
 
 SimPlotController::~SimPlotController() = default;
+
+} // namespace DaRefl

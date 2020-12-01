@@ -12,6 +12,9 @@
 #include <darefl/importdataview/importdataeditortoolbal.h>
 #include <darefl/mainwindow/styleutils.h>
 
+namespace DaRefl
+{
+
 ImportDataEditorToolBar::ImportDataEditorToolBar(ImportDataEditorActions* editorActions,
                                                  QWidget* parent)
     : QToolBar(parent), m_editorActions(editorActions)
@@ -21,7 +24,8 @@ ImportDataEditorToolBar::ImportDataEditorToolBar(ImportDataEditorActions* editor
     auto action = new QAction("Import", this);
     action->setToolTip("Opens the data import dialog.");
     action->setIcon(QIcon(":/icons/import.svg"));
-    connect(action, &QAction::triggered, this, [this]() { m_editorActions->onImportDialogRequest(); });
+    connect(action, &QAction::triggered, this,
+            [this]() { m_editorActions->onImportDialogRequest(); });
     addAction(action);
 
     addSeparator();
@@ -76,3 +80,5 @@ ImportDataEditorToolBar::ImportDataEditorToolBar(ImportDataEditorActions* editor
             &ImportDataEditorToolBar::updateViewportRequest);
     addAction(reset_graph_action);
 }
+
+} // namespace DaRefl

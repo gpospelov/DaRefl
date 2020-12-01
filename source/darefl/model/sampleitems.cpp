@@ -9,13 +9,16 @@
 
 #include <QVariant>
 #include <darefl/model/item_constants.h>
-#include <darefl/model/sampleitems.h>
 #include <darefl/model/materialitems.h>
 #include <darefl/model/materialmodel.h>
+#include <darefl/model/sampleitems.h>
 #include <mvvm/model/externalproperty.h>
 #include <mvvm/signals/itemmapper.h>
 
-RoughnessItem::RoughnessItem() : ModelView::CompoundItem(::Constants::RoughnessItemType)
+namespace DaRefl
+{
+
+RoughnessItem::RoughnessItem() : ModelView::CompoundItem(Constants::RoughnessItemType)
 {
     addProperty(P_SIGMA, 0.0)->setDisplayName("Sigma");
     addProperty(P_HURST, 0.5)->setDisplayName("Hurst");
@@ -24,7 +27,7 @@ RoughnessItem::RoughnessItem() : ModelView::CompoundItem(::Constants::RoughnessI
 
 //! ---------------------------------------------------------------------------
 
-LayerItem::LayerItem() : ModelView::CompoundItem(::Constants::LayerItemType)
+LayerItem::LayerItem() : ModelView::CompoundItem(Constants::LayerItemType)
 {
     addProperty(P_NAME, "Unnamed")->setDisplayName("Name");
     addProperty(P_MATERIAL, ModelView::ExternalProperty::undefined())->setDisplayName("Material");
@@ -36,12 +39,12 @@ LayerItem::LayerItem() : ModelView::CompoundItem(::Constants::LayerItemType)
 
 //! ---------------------------------------------------------------------------
 
-MultiLayerItem::MultiLayerItem() : ModelView::CompoundItem(::Constants::MultiLayerItemType)
+MultiLayerItem::MultiLayerItem() : ModelView::CompoundItem(Constants::MultiLayerItemType)
 {
     addProperty(P_NAME, "Unnamed")->setDisplayName("Name");
     addProperty(P_NREPETITIONS, 1)->setDisplayName("Nr.");
-    std::vector<std::string> allowed_child = {::Constants::MultiLayerItemType,
-                                              ::Constants::LayerItemType};
+    std::vector<std::string> allowed_child = {Constants::MultiLayerItemType,
+                                              Constants::LayerItemType};
     registerTag(ModelView::TagInfo::universalTag(T_LAYERS, allowed_child), /*set_default*/ true);
 
     void update_layer_appearance();
@@ -87,3 +90,5 @@ void MultiLayerItem::update_layer_appearance()
         }
     }
 }
+
+} // namespace DaRefl

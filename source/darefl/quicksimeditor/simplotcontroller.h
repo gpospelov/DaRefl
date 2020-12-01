@@ -19,6 +19,9 @@ namespace ModelView
 class ModelHasChangedController;
 }
 
+namespace DaRefl
+{
+
 class ApplicationModels;
 
 //! Updates reference curve in JobItem when BeamItem is changed.
@@ -39,5 +42,7 @@ private:
     ApplicationModels* m_models{nullptr};
     std::unique_ptr<ModelView::ModelHasChangedController> m_instrumentChangedController;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_QUICKSIMEDITOR_SIMPLOTCONTROLLER_H

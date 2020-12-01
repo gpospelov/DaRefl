@@ -10,9 +10,12 @@
 #ifndef DAREFL_MAINWINDOW_MAINWINDOW_H
 #define DAREFL_MAINWINDOW_MAINWINDOW_H
 
-#include <darefl/darefl_export.h>
 #include <QMainWindow>
+#include <darefl/darefl_export.h>
 #include <memory>
+
+namespace DaRefl
+{
 
 class WelcomeView;
 class ImportDataView;
@@ -49,5 +52,7 @@ private:
     SettingsView* m_settingsView{nullptr};
     MainBarWidget* m_barWidget{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_MAINWINDOW_MAINWINDOW_H

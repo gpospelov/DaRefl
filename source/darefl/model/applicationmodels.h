@@ -10,14 +10,17 @@
 #ifndef DAREFL_MODEL_APPLICATIONMODELS_H
 #define DAREFL_MODEL_APPLICATIONMODELS_H
 
+#include <darefl/darefl_export.h>
 #include <memory>
 #include <mvvm/interfaces/applicationmodelsinterface.h>
-#include <darefl/darefl_export.h>
 
 namespace ModelView
 {
 class SessionModel;
 }
+
+namespace DaRefl
+{
 
 class MaterialModel;
 class SampleModel;
@@ -50,5 +53,7 @@ private:
     struct ApplicationModelsImpl;
     std::unique_ptr<ApplicationModelsImpl> p_impl;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_MODEL_APPLICATIONMODELS_H

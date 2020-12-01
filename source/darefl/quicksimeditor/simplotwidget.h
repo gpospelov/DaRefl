@@ -18,6 +18,9 @@ namespace ModelView
 class GraphCanvas;
 } // namespace ModelView
 
+namespace DaRefl
+{
+
 class ApplicationModels;
 
 //! Presents simulation results together with reference experimental data on two canvas.
@@ -42,5 +45,7 @@ private:
     ModelView::GraphCanvas* m_specularCanvas{nullptr};
     ModelView::GraphCanvas* m_diffCanvas{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_QUICKSIMEDITOR_SIMPLOTWIDGET_H

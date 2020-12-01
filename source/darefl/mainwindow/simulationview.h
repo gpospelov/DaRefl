@@ -11,13 +11,16 @@
 #define DAREFL_MAINWINDOW_SIMULATIONVIEW_H
 
 #include <QMainWindow>
-#include <memory>
 #include <darefl/darefl_export.h>
+#include <memory>
 
 namespace ModelView
 {
 class CollapsibleListWidget;
 }
+
+namespace DaRefl
+{
 
 class ApplicationModels;
 class QuickSimEditor;
@@ -38,5 +41,7 @@ private:
     QuickSimEditor* m_simEditor{nullptr};
     ApplicationModels* m_models{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_MAINWINDOW_SIMULATIONVIEW_H

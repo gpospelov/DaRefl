@@ -7,26 +7,26 @@
 //
 // ************************************************************************** //
 
-#include <darefl/model/sampleitems.h>
 #include <darefl/model/materialitems.h>
 #include <darefl/model/materialmodel.h>
+#include <darefl/model/sampleitems.h>
 #include <darefl/model/samplemodel.h>
 #include <darefl/sldeditor/graphicsscene.h>
-#include <darefl/sldeditor/segmentelementview.h>
-#include <darefl/sldeditor/sldelementcontroller.h>
-
 #include <darefl/sldeditor/layerelementcontroller.h>
 #include <darefl/sldeditor/layerelementitem.h>
+#include <darefl/sldeditor/segmentelementview.h>
+#include <darefl/sldeditor/sldelementcontroller.h>
 #include <darefl/sldeditor/sldelementmodel.h>
-
+#include <iostream>
 #include <mvvm/model/compounditem.h>
 #include <mvvm/model/externalproperty.h>
 #include <mvvm/model/modelutils.h>
 #include <mvvm/signals/modelmapper.h>
 
-#include <iostream>
-
 using namespace ModelView;
+
+namespace DaRefl
+{
 
 //! Contructor
 SLDElementController::SLDElementController(MaterialModel* material_model, SampleModel* sample_model,
@@ -301,3 +301,5 @@ void SLDElementController::updateRoughnessFromView(std::string identifier, doubl
     auto roughness_item = layer_item->item<RoughnessItem>(LayerItem::P_ROUGHNESS);
     roughness_item->setProperty(RoughnessItem::P_SIGMA, value);
 }
+
+} // namespace DaRefl

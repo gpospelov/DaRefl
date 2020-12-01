@@ -14,13 +14,15 @@
 #include <mvvm/model/sessionmodel.h>
 #include <vector>
 
-// The mvvm session item associated to a layer
-class LayerElementItem;
-
 namespace ModelView
 {
 class ExternalProperty;
 }
+
+namespace DaRefl
+{
+
+class LayerElementItem;
 
 //! The model of the sld layer visual representation
 class DAREFLCORE_EXPORT SLDElementModel : public ModelView::SessionModel
@@ -31,5 +33,7 @@ public:
     //! Add a layer item
     LayerElementItem* addLayer();
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_SLDEDITOR_SLDELEMENTMODEL_H

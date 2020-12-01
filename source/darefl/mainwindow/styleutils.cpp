@@ -14,6 +14,9 @@
 #include <darefl/mainwindow/styleutils.h>
 #include <darefl/resources/resources.h>
 
+namespace DaRefl
+{
+
 QSize StyleUtils::ToolBarIconSize()
 {
     return QSize(24, 24);
@@ -34,4 +37,6 @@ void StyleUtils::SetToolBarStyleTextBesides(QToolBar* toolbar)
     InitIconResources();
     toolbar->setIconSize(StyleUtils::ToolBarIconSize());
     toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+}
+
 }

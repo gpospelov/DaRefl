@@ -19,6 +19,9 @@ namespace ModelView
 class ViewModelDelegate;
 } // namespace ModelView
 
+namespace DaRefl
+{
+
 class ApplicationModels;
 class LayerTreeView;
 class LayerSelectionModel;
@@ -45,5 +48,7 @@ private:
     LayerTreeView* m_layerView{nullptr};
     std::unique_ptr<ModelView::ViewModelDelegate> m_delegate;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_LAYEREDITOR_LAYEREDITORWIDGET_H

@@ -18,6 +18,7 @@
 #include <mvvm/model/itempool.h>
 #include <tuple>
 
+using namespace DaRefl;
 using namespace ModelView;
 
 namespace
@@ -43,18 +44,18 @@ public:
         std::shared_ptr<ItemPool> item_pool;
         SampleModel sample_model;
         MaterialModel material_model;
-        MultiLayerItem* multilayer{nullptr};
+        DaRefl::MultiLayerItem* multilayer{nullptr};
         TestData()
             : item_pool(std::make_shared<ItemPool>())
             , sample_model(item_pool)
             , material_model(item_pool)
         {
-            multilayer = sample_model.insertItem<MultiLayerItem>();
+            multilayer = sample_model.insertItem<DaRefl::MultiLayerItem>();
         }
 
         //! Add layer to given multilayer models. At the same time corresponding material will
         //! be added to MaterialModel and the Layer will be linked to it.
-        void addLayer(MultiLayerItem* _multilayer, double thickness, double sigma, complex_t sld)
+        void addLayer(DaRefl::MultiLayerItem* _multilayer, double thickness, double sigma, complex_t sld)
         {
             auto material = material_model.insertItem<SLDMaterialItem>();
             material->set_properties("gold", QColor(), sld.real(), sld.imag());
@@ -62,7 +63,7 @@ public:
             setup_layer(layer, thickness, sigma, material);
         }
 
-        void addLayer(MultiLayerItem* _multilayer,
+        void addLayer(DaRefl::MultiLayerItem* _multilayer,
                       const std::tuple<double, double, complex_t>& info)
         {
             auto [thickness, sigma, sld] = info;
@@ -88,7 +89,7 @@ TEST_F(QuickSimUtilsTest, testData)
     test_data.addLayer(test_data.multilayer, thickness, sigma, sld);
 
     // checking that layer got necessary parameters
-    auto layer = test_data.multilayer->item<LayerItem>(MultiLayerItem::T_LAYERS);
+    auto layer = test_data.multilayer->item<LayerItem>(DaRefl::MultiLayerItem::T_LAYERS);
     EXPECT_EQ(layer->property<double>(LayerItem::P_THICKNESS), thickness);
     auto roughness = layer->item<RoughnessItem>(LayerItem::P_ROUGHNESS);
     EXPECT_EQ(roughness->property<double>(RoughnessItem::P_SIGMA), sigma);
@@ -105,8 +106,8 @@ TEST_F(QuickSimUtilsTest, testData)
 TEST_F(QuickSimUtilsTest, emptySlice)
 {
     SampleModel model;
-    auto multilayer = model.insertItem<MultiLayerItem>();
-    auto multislice = ::Utils::CreateMultiSlice(*multilayer);
+    auto multilayer = model.insertItem<DaRefl::MultiLayerItem>();
+    auto multislice = DaRefl::Utils::CreateMultiSlice(*multilayer);
     EXPECT_EQ(multislice.size(), 0);
 }
 
@@ -115,9 +116,9 @@ TEST_F(QuickSimUtilsTest, emptySlice)
 TEST_F(QuickSimUtilsTest, layerSlice)
 {
     SampleModel model;
-    auto multilayer = model.insertItem<MultiLayerItem>();
+    auto multilayer = model.insertItem<DaRefl::MultiLayerItem>();
     model.insertItem<LayerItem>(multilayer);
-    auto multislice = ::Utils::CreateMultiSlice(*multilayer);
+    auto multislice = DaRefl::Utils::CreateMultiSlice(*multilayer);
 
     ASSERT_EQ(multislice.size(), 1);
     EXPECT_EQ(multislice[0].material.real(), 0.0);
@@ -141,7 +142,7 @@ TEST_F(QuickSimUtilsTest, definedLayerSlice)
     test_data.addLayer(test_data.multilayer, thickness, sigma, sld);
 
     // creating multi slice
-    auto multislice = ::Utils::CreateMultiSlice(*test_data.multilayer);
+    auto multislice = DaRefl::Utils::CreateMultiSlice(*test_data.multilayer);
 
     ASSERT_EQ(multislice.size(), 1);
     EXPECT_EQ(multislice[0].material.real(), sld.real());
@@ -163,7 +164,7 @@ TEST_F(QuickSimUtilsTest, threeLayerSlices)
     for (auto [thickness, sigma, sld] : layer_data)
         test_data.addLayer(test_data.multilayer, thickness, sigma, sld);
 
-    auto multislice = ::Utils::CreateMultiSlice(*test_data.multilayer);
+    auto multislice = DaRefl::Utils::CreateMultiSlice(*test_data.multilayer);
 
     ASSERT_EQ(multislice.size(), 3);
     int index(0);
@@ -194,14 +195,14 @@ TEST_F(QuickSimUtilsTest, nestedMultiLayerSlice)
     test_data.addLayer(test_data.multilayer, air);
     // adding nested multilayer with content repetition
     auto multilayer = test_data.multilayer;
-    auto nested_multilayer = test_data.sample_model.insertItem<MultiLayerItem>(multilayer);
-    nested_multilayer->setProperty(MultiLayerItem::P_NREPETITIONS, repetition_count);
+    auto nested_multilayer = test_data.sample_model.insertItem<DaRefl::MultiLayerItem>(multilayer);
+    nested_multilayer->setProperty(DaRefl::MultiLayerItem::P_NREPETITIONS, repetition_count);
     test_data.addLayer(nested_multilayer, ti_layer);
     test_data.addLayer(nested_multilayer, ni_layer);
     // adding substrate
     test_data.addLayer(test_data.multilayer, substrate);
 
-    auto multislice = ::Utils::CreateMultiSlice(*test_data.multilayer);
+    auto multislice = DaRefl::Utils::CreateMultiSlice(*test_data.multilayer);
     ASSERT_EQ(multislice.size(), 6);
 
     // expected slice content

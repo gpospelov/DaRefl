@@ -31,6 +31,9 @@ std::map<QMessageBox::StandardButton, SaveChangesAnswer> answer_map()
 }
 } // namespace
 
+namespace DaRefl
+{
+
 UserInteractor::UserInteractor(RecentProjectSettings* settings, QWidget* parent)
     : m_settings(settings), m_parent(parent)
 {
@@ -106,3 +109,5 @@ std::string UserInteractor::selectDir() const
 
     return dirname.toStdString();
 }
+
+} // namespace DaRefl

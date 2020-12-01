@@ -13,6 +13,9 @@
 #include <darefl/darefl_export.h>
 #include <mvvm/model/sessionmodel.h>
 
+namespace DaRefl
+{
+
 //! Model to hold layers and multi-layers.
 class DAREFLCORE_EXPORT SampleModel : public ModelView::SessionModel
 {
@@ -21,5 +24,7 @@ public:
 
     void create_default_multilayer();
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_MODEL_SAMPLEMODEL_H

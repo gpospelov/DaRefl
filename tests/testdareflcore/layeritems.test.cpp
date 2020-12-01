@@ -12,6 +12,7 @@
 #include <darefl/model/sampleitems.h>
 #include <darefl/model/samplemodel.h>
 
+using namespace DaRefl;
 using namespace ModelView;
 
 //! Test layer items.

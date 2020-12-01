@@ -22,6 +22,9 @@ namespace ModelView
 class ProjectManagerInterface;
 }
 
+namespace DaRefl
+{
+
 class RecentProjectSettings;
 class UserInteractor;
 class ApplicationModels;
@@ -62,5 +65,7 @@ private:
     std::unique_ptr<ModelView::ProjectManagerInterface> m_projectManager;
     ApplicationModels* m_models{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_WELCOMEVIEW_PROJECTHANDLER_H

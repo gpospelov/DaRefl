@@ -15,6 +15,11 @@
 #include <mvvm/editors/externalpropertycomboeditor.h>
 #include <mvvm/model/externalproperty.h>
 
+using namespace ModelView;
+
+namespace DaRefl
+{
+
 namespace
 {
 //! Return list of possible choices for material properties in MaterialModel.
@@ -27,8 +32,6 @@ std::vector<ModelView::ExternalProperty> get_choice_of_materials(MaterialModel* 
     return result;
 }
 } // namespace
-
-using namespace ModelView;
 
 CustomLayerTreeEditorFactory::~CustomLayerTreeEditorFactory() = default;
 
@@ -50,3 +53,5 @@ CustomLayerTreeEditorFactory::createEditor(const QModelIndex& index) const
         return DefaultEditorFactory::createEditor(index);
     }
 }
+
+} // namespace DaRefl

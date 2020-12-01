@@ -18,6 +18,9 @@
 #include <darefl/model/samplemodel.h>
 #include <mvvm/viewmodel/viewmodeldelegate.h>
 
+namespace DaRefl
+{
+
 LayerEditorWidget::LayerEditorWidget(QWidget* parent)
     : QWidget(parent)
     , m_layerView(new LayerTreeView)
@@ -47,3 +50,5 @@ LayerSelectionModel* LayerEditorWidget::selectionModel() const
 {
     return m_selectionModel;
 }
+
+} // namespace DaRefl

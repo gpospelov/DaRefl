@@ -12,6 +12,9 @@
 #include <mvvm/viewmodel/viewmodel.h>
 #include <mvvm/viewmodel/viewmodelutils.h>
 
+namespace DaRefl
+{
+
 MaterialSelectionModel::MaterialSelectionModel(ModelView::ViewModel* view_model, QObject* parent)
     : QItemSelectionModel(view_model, parent)
 {
@@ -55,3 +58,5 @@ const ModelView::ViewModel* MaterialSelectionModel::viewModel() const
 {
     return static_cast<const ModelView::ViewModel*>(model());
 }
+
+} // namespace DaRefl

@@ -11,6 +11,9 @@
 #include <QMouseEvent>
 #include <darefl/materialeditor/materialtreeview.h>
 
+namespace DaRefl
+{
+
 MaterialTreeView::~MaterialTreeView() = default;
 
 MaterialTreeView::MaterialTreeView(QWidget* parent) : QTreeView(parent)
@@ -65,3 +68,5 @@ bool MaterialTreeView::isKeyboardEditable(const QModelIndex& index) const
 {
     return index.isValid();
 }
+
+} // namespace DaRefl

@@ -18,6 +18,9 @@
 
 using namespace ModelView;
 
+namespace DaRefl
+{
+
 BasicSpecularScanItem::BasicSpecularScanItem(const std::string& model_type)
     : CompoundItem(model_type)
 {
@@ -25,7 +28,7 @@ BasicSpecularScanItem::BasicSpecularScanItem(const std::string& model_type)
 
 // ----------------------------------------------------------------------------
 
-QSpecScanItem::QSpecScanItem() : BasicSpecularScanItem(::Constants::QSpecScanItemType)
+QSpecScanItem::QSpecScanItem() : BasicSpecularScanItem(Constants::QSpecScanItemType)
 {
     addProperty(P_NBINS, 500)->setDisplayName("Nbins");
     addProperty(P_QMIN, 0.0)->setDisplayName("Qmin");
@@ -43,14 +46,14 @@ std::vector<double> QSpecScanItem::qScanValues() const
 // ----------------------------------------------------------------------------
 
 ExperimentalScanItem::ExperimentalScanItem()
-    : BasicSpecularScanItem(::Constants::ExperimentalScanItemType)
+    : BasicSpecularScanItem(Constants::ExperimentalScanItemType)
 {
     addProperty(P_IMPORTED_DATA, ExternalProperty::undefined())->setDisplayName("Graph");
 }
 
 void ExperimentalScanItem::setGraphItem(GraphItem* graph)
 {
-    setProperty(P_IMPORTED_DATA, ::Utils::CreateProperty(graph));
+    setProperty(P_IMPORTED_DATA, Utils::CreateProperty(graph));
 }
 
 GraphItem* ExperimentalScanItem::graphItem() const
@@ -69,7 +72,7 @@ std::vector<double> ExperimentalScanItem::qScanValues() const
 
 // ----------------------------------------------------------------------------
 
-SpecularScanGroupItem::SpecularScanGroupItem() : GroupItem(::Constants::SpecularScanGroupItemType)
+SpecularScanGroupItem::SpecularScanGroupItem() : GroupItem(Constants::SpecularScanGroupItemType)
 {
     registerItem<QSpecScanItem>("Q-scan", /*make_selected*/ true);
     registerItem<ExperimentalScanItem>("Based on data");
@@ -78,7 +81,7 @@ SpecularScanGroupItem::SpecularScanGroupItem() : GroupItem(::Constants::Specular
 
 // ----------------------------------------------------------------------------
 
-SpecularBeamItem::SpecularBeamItem() : CompoundItem(::Constants::SpecularBeamItemType)
+SpecularBeamItem::SpecularBeamItem() : CompoundItem(Constants::SpecularBeamItemType)
 {
     addProperty(P_INTENSITY, 1.0)->setDisplayName("Intensity");
     addProperty<SpecularScanGroupItem>(P_SCAN_GROUP)->setDisplayName("Specular scan type");
@@ -113,7 +116,7 @@ GraphItem* SpecularBeamItem::experimentalGraphItem() const
 // ----------------------------------------------------------------------------
 
 SpecularInstrumentItem::SpecularInstrumentItem()
-    : CompoundItem(::Constants::SpecularInstrumentItemType)
+    : CompoundItem(Constants::SpecularInstrumentItemType)
 {
     addProperty<SpecularBeamItem>(P_BEAM);
 }
@@ -122,3 +125,5 @@ SpecularBeamItem* SpecularInstrumentItem::beamItem() const
 {
     return item<SpecularBeamItem>(P_BEAM);
 }
+
+} // namespace DaRefl

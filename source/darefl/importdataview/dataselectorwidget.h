@@ -13,13 +13,18 @@
 #include <QWidget>
 #include <darefl/darefl_export.h>
 
+class QTreeView;
+
+
 namespace ModelView
 {
 class PropertyTreeView;
 class CollapsibleListWidget;
 } // namespace ModelView
 
-class QTreeView;
+namespace DaRefl
+{
+
 class DataSelectionModel;
 class DataViewModel;
 
@@ -49,5 +54,7 @@ private:
     ModelView::PropertyTreeView* m_graphPropertyEditor{nullptr};
     ModelView::CollapsibleListWidget* m_collapsibleWidget{nullptr};
 };
+
+}
 
 #endif // DAREFL_IMPORTDATAVIEW_DATASELECTORWIDGET_H

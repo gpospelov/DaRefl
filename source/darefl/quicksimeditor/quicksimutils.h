@@ -21,7 +21,7 @@ class Slice;
 }
 
 //! Collection of utility funcitons for running quick simulations.
-namespace Utils
+namespace DaRefl::Utils
 {
 
 //! Creates multi-slice presentation of internal multilayer structure.

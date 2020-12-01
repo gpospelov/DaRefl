@@ -14,7 +14,8 @@
 
 using ModelView::ComboProperty;
 
-using namespace DataLoader;
+namespace DaRefl
+{
 
 namespace
 {
@@ -128,3 +129,5 @@ bool ImportTableHeader::isValid(int row, int column) const
     return (row >= 0 && row < static_cast<int>(m_data.size()))
            && (column >= 0 && column < static_cast<int>(m_data[row].size()));
 }
+
+} // namespace DaRefl::DataLoader

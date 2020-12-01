@@ -19,6 +19,9 @@
 #include <mvvm/widgets/allitemstreeview.h>
 #include <mvvm/widgets/widgetutils.h>
 
+namespace DaRefl
+{
+
 SettingsView::SettingsView(ApplicationModels* models, QWidget* parent)
     : QWidget(parent)
     , m_listWidget(new QListWidget)
@@ -72,3 +75,5 @@ void SettingsView::init_other_settings()
 {
     m_stackedWidget->addWidget(new QWidget);
 }
+
+} // namespace DaRefl

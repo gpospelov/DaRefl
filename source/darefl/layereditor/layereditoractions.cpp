@@ -19,6 +19,9 @@
 
 using namespace ModelView;
 
+namespace DaRefl
+{
+
 struct LayerEditorActions::LayerEditorActionsImpl {
     SampleModel* sample_model{nullptr};
     LayerSelectionModel* selection_model{nullptr};
@@ -138,3 +141,5 @@ void LayerEditorActions::setSelectionModel(LayerSelectionModel* selection_model)
 }
 
 LayerEditorActions::~LayerEditorActions() = default;
+
+} // namespace DaRefl

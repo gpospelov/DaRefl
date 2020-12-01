@@ -10,12 +10,15 @@
 #ifndef DAREFL_DATALOADER_LOADERPREVIEWPANEL_H
 #define DAREFL_DATALOADER_LOADERPREVIEWPANEL_H
 
-#include <darefl/darefl_export.h>
 #include <QWidget>
+#include <darefl/darefl_export.h>
 
 class ImportTextView;
 class ImportTableWidget;
 class QTabWidget;
+
+namespace DaRefl
+{
 
 namespace DataLoader
 {
@@ -44,5 +47,7 @@ private:
     ImportTableWidget* m_tableWidget{nullptr};
     QTabWidget* m_tabWidget{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_DATALOADER_LOADERPREVIEWPANEL_H

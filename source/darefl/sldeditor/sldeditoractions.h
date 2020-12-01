@@ -14,6 +14,9 @@
 #include <darefl/darefl_export.h>
 #include <memory>
 
+namespace DaRefl
+{
+
 class SLDElementModel;
 
 //! Handles user actions applied to SLDEditor.
@@ -33,5 +36,7 @@ private:
     struct SLDEditorActionsImpl;
     std::unique_ptr<SLDEditorActionsImpl> p_impl;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_SLDEDITOR_SLDEDITORACTIONS_H

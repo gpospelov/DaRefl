@@ -10,11 +10,14 @@
 #ifndef DAREFL_DATALOADER_IMPORTFILEWIDGET_H
 #define DAREFL_DATALOADER_IMPORTFILEWIDGET_H
 
-#include <darefl/darefl_export.h>
 #include <QWidget>
+#include <darefl/darefl_export.h>
 
 class QListView;
 class QStringListModel;
+
+namespace DaRefl
+{
 
 //! Provides the possibility to select file names on disk and add them to list view.
 //! List represents names of ASCII files which will be later imported and parsed.
@@ -55,5 +58,7 @@ private:
     QStringListModel* m_listModel{nullptr};
     QString m_currentWorkdir;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_DATALOADER_IMPORTFILEWIDGET_H

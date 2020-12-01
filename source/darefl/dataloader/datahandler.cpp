@@ -12,6 +12,9 @@
 #include <iostream>
 #include <mvvm/utils/containerutils.h>
 
+namespace DaRefl
+{
+
 //! Load raw data from the list of files, if it was not loaded yet.
 //! Remove data which is not present.
 
@@ -43,3 +46,5 @@ void DataHandler::loadFile(const std::string& file_name)
 {
     m_raw_data[file_name] = DataLoader::LoadASCIIFile(file_name);
 }
+
+} // namespace DaRefl

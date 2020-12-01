@@ -16,17 +16,21 @@
 #include <string>
 #include <vector>
 
+class QTableView;
+
 namespace ModelView
 {
 class ViewModelDelegate;
 }
+
+namespace DaRefl
+{
 
 namespace DataLoader
 {
 struct ColumnInfo;
 }
 
-class QTableView;
 class ImportTableModel;
 
 //! Contains table with imported data.
@@ -49,5 +53,7 @@ private:
     QTableView* m_tableView{nullptr};
     std::unique_ptr<ModelView::ViewModelDelegate> m_delegate;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_DATALOADER_IMPORTTABLEWIDGET_H

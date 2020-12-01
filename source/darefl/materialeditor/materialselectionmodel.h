@@ -20,6 +20,9 @@ class ViewModel;
 class SessionItem;
 } // namespace ModelView
 
+namespace DaRefl
+{
+
 class MaterialEditorActions;
 class MaterialBaseItem;
 
@@ -42,5 +45,7 @@ public:
 
     const ModelView::ViewModel* viewModel() const;
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_MATERIALEDITOR_MATERIALSELECTIONMODEL_H

@@ -7,8 +7,8 @@
 //
 // ************************************************************************** //
 
-#include <QDebug>
 #include <QFile>
+#include <QTextStream>
 #include <darefl/materialeditor/materialeditoractions.h>
 #include <darefl/materialeditor/materialselectionmodel.h>
 #include <darefl/model/materialitems.h>
@@ -18,6 +18,9 @@
 #include <mvvm/viewmodel/viewmodel.h>
 
 using namespace ModelView;
+
+namespace DaRefl
+{
 
 struct MaterialEditorActions::MaterialEditorActionsImpl {
     MaterialModel* material_model{nullptr};
@@ -131,7 +134,6 @@ void MaterialEditorActions::onExport()
                 tableData += val.value<std::string>().c_str();
                 tableData += " ";
             } else if (strcmp(val.typeName(), "int") == 0) {
-                qDebug() << "Int Value: " << val.value<int>();
                 auto int_val = val.value<int>();
                 tableData += QString::number(int_val);
                 tableData += " ";
@@ -169,7 +171,8 @@ void MaterialEditorActions::onExport()
 
 void MaterialEditorActions::onImport()
 {
-    qDebug() << "MaterialEditorActions::onImport()";
 }
 
 MaterialEditorActions::~MaterialEditorActions() = default;
+
+} // namespace DaRefl

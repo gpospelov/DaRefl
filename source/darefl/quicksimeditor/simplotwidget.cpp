@@ -17,6 +17,9 @@
 #include <mvvm/plotting/graphcanvas.h>
 #include <mvvm/standarditems/graphviewportitem.h>
 
+namespace DaRefl
+{
+
 SimPlotWidget::SimPlotWidget(QWidget* parent)
     : QWidget(parent)
     , m_specularCanvas(new ModelView::GraphCanvas)
@@ -57,3 +60,5 @@ void SimPlotWidget::updateViewport()
     m_specularCanvas->update_viewport();
     m_diffCanvas->update_viewport();
 }
+
+} // namespace DaRefl

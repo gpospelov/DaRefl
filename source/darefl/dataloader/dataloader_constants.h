@@ -13,13 +13,13 @@
 #include <string>
 #include <vector>
 
-namespace DataLoader ::Constants
+namespace DaRefl::Constants
 {
 
 const std::string AxisType = "Axis";
 const std::string IntensityType = "Intensity";
 const std::string IgnoreType = "Ignore";
 
-} // namespace DataLoader::Constants
+} // namespace DaRefl::Constants
 
 #endif // DAREFL_DATALOADER_DATALOADER_CONSTANTS_H

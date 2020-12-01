@@ -13,14 +13,18 @@
 #include <QObject>
 #include <darefl/darefl_export.h>
 
+class QItemSelection;
+
 namespace ModelView
 {
 class UndoStackInterface;
 }
 
+namespace DaRefl
+{
+
 class ExperimentalDataModel;
 class DataSelectionModel;
-class QItemSelection;
 
 //! Actions for ImportDataEditor.
 
@@ -55,5 +59,7 @@ private:
     ExperimentalDataModel* m_dataModel{nullptr};
     DataSelectionModel* m_selectionModel{nullptr};
 };
+
+}
 
 #endif // DAREFL_IMPORTDATAVIEW_IMPORTDATAEDITORACTIONS_H

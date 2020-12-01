@@ -24,6 +24,9 @@
 
 using namespace ModelView;
 
+namespace DaRefl
+{
+
 QuickSimEditor::QuickSimEditor(QWidget* parent)
     : QWidget(parent)
     , m_simController(new QuickSimController(this))
@@ -96,3 +99,5 @@ void QuickSimEditor::setup_controller_connections()
             dynamic_cast<QuickSimEditorToolBar*>(m_toolBar),
             &QuickSimEditorToolBar::onProgressChanged);
 }
+
+} // namespace DaRefl

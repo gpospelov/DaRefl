@@ -16,6 +16,9 @@
 class QProgressBar;
 class QCheckBox;
 
+namespace DaRefl
+{
+
 //! Toolbar for QuickSimEditor.
 //! Contains live simulation button, cancel button, simulation progress bar and settings buttons.
 
@@ -45,5 +48,7 @@ private:
     QCheckBox* m_liveCheckbox{nullptr};
     QProgressBar* m_progressBar{nullptr}; //! Simulation progressbar.
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_QUICKSIMEDITOR_QUICKSIMEDITORTOOLBAR_H

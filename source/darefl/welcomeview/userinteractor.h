@@ -10,15 +10,19 @@
 #ifndef DAREFL_WELCOMEVIEW_USERINTERACTOR_H
 #define DAREFL_WELCOMEVIEW_USERINTERACTOR_H
 
-#include <string>
 #include <darefl/darefl_export.h>
+#include <string>
+
+class QWidget;
 
 namespace ModelView
 {
 enum class SaveChangesAnswer;
 }
 
-class QWidget;
+namespace DaRefl
+{
+
 class RecentProjectSettings;
 
 //! Provide save/discard/cancel and similar dialogs on user request.
@@ -41,5 +45,7 @@ private:
     RecentProjectSettings* m_settings{nullptr};
     QWidget* m_parent{nullptr};
 };
+
+} // namespace DaRefl
 
 #endif // DAREFL_WELCOMEVIEW_USERINTERACTOR_H

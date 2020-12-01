@@ -19,6 +19,7 @@
 #include <darefl/sldeditor/sldelementcontroller.cpp>
 #include <darefl/sldeditor/sldelementmodel.h>
 
+using namespace DaRefl;
 using namespace ModelView;
 
 class SLDElementControllerTest : public ::testing::Test

@@ -16,6 +16,9 @@
 #include <darefl/darefl_export.h>
 #include <vector>
 
+namespace DaRefl
+{
+
 // The mvvm item associated to this layer
 class LayerElementItem;
 // The graphics scene to put the QGraphicsViewItem on
@@ -148,5 +151,7 @@ private:
     LayerElementController* p_controller_above = nullptr;
     LayerElementController* p_controller_below = nullptr;
 };
+
+}
 
 #endif // DAREFL_SLDEDITOR_LAYERELEMENTCONTROLLER_H
