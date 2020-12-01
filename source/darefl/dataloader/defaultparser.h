@@ -15,7 +15,7 @@
 #include <darefl/dataloader/parserinterface.h>
 #include <map>
 
-namespace DaRefl::DataLoader
+namespace DaRefl
 {
 
 //! Provides basic algorirthm for parsing multi-string data representing content
@@ -48,6 +48,6 @@ private:
     std::map<size_t, std::vector<std::string>> m_parsedData;
 };
 
-} // namespace DaRefl::DataLoader
+} // namespace DaRefl
 
 #endif // DAREFL_DATALOADER_DEFAULTPARSER_H

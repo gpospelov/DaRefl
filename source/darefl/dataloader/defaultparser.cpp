@@ -11,14 +11,14 @@
 #include <darefl/dataloader/defaultparser.h>
 #include <stdexcept>
 
-namespace DaRefl::DataLoader
+namespace DaRefl
 {
 
 DefaultParser::DefaultParser(const ParserOptions& options)
 {
-    m_isSkipLineNumber = CreateLineNumberPatternValidator(options.m_skip_index_pattern);
-    m_isValidLineContent = CreateLinePrefixValidator(options.m_header_prefix);
-    m_line_splitter = CreateSeparatorBasedSplitter(options.m_separator);
+    m_isSkipLineNumber = DataLoader::CreateLineNumberPatternValidator(options.m_skip_index_pattern);
+    m_isValidLineContent = DataLoader::CreateLinePrefixValidator(options.m_header_prefix);
+    m_line_splitter = DataLoader::CreateSeparatorBasedSplitter(options.m_separator);
 }
 
 //! Parse data representing content of ASCII file.
@@ -73,4 +73,4 @@ std::vector<std::vector<std::string>> DefaultParser::parsedData() const
     return result;
 }
 
-} // namespace DaRefl::DataLoader
+} // namespace DaRefl

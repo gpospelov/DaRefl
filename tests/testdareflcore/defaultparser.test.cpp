@@ -13,7 +13,6 @@
 #include <darefl/dataloader/defaultparser.h>
 
 using namespace DaRefl;
-using namespace DataLoader;
 using TestUtils::toStringVector;
 
 //! Test DefaultParser.
