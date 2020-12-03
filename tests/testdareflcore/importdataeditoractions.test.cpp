@@ -90,8 +90,8 @@ TEST_F(ImportDataEditorActionsTest, onSelectionChanged)
 
     test_data.selection_model.selectItem(test_data.graph0);
 
-    auto pen0 = test_data.graph0->item<ModelView::PenItem>(ModelView::GraphItem::P_PEN);
-    auto pen1 = test_data.graph1->item<ModelView::PenItem>(ModelView::GraphItem::P_PEN);
+    auto pen0 = test_data.graph0->penItem();
+    auto pen1 = test_data.graph1->penItem();
 
     auto pencombo0 = pen0->property<ModelView::ComboProperty>(ModelView::PenItem::P_STYLE);
     auto pencombo1 = pen1->property<ModelView::ComboProperty>(ModelView::PenItem::P_STYLE);

@@ -126,11 +126,11 @@ void ImportDataEditorActions::onSelectionChanged(const QItemSelection& selected,
 {
     auto selected_graphs = itemsFromIndexList<ModelView::GraphItem>(selected.indexes());
     for (auto graph : selected_graphs)
-        graph->item<ModelView::PenItem>(ModelView::GraphItem::P_PEN)->setSelected(true);
+        graph->penItem()->setSelected(true);
 
     auto deselected_graphs = itemsFromIndexList<ModelView::GraphItem>(deselected.indexes());
     for (auto graph : deselected_graphs)
-        graph->item<ModelView::PenItem>(ModelView::GraphItem::P_PEN)->setSelected(false);
+        graph->penItem()->setSelected(false);
 }
 
 ModelView::UndoStackInterface* ImportDataEditorActions::undoStack() const
