@@ -19,9 +19,8 @@ namespace ModelView
 class GraphCanvas;
 class SceneAdapterInterface;
 class GraphViewportItem;
-} // namespace ModelView
-
 class CustomPlotProxyWidget;
+} // namespace ModelView
 
 namespace DaRefl
 {
@@ -45,7 +44,7 @@ public:
 
 private:
     void createPlotProxy(ModelView::GraphCanvas* plot_canvas);
-    CustomPlotProxyWidget* plot_proxy{nullptr};
+    ModelView::CustomPlotProxyWidget* plot_proxy{nullptr};
     std::unique_ptr<ModelView::SceneAdapterInterface> scene_adapter;
     ModelView::GraphCanvas* graph_canvas{nullptr};
 };

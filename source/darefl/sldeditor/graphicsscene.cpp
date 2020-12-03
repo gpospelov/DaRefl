@@ -71,7 +71,7 @@ void GraphicsScene::update_size(const QSize& newSize)
 void GraphicsScene::createPlotProxy(ModelView::GraphCanvas* plot_canvas)
 {
     scene_adapter = plot_canvas->createSceneAdapter();
-    plot_proxy = new CustomPlotProxyWidget(plot_canvas);
+    plot_proxy = new ModelView::CustomPlotProxyWidget(plot_canvas);
     addItem(plot_proxy);
 }
 

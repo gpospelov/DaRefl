@@ -56,7 +56,7 @@ void QuickSimController::setModels(ApplicationModels* models)
     setup_jobmanager_connections();
 
     onMultiLayerChange();
-    jobModel()->sldViewport()->update_viewport();
+    jobModel()->sldViewport()->setViewportToContent();
 }
 
 //! Requests interruption of running simulaitons.
