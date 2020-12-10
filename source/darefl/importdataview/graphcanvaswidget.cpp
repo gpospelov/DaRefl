@@ -30,7 +30,7 @@ void GraphCanvasWidget::setItem(CanvasItem* canvas_item)
 
 void GraphCanvasWidget::updateViewport()
 {
-    m_graphCanvas->update_viewport();
+    m_graphCanvas->setViewportToContent();
 }
 
 } // namespace DaRefl
