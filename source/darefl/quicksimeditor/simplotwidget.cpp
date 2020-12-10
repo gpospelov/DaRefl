@@ -57,8 +57,8 @@ void SimPlotWidget::setModels(ApplicationModels* models)
 
 void SimPlotWidget::updateViewport()
 {
-    m_specularCanvas->update_viewport();
-    m_diffCanvas->update_viewport();
+    m_specularCanvas->setViewportToContent();
+    m_diffCanvas->setViewportToContent();
 }
 
 } // namespace DaRefl

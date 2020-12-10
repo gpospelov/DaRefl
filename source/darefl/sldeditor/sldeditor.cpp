@@ -39,7 +39,7 @@ SLDEditor::SLDEditor(QWidget* parent)
         GraphicsScene* scene_item = dynamic_cast<GraphicsScene*>(m_viewWidget->scene());
         if (!scene_item)
             return;
-        scene_item->graphCanvas()->update_viewport();
+        scene_item->graphCanvas()->setViewportToContent();
     });
 }
 
